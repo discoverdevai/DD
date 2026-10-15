@@ -38,9 +38,9 @@ const idx = c.stages.findIndex((s) => s.key === current);
   .js__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); }
   .js__label span { color: var(--blue-300); }
   .js__list { display: grid; gap: var(--space-2); counter-reset: none; }
-  @media (width >= 48rem) { .js__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; } }
+  @media (width >= 64rem) { .js__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; } } /* three across only when names and the tag fit (768 split words) */
   .js__stage { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); }
-  @media (width >= 48rem) {
+  @media (width >= 64rem) {
     .js__stage { padding: var(--space-3) var(--space-5) var(--space-3) var(--space-4); border-radius: 0; }
     .js__stage:first-child { border-start-start-radius: var(--radius-md); border-end-start-radius: var(--radius-md); }
     .js__stage:last-child { border-start-end-radius: var(--radius-md); border-end-end-radius: var(--radius-md); }
@@ -51,7 +51,7 @@ const idx = c.stages.findIndex((s) => s.key === current);
   .js__node { display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); border: 1px solid rgb(254 254 254 / 0.3); }
   .js__stage--before .js__node { background: rgb(254 254 254 / 0.12); }
   .js__stage--here .js__node { background: var(--neutral-0); color: var(--blue-700); border-color: var(--neutral-0); font-weight: var(--weight-semibold); }
-  .js__text { display: grid; gap: 2px; min-inline-size: 0; }
+  .js__text { display: grid; gap: 2px; min-inline-size: 0; overflow-wrap: normal; }
   .js__name { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); color: var(--neutral-0); text-decoration: none; letter-spacing: -0.015em; }
   a.js__name { text-decoration: underline; text-decoration-color: rgb(254 254 254 / 0.35); text-underline-offset: 0.25em; }
   @media (hover: hover) { a.js__name:hover { text-decoration-color: var(--neutral-0); } }

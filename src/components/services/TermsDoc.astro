@@ -4,7 +4,8 @@
 // Rubik body, nothing else decorative). Column titles stay H3 so the page outline keeps every topic.
 import InlineLink from '../ui/InlineLink.astro';
 import type { RouteKey } from '../../data/routes';
-interface Col { title: string; body: string; link?: { label: string; to: RouteKey } }
+// `id` on a column keeps old anchors working (JSON-LD Offer urls point at #pricing).
+interface Col { id?: string; title: string; body: string; link?: { label: string; to: RouteKey } }
 interface Props { id?: string; title: string; docTitle: string; docMeta: string; cols: readonly Col[] }
 const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
 ---
@@ -18,7 +19,7 @@ const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
       </header>
       <div class="td__cols">
         {cols.map((c, i) => (
-          <div class="td__col">
+          <div class="td__col" id={c.id}>
             <span class="td__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="td__h3">{c.title}</h3>
             <p class="td__body">{c.body}</p>

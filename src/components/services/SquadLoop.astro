@@ -1,0 +1,99 @@
+---
+// Signature section for /scale (03 §7.12): who is on the squad (roster) and how it works month to month (Join once,
+// a sprint loop Plan → Build → Test → Release, a monthly review). The ring is decorative (aria-hidden); the three step
+// cards carry the same content as text. Ring stroke draws in on scroll (once, no loop); reduced motion = drawn.
+import Icon from '../ui/Icon.astro';
+import LayerChip from '../ui/LayerChip.astro';
+type IconName = Parameters<typeof Icon>[0]['name'];
+interface Step { meta?: string; title: string; body: string; chip?: { kind: 'ai' | 'human'; label: string } }
+interface Props { id?: string; title: string; rosterLabel: string; roles: readonly { icon: string; title: string }[]; ring: readonly string[]; steps: readonly Step[] }
+const { id = 'process', title, rosterLabel, roles, ring, steps } = Astro.props;
+const [join, ship, review] = steps;
+---
+<section id={id} class="squad bg-dots" data-surface="alt" aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <h2 id={`${id}-title`} class="section-title squad__title reveal">{title}</h2>
+    <div class="squad__grid">
+      <div class="squad__roster reveal" data-surface="inverse">
+        <p class="squad__label">{rosterLabel}</p>
+        <ul role="list" class="squad__roles">
+          {roles.map((r) => (
+            <li class="squad__role"><span class="squad__icon"><Icon name={r.icon as IconName} size={24} /></span>{r.title}</li>
+          ))}
+        </ul>
+      </div>
+
+      <ol role="list" class="squad__flow reveal-stagger">
+        <li class="squad__step">
+          <span class="squad__meta">{join.meta}</span>
+          <h3 class="squad__h3">{join.title}</h3>
+          <p class="squad__body">{join.body}</p>
+        </li>
+        <li class="squad__step squad__step--loop">
+          <div class="squad__ring" aria-hidden="true">
+            <svg viewBox="0 0 120 120" width="120" height="120">
+              <circle class="squad__track" cx="60" cy="60" r="46" />
+              <circle class="squad__arc" cx="60" cy="60" r="46" pathLength="1" />
+              <path class="squad__head" d="M98 40l8 4-2 9" />
+            </svg>
+            {ring.map((r, i) => <span class:list={['squad__ring-label', `squad__ring-label--${i}`]}>{r}</span>)}
+          </div>
+          <div class="squad__loop-text">
+            <span class="squad__meta">{ship.meta}</span>
+            <h3 class="squad__h3">{ship.title}</h3>
+            <p class="squad__body">{ship.body}</p>
+            {ship.chip && <LayerChip kind={ship.chip.kind}>{ship.chip.label}</LayerChip>}
+          </div>
+        </li>
+        <li class="squad__step">
+          <span class="squad__meta">{review.meta}</span>
+          <h3 class="squad__h3">{review.title}</h3>
+          <p class="squad__body">{review.body}</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .squad { padding-block: var(--section-y); }
+  .squad__title { margin-block-end: var(--space-10); max-inline-size: 17ch; } /* breaks after the first sentence */
+  .squad__grid { display: grid; gap: var(--space-6); align-items: start; }
+  @media (width >= 56rem) { .squad__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-10); } }
+  .squad__roster { display: grid; gap: var(--space-5); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); color: var(--neutral-0); }
+  .squad__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); }
+  .squad__roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+  .squad__role { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); overflow-wrap: normal; min-inline-size: 0; border-radius: var(--radius-md); background: rgb(254 254 254 / 0.06); border: 1px solid rgb(254 254 254 / 0.14); font-family: var(--ff-heading); font-weight: var(--weight-bold); }
+  .squad__role:first-child { grid-column: 1 / -1; background: var(--blue-700); border-color: transparent; }
+  @media (width < 30rem) { .squad__roles { gap: var(--space-2); } .squad__role { padding: var(--space-2); gap: var(--space-2); font-size: var(--text-sm); } .squad__icon { inline-size: 2rem !important; block-size: 2rem !important; } }
+  .squad__icon { display: grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-sm); background: rgb(254 254 254 / 0.1); color: var(--blue-100); flex: none; }
+
+  .squad__flow { display: grid; gap: var(--space-3); }
+  .squad__step { display: grid; gap: var(--space-2); padding: var(--space-5); border-radius: var(--radius-md); background: var(--neutral-0); border: 1px solid var(--blue-100); border-block-start: 4px solid var(--blue-800); }
+  .squad__step--loop { border-block-start-color: var(--blue-700); grid-template-columns: minmax(0, 1fr); gap: var(--space-5); align-items: center; }
+  @media (width >= 30rem) { .squad__step--loop { grid-template-columns: auto minmax(0, 1fr); } }
+  .squad__meta { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-700); }
+  .squad__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.015em; color: var(--neutral-950); }
+  .squad__body { color: var(--color-text-muted); }
+  .squad__loop-text { display: grid; gap: var(--space-2); justify-items: start; }
+
+  /* Sprint ring: 120px circle with four labels at the compass points. */
+  .squad__ring { position: relative; inline-size: 11rem; block-size: 11rem; display: grid; place-items: center; justify-self: center; }
+  .squad__ring svg { inline-size: 7.5rem; block-size: 7.5rem; overflow: visible; }
+  .squad__track { fill: none; stroke: var(--blue-100); stroke-width: 6; }
+  .squad__arc { fill: none; stroke: var(--blue-700); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 0.86 1; transform: rotate(-80deg); transform-origin: 60px 60px; }
+  .squad__head { fill: none; stroke: var(--blue-700); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+  .squad__ring-label { position: absolute; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-800); background: var(--neutral-0); padding: 1px 6px; border-radius: var(--radius-pill); border: 1px solid var(--blue-100); }
+  .squad__ring-label--0 { inset-block-start: 0; inset-inline-start: 50%; translate: -50% 0; }
+  .squad__ring-label--1 { inset-inline-end: 0; inset-block-start: 50%; translate: 0 -50%; }
+  .squad__ring-label--2 { inset-block-end: 0; inset-inline-start: 50%; translate: -50% 0; }
+  .squad__ring-label--3 { inset-inline-start: 0; inset-block-start: 50%; translate: 0 -50%; }
+  :dir(rtl) .squad__ring-label--0, :dir(rtl) .squad__ring-label--2 { translate: 50% 0; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .squad__arc { animation: squad-draw linear both; animation-timeline: view(); animation-range: entry 20% cover 50%; }
+      @keyframes squad-draw { from { stroke-dasharray: 0 1; } to { stroke-dasharray: 0.86 1; } }
+    }
+  }
+</style>

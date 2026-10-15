@@ -58,6 +58,24 @@ export const scale = {
       { meta: 'Every month', title: 'Review', body: 'What shipped, what’s next, and whether the team size is right.' },
     ],
   },
+  // 03 §7.12 (v4): signature squad and loop, statement band and the merged terms document.
+  squad: {
+    title: 'Steady delivery. A team that stays.',
+    rosterLabel: 'From one specialist to a full squad',
+    roles: [
+      { icon: 'compass', title: 'Lead' },
+      { icon: 'code', title: 'Developers' },
+      { icon: 'shield-check', title: 'QA' },
+      { icon: 'list-checks', title: 'PM' },
+      { icon: 'pen-tool', title: 'Designer' },
+    ],
+    ring: ['Plan', 'Build', 'Test', 'Release'],
+  },
+  statement: {
+    bright: 'A team that stays.',
+    dim: 'The people who learn your product keep working on it.',
+  },
+  terms: { title: 'Price, team and ownership', docTitle: 'Scale', docMeta: 'Monthly retainer' },
   pricing: {
     title: 'How is Scale priced?',
     // [PRICE: P4] → §0.7 model only, no number (tag removed).

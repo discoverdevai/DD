@@ -1,0 +1,82 @@
+---
+// Signature section for /validate (03 §5.12): four steps, each producing one deliverable, feeding one verdict panel
+// with the three outcomes the page promises (Build, change direction, stop). On white with the blueprint grid; from
+// 56rem the steps and the verdict sit side by side with a converging connector. All text is real HTML (no figure).
+import InlineLink from '../ui/InlineLink.astro';
+import type { RouteKey } from '../../data/routes';
+interface Step { title: string; body: string }
+interface Option { key: string; title: string; link?: { label: string; to: RouteKey } }
+interface Props { id?: string; title: string; lead: string; steps: readonly Step[]; deliverables: readonly string[]; label: string; options: readonly Option[] }
+const { id = 'process', title, lead, steps, deliverables, label, options } = Astro.props;
+---
+<section id={id} class="decision bg-lines" data-surface="paper" aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <header class="decision__head">
+      <h2 id={`${id}-title`} class="section-title reveal">{title}</h2>
+      <p class="decision__lead">{lead}</p>
+    </header>
+    <div class="decision__board">
+      <ol role="list" class="decision__steps reveal-stagger">
+        {steps.map((s, i) => (
+          <li class="decision__step">
+            <span class="decision__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <div class="decision__text">
+              <h3 class="decision__h3">{s.title}</h3>
+              <p class="decision__body">{s.body}</p>
+            </div>
+            <p class="decision__out">{deliverables[i]}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="decision__join" aria-hidden="true"><span></span></div>
+      <div class="decision__verdict reveal" data-surface="inverse">
+        <p class="decision__label">{label}</p>
+        <ul role="list" class="decision__options">
+          {options.map((o, i) => (
+            <li class:list={['decision__option', { 'decision__option--go': i === 0 }]}>
+              <span class="decision__mark" aria-hidden="true"></span>
+              <span class="decision__opt-title">{o.title}</span>
+              {o.link && <span class="decision__opt-link"><InlineLink text="" link={o.link} /></span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .decision { padding-block: var(--section-y); }
+  .decision__head { display: grid; gap: var(--space-3); margin-block-end: var(--space-10); }
+  .decision__lead { font-size: var(--text-lg); color: var(--color-text-muted); max-inline-size: 46ch; text-wrap: balance; }
+  .decision__board { display: grid; gap: var(--space-6); align-items: center; }
+  @media (width >= 56rem) { .decision__board { grid-template-columns: minmax(0, 1.6fr) 4rem minmax(0, 1fr); gap: 0; } }
+  .decision__steps { display: grid; gap: var(--space-3); }
+  .decision__step { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-2) var(--space-4); align-items: start; padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--neutral-0); border: 1px solid var(--blue-100); }
+  @media (width >= 40rem) { .decision__step { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; } }
+  .decision__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-700); }
+  .decision__text { display: grid; gap: 2px; min-inline-size: 0; }
+  .decision__h3 { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--neutral-950); }
+  .decision__body { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .decision__out { grid-column: 2; justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-800); background: var(--blue-50); border: 1px solid var(--blue-100); padding: 3px 10px; border-radius: var(--radius-pill); white-space: nowrap; }
+  @media (width >= 40rem) { .decision__out { grid-column: 3; } }
+  /* Connector: the four inputs converge on the verdict (wide screens only). */
+  .decision__join { display: none; }
+  @media (width >= 56rem) {
+    .decision__join { display: block; position: relative; align-self: stretch; }
+    .decision__join span { position: absolute; inset-block: 12% 12%; inset-inline: 0 50%; border-block: 1px solid var(--blue-200); border-inline-end: 1px solid var(--blue-200); border-start-end-radius: var(--radius-md); border-end-end-radius: var(--radius-md); }
+    .decision__join::after { content: ''; position: absolute; inset-block-start: 50%; inset-inline: 50% 6px; block-size: 1px; background: var(--blue-700); }
+    .decision__join::before { content: ''; position: absolute; inset-block-start: calc(50% - 4px); inset-inline-end: 4px; inline-size: 8px; block-size: 8px; border-block-start: 1.5px solid var(--blue-700); border-inline-end: 1.5px solid var(--blue-700); rotate: 45deg; }
+    :dir(rtl) .decision__join::before { rotate: -45deg; }
+  }
+  .decision__verdict { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); color: var(--neutral-0); box-shadow: 0 30px 70px -36px rgb(3 41 147 / 0.6); }
+  .decision__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); }
+  .decision__options { display: grid; gap: var(--space-2); }
+  .decision__option { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid rgb(254 254 254 / 0.18); }
+  .decision__option--go { background: var(--blue-700); border-color: transparent; }
+  .decision__mark { inline-size: 10px; block-size: 10px; border-radius: 50%; border: 2px solid var(--blue-200); }
+  .decision__option--go .decision__mark { background: var(--green-300); border-color: var(--green-300); box-shadow: 0 0 0 4px rgb(127 216 166 / 0.25); }
+  .decision__opt-title { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); }
+  .decision__opt-link { margin-inline-start: auto; font-size: var(--text-sm); }
+  .decision__opt-link :global(a) { color: var(--neutral-0); }
+</style>

@@ -55,6 +55,21 @@ export const validate = {
       { title: 'Estimate', body: 'We give you a fixed price and timeline for the Build.' },
     ],
   },
+  // 03 §5.12 (v4): signature decision board, statement band and the merged terms document.
+  decision: {
+    title: '1–2 weeks to a clear decision.',
+    label: 'Your decision',
+    options: [
+      { key: 'build', title: 'Build', link: { label: 'See Build', to: 'build' as const } },
+      { key: 'change', title: 'Change direction' },
+      { key: 'stop', title: 'Stop' },
+    ],
+  },
+  statement: {
+    bright: 'It’s much cheaper to learn that in 1–2 weeks',
+    dim: 'than after months of building.',
+  },
+  terms: { title: 'Price, team and ownership', docTitle: 'Validate', docMeta: 'Agreed before we start' },
   pricing: {
     title: 'How much does Validate cost?',
     // [PRICE: P2] → §0.7 model only, no number (tag removed).

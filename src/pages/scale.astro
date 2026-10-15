@@ -1,5 +1,5 @@
 ---
-// /scale, service page (04 §4.3). Surfaces: hero ink, content paper/alt, process ink, band navy (06 §0).
+// /scale, service page (04 §4.3; v4 layout 03 §7.12). Surfaces: ink hero, navy stepper and statement, white and light-blue content, ink closer (06 §0.4 v4).
 // Proof is anonymized, quotes omitted, retention line replaced (03 §0.7 [CONSENT]).
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/sections/PageHero.astro';
@@ -7,13 +7,15 @@ import Section from '../components/ui/Section.astro';
 import FitList from '../components/ui/FitList.astro';
 import CardGrid from '../components/ui/CardGrid.astro';
 import CheckList from '../components/ui/CheckList.astro';
-import Steps from '../components/ui/Steps.astro';
 import FaqSplit from '../components/home/FaqSplit.astro';
 import CtaBand from '../components/ui/CtaBand.astro';
-import InlineLink from '../components/ui/InlineLink.astro';
 import CtaLink from '../components/ui/CtaLink.astro';
 import ProofList from '../components/services/ProofList.astro';
 import ServiceGlance from '../components/services/ServiceGlance.astro';
+import JourneyStepper from '../components/services/JourneyStepper.astro';
+import TermsDoc from '../components/services/TermsDoc.astro';
+import Statement from '../components/home/Statement.astro';
+import SquadLoop from '../components/services/SquadLoop.astro';
 import { t } from '../i18n/t';
 import { scale as c } from '../content/copy/en/scale';
 import { href, isLive } from '../data/routes';
@@ -34,48 +36,47 @@ const jsonLd = graph(orgStub, service, webPage('/scale', c.seo.title, c.seo.desc
     <ServiceGlance slot="aside" name={t('nav.scale')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
   </PageHero>
 
-  <Section id="fit" surface="ink" title={c.fit.title}>
+  <JourneyStepper current="scale" />
+
+  <SquadLoop title={c.squad.title} rosterLabel={c.squad.rosterLabel} roles={c.squad.roles} ring={c.squad.ring} steps={c.process.steps} />
+
+  <Section id="outcomes" surface="alt" title={c.outcomes.title} class="bg-dots">
+    <CardGrid items={c.outcomes.items} cols={3} variant="brand" />
+    <div class="included">
+      <h3 class="included__title">{c.included.title}</h3>
+      <CheckList items={c.included.items} class="included__list" />
+    </div>
+  </Section>
+
+  <Section id="fit" surface="paper" title={c.fit.title}>
     <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
   </Section>
 
-  <Section id="outcomes" surface="raised" title={c.outcomes.title}>
-    <CardGrid items={c.outcomes.items} cols={3} />
-  </Section>
+  <Statement id="statement" surface="navy" bright={c.statement.bright} dim={c.statement.dim} />
 
-  <Section id="included" surface="ink" title={c.included.title} width="narrow">
-    <CheckList items={c.included.items} />
-  </Section>
+  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
+    { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
+    { title: c.team.title, body: c.team.body, link: c.team.link },
+    { title: c.ownership.title, body: c.ownership.body },
+  ]} />
 
-  <Section id="process" surface="ink" title={c.process.title}>
-    <Steps steps={c.process.steps} />
-  </Section>
-
-  <Section id="pricing" surface="ink" title={c.pricing.title} width="narrow">
-    <p class="answer">{c.pricing.answer}</p>
-  </Section>
-
-  <Section id="team" surface="raised" title={c.team.title} width="narrow">
-    <p class="answer">{c.team.body}</p>
-    <p class="more-link"><InlineLink text="" link={c.team.link} /></p>
-  </Section>
-
-  <Section id="proof" surface="ink" title={c.proof.title}>
+  <Section id="proof" surface="paper" title={c.proof.title}>
     <ProofList items={c.proof.items} />
     <p class="retention">{c.proof.retention}</p>
     {isLive('workEdulens') && <CtaLink href={href('workEdulens')} ctaId="scale_mid_case" tier="secondary" position="mid" target="case" variant="text">{c.proof.caseLink}</CtaLink>}
   </Section>
 
-  <Section id="ownership" surface="raised" title={c.ownership.title} width="narrow">
-    <p class="answer">{c.ownership.body}</p>
-  </Section>
-
-  <FaqSplit title={c.faq.title} items={c.faq.items} />
+  <FaqSplit surface="paper" title={c.faq.title} items={c.faq.items} />
 
   <CtaBand title={c.band.title} kind="clarity" page="scale" />
 </BaseLayout>
 
 <style>
-  .answer { font-size: var(--text-lg); max-inline-size: var(--measure-prose); }
-  .more-link { margin-block-start: var(--space-4); font-weight: var(--weight-medium); }
-  .retention { margin-block: var(--space-8) var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-medium); }
+  /* v4 (03 §6.12 pattern): "What's included" sits under the outcome cards instead of its own band. */
+  .included { display: grid; gap: var(--space-4); margin-block-start: var(--space-10); padding-block-start: var(--space-8); border-block-start: 1px solid var(--blue-100); }
+  @media (width >= 56rem) { .included { grid-template-columns: 1fr 2fr; align-items: start; } }
+  .included__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--neutral-950); }
+  .included :global(.included__list) { display: grid; gap: var(--space-3) var(--space-8); }
+  @media (width >= 40rem) { .included :global(.included__list) { grid-template-columns: 1fr 1fr; } }
+  .retention { margin-block: var(--space-8) var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-medium); color: var(--neutral-950); }
 </style>

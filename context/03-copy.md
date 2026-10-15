@@ -968,6 +968,16 @@ A fixed fee, agreed before we start. [PRICE: P2]
 - Microcopy: 30 minutes · No pitch · Leave with a next step
 - Text link: Already have a prototype? Start with a Launch-Ready Review
 
+### 5.12 Validate v4 layout (2026-10-16, same pattern as §6.12, approved by Mohamed)
+Order: Hero → Journey stepper → Decision board (signature) → Outcomes + What's included → Fit → Statement → Price, team and ownership (document) → Proof → FAQ → Final CTA. §5.3–5.7, §5.9 copy reused verbatim.
+- **Decision board** (replaces the §5.5 step strip):
+  - H2: 1–2 weeks to a clear decision.
+  - Lead: §5.3 outcome 1 body ("Build, change direction or stop, based on a market read, not a guess.").
+  - Inputs: the four §5.5 steps, each paired with its §5.4 deliverable (Discover → Market and competitor read · Plan → Product scope · Prototype → Clickable prototype · Estimate → Fixed build estimate).
+  - Verdict panel label: "Your decision". Options: "Build" (link "See Build" → /build) · "Change direction" · "Stop".
+- **Statement:** bright "It's much cheaper to learn that in 1–2 weeks" dim "than after months of building." (§5.10 FAQ wording).
+- **Document:** "Price, team and ownership" · header "Validate" · "Agreed before we start" (§5.6 wording); columns §5.6, §5.7 (+ §0.8 About link), §5.9.
+
 ---
 
 ## 6. Build (/build)
@@ -1163,6 +1173,15 @@ Our hub is in Alexandria, Egypt (GMT+2). Our day overlaps US mornings and Europe
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
 - Related reading (when live): Reduce LLM API costs · EduLens case study
+
+### 7.12 Scale v4 layout (2026-10-16, same pattern as §6.12, approved by Mohamed)
+Order: Hero → Journey stepper → Squad and loop (signature) → Outcomes + What's included → Fit → Statement → Price, team and ownership (document) → Proof (+ retention line, case link) → FAQ → Final CTA.
+- **Squad and loop** (replaces the §7.5 step strip):
+  - H2: Steady delivery. A team that stays. (§7.3 outcome titles)
+  - Roster label: "From one specialist to a full squad" (§7.7 wording). Roles: Lead · Developers · QA · PM · Designer (§7.7 wording).
+  - Loop: §7.5 steps with their meta ("Month 1 · Join", "Every sprint · Ship", "Every month · Review"); the sprint ring reads Plan · Build · Test · Release (§7.5 "Plan, build, test, release.").
+- **Statement:** bright "A team that stays." dim "The people who learn your product keep working on it." (§7.3 outcome 3).
+- **Document:** "Price, team and ownership" · header "Scale" · "Monthly retainer" (§7.6 wording); columns §7.6, §7.7 (+ §0.8 About link), §7.9.
 
 ---
 

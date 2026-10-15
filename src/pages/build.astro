@@ -1,5 +1,5 @@
 ---
-// /build, service page (04 §4.3). Surfaces: hero ink, content paper/alt, process ink, band navy (06 §0).
+// /build, service page (04 §4.3; v4 layout 03 §6.12). Surfaces: ink hero, navy stepper and statement, white and light-blue content, ink closer (06 §0.4 v4).
 // Rushr is hidden and proof is anonymized, quotes omitted (03 §0.7 [METRIC], [CONSENT]).
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/sections/PageHero.astro';
@@ -56,7 +56,7 @@ const jsonLd = graph(orgStub, service, webPage('/build', c.seo.title, c.seo.desc
   <Statement id="quality" surface="navy" bright={c.statement.bright} dim={c.statement.dim} />
 
   <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
-    { title: c.pricing.title, body: c.pricing.answer },
+    { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
     { title: c.team.title, body: c.team.body, link: c.team.link },
     { title: c.ownership.title, body: c.ownership.body },
   ]} />
