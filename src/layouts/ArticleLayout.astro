@@ -12,6 +12,7 @@ import ArticleCard from '../components/insights/ArticleCard.astro';
 import { insights as c, fill } from '../content/copy/en/insights';
 import { href, isLive } from '../data/routes';
 import { canonical, graph, ORG_ID, SITE_URL } from '../lib/seo';
+import { ogPath } from '../data/og';
 import {
   displayDate, getAuthor, insightPath, insightSlug, isoDate, publishedInsights, readNext, resolvePublished, wordCount, type Insight,
 } from '../lib/insights';
@@ -61,7 +62,7 @@ const jsonLd = graph(
     '@id': `${url}#article`,
     headline: d.h1,
     description: d.description,
-    image: [`${SITE_URL}/og/default.png`],
+    image: [`${SITE_URL}${ogPath(path)}`],
     datePublished: isoDate(d.publishedAt),
     dateModified: isoDate(d.updatedAt),
     author: authorLd,
@@ -83,7 +84,7 @@ const jsonLd = graph(
   },
 );
 ---
-<BaseLayout title={d.title} description={d.description} pageType="article" ogType="article" jsonLd={jsonLd}>
+<BaseLayout title={d.title} description={d.description} pageType="article" ogType="article" ogImage={ogPath(path)} jsonLd={jsonLd}>
   <link slot="head" rel="alternate" type="application/rss+xml" title="DiscoverDev Insights" href="/insights/rss.xml" />
   <article data-article-slug={slug} data-pillar={d.pillar} data-role={d.role} aria-labelledby="article-title">
     <header class="ahead" data-surface="ink">

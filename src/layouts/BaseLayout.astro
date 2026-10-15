@@ -7,6 +7,7 @@ import StickyBookBar from '../components/layout/StickyBookBar.astro';
 import { LOCALES, localeOf } from '../i18n/locales';
 import { t } from '../i18n/t';
 import { canonical } from '../lib/seo';
+import { OG_PAGES, ogPath } from '../data/og';
 import { PUBLIC_CF_BEACON_TOKEN } from 'astro:env/client';
 import '../styles/tokens.css';
 import '../styles/base.css';
@@ -24,10 +25,13 @@ interface Props {
   stickyBar?: boolean;
   stickyKind?: 'clarity' | 'review';
 }
-const { title, description, pageType, jsonLd, noindex = false, ogImage = '/og/default.png', ogType = 'website', header = 'default', stickyBar = header === 'default', stickyKind = 'clarity' } = Astro.props;
+const { title, description, pageType, jsonLd, noindex = false, ogImage: ogImageProp, ogType = 'website', header = 'default', stickyBar = header === 'default', stickyKind = 'clarity' } = Astro.props;
 const locale = localeOf(Astro.currentLocale);
 const L = LOCALES[locale];
 const url = canonical(Astro.url.pathname);
+// Each page's own build-time card (src/data/og.ts); articles pass theirs; anything else uses the default card.
+const route = Astro.url.pathname.replace(/\.html$/, '').replace(/\/(index)?$/, '') || '/';
+const ogImage = ogImageProp ?? (route in OG_PAGES ? ogPath(route) : '/og/default.png');
 const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
 ---
 <!doctype html>
