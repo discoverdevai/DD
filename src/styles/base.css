@@ -1,0 +1,86 @@
+/* Global base: 06 §2 "base.css essentials", reset, layout primitives. Logical properties only. */
+
+:root {
+  /* Semantic defaults that 06 introduces only on some surfaces. */
+  --color-action-border: transparent;
+}
+
+@media (width >= 64rem) { :root { --header-h: 4.5rem; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  scroll-padding-block-start: calc(var(--header-h) + var(--space-4));
+  scroll-padding-block-end: calc(var(--bottom-bar-h) + var(--space-4));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  @view-transition { navigation: auto; }
+}
+html:has(dialog[open]) { overflow: hidden; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--ff-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  font-size-adjust: from-font;
+  padding-block-end: var(--bottom-bar-h);
+  -webkit-font-smoothing: antialiased;
+}
+
+:where([data-surface]) { background: var(--color-bg); color: var(--color-text); }
+
+:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+
+h1, h2, h3, h4 {
+  font-family: var(--ff-heading);
+  color: var(--color-heading);
+  text-wrap: balance;
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+p, li, dd { text-wrap: pretty; }
+img, svg, video { display: block; max-inline-size: 100%; block-size: auto; }
+a { color: var(--color-link); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+@media (hover: hover) { a:hover { color: var(--color-link-hover); text-decoration-thickness: 2px; } }
+button, input, select, textarea { font: inherit; color: inherit; }
+ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+code, kbd, samp { font-family: var(--ff-mono); font-size: 0.9em; }
+
+/* ---------- Layout primitives (06 §5) ---------- */
+.container { inline-size: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.container--narrow { inline-size: min(100% - 2 * var(--gutter), var(--container-narrow)); margin-inline: auto; }
+.container--prose { inline-size: min(100% - 2 * var(--gutter), var(--container-prose)); margin-inline: auto; }
+.section { padding-block: var(--section-y); position: relative; }
+.section--sm { padding-block: var(--section-y-sm); }
+.section-divider { border-block-start: 1px solid var(--color-border-subtle); }
+
+/* ---------- Type helpers (06 §4) ---------- */
+.display { font-size: var(--text-4xl); font-weight: var(--weight-extrabold); line-height: var(--leading-display); letter-spacing: -0.035em; max-inline-size: var(--measure-display); }
+.h1 { font-size: var(--text-3xl); font-weight: var(--weight-extrabold); max-inline-size: var(--measure-heading); }
+.h2 { font-size: var(--text-2xl); font-weight: var(--weight-bold); max-inline-size: var(--measure-heading); }
+.h3 { font-size: var(--text-xl); font-weight: var(--weight-bold); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+.lead { font-size: var(--text-lg); color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
+.muted { color: var(--color-text-muted); }
+.small { font-size: var(--text-sm); line-height: 1.5; }
+.mono { font-family: var(--ff-mono); }
+
+/* ---------- Accessibility helpers ---------- */
+.sr-only {
+  position: absolute; inline-size: 1px; block-size: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* Directional icons mirror in RTL (06 §8). */
+:dir(rtl) .icon--dir { scale: -1 1; }
+
+/* Forced colours: keep edges and focus visible (06 §6). */
+@media (forced-colors: active) {
+  :focus-visible { outline-color: Highlight; }
+}

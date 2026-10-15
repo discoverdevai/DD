@@ -1,0 +1,71 @@
+---
+// Footer (06 §9.4, 03 §1.2, 04 §3.4). Launch defaults: no WhatsApp, no reply-time promise, no entity name (11 §0b).
+// Contact block order is identical on every page (WCAG 3.2.6). Columns list live routes only.
+import Logo from '../ui/Logo.astro';
+import Icon from '../ui/Icon.astro';
+import { t } from '../../i18n/t';
+import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
+import { CLUTCH_URL } from '../../lib/seo';
+
+type Item = { key?: RouteKey; href?: string; label: string };
+const col = (items: Item[]) =>
+  items.filter((i) => (i.key ? isLive(i.key) : true)).map((i) => ({ href: i.href ?? ROUTES[i.key!].path, label: i.label }));
+const columns = [
+  { title: t('footer.services'), items: col([{ key: 'review', label: t('footer.review') }, { key: 'validate', label: t('nav.validate') }, { key: 'build', label: t('nav.build') }, { key: 'scale', label: t('nav.scale') }, { key: 'partners', label: t('nav.partners') }]) },
+  { title: t('footer.work'), items: col([{ key: 'work', label: t('footer.allWork') }]) },
+  { title: t('footer.insights'), items: col([{ key: 'insights', label: t('footer.guides') }, { key: 'launchCheck', label: t('footer.launchCheck') }]) },
+  { title: t('footer.company'), items: col([{ key: 'about', label: t('footer.about') }, ...(isLive('book') ? [{ href: bookHref('clarity'), label: t('footer.book') }] : []), { key: 'privacy', label: t('footer.privacy') }, { key: 'terms', label: t('footer.terms') }]) },
+].filter((c) => c.items.length > 0);
+const year = new Date().getFullYear();
+---
+<footer class="site-footer" data-surface="footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a href="/" aria-label={t('logo.home')} class="site-footer__logo"><Logo /></a>
+      <p class="site-footer__core">{t('footer.core')}</p>
+      <p class="site-footer__entity">{t('footer.entity')}</p>
+      <ul role="list" class="site-footer__contact">
+        <li><a href={`mailto:${t('contact.email')}`} data-link-context="footer"><Icon name="mail" size={16} /><span dir="ltr">{t('contact.email')}</span></a></li>
+        <li>{t('footer.location.us')}</li>
+        <li>{t('footer.location.eg')}</li>
+        <li>{t('footer.languages')}</li>
+      </ul>
+    </div>
+    {columns.length > 0 && (
+      <nav class="site-footer__nav" aria-label={t('footer.label')}>
+        {columns.map((c) => (
+          <div>
+            <h2 class="site-footer__h">{c.title}</h2>
+            <ul role="list">{c.items.map((i) => <li><a href={i.href}>{i.label}</a></li>)}</ul>
+          </div>
+        ))}
+      </nav>
+    )}
+  </div>
+  <div class="container site-footer__base">
+    <p class="site-footer__proof"><Icon name="star" size={16} />{t('proof.rating')} <a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a></p>
+    <p>{t('footer.analytics')}</p>
+    <p>{t('footer.copyright', 'en', { year })}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-block: var(--section-y-sm); font-size: var(--text-sm); }
+  .site-footer__grid { display: grid; gap: var(--space-10); }
+  @media (width >= 64rem) { .site-footer__grid { grid-template-columns: 5fr 7fr; gap: var(--space-16); } }
+  .site-footer__brand { display: grid; gap: var(--space-4); align-content: start; }
+  .site-footer__logo { justify-self: start; padding-block: var(--space-2); }
+  .site-footer__core { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); color: var(--color-text); max-inline-size: 36ch; }
+  .site-footer__entity, .site-footer__contact, .site-footer__base { color: var(--color-text-muted); }
+  .site-footer__entity { max-inline-size: 52ch; }
+  .site-footer__contact { display: grid; gap: var(--space-1); }
+  .site-footer__contact a { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; }
+  .site-footer__nav { display: grid; gap: var(--space-8); grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); align-content: start; }
+  .site-footer__h { font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-muted); letter-spacing: 0; margin-block-end: var(--space-3); }
+  .site-footer__nav ul { display: grid; gap: var(--space-1); }
+  .site-footer__nav a { display: inline-flex; align-items: center; min-block-size: 2.75rem; color: var(--color-text); text-decoration: none; }
+  @media (hover: hover) { .site-footer__nav a:hover { color: var(--color-link-hover); text-decoration: underline; } }
+  .site-footer__base { margin-block-start: var(--space-10); padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-border-subtle); display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-8); }
+  .site-footer__proof { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+  .site-footer__proof :global(.icon) { color: var(--color-human-mark); }
+</style>

@@ -1,0 +1,17 @@
+---
+// Microcopy under CTAs (03 §0.3, 06 §9.5): list with check icons, separated by gap, never by middle dots.
+import Icon from './Icon.astro';
+import { t } from '../../i18n/t';
+interface Props { kind: 'review' | 'clarity' | 'partner'; class?: string }
+const { kind, class: cls } = Astro.props;
+const keys = kind === 'partner' ? ['terms.partner.1', 'terms.partner.2'] : [1, 2, 3].map((n) => `terms.${kind}.${n}`);
+---
+<ul class:list={['cta-terms', cls]} role="list">
+  {keys.map((k) => <li><Icon name="check" size={16} />{t(k)}</li>)}
+</ul>
+
+<style>
+  .cta-terms { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--text-sm); line-height: 1.5; color: var(--color-text-muted); }
+  .cta-terms li { display: inline-flex; align-items: center; gap: var(--space-2); }
+  .cta-terms :global(.icon) { color: var(--color-human-mark); flex: none; }
+</style>

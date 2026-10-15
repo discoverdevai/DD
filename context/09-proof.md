@@ -1,0 +1,99 @@
+# 09 · Proof and facts (source of truth for all claims)
+
+Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 Jul 2026) + Oct 2026 decisions. Never publish a claim that is not here. Items marked verify, and every named client, need confirmation/consent (`11-open-decisions.md` D-05, D-06, D-21, D-34).
+
+
+## Snapshot
+- Product and engineering company. Helps founders and teams build the right product, then ship it fast.
+- Tagline: "Senior teams that ship faster, without cutting corners."
+- Founded 2024 (verify). Locations: Texas, USA · Alexandria, Egypt (engineering hub). Web discoverdev.ai.
+- Track record: 11 verified 5.0/5.0 reviews (confirmed Oct 2026) · clients on 4 continents (confirmed) · AI in production across multiple clients.
+- Hub: Egypt. Full-stack, AI/ML, computer vision, data, mobile, QA. Arabic + English. GMT+2, overlaps US and Europe.
+
+## Messaging guardrails
+- Core idea (repeat everywhere): "Most teams just build what you ask for. We help you build the right thing, then ship it fast, and you own all of it."
+- Lead with: quality and speed (senior, AI-accelerated, no corners cut); product-first ("Discover" in DiscoverDev); full lifecycle, we stay.
+- Quiet reassurance (never headline): you own everything (full IP, no lock-in, clear contract day one); cost = fraction of agency cost, a consequence not a hook.
+- Verify before external use: "co-authored academic AI papers"; "10+ countries"; "founded 2024"; "up to ~60% cost savings".
+- Tone: confident, plain-spoken, founder-to-founder, specific, no hype, no exclamation marks. Avoid em-dashes in short marketing copy. `// .config` and `$` command motif = accent only.
+- Multi-market, not US-only. "US-registered" = reassurance, not the sell.
+
+## Offer (website naming per Oct 2026 decision: Validate / Build / Scale; master doc older name for Build = "Launch")
+- Validate — "I have an idea." 1–2 weeks, fixed fee. Market & competitor read, product scope, clickable prototype, fixed build estimate. Fee credits toward Build.
+- Build — "I'm ready to build." 8–12 weeks (vs typical 12–16), fixed price. Production-ready product, real users, live deployment; design, build, QA, deploy. Agile v2.
+- Scale — "It's working, grow it." Ongoing monthly retainer. Dedicated squad (devs + QA + PM), roadmap & sprint ownership. Client keeps control.
+- Front door (Oct 2026): Launch-Ready Review — ~5 working days, fixed fee quoted per client, credits toward fix or Build, guarantee "no useful findings, no charge", booked on Cal.com.
+- Engagement models (internal; can be named, no prices): fixed-price, T&M, dedicated team (min 6 months), POC package 2–4 wks, MVP package 6–12 wks, white-label (NDA + IP), staff augmentation (min 3 months).
+- Standard CTA (older): "Book a free 30-minute consultation. Free, 30 minutes, no pitch." (Now: clarity call.)
+
+## Method: Agile v2 + full SDLC
+- "AI does the heavy lifting; senior engineers own the quality." Humans responsible for every line that reaches users.
+- "We own the full lifecycle and we stay." One team, no handoff gaps (confirmed true on every engagement).
+- Stages: Discover (define the right product) → Plan (roadmap, tech, team before code) → Build (Agile v2 sprints, results every week) → Ship & Stay (deploy, monitor, keep improving).
+
+## Services catalog
+Product strategy & discovery · Product design (UX/UI) · Software development (web, mobile, APIs, microservices, enterprise, gov integrations, legacy modernization, cloud migration) · AI & ML (agents, AR/EN chatbots, NLP, CV, recommendations, document processing, predictive) · Data engineering & analytics · E-commerce (marketplaces, AI recs, AR, payments) · Quality, DevOps & cloud (testing, CI/CD, Docker, K8s, AWS/Azure/GCP, IaC, tiered SLAs) · Technical consulting & PM (architecture reviews, code audits, due diligence, CTO advisory) · Dedicated teams & staffing.
+
+## Portfolio
+VALIDATE
+- Fantacalcio · market entry · sports · Italy → Egypt GTM. Review: "Perfect timing… 100% recommendable." Roberto
+- Zest · market study & sentiment analysis.
+- Athkado (Discovery) · KSA · rapid market studies / feasibility sprints; build/pivot/shelve decisions.
+- Entrepreneurs (KW, CH, UK, ES) · market research, GTM, discovery. Reviews from Andrei (UK), Lea (Spain).
+BUILD
+- Rushr · US home-services marketplace · greenfield, full product team, 16 weeks. Uber-style dispatch: post a job, auto-match nearest verified contractor, Stripe escrow, real-time messaging, admin ops. Tech: Java Spring Boot, React Native, PostgreSQL, Stripe Connect, AWS, Docker, CI/CD. [metrics pending]
+- Athkado (AR commerce) · KSA · furniture e-commerce: market study, discovery, UX/UI, dev, AI recommendation engine, AR visualization. React, Spring Boot, AI/ML, mobile AR, PostgreSQL, AWS. Review: "Professional work and great communication." Nojoud Alarfaj
+- EduLens · Egypt · three AI agents (support chatbot, video-to-lesson + quiz generator, student learning assistant). 60–90% AI cost reduction (caption-first ingestion, cross-user cache, model/provider routing, token trimming, chunked parallel Whisper). Cached content approaches zero marginal cost. Python, OpenAI, LangChain, RAG, Whisper, YouTube API, Node.js. Review: "Practical, scalable, aligned with our users' needs." Youssef, CEO
+- BioBank · HealthTech · mobile app turning lab reports into plain-language explanations, recommendations, conversational follow-up, medical safety guardrails. React Native, Python, OpenAI, LangChain, RAG, PostgreSQL, AWS.
+- CTC (Continuum Therapy Collective) · USA · bilingual EN/AR site with online booking for a US-licensed therapist (clinician consent needed before showing).
+- Nile Support · USA · landing page, AI agents for call operations, staff augmentation. Review: "The quality of their work is top-notch." CEO
+- Amstadd · UK · white-label websites and mobile apps.
+SCALE
+- Upscend · UK B2B LMS · 12-month embedded partnership; dedicated PM + engineering team owning roadmap, backlog, sprints; supports US & UK enterprise growth.
+- Pyramakerz · Egypt EdTech · 20,000+ students · data analysis, ML, automations, data engineering.
+- Arheb · KSA · embedded Data & ML team; first Saudi smart ride-sharing platform.
+- Jumlaty · KSA · ML engineer placed 3 months; restaurant procurement (NOMU group).
+- Amstadd · UK software house partner: white-label / outsourcing.
+OWN PRODUCT
+- Yawmy Care · nursery/childcare platform (parents, teachers, management; billing, multi-location). White-label. "Product DNA, not just agency DNA." Endorsed "by DiscoverDev", launch 2027.
+RESEARCH
+- NurViD-MAE + Virtual Shadowing · nursing action recognition: 73.74% operation / 56.57% action accuracy on NurViD; ~+10% / ~+40% over SlowFast, I3D, C3D; ~512K trainable params, single GPU; 1,289 videos, 4,717 clips; Unity + ROS digital twin. (Verify publication venue + collaborator consent.)
+- Marine Life Analysis & Detection · underwater CV, YOLOv8 etc. (no metrics yet).
+- Academic collaborations · Ireland, USA, Switzerland, KSA. Review: "Absolutely amazing… level of detail." Michelle Boehm, Switzerland
+- Consulting firm · Kuwait · tourism & hospitality research. Review: "Thank you for going above and beyond." Farah Alkhaldi
+
+## Case studies (publishable arcs: context, challenge, what we did, outcome, proof)
+- EduLens (full arc available; see above). Best for AI cost / AI in production.
+- Customer-support AI agent: runtime memory cache deduplicating concurrent identical queries; Qdrant retrieval; LLM cost scales with unique questions not total requests.
+- NurViD-MAE (research credibility; verify).
+- Stubs, do not publish: Pyramakerz, Arheb, Marine Life.
+- Planned Q4 2026: Rushr (Nov), EduLens (Dec).
+
+## All reviews (11 verified 5.0/5.0; Clutch, Upwork, Fiverr, direct). Full quotes:
+- "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable." Roberto, Fantacalcio · Market Research, Fantasy Football
+- "They focused on building solutions that were practical, scalable, and aligned with our users' needs." Youssef, CEO, EduLens · AI Agents, EdTech
+- "The quality of their work is top-notch." CEO, Nile Support · AI Agents + Website + Staff Augmentation, USA
+- "Thank you for going above and beyond." Farah Alkhaldi, Consulting Firm, Kuwait · Market Research, Tourism & Hospitality
+- "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia · White-Label + E-Commerce
+- "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!" Michelle Boehm, Academic Researcher, Switzerland · ML Algorithms & Data Analysis
+- "I will become a regular customer going forward now." Andrei Chejneanu, Entrepreneur, UK · Market Research
+- "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time." Lea Nechitailo, Entrepreneur, Spain · Market Research
+(Quote permissions for website: verify per client.)
+
+## Tech stack
+Frontend React, Next.js, Angular, Vue · Backend Node.js, Spring Boot, Python (Django, FastAPI), PHP, .NET, NestJS · Mobile React Native, Flutter, Swift, Kotlin · AI OpenAI, LangChain, RAG, CV, NLP, custom ML · Data PostgreSQL, MongoDB, Redis, Elasticsearch, ETL · Cloud AWS, GCP, Azure, Docker, K8s, CI/CD · AR/3D.
+
+## Team
+Egypt hub; in-house PMs and designers + freelancer network (Figma, research, prototyping). Models: individual specialists → full squads (lead + devs + QA + PM + designer).
+
+## Differentiators
+Product-first · Senior teams, AI-accelerated (Agile v2) · You own everything · Full lifecycle, one partner · AI as core (EduLens, BioBank, Nile Support; research) · High retention (Athkado, Upscend, Arheb, Pyramakerz expanded scope) · Proven (5.0 across 11 reviews, 4 continents).
+
+## Boilerplate
+- One line: DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast — senior teams, AI-accelerated, and you own everything.
+- 50 words: DiscoverDev is a product and engineering company with an engineering hub in Egypt and a presence in Texas. We help founders and teams validate the right product, build it with senior AI-accelerated teams, and scale it — staying through QA, deployment, and beyond. Full IP, no lock-in.
+
+## Current-state notes (Oct 2026, supersede master where different)
+- Markets: US + GCC weighted equally; Egypt/MENA; UK/EU inbound only. Egypt is the only engineering hub (no Ukraine/Romania).
+- Marketing is company-led (no founder profiles). Outbound = hello@discoverdev.ai.
+- Clutch: https://clutch.co/profile/discoverdev

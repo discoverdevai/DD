@@ -1,0 +1,76 @@
+---
+// Base layout (07 §16): lang/dir from the locale registry, SEO head per 05 §6, fonts per 06 §4, skip link, shell.
+import { Font } from 'astro:assets';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import StickyBookBar from '../components/layout/StickyBookBar.astro';
+import { LOCALES, localeOf } from '../i18n/locales';
+import { t } from '../i18n/t';
+import { canonical } from '../lib/seo';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+type PageType = 'home' | 'offer' | 'service' | 'partners' | 'work_index' | 'case_study' | 'insights_hub' | 'article' | 'about' | 'book' | 'book_confirmed' | 'quiz' | 'legal' | '404';
+interface Props {
+  title: string;
+  description?: string;
+  pageType: PageType;
+  jsonLd?: object;
+  noindex?: boolean;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  header?: 'default' | 'minimal';
+  stickyBar?: boolean;
+}
+const { title, description, pageType, jsonLd, noindex = false, ogImage = '/og/default.png', ogType = 'website', header = 'default', stickyBar = header === 'default' } = Astro.props;
+const locale = localeOf(Astro.currentLocale);
+const L = LOCALES[locale];
+const url = canonical(Astro.url.pathname);
+const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
+---
+<!doctype html>
+<html lang={L.code} dir={L.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={url} />}
+    <meta name="theme-color" content="#01082D" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-heading" preload />
+    <Font cssVariable="--font-body" />
+    <Font cssVariable="--font-mono" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="DiscoverDev" />
+    <meta property="og:locale" content={L.ogLocale} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogAbs} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body data-page-type={pageType}>
+    <a class="skip-link" href="#main">{t('skip', locale)}</a>
+    <Header variant={header} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    {stickyBar && <StickyBookBar />}
+  </body>
+</html>
+
+<style>
+  .skip-link { position: fixed; inset-block-start: var(--space-2); inset-inline-start: var(--space-2); z-index: var(--z-skip); padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--neutral-0); color: var(--blue-800); font-weight: var(--weight-medium); translate: 0 -200%; }
+  .skip-link:focus-visible { translate: 0 0; }
+  main:focus { outline: none; }
+</style>

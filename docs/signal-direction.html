@@ -1,0 +1,533 @@
+<title>DiscoverDev Signal Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&family=Rubik:wght@400;500;600&display=swap">
+<style>
+/* Layout: review document (theme-aware chrome) wrapping a full home-page sample built only from the proposed 06 v1.1 tokens. */
+:root {
+  --bg: #F5F6F9; --fg: #12141A; --muted: #575D69; --rule: #DCE0E8; --panel: #FFFFFF; --bar: #E8EBF1;
+  --accent: #1240BE; --accent-soft: #E5EDFE; --ok: #106B3B; --ok-soft: #E7F6EC; --warn: #8A4B00; --warn-soft: #FFF3DC;
+  --ff-display: "Manrope", "Segoe UI", system-ui, sans-serif; --ff-body: "Rubik", "Segoe UI", system-ui, sans-serif;
+  --ff-mono-doc: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* ===== Proposed tokens.css v1.1 (reference tier) ===== */
+  --blue-50:#F3F7FE; --blue-100:#E5EDFE; --blue-200:#C9DBFF; --blue-300:#A2C1FE; --blue-400:#6C9AFF; --blue-500:#396FF0;
+  --blue-600:#2152D1; --blue-700:#1240BE; --blue-800:#032993; --blue-900:#032177; --blue-925:#02103E; --blue-950:#001155; --blue-975:#01082D;
+  --neutral-0:#FEFEFE; --neutral-50:#F5F5F5; --neutral-100:#EBEBEB; --neutral-200:#DADADA; --neutral-500:#858585; --neutral-600:#6B6B6B; --neutral-700:#4F4F4F; --neutral-950:#0F0F0F;
+  --green-50:#E7F6EC; --green-300:#7FD8A6; --green-700:#106B3B; --amber-50:#FFF3DC; --amber-300:#FFD58A; --amber-700:#8A4B00; --red-50:#FDECEA; --red-300:#FFB4AB; --red-700:#B3261E;
+  --ff-heading: "Manrope", system-ui, sans-serif; --ff-sans: "Rubik", system-ui, sans-serif; --ff-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  --radius-xs:4px; --radius-sm:6px; --radius-md:10px; --radius-lg:16px; --radius-pill:999px;
+  --dur-color:150ms; --dur-fast:150ms; --dur-deliberate:480ms;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0D1016; --fg:#E9ECF3; --muted:#A2A9B7; --rule:#252B37; --panel:#151922; --bar:#1F2532; --accent:#A2C1FE; --accent-soft:#19233F; --ok:#7FD8A6; --ok-soft:#11281C; --warn:#FFD58A; --warn-soft:#2B2112; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#0D1016; --fg:#E9ECF3; --muted:#A2A9B7; --rule:#252B37; --panel:#151922; --bar:#1F2532; --accent:#A2C1FE; --accent-soft:#19233F; --ok:#7FD8A6; --ok-soft:#11281C; --warn:#FFD58A; --warn-soft:#2B2112; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--ff-body); font-size: 16px; line-height: 1.6; padding-inline: 16px; padding-block: 0 72px; }
+.wrap { max-width: 1240px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--ff-display); text-wrap: balance; margin: 0; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--accent); }
+code { font-family: var(--ff-mono-doc); font-size: .88em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.doc-head { padding-block: 52px 24px; display: grid; gap: 14px; }
+.kicker { font-family: var(--ff-mono-doc); font-size: 13px; color: var(--muted); }
+.doc-head h1 { font-size: clamp(32px, 4.4vw, 50px); font-weight: 800; letter-spacing: -.025em; line-height: 1.06; max-width: 22ch; }
+.doc-head .lead { font-size: 18px; color: var(--muted); max-width: 68ch; }
+.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-block: 1px solid var(--rule); padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a { font-size: 14px; text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--fg); background: var(--panel); }
+.block { padding-block: 52px 0; display: grid; gap: 20px; scroll-margin-top: 64px; }
+.block > h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -.015em; }
+.block > .sub { color: var(--muted); max-width: 72ch; margin-block-start: -8px; }
+.trail { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.step { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.step .k { font-family: var(--ff-mono-doc); font-size: 12px; color: var(--accent); }
+.step h3 { font-size: 16px; font-weight: 700; }
+.step p { font-size: 14px; color: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 12px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 14px; }
+th, td { text-align: start; padding: 11px 14px; border-block-end: 1px solid var(--rule); vertical-align: top; }
+thead th { font-weight: 600; background: var(--bar); }
+tbody tr:last-child > * { border-block-end: 0; }
+.st { font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.st.ok { background: var(--ok-soft); color: var(--ok); } .st.chg { background: var(--warn-soft); color: var(--warn); }
+.previews { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 1100px) { .previews { grid-template-columns: minmax(0, 1fr) 375px; } }
+.frame { border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; background: var(--panel); min-width: 0; }
+.frame-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--bar); font-size: 12px; color: var(--muted); font-family: var(--ff-mono-doc); }
+.frame-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--rule); display: inline-block; }
+.frame-bar span { margin-inline-start: 6px; }
+.frame .canvas { max-height: 1400px; overflow-y: auto; }
+.frame.phone { max-width: 375px; width: 100%; justify-self: center; }
+.frame.phone .canvas { max-height: 1100px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend .gm { display: inline-block; padding: 1px 8px; border: 1px dashed #B26B00; color: #8A4B00; background: #FFF3DC; border-radius: 4px; font-family: var(--ff-mono-doc); font-size: 11px; }
+
+/* =====================================================================
+   SAMPLE: built ONLY from 06 v1.1 tokens. Semantic layer + surfaces.
+   ===================================================================== */
+.site {
+  container-type: inline-size; font-family: var(--ff-sans); font-size: 16px; line-height: 1.6;
+  /* semantic defaults = paper */
+  --color-bg: var(--neutral-0); --color-surface: var(--neutral-0); --color-surface-alt: var(--blue-50); --color-surface-sunken: var(--neutral-50);
+  --color-text: var(--neutral-950); --color-heading: var(--blue-800); --color-text-muted: var(--neutral-600);
+  --color-link: var(--blue-700); --color-link-hover: var(--blue-800); --color-border-subtle: var(--neutral-200); --color-border-accent: var(--blue-200);
+  --color-focus: var(--blue-700); --color-action-bg: var(--blue-700); --color-action-bg-hover: var(--blue-800); --color-action-text: var(--neutral-0); --color-action-border: transparent;
+  --color-action-2-text: var(--blue-700); --color-action-2-border: var(--blue-700);
+  --color-machine-text: var(--blue-700); --color-machine-mark: var(--blue-600); --color-human-text: var(--green-700); --color-human-mark: var(--green-700);
+  --color-hairline: var(--neutral-200);
+  --color-err-t: var(--red-700); --color-err-b: var(--red-50); --color-warn-t: var(--amber-700); --color-warn-b: var(--amber-50); --color-nb-t: var(--neutral-700); --color-nb-b: var(--neutral-100);
+  --color-ok-t: var(--green-700); --color-ok-b: var(--green-50); --color-info-t: var(--blue-800); --color-info-b: var(--blue-100);
+  background: var(--color-bg); color: var(--color-text);
+}
+.site [data-surface], .site[data-surface] { background: var(--color-bg); color: var(--color-text); }
+.site [data-surface="alt"] { --color-bg: var(--color-surface-alt); }
+.site [data-surface="ink"] {
+  --color-bg: var(--blue-975); --color-surface: var(--blue-925); --color-surface-sunken: var(--blue-925);
+  --color-text: var(--neutral-0); --color-heading: var(--neutral-0); --color-text-muted: var(--blue-200);
+  --color-link: var(--blue-300); --color-link-hover: var(--neutral-0); --color-border-subtle: rgb(162 193 254 / .14); --color-border-accent: var(--blue-800);
+  --color-focus: var(--neutral-0); --color-action-bg: var(--blue-700); --color-action-bg-hover: var(--blue-600); --color-action-text: var(--neutral-0); --color-action-border: rgb(162 193 254 / .40);
+  --color-action-2-text: var(--neutral-0); --color-action-2-border: rgb(162 193 254 / .40);
+  --color-machine-text: var(--blue-300); --color-machine-mark: var(--blue-400); --color-human-text: var(--green-300); --color-human-mark: var(--green-300);
+  --color-hairline: rgb(162 193 254 / .14); color-scheme: dark;
+}
+.site [data-surface="inverse"], .site [data-surface="footer"] {
+  --color-bg: var(--blue-800); --color-text: var(--neutral-0); --color-heading: var(--neutral-0); --color-text-muted: var(--blue-200);
+  --color-link: var(--blue-300); --color-focus: var(--neutral-0); --color-action-bg: var(--neutral-0); --color-action-text: var(--blue-800); --color-action-border: transparent;
+  --color-human-mark: var(--green-300); --color-border-subtle: rgb(254 254 254 / .16); color-scheme: dark;
+}
+.site [data-surface="footer"] { --color-bg: var(--blue-950); }
+.site * { box-sizing: border-box; }
+.site h1, .site h2, .site h3 { font-family: var(--ff-heading); color: var(--color-heading); }
+.site :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.in { padding-inline: 20px; max-width: 1140px; margin-inline: auto; }
+@container (min-width: 760px) { .in { padding-inline: 40px; } }
+.sec { padding-block: 64px; position: relative; }
+@container (min-width: 760px) { .sec { padding-block: 88px; } }
+.sec-h2 { font-size: clamp(28px, 4.2cqi, 42px); line-height: 1.1; letter-spacing: -.03em; font-weight: 800; max-width: 22ch; }
+.sec-lead { font-size: 18px; color: var(--color-text-muted); max-width: 56ch; margin-block-start: 14px; }
+.eyebrow { font-family: var(--ff-mono); font-size: 13px; color: var(--color-machine-text); display: inline-flex; gap: 8px; align-items: center; margin-block-end: 14px; }
+.eyebrow b { font-weight: 500; }
+
+/* gated marker (preview-only treatment from the build plan) */
+.gated { outline: 1px dashed #B26B00; outline-offset: 3px; border-radius: 4px; position: relative; }
+.gated::after { content: attr(data-gate); position: absolute; inset-block-start: -10px; inset-inline-end: 6px; font-family: var(--ff-mono); font-size: 10px; line-height: 1; padding: 3px 6px; background: #FFF3DC; color: #8A4B00; border: 1px solid #B26B00; border-radius: 4px; white-space: nowrap; }
+
+/* header */
+.hdr { display: flex; align-items: center; gap: 24px; padding-block: 14px; position: relative; z-index: 2; }
+.logo { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--color-text); font-family: var(--ff-heading); font-weight: 800; font-size: 19px; letter-spacing: -.02em; }
+.logo .mk { width: 22px; height: 24px; background: var(--blue-700); -webkit-mask: var(--mark) center / contain no-repeat; mask: var(--mark) center / contain no-repeat; }
+[data-surface="ink"] .logo .mk, [data-surface="footer"] .logo .mk { background: var(--blue-300); }
+.logo .dev { color: var(--blue-700); }
+[data-surface="ink"] .logo .dev, [data-surface="footer"] .logo .dev { color: var(--blue-300); }
+.nav { display: none; gap: 26px; font-size: 14px; font-weight: 500; color: var(--color-text-muted); margin-inline-start: 18px; }
+.hdr .btn { margin-inline-start: auto; }
+.menu { width: 40px; height: 40px; border-radius: var(--radius-sm); display: grid; place-items: center; background: transparent; color: var(--color-text); border: 1px solid var(--color-border-subtle); }
+.menu svg { width: 20px; height: 20px; }
+@container (min-width: 900px) { .nav { display: flex; } .menu { display: none; } }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding-inline: 24px; border-radius: var(--radius-sm); font-family: var(--ff-heading); font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap; border: 1px solid var(--color-action-border); background: var(--color-action-bg); color: var(--color-action-text); transition: background var(--dur-color); }
+.btn.sm { min-height: 40px; padding-inline: 16px; font-size: 14px; }
+.btn.outline { background: transparent; color: var(--color-action-2-text); border-color: var(--color-action-2-border); }
+@media (hover: hover) { .btn:hover { background: var(--color-action-bg-hover); } .btn.outline:hover { background: transparent; } }
+.btn.wide { width: 100%; }
+@container (min-width: 520px) { .btn.wide { width: auto; } }
+.terms { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--color-text-muted); }
+.terms li { display: inline-flex; gap: 6px; align-items: center; }
+.terms svg { width: 16px; height: 16px; color: var(--color-human-mark); flex: none; }
+.tlink { font-weight: 500; color: var(--color-link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; font-size: 15px; }
+.cta { display: grid; gap: 12px; justify-items: start; }
+
+/* hero */
+.hero { overflow: hidden; }
+.grid-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 80px 80px; -webkit-mask-image: radial-gradient(75% 70% at 62% 28%, #000 15%, transparent 85%); mask-image: radial-gradient(75% 70% at 62% 28%, #000 15%, transparent 85%); }
+.blade { position: absolute; pointer-events: none; aspect-ratio: 1; background: linear-gradient(200deg, var(--blue-700), var(--blue-800) 70%); clip-path: polygon(30% 4%, 100% 40%, 46% 46%); }
+.hero .blade { inset-block-start: -8%; inset-inline-end: -10%; width: 62cqi; opacity: .5; }
+.hero-grid { display: grid; gap: 40px; padding-block: 36px 72px; position: relative; z-index: 1; }
+@container (min-width: 960px) { .hero-grid { grid-template-columns: 6.2fr 5.8fr; align-items: center; gap: 56px; padding-block: 56px 96px; } }
+.copy { display: grid; gap: 22px; align-content: start; min-width: 0; }
+.h1 { font-size: clamp(38px, 6.6cqi, 68px); line-height: 1.02; letter-spacing: -.035em; font-weight: 800; max-width: 15ch; }
+.lead { font-size: 18px; color: var(--color-text-muted); max-width: 52ch; }
+.proof { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 14px; }
+.proof svg { width: 16px; height: 16px; color: var(--color-human-mark); }
+
+/* RunPanel */
+.run { margin: 0; background: var(--color-surface); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); overflow: hidden; min-width: 0; }
+.run-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 13px 18px; border-block-end: 1px solid var(--color-hairline); font-family: var(--ff-mono); font-size: 12px; }
+.run-top b { font-weight: 500; color: var(--color-machine-text); }
+.run-top span { color: var(--color-text-muted); }
+.run ol { list-style: none; margin: 0; padding: 0; }
+.run li { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 2px 12px; padding: 11px 18px; border-block-end: 1px solid var(--color-hairline); align-items: center; }
+.run .mk { grid-row: 1 / span 2; align-self: start; margin-block-start: 4px; display: grid; place-items: center; }
+.run .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-machine-mark); }
+.run .chk { width: 18px; height: 18px; border-radius: 50%; background: var(--color-human-mark); color: var(--blue-975); display: grid; place-items: center; margin-block-start: -4px; }
+.run .chk svg { width: 12px; height: 12px; }
+.run .who { font-family: var(--ff-mono); font-size: 11px; font-weight: 500; color: var(--color-machine-text); }
+.run .h .who { color: var(--color-human-text); }
+.run .what { font-family: var(--ff-mono); font-size: 13.5px; line-height: 1.35; }
+.run .h .what { font-family: var(--ff-heading); font-weight: 700; font-size: 15.5px; letter-spacing: -.005em; }
+.run .h { background: color-mix(in oklab, var(--color-human-mark) 6%, transparent); }
+.run .state { grid-column: 3; grid-row: 1 / span 2; font-family: var(--ff-mono); font-size: 11px; display: inline-grid; text-align: end; }
+.run .state > * { grid-area: 1 / 1; transition: opacity 260ms ease; }
+.run .m .state .fin { color: var(--color-machine-text); } .run .h .state .fin { color: var(--color-human-text); }
+.run .state .pre { color: var(--color-text-muted); opacity: 0; }
+.run.playing .state .pre { opacity: 1; } .run.playing .state .fin { opacity: 0; }
+.run li.done .state .pre { opacity: 0 !important; } .run li.done .state .fin { opacity: 1 !important; }
+.run .bar { grid-column: 2 / span 2; height: 2px; border-radius: 2px; background: color-mix(in oklab, var(--color-machine-mark) 18%, transparent); overflow: hidden; margin-block-start: 6px; }
+.run .bar i { display: block; height: 100%; background: var(--color-machine-mark); transform-origin: 0 50%; transition: transform 300ms cubic-bezier(.2,0,0,1); }
+.run.playing .bar i { transform: scaleX(0); } .run li.done .bar i { transform: scaleX(1) !important; }
+.run li.full { display: none; }
+@container (min-width: 960px) { .run li.full { display: grid; } }
+.run-foot { padding: 14px 18px; font-size: 14px; color: var(--color-text-muted); }
+.run figcaption, .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* proof strip */
+.strip { border-block: 1px solid var(--color-hairline); }
+.strip ul { list-style: none; margin: 0; padding-block: 22px; padding-inline: 0; display: flex; flex-wrap: wrap; gap: 12px 0; font-size: 15px; }
+.strip li { padding-inline: 20px; border-inline-start: 1px solid var(--color-hairline); display: inline-flex; gap: 8px; align-items: center; }
+.strip li:first-child { padding-inline-start: 0; border-inline-start: 0; }
+.strip svg { width: 16px; height: 16px; color: var(--color-machine-mark); }
+
+/* problem cards */
+.cards { display: grid; gap: 16px; margin-block-start: 36px; }
+@container (min-width: 760px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+.card { background: var(--color-surface); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); padding: 24px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.card .ic { width: 40px; height: 40px; border-radius: var(--radius-sm); display: grid; place-items: center; border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
+.card .ic svg { width: 20px; height: 20px; }
+.card h3 { font-size: 20px; line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
+.card p { font-size: 15px; color: var(--color-text-muted); }
+.closing { margin-block-start: 28px; font-size: 18px; font-weight: 500; max-width: 60ch; }
+
+/* offer spotlight (paper) */
+.offer { display: grid; gap: 40px; }
+@container (min-width: 960px) { .offer { grid-template-columns: 1fr 1fr; align-items: start; gap: 64px; } }
+.answer { font-size: 18px; max-width: 58ch; margin-block-start: 16px; }
+.gets { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 10px; }
+.gets li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; font-size: 16px; }
+.gets svg { width: 20px; height: 20px; color: var(--color-human-mark); margin-block-start: 3px; }
+.price { margin-block-start: 22px; font-size: 16px; }
+.guar { margin-block-start: 8px; font-family: var(--ff-heading); font-weight: 700; font-size: 18px; color: var(--color-heading); }
+.offer .cta { margin-block-start: 24px; }
+.snap { margin: 0; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); box-shadow: 0 2px 4px rgb(3 41 147 / .06), 0 8px 24px rgb(3 41 147 / .10); overflow: hidden; min-width: 0; }
+.snap-top { background: var(--color-surface-sunken); padding: 12px 18px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+.snap-top b { font-family: var(--ff-heading); color: var(--color-heading); font-size: 14px; }
+.snap-top span { color: var(--color-text-muted); }
+.snap ol { list-style: none; margin: 0; padding: 0; }
+.snap li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; padding: 12px 18px; border-block-start: 1px solid var(--color-border-subtle); }
+.snap .t { font-weight: 500; font-size: 15px; line-height: 1.35; }
+.snap .a { grid-column: 2; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 13px; color: var(--color-text-muted); }
+.snap-foot { border-block-start: 1px solid var(--color-border-subtle); padding: 14px 18px; display: grid; gap: 2px; }
+.snap-foot b { font-family: var(--ff-heading); color: var(--color-heading); }
+.snap-foot span { font-size: 13px; color: var(--color-text-muted); }
+.badge { display: inline-flex; align-items: center; min-height: 22px; padding: 1px 9px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.b-crit { background: var(--color-err-b); color: var(--color-err-t); } .b-high { background: var(--color-warn-b); color: var(--color-warn-t); } .b-med { background: var(--color-nb-b); color: var(--color-nb-t); }
+.b-plan { background: var(--color-info-b); color: var(--color-info-t); } .b-fix { background: var(--color-ok-b); color: var(--color-ok-t); }
+
+/* steps */
+.steps { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 1px; background: var(--color-hairline); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); overflow: hidden; }
+@container (min-width: 820px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+.steps li { background: var(--color-bg); padding: 24px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.steps .n { font-family: var(--ff-mono); font-size: 13px; color: var(--color-machine-text); }
+.steps h3 { font-size: 19px; font-weight: 700; line-height: 1.25; letter-spacing: -.01em; }
+.steps p { font-size: 15px; color: var(--color-text-muted); }
+.chip { justify-self: start; display: inline-flex; gap: 6px; align-items: center; font-family: var(--ff-mono); font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: var(--radius-xs); }
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.chip.m { color: var(--color-machine-text); background: color-mix(in oklab, var(--color-machine-mark) 14%, transparent); }
+.chip.h { color: var(--color-human-text); background: color-mix(in oklab, var(--color-human-mark) 14%, transparent); }
+
+/* paths */
+.paths { display: grid; gap: 16px; margin-block-start: 36px; }
+@container (min-width: 640px) { .paths { grid-template-columns: repeat(2, 1fr); } }
+@container (min-width: 1000px) { .paths { grid-template-columns: repeat(4, 1fr); } }
+.path { background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); padding: 22px; display: grid; gap: 10px; align-content: start; position: relative; min-width: 0; }
+.path .who { font-size: 15px; color: var(--color-text-muted); }
+.path h3 { font-size: 20px; font-weight: 700; }
+.path h3 a { color: var(--color-heading); text-decoration: none; }
+.path h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.path p { font-size: 15px; }
+@media (hover: hover) { .path:hover { border-color: var(--blue-700); } .path:hover h3 a { text-decoration: underline; } }
+
+/* case */
+.case { display: grid; gap: 32px; }
+@container (min-width: 900px) { .case { grid-template-columns: 5fr 7fr; align-items: center; gap: 56px; } }
+.metric { font-family: var(--ff-heading); font-weight: 800; font-size: clamp(56px, 10cqi, 104px); line-height: 1; letter-spacing: -.04em; color: var(--color-heading); font-variant-numeric: tabular-nums; }
+.metric-l { font-size: 16px; color: var(--color-text-muted); margin-block-start: 6px; }
+.stack { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 18px; }
+.stack span { font-family: var(--ff-mono); font-size: 12px; padding: 3px 8px; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xs); color: var(--color-text-muted); }
+blockquote { margin: 20px 0 0; padding-inline-start: 18px; border-inline-start: 2px solid var(--color-border-accent); font-size: 17px; }
+blockquote footer { font-size: 14px; color: var(--color-text-muted); margin-block-start: 6px; }
+
+/* why */
+.pillars { display: grid; gap: 1px; margin-block-start: 36px; background: var(--color-hairline); border-block: 1px solid var(--color-hairline); }
+@container (min-width: 820px) { .pillars { grid-template-columns: repeat(3, 1fr); } }
+.pillar { background: var(--color-bg); padding: 28px 24px 28px 0; display: grid; gap: 10px; align-content: start; }
+@container (min-width: 820px) { .pillar { padding-inline: 24px; } .pillar:first-child { padding-inline-start: 0; } }
+.pillar h3 { font-size: 21px; font-weight: 700; letter-spacing: -.01em; }
+.pillar p { font-size: 15px; color: var(--color-text-muted); }
+.own { margin-block-start: 22px; font-size: 14px; color: var(--color-text-muted); }
+
+/* testimonials, faq */
+.quotes { display: grid; gap: 16px; margin-block-start: 32px; }
+@container (min-width: 820px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+.quote { margin: 0; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); padding: 24px; display: grid; gap: 14px; align-content: space-between; }
+.quote p { font-size: 17px; }
+.quote figcaption { font-size: 14px; color: var(--color-text-muted); }
+.quote figcaption b { color: var(--color-text); font-weight: 500; display: block; }
+.faq { margin-block-start: 28px; border-block-start: 1px solid var(--color-border-subtle); max-width: 860px; }
+.faq details { border-block-end: 1px solid var(--color-border-subtle); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center; min-height: 56px; padding-block: 18px; font-weight: 500; font-size: 18px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary svg { width: 20px; height: 20px; flex: none; color: var(--color-link); transition: rotate 220ms; }
+.faq details[open] summary svg { rotate: 180deg; }
+.faq .ans { padding-block-end: 20px; max-width: 68ch; color: var(--color-text); }
+
+/* band + footer */
+.band { overflow: hidden; text-align: center; }
+.band .blade { inset-block-end: -38%; inset-inline-end: -14%; width: 52cqi; opacity: 1; }
+.band .in { display: grid; gap: 18px; justify-items: center; position: relative; z-index: 1; }
+.band h2 { font-size: clamp(30px, 5cqi, 52px); line-height: 1.06; letter-spacing: -.03em; font-weight: 800; max-width: 18ch; }
+.band p { color: var(--color-text-muted); }
+.band .terms { justify-content: center; }
+.foot { padding-block: 48px; font-size: 14px; }
+.foot-grid { display: grid; gap: 28px; }
+@container (min-width: 820px) { .foot-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+.foot p { color: var(--color-text-muted); max-width: 44ch; }
+.foot h3 { font-family: var(--ff-sans); font-size: 14px; font-weight: 600; color: var(--color-text-muted); margin-block-end: 8px; }
+.foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.foot a { color: var(--color-text); text-decoration: none; }
+.foot .fine { margin-block-start: 28px; padding-block-start: 18px; border-block-start: 1px solid var(--color-border-subtle); display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--color-text-muted); }
+
+@media (prefers-reduced-motion: reduce) { .run .state > *, .run .bar i, .faq summary svg { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="doc-head">
+    <div class="kicker">discoverdev.ai v1 · design direction · round 3 · brand-locked</div>
+    <h1>Signal: machine speed, human sign-off</h1>
+    <p class="lead">Round 2's direction D, rebuilt with the design skills and checked rule by rule against your brand guidelines. Below: how it was made, how it follows the guidelines, and the full home page built only from the proposed design tokens.</p>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#trail">How it was made</a>
+    <a href="#compliance">Brand guideline check</a>
+    <a href="#sample">Full home page</a>
+  </nav>
+
+  <section class="block" id="trail" aria-labelledby="h-trail">
+    <h2 id="h-trail">How it was made</h2>
+    <p class="sub">Each step used a design skill and left a document in the project's <code>docs/</code> folder.</p>
+    <div class="trail">
+      <div class="step"><span class="k">1 · brand sources</span><h3>Collected the guidelines</h3><p>01-brand, 06-design-system and the company profile deck brand system, in that order of precedence (CLAUDE.md).</p></div>
+      <div class="step"><span class="k">2 · design-skills:design-critique</span><h3>Critiqued round 2</h3><p>12 findings with severity and principle, contrast measured. <code>docs/design-critique-round2.md</code></p></div>
+      <div class="step"><span class="k">3 · rampstack-skills:art-direction</span><h3>Wrote the creative brief</h3><p>Concept, surfaces, colour, type, motion, what to avoid. <code>docs/creative-brief-signal.md</code></p></div>
+      <div class="step"><span class="k">4 · design-skills:design-systems</span><h3>Extended the tokens</h3><p>Three tiers, two surfaces, two new components, contrast table. <code>docs/design-system-signal.md</code></p></div>
+    </div>
+  </section>
+
+  <section class="block" id="compliance" aria-labelledby="h-comp">
+    <h2 id="h-comp">Brand guideline check</h2>
+    <p class="sub">Every rule from your guidelines and how Signal meets it. "Change" rows need your approval because they edit 06.</p>
+    <div class="table-wrap" role="region" aria-labelledby="h-comp" tabindex="0">
+      <table>
+        <thead><tr><th scope="col">Guideline</th><th scope="col">Source</th><th scope="col">How Signal applies it</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>Primary #1240BE, navy #032993, white #FEFEFE, black #0F0F0F</td><td>01 Identity</td><td>Brand blue is every primary button, on dark and light. Navy is the closing band. White and black carry paper sections.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>One blue ramp at the brand hue</td><td>06 §2</td><td>Dark canvas #01082D and raised #02103E derived at hue 263.6 (OKLCH), the 06 method. Round 2's off-hue #050A1F removed.</td><td><span class="st chg">Change: 2 ramp steps</span></td></tr>
+          <tr><td>Grey #858585 for large text and decoration only; small muted text #6B6B6B</td><td>01, 06 §3</td><td>Paper muted text #6B6B6B. On dark, muted text is #C9DBFF (14.02:1). Grey is never used on dark.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>Manrope headlines, Rubik body</td><td>01, 06 §4</td><td>Manrope 800 display (tracking −0.035em), Manrope 700 H2/H3, Rubik body and UI.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>Mono for the <code>//</code> and <code>$</code> motif</td><td>Deck brand system; 06 §4</td><td>JetBrains Mono from the deck, as the AI layer. Latin subset, not preloaded; 3 font files, within budget.</td><td><span class="st chg">Change: webfont mono</span></td></tr>
+          <tr><td>Motif is an accent: eyebrow ≤ 2 per page, never consecutive</td><td>01, 06 §9.22</td><td>Two eyebrows on the home page (hero, How it works), separated by 3 sections. No <code>$</code> line on home.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>Logo on navy: mark and "Dev" #A2C1FE, "Discover" white</td><td>06 §11</td><td>Applied on dark header and footer (mark tinted by CSS mask until the SVG set arrives, D-33).</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>Never blue text on navy (1.44:1)</td><td>06 §3</td><td>Small blue text on dark is always #A2C1FE (10.80:1). #6C9AFF only for dots and bars.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>No glows, glass, mesh gradients, robots, stock, logo marquees, counters</td><td>06 §1 Avoid</td><td>None. The only gradients: the logo blade's tonal fill (06 §9.16) and a 1px grid.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>One orchestrated motion ≤ 2.4s, plays once, reduced motion respected</td><td>06 §6, §9.6</td><td>Run panel: AI rows 320ms, human rows 480ms, about 2.3s total, final state in the DOM.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>One filled button per screen; no arrows or chips in buttons</td><td>06 §1, §9.5</td><td>One primary per viewport plus the header button (as 06 §9.1). The "5 days" chip from round 2 removed.</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>Light surfaces for content; navy limited</td><td>06 §5</td><td>Workshop and report: dark for hero and process; light paper for the offer, paths, case, testimonials and FAQ; navy only for the closing band. Articles, legal and booking stay light.</td><td><span class="st chg">Change: surface map</span></td></tr>
+          <tr><td>Status colours have text; colour never alone</td><td>06 §7</td><td>Every run row and finding has a text state ("done", "Signed off", "Fix planned").</td><td><span class="st ok">Follows</span></td></tr>
+          <tr><td>Copy from 03 only; voice plain, no hype</td><td>CLAUDE.md, 03 §0.1</td><td>All copy verbatim. Run-panel lines use proof-bank wording; they get added to 03 §2.2 before the build.</td><td><span class="st chg">Change: 03 §2.2 strings</span></td></tr>
+          <tr><td>Gated items hidden until resolved</td><td>CLAUDE.md</td><td>Shown here with a dashed "pending" tag so you can review them. The production build hides them.</td><td><span class="st ok">Follows</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="sample" aria-labelledby="h-sample">
+    <h2 id="h-sample">The full home page</h2>
+    <p class="sub">Every section of the home blueprint (04 §4.1) in order, with the real copy. Scroll inside each frame.</p>
+    <div class="legend"><span><span class="gm">pending</span> = waiting on a decision, consent or price; hidden in the production build</span></div>
+    <div class="previews">
+      <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Desktop</span></div><div class="canvas" data-sample></div></div>
+      <div class="frame phone"><div class="frame-bar"><i></i><i></i><i></i><span>Phone · 375</span></div><div class="canvas" data-sample></div></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const MARK = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABgCAMAAACql5X7AAACmlBMVEVMaXH9/f39/f3////9/f3////9/f3////////////9/f3////////+/v7////////////////////////////////9/f3////9/f3+/v7+/v7////////+/v7////////////////9/f3////9/f3////+/v79/f3+/v7////6+vr9/f39/f3////9/f3////9/f3////////////////8/Pz////9/f39/f37+/v9/f39/f39/f3////9/f39/f3////////////////9/f39/f39/f3////////9/f3////9/f3////+/v79/f3////////9/f3////+/v7+/v79/f3////9/f39/f3////////+/v7////y8vL////9/f3////////////////////////////+/v7////9/f3+/v7////9/f3+/v78/Pz9/f39/f3////////9/f3////+/v7////////9/f3////+/v7+/v79/f39/f3+/v7////8/Pz////////9/f3////////////8/Pz9/f3////////////9/f37+/v////s7Oz////8/Pz+/v7////9/f3////9/f3////+/v78/Pz9/f35+fn9/f34+Pj7+/v9/f39/f39/f38/Pz////////////////39/f8/Pz+/v7+/v79/f37+/v////////8/Px/f3/////8/Pz////////+/v79/f3////////9/f39/f3////////////6+vr////////9/f3////9/f3////8/Pz9/f3////////8/Pz9/f39/f37+/v9/f3////9/f3///+qqqr9/f3////////8/Pz////8/Pz9/f3////+/v7+/v7////9/f0+8o2JAAAA23RSTlMA/fz++wT+AQID+gX9/Ab76vonDThQuSb5UiqcGqQH9AolhfVwD/f4h/k74KBn5J2Gzh0j61sV4dxQ406C+LjtIEgtIabzw7yDLovysZWYGMLYEcpCzyvrmo8LtxMVGZwX7W2FX1OZ4nXwVDr2YVmtrrU8yON+EAjqEp/FtObgDG7L17G6ekD7xKAs6Z1JSg07eQ5azjXQju9mmTHoKEvuk/R31GsofyJrP6O6UZvMWgK3/YFE7tJ4pufiyPfaP9K+qcCiiPzlZnlyvLBIyanMNAO1V3N41l+hifQ5okpZAAAACXBIWXMAAAsSAAALEgHS3X78AAAGhElEQVRo3q1a93vURhBdSSvtSnc+n21cA8YFYwOG0HuvppdAMHxA+EgooXdI6DVACBA6hIT0QhLSe++V9Ppp8r9k9u5c707SSprf/IOfn2bfvJmdNSGEEX02zJ/RePWfPydfiJFEmDpnJITg5M5rEAUR2vl50/8+d7ZGx7/ITZ2FgP1IN1pCKVUUga+MmrC7ocMS/JwQ2JvkymVQbAxVxb8g6MPKWyvO9UVcFhBeJ38ANexUGIZKFQPx1+6u6tAxwT4AeoQ8DHnN2CIU/AAN2cfHryvTOZL3ja4jtmK3ixT7J3Y+O3aRUJLJfPL+FqidHgalBpLv0dgvwglH/r54/wCWnSkMRTU06Pz+jLmnUU4+JMnI9jvgATtLKDSK3AfdVckYkxc8I3NugZoNG3VDFQ0+/OAd1AyTTQwnNT87YCe5a9D/s9UFqBi5MzVJZVdbsR1DtTQNPvryBH6kFDiWfNyZd1IzeKiTVnPMiwS6SQpzoi68RWKsKOTu6b0Us25y7/IeohiGKzZWk4pZ37g5UUme5V2Yq3jAFmeqwYjBz3cUleQNO0Z6QontKQyaA5BXX4nm7k3qnNzIUpaZ8kJtqL65PEK85YWRTp6xBXXU+lO9F3uizjhiU1sCXLVh5/SP8Tddq5SZZLwEbwTPQYsxtnQpF1XqyvuQFDaiW4oNg6vGYm2Ybl1+vkxOmqtUPXlUJ85lZJITD7qWfCapazA+nziD64K3NLagDhOKzhDuXJZjr4EiwVhRLMsy7P80HGV+K3Yp+bK4K7aB3S0xvGCeRdgGXJw2bdKUMjer6tJugmhLklqWOGlIxp6hs+sa6n4ZnV8gJhfO3azqCOSmYSZZJkliv6wuKiq6Z9jy0hqWMilumpGIBxs8kpIgklSTJFMs43vj07Zd6tn3mdEt1RCJRDjHDmES1v2WW1nGyHSoTc2BKZYHN03aNOCl9UtYLPXNpmnqGNjqUz9zMqcR/nV3qvsOiAE5+l6vUZ+/sWBVv/yy7aTJhLium7x9UrGlzayLwywvDjtw48RvSgsrIuUtqRQsOctkc1jk7PepYNTO9eKwzay4AOROUyU3SaR0Hk64cIl4cu8EScaYmxljG+OlF0FTKfwVIyEGw88p/gm0XNVWoTv5NTxg7AGPfmEBNgWbQgPRw2RcvoCCInSvwsTThIWEjEJeuGwoqIkri2FXjyM8LGCmP9YLT89IzuL2KWKGAiy6ePfBaNMpi6TQGA5njrno8KIBOU3ea8HxUDgLxkvv7gxqs6krsHV0GKSR8cDeb0FuS3dWYGhxCMjoFjPr7oVoy00Wh/6uZcHTgW6hD1mJwK0bnApdAteKOL03327DOCGO74IiM7Tk4voRQNu2ZAsOB8yGuGHk19eC2m5GwfouCFbfCBx7XLiF0R55175AyCiLfU8PSgfGPB8sCCI7EykP+7rJLdoMEEa3MQGOUHSyNSOjGk0fqBTo9pD/IxRFvaYIWtyi9XCmIXLEdy4YWXQDNEXNeFWCZX6R8b5MFlehW3yVcforgSkk5l9vVdfBeD3zXGnBbT5Vh3rjhTfbF3Vr5Nv9qQ5tqGLyLNCyASc4+9mlMZTFc4cgqma9eAjOfvZo+Dv59WtByX6jEZx9IGMuyvfnQY7DNsofZzHiv9Ajg1u0vmz5ybNQ8szXHE5PVHcenJTnjOP4job+TklGZK12mDRn7CJsSB9nYPQ6Oka6ukV72gWZDK6182sjEJnJ6iIyQ00Msw5BbfVHSc5iP3W0Bxgud3MVdp6SdH4xwY101oUQXQkcq5BzfjFoDS8Btw0iyvlYgRRnZr5KnpwA1IUyrjxg+A4pr0OFVm5xzQWmWRHTF5faAceuUqCu6w8K16/IiQ6PbxB6p+s6RYXZ+XLS4OTCVLAM96UYfLpQUnSMHM7+StBCOQ9edl2hpCGPwxu7ezLWruOyfmSSKR5W7XB+M5F92sDl9idu6yvFglkVsn4kSA9wI4176lUmN308N77rvONEZVzuSXy8UeEOqL/jIaq5sKkf8fNkqmM+qGMBdl7Hme7v+XWkQ6rx/PpsJhF/oxeZ7JAO3HhvOCuvjKZ8DM+aDxTz1vVuq26HQ2QHsokaJdepo1/KiZepLJlGzx9VSpj/y49J7s8IbeCz64Y5xAyyJ6jZmykfuKvr9QrhwS7G+zOQxvKrXtGXBP3HggyiVnNg3hnfwmiOuZD2BGhAfFsB0QNvY46nZVqB78eFAEz+Bw6qZqrzEaZTAAAAAElFTkSuQmCC";
+const I = {
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  tick: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  star: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+  card: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>',
+  code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>',
+  globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>',
+  cpu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg>',
+  chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
+  menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
+  chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+};
+const g = (gate, html, tag = "span") => `<${tag} class="gated" data-gate="pending: ${gate}">${html}</${tag}>`;
+const TERMS = ["About 5 working days", "Fixed fee, credited to your fix", "No useful findings, no charge"];
+const CLAR = ["30 minutes", "No pitch", "Leave with a next step"];
+const terms = (t = TERMS) => `<ul class="terms">${t.map(x => `<li>${I.check}${x}</li>`).join("")}</ul>`;
+const btn = (label, cls = "") => `<a class="btn ${cls}" href="#" onclick="return false">${label}</a>`;
+const link = (label) => `<a class="tlink" href="#" onclick="return false">${label}</a>`;
+const RUN = [
+  ["m", "AI", "check access and security", false],
+  ["m", "AI", "check data and backups", true],
+  ["m", "AI", "check payments end to end", false],
+  ["m", "AI", "check code quality", true],
+  ["m", "AI", "check scale and running costs", false],
+  ["m", "AI", "check ownership and handover", true],
+  ["h", "Senior engineers", "Own the quality", false],
+  ["h", "Product lead", "Verdict: keep, fix or replace", false]
+];
+const run = () => `<figure class="run">
+  <div class="run-top"><b>Launch-Ready Review</b><span>Example, not a client</span></div>
+  <ol>${RUN.map(r => `<li class="${r[0]}${r[3] ? " full" : ""}"><span class="mk">${r[0] === "m" ? '<span class="dot"></span>' : `<span class="chk">${I.tick}</span>`}</span>
+    <span class="who">${r[1]}</span><span class="what"><bdi dir="ltr">${r[2]}</bdi></span>
+    <span class="state"><span class="pre" aria-hidden="true">${r[0] === "m" ? "checking" : "waiting"}</span><span class="fin">${r[0] === "m" ? "done" : "Signed off"}</span></span>
+    ${r[0] === "m" ? '<span class="bar" aria-hidden="true"><i></i></span>' : ""}</li>`).join("")}</ol>
+  <div class="run-foot">A person is responsible for every line that reaches your users.</div>
+  <figcaption>Example of how a Launch-Ready Review runs: AI checks six areas, then people sign off</figcaption></figure>`;
+
+const HOME = () => `
+<div class="site">
+  <section data-surface="ink" class="hero sec" style="padding-block:0" aria-label="Hero">
+    <div class="grid-bg" aria-hidden="true"></div><div class="blade" aria-hidden="true"></div>
+    <div class="in"><header class="hdr"><a class="logo" href="#" onclick="return false" aria-label="DiscoverDev home"><span class="mk" style="--mark:url(${MARK})"></span><span aria-hidden="true">Discover<span class="dev">Dev</span></span></a>
+      <nav class="nav" aria-label="Main (sample)"><span>Review</span><span>Services</span><span>Work</span><span>Insights</span><span>About</span></nav>
+      ${btn("Book a Review", "sm")}<button class="menu" type="button" aria-label="Open menu (sample)">${I.menu}</button></header></div>
+    <div class="in hero-grid">
+      <div class="copy"><p class="eyebrow"><b>//</b> For founders with an AI-built or freelancer-built app</p>
+        <h1 class="h1">Your app works in the demo. We get it ready for real users.</h1>
+        <p class="lead">Built it with Lovable, Bolt, v0, Cursor or a freelancer? A senior team reviews it in about 5 working days. You learn what will break, what to fix and what it costs. Then we fix it or build it properly, and you own all of it.</p>
+        <div class="cta">${btn("Book a Launch-Ready Review", "wide")}${terms()}${link("Not sure yet? Take the 3-minute launch check")}</div>
+        <p class="proof">${I.star}<span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)</span>${link("Read our reviews on Clutch")}</p></div>
+      ${run()}</div>
+  </section>
+
+  <section data-surface="ink" class="strip" aria-labelledby="pw"><h2 id="pw" class="sr">Who we work with</h2>
+    <div class="in"><ul><li>${I.globe}Clients on 4 continents</li><li>${I.cpu}AI in production across multiple clients</li><li>${I.chat}Arabic and English</li><li>${I.pin}Texas, USA and Alexandria, Egypt</li></ul></div></section>
+
+  <section data-surface="ink" class="sec" aria-labelledby="pr"><div class="in">
+    <h2 id="pr" class="sec-h2">“It works” and “it’s ready for strangers” are not the same thing</h2>
+    <div class="cards">
+      <article class="card"><span class="ic">${I.lock}</span><h3>Your data might be open</h3><p>Can a signed-in user see someone else’s records? Are secret keys sitting in code the browser can read? You may not know until someone else finds out.</p></article>
+      <article class="card"><span class="ic">${I.card}</span><h3>Payments that fail quietly</h3><p>A payment that works in test mode can still drop or double-charge in real life. You find out from an angry customer.</p></article>
+      <article class="card"><span class="ic">${I.code}</span><h3>Code nobody can pick up</h3><p>Every fix breaks something else. Your freelancer moved on. A new developer can’t tell what’s safe to change.</p></article>
+    </div>
+    <p class="closing">You don’t need a rewrite by default. You need someone senior to look, and tell you plainly.</p></div></section>
+
+  <section data-surface="paper" class="sec" aria-labelledby="of"><div class="in offer">
+    <div><h2 id="of" class="sec-h2">What is a Launch-Ready Review?</h2>
+      <p class="answer">${g("V2, V3", "A Launch-Ready Review is a fixed-fee check of your AI-built or freelancer-built app before real users, data and payments touch it. A senior team reviews security, data, payments, code quality, scale and ownership in about 5 working days. You get a ranked fix list, a keep, fix or replace verdict, and a fixed quote.")}</p>
+      <ul class="gets"><li>${I.check}<span>A findings call where we walk you through every issue in plain words</span></li><li>${I.check}<span>A written report you keep, with each risk ranked</span></li><li>${I.check}<span>A clear verdict: keep, fix or replace, and why</span></li><li>${I.check}<span>A fixed quote for the fix work</span></li></ul>
+      <p class="price">${g("price P1", "From $X.")} The fee is credited toward the fix or a Build with us.</p>
+      <p class="guar">No useful findings, no charge.</p>
+      <div class="cta">${btn("Book a Launch-Ready Review", "wide")}<span style="font-size:14px;color:var(--color-text-muted)">${g("V19", "Starts with a free 30-minute scoping call")}</span>${link("See everything we check")}</div></div>
+    <figure class="snap"><div class="snap-top"><b>Example findings</b><span>Sample report, not a client</span></div>
+      <ol><li><span class="badge b-crit">Critical</span><span class="t">Row-level security off on 3 tables</span><span class="a"><span>Data and auth</span><span class="badge b-plan">Fix planned</span></span></li>
+        <li><span class="badge b-crit">Critical</span><span class="t">Secret key readable in browser code</span><span class="a"><span>Access and security</span><span class="badge b-fix">Fixed</span></span></li>
+        <li><span class="badge b-high">High</span><span class="t">Payment events not checked on the server</span><span class="a"><span>Payments</span><span class="badge b-plan">Fix planned</span></span></li></ol>
+      <div class="snap-foot"><b>Verdict: fix, don’t rebuild</b><span>Fixed quote with the report</span></div>
+      <figcaption class="sr">Example of findings from a Launch-Ready Review</figcaption></figure></div></section>
+
+  <section data-surface="ink" class="sec" aria-labelledby="hw"><div class="in">
+    <p class="eyebrow"><b>//</b> how a review runs</p><h2 id="hw" class="sec-h2">How it works</h2>
+    <ol class="steps">
+      <li><span class="n">01</span><h3>Book a scoping call</h3><p>30 minutes, free. Tell us what you built and what worries you. You get a fixed fee before anything starts.</p></li>
+      <li><span class="n">02</span><h3>We review your app</h3><p>About 5 working days. Senior engineers and a product lead go through your code and your live app.</p><span class="chip m">AI-accelerated</span></li>
+      <li><span class="n">03</span><h3>Findings call</h3><p>We walk you through the report. What’s risky, what’s fine, what to fix first.</p><span class="chip h">Senior sign-off</span></li>
+      <li><span class="n">04</span><h3>Fix or build</h3><p>Hire us for the fix with the fee credited, or take the report to your own developer. It’s yours.</p></li>
+    </ol></div></section>
+
+  <section data-surface="alt" class="sec" aria-labelledby="pa"><div class="in">
+    <h2 id="pa" class="sec-h2">Not at launch yet? Start where you are.</h2>
+    <div class="paths">
+      <article class="path"><span class="who">I have an idea.</span><h3><a href="#" onclick="return false">Validate</a></h3><p>1–2 weeks. Market read, scope, clickable prototype and a fixed build estimate.</p></article>
+      <article class="path"><span class="who">I’m ready to build.</span><h3><a href="#" onclick="return false">Build</a></h3><p>8–12 weeks to a live product with real users. Fixed price.</p></article>
+      <article class="path"><span class="who">It’s working. Grow it.</span><h3><a href="#" onclick="return false">Scale</a></h3><p>A dedicated squad of developers, QA and a PM on a monthly retainer. You keep control.</p></article>
+      <article class="path"><span class="who">I run a software house.</span><h3><a href="#" onclick="return false">Partners</a></h3><p>White-label delivery and staff augmentation under your brand.</p></article>
+    </div></div></section>
+
+  <section data-surface="paper" class="sec" aria-labelledby="cs"><div class="in case">
+    <div><div class="metric">60–90%</div><p class="metric-l">lower AI cost</p><div class="stack"><span>Python</span><span>OpenAI</span><span>LangChain</span><span>Whisper</span></div></div>
+    <div>${g("consent EduLens, V12", `<h2 id="cs" class="sec-h2">How EduLens cut its AI costs by 60–90%</h2>
+      <p class="answer">EduLens, an EdTech company in Egypt, runs three AI agents: a support chatbot, a video-to-lesson and quiz generator, and a student learning assistant. We changed how they read videos, reused answers across users and sent each task to the right model. AI costs fell by 60–90%.</p>
+      <blockquote><p>“They focused on building solutions that were practical, scalable, and aligned with our users’ needs.”</p><footer>Youssef, CEO, EduLens</footer></blockquote>
+      <p style="margin-block-start:18px">${link("Read the EduLens case study")}</p>`, "div")}</div></div></section>
+
+  <section data-surface="ink" class="sec" aria-labelledby="wy"><div class="in">
+    <h2 id="wy" class="sec-h2">Why founders choose DiscoverDev</h2>
+    <p class="sec-lead">Most teams just build what you ask for. We help you build the right thing, then ship it fast, and you own all of it.</p>
+    <div class="pillars">
+      <div class="pillar"><h3>Discover first</h3><p>The “Discover” in our name is the point. Before we write code, we check it’s the right thing to build, and we say what to cut.</p></div>
+      <div class="pillar"><h3>Senior teams that stay</h3><p>AI does the heavy lifting. Senior engineers own the quality, and a person is responsible for every line that reaches your users. One team from first call to launch and after. No handoff gaps.</p></div>
+      <div class="pillar"><h3>AI that pays for itself</h3><p>We have AI in production across multiple clients. ${g("consent EduLens", "For EduLens, we cut AI costs by 60–90%.")}</p></div>
+    </div>
+    <p class="own">You own everything: full IP, no lock-in, clear contract from day one.</p></div></section>
+
+  <section data-surface="paper" class="sec" aria-labelledby="ts"><div class="in">
+    <h2 id="ts" class="sec-h2">What clients say</h2>
+    <div class="quotes">
+      ${g("consent Nile Support", `<figure class="quote"><p>“The quality of their work is top-notch.”</p><figcaption><b>CEO</b>Nile Support, USA</figcaption></figure>`, "div")}
+      ${g("consent Athkado", `<figure class="quote"><p>“Professional work and great communication.”</p><figcaption><b>Nojoud Alarfaj</b>Athkado, Saudi Arabia</figcaption></figure>`, "div")}
+      ${g("consent Fantacalcio", `<figure class="quote"><p>“Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable.”</p><figcaption><b>Roberto</b>Fantacalcio, Italy</figcaption></figure>`, "div")}
+    </div>
+    <p class="proof" style="margin-block-start:22px">${I.star}<span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct).</span>${link("Read our reviews on Clutch")}</p></div></section>
+
+  <section data-surface="paper" class="sec" style="border-block-start:1px solid var(--color-border-subtle)" aria-labelledby="fq"><div class="in">
+    <h2 id="fq" class="sec-h2">Questions founders ask us</h2>
+    <div class="faq">
+      <details open><summary>How much does a Launch-Ready Review cost?${I.chev}</summary><div class="ans">The Review is a fixed fee, quoted for your app before you commit. ${g("price P1", "Most Reviews start from $X.")} The full fee is credited toward the fix or a Build with us. If the Review finds nothing useful, you pay nothing. You get your price on a free 30-minute scoping call.</div></details>
+      <details><summary>How long until my app is ready to launch?${I.chev}</summary><div class="ans">The Review takes about 5 working days. After that you get a fixed quote for the fixes, with a timeline. How long fixes take depends on what we find. If the right answer is a rebuild, that is a Build of 8–12 weeks. You know which one you need before you pay for any fix work.</div></details>
+      <details><summary>Who owns the code?${I.chev}</summary><div class="ans">You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. ${g("V6", "Your code stays in your own repository and accounts.")} If you stop working with us, you keep everything, and your own team or another developer can carry on.</div></details>
+      <details><summary>Your team is in Egypt. Will time zones be a problem?${I.chev}</summary><div class="ans">Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US mornings and Europe, and Gulf time is 0–2 hours ahead. We work in Arabic and English, and we have a presence in Texas, USA. ${g("V8", "You choose a call time that suits you.")}</div></details>
+    </div></div></section>
+
+  <section data-surface="inverse" class="sec band" aria-labelledby="cb"><div class="blade" aria-hidden="true"></div><div class="in">
+    <h2 id="cb">Find out what’s between your app and launch day</h2><p>A senior team, about 5 working days, and a plain answer.</p>
+    ${btn("Book a Launch-Ready Review")}${terms()}${link("Not ready? Take the 3-minute launch check")}</div></section>
+
+  <footer data-surface="footer" class="foot"><div class="in">
+    <div class="foot-grid">
+      <div><a class="logo" href="#" onclick="return false" aria-label="DiscoverDev home"><span class="mk" style="--mark:url(${MARK})"></span><span aria-hidden="true">Discover<span class="dev">Dev</span></span></a>
+        <p style="margin-block-start:12px">DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything.</p>
+        <p style="margin-block-start:12px">hello@discoverdev.ai<br>Texas, USA · Alexandria, Egypt (engineering hub)<br>We work in Arabic and English.</p></div>
+      <nav aria-label="Footer services (sample)"><h3>Services</h3><ul><li><a href="#" onclick="return false">Launch-Ready Review</a></li><li><a href="#" onclick="return false">Validate</a></li><li><a href="#" onclick="return false">Build</a></li><li><a href="#" onclick="return false">Scale</a></li><li><a href="#" onclick="return false">Partners</a></li></ul></nav>
+      <nav aria-label="Footer insights (sample)"><h3>Insights</h3><ul><li><a href="#" onclick="return false">Guides</a></li><li><a href="#" onclick="return false">Take the launch check</a></li></ul></nav>
+      <nav aria-label="Footer company (sample)"><h3>Company</h3><ul><li><a href="#" onclick="return false">About</a></li><li><a href="#" onclick="return false">Book a call</a></li><li><a href="#" onclick="return false">Privacy</a></li><li><a href="#" onclick="return false">Terms</a></li></ul></nav>
+    </div>
+    <div class="fine"><span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct). ${link("Read our reviews on Clutch")}</span><span>© 2026 DiscoverDev</span></div>
+  </div></footer>
+</div>`;
+
+document.querySelectorAll("[data-sample]").forEach(el => { el.innerHTML = HOME(); });
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".run").forEach(r => {
+  if (reduce || !("IntersectionObserver" in window)) return;
+  r.classList.add("playing");
+  const io = new IntersectionObserver(es => {
+    if (!es.some(e => e.isIntersecting)) return; io.disconnect();
+    const rows = [...r.querySelectorAll("li")].filter(li => getComputedStyle(li).display !== "none");
+    let t = 200;
+    rows.forEach(li => { t += li.classList.contains("h") ? 480 : 320; setTimeout(() => li.classList.add("done"), t); });
+  }, { threshold: 0.5 });
+  io.observe(r);
+});
+</script>

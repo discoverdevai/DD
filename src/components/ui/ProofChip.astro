@@ -1,0 +1,18 @@
+---
+// Rating as text + Clutch link (06 §9.12 inline, 04 §11). No star widget, no AggregateRating.
+// Inline flow (not flex) so the star stays with the first word when the line wraps.
+import Icon from './Icon.astro';
+import { t } from '../../i18n/t';
+import { CLUTCH_URL } from '../../lib/seo';
+interface Props { class?: string }
+---
+<p class:list={['proof-chip', Astro.props.class]}>
+  <Icon name="star" size={16} class="proof-chip__star" />{t('proof.rating')}
+  <a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a>
+</p>
+
+<style>
+  .proof-chip { font-size: var(--text-sm); line-height: 1.6; }
+  .proof-chip :global(.proof-chip__star) { display: inline-block; vertical-align: -0.15em; margin-inline-end: var(--space-2); color: var(--color-human-mark); }
+  .proof-chip a { font-weight: var(--weight-medium); margin-inline-start: var(--space-1); white-space: nowrap; }
+</style>

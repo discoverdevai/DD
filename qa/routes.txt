@@ -1,0 +1,20 @@
+# Launch routes (context/04 §1.1). One per line. Lines starting with ? are optional (warn if missing).
+/
+/launch-ready
+/validate
+/build
+/scale
+/partners
+/work
+/work/edulens
+/insights
+/insights/ai-app-to-production
+/insights/ai-built-app-security-holes
+/insights/lovable-launch-checklist
+?/insights/fix-or-rebuild-ai-app
+/about
+/launch-check
+/book
+/book/confirmed
+/privacy
+/terms

@@ -1,0 +1,534 @@
+<title>DiscoverDev Brand Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=Rubik:wght@400;500;600&display=swap">
+<style>
+/* Layout: a brand-direction document. Theme-aware chrome; three website samples render in fixed brand palettes inside framed previews. */
+:root {
+  --bg: #F5F6F9; --fg: #12141A; --muted: #575D69; --rule: #DCE0E8; --panel: #FFFFFF; --frame-bar: #E8EBF1;
+  --accent: #1240BE; --accent-soft: #E5EDFE; --rec: #106B3B; --rec-soft: #E7F6EC;
+  --ff-display: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --ff-body: "Rubik", "Segoe UI", system-ui, sans-serif;
+  --ff-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0D1016; --fg: #E9ECF3; --muted: #A2A9B7; --rule: #252B37; --panel: #151922; --frame-bar: #1F2532; --accent: #A2C1FE; --accent-soft: #19233F; --rec: #7FD8A6; --rec-soft: #11281C; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0D1016; --fg: #E9ECF3; --muted: #A2A9B7; --rule: #252B37; --panel: #151922; --frame-bar: #1F2532; --accent: #A2C1FE; --accent-soft: #19233F; --rec: #7FD8A6; --rec-soft: #11281C; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--ff-body); font-size: 16px; line-height: 1.6; padding-inline: 16px; padding-block: 0 72px; }
+.wrap { max-width: 1240px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--ff-display); text-wrap: balance; margin: 0; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--accent); }
+code { font-family: var(--ff-mono); font-size: 0.9em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.doc-head { padding-block: 52px 28px; display: grid; gap: 16px; }
+.kicker { font-family: var(--ff-mono); font-size: 13px; color: var(--muted); }
+.doc-head h1 { font-size: clamp(32px, 4.4vw, 52px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.06; max-width: 20ch; }
+.doc-head .lead { font-size: 18px; color: var(--muted); max-width: 66ch; }
+
+.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-block: 1px solid var(--rule); padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a { font-size: 14px; text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--fg); background: var(--panel); }
+.jump a.rec { border-color: var(--rec); color: var(--rec); }
+
+.block { padding-block: 56px 0; display: grid; gap: 22px; scroll-margin-top: 64px; }
+.block > h2 { font-size: clamp(24px, 3vw, 34px); font-weight: 800; letter-spacing: -0.015em; }
+.block > .sub { color: var(--muted); max-width: 70ch; margin-block-start: -10px; }
+
+/* platform */
+.idea { background: #050A1F; color: #F2F5FF; border-radius: 16px; padding: clamp(24px, 4vw, 48px); display: grid; gap: 18px; position: relative; overflow: hidden; }
+.idea .kicker { color: #8FB0FF; }
+.idea h3 { font-size: clamp(30px, 5vw, 60px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; color: #F2F5FF; }
+.idea h3 .m { font-family: var(--ff-mono); font-weight: 500; letter-spacing: -0.04em; color: #8FB0FF; }
+.idea h3 .h { color: #7EF0C0; }
+.idea p { color: #B8C3DF; max-width: 62ch; font-size: 17px; }
+.idea .beam { position: absolute; inset-block-start: -40%; inset-inline-end: -8%; width: 46%; aspect-ratio: 1; background: linear-gradient(200deg, rgb(18 64 190 / .9), rgb(108 154 255 / .25) 60%, transparent 80%); clip-path: polygon(30% 0, 100% 40%, 18% 62%); filter: blur(2px); opacity: .55; pointer-events: none; }
+.grid2 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card h3 { font-size: 17px; font-weight: 700; }
+.card ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 5px; font-size: 15px; }
+.card p { font-size: 15px; color: var(--muted); }
+.voice { display: grid; gap: 8px; padding: 16px; border-radius: 10px; }
+.voice.machine { background: #050A1F; color: #DCE4FA; font-family: var(--ff-mono); font-size: 14px; }
+.voice.machine b { color: #8FB0FF; font-weight: 500; }
+.voice.human { background: #050A1F; color: #F2F5FF; font-family: var(--ff-display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+.voice.human small { font-family: var(--ff-body); font-weight: 400; font-size: 14px; color: #B8C3DF; letter-spacing: 0; }
+.voice .row { display: flex; gap: 10px; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #6C9AFF; box-shadow: 0 0 0 4px rgb(108 154 255 / .18); flex: none; }
+.tick { width: 18px; height: 18px; border-radius: 50%; background: #7EF0C0; color: #04221A; display: grid; place-items: center; flex: none; }
+.tick svg { width: 12px; height: 12px; }
+.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+.sw { display: grid; gap: 6px; font-size: 12px; font-family: var(--ff-mono); color: var(--muted); }
+.sw i { display: block; width: 72px; height: 48px; border-radius: 8px; border: 1px solid var(--rule); }
+.sources { font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+
+/* direction sections */
+.dir-tag { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.letter { font-family: var(--ff-display); font-weight: 800; font-size: 14px; width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.pill { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.pill.rec { background: var(--rec-soft); color: var(--rec); }
+.previews { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 1100px) { .previews { grid-template-columns: minmax(0, 1fr) 375px; } }
+.frame { border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; background: var(--panel); min-width: 0; }
+.frame-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--frame-bar); font-size: 12px; color: var(--muted); font-family: var(--ff-mono); }
+.frame-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--rule); display: inline-block; }
+.frame-bar span { margin-inline-start: 6px; }
+.frame.phone { max-width: 375px; width: 100%; justify-self: center; }
+.frame.phone .canvas { max-height: 800px; overflow-y: auto; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 12px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 660px; font-size: 14px; }
+th, td { text-align: start; padding: 12px 16px; border-block-end: 1px solid var(--rule); vertical-align: top; }
+thead th { font-weight: 600; background: var(--frame-bar); }
+tbody tr:last-child > * { border-block-end: 0; }
+.verdict { background: var(--panel); border: 1px solid var(--rec); border-radius: 12px; padding: 20px 22px; display: grid; gap: 10px; }
+.verdict h3 { font-size: 20px; font-weight: 800; color: var(--rec); }
+.verdict ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px; }
+
+/* =====================================================================
+   WEBSITE SAMPLES (fixed palettes, container queries)
+   ===================================================================== */
+.site { container-type: inline-size; font-family: var(--ff-body); line-height: 1.6; font-size: 16px; }
+.site * { box-sizing: border-box; }
+.s-in { padding-inline: 20px; max-width: 1140px; margin-inline: auto; }
+@container (min-width: 760px) { .s-in { padding-inline: 40px; } }
+.s-head { display: flex; align-items: center; gap: 24px; padding-block: 14px; }
+.s-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--ff-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+.s-logo img { height: 24px; width: auto; }
+.s-nav { display: none; gap: 24px; font-size: 14px; font-weight: 500; margin-inline-start: 16px; }
+.s-head .s-btn { margin-inline-start: auto; }
+.s-menu { width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; background: transparent; color: inherit; border: 1px solid currentColor; opacity: .7; }
+.s-menu svg { width: 20px; height: 20px; }
+@container (min-width: 900px) { .s-nav { display: flex; } .s-menu { display: none; } }
+.s-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding-inline: 22px; border-radius: 8px; font-family: var(--ff-display); font-weight: 700; font-size: 16px; text-decoration: none; border: 1px solid transparent; white-space: nowrap; }
+.s-btn.sm { min-height: 40px; padding-inline: 16px; font-size: 14px; }
+.s-btn.wide { width: 100%; }
+@container (min-width: 520px) { .s-btn.wide { width: auto; } }
+.kbd { font-family: var(--ff-mono); font-weight: 500; font-size: 12px; padding: 2px 6px; border-radius: 4px; }
+.s-terms { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; }
+.s-terms li { display: inline-flex; gap: 6px; align-items: center; }
+.s-terms svg { width: 16px; height: 16px; flex: none; }
+.s-link { font-weight: 500; text-decoration: underline; text-underline-offset: 0.22em; font-size: 15px; }
+.s-proof { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 14px; }
+.s-proof svg { width: 16px; height: 16px; }
+.mono-eyebrow { font-family: var(--ff-mono); font-size: 13px; letter-spacing: 0.01em; }
+.s-hero { padding-block: 40px 64px; }
+.s-hero-grid { display: grid; gap: 40px; }
+.s-copy { display: grid; gap: 22px; align-content: start; min-width: 0; }
+.s-hero h1 { font-family: var(--ff-display); font-size: clamp(36px, 6.6cqi, 66px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; max-width: 15ch; }
+.s-lead { font-size: 18px; max-width: 52ch; }
+.s-cta { display: grid; gap: 12px; justify-items: start; }
+@container (min-width: 960px) { .s-hero-grid { grid-template-columns: 6.2fr 5.8fr; align-items: center; gap: 56px; } }
+
+.s-sec { padding-block: 72px; }
+.s-sec h2 { font-family: var(--ff-display); font-size: clamp(28px, 4.4cqi, 44px); line-height: 1.08; letter-spacing: -0.03em; font-weight: 800; max-width: 22ch; }
+.steps { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 1px; }
+@container (min-width: 820px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+.steps li { padding: 22px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.steps .num { font-family: var(--ff-mono); font-size: 13px; }
+.steps h3 { font-family: var(--ff-display); font-size: 19px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; }
+.steps p { font-size: 15px; }
+.layer { justify-self: start; font-family: var(--ff-mono); font-size: 12px; padding: 2px 8px; border-radius: 4px; display: inline-flex; gap: 6px; align-items: center; }
+.s-band { padding-block: 80px; position: relative; overflow: hidden; }
+.s-band .s-in { display: grid; gap: 18px; justify-items: center; text-align: center; position: relative; z-index: 1; }
+.s-band h2 { font-family: var(--ff-display); font-size: clamp(30px, 5cqi, 50px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 800; max-width: 18ch; }
+.s-band .s-terms { justify-content: center; }
+
+/* Run panel (machine + human layers) shared mechanics */
+.run { margin: 0; border-radius: 14px; overflow: hidden; min-width: 0; }
+.run-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 16px; font-family: var(--ff-mono); font-size: 12px; }
+.run ol { list-style: none; margin: 0; padding: 0; }
+.run li { display: grid; grid-template-columns: 22px 1fr auto; gap: 4px 12px; align-items: center; padding: 11px 16px; }
+.run .who { font-family: var(--ff-mono); font-size: 11px; grid-column: 2; }
+.run .what { grid-column: 2; font-size: 15px; line-height: 1.35; }
+.run .m .what { font-family: var(--ff-mono); font-size: 13.5px; }
+.run .h .what { font-family: var(--ff-display); font-weight: 700; font-size: 15.5px; letter-spacing: -0.005em; }
+.run .icon { grid-row: 1 / span 2; align-self: start; margin-block-start: 3px; }
+.run .state { grid-row: 1 / span 2; font-family: var(--ff-mono); font-size: 11px; display: inline-grid; }
+.run .state > * { grid-area: 1 / 1; transition: opacity 300ms ease; text-align: end; }
+.run .state .pending { opacity: 0; }
+.run.playing .state .pending { opacity: 1; }
+.run.playing .state .final { opacity: 0; }
+.run .state.done .pending { opacity: 0 !important; }
+.run .state.done .final { opacity: 1 !important; }
+.run li.extra { display: none; }
+@container (min-width: 960px) { .run li.extra { display: grid; } }
+.run-foot { padding: 14px 16px; font-size: 14px; }
+.run figcaption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.bar { height: 2px; grid-column: 2 / span 2; border-radius: 2px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transition: transform 700ms cubic-bezier(.2,0,0,1); }
+.run.playing .bar i { transform: scaleX(0); }
+.run .done-row .bar i { transform: scaleX(1) !important; }
+:dir(rtl) .bar i { transform-origin: 100% 50%; }
+
+/* ---------------- D · SIGNAL (dark premium) ---------------- */
+.x-d { background: #050A1F; color: #E6ECFF; --line: rgb(162 193 254 / .12); }
+.x-d .s-logo { color: #F2F5FF; } .x-d .s-logo .dev { color: #8FB0FF; }
+.x-d .s-nav { color: #B8C3DF; }
+.x-d .s-btn.primary { background: #1240BE; color: #FEFEFE; border-color: rgb(162 193 254 / .35); box-shadow: inset 0 1px 0 rgb(255 255 255 / .18), 0 8px 24px rgb(18 64 190 / .35); }
+.x-d .s-btn.ghost { color: #E6ECFF; border-color: rgb(162 193 254 / .3); }
+.x-d .kbd { background: rgb(255 255 255 / .14); color: #DCE4FA; }
+.x-d .d-hero { position: relative; overflow: hidden; border-block-end: 1px solid var(--line); }
+.x-d .d-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 80px 80px; mask-image: radial-gradient(80% 70% at 60% 30%, #000 20%, transparent 85%); }
+.x-d .d-hero::after { content: ""; position: absolute; inset-block-start: -30%; inset-inline-end: -14%; width: 72cqi; aspect-ratio: 1; pointer-events: none; background: linear-gradient(205deg, rgb(37 92 255 / .75), rgb(108 154 255 / .18) 55%, transparent 78%); clip-path: polygon(34% 0, 100% 38%, 14% 66%); filter: blur(1px); opacity: .5; }
+.x-d .s-head, .x-d .s-hero { position: relative; z-index: 1; }
+.x-d .mono-eyebrow { color: #8FB0FF; display: inline-flex; gap: 8px; align-items: center; }
+.x-d .s-hero h1 { color: #F5F7FF; }
+.x-d .s-lead { color: #B8C3DF; }
+.x-d .s-terms { color: #A7B3D3; } .x-d .s-terms svg { color: #7EF0C0; }
+.x-d .s-link { color: #A2C1FE; }
+.x-d .s-proof { color: #DCE4FA; } .x-d .s-proof svg { color: #7EF0C0; }
+.x-d .run { background: linear-gradient(180deg, #0B1438, #08102C); border: 1px solid rgb(162 193 254 / .2); box-shadow: 0 0 0 1px rgb(0 0 0 / .4), 0 30px 60px rgb(0 0 0 / .45); }
+.x-d .run-top { color: #8FB0FF; border-block-end: 1px solid var(--line); }
+.x-d .run-top span:last-child { color: #7F8BAA; }
+.x-d .run li { border-block-end: 1px solid rgb(162 193 254 / .07); }
+.x-d .run .m .who { color: #6C9AFF; } .x-d .run .m .what { color: #DCE4FA; }
+.x-d .run .h { background: rgb(126 240 192 / .05); }
+.x-d .run .h .who { color: #7EF0C0; } .x-d .run .h .what { color: #F5F7FF; }
+.x-d .run .state .final { color: #7EF0C0; } .x-d .run .state .pending { color: #7F8BAA; }
+.x-d .run .m .state .final { color: #8FB0FF; }
+.x-d .bar { background: rgb(108 154 255 / .14); } .x-d .bar i { background: linear-gradient(90deg, #1240BE, #6C9AFF); }
+.x-d .run-foot { color: #B8C3DF; }
+.x-d .run-foot b { color: #F5F7FF; font-family: var(--ff-display); }
+.x-d .s-sec { border-block-end: 1px solid var(--line); }
+.x-d .s-sec h2 { color: #F5F7FF; }
+.x-d .steps { background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.x-d .steps li { background: #070E28; }
+.x-d .steps .num { color: #6C9AFF; } .x-d .steps h3 { color: #F5F7FF; } .x-d .steps p { color: #A7B3D3; }
+.x-d .layer.ai { background: rgb(108 154 255 / .14); color: #A2C1FE; }
+.x-d .layer.hu { background: rgb(126 240 192 / .12); color: #7EF0C0; }
+.x-d .s-band { background: radial-gradient(70% 90% at 50% 0%, #0D2A86 0%, #050A1F 70%); }
+.x-d .s-band h2 { color: #F5F7FF; } .x-d .s-band p { color: #B8C3DF; }
+
+/* ---------------- E · LAB (light technical) ---------------- */
+.x-e { background: #F3F4F6; color: #0B0D12; --line: #D9DCE3; }
+.x-e .s-logo { color: #0B0D12; } .x-e .s-logo .dev { color: #1240BE; }
+.x-e .s-nav { color: #3A3F4A; }
+.x-e .s-btn.primary { background: #0B0D12; color: #FEFEFE; }
+.x-e .kbd { background: rgb(255 255 255 / .16); color: #E6E8EE; }
+.x-e .s-head { border-block-end: 1px solid var(--line); }
+.x-e .mono-eyebrow { color: #1240BE; }
+.x-e .s-hero h1 { color: #0B0D12; }
+.x-e .s-lead { color: #3A3F4A; }
+.x-e .s-terms { color: #575D69; } .x-e .s-terms svg { color: #106B3B; }
+.x-e .s-link { color: #1240BE; }
+.x-e .s-proof { color: #0B0D12; } .x-e .s-proof svg { color: #1240BE; }
+.lab-art { position: relative; border: 1px solid var(--line); border-radius: 4px; background: #FBFBFC; aspect-ratio: 5 / 4; min-width: 0; }
+.lab-art canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lab-art .tag { position: absolute; font-family: var(--ff-mono); font-size: 11px; color: #575D69; background: #FBFBFC; padding: 2px 6px; border: 1px solid var(--line); }
+.lab-art .cross { position: absolute; width: 11px; height: 11px; }
+.lab-art .cross::before, .lab-art .cross::after { content: ""; position: absolute; background: #9AA0AC; }
+.lab-art .cross::before { inset-inline-start: 5px; inset-block: 0; width: 1px; } .lab-art .cross::after { inset-block-start: 5px; inset-inline: 0; height: 1px; }
+.signoff { position: absolute; inset-inline-end: 6%; inset-block-end: -18px; background: #FEFEFE; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; box-shadow: 0 12px 30px rgb(11 13 18 / .10); max-width: 78%; }
+.signoff .row { display: flex; gap: 8px; align-items: center; font-family: var(--ff-display); font-weight: 700; font-size: 15px; }
+.signoff small { font-family: var(--ff-mono); font-size: 11px; color: #575D69; }
+.signoff .tk { width: 18px; height: 18px; border-radius: 50%; background: #106B3B; color: #fff; display: grid; place-items: center; flex: none; }
+.signoff .tk svg { width: 12px; height: 12px; }
+.x-e .s-sec { border-block-start: 1px solid var(--line); }
+.x-e .s-sec h2 { color: #0B0D12; }
+.x-e .steps { background: var(--line); border: 1px solid var(--line); }
+.x-e .steps li { background: #FBFBFC; }
+.x-e .steps .num { color: #1240BE; } .x-e .steps p { color: #3A3F4A; }
+.x-e .layer.ai { background: #E5EDFE; color: #032993; }
+.x-e .layer.hu { background: #E7F6EC; color: #106B3B; }
+.x-e .s-band { background: #0B0D12; color: #FEFEFE; }
+.x-e .s-band h2 { color: #FEFEFE; } .x-e .s-band p { color: #B6BAC4; }
+.x-e .s-band .s-btn.primary { background: #FEFEFE; color: #0B0D12; }
+.x-e .s-band .kbd { background: #E6E8EE; color: #0B0D12; }
+.x-e .s-band .s-terms { color: #B6BAC4; } .x-e .s-band .s-terms svg { color: #7EF0C0; }
+.x-e .s-band .s-link { color: #A2C1FE; }
+
+/* ---------------- F · BLUEPRINT (navy engineering drawing) ---------------- */
+.x-f { background: #032993; color: #FEFEFE; --line: rgb(162 193 254 / .22); }
+.x-f .f-wrap { background-image: linear-gradient(rgb(162 193 254 / .10) 1px, transparent 1px), linear-gradient(90deg, rgb(162 193 254 / .10) 1px, transparent 1px), linear-gradient(rgb(162 193 254 / .05) 1px, transparent 1px), linear-gradient(90deg, rgb(162 193 254 / .05) 1px, transparent 1px); background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px; }
+.x-f .s-logo { color: #FEFEFE; } .x-f .s-logo .dev { color: #A2C1FE; }
+.x-f .s-nav { color: #C9DBFF; }
+.x-f .s-btn.primary { background: #FEFEFE; color: #032993; }
+.x-f .kbd { background: #E5EDFE; color: #032993; }
+.x-f .mono-eyebrow { color: #A2C1FE; }
+.x-f .s-lead { color: #E5EDFE; }
+.x-f .s-terms { color: #C9DBFF; } .x-f .s-terms svg { color: #7EF0C0; }
+.x-f .s-link { color: #A2C1FE; }
+.x-f .s-proof { color: #E5EDFE; } .x-f .s-proof svg { color: #7EF0C0; }
+.bp { width: 100%; height: auto; display: block; min-width: 0; }
+.bp text { font-family: var(--ff-mono); font-size: 12px; fill: #C9DBFF; }
+.bp .lbl { fill: #FEFEFE; font-weight: 500; }
+.bp .ok { fill: #7EF0C0; }
+.x-f .s-sec { border-block-start: 1px dashed var(--line); }
+.x-f .steps li { border: 1px dashed rgb(162 193 254 / .35); background: rgb(3 33 119 / .55); }
+@container (min-width: 820px) { .x-f .steps { gap: 12px; } }
+.x-f .steps { gap: 12px; }
+.x-f .steps .num { color: #A2C1FE; } .x-f .steps p { color: #C9DBFF; }
+.x-f .layer.ai { border: 1px solid #A2C1FE; color: #A2C1FE; }
+.x-f .layer.hu { border: 1px solid #7EF0C0; color: #7EF0C0; }
+.x-f .s-band { border-block-start: 1px dashed var(--line); }
+.x-f .s-band p { color: #C9DBFF; }
+
+@media (prefers-reduced-motion: reduce) { .run .state > *, .bar i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="doc-head">
+    <div class="kicker">discoverdev.ai v1 · brand direction · round 2 · Oct 15, 2026</div>
+    <h1>Machine speed, human sign-off</h1>
+    <p class="lead">A sharper, more technical direction for DiscoverDev. The visuals carry the tech so the words can stay plain. Three ways to express it, each shown with the real home copy at desktop and phone width.</p>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#platform">Brand idea</a>
+    <a href="#dir-d" class="rec">D · Signal (recommended)</a>
+    <a href="#dir-e">E · Lab</a>
+    <a href="#dir-f">F · Blueprint</a>
+    <a href="#compare">Compare</a>
+  </nav>
+
+  <section class="block" id="platform" aria-labelledby="h-platform">
+    <h2 id="h-platform">The brand idea</h2>
+    <div class="idea">
+      <div class="beam" aria-hidden="true"></div>
+      <span class="kicker">// internal brand idea, not site copy</span>
+      <h3><span class="m">machine speed,</span><br><span class="h">human sign-off.</span></h3>
+      <p>Every AI studio now says it is fast. Every agency says it is careful. DiscoverDev is the one that can show both on the same screen: AI does the heavy lifting, and a senior engineer signs off every line that reaches users. So every visual on the site has two layers, and you can always tell which is which.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Two voices, one system</h3>
+        <div class="voice machine"><div class="row"><span class="dot"></span><span><b>AI</b>&nbsp; check data rules on every table</span></div><div class="row"><span class="dot"></span><span><b>AI</b>&nbsp; trace payment events end to end</span></div></div>
+        <p>The machine voice: JetBrains Mono, signal blue, small, dense, fast. Logs, progress, file names.</p>
+        <div class="voice human"><div class="row"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Verdict: fix, don't rebuild</div><small>Signed off by a senior engineer</small></div>
+        <p>The human voice: Manrope, big, calm, with a mint check. Decisions, verdicts, sign-offs.</p>
+      </div>
+      <div class="card">
+        <h3>Brand codes</h3>
+        <ul>
+          <li><b>The run panel.</b> AI steps stream, then human sign-offs land. The site's signature, replacing a hero illustration.</li>
+          <li><b>The blade beam.</b> One light shape cut from the logo's own chevron angle. The only glow on the page, and it is ours, not a stock streak.</li>
+          <li><b>Hairline grid.</b> A precise 80px grid that fades out. Engineering order, very quiet.</li>
+          <li><b>Layer chips.</b> <code>AI-accelerated</code> and <code>Senior sign-off</code> tags on process steps, so the method is visible everywhere.</li>
+          <li><b>Mint means done by a person.</b> Mint (#7EF0C0, from your brand profile) only ever marks human sign-off or "in production".</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Palette and type</h3>
+        <div class="swatches">
+          <span class="sw"><i style="background:#050A1F"></i>ink</span>
+          <span class="sw"><i style="background:#032993"></i>navy</span>
+          <span class="sw"><i style="background:#1240BE"></i>brand blue</span>
+          <span class="sw"><i style="background:#6C9AFF"></i>signal</span>
+          <span class="sw"><i style="background:#7EF0C0"></i>sign-off</span>
+          <span class="sw"><i style="background:#F2F5FF"></i>paper</span>
+        </div>
+        <p>All built from your brand blues; no purple, no rainbow gradients. Manrope 800 display with tight tracking, Rubik body, JetBrains Mono as the machine voice (already used in your company profile deck).</p>
+      </div>
+      <div class="card">
+        <h3>Keep, and leave out</h3>
+        <ul>
+          <li>Keep the copy rules: plain words, no "AI-native", no hype. The visuals say "technical"; the words say "we'll tell you plainly".</li>
+          <li>Keep proof next to claims: the run panel is an example, labelled as one.</li>
+          <li>Leave out robots, brains, sparkle icons, purple gradients, glass on everything, logo marquees and stock photos.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sources">
+      <span>Research behind this: category leaders (Linear, Vercel, Resend, Cursor, Factory) share a precise grid, a mono "machine voice", real product artifacts and one bold device. Sources:
+        <a href="https://www.vezadigital.com/post/top-web-design-trends-for-ai-companies">Veza Digital, AI web trends 2026</a> ·
+        <a href="https://www.designrush.com/agency/website-design-development/trends/web-design-trends">DesignRush, "polished is the new generic"</a> ·
+        <a href="https://irpr.agency/dark-mode-website-design-trends-2026">IRPR, dark mode 2026</a></span>
+    </div>
+  </section>
+
+  <section class="block" id="dir-d" aria-labelledby="h-d">
+    <div class="dir-tag"><span class="letter">D</span><span class="pill rec">Recommended</span></div>
+    <h2 id="h-d">Signal</h2>
+    <p class="sub">Dark, premium, engineered. An ink-blue canvas, a fading hairline grid and one light beam cut from the logo's chevron. The hero is the run panel: AI steps stream in, then a senior engineer and a product lead sign off. It is the most "AI company" of the three while staying calm.</p>
+    <div class="previews">
+      <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Desktop</span></div><div class="canvas" data-sample="d"></div></div>
+      <div class="frame phone"><div class="frame-bar"><i></i><i></i><i></i><span>Phone · 375</span></div><div class="canvas" data-sample="d"></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="dir-e" aria-labelledby="h-e">
+    <div class="dir-tag"><span class="letter">E</span><span class="pill">Light technical</span></div>
+    <h2 id="h-e">Lab</h2>
+    <p class="sub">The look of today's most respected AI tool makers: a cool light-grey lab, black ink type, crosshair marks and mono labels. The chevron is drawn as a dot-matrix (the machine texture), and a white sign-off card sits on top of it (the human layer). Quieter and rarer in your market than dark.</p>
+    <div class="previews">
+      <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Desktop</span></div><div class="canvas" data-sample="e"></div></div>
+      <div class="frame phone"><div class="frame-bar"><i></i><i></i><i></i><span>Phone · 375</span></div><div class="canvas" data-sample="e"></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="dir-f" aria-labelledby="h-f">
+    <div class="dir-tag"><span class="letter">F</span><span class="pill">Brand navy</span></div>
+    <h2 id="h-f">Blueprint</h2>
+    <p class="sub">Your brand navy as engineering paper. A two-level blueprint grid, dashed construction lines and a line drawing of an app with the findings pinned to it, plus a human check mark. Most literal about "we engineer", and the closest to your current navy look.</p>
+    <div class="previews">
+      <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Desktop</span></div><div class="canvas" data-sample="f"></div></div>
+      <div class="frame phone"><div class="frame-bar"><i></i><i></i><i></i><span>Phone · 375</span></div><div class="canvas" data-sample="f"></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="compare" aria-labelledby="h-cmp">
+    <h2 id="h-cmp">Side by side</h2>
+    <div class="table-wrap" role="region" aria-labelledby="h-cmp" tabindex="0">
+      <table>
+        <thead><tr><th scope="col">Question</th><th scope="col">D · Signal</th><th scope="col">E · Lab</th><th scope="col">F · Blueprint</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Reads as techie, AI, premium</th><td>Strongest</td><td>Strong, understated</td><td>Strong on "engineering", weaker on "AI"</td></tr>
+          <tr><th scope="row">Shows "AI fast, humans sign off"</th><td>Directly, in the hero</td><td>Through texture plus sign-off card</td><td>Through pinned findings plus check</td></tr>
+          <tr><th scope="row">Feels like today's DiscoverDev</th><td>Yes, evolved</td><td>New</td><td>Very close</td></tr>
+          <tr><th scope="row">Stands apart from Robusta, TrianglZ and agency sites</th><td>Yes</td><td>Most</td><td>Somewhat (blueprint is a known look)</td></tr>
+          <tr><th scope="row">Long reading (articles, legal)</th><td>Needs light content pages</td><td>Best</td><td>Needs light content pages</td></tr>
+          <tr><th scope="row">Contrast and speed</th><td>Pass; one CSS beam, no images</td><td>Pass; small canvas</td><td>Pass; inline SVG</td></tr>
+          <tr><th scope="row">Changes to your design system (06)</th><td>Dark theme for marketing pages, mono font, mint accent, one beam</td><td>Grey canvas, mono font, black primary button</td><td>Navy canvas, blueprint grid, mono font</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict">
+      <h3>My recommendation: D, Signal</h3>
+      <ul>
+        <li>It is the clearest answer to "techie, AI, premium", and it turns your real method into the hero instead of decorating around it.</li>
+        <li>It evolves the dark navy people already know, so it reads as DiscoverDev, grown up.</li>
+        <li>Articles, legal pages and the booking calendar would use a light "paper" surface with the same type and mono voice, so long reading stays comfortable and Cal.com fits in.</li>
+        <li>Next step if you pick it: I update the design system (06) and the brand file (01) with these rules, then start building.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+const MARK_BLUE = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABgCAMAAACql5X7AAADAFBMVEVMaXEEKzUnQsAaN4pKTMcATqodQIAZdtoGAAAHBGkYGyUhChIZIT4sWMEaR70YRLweS70rV8AsWMMeS78jTcAfTcIVHicRPr0SP78VQr4mUb0kU8MbSMAkU8gpVL8cTMYSQ8QRP7smUcEgPIAoVcEpVr4fHCAaScQYIUYgNGwUP7sYOI0fNHIaPaMcS8MhO4MbNnkVQbwjTr0kNnQiN3IQQMASQMMeMF8bKVYjUcQnVcUnTKsqV8cTQsEXRbwaJ0srW8YaJT0pWsQrUrQVPKsgQpoXRL8YM3sWPaMkQ4gePZQWO6UUP7cmPYMSP8EbLGQdMWYUPbEYLW8WRsUXRsMWM5AhTsYnSJoXN5cTRcIjTLYbN5AfPIohOHQaOIMUPbAaNYAcNX8WOJcdRrchN3UbKlApWr0bM2UsUbAbNH8aM3sZO5YiQIcWP64lQowYKm8ePZQmTrAcN3cnRpQZRLMkQI8bNIMoUbojR6IZQLAXNZIWOJwpTqYnTK4jRpkkR5QmRZwjP5EaLV8sSZwsU7MoUKsmSaMoTqMaM4IqT6sXK14jQZUjPH4nR6wYNYwhQ48iRa4bSMElQ5khRa0cQqUbNYMrTbsfPZshQp4VN50qTasVO6IeQKMbOqUZO6UkSrEtTpwjQ50mS6IiQYgQPa0cL4MhOH4qRZ0VOrQYM4gVQ8ASP74cScAZRb4fTL8kT8AbSL8WRL4eS8AnU8AlUMAVQ70aR74UQb4gTcAdSr8pVcAVQr8oVL8TQL8XRL0XRb8dSsEmUcEaRr8qVr8qVsImUr8tWcIfTMEiTb8gTsEVQr4sWMEdSsAeS78fTMARP70kT78TQL4rV8AmUb8XRb4cSb4YRcAhTsASQL0hUswaSsgtW8gSRMkiTcEjT8AUQb0ZRr0rWs0tWMQSQskgTb8iT78WRcgdTswYScoSQsUsV78oVMEoV8oeT8kvXcwsVbcsXs4SRMwnVcomV8YjTLYuXcsvXs8sXMojVcwhUcgaSL4pVMUcRrYpWccaSswxY9gvZekxAAAA63RSTlMAAwQFAgMEAQECDgYY+/3+/vz8/f36Evz9/f37/P7+/f78/J38/Qr+IFL+mTzi/GtR/v4mSfv+JzX9+9/9+/or/Sb89v3n+4Psu1/N/of9LELxeP78gf3it/r3tcWcev1yN6TpcE39POfHo+uM64RbwOyK1/VPYfn74sjP97W5wa+yWaX+/dfFLNJnmZEjqaH7/pLv066En8bzgLbr+Kz6H8/xVZmXtoXN1/7////////////////////////////////////////////////////////////////////////////////////+HcpmowAAAAlwSFlzAAALEgAACxIB0t1+/AAACj9JREFUaN6tmodfE9kWx2/CTDIJhA5KL9KbgCKCVLEXLNh7713Xrmt31W1v922vb91XkVCUTkAQKQIiTSA0AUFEQEAR2VX3nTsJIIiQSbh/wPfzy5nfKffcIIQoxPrvpO2//26/bf5H45URfUg2QaFhODw0Z2dbW3ltfbzZpP/MvDLjDJ/PQohLkBzuMLDHTzI10wt0GxlYW15e7zLvu+VT16rAzxkG9SS6PO+xWXBubu4ION7jHtfXRx6Zab/bBrhcksNTBM9G82eZlgTTJ7fEzkVPTy+oIShp3g8LpeoVEK+E5ovc7HIxOq+kJDo+/o6e3pQFQQ3iV9PWHfRl8UC83HQ2WhU/DtAiUV40kOMjI8PDk9TUpqRYi8UHtq+aowvi2SxKTt0L493sJOg7UnRiYkiIqqGh9RuTV472nyjzEMHmyad7ea0byM4ria6qwmQJOiXlQZGqoXXzIx1H+7l8BHTm0imku7U8cAB0VFhYUZGhYYRJs7qj/RiKC55hSuci3aPlZiIRoCMjE2n0g5CoqJQ/wsKuwYmNVdfqKl327SrwDJdpYHiIf6zcDL7iHYnopJAQQEfR5Js3IyIictS1FpV2rT9ly0cUSTKSzkL+Pz2eNQhaKBRq6Xi8rLywwxcCSDIpBAQaP63cJToS0EnhiYVAfiAhZxfFxsZGCIUPhcUPM3TMjdqXfWjLo7gcBnYk0cZJ5XbxEnTIQOjMjIyKDFdzj5f6k2fjqJM82e1tO8nUJdIlcVB0aF2dvofRs72nN8PH57BktrfzrKUud7rRQJaiIyLSpeiM0NAbN0ILCsyfVR9aPFoFMokjq+7R4UsTw4dC37iRnKxv4dn05+FR7ogiZLM6gbYFLZXkSy86VoIWxsTQaGAX3L59/fptc4Nn1QErbKE7sVky5c62oCmFhTgTU2jyzZvZERF30zE6M7MyNJRGAxhOQoK+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";
+const MARK_WHITE = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABgCAMAAACql5X7AAACmlBMVEVMaXH9/f39/f3////9/f3////9/f3////////////9/f3////////+/v7////////////////////////////////9/f3////9/f3+/v7+/v7////////+/v7////////////////9/f3////9/f3////+/v79/f3+/v7////6+vr9/f39/f3////9/f3////9/f3////////////////8/Pz////9/f39/f37+/v9/f39/f39/f3////9/f39/f3////////////////9/f39/f39/f3////////9/f3////9/f3////+/v79/f3////////9/f3////+/v7+/v79/f3////9/f39/f3////////+/v7////y8vL////9/f3////////////////////////////+/v7////9/f3+/v7////9/f3+/v78/Pz9/f39/f3////////9/f3////+/v7////////9/f3////+/v7+/v79/f39/f3+/v7////8/Pz////////9/f3////////////8/Pz9/f3////////////9/f37+/v////s7Oz////8/Pz+/v7////9/f3////9/f3////+/v78/Pz9/f35+fn9/f34+Pj7+/v9/f39/f39/f38/Pz////////////////39/f8/Pz+/v7+/v79/f37+/v////////8/Px/f3/////8/Pz////////+/v79/f3////////9/f39/f3////////////6+vr////////9/f3////9/f3////8/Pz9/f3////////8/Pz9/f39/f37+/v9/f3////9/f3///+qqqr9/f3////////8/Pz////8/Pz9/f3////+/v7+/v7////9/f0+8o2JAAAA23RSTlMA/fz++wT+AQID+gX9/Ab76vonDThQuSb5UiqcGqQH9AolhfVwD/f4h/k74KBn5J2Gzh0j61sV4dxQ406C+LjtIEgtIabzw7yDLovysZWYGMLYEcpCzyvrmo8LtxMVGZwX7W2FX1OZ4nXwVDr2YVmtrrU8yON+EAjqEp/FtObgDG7L17G6ekD7xKAs6Z1JSg07eQ5azjXQju9mmTHoKEvuk/R31GsofyJrP6O6UZvMWgK3/YFE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";
+const I = {
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  tick3: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  star: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>'
+};
+const C = {
+  eyebrow: "For founders with an AI-built or freelancer-built app",
+  h1: "Your app works in the demo. We get it ready for real users.",
+  lead: "Built it with Lovable, Bolt, v0, Cursor or a freelancer? A senior team reviews it in about 5 working days. You learn what will break, what to fix and what it costs. Then we fix it or build it properly, and you own all of it.",
+  cta: "Book a Launch-Ready Review",
+  terms: ["About 5 working days", "Fixed fee, credited to your fix", "No useful findings, no charge"],
+  quiz: "Not sure yet? Take the 3-minute launch check",
+  proof: "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)",
+  proofLink: "Read our reviews on Clutch",
+  method: "AI does the heavy lifting. Senior engineers own the quality.",
+  howH2: "How it works",
+  steps: [
+    ["Book a scoping call", "30 minutes, free. Tell us what you built and what worries you. You get a fixed fee before anything starts.", null],
+    ["We review your app", "About 5 working days. Senior engineers and a product lead go through your code and your live app.", "ai"],
+    ["Findings call", "We walk you through the report. What’s risky, what’s fine, what to fix first.", "hu"],
+    ["Fix or build", "Hire us for the fix with the fee credited, or take the report to your own developer. It’s yours.", null]
+  ],
+  bandH2: "Find out what’s between your app and launch day",
+  bandBody: "A senior team, about 5 working days, and a plain answer.",
+  bandLink: "Not ready? Take the 3-minute launch check"
+};
+const RUN = [
+  ["m", "AI", "map the code and data model", "done", false],
+  ["m", "AI", "check data rules on every table", "done", false],
+  ["m", "AI", "look for secret keys in browser code", "done", true],
+  ["m", "AI", "trace payment events end to end", "done", false],
+  ["h", "Senior engineer", "Confirms each finding, drops false alarms", "signed", false],
+  ["h", "Product lead", "Verdict: fix, don’t rebuild", "signed", false]
+];
+const logo = (mark, color) => `<a class="s-logo" href="#" onclick="return false"><img src="${mark}" alt="" width="22" height="24"><span>Discover<span class="dev">Dev</span></span></a>`;
+const nav = () => `<nav class="s-nav" aria-label="Main (sample)"><span>Review</span><span>Services</span><span>Work</span><span>Insights</span><span>About</span></nav>`;
+const head = (mark, btnCls) => `<div class="s-in"><header class="s-head">${logo(mark)}${nav()}<a class="s-btn ${btnCls} sm" href="#" onclick="return false">Book a Review</a><button class="s-menu" type="button" aria-label="Open menu (sample)">${I.menu}</button></header></div>`;
+const terms = () => `<ul class="s-terms">${C.terms.map(t => `<li>${I.check}${t}</li>`).join("")}</ul>`;
+const proof = () => `<p class="s-proof">${I.star}<span>${C.proof}</span><a class="s-link" href="#" onclick="return false">${C.proofLink}</a></p>`;
+const cta = (btnCls) => `<div class="s-cta"><a class="s-btn ${btnCls} wide" href="#" onclick="return false">${C.cta}<span class="kbd" aria-hidden="true">5 days</span></a>${terms()}<a class="s-link" href="#" onclick="return false">${C.quiz}</a></div>`;
+const copy = (btnCls, eyebrow) => `<div class="s-copy"><p class="mono-eyebrow">${eyebrow}</p><h1>${C.h1}</h1><p class="s-lead">${C.lead}</p>${cta(btnCls)}${proof()}</div>`;
+const steps = () => `<ol class="steps">${C.steps.map((s, i) => `<li><span class="num">0${i + 1}</span><h3>${s[0]}</h3><p>${s[1]}</p>${s[2] === "ai" ? `<span class="layer ai">AI-accelerated</span>` : s[2] === "hu" ? `<span class="layer hu">Senior sign-off</span>` : ""}</li>`).join("")}</ol>`;
+const band = (btnCls) => `<section class="s-band"><div class="s-in"><h2>${C.bandH2}</h2><p>${C.bandBody}</p><a class="s-btn ${btnCls}" href="#" onclick="return false">${C.cta}</a>${terms()}<a class="s-link" href="#" onclick="return false">${C.bandLink}</a></div></section>`;
+const runPanel = () => `<figure class="run"><div class="run-top"><span>launch-ready review · example run</span><span>sample, not a client</span></div>
+  <ol>${RUN.map(r => `<li class="${r[0]}${r[4] ? " extra" : ""}">
+    <span class="icon">${r[0] === "m" ? `<span class="dot"></span>` : `<span class="tick">${I.tick3}</span>`}</span>
+    <span class="who">${r[1]}</span><span class="what">${r[2]}</span>
+    <span class="state"><span class="pending" aria-hidden="true">${r[0] === "m" ? "running" : "waiting"}</span><span class="final">${r[3]}</span></span>
+    ${r[0] === "m" ? `<span class="bar" aria-hidden="true"><i></i></span>` : ""}</li>`).join("")}</ol>
+  <div class="run-foot"><b>${C.method.split(". ")[0]}.</b> ${C.method.split(". ")[1]}</div>
+  <figcaption>Example of how a Launch-Ready Review runs: AI checks, then senior sign-off</figcaption></figure>`;
+
+const SAMPLES = {
+  d: () => `<div class="site x-d"><div class="d-hero">${head(MARK_WHITE, "primary")}
+      <section class="s-hero"><div class="s-in s-hero-grid">${copy("primary", `<span class="dot"></span>${C.eyebrow}`)}${runPanel()}</div></section></div>
+    <section class="s-sec"><div class="s-in"><p class="mono-eyebrow" style="color:#8FB0FF">// how it works</p><h2>${C.howH2}</h2>${steps()}</div></section>
+    ${band("primary")}</div>`,
+  e: () => `<div class="site x-e">${head(MARK_BLUE, "primary")}
+      <section class="s-hero"><div class="s-in s-hero-grid">${copy("primary", `[ ${C.eyebrow.toLowerCase()} ]`)}
+        <div class="lab-art"><canvas data-dither aria-hidden="true"></canvas>
+          <span class="cross" style="inset-block-start:10px;inset-inline-start:10px"></span><span class="cross" style="inset-block-start:10px;inset-inline-end:10px"></span>
+          <span class="tag" style="inset-block-start:12px;inset-inline-start:30px">fig. 01 · ai pass</span>
+          <span class="tag" style="inset-block-start:46%;inset-inline-end:8%">data rules · checked</span>
+          <div class="signoff"><div class="row"><span class="tk">${I.tick3}</span>Verdict: fix, don’t rebuild</div><small>signed off · senior engineer · example</small></div>
+        </div></div></section>
+    <section class="s-sec"><div class="s-in"><p class="mono-eyebrow">[ how it works ]</p><h2>${C.howH2}</h2>${steps()}</div></section>
+    ${band("primary")}</div>`,
+  f: () => `<div class="site x-f"><div class="f-wrap">${head(MARK_WHITE, "primary")}
+      <section class="s-hero"><div class="s-in s-hero-grid">${copy("primary", `// sheet 01 · ${C.eyebrow.toLowerCase()}`)}
+        <svg class="bp" viewBox="0 0 520 420" role="img" aria-labelledby="bp-t bp-d"><title id="bp-t">Example review drawing</title><desc id="bp-d">A line drawing of an app screen with three example findings pinned to it and a senior engineer check.</desc>
+          <g fill="none" stroke="#A2C1FE" stroke-width="1.2">
+            <rect x="40" y="40" width="440" height="300" rx="10"/>
+            <line x1="40" y1="74" x2="480" y2="74"/><circle cx="60" cy="57" r="4"/><circle cx="76" cy="57" r="4"/><circle cx="92" cy="57" r="4"/>
+            <rect x="40" y="74" width="110" height="266"/>
+            <line x1="58" y1="100" x2="130" y2="100"/><line x1="58" y1="122" x2="120" y2="122"/><line x1="58" y1="144" x2="126" y2="144"/>
+            <rect x="172" y="96" width="290" height="120" rx="6"/>
+            <line x1="172" y1="126" x2="462" y2="126"/><line x1="172" y1="156" x2="462" y2="156"/><line x1="172" y1="186" x2="462" y2="186"/>
+            <rect x="172" y="236" width="140" height="84" rx="6"/><rect x="322" y="236" width="140" height="84" rx="6"/>
+          </g>
+          <g stroke="#FEFEFE" stroke-width="1" stroke-dasharray="4 4" fill="none">
+            <path d="M440 141 L500 141 L500 30"/><path d="M242 278 L242 380"/><path d="M110 122 L18 122 L18 392"/>
+          </g>
+          <g fill="#FEFEFE"><circle cx="440" cy="141" r="5"/><circle cx="242" cy="278" r="5"/><circle cx="110" cy="122" r="5"/></g>
+          <text x="352" y="22" class="lbl">01 data rules off</text>
+          <text x="214" y="400" class="lbl">02 payment not verified</text>
+          <text x="26" y="412" class="lbl">03 key in browser</text>
+          <g transform="translate(372 352)"><rect width="140" height="40" rx="8" fill="#032177" stroke="#7EF0C0"/><circle cx="20" cy="20" r="9" fill="#7EF0C0"/><path d="M15.5 20.5l3 3 6-7" stroke="#032993" stroke-width="2.4" fill="none" stroke-linecap="round"/><text x="36" y="24" class="ok">signed off</text></g>
+          <g stroke="#C9DBFF" stroke-width="1"><line x1="40" y1="360" x2="150" y2="360"/><line x1="40" y1="354" x2="40" y2="366"/><line x1="150" y1="354" x2="150" y2="366"/></g>
+          <text x="66" y="352">5 days</text>
+        </svg></div></section>
+    <section class="s-sec"><div class="s-in"><p class="mono-eyebrow">// sheet 02 · process</p><h2>${C.howH2}</h2>${steps()}</div></section>
+    ${band("primary")}</div></div>`
+};
+document.querySelectorAll("[data-sample]").forEach(el => { el.innerHTML = SAMPLES[el.dataset.sample](); });
+
+// Dot-matrix chevron for E (machine texture), drawn once and on resize.
+function dither(cv) {
+  const r = cv.getBoundingClientRect(); const dpr = Math.min(2, devicePixelRatio || 1);
+  if (!r.width) return;
+  cv.width = r.width * dpr; cv.height = r.height * dpr;
+  const g = cv.getContext("2d"); g.scale(dpr, dpr); g.clearRect(0, 0, r.width, r.height);
+  const W = r.width, H = r.height, step = Math.max(6, W / 70);
+  // chevron blades as two triangles (logo geometry: upper blade then lower blade)
+  const A = [[.20 * W, .12 * H], [.86 * W, .42 * H], [.38 * W, .40 * H]];
+  const B = [[.86 * W, .42 * H], [.26 * W, .92 * H], [.44 * W, .56 * H]];
+  const inside = (p, t) => { const s = (a, b, c) => (a[0] - c[0]) * (b[1] - c[1]) - (b[0] - c[0]) * (a[1] - c[1]); const d1 = s(p, t[0], t[1]), d2 = s(p, t[1], t[2]), d3 = s(p, t[2], t[0]); return !((d1 < 0 || d2 < 0 || d3 < 0) && (d1 > 0 || d2 > 0 || d3 > 0)); };
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
+    const inA = inside([x, y], A), inB = inside([x, y], B);
+    const tone = inA || inB ? 0.35 + 0.65 * (1 - x / W) : 0.06 * (1 - y / H);
+    if (rnd() < tone) { g.fillStyle = inA || inB ? (rnd() < 0.82 ? "#1240BE" : "#0B0D12") : "#9AA0AC"; const s = inA || inB ? step * 0.5 : step * 0.22; g.fillRect(x - s / 2, y - s / 2, s, s); }
+  }
+}
+const cvs = [...document.querySelectorAll("[data-dither]")];
+const redraw = () => cvs.forEach(dither);
+redraw(); addEventListener("resize", () => { clearTimeout(redraw.t); redraw.t = setTimeout(redraw, 150); });
+
+// D: the one orchestrated moment. AI rows fill, then human rows sign off. Final state is in the DOM at rest.
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".x-d .run").forEach(run => {
+  if (reduce || !("IntersectionObserver" in window)) return;
+  run.classList.add("playing");
+  const io = new IntersectionObserver(es => {
+    if (!es.some(e => e.isIntersecting)) return; io.disconnect();
+    const rows = [...run.querySelectorAll("li")].filter(li => getComputedStyle(li).display !== "none");
+    rows.forEach((li, i) => setTimeout(() => { li.classList.add("done-row"); li.querySelector(".state").classList.add("done"); }, 300 + i * (li.classList.contains("h") ? 700 : 520)));
+  }, { threshold: 0.4 });
+  io.observe(run);
+});
+</script>

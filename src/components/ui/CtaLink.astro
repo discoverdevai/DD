@@ -1,0 +1,38 @@
+---
+// Every CTA (04 §6). Emits data-cta-* for analytics (07 §9.3). Same action = same label everywhere.
+import type { HTMLAttributes } from 'astro/types';
+type Tier = 'primary' | 'secondary' | 'partner' | 'low_commitment' | 'utility';
+type Position = 'hero' | 'mid' | 'band' | 'card' | 'inline' | 'end' | 'faq' | 'result' | 'nav' | 'sticky' | 'footer';
+type Target = 'review' | 'clarity' | 'partner' | 'launch_check' | 'validate' | 'build' | 'scale' | 'partners' | 'case' | 'article';
+interface Props extends Omit<HTMLAttributes<'a'>, 'class'> {
+  href: string; ctaId: string; tier: Tier; position: Position; target: Target;
+  variant?: 'primary' | 'secondary' | 'text'; size?: 'md' | 'sm'; wide?: boolean; class?: string;
+}
+const { href, ctaId, tier, position, target, variant = 'primary', size = 'md', wide = false, class: cls, ...rest } = Astro.props;
+if (!/^[a-z0-9]+(_[a-z0-9]+){2,}$/.test(ctaId)) throw new Error(`Bad ctaId "${ctaId}" (04 §6.3)`);
+---
+<a
+  href={href}
+  class:list={['cta', `cta--${variant}`, `cta--${size}`, { 'cta--wide': wide }, cls]}
+  data-cta-id={ctaId} data-cta-tier={tier} data-cta-position={position} data-cta-target={target}
+  {...rest}
+><slot /></a>
+
+<style>
+  .cta { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); white-space: nowrap; text-decoration: none; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-base); line-height: var(--leading-ui); border-radius: var(--radius-sm); border: 1px solid transparent; transition: background-color var(--dur-color), color var(--dur-color), border-color var(--dur-color); text-align: center; }
+  .cta--md { min-block-size: 3rem; padding-inline: var(--space-6); }
+  .cta--sm { min-block-size: 2.5rem; padding-inline: var(--space-3); font-size: var(--text-sm); position: relative; }
+  .cta--sm::after { content: ''; position: absolute; inset: -2px 0; } /* 44px hit area (06 §9.5) */
+  .cta--primary { background: var(--color-action-bg); color: var(--color-action-text); border-color: var(--color-action-border); }
+  .cta--secondary { background: transparent; color: var(--color-action-2-text); border-color: var(--color-action-2-border); }
+  .cta--text { min-block-size: 2.75rem; padding-inline: 0; white-space: normal; font-family: var(--ff-body); font-weight: var(--weight-medium); color: var(--color-link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; justify-content: flex-start; text-align: start; }
+  @media (hover: hover) {
+    .cta--primary:hover { background: var(--color-action-bg-hover); color: var(--color-action-text); }
+    .cta--secondary:hover { background: var(--color-action-2-bg-hover); color: var(--color-action-2-text-hover); }
+    .cta--text:hover { color: var(--color-link-hover); text-decoration-thickness: 2px; }
+  }
+  .cta--primary:active { background: var(--color-action-bg-active); }
+  .cta--wide { inline-size: 100%; }
+  @media (width >= 40rem) { .cta--wide { inline-size: auto; } }
+  @media (forced-colors: active) { .cta--primary, .cta--secondary { border-color: ButtonText; } }
+</style>

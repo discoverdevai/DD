@@ -1,0 +1,44 @@
+---
+// Mobile sticky CTA (06 §9.3, 04 §3.3). Shown below 64rem after the hero CTA leaves the viewport;
+// hidden while a text field has focus and while the closing band is in view.
+import CtaLink from '../ui/CtaLink.astro';
+import { t } from '../../i18n/t';
+import { bookHref } from '../../data/routes';
+---
+<div class="bottom-bar" data-surface="ink" data-bottom-bar hidden>
+  <CtaLink href={bookHref('review')} ctaId="sticky_book_review" tier="primary" position="sticky" target="review" wide>{t('cta.review.short')}</CtaLink>
+  <p class="bottom-bar__line">{t('sticky.line')}</p>
+</div>
+
+<style>
+  .bottom-bar { position: fixed; inset-inline: 0; inset-block-end: 0; z-index: var(--z-sticky); padding: var(--space-3) var(--gutter) calc(var(--space-3) + env(safe-area-inset-bottom, 0px)); box-shadow: var(--shadow-up); border-block-start: 1px solid var(--color-border-subtle); display: grid; gap: var(--space-1); text-align: center; }
+  .bottom-bar[hidden] { display: none; }
+  .bottom-bar__line { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .bottom-bar :global(.cta--wide) { inline-size: 100%; }
+  @media (width >= 64rem) { .bottom-bar { display: none !important; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .bottom-bar:not([hidden]) { animation: bar-in var(--dur-base) var(--ease-enter); }
+    @keyframes bar-in { from { translate: 0 100%; } }
+  }
+</style>
+
+<script>
+  // CSSOM writes (style.setProperty) are not blocked by the meta CSP; only style attributes in markup are.
+  const bar = document.querySelector<HTMLElement>('[data-bottom-bar]');
+  const heroCta = document.querySelector('[data-hero-cta]');
+  const band = document.querySelector('[data-cta-band]');
+  if (bar && heroCta) {
+    const mq = matchMedia('(width < 64rem)');
+    let heroGone = false, bandIn = false, typing = false;
+    const sync = () => {
+      const show = mq.matches && heroGone && !bandIn && !typing;
+      bar.hidden = !show;
+      document.documentElement.style.setProperty('--bottom-bar-h', show ? `${bar.offsetHeight}px` : '0px');
+    };
+    new IntersectionObserver(([e]) => { heroGone = !e.isIntersecting && e.boundingClientRect.top < 0; sync(); }).observe(heroCta);
+    if (band) new IntersectionObserver(([e]) => { bandIn = e.isIntersecting; sync(); }).observe(band);
+    document.addEventListener('focusin', (e) => { typing = (e.target as Element).matches('input, select, textarea'); sync(); });
+    document.addEventListener('focusout', () => { typing = false; sync(); });
+    mq.addEventListener('change', sync);
+  }
+</script>

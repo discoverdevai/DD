@@ -1,0 +1,44 @@
+// SEO + JSON-LD builders (05 §4). One @graph per page; text must match what the page shows.
+export const SITE_URL = 'https://discoverdev.ai';
+export const ORG_ID = `${SITE_URL}/#org`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const CLUTCH_URL = 'https://clutch.co/profile/discoverdev';
+
+/** Entity line, D-43 option (c): footer line + location sentence (05 §4). */
+export const ENTITY_LINE =
+  'DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf.';
+
+/** Absolute canonical: no trailing slash, no query (04 §2). */
+export const canonical = (path: string) => {
+  const clean = path.split(/[?#]/)[0].replace(/\.html$/, '').replace(/\/index$/, '/');
+  const noSlash = clean !== '/' ? clean.replace(/\/$/, '') : '';
+  return `${SITE_URL}${noSlash}`;
+};
+
+export const orgStub = { '@type': 'Organization', '@id': ORG_ID, name: 'DiscoverDev', url: SITE_URL };
+
+/** Full Organization, home and /about only. foundingDate omitted (D-21); address = Alexandria only (D-08); sameAs = Clutch (+ LinkedIn when its URL is confirmed, D-29). */
+export const orgFull = {
+  '@type': 'Organization',
+  '@id': ORG_ID,
+  name: 'DiscoverDev',
+  url: SITE_URL,
+  logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo-512.png`, width: 512, height: 512 },
+  description: ENTITY_LINE,
+  email: 'hello@discoverdev.ai',
+  contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: 'hello@discoverdev.ai', availableLanguage: ['en', 'ar'] }],
+  address: [{ '@type': 'PostalAddress', addressLocality: 'Alexandria', addressCountry: 'EG' }],
+  areaServed: ['United States', 'Saudi Arabia', 'United Arab Emirates', 'Kuwait', 'Egypt', 'United Kingdom'].map((name) => ({ '@type': 'Country', name })),
+  knowsAbout: ['MVP development', 'AI app security review', 'Production readiness', 'LLM cost optimization', 'Product discovery', 'Dedicated development teams'],
+  knowsLanguage: ['en', 'ar'],
+  sameAs: [CLUTCH_URL],
+};
+
+export const website = { '@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: 'DiscoverDev', inLanguage: 'en', publisher: { '@id': ORG_ID } };
+
+export function webPage(path: string, name: string, description: string, type = 'WebPage', extra: Record<string, unknown> = {}) {
+  const url = canonical(path);
+  return { '@type': type, '@id': `${url}#webpage`, url, name, description, isPartOf: { '@id': WEBSITE_ID }, inLanguage: 'en', ...extra };
+}
+
+export const graph = (...nodes: object[]) => ({ '@context': 'https://schema.org', '@graph': nodes });

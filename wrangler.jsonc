@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "discoverdev-site",
+  "compatibility_date": "2026-10-15",
+  "assets": {
+    "directory": "./dist",
+    // Unknown URLs serve dist/404.html with HTTP 404, never the home page.
+    "not_found_handling": "404-page",
+    // /about serves about.html; /about/ redirects to /about.
+    "html_handling": "auto-trailing-slash"
+  },
+  "workers_dev": true,
+  "preview_urls": true
+  // Cutover (Sat): attach the apex as a Custom Domain in the dashboard, or:
+  // ,"routes": [{ "pattern": "discoverdev.ai", "custom_domain": true }]
+}

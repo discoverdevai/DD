@@ -1,0 +1,12 @@
+---
+// Home (04 §4.1). M1 ships the hero; remaining sections land in M4.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeHero from '../components/sections/HomeHero.astro';
+import { home } from '../content/copy/en/home';
+import { graph, orgFull, website, webPage } from '../lib/seo';
+
+const jsonLd = graph(orgFull, website, webPage('/', home.seo.title, home.seo.description, 'WebPage', { about: { '@id': 'https://discoverdev.ai/#org' } }));
+---
+<BaseLayout title={home.seo.title} description={home.seo.description} pageType="home" jsonLd={jsonLd}>
+  <HomeHero />
+</BaseLayout>

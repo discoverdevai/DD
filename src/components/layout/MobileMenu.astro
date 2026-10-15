@@ -1,0 +1,74 @@
+---
+// Mobile menu sheet (06 §9.2, 04 §3.2): native modal <dialog> gives the focus trap and Esc.
+// Order: 5 items (Services expanded inline), primary button + terms, then Email (same order as footer, WCAG 3.2.6).
+import Logo from '../ui/Logo.astro';
+import Icon from '../ui/Icon.astro';
+import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
+import { t } from '../../i18n/t';
+import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
+
+interface Props { services: { key: RouteKey; label: string; who: string }[]; top: { key: RouteKey; label: string }[] }
+const { services, top } = Astro.props;
+---
+<dialog id="menu-sheet" class="menu-sheet" data-surface="ink" aria-labelledby="menu-heading" data-menu>
+  <div class="menu-sheet__top">
+    <a href="/" aria-label={t('logo.home')}><Logo /></a>
+    <button type="button" class="menu-sheet__close" data-menu-close autofocus>
+      <Icon name="x" size={20} /><span class="sr-only">{t('menu.close')}</span>
+    </button>
+  </div>
+  <h2 id="menu-heading" class="sr-only">{t('menu.heading')}</h2>
+  <nav aria-label={t('nav.label')}>
+    <ul role="list" class="menu-sheet__list">
+      {isLive('review') && <li><a href={ROUTES.review.path}>{t('nav.review')}</a></li>}
+      {services.length > 0 && (
+        <li>
+          <span class="menu-sheet__group">{t('nav.services')}</span>
+          <ul role="list" class="menu-sheet__sub">
+            {services.map((s) => <li><a href={ROUTES[s.key].path}>{s.label}<span>{s.who}</span></a></li>)}
+          </ul>
+        </li>
+      )}
+      {top.map((i) => <li><a href={ROUTES[i.key].path}>{i.label}</a></li>)}
+    </ul>
+  </nav>
+  <div class="menu-sheet__cta">
+    <CtaLink href={bookHref('review')} ctaId="navm_book_review" tier="primary" position="nav" target="review" wide>{t('cta.review.short')}</CtaLink>
+    <CtaTerms kind="review" />
+  </div>
+  <ul role="list" class="menu-sheet__contact">
+    <li><a href={`mailto:${t('contact.email')}`} data-link-context="contact"><Icon name="mail" size={20} />{t('contact.email.label')}<span dir="ltr">{t('contact.email')}</span></a></li>
+  </ul>
+</dialog>
+
+<style>
+  .menu-sheet { inline-size: 100%; max-inline-size: 100%; block-size: 100dvh; max-block-size: 100dvh; margin: 0; padding: var(--space-4) var(--gutter) var(--space-8); border: 0; background: var(--color-bg); color: var(--color-text); overflow-y: auto; }
+  .menu-sheet::backdrop { background: var(--blue-975); }
+  .menu-sheet[open] { display: flex; flex-direction: column; gap: var(--space-8); }
+  @media (prefers-reduced-motion: no-preference) {
+    .menu-sheet[open] { animation: sheet-in var(--dur-slow) var(--ease-enter); }
+    @keyframes sheet-in { from { opacity: 0; translate: 0 var(--motion-distance); } }
+  }
+  .menu-sheet__top { display: flex; align-items: center; justify-content: space-between; min-block-size: var(--header-h); }
+  .menu-sheet__close { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle); background: transparent; color: var(--color-text); cursor: pointer; }
+  .menu-sheet__list > li > a, .menu-sheet__group { display: flex; align-items: center; min-block-size: 3.5rem; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xl); color: var(--color-text); text-decoration: none; }
+  .menu-sheet__group { color: var(--color-text-muted); }
+  .menu-sheet__sub { padding-inline-start: var(--space-4); border-inline-start: 1px solid var(--color-border-subtle); }
+  .menu-sheet__sub a { display: grid; gap: 2px; padding-block: var(--space-3); min-block-size: 2.75rem; color: var(--color-text); text-decoration: none; font-weight: var(--weight-medium); }
+  .menu-sheet__sub a span { font-size: var(--text-sm); color: var(--color-text-muted); font-weight: var(--weight-regular); }
+  .menu-sheet__cta { display: grid; gap: var(--space-3); }
+  .menu-sheet__contact a { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; color: var(--color-link); }
+  .menu-sheet__contact span { color: var(--color-text-muted); margin-inline-start: var(--space-2); }
+</style>
+
+<script>
+  // Open with showModal(); focus starts on Close (autofocus) and returns to the menu button on close (06 §9.2).
+  const dialog = document.querySelector<HTMLDialogElement>('[data-menu]');
+  const opener = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+  opener?.addEventListener('click', () => { dialog?.showModal(); opener.setAttribute('aria-expanded', 'true'); });
+  dialog?.querySelector('[data-menu-close]')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('close', () => { opener?.setAttribute('aria-expanded', 'false'); opener?.focus(); });
+  dialog?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => dialog.close()));
+  matchMedia('(width >= 64rem)').addEventListener('change', (e) => { if (e.matches && dialog?.open) dialog.close(); });
+</script>

@@ -1,0 +1,17 @@
+# Old SPA -> new site. Always write the status code (default is 302). 05 §7; verify against real routes (D-15).
+/home             /            301
+/staff            /scale       301
+/staff/*          /scale       301
+/services         /build       301
+/services/*       /build       301
+/launch           /build       301
+/contact          /book        301
+/consultation     /book        301
+/about-us         /about       301
+/team             /about       301
+/portfolio        /work        301
+/portfolio/*      /work        301
+/case-studies     /work        301
+/case-studies/*   /work        301
+/blog             /insights    301
+/blog/*           /insights    301

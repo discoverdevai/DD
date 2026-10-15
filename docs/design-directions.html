@@ -1,0 +1,477 @@
+<title>DiscoverDev Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Rubik:wght@400;500;600&display=swap">
+<style>
+/* Layout: a review document. Page chrome is theme-aware; the three website samples render in their own fixed brand colours inside framed previews. */
+:root {
+  --bg: #F6F7FA;
+  --fg: #14161C;
+  --muted: #5B606B;
+  --rule: #DDE1E8;
+  --panel: #FFFFFF;
+  --accent: #1240BE;
+  --accent-soft: #E5EDFE;
+  --rec: #106B3B;
+  --rec-soft: #E7F6EC;
+  --warn: #8A4B00;
+  --warn-soft: #FFF3DC;
+  --frame-bar: #E9ECF2;
+  --ff-display: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --ff-body: "Rubik", "Segoe UI", system-ui, sans-serif;
+  --ff-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* Website sample palette (fixed: the site is light-only in v1) */
+  --dd-blue: #1240BE; --dd-blue-600: #2152D1; --dd-navy: #032993; --dd-navy-900: #032177; --dd-navy-950: #001155;
+  --dd-white: #FEFEFE; --dd-black: #0F0F0F; --dd-muted: #6B6B6B; --dd-alt: #F3F7FE; --dd-sunken: #F5F5F5;
+  --dd-border: #DADADA; --dd-blue-100: #E5EDFE; --dd-blue-200: #C9DBFF; --dd-blue-300: #A2C1FE;
+  --dd-err: #B3261E; --dd-err-bg: #FDECEA; --dd-warn: #8A4B00; --dd-warn-bg: #FFF3DC;
+  --dd-ok: #106B3B; --dd-ok-bg: #E7F6EC; --dd-info: #032993; --dd-info-bg: #E5EDFE;
+  --dd-nb: #4F4F4F; --dd-nb-bg: #EBEBEB; --dd-cyan: #3BE3FF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1117; --fg: #E8EBF2; --muted: #A3AAB8; --rule: #262C38; --panel: #161A23;
+    --accent: #A2C1FE; --accent-soft: #1A2440; --rec: #7FD8A6; --rec-soft: #12291D;
+    --warn: #FFD58A; --warn-soft: #2B2112; --frame-bar: #222835; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1117; --fg: #E8EBF2; --muted: #A3AAB8; --rule: #262C38; --panel: #161A23;
+  --accent: #A2C1FE; --accent-soft: #1A2440; --rec: #7FD8A6; --rec-soft: #12291D;
+  --warn: #FFD58A; --warn-soft: #2B2112; --frame-bar: #222835; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--ff-body); font-size: 16px; line-height: 1.6; padding-inline: 16px; padding-block: 0 64px; }
+.wrap { max-width: 1240px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--ff-display); text-wrap: balance; margin: 0; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Document chrome ---------- */
+.doc-head { padding-block: 48px 24px; display: grid; gap: 16px; border-block-end: 1px solid var(--rule); }
+.doc-kicker { font-family: var(--ff-mono); font-size: 13px; color: var(--muted); }
+.doc-head h1 { font-size: clamp(30px, 4vw, 46px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.doc-head .lead { font-size: 18px; color: var(--muted); max-width: 64ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--muted); }
+.facts b { color: var(--fg); font-weight: 500; }
+
+.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-block-end: 1px solid var(--rule); padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a { font-size: 14px; text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--fg); background: var(--panel); }
+.jump a.rec { border-color: var(--rec); color: var(--rec); }
+
+.dir { padding-block: 56px 8px; display: grid; gap: 24px; scroll-margin-top: 64px; }
+.dir-head { display: grid; gap: 10px; grid-template-columns: 1fr; }
+.dir-tag { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.letter { font-family: var(--ff-display); font-weight: 800; font-size: 14px; width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.pill { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+.pill.rec { background: var(--rec-soft); color: var(--rec); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.ok { background: var(--accent-soft); color: var(--accent); }
+.dir-head h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -0.015em; }
+.dir-head .sum { color: var(--muted); max-width: 70ch; }
+
+.notes { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.note { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 16px 18px; min-width: 0; }
+.note h3 { font-size: 14px; font-weight: 700; margin-block-end: 8px; font-family: var(--ff-body); }
+.note ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 4px; font-size: 14px; }
+
+.previews { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 1100px) { .previews { grid-template-columns: minmax(0, 1fr) 375px; } }
+.frame { border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; background: var(--panel); min-width: 0; }
+.frame-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--frame-bar); font-size: 12px; color: var(--muted); font-family: var(--ff-mono); }
+.frame-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--rule); display: inline-block; }
+.frame-bar span { margin-inline-start: 6px; }
+.frame.phone { max-width: 375px; width: 100%; justify-self: center; }
+.frame.phone .canvas { max-height: 780px; overflow-y: auto; }
+
+/* ---------- Comparison + recommendation ---------- */
+.compare { padding-block: 64px 0; display: grid; gap: 20px; }
+.compare h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 800; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 12px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; }
+th, td { text-align: start; padding: 12px 16px; border-block-end: 1px solid var(--rule); vertical-align: top; }
+thead th { font-weight: 600; background: var(--frame-bar); }
+tbody tr:last-child td { border-block-end: 0; }
+td.good { color: var(--rec); font-weight: 500; }
+td.bad { color: var(--warn); font-weight: 500; }
+.verdict { background: var(--panel); border: 1px solid var(--rec); border-radius: 12px; padding: 20px 22px; display: grid; gap: 10px; }
+.verdict h3 { font-size: 20px; font-weight: 800; color: var(--rec); }
+.verdict ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px; }
+
+/* =====================================================================
+   WEBSITE SAMPLES. Fixed brand palette; container queries make one markup
+   render as desktop in the wide frame and mobile in the 375px frame.
+   ===================================================================== */
+.site { container-type: inline-size; font-family: var(--ff-body); color: var(--dd-black); background: var(--dd-white); line-height: 1.6; font-size: 16px; }
+.site * { box-sizing: border-box; }
+.site h1, .site h2, .site h3 { font-family: var(--ff-display); color: var(--dd-navy); }
+.s-in { padding-inline: 20px; max-width: 1120px; margin-inline: auto; }
+@container (min-width: 760px) { .s-in { padding-inline: 40px; } }
+
+/* header */
+.s-head { display: flex; align-items: center; gap: 24px; padding-block: 14px; }
+.s-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--ff-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; color: var(--dd-black); }
+.s-logo img { height: 26px; width: auto; }
+.s-logo .dev { color: var(--dd-blue); }
+.s-nav { display: none; gap: 22px; font-size: 15px; font-weight: 500; margin-inline-start: 12px; }
+.s-nav span { display: inline-flex; align-items: center; gap: 4px; }
+.s-nav svg { width: 14px; height: 14px; }
+.s-head .s-btn { margin-inline-start: auto; }
+.s-menu { width: 40px; height: 40px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--dd-border); background: transparent; color: inherit; }
+.s-menu svg { width: 20px; height: 20px; }
+@container (min-width: 900px) { .s-nav { display: flex; } .s-menu { display: none; } }
+
+/* buttons */
+.s-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding-inline: 22px; border-radius: 6px; font-family: var(--ff-display); font-weight: 700; font-size: 16px; text-decoration: none; border: 1px solid transparent; white-space: nowrap; }
+.s-btn.sm { min-height: 40px; padding-inline: 16px; font-size: 15px; }
+.s-btn.primary { background: var(--dd-blue); color: var(--dd-white); }
+.s-btn.inverse { background: var(--dd-white); color: var(--dd-navy); }
+.s-btn.outline { border-color: var(--dd-blue); color: var(--dd-blue); background: transparent; }
+.s-cta-row { display: grid; gap: 12px; justify-items: start; }
+.s-cta-row .s-btn.wide { width: 100%; }
+@container (min-width: 520px) { .s-cta-row .s-btn.wide { width: auto; } }
+.s-terms { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--dd-muted); }
+.s-terms li { display: inline-flex; gap: 6px; align-items: center; }
+.s-terms svg { width: 16px; height: 16px; color: var(--dd-blue); flex: none; }
+.s-link { font-weight: 500; color: var(--dd-blue); text-decoration: underline; text-underline-offset: 0.2em; font-size: 15px; }
+.s-proof { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 14px; }
+.s-proof svg { width: 16px; height: 16px; color: var(--dd-blue); }
+.s-eyebrow { font-size: 15px; color: var(--dd-muted); font-weight: 500; }
+
+/* hero */
+.s-hero { padding-block: 36px 56px; }
+.s-hero-grid { display: grid; gap: 36px; }
+.s-hero h1 { font-size: clamp(34px, 7cqi, 64px); line-height: 1.06; letter-spacing: -0.025em; font-weight: 800; max-width: 16ch; }
+.s-hero .s-lead { font-size: 18px; max-width: 54ch; }
+.s-copy { display: grid; gap: 20px; align-content: start; min-width: 0; }
+@container (min-width: 900px) { .s-hero-grid { grid-template-columns: 7fr 5fr; align-items: center; gap: 48px; } }
+
+/* review snapshot */
+.snap { background: var(--dd-white); border: 1px solid var(--dd-border); border-radius: 16px; box-shadow: 0 2px 4px rgb(3 41 147 / .06), 0 8px 24px rgb(3 41 147 / .10); overflow: hidden; margin: 0; min-width: 0; color: var(--dd-black); }
+.snap-top { background: var(--dd-sunken); padding: 12px 16px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+.snap-top b { font-family: var(--ff-display); color: var(--dd-navy); font-size: 14px; }
+.snap-top span { color: var(--dd-muted); }
+.snap ol { list-style: none; margin: 0; padding: 0; }
+.snap li { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 12px 16px; border-block-start: 1px solid #EBEBEB; align-items: start; }
+.snap .f-title { font-weight: 500; font-size: 15px; line-height: 1.35; }
+.snap .f-area { grid-column: 2; font-size: 13px; color: var(--dd-muted); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.snap li.extra { display: none; }
+@container (min-width: 900px) { .snap li.extra { display: grid; } }
+.snap-foot { border-block-start: 1px solid #EBEBEB; padding: 14px 16px; display: grid; gap: 2px; }
+.snap-foot b { font-family: var(--ff-display); font-size: 16px; color: var(--dd-navy); }
+.snap-foot span { font-size: 13px; color: var(--dd-muted); }
+.snap figcaption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.badge { display: inline-flex; align-items: center; min-height: 22px; padding: 1px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; line-height: 1.3; white-space: nowrap; }
+.b-crit { background: var(--dd-err-bg); color: var(--dd-err); }
+.b-high { background: var(--dd-warn-bg); color: var(--dd-warn); }
+.b-med { background: var(--dd-nb-bg); color: var(--dd-nb); }
+.b-plan { background: var(--dd-info-bg); color: var(--dd-info); }
+.b-fixed { background: var(--dd-ok-bg); color: var(--dd-ok); }
+.b-open { background: var(--dd-nb-bg); color: var(--dd-nb); }
+.status { position: relative; display: inline-grid; }
+.status > * { grid-area: 1 / 1; transition: opacity 320ms ease; }
+.status .b-open { opacity: 0; }
+.snap.playing .status .b-open { opacity: 1; }
+.snap.playing .status .final { opacity: 0; }
+.snap .status.done .b-open { opacity: 0 !important; }
+.snap .status.done .final { opacity: 1 !important; }
+
+/* problem section */
+.s-sec { padding-block: 56px; }
+.s-sec h2 { font-size: clamp(26px, 4.4cqi, 40px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; max-width: 24ch; }
+.s-cards { display: grid; gap: 16px; margin-block-start: 28px; }
+@container (min-width: 760px) { .s-cards { grid-template-columns: repeat(3, 1fr); } }
+.s-card { border: 1px solid var(--dd-border); border-radius: 10px; padding: 22px; display: grid; gap: 10px; align-content: start; background: var(--dd-white); min-width: 0; }
+.s-card svg { width: 24px; height: 24px; color: var(--dd-blue); }
+.s-card h3 { font-size: 20px; line-height: 1.3; font-weight: 700; }
+.s-card p { font-size: 15px; }
+.s-close { margin-block-start: 24px; font-size: 17px; font-weight: 500; max-width: 60ch; }
+
+/* CTA band */
+.s-band { background: var(--dd-navy); color: var(--dd-white); padding-block: 64px; position: relative; overflow: hidden; }
+.s-band .s-in { display: grid; gap: 18px; justify-items: center; text-align: center; position: relative; z-index: 1; }
+.s-band h2 { color: var(--dd-white); font-size: clamp(28px, 5cqi, 46px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; max-width: 20ch; }
+.s-band p { color: var(--dd-blue-200); }
+.s-band .s-terms { color: var(--dd-blue-200); justify-content: center; }
+.s-band .s-terms svg { color: var(--dd-blue-300); }
+.s-band .s-link { color: var(--dd-blue-300); }
+.blade { position: absolute; inset-block-end: -30%; inset-inline-end: -12%; width: 46cqi; aspect-ratio: 1; background: var(--dd-blue); clip-path: polygon(12% 100%, 100% 30%, 60% 100%); opacity: .55; }
+
+/* ---------- Direction A: Review on the desk (06 as written) ---------- */
+.dir-a .s-hero { padding-block: 32px 64px; }
+
+/* ---------- Direction B: Night shift (Figma as drawn) ---------- */
+.dir-b { background: #020B3A; }
+.dir-b .b-hero { position: relative; overflow: hidden; color: var(--dd-white); background:
+  radial-gradient(60% 70% at 70% 30%, #0B3AA8 0%, transparent 70%),
+  linear-gradient(180deg, #021052 0%, #032993 60%, #021052 100%); padding-block-end: 64px; }
+.dir-b .b-hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgb(255 255 255 / .05) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .05) 1px, transparent 1px); background-size: 64px 64px; }
+.streak { position: absolute; inset-block-start: -20%; inset-inline-end: -10%; width: 60cqi; height: 160%; border-inline-start: 3px solid var(--dd-cyan); border-radius: 50%; transform: rotate(-24deg); filter: drop-shadow(0 0 12px var(--dd-cyan)) drop-shadow(0 0 32px #2D8CFF); opacity: .85; }
+.streak.s2 { inset-inline-end: -16%; width: 70cqi; opacity: .45; border-inline-start-width: 2px; }
+.spark { position: absolute; color: #fff; opacity: .7; font-size: 14px; }
+.dir-b .s-head { position: relative; z-index: 2; }
+.dir-b .s-logo { color: var(--dd-white); }
+.dir-b .s-logo .dev { color: var(--dd-white); }
+.dir-b .s-nav { color: #E1E8FF; margin-inline: auto; }
+.dir-b .s-menu { border-color: rgb(255 255 255 / .3); }
+.glass { background: rgb(255 255 255 / .08); border: 1px solid rgb(255 255 255 / .28); color: var(--dd-white); backdrop-filter: blur(8px); }
+.dir-b .b-copy { position: relative; z-index: 2; text-align: center; display: grid; gap: 22px; justify-items: center; padding-block: 48px 8px; }
+.dir-b .b-copy h1 { font-size: clamp(34px, 7.4cqi, 72px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 800; color: transparent; background: linear-gradient(180deg, #9DA9C2 0%, #FFFFFF 60%); -webkit-background-clip: text; background-clip: text; max-width: 18ch; }
+.dir-b .b-copy p { color: #D6DEF5; max-width: 56ch; font-size: 17px; }
+.b-btns { display: grid; gap: 14px; width: 100%; max-width: 800px; }
+@container (min-width: 760px) { .b-btns { grid-template-columns: 1fr 1fr; } }
+.b-btns .s-btn { border-radius: 14px; }
+.dir-b .s-terms { color: #B9C6EA; justify-content: center; }
+.dir-b .s-terms svg { color: var(--dd-cyan); }
+.cfg-pill { display: inline-block; font-family: var(--ff-display); font-weight: 500; font-size: 15px; padding: 6px 18px; border-radius: 10px; }
+.b-sec { background: linear-gradient(180deg, #021052, #032993); color: #fff; padding-block: 56px; text-align: center; }
+.b-sec h2 { color: #fff; font-size: clamp(26px, 4.6cqi, 42px); font-weight: 800; letter-spacing: -0.02em; margin-block: 14px 6px; }
+.b-sec .cmd { font-family: var(--ff-mono); font-size: 14px; color: #C9D5F5; }
+.b-cards { display: grid; gap: 18px; margin-block-start: 30px; text-align: start; }
+@container (min-width: 760px) { .b-cards { grid-template-columns: repeat(3, 1fr); } }
+.win { border-radius: 18px; overflow: hidden; }
+.win-bar { display: flex; gap: 6px; align-items: center; padding: 10px 14px; border-block-end: 1px solid rgb(255 255 255 / .2); font-family: var(--ff-mono); font-size: 13px; color: #E1E8FF; }
+.win-bar i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.win-bar i:nth-child(1) { background: #FF5F57; } .win-bar i:nth-child(2) { background: #FEBC2E; } .win-bar i:nth-child(3) { background: #28C840; }
+.win-bar span { margin-inline-start: 8px; }
+.win-body { padding: 18px; display: grid; gap: 10px; }
+.win-body h3 { color: #fff; font-size: 20px; }
+.win-body p { color: #C9D5F5; font-size: 15px; }
+.win-body .fn { font-family: var(--ff-mono); font-size: 13px; color: #fff; border-block-start: 1px solid rgb(255 255 255 / .2); padding-block-start: 10px; }
+.dir-b .s-band { background: linear-gradient(180deg, #032993, #021052); }
+
+/* ---------- Direction C: Navy desk (hybrid) ---------- */
+.dir-c .c-hero { background: var(--dd-navy); color: var(--dd-white); position: relative; padding-block-end: 0; }
+.dir-c .c-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgb(254 254 254 / .045) 1px, transparent 1px), linear-gradient(90deg, rgb(254 254 254 / .045) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(180deg, #000 30%, transparent 95%); }
+.dir-c .s-head, .dir-c .s-hero { position: relative; }
+.dir-c .s-logo { color: var(--dd-white); }
+.dir-c .s-logo .dev { color: var(--dd-blue-300); }
+.dir-c .s-nav { color: #E5EDFE; }
+.dir-c .s-menu { border-color: rgb(254 254 254 / .35); }
+.dir-c .s-hero { padding-block: 28px 0; }
+.dir-c .s-hero h1 { color: var(--dd-white); }
+.dir-c .s-eyebrow { color: var(--dd-blue-200); }
+.dir-c .s-lead { color: #E5EDFE; }
+.dir-c .c-hero .s-terms { color: var(--dd-blue-200); }
+.dir-c .c-hero .s-terms svg { color: var(--dd-blue-300); }
+.dir-c .c-hero .s-link { color: var(--dd-blue-300); }
+.dir-c .c-hero .s-proof svg { color: var(--dd-blue-300); }
+.dir-c .c-hero .s-proof a { color: var(--dd-blue-300); }
+.dir-c .s-hero-grid { padding-block-end: 40px; }
+@container (min-width: 900px) {
+  .dir-c .s-hero-grid { align-items: end; padding-block-end: 0; }
+  .dir-c .s-copy { padding-block-end: 64px; }
+  .dir-c .snap { margin-block-end: -72px; position: relative; z-index: 2; }
+  .dir-c .c-after { padding-block-start: 120px; }
+}
+.dir-c .snap { box-shadow: 0 4px 8px rgb(0 17 85 / .2), 0 24px 48px rgb(0 17 85 / .35); }
+.chrome { display: flex; align-items: center; gap: 6px; padding: 9px 14px; background: var(--dd-white); border-block-end: 1px solid #EBEBEB; font-family: var(--ff-mono); font-size: 12px; color: var(--dd-muted); }
+.chrome i { width: 9px; height: 9px; border-radius: 50%; background: #C2C2C2; display: inline-block; }
+.chrome span { margin-inline-start: 8px; }
+.eyebrow-pill { justify-self: start; font-family: var(--ff-mono); font-size: 14px; color: var(--dd-navy); background: var(--dd-blue-100); padding: 4px 12px; border-radius: 8px; }
+.eyebrow-pill b { color: var(--dd-blue); font-weight: 400; }
+.dir-c .c-after .s-sec { padding-block-start: 0; }
+.dir-c .c-after { padding-block-start: 56px; }
+.c-head { display: grid; gap: 14px; }
+.dir-c .s-card { border-color: #E3E7F0; }
+.dir-c .s-card .ico { width: 40px; height: 40px; border-radius: 10px; background: var(--dd-alt); display: grid; place-items: center; }
+
+@media (prefers-reduced-motion: reduce) { .status > * { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="doc-head">
+    <div class="doc-kicker">discoverdev.ai v1 · design review · Oct 15, 2026</div>
+    <h1>Three directions for the new site</h1>
+    <p class="lead">Same page, same copy, three looks. Each sample shows the home hero, one content section and the closing call to action, at desktop width and on a 375px phone. Pick one, or mix parts, and the build follows it.</p>
+    <div class="facts">
+      <span><b>Copy:</b> verbatim from 03-copy.md</span>
+      <span><b>Colours and type:</b> your brand (#1240BE, #032993, Manrope, Rubik)</span>
+      <span><b>Logo in samples:</b> mark PNG + typed wordmark, until the SVG set arrives (D-33)</span>
+    </div>
+  </header>
+
+  <nav class="jump" aria-label="Directions">
+    <a href="#dir-a">A · Review on the desk</a>
+    <a href="#dir-b">B · Night shift</a>
+    <a href="#dir-c" class="rec">C · Navy desk (recommended)</a>
+    <a href="#compare">Compare</a>
+  </nav>
+
+  <section class="dir" id="dir-a" aria-labelledby="h-a">
+    <div class="dir-head">
+      <div class="dir-tag"><span class="letter">A</span><span class="pill ok">Fully on spec</span></div>
+      <h2 id="h-a">Review on the desk</h2>
+      <p class="sum">Your design system (06) exactly as written. A bright white page, navy headings, blue only on actions. The hero carries the findings panel: what a Launch-Ready Review actually produces. Calm, specific, evidence first.</p>
+    </div>
+    <div class="notes">
+      <div class="note"><h3>Strengths</h3><ul><li>Proof is the visual: the findings panel does the selling</li><li>Fastest page (text is the largest element on load)</li><li>Every contrast pair already checked in 06 §3</li></ul></div>
+      <div class="note"><h3>Watch out</h3><ul><li>Big break from the dark navy look of today's site and the Figma</li><li>Quiet first impression. Returning visitors may not recognise the brand</li></ul></div>
+      <div class="note"><h3>Rules it changes</h3><ul><li>None</li></ul></div>
+    </div>
+    <div class="previews">
+      <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Desktop</span></div><div class="canvas" data-sample="a"></div></div>
+      <div class="frame phone"><div class="frame-bar"><i></i><i></i><i></i><span>Phone · 375</span></div><div class="canvas" data-sample="a"></div></div>
+    </div>
+  </section>
+
+  <section class="dir" id="dir-b" aria-labelledby="h-b">
+    <div class="dir-head">
+      <div class="dir-tag"><span class="letter">B</span><span class="pill warn">Conflicts with 06</span></div>
+      <h2 id="h-b">Night shift</h2>
+      <p class="sum">Your Figma file (DiscoverDev Landing Page DD) as drawn, with the new copy poured in. Dark navy hero with cyan light streaks, a grid texture, frosted glass buttons, centred type, window-style cards with code file names, <code>// .config</code> pills on every section.</p>
+    </div>
+    <div class="notes">
+      <div class="note"><h3>Strengths</h3><ul><li>Continuity with the current site and the Figma</li><li>Striking first screen, reads as "tech company" instantly</li></ul></div>
+      <div class="note"><h3>Watch out</h3><ul><li>Looks like most AI and dev-shop sites, including Robusta's "AI-native" hero you want to stand apart from</li><li>Text over streaks and glass is hard to keep at 4.5:1 (the old repo measured 1.24:1 over the streak)</li><li>Glow, blur and big hero art cost speed on phones</li><li>The findings panel has no natural home, so the offer reads as generic</li></ul></div>
+      <div class="note"><h3>Rules it changes</h3><ul><li>06 §1 "Avoid": glows, glassmorphism, heavy terminal look, motif on every section</li><li>06 §5: navy on more than 2 sections</li><li>06 §9.11: hero surface</li></ul></div>
+    </div>
+    <div class="previews">
+      <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Desktop</span></div><div class="canvas" data-sample="b"></div></div>
+      <div class="frame phone"><div class="frame-bar"><i></i><i></i><i></i><span>Phone · 375</span></div><div class="canvas" data-sample="b"></div></div>
+    </div>
+  </section>
+
+  <section class="dir" id="dir-c" aria-labelledby="h-c">
+    <div class="dir-head">
+      <div class="dir-tag"><span class="letter">C</span><span class="pill rec">Recommended</span></div>
+      <h2 id="h-c">Navy desk</h2>
+      <p class="sum">The first impression your visitors know (solid brand navy, a faint grid from the Figma hero), with the substance of A. The findings panel sits on the navy like a report on a dark desk and overlaps into the white page below. Everything after the hero is A: light, calm, proof next to claims. The Figma's window chrome and <code>// .config</code> pill are kept as accents, twice per page at most.</p>
+    </div>
+    <div class="notes">
+      <div class="note"><h3>Strengths</h3><ul><li>Recognisably DiscoverDev from the first second</li><li>The Review artifact is the hero's focal point, with stronger contrast than in A</li><li>White text on #032993 is 11.95:1; no glow or glass to fight</li><li>Same speed as A (solid colour, no hero image)</li></ul></div>
+      <div class="note"><h3>Watch out</h3><ul><li>Hero and closing band are both navy, so the middle of the page must stay light</li><li>The overlap needs care at tablet widths (handled with container queries)</li></ul></div>
+      <div class="note"><h3>Rules it changes</h3><ul><li>06 §9.11: hero surface becomes navy (was white)</li><li>06 §5 home map: the offer spotlight moves to a light surface so navy stays at 2 sections</li></ul></div>
+    </div>
+    <div class="previews">
+      <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Desktop</span></div><div class="canvas" data-sample="c"></div></div>
+      <div class="frame phone"><div class="frame-bar"><i></i><i></i><i></i><span>Phone · 375</span></div><div class="canvas" data-sample="c"></div></div>
+    </div>
+  </section>
+
+  <section class="compare" id="compare" aria-labelledby="h-cmp">
+    <h2 id="h-cmp">Side by side</h2>
+    <div class="table-wrap" role="region" aria-labelledby="h-cmp" tabindex="0">
+      <table>
+        <thead><tr><th scope="col">Question</th><th scope="col">A · Review on the desk</th><th scope="col">B · Night shift</th><th scope="col">C · Navy desk</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Feels like today's DiscoverDev</th><td class="bad">Low</td><td class="good">High</td><td class="good">High</td></tr>
+          <tr><th scope="row">Stands apart from rival studios</th><td class="good">High</td><td class="bad">Low</td><td class="good">High</td></tr>
+          <tr><th scope="row">Shows the offer in the first screen</th><td class="good">Yes, findings panel</td><td class="bad">No</td><td class="good">Yes, findings panel</td></tr>
+          <tr><th scope="row">Fits your rules in 06 and CLAUDE.md</th><td class="good">Fully</td><td class="bad">Needs many exceptions</td><td>Two small changes</td></tr>
+          <tr><th scope="row">Contrast (WCAG 2.2 AA)</th><td class="good">Pass</td><td class="bad">Risky over streaks and glass</td><td class="good">Pass</td></tr>
+          <tr><th scope="row">Phone speed (LCP ≤ 2.0s budget)</th><td class="good">Easy</td><td class="bad">Hard</td><td class="good">Easy</td></tr>
+          <tr><th scope="row">Ready for Arabic (RTL)</th><td class="good">Yes</td><td>Streak art must be mirrored</td><td class="good">Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict">
+      <h3>My recommendation: C, Navy desk</h3>
+      <ul>
+        <li>It keeps the navy first impression people already link to DiscoverDev, so the new site feels like a step up, not a different company.</li>
+        <li>It puts the Launch-Ready Review findings at the centre of the first screen, which is what the whole strategy rests on.</li>
+        <li>It stays inside your accessibility and speed budgets without special cases.</li>
+        <li>From B it keeps the navy, the grid texture, the window chrome and the <code>// .config</code> pill. It drops the glow streaks, glass, robot imagery and logo wall, which your own design system rules out.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+const MARK_BLUE = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABgCAMAAACql5X7AAADAFBMVEVMaXEEKzUnQsAaN4pKTMcATqodQIAZdtoGAAAHBGkYGyUhChIZIT4sWMEaR70YRLweS70rV8AsWMMeS78jTcAfTcIVHicRPr0SP78VQr4mUb0kU8MbSMAkU8gpVL8cTMYSQ8QRP7smUcEgPIAoVcEpVr4fHCAaScQYIUYgNGwUP7sYOI0fNHIaPaMcS8MhO4MbNnkVQbwjTr0kNnQiN3IQQMASQMMeMF8bKVYjUcQnVcUnTKsqV8cTQsEXRbwaJ0srW8YaJT0pWsQrUrQVPKsgQpoXRL8YM3sWPaMkQ4gePZQWO6UUP7cmPYMSP8EbLGQdMWYUPbEYLW8WRsUXRsMWM5AhTsYnSJoXN5cTRcIjTLYbN5AfPIohOHQaOIMUPbAaNYAcNX8WOJcdRrchN3UbKlApWr0bM2UsUbAbNH8aM3sZO5YiQIcWP64lQowYKm8ePZQmTrAcN3cnRpQZRLMkQI8bNIMoUbojR6IZQLAXNZIWOJwpTqYnTK4jRpkkR5QmRZwjP5EaLV8sSZwsU7MoUKsmSaMoTqMaM4IqT6sXK14jQZUjPH4nR6wYNYwhQ48iRa4bSMElQ5khRa0cQqUbNYMrTbsfPZshQp4VN50qTasVO6IeQKMbOqUZO6UkSrEtTpwjQ50mS6IiQYgQPa0cL4MhOH4qRZ0VOrQYM4gVQ8ASP74cScAZRb4fTL8kT8AbSL8WRL4eS8AnU8AlUMAVQ70aR74UQb4gTcAdSr8pVcAVQr8oVL8TQL8XRL0XRb8dSsEmUcEaRr8qVr8qVsImUr8tWcIfTMEiTb8gTsEVQr4sWMEdSsAeS78fTMARP70kT78TQL4rV8AmUb8XRb4cSb4YRcAhTsASQL0hUswaSsgtW8gSRMkiTcEjT8AUQb0ZRr0rWs0tWMQSQskgTb8iT78WRcgdTswYScoSQsUsV78oVMEoV8oeT8kvXcwsVbcsXs4SRMwnVcomV8YjTLYuXcsvXs8sXMojVcwhUcgaSL4pVMUcRrYpWccaSswxY9gvZekxAAAA63RSTlMAAwQFAgMEAQECDgYY+/3+/vz8/f36Evz9/f37/P7+/f78/J38/Qr+IFL+mTzi/GtR/v4mSfv+JzX9+9/9+/or/Sb89v3n+4Psu1/N/of9LELxeP78gf3it/r3tcWcev1yN6TpcE39POfHo+uM64RbwOyK1/VPYfn74sjP97W5wa+yWaX+/dfFLNJnmZEjqaH7/pLv066En8bzgLbr+Kz6H8/xVZmXtoXN1/7////////////////////////////////////////////////////////////////////////////////////+HcpmowAAAAlwSFlzAAALEgAACxIB0t1+/AAACj9JREFUaN6tmodfE9kWx2/CTDIJhA5KL9KbgCKCVLEXLNh7713Xrmt31W1v922vb91XkVCUTkAQKQIiTSA0AUFEQEAR2VX3nTsJIIiQSbh/wPfzy5nfKffcIIQoxPrvpO2//26/bf5H45URfUg2QaFhODw0Z2dbW3ltfbzZpP/MvDLjDJ/PQohLkBzuMLDHTzI10wt0GxlYW15e7zLvu+VT16rAzxkG9SS6PO+xWXBubu4ION7jHtfXRx6Zab/bBrhcksNTBM9G82eZlgTTJ7fEzkVPTy+oIShp3g8LpeoVEK+E5ovc7HIxOq+kJDo+/o6e3pQFQQ3iV9PWHfRl8UC83HQ2WhU/DtAiUV40kOMjI8PDk9TUpqRYi8UHtq+aowvi2SxKTt0L493sJOg7UnRiYkiIqqGh9RuTV472nyjzEMHmyad7ea0byM4ria6qwmQJOiXlQZGqoXXzIx1H+7l8BHTm0imku7U8cAB0VFhYUZGhYYRJs7qj/RiKC55hSuci3aPlZiIRoCMjE2n0g5CoqJQ/wsKuwYmNVdfqKl327SrwDJdpYHiIf6zcDL7iHYnopJAQQEfR5Js3IyIictS1FpV2rT9ly0cUSTKSzkL+Pz2eNQhaKBRq6Xi8rLywwxcCSDIpBAQaP63cJToS0EnhiYVAfiAhZxfFxsZGCIUPhcUPM3TMjdqXfWjLo7gcBnYk0cZJ5XbxEnTIQOjMjIyKDFdzj5f6k2fjqJM82e1tO8nUJdIlcVB0aF2dvofRs72nN8PH57BktrfzrKUud7rRQJaiIyLSpeiM0NAbN0ILCsyfVR9aPFoFMokjq+7R4UsTw4dC37iRnKxv4dn05+FR7ogiZLM6gbYFLZXkSy86VoIWxsTQaGAX3L59/fptc4Nn1QErbKE7sVky5c62oCmFhTgTU2jyzZvZERF30zE6M7MyNJRGAxhOQoK+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";
+const MARK_WHITE = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABgCAMAAACql5X7AAACmlBMVEVMaXH9/f39/f3////9/f3////9/f3////////////9/f3////////+/v7////////////////////////////////9/f3////9/f3+/v7+/v7////////+/v7////////////////9/f3////9/f3////+/v79/f3+/v7////6+vr9/f39/f3////9/f3////9/f3////////////////8/Pz////9/f39/f37+/v9/f39/f39/f3////9/f39/f3////////////////9/f39/f39/f3////////9/f3////9/f3////+/v79/f3////////9/f3////+/v7+/v79/f3////9/f39/f3////////+/v7////y8vL////9/f3////////////////////////////+/v7////9/f3+/v7////9/f3+/v78/Pz9/f39/f3////////9/f3////+/v7////////9/f3////+/v7+/v79/f39/f3+/v7////8/Pz////////9/f3////////////8/Pz9/f3////////////9/f37+/v////s7Oz////8/Pz+/v7////9/f3////9/f3////+/v78/Pz9/f35+fn9/f34+Pj7+/v9/f39/f39/f38/Pz////////////////39/f8/Pz+/v7+/v79/f37+/v////////8/Px/f3/////8/Pz////////+/v79/f3////////9/f39/f3////////////6+vr////////9/f3////9/f3////8/Pz9/f3////////8/Pz9/f39/f37+/v9/f3////9/f3///+qqqr9/f3////////8/Pz////8/Pz9/f3////+/v7+/v7////9/f0+8o2JAAAA23RSTlMA/fz++wT+AQID+gX9/Ab76vonDThQuSb5UiqcGqQH9AolhfVwD/f4h/k74KBn5J2Gzh0j61sV4dxQ406C+LjtIEgtIabzw7yDLovysZWYGMLYEcpCzyvrmo8LtxMVGZwX7W2FX1OZ4nXwVDr2YVmtrrU8yON+EAjqEp/FtObgDG7L17G6ekD7xKAs6Z1JSg07eQ5azjXQju9mmTHoKEvuk/R31GsofyJrP6O6UZvMWgK3/YFE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";
+const I = {
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  star: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+  card: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>',
+  code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>',
+  menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
+  chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>'
+};
+const C = {
+  eyebrow: "For founders with an AI-built or freelancer-built app",
+  h1: "Your app works in the demo. We get it ready for real users.",
+  lead: "Built it with Lovable, Bolt, v0, Cursor or a freelancer? A senior team reviews it in about 5 working days. You learn what will break, what to fix and what it costs. Then we fix it or build it properly, and you own all of it.",
+  cta: "Book a Launch-Ready Review",
+  terms: ["About 5 working days", "Fixed fee, credited to your fix", "No useful findings, no charge"],
+  quiz: "Not sure yet? Take the 3-minute launch check",
+  proof: "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)",
+  proofLink: "Read our reviews on Clutch",
+  probH2: "“It works” and “it’s ready for strangers” are not the same thing",
+  cards: [
+    ["lock", "Your data might be open", "Can a signed-in user see someone else’s records? Are secret keys sitting in code the browser can read? You may not know until someone else finds out."],
+    ["card", "Payments that fail quietly", "A payment that works in test mode can still drop or double-charge in real life. You find out from an angry customer."],
+    ["code", "Code nobody can pick up", "Every fix breaks something else. Your freelancer moved on. A new developer can’t tell what’s safe to change."]
+  ],
+  close: "You don’t need a rewrite by default. You need someone senior to look, and tell you plainly.",
+  bandH2: "Find out what’s between your app and launch day",
+  bandBody: "A senior team, about 5 working days, and a plain answer.",
+  bandLink: "Not ready? Take the 3-minute launch check"
+};
+const FINDINGS = [
+  ["b-crit", "Critical", "Row-level security off on 3 tables", "Data and auth", "b-plan", "Fix planned", false],
+  ["b-crit", "Critical", "Secret key readable in browser code", "Access and security", "b-fixed", "Fixed", false],
+  ["b-high", "High", "Payment events not checked on the server", "Payments", "b-plan", "Fix planned", false],
+  ["b-med", "Medium", "No error alerts or backups yet", "Scale and running costs", "b-plan", "Fix planned", true],
+  ["b-med", "Medium", "Hosting account in a freelancer’s name", "Ownership and handover", "b-fixed", "Fixed", true]
+];
+const nav = () => `<nav class="s-nav" aria-label="Main (sample)"><span>Review</span><span>Services ${I.chev}</span><span>Work</span><span>Insights</span><span>About</span></nav>`;
+const logo = (mark) => `<a class="s-logo" href="#" onclick="return false"><img src="${mark}" alt="" width="24" height="26"><span>Discover<span class="dev">Dev</span></span></a>`;
+const terms = () => `<ul class="s-terms">${C.terms.map(t => `<li>${I.check}${t}</li>`).join("")}</ul>`;
+const proof = () => `<p class="s-proof">${I.star}<span>${C.proof}</span><a class="s-link" href="#" onclick="return false">${C.proofLink}</a></p>`;
+const snapshot = (chrome) => `<figure class="snap">${chrome ? `<div class="chrome"><i></i><i></i><i></i><span>launch-ready-review.md</span></div>` : ""}
+  <div class="snap-top"><b>Example findings</b><span>Sample report, not a client</span></div>
+  <ol>${FINDINGS.map(f => `<li class="${f[6] ? "extra" : ""}"><span class="badge ${f[0]}">${f[1]}</span><span class="f-title">${f[2]}</span><span class="f-area"><span>${f[3]}</span><span class="status"><span class="badge b-open" aria-hidden="true">Open</span><span class="badge ${f[4]} final">${f[5]}</span></span></span></li>`).join("")}</ol>
+  <div class="snap-foot"><b>Verdict: fix, don’t rebuild</b><span>Fixed quote with the report</span></div>
+  <figcaption>Example of findings from a Launch-Ready Review</figcaption></figure>`;
+const band = () => `<section class="s-band"><div class="blade" aria-hidden="true"></div><div class="s-in">
+  <h2>${C.bandH2}</h2><p>${C.bandBody}</p><a class="s-btn inverse" href="#" onclick="return false">${C.cta}</a>${terms()}
+  <a class="s-link" href="#" onclick="return false">${C.bandLink}</a></div></section>`;
+const cards = (icoWrap) => `<div class="s-cards">${C.cards.map(c => `<article class="s-card">${icoWrap ? `<span class="ico">${I[c[0]]}</span>` : I[c[0]]}<h3>${c[1]}</h3><p>${c[2]}</p></article>`).join("")}</div>`;
+
+const SAMPLES = {
+  a: () => `<div class="site dir-a">
+    <div class="s-in"><header class="s-head">${logo(MARK_BLUE)}${nav()}<a class="s-btn primary sm" href="#" onclick="return false">Book a Review</a><button class="s-menu" type="button" aria-label="Open menu (sample)">${I.menu}</button></header></div>
+    <section class="s-hero"><div class="s-in s-hero-grid">
+      <div class="s-copy"><p class="s-eyebrow">${C.eyebrow}</p><h1>${C.h1}</h1><p class="s-lead">${C.lead}</p>
+        <div class="s-cta-row"><a class="s-btn primary wide" href="#" onclick="return false">${C.cta}</a>${terms()}<a class="s-link" href="#" onclick="return false">${C.quiz}</a></div>${proof()}</div>
+      ${snapshot(false)}</div></section>
+    <section class="s-sec" style="background:var(--dd-white)"><div class="s-in"><h2>${C.probH2}</h2>${cards(false)}<p class="s-close">${C.close}</p></div></section>
+    ${band()}</div>`,
+  b: () => `<div class="site dir-b"><div class="b-hero"><div class="streak" aria-hidden="true"></div><div class="streak s2" aria-hidden="true"></div>
+      <span class="spark" style="top:18%;inset-inline-start:12%" aria-hidden="true">+</span><span class="spark" style="top:30%;inset-inline-end:30%" aria-hidden="true">+</span><span class="spark" style="top:70%;inset-inline-start:24%" aria-hidden="true">+</span>
+      <div class="s-in"><header class="s-head">${logo(MARK_WHITE)}${nav()}<a class="s-btn glass sm" href="#" onclick="return false" style="border-radius:12px">Book a Review</a><button class="s-menu" type="button" aria-label="Open menu (sample)" style="color:#fff">${I.menu}</button></header>
+      <div class="b-copy"><h1>${C.h1}</h1><p>${C.lead}</p>
+        <div class="b-btns"><a class="s-btn glass" href="#" onclick="return false">${C.cta}</a><a class="s-btn glass" href="#" onclick="return false">Take the launch check</a></div>${terms()}</div></div></div>
+    <section class="b-sec"><div class="s-in"><span class="cfg-pill glass">// Problems.config</span><h2>${C.probH2}</h2><p class="cmd">$ check --app your_app --mode launch_ready</p>
+      <div class="b-cards">${C.cards.map((c, i) => `<article class="win glass"><div class="win-bar"><i></i><i></i><i></i><span>${["data-access", "payments", "codebase"][i]}.ts</span></div><div class="win-body"><h3>${c[1]}</h3><p>${c[2]}</p><span class="fn">→ check_${["data", "payments", "code"][i]}()</span></div></article>`).join("")}</div></div></section>
+    ${band()}</div>`,
+  c: () => `<div class="site dir-c"><div class="c-hero">
+      <div class="s-in"><header class="s-head">${logo(MARK_WHITE)}${nav()}<a class="s-btn inverse sm" href="#" onclick="return false">Book a Review</a><button class="s-menu" type="button" aria-label="Open menu (sample)" style="color:#fff">${I.menu}</button></header></div>
+      <section class="s-hero"><div class="s-in s-hero-grid">
+        <div class="s-copy"><p class="s-eyebrow">${C.eyebrow}</p><h1>${C.h1}</h1><p class="s-lead">${C.lead}</p>
+          <div class="s-cta-row"><a class="s-btn inverse wide" href="#" onclick="return false">${C.cta}</a>${terms()}<a class="s-link" href="#" onclick="return false">${C.quiz}</a></div>${proof()}</div>
+        ${snapshot(true)}</div></section></div>
+    <div class="c-after"><section class="s-sec"><div class="s-in"><div class="c-head"><span class="eyebrow-pill"><b>//</b> what breaks at launch</span><h2>${C.probH2}</h2></div>${cards(true)}<p class="s-close">${C.close}</p></div></section></div>
+    ${band()}</div>`
+};
+
+document.querySelectorAll("[data-sample]").forEach(el => { el.innerHTML = SAMPLES[el.dataset.sample](); });
+
+// The one orchestrated moment: statuses flip from Open to their final state, once, when a panel is half visible.
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".dir-a .snap, .dir-c .snap").forEach(snap => {
+  if (reduce || !("IntersectionObserver" in window)) return;
+  snap.classList.add("playing");
+  const io = new IntersectionObserver(entries => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    io.disconnect();
+    snap.querySelectorAll(".status").forEach((s, i) => setTimeout(() => s.classList.add("done"), 400 + i * 480));
+  }, { threshold: 0.5 });
+  io.observe(snap);
+});
+</script>

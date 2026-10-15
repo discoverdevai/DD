@@ -1,0 +1,11 @@
+# old path -> expected final path (context/05 §7). Checked by smoke.sh on the live/preview domain.
+/staff /scale
+/home /
+/services /build
+/launch /build
+/contact /book
+/about-us /about
+/team /about
+/portfolio /work
+/case-studies /work
+/blog /insights

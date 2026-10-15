@@ -1,0 +1,20 @@
+# discoverdev.ai: all crawlers allowed. noindex pages are handled by meta robots, not Disallow.
+User-agent: *
+Allow: /
+
+# Search / answer bots (citations)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Training bots: allowed on purpose (brand recall)
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://discoverdev.ai/sitemap-index.xml
