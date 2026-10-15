@@ -31,11 +31,13 @@ const c = home.hero;
   .hero { position: relative; overflow: clip; padding-block-start: clamp(3rem, 1.5rem + 6vw, 7rem); text-align: center; isolation: isolate; }
   .hero__grid { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; background-position: center top; mask-image: radial-gradient(60% 55% at 50% 0%, #000 0%, transparent 100%); opacity: 0.7; }
   .hero__copy { display: grid; justify-items: center; gap: var(--space-6); }
-  .hero__pill { display: inline-flex; align-items: center; gap: var(--space-2); padding: 6px 14px 6px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); color: var(--color-text-muted); }
-  .hero__pill-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
+  .hero__pill { display: inline-flex; align-items: center; gap: var(--space-2); max-inline-size: 100%; padding: 6px 14px 6px 10px; border-radius: 1.25rem; text-wrap: balance; text-align: start; border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .hero__pill-dot { flex: none; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
   .hero__h1 { font-size: clamp(2.5rem, 1.35rem + 4.9vw, 5.25rem); font-weight: var(--weight-bold); line-height: 1.02; letter-spacing: -0.045em; max-inline-size: 15ch; color: var(--color-heading); text-wrap: balance; }
-  .hero__sub { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 44rem; text-wrap: pretty; }
+  .hero__sub { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 38rem; text-wrap: balance; }
   .hero__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-block-start: var(--space-2); }
+  /* Phones: equal full-width buttons instead of two ragged widths. */
+  @media (width < 30rem) { .hero__ctas { inline-size: 100%; flex-direction: column; } .hero__ctas > :global(*) { inline-size: 100%; } }
   .hero__copy :global(.hero__terms) { justify-content: center; }
   .hero__stage { position: relative; margin-block-start: clamp(3rem, 2rem + 4vw, 5.5rem); padding-block-end: var(--space-16); }
   .hero__light { position: absolute; inset-inline: 0; inset-block-start: 10%; block-size: 70%; z-index: -1; background: radial-gradient(45% 55% at 50% 60%, color-mix(in oklab, var(--blue-700) 55%, transparent) 0%, color-mix(in oklab, var(--blue-800) 25%, transparent) 45%, transparent 75%); filter: blur(10px); }
