@@ -79,12 +79,13 @@ export function initAnalytics() {
     const cta = a.closest<HTMLElement>('[data-cta-id]');
     if (cta?.dataset.ctaId) {
       try { sessionStorage.setItem('entry_cta', cta.dataset.ctaId); } catch { /* ignore */ }
-      track('cta_clicked', { cta_id: cta.dataset.ctaId, cta_tier: cta.dataset.ctaTier, cta_position: cta.dataset.ctaPosition, cta_target: cta.dataset.ctaTarget, destination: new URL(a.href, location.href).pathname });
+      // sendBeacon: the click usually navigates away before a normal request would finish.
+      track('cta_clicked', { cta_id: cta.dataset.ctaId, cta_tier: cta.dataset.ctaTier, cta_position: cta.dataset.ctaPosition, cta_target: cta.dataset.ctaTarget, destination: new URL(a.href, location.href).pathname }, true);
       decorateBookLink(a, cta.dataset.ctaId);
     }
     if (a.protocol === 'mailto:' || (a.host && a.host !== location.host)) {
       const ctx = a.closest<HTMLElement>('[data-link-context]')?.dataset.linkContext ?? a.dataset.linkContext ?? 'other';
-      track('outbound_clicked', a.protocol === 'mailto:' ? { link_host: 'mailto', link_context: ctx } : { link_host: a.host, link_url: a.origin + a.pathname, link_context: ctx });
+      track('outbound_clicked', a.protocol === 'mailto:' ? { link_host: 'mailto', link_context: ctx } : { link_host: a.host, link_url: a.origin + a.pathname, link_context: ctx }, true);
     }
   }, { capture: true });
   watchArticleRead();

@@ -17,7 +17,8 @@
     "qa": "npm run check && npm run lint && npm run test:unit && npm run build && npm run qa:static && npm run test:gates",
     "test:unit": "node --test \"tests/unit/*.test.ts\"",
     "test:gates": "node scripts/cta-ids.mjs && node scripts/inbound-links.mjs && node scripts/jsonld-check.mjs && node scripts/consent-gate.mjs && node scripts/redirects-test.mjs --static",
-    "test:redirects": "node scripts/redirects-test.mjs --base http://localhost:8787"
+    "test:redirects": "node scripts/redirects-test.mjs --base http://localhost:8787",
+    "qa:events": "node qa/events.mjs http://127.0.0.1:4400"
   },
   "dependencies": {
     "@astrojs/mdx": "8.0.3",
