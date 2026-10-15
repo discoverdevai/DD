@@ -7,6 +7,8 @@ Mohamed says "test M#" to Claude in the DiscoverDev project. Claude then:
 1. **Build** in this folder: `npm ci && npm run build` (on Mohamed's computer, via the linked folder).
 2. **Static checks:** `node qa/check-dist.mjs dist --report qa/reports/M#-static.md`
    - Covers system files, expected routes (`routes.txt`), title/meta/H1/canonical/OG, JSON-LD (parses, no AggregateRating), shipped placeholders, voice (exclamation marks, banned words), broken internal links, images (alt, size), unexpected third-party scripts, form labels, duplicates.
+2b. **CI gates (07 §15):** `npm run test:gates` runs `scripts/cta-ids.mjs`, `inbound-links.mjs` (≥ 3 inbound `<main>` links per indexable page), `jsonld-check.mjs`, `consent-gate.mjs` (no unconsented client or reviewer names) and `redirects-test.mjs --static`. `npm run lint` also runs `i18n-gate.mjs`. All are part of `npm run qa`.
+   - Redirects, 404 and headers on the Workers runtime: `npx wrangler dev`, then `npm run test:redirects` (runs in CI on Linux; workerd crashes on this Windows machine until the Visual C++ Redistributable is updated).
 3. **Browser checks:** `node qa/serve.mjs dist 4321` (clean URLs, real 404), then run `node qa/browser-audit.mjs http://localhost:4321 --report qa/reports/M#-browser.md`
    - axe WCAG 2.2 AA on every route, mobile and desktop.
    - Horizontal overflow and console/CSP errors.

@@ -8,6 +8,8 @@ permissions:
 jobs:
   qa:
     runs-on: ubuntu-latest
+    env:
+      WRANGLER_SEND_METRICS: 'false'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,9 +18,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - run: npm run lint
+      - run: npm run lint            # css-logical-lint + i18n-gate (07 §15)
+      - run: npm run test:unit
       - run: npm run build
-      # Static QA (qa/check-dist.mjs). Route-missing blockers are expected until M4 ships every page;
-      # remove continue-on-error once all routes in qa/routes.txt are built.
-      - run: npm run qa:static
-        continue-on-error: true
+      - run: npm run qa:static       # qa/check-dist.mjs: every route built, so blockers now fail the job
+      - run: npm run test:gates      # cta-ids, inbound-links, jsonld-check, consent-gate, redirect rules (07 §15)
+      # Redirects, 404 handling and security headers on the real Workers runtime (_redirects, _headers, not_found_handling).
+      - name: Redirects and headers on wrangler dev
+        run: |
+          npx wrangler dev --port 8787 --ip 127.0.0.1 > wrangler.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf -o /dev/null http://127.0.0.1:8787/ && break; sleep 1; done
+          npm run test:redirects || (cat wrangler.log; exit 1)
