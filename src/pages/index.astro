@@ -22,7 +22,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd}>
   <HeroV2 />
-  <ProofBand items={c.proofStrip.items} />
+  <ProofBand title={c.proofStrip.title} items={c.proofStrip.items} />
   <Statement id="agile-v2" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim}>
     <AgileSplit body={c.agile.body} ai={c.agile.ai} human={c.agile.human} line={c.agile.line} />
   </Statement>

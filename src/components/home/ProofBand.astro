@@ -5,11 +5,11 @@
 import Icon from '../ui/Icon.astro';
 import { t } from '../../i18n/t';
 import { CLUTCH_URL } from '../../lib/seo';
-interface Props { items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[] }
-const { items } = Astro.props;
+interface Props { title: string; items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[] }
+const { title, items } = Astro.props;
 ---
 <section class="pband" data-surface="ink" aria-labelledby="pband-title">
-  <h2 id="pband-title" class="sr-only">{t('proof.rating')}</h2>
+  <h2 id="pband-title" class="sr-only">{title}</h2>
   <div class="container pband__inner">
     <p class="pband__rating">
       <span class="pband__score">5.0</span>
