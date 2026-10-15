@@ -20,7 +20,7 @@ const liveOther = other.filter((o) => isLive(o.key));
           <li class:list={['en__card', `en__card--${i}`]} data-spotlight>
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span><span class="en__n">0{i + 1}</span></span>
             <p class="en__who">{c.who}</p>
-            <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}<span class="sr-only">: {c.linkLabel}</span></a></h3>
+            <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}</a></h3>
             <ul role="list" class="en__meta">{c.meta.map((m) => <li>{m}</li>)}</ul>
             <p class="en__body">{c.body}</p>
             <p class="en__more" aria-hidden="true">{c.linkLabel}<span class="en__arrow icon--dir">→</span></p>
@@ -34,7 +34,7 @@ const liveOther = other.filter((o) => isLive(o.key));
             {liveOther.map((o) => (
               <li class="en__row">
                 <p class="en__row-who">{o.who}</p>
-                <h4 class="en__row-h"><a href={ROUTES[o.key].path} data-cta-id={`home_card_${o.key === 'review' ? 'review' : 'partners'}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={o.key === 'review' ? 'review' : 'partners'}>{o.title}<span class="sr-only">: {o.linkLabel}</span></a></h4>
+                <h4 class="en__row-h"><a href={ROUTES[o.key].path} data-cta-id={`home_card_${o.key === 'review' ? 'review' : 'partners'}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={o.key === 'review' ? 'review' : 'partners'}>{o.title}</a></h4>
                 <p class="en__row-body">{o.body}</p>
                 <p class="en__row-more" aria-hidden="true">{o.linkLabel}<span class="en__arrow icon--dir">→</span></p>
               </li>

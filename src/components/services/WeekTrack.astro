@@ -69,9 +69,10 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
   .wt__rowlabel { grid-column: 1; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--neutral-950); }
   .wt__rowlabel--demo { font-family: var(--ff-body); font-weight: var(--weight-medium); color: var(--color-text-muted); }
   .wt__bar { position: relative; block-size: 2rem; }
-  .wt__bar-fill { position: absolute; inset: 0; border-radius: var(--radius-sm); background: var(--neutral-0); border: 2px solid var(--blue-800); transform-origin: 0 50%; }
+  /* Discover/Plan bars are solid navy (outlines read as "still loading", CRO review); Build is the blue gradient. */
+  .wt__bar-fill { position: absolute; inset: 0; border-radius: var(--radius-sm); background: var(--blue-800); border: 2px solid var(--blue-800); transform-origin: 0 50%; }
   :dir(rtl) .wt__bar-fill { transform-origin: 100% 50%; }
-  .wt__bar--main .wt__bar-fill { background: linear-gradient(90deg, var(--blue-700), #2C59C1); border-color: transparent; }
+  .wt__bar--main .wt__bar-fill { background: linear-gradient(90deg, var(--blue-700), var(--blue-600)); border-color: transparent; }
   .wt__bar--main .wt__bar-fill::after { content: ''; position: absolute; inset-block: 25%; inset-inline: 10px; background: repeating-linear-gradient(90deg, rgb(254 254 254 / 0.55) 0 2px, transparent 2px calc(100% / 7)); border-radius: 2px; opacity: 0.6; }
   .wt__bar--open .wt__bar-fill { border-color: var(--green-700); background: var(--green-50); border-inline-end-style: dashed; }
   .wt__demo { display: grid; place-items: center; }

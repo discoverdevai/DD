@@ -1,14 +1,15 @@
 ---
 // /partners hero visual (03 §8.1): two columns, "White-label" / "Staff augmentation", as real HTML text (no text in images).
+// Each card links to the comparison table (#models), so it no longer looks clickable without being clickable (Jakob).
 interface Model { label: string; text: string }
-interface Props { models: readonly Model[] }
-const { models } = Astro.props;
+interface Props { models: readonly Model[]; href?: string }
+const { models, href = '#models' } = Astro.props;
 ---
 <ul role="list" class="pmodels">
   {models.map((m, i) => (
     <li class="pmodels__item">
       <span class="pmodels__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-      <p class="pmodels__label">{m.label}</p>
+      <p class="pmodels__label"><a class="pmodels__link" href={href}>{m.label}<span class="pmodels__arrow icon--dir" aria-hidden="true">↓</span></a></p>
       <p class="pmodels__text">{m.text}</p>
     </li>
   ))}
@@ -21,4 +22,12 @@ const { models } = Astro.props;
   .pmodels__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .pmodels__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: clamp(1.125rem, 0.9rem + 0.6vw, 1.5rem); color: var(--color-heading); line-height: var(--leading-snug); text-wrap: balance; }
   .pmodels__text { color: var(--color-text-muted); }
+  .pmodels__item { position: relative; transition: border-color var(--dur-fast) var(--ease-standard), translate var(--dur-fast) var(--ease-standard); }
+  .pmodels__link { color: inherit; text-decoration: none; }
+  .pmodels__link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } /* whole card is the target */
+  .pmodels__link:focus-visible { outline: none; }
+  .pmodels__item:has(.pmodels__link:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+  .pmodels__arrow { margin-inline-start: var(--space-2); color: var(--color-machine-text); font-size: 0.8em; }
+  @media (hover: hover) { .pmodels__item:hover { border-color: var(--color-machine-mark); } }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) { .pmodels__item:hover { translate: 0 -2px; } }
 </style>

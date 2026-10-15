@@ -9,6 +9,7 @@ import Toc from '../components/insights/Toc.astro';
 import Prose from '../components/insights/Prose.astro';
 import EndCta from '../components/insights/EndCta.astro';
 import ArticleCard from '../components/insights/ArticleCard.astro';
+import CtaLink from '../components/ui/CtaLink.astro';
 import { insights as c, fill } from '../content/copy/en/insights';
 import { href, isLive } from '../data/routes';
 import { canonical, graph, ORG_ID, SITE_URL } from '../lib/seo';
@@ -84,10 +85,10 @@ const jsonLd = graph(
   },
 );
 ---
-<BaseLayout title={d.title} description={d.description} pageType="article" ogType="article" ogImage={ogPath(path)} jsonLd={jsonLd}>
+<BaseLayout title={d.title} description={d.description} pageType="article" ogType="article" ogImage={ogPath(path)} jsonLd={jsonLd} stickyKind={d.relatedService === 'review' ? 'review' : 'clarity'}>
   <link slot="head" rel="alternate" type="application/rss+xml" title="DiscoverDev Insights" href="/insights/rss.xml" />
   <article data-article-slug={slug} data-pillar={d.pillar} data-role={d.role} aria-labelledby="article-title">
-    <header class="ahead" data-surface="ink">
+    <header class="ahead" data-surface="ink" data-sticky-after>
       <div class="container--prose ahead__inner">
         <Breadcrumbs items={crumbs} />
         <h1 id="article-title" class="h1">{d.h1}</h1>
@@ -105,6 +106,10 @@ const jsonLd = graph(
       <div class="container--prose abody__inner">
         <KeyTakeaways items={d.takeaways} />
         {showToc && <Toc headings={headings} />}
+        {/* In-body launch check (03 §15.8, 04 §5 J1): question as text, the action as the link. */}
+        {isLive('launchCheck') && (() => { const [q, a] = c.article.inlineCta.split(/(?<=\?) /); return (
+          <p class="inline-check">{q} <CtaLink href={href('launchCheck')} ctaId={`${ctaPrefix}_inline_launch_check`} tier="low_commitment" position="inline" target="launch_check" variant="text">{a}</CtaLink></p>
+        ); })()}
         <div class="abody__prose">
           <Prose><slot /></Prose>
           <div class="sentinel" data-article-sentinel aria-hidden="true"></div>
@@ -140,6 +145,7 @@ const jsonLd = graph(
   .abody__inner > :global(*), .ahead__inner > :global(*) { min-inline-size: 0; } /* minmax(0, 1fr) track + this: grid items default to min-content: a wide table or code block would push the page wider than the phone */
   /* The sentinel sits at 60% of the body's height (07 §9.3). Takes no space and is never announced. */
   .abody__prose { position: relative; min-inline-size: 0; }
+  .inline-check { padding: var(--space-4) var(--space-5); border-inline-start: 4px solid var(--blue-700); background: var(--blue-50); border-radius: var(--radius-sm); font-weight: var(--weight-medium); }
   .sentinel { position: absolute; inset-block-start: 60%; inset-inline-start: 0; inline-size: 1px; block-size: 1px; pointer-events: none; }
   .next { border-block-start: 1px solid var(--color-border-subtle); }
   .next__title { margin-block-end: var(--stack-lg); }

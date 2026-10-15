@@ -2,9 +2,19 @@
 import { defineConfig, fontProviders, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import { readdirSync, readFileSync } from 'node:fs';
 
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
 const NOT_IN_SITEMAP = /\/(404|book\/confirmed)$|\/og\//;
+
+// Article lastmod for the sitemap (05 §6, 07 §7.1): each insight's `updatedAt` from its frontmatter, keyed by URL path.
+// Only articles get lastmod; it must stay accurate (Google ignores lastmod it can't trust).
+const INSIGHTS_DIR = new URL('./src/content/insights/en/', import.meta.url);
+const LASTMOD = Object.fromEntries(readdirSync(INSIGHTS_DIR).filter((f) => /\.mdx?$/.test(f)).map((f) => {
+  const fm = readFileSync(new URL(f, INSIGHTS_DIR), 'utf8').split(/^---$/m)[1] ?? '';
+  const date = fm.match(/^updatedAt:\s*(\S+)/m)?.[1] ?? fm.match(/^publishedAt:\s*(\S+)/m)?.[1];
+  return [`/insights/${f.replace(/\.mdx?$/, '')}`, date];
+}).filter(([, d]) => d));
 
 export default defineConfig({
   site: 'https://discoverdev.ai',
@@ -19,7 +29,13 @@ export default defineConfig({
   i18n: { locales: ['en'], defaultLocale: 'en', routing: { prefixDefaultLocale: false } },
   integrations: [
     mdx(),
-    sitemap({ filter: (page) => !NOT_IN_SITEMAP.test(new URL(page).pathname.replace(/\/$/, '')) }),
+    sitemap({
+      filter: (page) => !NOT_IN_SITEMAP.test(new URL(page).pathname.replace(/\/$/, '')),
+      serialize: (item) => {
+        const d = LASTMOD[new URL(item.url).pathname.replace(/\/$/, '')];
+        return d ? { ...item, lastmod: new Date(d).toISOString() } : item;
+      },
+    }),
   ],
   fonts: [
     // Heading: the LCP element on most pages, so it is the one preloaded font (06 §4).

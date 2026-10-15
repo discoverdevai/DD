@@ -11,5 +11,6 @@ export async function GET(context: APIContext) {
     site: context.site ?? 'https://discoverdev.ai',
     items: items.map((e) => ({ title: e.data.h1, description: e.data.description, pubDate: e.data.publishedAt, link: insightPath(e) })),
     customData: '<language>en</language>',
+    trailingSlash: false, // item links match the canonicals (trailingSlash: 'never')
   });
 }

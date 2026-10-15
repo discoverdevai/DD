@@ -113,7 +113,7 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
 // ---- /book type preselection + fallback without Cal configured
 {
   const p = await desktop.newPage();
-  for (const [q, want, partnerTab] of [['?type=review', 'review', false], ['?type=clarity', 'clarity', false], ['?type=partner', 'partner', true], ['?type=bogus', 'review', false], ['', 'review', false]]) {
+  for (const [q, want, partnerTab] of [['?type=review', 'review', false], ['?type=clarity', 'clarity', false], ['?type=partner', 'partner', true], ['?type=bogus', 'clarity', false], ['', 'clarity', false]]) {
     await p.goto(`${base}/book${q}`, { waitUntil: 'networkidle' });
     const cur = await p.locator('[data-opt][aria-current="true"]').getAttribute('data-opt');
     const tabShown = await p.locator('[data-opt="partner"]').isVisible();

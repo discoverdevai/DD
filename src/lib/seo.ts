@@ -1,4 +1,5 @@
 // SEO + JSON-LD builders (05 §4). One @graph per page; text must match what the page shows.
+import { ROUTES, type RouteKey } from '../data/routes';
 export const SITE_URL = 'https://discoverdev.ai';
 export const ORG_ID = `${SITE_URL}/#org`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -32,13 +33,22 @@ export const orgFull = {
   knowsAbout: ['MVP development', 'AI app security review', 'Production readiness', 'LLM cost optimization', 'Product discovery', 'Dedicated development teams'],
   knowsLanguage: ['en', 'ar'],
   sameAs: [CLUTCH_URL],
+  // Ties each live service page's Service node (`<page>#service`) to the company for knowledge graphs.
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services',
+    itemListElement: (['validate', 'build', 'scale', 'review', 'partners'] as RouteKey[])
+      .filter((k) => ROUTES[k].live)
+      .map((k) => ({ '@type': 'Offer', itemOffered: { '@id': `${SITE_URL}${ROUTES[k].path}#service` } })),
+  },
 };
 
 export const website = { '@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: 'DiscoverDev', inLanguage: 'en', publisher: { '@id': ORG_ID } };
 
 export function webPage(path: string, name: string, description: string, type = 'WebPage', extra: Record<string, unknown> = {}) {
   const url = canonical(path);
-  return { '@type': type, '@id': `${url}#webpage`, url, name, description, isPartOf: { '@id': WEBSITE_ID }, inLanguage: 'en', ...extra };
+  // Home uses `/#webpage` (05 §4.1); canonical('/') has no trailing slash.
+  return { '@type': type, '@id': path === '/' ? `${SITE_URL}/#webpage` : `${url}#webpage`, url, name, description, isPartOf: { '@id': WEBSITE_ID }, inLanguage: 'en', ...extra };
 }
 
 export const graph = (...nodes: object[]) => ({ '@context': 'https://schema.org', '@graph': nodes });

@@ -30,7 +30,8 @@ const { kind = 'clarity' } = Astro.props;
 <script>
   // CSSOM writes (style.setProperty) are not blocked by the meta CSP; only style attributes in markup are.
   const bar = document.querySelector<HTMLElement>('[data-bottom-bar]');
-  const heroCta = document.querySelector('[data-hero-cta]');
+  // Shows once the hero CTA (or, on articles, the article header: data-sticky-after) has scrolled out of view.
+  const heroCta = document.querySelector('[data-hero-cta], [data-sticky-after]');
   const band = document.querySelector('[data-cta-band]');
   if (bar && heroCta) {
     const mq = matchMedia('(width < 64rem)');

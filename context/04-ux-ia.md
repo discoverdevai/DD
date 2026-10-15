@@ -352,8 +352,8 @@ Strategy v2 (2026-10-16): "Book a free clarity call" is the primary on Home too 
 ### 7.1 Event types (Cal.com)
 | `?type=` | Cal slug | Length | Purpose | Default tab |
 |---|---|---|---|---|
-| `review` (default) | `review-intro` | 30 min, free (D-04) | Scoping call for the paid Review | Yes |
-| `clarity` | `clarity-call` | 30 min, free | General clarity call | — |
+| `clarity` (default) | `clarity-call` | 30 min, free | General clarity call (strategy v2 primary CTA; default since Oct 16) | Yes |
+| `review` | `review-intro` | 30 min, free (D-04) | Scoping call for the paid Review | — |
 | `partner` | `partner-call` | 30 min, free | Software-house intro | Only via param |
 | — | `qa-test` | 15 min, hidden | QA only, never linked | — |
 
