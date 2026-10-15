@@ -42,15 +42,24 @@ const { title, lead, groups } = Astro.props;
   .cap__lead { color: var(--color-text-muted); font-size: var(--text-lg); }
   .cap__grid { display: grid; gap: 1px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-hairline); background: var(--color-hairline); }
   @media (width >= 48rem) { .cap__grid { grid-template-columns: 1fr 1fr; } }
-  .cap__panel { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-8); background: var(--color-bg); }
-  .cap__top { display: flex; align-items: start; justify-content: space-between; margin-block-end: var(--space-4); }
+  .cap__panel { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: clamp(var(--space-6), 1rem + 2vw, var(--space-8)); background: var(--color-bg); }
+  .cap__top { display: flex; align-items: start; justify-content: space-between; margin-block-end: var(--space-2); }
+  @media (width >= 48rem) { .cap__top { margin-block-end: var(--space-4); } }
   .cap__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
-  .cap__glyph { fill: none; stroke: color-mix(in oklab, var(--blue-200) 70%, transparent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .cap__glyph { inline-size: 2.5rem; block-size: 2.5rem; fill: none; stroke: color-mix(in oklab, var(--blue-200) 70%, transparent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .cap__glyph .cap__accent { stroke: var(--color-machine-mark); }
+  @media (width >= 48rem) { .cap__glyph { inline-size: 3rem; block-size: 3rem; } }
   .cap__h3 { font-size: var(--text-2xl); font-weight: var(--weight-bold); letter-spacing: -0.03em; color: var(--color-heading); }
   .cap__tag { color: var(--color-text-muted); }
-  .cap__list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-3); }
-  .cap__list li { font-size: var(--text-sm); padding: 6px 12px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); background: color-mix(in oklab, var(--blue-300) 5%, transparent); color: var(--color-text); }
+  /* Phones: a ruled list (long names wrapped into two-line pills). From 48rem: pill tags. */
+  .cap__list { display: grid; margin-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); }
+  .cap__list li { display: flex; align-items: baseline; gap: var(--space-3); padding-block: var(--space-3); border-block-end: 1px solid var(--color-hairline); font-size: var(--text-sm); color: var(--color-text); }
+  .cap__list li::before { content: ''; flex: none; inline-size: 6px; block-size: 6px; border-radius: 1px; background: var(--color-machine-mark); translate: 0 -2px; }
+  @media (width >= 48rem) {
+    .cap__list { display: flex; flex-wrap: wrap; gap: var(--space-2); border: 0; }
+    .cap__list li { padding: 6px 12px; border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); border-radius: var(--radius-pill); background: color-mix(in oklab, var(--blue-300) 5%, transparent); }
+    .cap__list li::before { display: none; }
+  }
   @media (prefers-reduced-motion: no-preference) {
     @supports (animation-timeline: view()) {
       .cap__glyph * { stroke-dasharray: 160; stroke-dashoffset: 160; animation: cap-draw linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
