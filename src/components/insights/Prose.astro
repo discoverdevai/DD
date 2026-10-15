@@ -47,7 +47,7 @@ const body = html.replace(/<h[2-6][^>]*\sid="([^"]+)"[^>]*>|<table[\s>][\s\S]*?<
 
   /* Tables (06 §9.19) */
   .prose :global(.table-scroll) { overflow-x: auto; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); }
-  .prose :global(table) { inline-size: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5; }
+  .prose :global(table) { inline-size: 100%; min-inline-size: 36rem; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5; } /* readable columns; the wrapper scrolls on phones */
   .prose :global(:is(th, td)) { padding: var(--space-3) var(--space-4); text-align: start; vertical-align: top; border-block-end: 1px solid var(--color-border-subtle); }
   .prose :global(tr:last-child > td) { border-block-end: 0; }
   .prose :global(thead th) { background: var(--color-surface-sunken); font-weight: var(--weight-semibold); color: var(--color-heading); }

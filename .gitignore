@@ -11,3 +11,6 @@ qa/reports/*.md
 # Local review screenshots (regenerate with the QA scripts; not versioned)
 docs/screens/
 docs/review/**/*.png
+
+# Parallel local build for review while agents read dist/
+dist-wip/
