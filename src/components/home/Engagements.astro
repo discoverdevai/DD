@@ -55,7 +55,9 @@ const liveOther = other.filter((o) => isLive(o.key));
 
   .en__grid { position: relative; display: grid; gap: var(--space-4); }
   @media (width >= 56rem) { .en__grid { grid-template-columns: repeat(3, 1fr); } }
-  .en__card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); min-block-size: 22rem; padding: var(--space-8) var(--space-6) var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
+  .en__card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: clamp(var(--space-6), 1rem + 2vw, var(--space-8)) var(--space-6) var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
+  /* Equal tall cards only when they sit side by side; stacked cards size to content (no empty bands at 768px). */
+  @media (width >= 56rem) { .en__card { min-block-size: 22rem; } }
   .en__card--1 { background: linear-gradient(180deg, color-mix(in oklab, var(--blue-800) 55%, var(--color-surface)), color-mix(in oklab, var(--color-surface) 40%, transparent)); border-color: color-mix(in oklab, var(--blue-300) 30%, transparent); }
   .en__stage { display: flex; align-items: center; gap: var(--space-3); margin-block-end: var(--space-4); }
   .en__node { inline-size: 12px; block-size: 12px; border-radius: 50%; border: 2px solid var(--blue-400); background: var(--color-bg); position: relative; }
@@ -70,19 +72,20 @@ const liveOther = other.filter((o) => isLive(o.key));
   .en__card:has(a:focus-visible), .en__row:has(a:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
   .en__meta { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .en__meta li { font-family: var(--ff-mono); font-size: var(--text-xs); padding: 3px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 28%, transparent); color: var(--color-text); }
-  .en__body { color: var(--color-text-muted); }
+  .en__body { color: var(--color-text-muted); max-inline-size: 52ch; }
   .en__more, .en__row-more { margin-block-start: auto; padding-block-start: var(--space-4); display: inline-flex; gap: var(--space-2); color: var(--color-link); font-weight: var(--weight-medium); }
 
   .en__other { margin-block-start: var(--space-12); display: grid; gap: var(--space-4); }
   .en__other-title { font-family: var(--ff-mono); font-size: var(--text-sm); font-weight: var(--weight-regular); color: var(--color-text-muted); }
+  .en__other-title::before { content: '// ' / ''; color: var(--color-machine-text); } /* decorative: empty alt text keeps it out of screen readers */
   .en__rows { display: grid; gap: var(--space-3); }
   @media (width >= 48rem) { .en__rows { grid-template-columns: 1fr 1fr; } }
-  .en__row { position: relative; display: grid; align-content: start; gap: var(--space-1) var(--space-6); padding: var(--space-5) var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); transition: border-color var(--dur-color), background-color var(--dur-color); }
-  @media (width >= 80rem) { .en__row { grid-template-columns: minmax(0, 1fr) auto; } .en__row-who, .en__row-h, .en__row-body { grid-column: 1; } .en__row-more { grid-column: 2; grid-row: 1 / span 3; align-self: center; margin: 0; padding: 0; } }
+  .en__row { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; align-content: stretch; gap: var(--space-1) var(--space-6); padding: var(--space-5) var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); transition: border-color var(--dur-color), background-color var(--dur-color); }
+  @media (width >= 80rem) { .en__row { grid-template-columns: minmax(0, 1fr) auto; } .en__row-who, .en__row-h, .en__row-body { grid-column: 1; } .en__row-more { grid-column: 2; grid-row: 1 / span 4; align-self: center; margin: 0; padding: 0; } .en__row { grid-template-rows: auto auto auto; } }
   .en__row-who { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .en__row-h { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
   .en__row-body { color: var(--color-text-muted); font-size: var(--text-sm); }
-  .en__row-more { padding-block-start: var(--space-2); }
+  .en__row-more { align-self: end; padding-block-start: var(--space-3); } /* links share a baseline across the two rows */
   @media (hover: hover) { .en__card:hover, .en__row:hover { border-color: color-mix(in oklab, var(--blue-300) 45%, transparent); } .en__row:hover { background: color-mix(in oklab, var(--blue-300) 5%, transparent); } }
   @media (prefers-reduced-motion: no-preference) and (hover: hover) { .en__arrow { transition: translate var(--dur-base) var(--ease-standard); } .en__card:hover .en__arrow, .en__row:hover .en__arrow { translate: 4px 0; } :dir(rtl) .en__card:hover .en__arrow, :dir(rtl) .en__row:hover .en__arrow { translate: -4px 0; } }
 </style>
