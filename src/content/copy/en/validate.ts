@@ -103,7 +103,7 @@ export const validate = {
       { id: 'dont-build', q: 'What if the answer is “don’t build it”?', a: 'Then Validate did its job. Sometimes the right decision is to change direction or stop. It’s much cheaper to learn that in 1–2 weeks than after months of building.' },
       { id: 'after', q: 'Do I have to build with you afterwards?', a: 'No. You own the scope, prototype and estimate. If you do build with us, the full Validate fee credits toward your Build.' },
       // [PRICE: P2] → §0.7 model only (tag removed).
-      { id: 'cost', q: 'How much does Validate cost?', a: 'A fixed fee, agreed before we start.' },
+      { id: 'cost', q: 'How much does Validate cost?', a: 'A fixed fee, agreed before we start, so you know the full cost before you commit. It depends on how much research your market needs and how big the first version is. You get the number on a free 30-minute clarity call, and if you build with us, the full fee credits toward your Build.' },
     ],
   },
   band: {

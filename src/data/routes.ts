@@ -11,6 +11,10 @@ export const ROUTES = {
   workEdulens: { path: '/work/edtech-ai-agents', live: true }, // anonymized EduLens case (D-06, 03 §0.7)
   insights: { path: '/insights', live: true },
   pillar: { path: '/insights/ai-app-to-production', live: true },
+  // Cluster guides linked from service pages (05 §3 rule 5, 03 §0.8 item 3).
+  guideSecurity: { path: '/insights/ai-built-app-security-holes', live: true },
+  guideLovable: { path: '/insights/lovable-launch-checklist', live: true },
+  guideFixRebuild: { path: '/insights/fix-or-rebuild-ai-app', live: true },
   about: { path: '/about', live: true },
   launchCheck: { path: '/launch-check', live: true },
   book: { path: '/book', live: true },

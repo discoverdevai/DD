@@ -47,6 +47,7 @@ export const about = {
     // Rating line + Clutch link come from the i18n layer (proof.rating, proof.clutch).
     // Retention line → §0.7 replace: "Four clients expanded scope with us."
     items: ['Clients on 4 continents', 'AI in production across multiple clients', 'Four clients expanded scope with us.'],
+    link: { label: 'See the products we helped ship', to: 'work' as const }, // 03 §0.8 item 3
   },
   how: {
     title: 'How we work',

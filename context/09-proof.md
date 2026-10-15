@@ -23,6 +23,7 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 - Build — "I'm ready to build." 8–12 weeks (vs typical 12–16), fixed price. Production-ready product, real users, live deployment; design, build, QA, deploy. Agile v2.
 - Scale — "It's working, grow it." Ongoing monthly retainer. Dedicated squad (devs + QA + PM), roadmap & sprint ownership. Client keeps control.
 - Front door (Oct 2026): Launch-Ready Review — ~5 working days, fixed fee quoted per client, credits toward fix or Build, guarantee "no useful findings, no charge", booked on Cal.com.
+- Review price (decided by Mohamed, Oct 16 2026, D-01): **from $1,490 USD**; the exact fee depends on app size and is quoted on the free 30-minute scoping call. Market context (vendor asking prices, Oct 2026): entry audits $149–199, fixed-fee audits ~$800–1,500 (median ~$1,000), boutique reviews $1,500–10,000.
 - Engagement models (internal; can be named, no prices): fixed-price, T&M, dedicated team (min 6 months), POC package 2–4 wks, MVP package 6–12 wks, white-label (NDA + IP), staff augmentation (min 3 months).
 - Standard CTA (older): "Book a free 30-minute consultation. Free, 30 minutes, no pitch." (Now: clarity call.)
 

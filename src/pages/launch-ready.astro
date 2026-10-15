@@ -22,7 +22,7 @@ const service = {
   '@type': 'Service', '@id': `${url}#service`, name: 'Launch-Ready Review', serviceType: 'Production-readiness and code review for AI-built apps',
   description: c.seo.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
   audience: { '@type': 'BusinessAudience', audienceType: 'Founders with an AI-built or freelancer-built MVP' },
-  offers: { '@type': 'Offer', url: `${url}#pricing`, description: c.price.offerTerms },
+  offers: { '@type': 'Offer', url: `${url}#pricing`, description: c.price.offerTerms, priceCurrency: 'USD', priceSpecification: { '@type': 'PriceSpecification', minPrice: c.price.minPrice, priceCurrency: 'USD' } },
 };
 const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
 const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);

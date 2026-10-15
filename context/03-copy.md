@@ -37,7 +37,7 @@ DiscoverDev is sold as a product and engineering company that builds with Agile 
 
 | Tier | Button label | Microcopy under button | Destination |
 |---|---|---|---|
-| Primary | Book a Launch-Ready Review | About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge | /book?type=review |
+| Primary | Book a Launch-Ready Review | About 5 working days · From $1,490, credited to your fix · No useful findings, no charge | /book?type=review |
 | Primary (short: nav, mobile bar) | Book a Review | (none in nav) · mobile bar: No useful findings, no charge | /book?type=review |
 | Secondary | Book a free clarity call | 30 minutes · No pitch · Leave with a next step | /book?type=clarity |
 | Partner | Book a partner call | 30 minutes · NDA on request [VERIFY: V5] | /book?type=partner |
@@ -134,7 +134,7 @@ How the build treats each tag in this deck. "Keep" = render the tagged text with
 | V7 reply time · quote turnaround | Omit both promises | D-10, D-40 |
 | V8 call slots in US and Gulf hours | Keep | D-42 availability (Mon–Thu 12:00–20:00, Sun 12:00–17:00 Cairo) |
 | V9 entity name · US contract FAQ | Omit (footer © shows "DiscoverDev" only; the "Do you sign a contract with US clients?" FAQ is not built) | D-08 |
-| V10 launch in under 2 weeks | Replace FAQ answer with: "Tell us your date. We review critical paths first." | D-20 |
+| V10 launch in under 2 weeks | Replace FAQ answer with the Phase 4 answer in §3 FAQ ("Tell us your launch date on the scoping call. We check the parts that matter most for launch first…"). No promise to send findings early. | D-20 |
 | V11 Supabase, Firebase experience | Omit "Supabase" and "Firebase" from stack claims (FAQ lists). Keep Supabase RLS as an example of *what we check* (§3.4 area 1) and Stripe (Stripe Connect proven, `09` Rushr) | `09` has no Supabase/Firebase project |
 | V12 EduLens | Anonymize as "EdTech AI platform, Egypt": metric and the five mechanisms kept (all in `09`); name, quote, timeline, team and "What's next" omitted; no baseline line | D-05/D-06 |
 | V13 partner terms | Keep: white-label "your brand only" (deck: "our name never needs to appear"), "Per project", staff aug 3 months, NDA and IP to you. Omit: replacement terms, client-contact and non-solicit lines, start time | Deck trust slide; `09` engagement models |
@@ -147,7 +147,7 @@ How the build treats each tag in this deck. "Keep" = render the tagged text with
 | V20 payment terms | Omit | D-02 |
 | V21 change pricing during Build | Omit that sentence; keep "We agree a clear scope before we start, then price that scope." | Not in `09` |
 | V22 squad start, resize notice, month-to-month | Omit those FAQs and clauses | Not in `09` |
-| P1 Review price | Replace with: "Fixed fee, quoted after a free 30-minute call." | D-01 |
+| P1 Review price | **Resolved Oct 16 (Mohamed): "From $1,490" (USD).** Use "Reviews start from $1,490." where a [PRICE: P1] tag stood; microcopy reads "From $1,490, credited to your fix". | D-01 |
 | P2–P5 Validate, Build, Scale, Partner prices | Model only, no numbers (text already in each pricing section) | D-18, D-19 |
 | [TEAM] | Omit team sections and grids | D-16, D-17 |
 | [WHATSAPP] | Omit | D-09 |
@@ -172,6 +172,13 @@ The inbound-link gate (`07` §15: ≥ 3 links from the `<main>` of distinct page
    - Home §2A.8 case highlight, after "Read the case study": "See all our work" → /work (05 §3 rule 1).
    - Home §2A.10 FAQ "We already built something…", after the answer: "Read the guide to taking an AI-built app to production" → /insights/ai-app-to-production (05 §3 rule 1).
    - Case study (/work/edtech-ai-agents), end of Results: "How Scale works: a team that stays with your product" → /scale (05 §3 rule 6).
+3. **Phase 4 links (added Oct 16, enhancement review: service pages had no links to guides; /about and /partners were dead ends):**
+   - /launch-ready FAQ "Lovable or Claude can scan my app for free…", after the answer: "Read: the security holes AI-built apps ship with" → /insights/ai-built-app-security-holes.
+   - /launch-ready FAQ "Which tools and stacks do you review?", after the answer: "Built with Lovable? Read the launch checklist" → /insights/lovable-launch-checklist.
+   - /build FAQ "Can you take over my AI-built or freelancer-built prototype?", after the answer: "How to decide between fixing and rebuilding" → /insights/fix-or-rebuild-ai-app.
+   - /about Track record, after the list: "See the products we helped ship" → /work.
+   - /partners FAQ "Who owns the IP in a white-label project?", after the answer: "See the white-label work we've delivered" → /work.
+   - /partners FAQ "What is the minimum term for staff augmentation?", after the answer: "Need a whole team instead? See Scale" → /scale.
 
 ## 1. Global elements
 
@@ -418,14 +425,14 @@ React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL,
 - H1: Your app works in the demo. We get it ready for real users.
 - Body: Built it with Lovable, Bolt, v0, Cursor or a freelancer? A senior team reviews it in about 5 working days. You learn what will break, what to fix and what it costs. Then we fix it or build it properly, and you own all of it.
 - CTA: Book a Launch-Ready Review
-- Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Text link: Not sure yet? Take the 3-minute launch check
 - Proof chip: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Read our reviews on Clutch
 - Visual: the RunPanel (Signal direction, `06-design-system.md` §0). Strings in 2.2a. HTML only, no image.
 - **v2 hero (visual rebuild, Oct 16, `docs/home-teardown.md`).** Supersedes Body and the stacked links above on the home hero only:
   - Sub-line: A senior team reviews your AI-built or freelancer-built app in about 5 working days. Then we fix it or build it properly, and you own all of it.
   - Buttons: Book a Launch-Ready Review (primary) · Take the 3-minute launch check (secondary, outline)
-  - One quiet line under the buttons: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+  - One quiet line under the buttons: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
   - Hero visual: the Review workspace scene (2.2b). The proof chip moves to the proof band directly under the hero.
 
 ### 2.2b Review workspace scene strings (home hero visual; labelled as an example)
@@ -545,7 +552,7 @@ All wording comes from the proof bank (§0.4 Method) and the six Review areas (�
 - H2: Questions founders ask us
 
 **How much does a Launch-Ready Review cost?**
-The Review is a fixed fee, quoted for your app before you commit. [PRICE: P1 "Most Reviews start from $X."] The full fee is credited toward the fix or a Build with us. If the Review finds nothing useful, you pay nothing. You get your price on a free 30-minute scoping call.
+The Review is a fixed fee, quoted for your app before you commit. Most Reviews start from $1,490. The full fee is credited toward the fix or a Build with us. If the Review finds nothing useful, you pay nothing. You get your price on a free 30-minute scoping call.
 
 **How long until my app is ready to launch?**
 The Review takes about 5 working days. After that you get a fixed quote for the fixes, with a timeline. How long fixes take depends on what we find. If the right answer is a rebuild, that is a Build of 8–12 weeks. You know which one you need before you pay for any fix work.
@@ -567,7 +574,7 @@ Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US
 - H2: Find out what's between your app and launch day
 - Body: A senior team, about 5 working days, and a plain answer.
 - CTA: Book a Launch-Ready Review
-- Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Text link: Not ready? Take the 3-minute launch check
 - Visual: dark navy (#032993) band, white text, `$ launch --check` motif as decoration only.
 
@@ -590,7 +597,7 @@ Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US
 - H1: Launch-Ready Review: a vibe code audit before you go live
 - Body: Your app works in the demo. Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote. [VERIFY: V3]
 - CTA: Book a Launch-Ready Review
-- Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Text link: Take the 3-minute launch check first
 - Visual: redacted report page (as on home). [ASSET]
 
@@ -644,7 +651,7 @@ Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US
 ### 3.7 Price and terms
 - Purpose: survive the shortlist with an honest price cue.
 - H2: What does a Launch-Ready Review cost?
-- Answer-first (48 words): The Review is a fixed fee that depends on the size of your app. [PRICE: P1 "Reviews start from $X."] You get the exact fee on the scoping call, before you commit. The full fee is credited toward the fix or a Build with us. [VERIFY: V20 payment terms]
+- Answer-first (53 words): The Review is a fixed fee that depends on the size of your app. Reviews start from $1,490. You get the exact fee on the scoping call, before you commit. The full fee is credited toward the fix or a Build with us. [VERIFY: V20 payment terms]
 - Small text: You own the report either way. Take it to any developer you like.
 
 ### 3.8 Guarantee
@@ -685,7 +692,7 @@ Yes. Each finding says in plain words what can go wrong, who it affects and how 
 You get a fixed quote for the fixes. You can hire us to do them, with the Review fee credited, or give the report to your own developer. If the code needs replacing, we scope it as a fixed-price Build. The report is yours either way.
 
 **I launch in less than two weeks. Is 5 days too slow?**
-Tell us your launch date when you book. [VERIFY: V10 "We can start with the checks that block launch day and send those findings first."]
+Tell us your launch date on the scoping call. We check the parts that matter most for launch first: who can see which data, sign-up and payments. The full Review takes about 5 working days, and every finding is ranked by risk, so you know exactly what to fix before your users arrive. (Phase 4, Oct 16: answer grown to 40–60 words for AEO; facts from 09 and §3 of this page.)
 
 **Which tools and stacks do you review?**
 Apps built with Lovable, Bolt, v0, Cursor and other AI coding tools, and apps built by freelancers or agencies. Common stacks include React, Next.js, Node.js, Python and PostgreSQL, with Supabase, Firebase and Stripe. [VERIFY: V11]
@@ -701,7 +708,7 @@ Yes. Every engagement starts with a clear contract, and you own the report and a
 - H2: Book your scoping call
 - Body: Pick a time. In 30 minutes we'll understand your app, agree scope and give you a fixed fee. The Review starts only when you say yes. [VERIFY: V19]
 - Embed: Cal.com inline, event `review-intro` (fields in 1.5).
-- Microcopy under embed: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy under embed: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Text link: Not sure yet? Take the 3-minute launch check
 - Privacy line: Booking runs on Cal.com. Cal.com may set its own cookies when you book. [VERIFY: V15]
 - Fallback: Can't use the calendar? Email hello@discoverdev.ai or WhatsApp us.
@@ -847,7 +854,7 @@ Shared layout: segment name (H2) → one-line meaning → dimension bars → "Yo
 - Body: Much of your app looks ready, but the risks below can hurt real users and real payments. A Launch-Ready Review confirms what's really there, ranks it, tells you whether it can be fixed without a rebuild, and gives you a fixed price for the fix.
 - Recommendation → offer: Launch-Ready Review
 - CTA: Book a Launch-Ready Review
-- Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 
 **Result C · High risk, don't launch yet**
 - H2: High risk. Don't launch yet.
@@ -856,7 +863,7 @@ Shared layout: segment name (H2) → one-line meaning → dimension bars → "Yo
 - Urgency line (if modifier applies): "You plan to launch soon with real users. Book this week."
 - Recommendation → offer: Launch-Ready Review, marked urgent; clarity call the same week
 - CTA: Book a Launch-Ready Review
-- Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Secondary text link: Talk it through first: book a free clarity call
 
 **Result D · Rebuild candidate**
@@ -960,7 +967,7 @@ Then Validate did its job. Sometimes the right decision is to change direction o
 No. You own the scope, prototype and estimate. If you do build with us, the full Validate fee credits toward your Build.
 
 **How much does Validate cost?**
-A fixed fee, agreed before we start. [PRICE: P2]
+A fixed fee, agreed before we start, so you know the full cost before you commit. It depends on how much research your market needs and how big the first version is. You get the number on a free 30-minute clarity call, and if you build with us, the full fee credits toward your Build. [PRICE: P2 still open: no number]
 
 ### 5.11 Final CTA
 - H2: Test the idea before you pay for the build
@@ -1051,7 +1058,7 @@ Order: Hero → Journey stepper → Decision board (signature) → Outcomes + Wh
 A Build takes 8–12 weeks from agreed scope to a live, production-ready product with real users. The exact timeline depends on the scope and is fixed in your plan before we start. You see working results every week, not only at the end.
 
 **How do you keep the price fixed?**
-We agree a clear scope before we start, then price that scope. If you want to change something during the Build, we price the change and you decide before we do it. [VERIFY: V21]
+We agree a clear scope before we start, then price that scope. Discover and Plan come first: we define the product, the roadmap, the tech and the team before any code, so the price rests on a scope we both understand. You see results every week, so progress against that scope is never a surprise. (Phase 4: replaces the V21 sentence, which stays omitted.)
 
 **Can you take over my AI-built or freelancer-built prototype?**
 Yes. Start with a Launch-Ready Review. It tells you what to keep and what to replace. If a rebuild is the right call, we scope it as a fixed-price Build and credit the Review fee.
@@ -1063,7 +1070,7 @@ We deploy, monitor and keep improving. If you want a team to stay, Scale gives y
 Our engineering hub is in Alexandria, Egypt, so a senior team costs a fraction of typical agency rates. [VERIFY: V14] We compete on seniority and a fixed price.
 
 **Who owns the code?**
-You do. Full IP, no lock-in, clear contract from day one.
+You do. Full IP, no lock-in and a clear contract from day one. Everything we build for you is yours, so you can keep working with us, bring in another team or take it in-house whenever you choose. We stay as long as you want us to, not because you're locked in.
 
 ### 6.11 Final CTA
 - H2: Get a fixed price and a date for your product
@@ -1160,7 +1167,7 @@ Note: "continues month to month" needs [VERIFY: V22].
 The squad's product manager runs the backlog and sprints together with you. You set priorities. You keep control of the roadmap.
 
 **Can the squad grow or shrink?**
-Yes. We review the team size with you every month. [VERIFY: V22 notice period]
+Yes. We review the team size with you every month. A squad can start with one specialist and grow to developers, QA, a product manager and a designer as your roadmap needs it. The minimum commitment is six months, which gives the squad time to learn your product and deliver steadily. [V22 notice period still omitted]
 
 **How quickly can a squad start?**
 [VERIFY: V22 start time]
@@ -1303,7 +1310,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - White-label websites and mobile apps for a software house · UK [CONSENT: Amstadd to name]
 
 ### 9.4 Reviews strip
-- H2: What clients say
+- H2: How clients rate us (Phase 4, Oct 16: no quotes until consent, so the heading promises a rating, not quotes; switch back to "What clients say" when quotes ship)
 - Two quotes from the proof bank (not used elsewhere on the page) + "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + link "Read our reviews on Clutch".
 
 ### 9.5 Final CTA
@@ -1544,7 +1551,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - Purpose: pick the right call in one tap.
 - H1: Book a review or a free clarity call
 - Tab 1 (default) · Launch-Ready Review: "For an app that works in the demo but isn't ready to launch. Start with a free 30-minute scoping call. You get a fixed fee before anything starts." [VERIFY: V19]
-  - Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+  - Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Tab 2 · Clarity call: "For an idea, a new build, a growing product or anything else. 30 minutes, no pitch."
   - Microcopy: 30 minutes · No pitch · Leave with a next step
 - Partner variant (?type=partner): heading "Book a partner call" · "For software houses and agencies looking at white-label delivery or staff augmentation." · Microcopy: 30 minutes · NDA on request [VERIFY: V5]
@@ -1627,7 +1634,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 
 - **Slug:** /insights
 - **SEO title (47):** Guides for Shipping AI-Built Apps | DiscoverDev
-- **Meta (143):** Plain guides for founders with an AI-built prototype: security holes, fix or rebuild, audit costs, Supabase rules, code ownership and AI costs.
+- **Meta (145):** Plain guides for founders with an AI-built app: taking it to production, the security holes to close, a Lovable launch checklist, fix or rebuild. (Phase 4: matches the four live guides; widen as new guides publish.)
 - **H1:** Insights for founders shipping AI-built products
 
 ### 15.1 Intro
@@ -1663,7 +1670,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 ### 15.7 Final CTA
 - H2: Want a senior team to check your app?
 - CTA: Book a Launch-Ready Review
-- Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 
 ### 15.8 Article template strings (for /insights/[slug])
 - Byline: "By the DiscoverDev team" [DECISION: D1; switch to a named author if approved]
@@ -1688,7 +1695,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
   - See our work
   - Read the guides
 - CTA: Book a Launch-Ready Review
-- Microcopy: About 5 working days · Fixed fee, credited to your fix · No useful findings, no charge
+- Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Help line: "Looking for something specific? Email hello@discoverdev.ai."
 - Visual: `$ cd /page-not-found` motif in the code style, decorative only.
 

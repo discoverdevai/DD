@@ -75,8 +75,8 @@ export const partners = {
     // Omitted: "What if an engineer isn't the right fit?" (V13 replacement), "How fast can engineers start?" (V22),
     // "Will you contact my clients?" (V13 client-contact line).
     items: [
-      { id: 'ip', q: 'Who owns the IP in a white-label project?', a: 'You do. White-label work runs under an NDA, and the IP goes to you so you can pass it to your client. The details are in the contract from day one.' },
-      { id: 'minimum-term', q: 'What is the minimum term for staff augmentation?', a: 'Three months. That gives the engineer time to learn your codebase and deliver. White-label work is scoped per project.' },
+      { id: 'ip', q: 'Who owns the IP in a white-label project?', a: 'You do. White-label work runs under an NDA, and the IP goes to you so you can pass it to your client. The details are in the contract from day one.', link: { label: 'See the white-label work we’ve delivered', to: 'work' as const } },
+      { id: 'minimum-term', q: 'What is the minimum term for staff augmentation?', a: 'Three months. That gives the engineer time to learn your codebase and deliver. White-label work is scoped per project.', link: { label: 'Need a whole team instead? See Scale', to: 'scale' as const } },
     ],
   },
   band: {

@@ -5,7 +5,7 @@ Two sessions write here:
 - **Claude Code** (Mohamed's PC): builds the site.
 - **Claude, DiscoverDev project chat** (claude.ai): plans, researches, tests.
 
-Last updated: Fri Oct 16, 2026, 02:00 Cairo · by Claude Code · site commit `f88a541`.
+Last updated: Fri Oct 16, 2026, 02:20 Cairo · by Claude Code · site commit: see `docs/PLAN.md`.
 
 ## Where things live
 | What | File |
@@ -24,6 +24,9 @@ Last updated: Fri Oct 16, 2026, 02:00 Cairo · by Claude Code · site commit `f8
 ## Decisions (newest first)
 | Date | Decision | Made in |
 |---|---|---|
+| Oct 16 | Launch-Ready Review price: **from $1,490 USD** (D-01 closed). Market middle for fixed-fee audits is ~$1,000; boutique reviews $1,500–10,000 | Claude Code (Mohamed) |
+| Oct 16 | "Agile v2" will be renamed (clash with TrianglZ). Options researched in `docs/review/enhancement/naming.md`; Mohamed to pick | Claude Code (Mohamed) |
+| Oct 16 | Named people (D-16), Cal.com (D-23) and dashboard settings: Mohamed will come back on these later | Claude Code (Mohamed) |
 | Oct 16 | /book opens on the free clarity call by default (strategy v2 primary CTA); the Review is one tab. `04` §7.1 updated | Claude Code |
 | Oct 16 | Body and mono fonts load with `display: optional` (no late font swap re-wrapping text); Manrope stays `swap` and preloaded | Claude Code |
 | Oct 16 | One enhancement plan: `docs/review/enhancement/PLAN.md` (performance, tech, SEO/AEO/GEO, CRO + UX laws, competitors, content). Code-only phases done first; copy changes go through `03`; decisions listed for Mohamed | Claude Code |
@@ -66,7 +69,7 @@ Last updated: Fri Oct 16, 2026, 02:00 Cairo · by Claude Code · site commit `f8
   - Brand rollout of v4 to home.
   - Hero pill and method naming vs TrianglZ (they market "AI-Native Agile v2.0" and define it in their llms.txt).
   - Content hubs B–D (Validate, Build, Scale guides) vs `05` §2 "wait 6 months".
-  - Price cues (D-01, D-18, D-19).
+  - Price cues for Validate/Build (D-18, D-19). Review price done (D-01).
   - Named people (D-16, D-17).
   - sameAs URLs (D-29).
   - Client consents (D-05, D-06).

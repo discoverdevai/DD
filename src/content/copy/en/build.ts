@@ -116,12 +116,12 @@ export const build = {
     items: [
       { id: 'timeline', q: 'How long does it take to build an MVP?', a: 'A Build takes 8–12 weeks from agreed scope to a live, production-ready product with real users. The exact timeline depends on the scope and is fixed in your plan before we start. You see working results every week, not only at the end.' },
       // [VERIFY: V21] → §0.7 omit the change-pricing sentence; keep the first sentence.
-      { id: 'fixed-price', q: 'How do you keep the price fixed?', a: 'We agree a clear scope before we start, then price that scope.' },
-      { id: 'take-over', q: 'Can you take over my AI-built or freelancer-built prototype?', a: 'Yes. Start with a Launch-Ready Review. It tells you what to keep and what to replace. If a rebuild is the right call, we scope it as a fixed-price Build and credit the Review fee.' },
+      { id: 'fixed-price', q: 'How do you keep the price fixed?', a: 'We agree a clear scope before we start, then price that scope. Discover and Plan come first: we define the product, the roadmap, the tech and the team before any code, so the price rests on a scope we both understand. You see results every week, so progress against that scope is never a surprise.' },
+      { id: 'take-over', q: 'Can you take over my AI-built or freelancer-built prototype?', a: 'Yes. Start with a Launch-Ready Review. It tells you what to keep and what to replace. If a rebuild is the right call, we scope it as a fixed-price Build and credit the Review fee.', link: { label: 'How to decide between fixing and rebuilding', to: 'guideFixRebuild' as const } },
       { id: 'after-launch', q: 'What happens after launch?', a: 'We deploy, monitor and keep improving. If you want a team to stay, Scale gives you a dedicated squad on a monthly retainer. If you’d rather take it in-house, we hand over.' },
       // [VERIFY: V14] → §0.7 keep (tag removed).
       { id: 'agency-prices', q: 'How do your prices compare with US agencies?', a: 'Our engineering hub is in Alexandria, Egypt, so a senior team costs a fraction of typical agency rates. We compete on seniority and a fixed price.' },
-      { id: 'ownership', q: 'Who owns the code?', a: 'You do. Full IP, no lock-in, clear contract from day one.' },
+      { id: 'ownership', q: 'Who owns the code?', a: 'You do. Full IP, no lock-in and a clear contract from day one. Everything we build for you is yours, so you can keep working with us, bring in another team or take it in-house whenever you choose. We stay as long as you want us to, not because you’re locked in.' },
     ],
   },
   band: {

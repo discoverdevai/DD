@@ -10,7 +10,7 @@ const SERVICES: [RouteKey, string, string][] = [
   ['validate', 'Validate', '1–2 week product discovery: market read, scope, clickable prototype, fixed build estimate.'],
   ['build', 'Build', 'MVP to production in 8–12 weeks at a fixed price.'],
   ['scale', 'Scale', 'Dedicated squad (developers, QA, PM) on a monthly retainer.'],
-  ['review', 'Launch-Ready Review', 'A review of an AI-built or freelancer-built app (security, data rules, payments, code quality, scale, ownership) in about 5 working days. Fixed fee, quoted after a free 30-minute call, credited toward the fix or Build. No useful findings, no charge.'],
+  ['review', 'Launch-Ready Review', 'A review of an AI-built or freelancer-built app (security, data rules, payments, code quality, scale, ownership) in about 5 working days. From $1,490 (USD): a fixed fee for your app, quoted after a free 30-minute call, credited toward the fix or Build. No useful findings, no charge.'],
   ['partners', 'Partners', 'White-label delivery and staff augmentation for software houses.'],
 ];
 const COMPANY: [RouteKey, string][] = [['about', 'About'], ['work', 'Work'], ['insights', 'Insights'], ['launchCheck', 'Launch check (10-question self-assessment)'], ['book', 'Book a call']];

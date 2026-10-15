@@ -56,11 +56,12 @@ export const launchReady = {
   },
   price: {
     title: 'What does a Launch-Ready Review cost?',
-    // P1: §0.7 replace text is the same promise as the next sentence, so it is folded into one line. V20 omitted.
+    // P1 resolved Oct 16 (D-01): from $1,490. V20 omitted.
     answer:
-      'The Review is a fixed fee that depends on the size of your app. You get the exact fee on a free 30-minute scoping call, before you commit. The full fee is credited toward the fix or a Build with us.',
+      'The Review is a fixed fee that depends on the size of your app. Reviews start from $1,490. You get the exact fee on a free 30-minute scoping call, before you commit. The full fee is credited toward the fix or a Build with us.',
     small: 'You own the report either way. Take it to any developer you like.',
-    offerTerms: 'Fixed fee, quoted after a free 30-minute call; credited toward the fix or a Build with us. No useful findings, no charge.',
+    minPrice: 1490,
+    offerTerms: 'From $1,490 (USD). Fixed fee for your app, quoted after a free 30-minute call; credited toward the fix or a Build with us. No useful findings, no charge.',
   },
   guarantee: {
     title: 'No useful findings, no charge',
@@ -85,14 +86,14 @@ export const launchReady = {
   faq: {
     title: 'Questions about the Review',
     items: [
-      { id: 'free-scan', q: 'Lovable or Claude can scan my app for free. Why pay for a Review?', a: 'Run the free scan first. It catches common patterns. It can’t tell you whether a signed-in user can read another customer’s data, whether payments fail quietly, or whether to fix or rebuild. That judgement is what you pay for. If we find nothing useful, you pay nothing.' },
+      { id: 'free-scan', q: 'Lovable or Claude can scan my app for free. Why pay for a Review?', a: 'Run the free scan first. It catches common patterns. It can’t tell you whether a signed-in user can read another customer’s data, whether payments fail quietly, or whether to fix or rebuild. That judgement is what you pay for. If we find nothing useful, you pay nothing.', link: { label: 'Read: the security holes AI-built apps ship with', to: 'guideSecurity' as const } },
       { id: 'access', q: 'What access do you need?', a: 'Usually read-only access to your code repository, plus a walkthrough of your live or preview app. We don’t change anything during the Review. If you want an NDA first, we sign it before we see your code.' },
       { id: 'non-technical', q: 'I’m not technical. Will I understand the report?', a: 'Yes. Each finding says in plain words what can go wrong, who it affects and how to fix it. On the findings call we go through it together, and you can bring your developer or co-founder.' },
       { id: 'after', q: 'What happens after the Review?', a: 'You get a fixed quote for the fixes. You can hire us to do them, with the Review fee credited, or give the report to your own developer. If the code needs replacing, we scope it as a fixed-price Build. The report is yours either way.' },
       // V10 → §0.7 replace (D-20).
-      { id: 'urgent', q: 'I launch in less than two weeks. Is 5 days too slow?', a: 'Tell us your date. We review critical paths first.' },
+      { id: 'urgent', q: 'I launch in less than two weeks. Is 5 days too slow?', a: 'Tell us your launch date on the scoping call. We check the parts that matter most for launch first: who can see which data, sign-up and payments. The full Review takes about 5 working days, and every finding is ranked by risk, so you know exactly what to fix before your users arrive.' },
       // V11 → Supabase and Firebase removed from the stack claim; Stripe kept.
-      { id: 'stacks', q: 'Which tools and stacks do you review?', a: 'Apps built with Lovable, Bolt, v0, Cursor and other AI coding tools, and apps built by freelancers or agencies. Common stacks include React, Next.js, Node.js, Python and PostgreSQL, with Stripe.' },
+      { id: 'stacks', q: 'Which tools and stacks do you review?', a: 'Apps built with Lovable, Bolt, v0, Cursor and other AI coding tools, and apps built by freelancers or agencies. Common stacks include React, Next.js, Node.js, Python and PostgreSQL, with Stripe.', link: { label: 'Built with Lovable? Read the launch checklist', to: 'guideLovable' as const } },
       { id: 'who', q: 'Who will review my app?', a: 'Senior engineers and a product lead from our team in Alexandria, Egypt. The people on your findings call are the people who reviewed your code.' },
       // V9 → "Do you sign a contract with US clients?" omitted (D-08).
     ],

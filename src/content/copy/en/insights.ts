@@ -4,7 +4,7 @@ export const insights = {
   seo: {
     title: 'Guides for Shipping AI-Built Apps | DiscoverDev',
     description:
-      'Plain guides for founders with an AI-built prototype: security holes, fix or rebuild, audit costs, Supabase rules, code ownership and AI costs.',
+      'Plain guides for founders with an AI-built app: taking it to production, the security holes to close, a Lovable launch checklist, fix or rebuild.',
   },
   h1: 'Insights for founders shipping AI-built products',
   intro:

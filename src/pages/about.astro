@@ -11,6 +11,7 @@ import Steps from '../components/ui/Steps.astro';
 import CtaBand from '../components/ui/CtaBand.astro';
 import TimeOverlap from '../components/about/TimeOverlap.astro';
 import TrackRecord from '../components/about/TrackRecord.astro';
+import InlineLink from '../components/ui/InlineLink.astro';
 import { about as c } from '../content/copy/en/about';
 import { graph, orgFull, website, webPage, ENTITY_LINE, ORG_ID } from '../lib/seo';
 
@@ -39,6 +40,7 @@ const jsonLd = graph(orgFull, website, webPage('/about', c.seo.title, c.seo.desc
 
   <Section id="track-record" surface="raised" title={c.record.title}>
     <TrackRecord items={c.record.items} />
+    <p class="record__more"><InlineLink text="" link={c.record.link} /></p>
   </Section>
 
   <Section id="how-we-work" surface="ink" title={c.how.title}>
@@ -62,6 +64,7 @@ const jsonLd = graph(orgFull, website, webPage('/about', c.seo.title, c.seo.desc
   .where { display: grid; gap: var(--space-10); }
   @media (width >= 64rem) { .where { grid-template-columns: 5fr 7fr; gap: var(--space-16); align-items: start; } }
   .where__body { font-size: var(--text-lg); max-inline-size: var(--measure-lead); }
+  .record__more { margin-block-start: var(--space-6); font-weight: var(--weight-medium); }
   .how__line { margin-block-start: var(--space-8); font-weight: var(--weight-medium); max-inline-size: var(--measure-lead); }
   .capabilities :global(.checks) { gap: var(--space-4) var(--grid-gap); }
   @media (width >= 48rem) { .capabilities :global(.checks) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

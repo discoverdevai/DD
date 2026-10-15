@@ -1,13 +1,18 @@
 ---
 // Two-tone statement (docs/home-teardown.md): first sentence bright, the rest dim. Dim text is ≥ 24px, so 3:1 applies (06 §3).
-interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy' }
-const { id, bright, dim, label, surface = 'ink' } = Astro.props;
+// `ctaPage` adds a mid-page clarity-call button (CRO review: no CTA between hero and closer; Goal-Gradient).
+import CtaLink from '../ui/CtaLink.astro';
+import { t } from '../../i18n/t';
+import { bookHref } from '../../data/routes';
+interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy'; ctaPage?: string }
+const { id, bright, dim, label, surface = 'ink', ctaPage } = Astro.props;
 ---
 <section id={id} class:list={['stmt', { 'stmt--navy bg-mark': surface === 'navy' }]} data-surface={surface === 'navy' ? 'inverse' : 'ink'} aria-labelledby={`${id}-title`}>
   <div class="container">
     {label && <p class="stmt__label"><span aria-hidden="true">//</span> {label}</p>}
     <h2 id={`${id}-title`} class="stmt__text reveal"><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>
     <slot />
+    {ctaPage && <p class="stmt__cta"><CtaLink href={bookHref('clarity')} ctaId={`${ctaPage}_mid_clarity`} tier="primary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink></p>}
   </div>
 </section>
 
@@ -20,6 +25,7 @@ const { id, bright, dim, label, surface = 'ink' } = Astro.props;
   .stmt__bright { color: var(--color-heading); }
   .stmt__dim { color: color-mix(in oklab, var(--neutral-0) 50%, var(--color-bg)); }
   /* Navy band (brand guidelines: navy for openers and statements) for pages that alternate white and navy. */
+  .stmt__cta { margin-block-start: var(--space-8); }
   .stmt--navy { background: var(--blue-800); border-block-start: 0; }
   .stmt--navy .stmt__dim { color: var(--blue-200); }
 </style>

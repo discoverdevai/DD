@@ -19,7 +19,7 @@ export const work = {
       { text: 'White-label websites and mobile apps for a software house', where: 'UK', link: { label: 'White-label websites and mobile apps', to: 'partners' as const } }, // 03 §0.8
     ],
   },
-  reviewsTitle: 'What clients say',
+  reviewsTitle: 'How clients rate us', // 03 §9.4 Phase 4: no quotes until consent
   band: { title: 'Want results like these for your product?', link: 'Have a prototype? Start with a Launch-Ready Review' },
 };
 

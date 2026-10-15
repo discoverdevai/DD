@@ -9,7 +9,7 @@ Full site map v1 · English live, Arabic-ready, `/ar` Q1 2027 · fresh copy (no 
 ## 0b. Launch defaults applied Oct 15 (weekend launch, Sat Oct 17). Swap any after launch
 | ID | Default in force |
 |---|---|
-| D-01 | No price number: "Fixed fee, quoted after a free 30-minute call" |
+| D-01 | ~~No price number~~ Resolved Oct 16: "From $1,490" |
 | D-02 | Payment terms stated only in the quote, not on site |
 | D-03 | "No useful findings, no charge"; useful = at least one issue rated medium or higher |
 | D-04 | Free 30-min `review-intro` call, then quote |
@@ -42,7 +42,7 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 
 | ID | Decision | Options | Recommendation | Blocks | Owner | Decision (date) |
 |---|---|---|---|---|---|---|
-| D-01 | Review price cue | (a) "From $X" (b) "Typically $X–$Y" (c) no number ("fixed fee quoted per client") | (a) "From $X", USD. Market observed Oct 15 2026: Valletta from $199, Upwork gigs $490–$1,290, RapidDev $1,000 fixed ~5 days, solo specialists $2–10K pre-launch review (`05-seo-aeo.md` C4 sources). Shown prices give fewer but better leads (HockeyStack: 17.5% vs 10.3% pipeline). Pick X; do not let the site invent it | `/launch-ready` §Price, home offer card, `llms.txt`, Service `Offer` schema, C4 · M4 | Mohamed | |
+| D-01 | Review price cue | (a) "From $X" (b) "Typically $X–$Y" (c) no number ("fixed fee quoted per client") | (a) "From $X", USD. Market observed Oct 15 2026: Valletta from $199, Upwork gigs $490–$1,290, RapidDev $1,000 fixed ~5 days, solo specialists $2–10K pre-launch review (`05-seo-aeo.md` C4 sources). Shown prices give fewer but better leads (HockeyStack: 17.5% vs 10.3% pipeline). Pick X; do not let the site invent it | `/launch-ready` §Price, home offer card, `llms.txt`, Service `Offer` schema, C4 · M4 | Mohamed | **Resolved Oct 16: "From $1,490" (USD), Mohamed. Shown on /launch-ready, Review microcopy, llms.txt, Offer schema.** |
 | D-02 | Review payment terms | (a) 100% upfront (b) 50/50 (c) on delivery | (a) 100% upfront, full refund under the guarantee. Small fixed fee; refund keeps the guarantee credible | `/launch-ready` §Price + FAQ · M4 | Mohamed | |
 | D-03 | Guarantee wording + definition of "useful" | Keep "No useful findings, no charge" + 1-line definition | Keep the line. Define concretely, e.g. "If the report has no issue we rate medium severity or higher, you pay nothing." Owner checks it is operationally safe | All primary CTA microcopy, `/launch-ready` §Guarantee, `llms.txt` · M4 | Mohamed | |
 | D-04 | Is booking a Review a free scoping call or a paid booking? | (a) free 30-min `review-intro`, then quote + invoice (b) paid booking in Cal | (a). Lower friction; quote within 24 h after call | Cal event setup, `/book`, Permissions-Policy (`payment`) · M4 | Mohamed | |

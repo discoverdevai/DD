@@ -52,7 +52,7 @@ const jsonLd = graph(orgStub, service, webPage('/scale', c.seo.title, c.seo.desc
     <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
   </Section>
 
-  <Statement id="statement" surface="navy" bright={c.statement.bright} dim={c.statement.dim} />
+  <Statement id="statement" surface="navy" bright={c.statement.bright} dim={c.statement.dim} ctaPage="scale" />
 
   <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
     { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
