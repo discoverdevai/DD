@@ -33,7 +33,11 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 - 🔄 S11 Gate: build, `astro check`, lint, `qa/check-dist.mjs` (route-missing blockers expected until M4), axe on the shell
 
 ### M2 + M4 Components and every page (Fri Oct 16). Skills: design-skills:design-systems, rampstack-skills:accessibility-audit, agent-protocols:performance-optimization, copywriting-kit:copy-proof-check, mkt-cro, rampstack-skills:scheduler-and-booking-design, rampstack-skills:quiz-and-assessment-design
-- ⏳ Components in `06` §9 + §0; all routes in `qa/routes.txt` from `03`
+- ✅ 03 §0.7 added: how every [VERIFY]/[PRICE]/[CONSENT]/[TEAM] tag resolves under the launch defaults (CLAUDE.md: change 03 first)
+- ✅ Shared sections: Section, PageHero, CardGrid, Steps + LayerChip, CheckList, FitList, PathCards, ReviewSnapshot, Faq, CtaBand, ProofStrip (commit `0a728d4`)
+- ✅ Home `/` complete (team + testimonials omitted per §0.7). Visual check at 1440 and 375 via `scripts/screens.mjs` (headless Playwright, no overflow)
+- 🔄 Parallel helpers (own files only, no shared edits, no builds): A `/validate` `/build` `/scale` · B `/partners` `/about` · C `/privacy` `/terms` drafts · D insights collection, hub, article template · E pillar, C1, C2 drafts
+- 🔄 Claude Code: `/launch-ready`, `/book` + `/book/confirmed` (Cal.com), `/launch-check` quiz, `/work` + `/work/edulens`, analytics + UTM
 
 ### M5 Content + SEO (Fri). Skills: cseo-schema, geo-llmstxt, geo-citability, searchfit-seo:internal-linking, rampstack-skills:long-form-content-frameworks
 - ⏳ Pillar, C1, C2 drafts; `/work/edulens` anonymized; JSON-LD, OG, RSS, final `llms.txt`
@@ -56,6 +60,14 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 | Oct 16 02:20 | S9 system files | Done | `llms.txt` generated from live routes (05 §5.2 "only live pages"). HSTS without `includeSubDomains` (D-41 default). security.txt uses hello@ (D-22) |
 | Oct 16 02:25 | S10 lint + CI + git | Done | `scripts/css-logical-lint.mjs` OK; `.github/workflows/ci.yml`; first commit `034607a`. Shiki off (inline styles conflict with CSP; decide in M5) |
 | Oct 16 02:25 | S11 gate | Static OK | `astro check` 0 errors; lint OK; `check-dist`: 0 major, only the 17 not-yet-built routes as blockers (expected until M4). Two QA kit bugs fixed: `%20` in folder path skipped `routes.txt`; tags inside inlined JS were read as `<a>`. axe/Lighthouse tooling installing |
+| Oct 16 02:45 | M1 browser gate | Tooling ready | Playwright, axe, Lighthouse, Chromium installed per `qa/README.md` |
+| Oct 16 03:00 | M4 home | Done | Navy band and footer were showing the paper green for check marks; fixed by remapping layer tokens on inverse/footer in `base.css` |
+| Oct 16 03:05 | M4 split | Started | 5 helpers in parallel on separate files; Claude Code integrates, flips routes live, builds and runs QA |
+| Oct 16 | Home v2 rebuild | Done | After "worst landing page" feedback: reference teardown (`docs/home-teardown.md`), all-ink home, workspace scene, CSS scroll-driven motion, two-tone statements. Skills: design-elevation, frontend-ui-engineering |
+| Oct 16 | Strategy v2 | Done | Mohamed: the Review is one service; position like TrianglZ around Agile v2 and AI acceleration. `docs/strategy-v2.md` (positioning, message hierarchy, buyers, CTA system, home IA, guardrails vs TrianglZ). Skills: marketing-strategy-pmm (Dunford), mkt-cro |
+| Oct 16 | Context update | Done | 03 §0.2, §0.3, §1.1, §1.2, new §2A home v3, §8.3 launch strings; 04 §3.1–3.3, §4.1, §6.1; 02 buyers; 01 architecture; 05 home meta, keywords, llms.txt order |
+| Oct 16 | Home v3 build | Done | New: DeliveryScene (Agile v2 sprint board, AI lane → senior lane via subgrid, ≈1.6s one-time sequence), AgileSplit, Engagements, Capabilities. Reused: hero shell, ProofBand, ProcessTimeline (configurable vignettes + chips), CaseMetric, Statement (+id anchor), Pillars, FaqSplit, Closer (clarity call). Nav: Review moves into Services, "How we work" → /#agile-v2, button "Book a call"; sticky bar = clarity (Review on /launch-ready). /partners and /about set live. Removed unused v1 HomeHero |
+| Oct 16 | Gate | Static pass | `npm run qa`: check 0 errors, lint OK, 10/10 unit, build 19 pages, check-dist 0 blockers (1 minor: optional C3 article). Browser audit: home a11y/SEO/BP 100, perf 97, LCP 2.26s (budget 2.0s, open); /launch-ready run-panel contrast flagged mid-animation (open); pillar article CLS 0.14 (open) |
 
 ## Needed from Mohamed (blocks nothing in M1)
 D-14 DNS access · D-15 old routes · D-23 Cal.com username · D-33 logo SVGs · PostHog key · Web3Forms key · GitHub repo.

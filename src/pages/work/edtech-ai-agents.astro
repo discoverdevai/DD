@@ -1,0 +1,84 @@
+---
+// Case study (04 §4.6), anonymized EduLens (D-06, 03 §0.7). Quote, timeline, team and "What's next" omitted.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/work/Breadcrumbs.astro';
+import Section from '../../components/ui/Section.astro';
+import CheckList from '../../components/ui/CheckList.astro';
+import CardGrid from '../../components/ui/CardGrid.astro';
+import CtaBand from '../../components/ui/CtaBand.astro';
+import { caseStudy as c } from '../../content/copy/en/work';
+import { graph, canonical, ORG_ID, SITE_URL } from '../../lib/seo';
+import { href, isLive } from '../../data/routes';
+
+const path = href('workEdulens');
+const url = canonical(path);
+const crumbs = [{ label: 'Home', href: '/' }, ...(isLive('work') ? [{ label: 'Work', href: href('work') }] : []), { label: c.crumb }];
+const jsonLd = graph(
+  { '@type': 'Organization', '@id': ORG_ID, name: 'DiscoverDev', url: SITE_URL, logo: `${SITE_URL}/logo-512.png` },
+  { '@type': 'Article', '@id': `${url}#article`, headline: c.h1, description: c.seo.description, image: [`${SITE_URL}/og/default.png`], datePublished: c.updated.iso, dateModified: c.updated.iso, author: { '@id': ORG_ID }, publisher: { '@id': ORG_ID }, mainEntityOfPage: url, inLanguage: 'en' },
+  { '@type': 'BreadcrumbList', itemListElement: crumbs.map((cr, i) => ({ '@type': 'ListItem', position: i + 1, name: cr.label, ...(cr.href ? { item: cr.href === '/' ? SITE_URL : `${SITE_URL}${cr.href}` } : {}) })) },
+);
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="case_study" jsonLd={jsonLd} ogType="article">
+  <section class="case-hero" data-surface="ink" aria-labelledby="page-title" data-case-slug="edtech-ai-agents" data-industry="EdTech" data-region="MENA">
+    <div class="container case-hero__inner">
+      <Breadcrumbs items={crumbs} />
+      <p class="case-hero__badges"><span>EdTech</span><span>Egypt</span></p>
+      <h1 id="page-title" class="h1">{c.h1}</h1>
+      <p class="lead">{c.body}</p>
+      <p class="case-hero__metric"><strong>{c.metric.value}</strong> <span>{c.metric.label}</span></p>
+      <p class="small muted">{c.updated.label} <time datetime={c.updated.iso}>{c.updated.date}</time></p>
+    </div>
+  </section>
+
+  <Section id="summary" surface="paper">
+    <div class="layout">
+      <aside class="snap" aria-labelledby="snap-title">
+        <h2 id="snap-title" class="h3">{c.snapshot.title}</h2>
+        <dl>{c.snapshot.rows.map((r) => <div><dt>{r.k}</dt><dd>{r.v}</dd></div>)}</dl>
+      </aside>
+      <div class="story">
+        <h2 class="h2" id="summary-title">{c.summary.title}</h2>
+        <p class="answer">{c.summary.answer}</p>
+        <h2 class="h2">{c.challenge.title}</h2>
+        <p>{c.challenge.body}</p>
+        <h2 class="h2">{c.built.title}</h2>
+        <CheckList items={c.built.items} tone="machine" />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="approach" surface="alt" title={c.approach.title}>
+    <CardGrid items={c.approach.items} cols={3} />
+  </Section>
+
+  <Section id="results" surface="paper" title={c.results.title} width="narrow">
+    <CheckList items={c.results.items} />
+  </Section>
+
+  <CtaBand title={c.cta.title} body={c.cta.body} kind="clarity" page="case_edtech" />
+</BaseLayout>
+
+<style>
+  .case-hero { padding-block: var(--space-10) var(--section-y-sm); }
+  .case-hero__inner { display: grid; gap: var(--space-5); justify-items: start; }
+  .case-hero__badges { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .case-hero__badges span { font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 2px 10px; border-radius: var(--radius-pill); background: var(--color-surface); color: var(--color-text-muted); }
+  .case-hero__metric strong { font-family: var(--ff-heading); font-weight: var(--weight-extrabold); font-size: var(--text-3xl); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .case-hero__metric span { color: var(--color-text-muted); font-size: var(--text-lg); }
+  .layout { display: grid; gap: var(--space-10); }
+  @media (width >= 64rem) { .layout { grid-template-columns: 4fr 8fr; gap: var(--space-16); align-items: start; } }
+  .snap { padding: var(--space-6); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); background: var(--color-surface-sunken); display: grid; gap: var(--space-4); }
+  .snap dl { display: grid; gap: var(--space-3); }
+  .snap dt { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .snap dd { margin: 0; }
+  .story { display: grid; gap: var(--space-5); max-inline-size: var(--measure-prose); }
+  .story .h2 { margin-block-start: var(--space-4); }
+  .answer { font-size: var(--text-lg); }
+</style>
+
+<script>
+  import { track } from '../../lib/analytics';
+  const el = document.querySelector<HTMLElement>('[data-case-slug]');
+  if (el) track('case_study_viewed', { case_study_slug: el.dataset.caseSlug, industry: el.dataset.industry, region: el.dataset.region });
+</script>

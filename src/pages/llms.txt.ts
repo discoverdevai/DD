@@ -1,13 +1,13 @@
-// /llms.txt (05 §5.2). Built from the route registry so it only ever lists live pages.
+// /llms.txt (05 §5.2; strategy v2 order: lifecycle first, Review as one service). Built from the route registry so it only ever lists live pages.
 import type { APIRoute } from 'astro';
 import { ROUTES, type RouteKey } from '../data/routes';
 import { ENTITY_LINE, SITE_URL, CLUTCH_URL } from '../lib/seo';
 
 const SERVICES: [RouteKey, string, string][] = [
-  ['review', 'Launch-Ready Review', 'A review of an AI-built or freelancer-built app (security, data rules, payments, code quality, scale, ownership) in about 5 working days. Fixed fee, quoted after a free 30-minute call, credited toward the fix or Build. No useful findings, no charge.'],
   ['validate', 'Validate', '1–2 week product discovery: market read, scope, clickable prototype, fixed build estimate.'],
   ['build', 'Build', 'MVP to production in 8–12 weeks at a fixed price.'],
   ['scale', 'Scale', 'Dedicated squad (developers, QA, PM) on a monthly retainer.'],
+  ['review', 'Launch-Ready Review', 'A review of an AI-built or freelancer-built app (security, data rules, payments, code quality, scale, ownership) in about 5 working days. Fixed fee, quoted after a free 30-minute call, credited toward the fix or Build. No useful findings, no charge.'],
   ['partners', 'Partners', 'White-label delivery and staff augmentation for software houses.'],
 ];
 const COMPANY: [RouteKey, string][] = [['about', 'About'], ['launchCheck', 'Launch check (10-question self-assessment)'], ['book', 'Book a call']];
@@ -21,6 +21,8 @@ export const GET: APIRoute = () => {
     '# DiscoverDev',
     '',
     `> ${ENTITY_LINE}`,
+    '',
+    'How we work: Agile v2. AI does the heavy lifting; senior engineers own the quality, and a person is responsible for every line that reaches users. One team from discovery to after launch.',
     '',
     `Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct): ${CLUTCH_URL}`,
     '',

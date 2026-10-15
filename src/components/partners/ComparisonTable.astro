@@ -1,0 +1,46 @@
+---
+// Table (06 §9.19): keyboard-scrollable region named by the caption, <th scope> on both axes,
+// first column sticky at inline-start below 48rem (mirrors in RTL), no row hover.
+interface Row { label: string; cells: readonly string[] }
+interface Props { id: string; caption: string; captionHidden?: boolean; columns: readonly string[]; rows: readonly Row[] }
+const { id, caption, captionHidden = true, columns, rows } = Astro.props;
+const capId = `${id}-caption`;
+---
+<div class="ctable" role="region" aria-labelledby={capId} tabindex="0">
+  <table>
+    <caption id={capId} class:list={[captionHidden ? 'sr-only' : 'h3 ctable__caption']}>{caption}</caption>
+    <thead>
+      <tr>
+        <td class="ctable__corner"></td>
+        {columns.map((c) => <th scope="col">{c}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <th scope="row">{r.label}</th>
+          {r.cells.map((cell) => <td>{cell}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .ctable { overflow-x: auto; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); background: var(--color-bg); }
+  .ctable:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+  table { inline-size: 100%; min-inline-size: 44rem; border-collapse: collapse; text-align: start; }
+  .ctable__caption { text-align: start; padding: var(--space-4); }
+  th, td { padding-block: var(--space-3); padding-inline: var(--space-4); vertical-align: top; text-align: start; border-block-end: 1px solid var(--color-border-subtle); }
+  tbody tr:last-child th, tbody tr:last-child td { border-block-end: 0; }
+  thead th, thead td { background: var(--color-surface-sunken); font-family: var(--ff-heading); font-weight: var(--weight-semibold); color: var(--color-heading); }
+  tbody th { font-weight: var(--weight-semibold); color: var(--color-heading); }
+  tbody td { color: var(--color-text); }
+  @media (width < 48rem) {
+    .ctable__corner, tbody th { position: sticky; inset-inline-start: 0; z-index: 1; }
+    tbody th { background: var(--color-bg); }
+    .ctable__corner, tbody th { border-inline-end: 1px solid var(--color-border-subtle); }
+    table { min-inline-size: 40rem; }
+    th[scope='row'] { inline-size: 9rem; }
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+// Closing band (03 §2A.11): large centred headline on a brand-blue horizon; one primary button + terms.
+import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
+import { t } from '../../i18n/t';
+import { bookHref } from '../../data/routes';
+interface Props { title: string; body: string }
+const { title, body } = Astro.props;
+---
+<section id="cta" class="cl" data-surface="ink" aria-labelledby="cl-title" data-cta-band>
+  <div class="cl__light" aria-hidden="true"></div>
+  <div class="container cl__inner">
+    <h2 id="cl-title" class="cl__title reveal">{title}</h2>
+    <p class="cl__body">{body}</p>
+    <div class="cl__ctas">
+      <CtaLink href={bookHref('clarity')} ctaId="home_band_clarity" tier="primary" position="band" target="clarity">{t('cta.clarity')}</CtaLink>
+    </div>
+    <CtaTerms kind="clarity" class="cl__terms" />
+  </div>
+</section>
+
+<style>
+  .cl { position: relative; overflow: clip; padding-block: calc(var(--section-y) * 1.4); border-block-start: 1px solid var(--color-hairline); text-align: center; isolation: isolate; }
+  .cl__light { position: absolute; inset-inline: 0; inset-block-end: -10%; block-size: 85%; z-index: -1; background: radial-gradient(55% 70% at 50% 100%, color-mix(in oklab, var(--blue-600) 85%, transparent), color-mix(in oklab, var(--blue-800) 45%, transparent) 45%, transparent 80%); }
+  .cl__light::before { content: ''; position: absolute; inset-inline: 20%; inset-block-end: 12%; block-size: 1px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--blue-200) 75%, transparent), transparent); }
+  .cl__inner { display: grid; justify-items: center; gap: var(--space-6); }
+  .cl__title { font-size: clamp(2.25rem, 1.3rem + 4vw, 4.5rem); font-weight: var(--weight-bold); letter-spacing: -0.045em; line-height: 1.03; max-inline-size: 16ch; }
+  .cl__body { font-size: var(--text-lg); color: var(--color-text-muted); }
+  .cl__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+  .cl__inner :global(.cl__terms) { justify-content: center; }
+</style>

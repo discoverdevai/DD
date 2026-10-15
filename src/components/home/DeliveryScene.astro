@@ -1,0 +1,157 @@
+---
+// Home hero visual (03 §2A.2, strategy v2): an Agile v2 sprint board. AI lane (mono, signal blue) drafts the work;
+// the senior lane (green) reviews and approves each item; a senior signs off the release. Lanes share rows via subgrid
+// so each AI item sits beside the review it feeds. Final state is always in the DOM; the one-time sequence is an
+// overlay (≈1.6s, plays once at 40% visible, reduced motion = final state).
+import { delivery as c } from '../../content/copy/en/delivery';
+const check = 'M20 6 9 17l-5-5';
+---
+<figure class="ds" data-ds>
+  <div class="ds__bar">
+    <span class="ds__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="ds__path"><bdi dir="ltr">{c.path}</bdi></span>
+    <span class="ds__badge">{c.badge}</span>
+  </div>
+
+  <div class="ds__head">
+    <p class="ds__stage"><span class="ds__stage-pill">{c.stage}</span><span class="ds__week">{c.week}</span></p>
+    <ol role="list" class="ds__track" aria-hidden="true">
+      {Array.from({ length: c.weeks }, (_, i) => <li class:list={{ 'is-done': i < c.current - 1, 'is-now': i === c.current - 1 }}></li>)}
+    </ol>
+  </div>
+
+  <div class="ds__lanes">
+    <section class="ds__lane ds__lane--ai" aria-label={c.ai.title}>
+      <p class="ds__lane-title"><span class="ds__mark ds__mark--ai" aria-hidden="true"></span>{c.ai.title}</p>
+      <ul role="list" class="ds__items">
+        {c.ai.items.map((item) => (
+          <li class="ds__item" data-ds-ai>
+            <span class="ds__text"><bdi>{item}</bdi></span>
+            <span class="ds__state"><span class="ds__pre" aria-hidden="true">{c.ai.states.pending}</span><span class="ds__fin">{c.ai.states.done}</span></span>
+            <span class="ds__prog" aria-hidden="true"><i></i></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+    <section class="ds__lane ds__lane--human" aria-label={c.human.title}>
+      <p class="ds__lane-title"><span class="ds__mark ds__mark--human" aria-hidden="true"></span>{c.human.title}</p>
+      <ul role="list" class="ds__items">
+        {c.human.items.map((item) => (
+          <li class="ds__item" data-ds-human>
+            <span class="ds__tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="11" height="11"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            <span class="ds__text">{item}</span>
+            <span class="ds__state"><span class="ds__pre" aria-hidden="true">{c.human.states.pending}</span><span class="ds__fin">{c.human.states.done}</span></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+
+  <div class="ds__release" data-ds-release>
+    <span class="ds__seal" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d={check} fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+    <p class="ds__rel-title">{c.release.title} <span class="ds__rel-status">{c.release.status}</span></p>
+    <p class="ds__rel-by">{c.release.by}</p>
+    <p class="ds__rel-demo">{c.release.demo}</p>
+  </div>
+  <p class="ds__foot">{c.footer}</p>
+  <figcaption class="sr-only">{c.caption}</figcaption>
+</figure>
+
+<style>
+  .ds { --ds-line: var(--color-hairline); --ds-raised: color-mix(in oklab, var(--color-surface) 70%, var(--blue-800)); position: relative; container-type: inline-size; border-radius: var(--radius-lg); background: linear-gradient(180deg, var(--ds-raised), var(--color-surface) 40%); border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); box-shadow: inset 0 1px 0 color-mix(in oklab, var(--neutral-0) 10%, transparent), 0 40px 120px -30px color-mix(in oklab, var(--blue-700) 70%, transparent), 0 0 0 1px color-mix(in oklab, var(--blue-975) 60%, transparent); overflow: hidden; text-align: start; font-size: var(--text-sm); }
+  .ds__bar { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-block-end: 1px solid var(--ds-line); }
+  .ds__dots { display: inline-flex; gap: 6px; } .ds__dots i { inline-size: 10px; block-size: 10px; border-radius: 50%; background: color-mix(in oklab, var(--blue-300) 28%, transparent); }
+  .ds__path { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ds__badge { margin-inline-start: auto; font-family: var(--ff-mono); font-size: 0.6875rem; padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid var(--ds-line); color: var(--color-text-muted); }
+
+  .ds__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3) var(--space-6); padding: var(--space-4) var(--space-5); border-block-end: 1px solid var(--ds-line); }
+  .ds__stage { display: flex; align-items: center; gap: var(--space-3); }
+  .ds__stage-pill { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); font-size: var(--text-base); }
+  .ds__week { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .ds__track { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; inline-size: min(100%, 16rem); }
+  .ds__track li { block-size: 6px; border-radius: 3px; background: color-mix(in oklab, var(--blue-300) 16%, transparent); }
+  .ds__track li.is-done { background: color-mix(in oklab, var(--blue-400) 70%, transparent); }
+  .ds__track li.is-now { background: var(--color-human-mark); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-human-mark) 22%, transparent); }
+
+  .ds__lanes { display: grid; gap: var(--space-4); padding: var(--space-5); }
+  .ds__lane { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; }
+  /* Wide: two lanes on shared subgrid rows, so each review sits beside the AI item it checks; a hand-off arrow
+     (pseudo-elements on the review card) crosses the gap and lights when the review is approved. */
+  @container (inline-size >= 44rem) {
+    .ds__lanes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto repeat(4, auto); gap: var(--space-2) var(--space-10); }
+    .ds__lane { grid-row: 1 / span 5; grid-template-rows: subgrid; gap: var(--space-2); }
+    .ds__items { display: contents; }
+    .ds__lane--human .ds__item::before { content: ''; position: absolute; inset-inline-end: calc(100% + 0.5rem); inset-block-start: 50%; inline-size: calc(var(--space-10) - 1rem); block-size: 1px; background: linear-gradient(90deg, var(--color-machine-mark), var(--color-human-mark)); transition: opacity var(--dur-base); }
+    .ds__lane--human .ds__item::after { content: ''; position: absolute; inset-inline-end: calc(100% + 0.5rem); inset-block-start: 50%; inline-size: 6px; block-size: 6px; border-block-start: 1px solid var(--color-human-mark); border-inline-end: 1px solid var(--color-human-mark); translate: 0 -50%; rotate: 45deg; transition: opacity var(--dur-base); }
+    :dir(rtl) .ds__lane--human .ds__item::before { background: linear-gradient(-90deg, var(--color-machine-mark), var(--color-human-mark)); }
+    :dir(rtl) .ds__lane--human .ds__item::after { rotate: -45deg; }
+    .ds[data-playing] .ds__lane--human .ds__item:not([data-done])::before, .ds[data-playing] .ds__lane--human .ds__item:not([data-done])::after { opacity: 0.2; }
+  }
+  @supports not (grid-template-rows: subgrid) { @container (inline-size >= 44rem) { .ds__lane { grid-row: auto; } .ds__items { display: grid; gap: var(--space-2); } .ds__lane--human .ds__item::before, .ds__lane--human .ds__item::after { display: none; } } }
+  .ds__items { display: grid; gap: var(--space-2); }
+  .ds__lane-title { display: flex; align-items: center; gap: var(--space-2); font-family: var(--ff-mono); font-size: 0.75rem; padding-block-end: var(--space-1); }
+  .ds__lane--ai .ds__lane-title { color: var(--color-machine-text); }
+  .ds__lane--human .ds__lane-title { color: var(--color-human-text); }
+  .ds__mark { inline-size: 8px; block-size: 8px; border-radius: 2px; flex: none; }
+  .ds__mark--ai { background: var(--color-machine-mark); }
+  .ds__mark--human { background: var(--color-human-mark); border-radius: 50%; }
+
+  .ds__item { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-2) var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--ds-line); background: color-mix(in oklab, var(--color-surface) 70%, transparent); min-inline-size: 0; }
+  .ds__lane--ai .ds__item { background: color-mix(in oklab, var(--blue-975) 50%, transparent); }
+  .ds__lane--ai .ds__text { font-family: var(--ff-mono); font-size: 0.75rem; color: var(--color-text); line-height: 1.45; }
+  .ds__lane--human .ds__item { grid-template-columns: auto minmax(0, 1fr) auto; border-color: color-mix(in oklab, var(--color-human-mark) 22%, transparent); }
+  .ds__lane--human .ds__text { color: var(--color-text); font-weight: var(--weight-medium); line-height: 1.4; }
+  .ds__tick { inline-size: 1.125rem; block-size: 1.125rem; border-radius: 50%; display: grid; place-items: center; background: var(--color-human-mark); color: var(--blue-975); transition: background-color var(--dur-base), color var(--dur-base); }
+  .ds__state { display: inline-grid; font-family: var(--ff-mono); font-size: 0.6875rem; text-align: end; }
+  .ds__state > * { grid-area: 1 / 1; transition: opacity var(--dur-base); white-space: nowrap; justify-self: end; }
+  .ds__pre { opacity: 0; color: var(--color-text-muted); }
+  .ds__lane--ai .ds__fin { color: var(--color-machine-text); }
+  .ds__lane--human .ds__fin { color: var(--color-human-text); }
+  .ds__prog { grid-column: 1 / -1; block-size: 2px; border-radius: 2px; background: color-mix(in oklab, var(--color-machine-mark) 18%, transparent); overflow: hidden; }
+  .ds__prog i { display: block; block-size: 100%; background: var(--color-machine-mark); transform-origin: 0 50%; transition: transform 320ms var(--ease-standard); }
+  :dir(rtl) .ds__prog i { transform-origin: 100% 50%; }
+  @container (inline-size < 34rem) { .ds__item:nth-child(4) { display: none; } .ds__lanes, .ds__head { padding: var(--space-4); } }
+
+  .ds__release { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px var(--space-3); align-items: center; margin: 0 var(--space-5) var(--space-4); padding: var(--space-4); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-human-mark) 9%, var(--color-surface)); border: 1px solid color-mix(in oklab, var(--color-human-mark) 35%, transparent); transition: opacity var(--dur-slow), translate var(--dur-slow) var(--ease-enter); }
+  @container (inline-size >= 44rem) { .ds__release { grid-template-columns: auto auto 1fr auto; gap: var(--space-4); } .ds__rel-demo { justify-self: end; } }
+  @container (inline-size < 34rem) { .ds__release { margin-inline: var(--space-4); } }
+  .ds__seal { grid-row: span 3; inline-size: 1.75rem; block-size: 1.75rem; border-radius: 50%; display: grid; place-items: center; background: var(--color-human-mark); color: var(--blue-975); }
+  @container (inline-size >= 44rem) { .ds__seal { grid-row: auto; } }
+  .ds__rel-title { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .ds__rel-status { font-family: var(--ff-mono); font-weight: var(--weight-regular); font-size: var(--text-xs); color: var(--color-text-muted); margin-inline-start: var(--space-2); }
+  .ds__rel-by { color: var(--color-human-text); font-size: var(--text-xs); }
+  .ds__rel-demo { font-family: var(--ff-mono); font-size: 0.6875rem; color: var(--color-text-muted); padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid var(--ds-line); justify-self: start; }
+  .ds__foot { padding: var(--space-3) var(--space-5); border-block-start: 1px solid var(--ds-line); font-family: var(--ff-mono); font-size: 0.6875rem; color: var(--color-text-muted); }
+
+  /* One-time sequence (set by script; never present without JS or under reduced motion). */
+  .ds[data-playing] .ds__pre { opacity: 1; } .ds[data-playing] .ds__fin { opacity: 0; }
+  .ds[data-playing] .ds__prog i { transform: scaleX(0); }
+  .ds[data-playing] .ds__tick { background: transparent; color: transparent; box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--color-human-mark) 50%, transparent); }
+  .ds[data-playing] .ds__release { opacity: 0; translate: 0 8px; }
+  .ds [data-done] .ds__pre { opacity: 0 !important; } .ds [data-done] .ds__fin { opacity: 1 !important; }
+  .ds [data-done] .ds__prog i { transform: scaleX(1) !important; }
+  .ds [data-done] .ds__tick { background: var(--color-human-mark) !important; color: var(--blue-975) !important; box-shadow: none !important; }
+  .ds .ds__release[data-done] { opacity: 1 !important; translate: 0 0 !important; }
+  @media (forced-colors: active) { .ds__tick, .ds__seal { forced-color-adjust: none; } }
+</style>
+
+<script>
+  // Pipeline: each AI item completes (220ms apart), then its review is approved (and its arrow lights) 260ms later;
+  // the release signs off last. ≈1.6s total (06 §9.6 cap 2.4s). Once, at 40% visible.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-ds]').forEach((ds) => {
+    if (reduce || !('IntersectionObserver' in window)) return;
+    ds.setAttribute('data-playing', '');
+    const io = new IntersectionObserver((es) => {
+      if (!es.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      const ai = ds.querySelectorAll<HTMLElement>('[data-ds-ai]');
+      const human = ds.querySelectorAll<HTMLElement>('[data-ds-human]');
+      const done = (el: Element | undefined, at: number) => el && setTimeout(() => el.setAttribute('data-done', ''), at);
+      let t = 200;
+      ai.forEach((el, i) => { done(el, t); done(human[i], t + 260); t += 220; });
+      done(ds.querySelector('[data-ds-release]') ?? undefined, t + 300);
+    }, { threshold: 0.4 });
+    io.observe(ds);
+  });
+</script>

@@ -1,0 +1,69 @@
+---
+// Home hero (03 §2A.1, strategy v2): centred H1 + one sentence + two buttons + one quiet terms line,
+// then the Agile v2 delivery scene on a brand-blue horizon light. The H1 stays the LCP element (text, preloaded font).
+import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
+import DeliveryScene from './DeliveryScene.astro';
+import { home } from '../../content/copy/en/home';
+import { t } from '../../i18n/t';
+import { bookHref } from '../../data/routes';
+const c = home.hero;
+---
+<section class="hero" data-surface="ink" aria-labelledby="hero-title">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__copy container">
+    <p class="hero__pill"><span class="hero__pill-dot" aria-hidden="true"></span>{c.pill}</p>
+    <h1 id="hero-title" class="hero__h1">{c.h1}</h1>
+    <p class="hero__sub">{c.sub}</p>
+    <div class="hero__ctas">
+      <CtaLink href={bookHref('clarity')} ctaId="home_hero_clarity" tier="primary" position="hero" target="clarity" data-hero-cta>{t('cta.clarity')}</CtaLink>
+      <CtaLink href="#agile-v2" ctaId="home_hero_how_we_work" tier="low_commitment" position="hero" target="how_we_work" variant="secondary">{t('cta.how')}</CtaLink>
+    </div>
+    <CtaTerms kind="clarity" class="hero__terms" />
+  </div>
+  <div class="hero__stage">
+    <div class="hero__light" aria-hidden="true"></div>
+    <div class="container hero__scene"><DeliveryScene /></div>
+    <script>
+      // Pointer-tracked light for [data-spotlight] (fine pointers only; CSS vars via CSSOM, CSP-safe).
+      if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.addEventListener('pointermove', (e) => {
+          const el = (e.target as Element | null)?.closest?.<HTMLElement>('[data-spotlight]');
+          if (!el) return;
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+          el.style.setProperty('--my', `${e.clientY - r.top}px`);
+        }, { passive: true });
+      }
+    </script>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; overflow: clip; padding-block-start: clamp(3rem, 1.5rem + 6vw, 7rem); text-align: center; isolation: isolate; }
+  .hero__grid { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; background-position: center top; mask-image: radial-gradient(60% 55% at 50% 0%, #000 0%, transparent 100%); opacity: 0.7; }
+  .hero__copy { display: grid; justify-items: center; gap: var(--space-6); }
+  .hero__pill { display: inline-flex; align-items: center; gap: var(--space-2); padding: 6px 14px 6px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .hero__pill-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
+  .hero__h1 { font-size: clamp(2.5rem, 1.35rem + 4.9vw, 5.25rem); font-weight: var(--weight-bold); line-height: 1.02; letter-spacing: -0.045em; max-inline-size: 15ch; color: var(--color-heading); text-wrap: balance; }
+  .hero__sub { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 44rem; text-wrap: pretty; }
+  .hero__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-block-start: var(--space-2); }
+  .hero__copy :global(.hero__terms) { justify-content: center; }
+  .hero__stage { position: relative; margin-block-start: clamp(3rem, 2rem + 4vw, 5.5rem); padding-block-end: var(--space-16); }
+  .hero__light { position: absolute; inset-inline: 0; inset-block-start: 10%; block-size: 70%; z-index: -1; background: radial-gradient(45% 55% at 50% 60%, color-mix(in oklab, var(--blue-700) 55%, transparent) 0%, color-mix(in oklab, var(--blue-800) 25%, transparent) 45%, transparent 75%); filter: blur(10px); }
+  .hero__light::after { content: ''; position: absolute; inset-inline: 15%; inset-block-start: 58%; block-size: 1px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--blue-200) 70%, transparent), transparent); }
+  .hero__scene { max-inline-size: 72rem; perspective: 1600px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__pill { animation: dd-in 700ms var(--ease-enter) both; }
+    .hero__h1 { animation: hero-h1 900ms var(--ease-enter) both; }
+    .hero__sub { animation: dd-in 700ms 120ms var(--ease-enter) both; }
+    .hero__ctas { animation: dd-in 700ms 200ms var(--ease-enter) both; }
+    .hero__copy :global(.hero__terms) { animation: dd-in 700ms 260ms var(--ease-enter) both; }
+    .hero__stage { animation: dd-in 1000ms 320ms var(--ease-enter) both; }
+    @keyframes hero-h1 { from { translate: 0 0.5rem; filter: blur(8px); } to { translate: 0 0; filter: blur(0); } }
+    @supports (animation-timeline: view()) {
+      .hero__scene :global(.ds) { transform-origin: 50% 0%; animation: scene-flatten linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+      @keyframes scene-flatten { from { transform: rotateX(18deg) scale(0.94); } to { transform: none; } }
+    }
+  }
+</style>

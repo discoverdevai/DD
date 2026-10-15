@@ -1,0 +1,57 @@
+---
+// Offer spotlight (03 §2.5): copy on the ink desk, the report as a paper document beside it (06 §0 "workshop and report").
+import CtaLink from '../ui/CtaLink.astro';
+import ReviewSnapshot from '../ui/ReviewSnapshot.astro';
+import Icon from '../ui/Icon.astro';
+import { t } from '../../i18n/t';
+import { bookHref, href, isLive } from '../../data/routes';
+interface Props { c: { title: string; answer: string; gets: readonly string[]; price: string; guarantee: string; microcopy: string; link: string } }
+const { c } = Astro.props;
+---
+<section id="offer" class="offer" data-surface="ink" aria-labelledby="offer-title">
+  <div class="container offer__grid">
+    <div class="offer__copy">
+      <p class="offer__label">Launch-Ready Review</p>
+      <h2 id="offer-title" class="offer__title">{c.title}</h2>
+      <p class="offer__answer">{c.answer}</p>
+      <ul role="list" class="offer__gets">
+        {c.gets.map((g) => <li><Icon name="check" size={16} />{g}</li>)}
+      </ul>
+      <div class="offer__terms">
+        <p class="offer__guarantee">{c.guarantee}</p>
+        <p class="offer__price">{c.price}</p>
+      </div>
+      <div class="offer__ctas">
+        <CtaLink href={bookHref('review')} ctaId="home_mid_review" tier="primary" position="mid" target="review">{t('cta.review')}</CtaLink>
+        {isLive('review') && <CtaLink href={`${href('review')}#what-we-check`} ctaId="home_mid_review_scope" tier="primary" position="mid" target="review" variant="text">{c.link}</CtaLink>}
+      </div>
+      <p class="offer__micro">{c.microcopy}</p>
+    </div>
+    <div class="offer__doc reveal" data-surface="paper">
+      <div class="offer__sheet offer__sheet--back" aria-hidden="true"></div>
+      <ReviewSnapshot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .offer { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); position: relative; overflow: clip; }
+  .offer::before { content: ''; position: absolute; inset-block-start: 20%; inset-inline-end: -10%; inline-size: 60%; aspect-ratio: 1; background: radial-gradient(closest-side, color-mix(in oklab, var(--blue-700) 30%, transparent), transparent); pointer-events: none; }
+  .offer__grid { position: relative; display: grid; gap: var(--space-12); align-items: center; }
+  @media (width >= 64rem) { .offer__grid { grid-template-columns: 5fr 6fr; gap: var(--space-16); } }
+  .offer__copy { display: grid; gap: var(--space-5); justify-items: start; }
+  .offer__label { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
+  .offer__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; }
+  .offer__answer { color: var(--color-text-muted); font-size: var(--text-lg); line-height: 1.55; }
+  .offer__gets { display: grid; gap: var(--space-3); }
+  .offer__gets li { display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: var(--space-3); align-items: start; }
+  .offer__gets :global(.icon) { color: var(--color-human-mark); margin-block-start: 0.3em; }
+  .offer__terms { display: grid; gap: var(--space-1); padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid color-mix(in oklab, var(--color-human-mark) 30%, transparent); background: color-mix(in oklab, var(--color-human-mark) 6%, transparent); inline-size: 100%; }
+  .offer__guarantee { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); color: var(--color-human-text); }
+  .offer__price { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .offer__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); }
+  .offer__micro { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .offer__doc { position: relative; background: transparent; padding: var(--space-4); }
+  .offer__sheet--back { position: absolute; inset: var(--space-10) calc(var(--space-4) * -1) calc(var(--space-2) * -1) var(--space-10); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--neutral-0) 85%, var(--blue-200)); opacity: 0.25; }
+  .offer__doc :global(.snap) { position: relative; box-shadow: 0 30px 80px -20px color-mix(in oklab, var(--blue-975) 90%, transparent), 0 0 0 1px color-mix(in oklab, var(--neutral-0) 20%, transparent); }
+</style>

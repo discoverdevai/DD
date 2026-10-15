@@ -1,0 +1,88 @@
+---
+// Engagements (03 §2A.6): Validate · Build · Scale as three tall stage cards (stage nodes fill left to right), then "Other ways in" as two compact rows (Review, Partners). Each card is one stretched link.
+import { ROUTES, isLive, type RouteKey } from '../../data/routes';
+interface Card { key: RouteKey; who: string; title: string; meta: readonly string[]; body: string; linkLabel: string }
+interface Other { key: RouteKey; who: string; title: string; body: string; linkLabel: string }
+interface Props { title: string; lead: string; cards: readonly Card[]; otherTitle: string; other: readonly Other[] }
+const { title, lead, cards, otherTitle, other } = Astro.props;
+const live = cards.filter((c) => isLive(c.key));
+const liveOther = other.filter((o) => isLive(o.key));
+---
+{live.length > 0 && (
+  <section id="engagements" class="en" data-surface="ink" aria-labelledby="en-title">
+    <div class="container">
+      <div class="en__head">
+        <h2 id="en-title" class="en__title reveal">{title}</h2>
+        <p class="en__lead">{lead}</p>
+      </div>
+      <ol role="list" class="en__grid reveal-stagger">
+        {live.map((c, i) => (
+          <li class:list={['en__card', `en__card--${i}`]} data-spotlight>
+            <span class="en__stage" aria-hidden="true"><span class="en__node"></span><span class="en__n">0{i + 1}</span></span>
+            <p class="en__who">{c.who}</p>
+            <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}<span class="sr-only">: {c.linkLabel}</span></a></h3>
+            <ul role="list" class="en__meta">{c.meta.map((m) => <li>{m}</li>)}</ul>
+            <p class="en__body">{c.body}</p>
+            <p class="en__more" aria-hidden="true">{c.linkLabel}<span class="en__arrow icon--dir">→</span></p>
+          </li>
+        ))}
+      </ol>
+      {liveOther.length > 0 && (
+        <div class="en__other">
+          <h3 class="en__other-title">{otherTitle}</h3>
+          <ul role="list" class="en__rows">
+            {liveOther.map((o) => (
+              <li class="en__row">
+                <p class="en__row-who">{o.who}</p>
+                <h4 class="en__row-h"><a href={ROUTES[o.key].path} data-cta-id={`home_card_${o.key === 'review' ? 'review' : 'partners'}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={o.key === 'review' ? 'review' : 'partners'}>{o.title}<span class="sr-only">: {o.linkLabel}</span></a></h4>
+                <p class="en__row-body">{o.body}</p>
+                <p class="en__row-more" aria-hidden="true">{o.linkLabel}<span class="en__arrow icon--dir">→</span></p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </section>
+)}
+
+<style>
+  .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
+  .en__head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
+  @media (width >= 64rem) { .en__head { grid-template-columns: 1fr 1fr; align-items: end; } }
+  .en__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; max-inline-size: 18ch; }
+  .en__lead { color: var(--color-text-muted); font-size: var(--text-lg); max-inline-size: 34rem; }
+
+  .en__grid { position: relative; display: grid; gap: var(--space-4); }
+  @media (width >= 56rem) { .en__grid { grid-template-columns: repeat(3, 1fr); } }
+  .en__card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); min-block-size: 22rem; padding: var(--space-8) var(--space-6) var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
+  .en__card--1 { background: linear-gradient(180deg, color-mix(in oklab, var(--blue-800) 55%, var(--color-surface)), color-mix(in oklab, var(--color-surface) 40%, transparent)); border-color: color-mix(in oklab, var(--blue-300) 30%, transparent); }
+  .en__stage { display: flex; align-items: center; gap: var(--space-3); margin-block-end: var(--space-4); }
+  .en__node { inline-size: 12px; block-size: 12px; border-radius: 50%; border: 2px solid var(--blue-400); background: var(--color-bg); position: relative; }
+  .en__card--1 .en__node { background: var(--blue-400); }
+  .en__card--2 .en__node { border-color: var(--color-human-mark); background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
+  .en__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .en__who { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
+  .en__h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); font-weight: var(--weight-bold); letter-spacing: -0.03em; }
+  .en__h3 a, .en__row-h a { color: var(--color-heading); text-decoration: none; }
+  .en__h3 a::after, .en__row-h a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: var(--z-raised); }
+  .en__h3 a:focus-visible, .en__row-h a:focus-visible { outline: none; }
+  .en__card:has(a:focus-visible), .en__row:has(a:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+  .en__meta { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .en__meta li { font-family: var(--ff-mono); font-size: var(--text-xs); padding: 3px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 28%, transparent); color: var(--color-text); }
+  .en__body { color: var(--color-text-muted); }
+  .en__more, .en__row-more { margin-block-start: auto; padding-block-start: var(--space-4); display: inline-flex; gap: var(--space-2); color: var(--color-link); font-weight: var(--weight-medium); }
+
+  .en__other { margin-block-start: var(--space-12); display: grid; gap: var(--space-4); }
+  .en__other-title { font-family: var(--ff-mono); font-size: var(--text-sm); font-weight: var(--weight-regular); color: var(--color-text-muted); }
+  .en__rows { display: grid; gap: var(--space-3); }
+  @media (width >= 48rem) { .en__rows { grid-template-columns: 1fr 1fr; } }
+  .en__row { position: relative; display: grid; align-content: start; gap: var(--space-1) var(--space-6); padding: var(--space-5) var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); transition: border-color var(--dur-color), background-color var(--dur-color); }
+  @media (width >= 80rem) { .en__row { grid-template-columns: minmax(0, 1fr) auto; } .en__row-who, .en__row-h, .en__row-body { grid-column: 1; } .en__row-more { grid-column: 2; grid-row: 1 / span 3; align-self: center; margin: 0; padding: 0; } }
+  .en__row-who { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .en__row-h { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
+  .en__row-body { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .en__row-more { padding-block-start: var(--space-2); }
+  @media (hover: hover) { .en__card:hover, .en__row:hover { border-color: color-mix(in oklab, var(--blue-300) 45%, transparent); } .en__row:hover { background: color-mix(in oklab, var(--blue-300) 5%, transparent); } }
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) { .en__arrow { transition: translate var(--dur-base) var(--ease-standard); } .en__card:hover .en__arrow, .en__row:hover .en__arrow { translate: 4px 0; } :dir(rtl) .en__card:hover .en__arrow, :dir(rtl) .en__row:hover .en__arrow { translate: -4px 0; } }
+</style>

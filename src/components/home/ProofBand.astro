@@ -1,0 +1,34 @@
+---
+// Proof band under the hero (04 §4.1 #3): rating + three confirmed facts, set like a logo strip (no logos until consent).
+import Icon from '../ui/Icon.astro';
+import { t } from '../../i18n/t';
+import { CLUTCH_URL } from '../../lib/seo';
+interface Props { items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[] }
+const { items } = Astro.props;
+---
+<section class="pband" data-surface="ink" aria-labelledby="pband-title">
+  <h2 id="pband-title" class="sr-only">{t('proof.rating')}</h2>
+  <div class="container pband__inner">
+    <p class="pband__rating">
+      <span class="pband__score">5.0</span>
+      <span class="pband__text">{t('proof.rating')} <a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a></span>
+    </p>
+    <ul role="list" class="pband__facts">
+      {items.slice(0, 3).map((i) => <li><Icon name={i.icon} size={20} /><span>{i.text}</span></li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .pband { border-block: 1px solid var(--color-hairline); padding-block: var(--space-8); }
+  .pband__inner { display: grid; gap: var(--space-6); align-items: center; }
+  @media (width >= 64rem) { .pband__inner { grid-template-columns: auto 1fr; gap: var(--space-12); } }
+  .pband__rating { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; gap: var(--space-4); }
+  .pband__score { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: 2.75rem; letter-spacing: -0.04em; line-height: 1; color: var(--color-heading); }
+  .pband__text { font-size: var(--text-sm); color: var(--color-text-muted); max-inline-size: 30ch; }
+  .pband__text a { display: inline-block; margin-block-start: 2px; }
+  .pband__facts { display: grid; gap: var(--space-4); }
+  @media (width >= 48rem) { .pband__facts { grid-template-columns: repeat(3, 1fr); } }
+  .pband__facts li { display: flex; align-items: center; gap: var(--space-3); padding-inline-start: var(--space-5); border-inline-start: 1px solid var(--color-hairline); color: var(--color-text); font-weight: var(--weight-medium); }
+  .pband__facts :global(.icon) { color: var(--color-machine-text); flex: none; }
+</style>

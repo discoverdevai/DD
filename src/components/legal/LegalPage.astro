@@ -1,0 +1,64 @@
+---
+// Legal template (04 §4.13): paper surface, prose width, H1, "Last updated", contents list, plain sections. No CTA band.
+import { legalUi, type LegalDoc, type Inline } from '../../content/copy/en/legal';
+interface Props { doc: LegalDoc }
+const { doc } = Astro.props;
+
+const isLink = (r: Inline): r is { text: string; href: string } => typeof r !== 'string' && 'href' in r;
+const isCode = (r: Inline): r is { code: string } => typeof r !== 'string' && 'code' in r;
+const linkContext = (href: string) => (href.startsWith('mailto:') ? 'contact' : 'other');
+---
+<article class="section legal" data-surface="paper" aria-labelledby="legal-title">
+  <div class="container--prose legal__inner">
+    <header class="legal__head">
+      <h1 id="legal-title" class="h1">{doc.h1}</h1>
+      <p class="small muted">{legalUi.updatedLabel}: <time datetime={legalUi.updated.iso}>{legalUi.updated.text}</time></p>
+    </header>
+
+    <p class="legal__intro">
+      {doc.intro.map((r) => isLink(r)
+        ? <a href={r.href} dir={r.href.startsWith('mailto:') ? 'ltr' : undefined} data-link-context={linkContext(r.href)}>{r.text}</a>
+        : isCode(r) ? <code>{r.code}</code> : r)}
+    </p>
+
+    <nav class="legal__toc" aria-labelledby="legal-contents">
+      <h2 id="legal-contents" class="legal__toc-title">{legalUi.contents}</h2>
+      <ol>
+        {doc.sections.map((s) => <li><a href={`#${s.id}`}>{s.heading}</a></li>)}
+      </ol>
+    </nav>
+
+    {doc.sections.map((s) => (
+      <section id={s.id} class="legal__section" aria-labelledby={`${s.id}-title`}>
+        <h2 id={`${s.id}-title`}>{s.heading}</h2>
+        {s.blocks.map((b) => {
+          const rich = (runs: readonly Inline[]) => runs.map((r) => isLink(r)
+            ? <a href={r.href} dir={r.href.startsWith('mailto:') ? 'ltr' : undefined} data-link-context={linkContext(r.href)}>{r.text}</a>
+            : isCode(r) ? <code>{r.code}</code> : r);
+          if ('h3' in b) return <h3>{b.h3}</h3>;
+          if ('ul' in b) return <ul>{b.ul.map((item) => <li>{rich(item)}</li>)}</ul>;
+          return <p>{rich(b.p)}</p>;
+        })}
+      </section>
+    ))}
+  </div>
+</article>
+
+<style>
+  .legal__inner { display: grid; gap: var(--space-8); }
+  .legal__head { display: grid; gap: var(--space-3); }
+  .legal__intro { font-size: var(--text-lg); max-inline-size: var(--measure-lead); }
+
+  .legal__toc { padding-block: var(--space-5); padding-inline: var(--space-6); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); background: var(--color-surface-sunken); }
+  .legal__toc-title { font-size: var(--text-base); margin-block-end: var(--space-3); }
+  .legal__toc ol { display: grid; gap: var(--space-1); padding-inline-start: var(--space-6); }
+  .legal__toc a { display: inline-block; padding-block: var(--space-1); }
+
+  .legal__section { display: grid; gap: var(--space-4); max-inline-size: var(--measure-prose); }
+  .legal__section h2 { font-size: var(--text-xl); line-height: var(--leading-snug); }
+  .legal__section h3 { font-size: var(--text-lg); line-height: var(--leading-snug); margin-block-start: var(--space-2); }
+  .legal__section ul { display: grid; gap: var(--space-2); padding-inline-start: var(--space-6); }
+  .legal__section li::marker { color: var(--color-text-muted); }
+  .legal__section a { overflow-wrap: anywhere; }
+  .legal code { padding-block: 1px; padding-inline: var(--space-1); border-radius: var(--radius-xs); background: var(--color-surface-sunken); border: 1px solid var(--color-border-subtle); }
+</style>

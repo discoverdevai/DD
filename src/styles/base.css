@@ -15,9 +15,27 @@
   --color-hairline: rgb(254 254 254 / 0.16);
 }
 
+/* Paper nested inside ink (e.g. the report document on the home page) must reset every semantic token, not just the bg. */
+[data-surface="paper"] {
+  --color-bg: var(--neutral-0); --color-surface: var(--neutral-0); --color-surface-alt: var(--blue-50); --color-surface-sunken: var(--neutral-50);
+  --color-text: var(--neutral-950); --color-heading: var(--blue-800); --color-text-muted: var(--neutral-600); --color-text-subtle: var(--neutral-500);
+  --color-accent-text: var(--blue-600); --color-link: var(--blue-700); --color-link-hover: var(--blue-800);
+  --color-border-subtle: var(--neutral-200); --color-border-accent: var(--blue-200); --color-border-control: var(--neutral-500); --color-border-interactive: var(--blue-700);
+  --color-focus: var(--blue-700); --color-action-bg: var(--blue-700); --color-action-bg-hover: var(--blue-800); --color-action-bg-active: var(--blue-900); --color-action-text: var(--neutral-0); --color-action-border: transparent;
+  --color-action-2-text: var(--blue-700); --color-action-2-text-hover: var(--blue-800); --color-action-2-bg-hover: var(--blue-50); --color-action-2-border: var(--blue-700);
+  --color-success-text: var(--green-700); --color-success-bg: var(--green-50); --color-warning-text: var(--amber-700); --color-warning-bg: var(--amber-50);
+  --color-error-text: var(--red-700); --color-error-bg: var(--red-50); --color-info-text: var(--blue-800); --color-info-bg: var(--blue-100);
+  --color-neutral-badge-text: var(--neutral-700); --color-neutral-badge-bg: var(--neutral-100);
+  --color-machine-text: var(--blue-700); --color-machine-mark: var(--blue-600); --color-human-text: var(--green-700); --color-human-mark: var(--green-700);
+  --color-hairline: var(--neutral-200); --color-code-prompt: var(--blue-700);
+  color-scheme: light;
+}
+
 @media (width >= 64rem) { :root { --header-h: 4.5rem; } }
 
 *, *::before, *::after { box-sizing: border-box; }
+/* `hidden` must win over component display rules (grid/flex), or hidden screens show (quiz result, panels). */
+[hidden] { display: none !important; }
 * { margin: 0; }
 
 html {
@@ -55,7 +73,10 @@ h1, h2, h3, h4 {
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
 }
-p, li, dd { text-wrap: pretty; }
+/* text-wrap: pretty is costly on long pages (Lighthouse styleLayout); kept only on leads and short card copy. */
+.lead, .item__body, .path__body { text-wrap: pretty; }
+/* Long tokens (URLs, code names, compound words) may break only when they would overflow, so grids never push a 320px page wider (WCAG 1.4.10 reflow). */
+main :where(p, li, dd, dt, h1, h2, h3, h4, td, th, a, figcaption) { overflow-wrap: anywhere; }
 img, svg, video { display: block; max-inline-size: 100%; block-size: auto; }
 a { color: var(--color-link); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 @media (hover: hover) { a:hover { color: var(--color-link-hover); text-decoration-thickness: 2px; } }
@@ -93,4 +114,33 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: 0.9em; }
 /* Forced colours: keep edges and focus visible (06 §6). */
 @media (forced-colors: active) {
   :focus-visible { outline-color: Highlight; }
+}
+
+/* ===================================================================================================
+   Motion system v2 (Oct 16, user direction: "top AI and software agencies"; docs/home-teardown.md).
+   CSS scroll-driven animations: zero JS, progressive (unsupported browsers show the final state),
+   and nothing runs under prefers-reduced-motion. Nothing loops.
+   =================================================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal, .reveal-stagger > * {
+      animation: dd-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 24%;
+    }
+    .reveal-stagger > :nth-child(2) { animation-range: entry 6% cover 28%; }
+    .reveal-stagger > :nth-child(3) { animation-range: entry 12% cover 32%; }
+    .reveal-stagger > :nth-child(4) { animation-range: entry 18% cover 36%; }
+    .reveal-stagger > :nth-child(n + 5) { animation-range: entry 22% cover 40%; }
+  }
+  @keyframes dd-rise { from { opacity: 0; translate: 0 1.5rem; } to { opacity: 1; translate: 0 0; } }
+  @keyframes dd-in { from { opacity: 0; translate: 0 0.75rem; filter: blur(6px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+}
+
+/* Pointer spotlight (set by the hero script): soft brand light that follows the cursor on cards. */
+[data-spotlight] { position: relative; }
+@media (hover: hover) and (pointer: fine) {
+  [data-spotlight]::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity var(--dur-slow);
+    background: radial-gradient(22rem circle at var(--mx, 50%) var(--my, 50%), color-mix(in oklab, var(--blue-400) 16%, transparent), transparent 60%); }
+  [data-spotlight]:hover::after { opacity: 1; }
 }

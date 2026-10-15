@@ -1,0 +1,69 @@
+---
+// /about (04 §4.9). Copy: 03 §12 with §0.7 applied (see about.ts). Team (§12.3) omitted ([TEAM], D-16/D-17); §12.8 omitted (V17, D-32).
+// Schema: 05 §4.6 full Organization + AboutPage; no Person nodes while the team is omitted.
+// Entity line (05 §5, D-43) appears verbatim in the story section.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import Section from '../components/ui/Section.astro';
+import CardGrid from '../components/ui/CardGrid.astro';
+import CheckList from '../components/ui/CheckList.astro';
+import Steps from '../components/ui/Steps.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import TimeOverlap from '../components/about/TimeOverlap.astro';
+import TrackRecord from '../components/about/TrackRecord.astro';
+import { about as c } from '../content/copy/en/about';
+import { graph, orgFull, website, webPage, ENTITY_LINE, ORG_ID } from '../lib/seo';
+
+const jsonLd = graph(orgFull, website, webPage('/about', c.seo.title, c.seo.description, 'AboutPage', { about: { '@id': ORG_ID } }));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="about" jsonLd={jsonLd}>
+  <PageHero page="about" h1={c.hero.h1} lead={c.hero.lead} cta="clarity" />
+
+  <Section id="story" surface="paper" width="narrow">
+    <div class="story">
+      <p class="story__body">{c.story.body}</p>
+      <p class="story__entity">{ENTITY_LINE}</p>
+    </div>
+  </Section>
+
+  <Section id="beliefs" surface="ink" title={c.beliefs.title}>
+    <CardGrid items={c.beliefs.pillars} cols={3} variant="rule" />
+  </Section>
+
+  <Section id="where" surface="paper" title={c.where.title}>
+    <div class="where">
+      <p class="where__body">{c.where.body}</p>
+      <TimeOverlap label={c.where.strip.label} places={c.where.strip.places} hubTag={c.where.strip.hubTag} text={c.where.strip.text} />
+    </div>
+  </Section>
+
+  <Section id="track-record" surface="alt" title={c.record.title}>
+    <TrackRecord items={c.record.items} />
+  </Section>
+
+  <Section id="how-we-work" surface="ink" title={c.how.title}>
+    <Steps steps={c.how.steps} />
+    <p class="how__line">{c.how.line}</p>
+  </Section>
+
+  <Section id="what-we-build" surface="paper" title={c.build.title}>
+    <div class="capabilities">
+      <CheckList items={c.build.items} />
+    </div>
+  </Section>
+
+  <CtaBand title={c.band.title} kind="clarity" page="about" />
+</BaseLayout>
+
+<style>
+  .story { display: grid; gap: var(--space-8); }
+  .story__body { font-size: var(--text-lg); max-inline-size: var(--measure-prose); }
+  .story__entity { padding-block: var(--space-5); padding-inline: var(--space-6); border-inline-start: 2px solid var(--color-border-accent); background: var(--color-surface-sunken); border-radius: var(--radius-sm); color: var(--color-text); max-inline-size: var(--measure-prose); }
+  .where { display: grid; gap: var(--space-10); }
+  @media (width >= 64rem) { .where { grid-template-columns: 5fr 7fr; gap: var(--space-16); align-items: start; } }
+  .where__body { font-size: var(--text-lg); max-inline-size: var(--measure-lead); }
+  .how__line { margin-block-start: var(--space-8); font-weight: var(--weight-medium); max-inline-size: var(--measure-lead); }
+  .capabilities :global(.checks) { gap: var(--space-4) var(--grid-gap); }
+  @media (width >= 48rem) { .capabilities :global(.checks) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (width >= 64rem) { .capabilities :global(.checks) { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

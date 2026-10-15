@@ -1,0 +1,64 @@
+---
+// Insights hub (04 §4.7, 03 §15, 05 §1.1 + §4.3). Ink hero, paper list, closing review band.
+// Published entries only. No topic filter under 8 articles, no newsletter (D-11). With 0 articles it shows hero + band only.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/sections/PageHero.astro';
+import ArticleCard from '../../components/insights/ArticleCard.astro';
+import QuizBanner from '../../components/insights/QuizBanner.astro';
+import CtaBand from '../../components/ui/CtaBand.astro';
+import { insights as c } from '../../content/copy/en/insights';
+import { insightPath, insightSlug, publishedInsights } from '../../lib/insights';
+import { canonical, graph, orgStub, webPage, ORG_ID } from '../../lib/seo';
+
+const all = await publishedInsights('en');
+const featured = all.find((e) => insightSlug(e) === c.featured.slug);
+const cards = all.filter((e) => e !== featured);
+const FIRST_ROW = 3; // 3 columns from 64rem (06 §9.10); the quiz banner follows the first row.
+const firstRow = cards.slice(0, FIRST_ROW);
+const rest = cards.slice(FIRST_ROW);
+
+// ItemList order = visual order.
+const listed = [...(featured ? [featured] : []), ...cards];
+const jsonLd = graph(
+  orgStub,
+  webPage('/insights', c.seo.title, c.seo.description, 'CollectionPage', {
+    publisher: { '@id': ORG_ID },
+    ...(listed.length
+      ? {
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: listed.map((e, i) => ({ '@type': 'ListItem', position: i + 1, url: canonical(insightPath(e)), name: e.data.h1 })),
+          },
+        }
+      : {}),
+  }),
+);
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="insights_hub" jsonLd={jsonLd}>
+  <link slot="head" rel="alternate" type="application/rss+xml" title="DiscoverDev Insights" href="/insights/rss.xml" />
+  <PageHero page="insights" h1={c.h1} lead={c.intro} cta="none" proof={false} />
+
+  {listed.length > 0 && (
+    <section class="section hub" data-surface="paper">
+      <div class="container hub__inner">
+        {featured && <ArticleCard entry={featured} page="insights" level={2} featured={c.featured} />}
+        {firstRow.length > 0 && (
+          <ul role="list" class="hub__grid">{firstRow.map((e) => <li><ArticleCard entry={e} page="insights" level={2} /></li>)}</ul>
+        )}
+        <QuizBanner ctaId="insights_mid_launch_check" />
+        {rest.length > 0 && (
+          <ul role="list" class="hub__grid">{rest.map((e) => <li><ArticleCard entry={e} page="insights" level={2} /></li>)}</ul>
+        )}
+      </div>
+    </section>
+  )}
+
+  <CtaBand title={c.band.title} kind="review" page="insights" />
+</BaseLayout>
+
+<style>
+  .hub__inner { display: grid; gap: var(--grid-gap); }
+  .hub__grid { display: grid; gap: var(--grid-gap); }
+  @media (width >= 40rem) { .hub__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (width >= 64rem) { .hub__grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

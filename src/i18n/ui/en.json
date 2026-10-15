@@ -57,5 +57,11 @@
   "back": "Back",
   "footer.location.us": "Texas, USA",
   "footer.location.eg": "Alexandria, Egypt (engineering hub)",
-  "steps.label": "Step {n}:"
+  "steps.label": "Step {n}:",
+  "nav.how": "How we work",
+  "nav.review.label": "Launch-Ready Review",
+  "nav.review.who": "Already built something? A senior review in about 5 working days.",
+  "cta.clarity.short": "Book a call",
+  "cta.how": "See how we work",
+  "sticky.line.clarity": "30 minutes · No pitch"
 }

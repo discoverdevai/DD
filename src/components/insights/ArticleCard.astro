@@ -1,0 +1,50 @@
+---
+// Insight card (06 §9.10, 03 §15.4): topic badge, title link stretched over the card, 1-line summary, read time + Updated.
+// One link per card. Callers pass published entries only (lib/insights.ts). Analytics attrs mirror CtaLink (07 §9.3).
+import { insights as c, fill } from '../../content/copy/en/insights';
+import { displayDate, insightPath, insightSlug, isoDate, readingMinutes, type Insight } from '../../lib/insights';
+interface Props { entry: Insight; page: string; level?: 2 | 3; featured?: { title: string; body: string; link: string } }
+const { entry, page, level = 3, featured } = Astro.props;
+const H = `h${level}` as 'h2' | 'h3';
+const slugId = insightSlug(entry).replace(/-/g, '_');
+const tag = entry.data.tags[0];
+const title = featured?.title ?? entry.data.h1;
+const summary = featured?.body ?? entry.data.description;
+const updated = entry.data.updatedAt;
+---
+<article class:list={['icard', { 'icard--featured': featured }]}>
+  {tag && <p class="icard__badge">{c.topics[tag]}</p>}
+  <H class="h3 icard__title">
+    <a
+      href={insightPath(entry)}
+      data-cta-id={`${page}_card_article_${slugId}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target="article"
+    >{title}{featured && <span class="sr-only">: {featured.link}</span>}</a>
+  </H>
+  <p class="icard__summary">{summary}</p>
+  <p class="icard__meta">
+    <span>{fill(c.card.readTime, { n: readingMinutes(entry.body) })}</span>
+    <span><time datetime={isoDate(updated)}>{fill(c.card.updated, { date: displayDate(updated) })}</time></span>
+  </p>
+  {featured && <p class="icard__more" aria-hidden="true">{featured.link}</p>}
+</article>
+
+<style>
+  .icard { position: relative; display: grid; gap: var(--space-3); align-content: start; block-size: 100%; padding: var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); transition: border-color var(--dur-color); }
+  .icard__badge { justify-self: start; display: inline-flex; align-items: center; min-block-size: 22px; padding: 2px 10px; border-radius: var(--radius-pill); background: var(--color-neutral-badge-bg); color: var(--color-neutral-badge-text); font-size: var(--text-xs); font-weight: var(--weight-semibold); line-height: 1; letter-spacing: 0.01em; }
+  .icard__title a { color: var(--color-heading); text-decoration: none; }
+  .icard__title a::after { content: ''; position: absolute; inset: 0; z-index: var(--z-raised); border-radius: inherit; }
+  .icard__title a:focus-visible { outline: none; }
+  .icard:has(a:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+  .icard__summary { color: var(--color-text-muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
+  .icard__meta { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); font-size: var(--text-sm); line-height: 1.5; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+  .icard__more { font-weight: var(--weight-medium); color: var(--color-link); text-decoration: underline; text-underline-offset: 0.2em; }
+  .icard--featured { padding: var(--space-8); border-color: var(--color-border-accent); }
+  .icard--featured .icard__title { font-size: var(--text-2xl); }
+  .icard--featured .icard__summary { -webkit-line-clamp: unset; line-clamp: none; font-size: var(--text-lg); }
+  @media (hover: hover) {
+    .icard:hover { border-color: var(--color-border-interactive); }
+    .icard:hover .icard__title a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+    .icard:hover .icard__more { text-decoration-thickness: 2px; }
+  }
+  .icard:active { border-width: 2px; }
+</style>

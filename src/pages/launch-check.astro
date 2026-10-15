@@ -1,0 +1,31 @@
+---
+// /launch-check (04 §4.12, 03 §4). Minimal header, no sticky bar. Static block below the quiz gives crawlers
+// and no-JS visitors real content.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuizApp from '../components/quiz/QuizApp.astro';
+import CheckList from '../components/ui/CheckList.astro';
+import { quizCopy as c } from '../content/copy/en/quiz';
+import { graph, orgStub, webPage } from '../lib/seo';
+import { isLive, href } from '../data/routes';
+const jsonLd = graph(orgStub, webPage('/launch-check', c.seo.title, c.seo.description));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="quiz" jsonLd={jsonLd} header="minimal" stickyBar={false}>
+  <section class="section" data-surface="paper" aria-labelledby="quiz-title">
+    <div class="container--prose qpage">
+      <h1 id="quiz-title" class="h1">{c.h1}</h1>
+      <p class="lead">{c.intro}</p>
+      <QuizApp />
+    </div>
+  </section>
+  <section class="section section--sm" data-surface="alt" aria-labelledby="quiz-below-title">
+    <div class="container--prose qpage">
+      <h2 id="quiz-below-title" class="h3">{c.below.title}</h2>
+      <CheckList items={c.below.items} tone="machine" />
+      {isLive('pillar') && <a href={href('pillar')}>{c.below.pillar}</a>}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .qpage { display: grid; gap: var(--space-6); }
+</style>

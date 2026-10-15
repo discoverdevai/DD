@@ -1,0 +1,20 @@
+---
+// Two-tone statement (docs/home-teardown.md): first sentence bright, the rest dim. Dim text is ≥ 24px, so 3:1 applies (06 §3).
+interface Props { id: string; bright: string; dim: string; label?: string }
+const { id, bright, dim, label } = Astro.props;
+---
+<section id={id} class="stmt" data-surface="ink" aria-labelledby={`${id}-title`}>
+  <div class="container">
+    {label && <p class="stmt__label">{label}</p>}
+    <h2 id={`${id}-title`} class="stmt__text reveal"><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .stmt { padding-block: var(--section-y); scroll-margin-block-start: var(--header-h); }
+  .stmt__label { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-6); }
+  .stmt__text { font-size: clamp(1.75rem, 1.1rem + 2.7vw, 3.5rem); font-weight: var(--weight-semibold); line-height: 1.12; letter-spacing: -0.035em; max-inline-size: 24ch; text-wrap: balance; }
+  .stmt__bright { color: var(--color-heading); }
+  .stmt__dim { color: color-mix(in oklab, var(--neutral-0) 50%, var(--color-bg)); }
+</style>

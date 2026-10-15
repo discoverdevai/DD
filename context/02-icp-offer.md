@@ -1,14 +1,18 @@
 # 02 · ICP, jobs and offer
 Full evidence: `research/market-voc.md` (JTBD, verbatim pain-language bank, 12 objections + answers, GCC trust signals).
 
-## Who the site is for
+## Who the site is for (strategy v2, 2026-10-16; see `docs/strategy-v2.md`)
+DiscoverDev is positioned as a product and engineering company that builds with Agile v2 (AI does the heavy lifting, senior engineers own the quality). The Launch-Ready Review is one service, not the front door. Primary action site-wide: free clarity call.
+
 | Segment | Situation | Door | Priority |
 |---|---|---|---|
-| **Launch-stuck founder** (US + GCC, equal) | Prototype or early MVP (Lovable/Bolt/v0/Cursor or freelancer) that works in the demo but isn't safe for real users and money. Pre-seed, angel or self-funded | /launch-ready → Review | **Primary** |
+| **Founder with an idea or a funded early team** (US + GCC, equal) | Needs the right product built fast, no in-house team yet | Home → /validate or /build → clarity call | **Primary** |
+| **Growing product team** | Traction, needs senior capacity that owns a roadmap | Home → /scale → clarity call | **Primary** |
+| Founder with an AI-built or freelancer-built app | Works in the demo, not safe for real users and money | /launch-ready (search, content, quiz) → Review | Secondary |
 | Software houses / agencies | Need extra capacity, specialists, white-label | /partners → partner call | Channel |
-| Idea-stage founder | "I have an idea" | /validate (referral-led) | Secondary |
-| Funded startup | Traction, needs a team | /scale (referral-led) | Secondary |
-| Established companies, academia | — | Not marketed in Q4 | Out |
+| Established companies, academia | AI, data, modernization | Clarity call, inbound only | Inbound |
+
+v1 note (superseded): the launch-stuck founder was the primary segment and the Review the front door. The Review job, forces and objections below still apply to /launch-ready.
 
 ## Core job
 When my AI-built or freelancer-built MVP works in the demo but real users and real money are about to touch it, I want a senior team to tell me plainly what will break and what it costs to fix. Then I can launch without a data leak, a surprise rewrite or another lost month.

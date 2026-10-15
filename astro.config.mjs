@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, fontProviders, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
 const NOT_IN_SITEMAP = /\/(404|book\/confirmed)$|\/og\//;
@@ -15,6 +16,7 @@ export default defineConfig({
   // Add 'ar' only when the first native-reviewed Arabic page ships (Q1 2027).
   i18n: { locales: ['en'], defaultLocale: 'en', routing: { prefixDefaultLocale: false } },
   integrations: [
+    mdx(),
     sitemap({ filter: (page) => !NOT_IN_SITEMAP.test(new URL(page).pathname.replace(/\/$/, '')) }),
   ],
   fonts: [

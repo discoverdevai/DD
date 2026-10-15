@@ -1,0 +1,127 @@
+---
+// Launch check (04 §8, 06 §9.23). Server-rendered markup for every screen; quiz-app.ts shows one at a time.
+// Without JS the quiz stays hidden and <noscript> + the static block below the quiz carry the page.
+import { questions, quizCopy as c } from '../../content/copy/en/quiz';
+import { t } from '../../i18n/t';
+import CtaTerms from '../ui/CtaTerms.astro';
+import { PUBLIC_WEB3FORMS_KEY } from 'astro:env/client';
+import { isLive, href } from '../../data/routes';
+const emailOn = Boolean(PUBLIC_WEB3FORMS_KEY);
+---
+<div class="quiz" data-quiz hidden data-email={emailOn ? 'on' : 'off'} data-progress={c.progress}
+  data-cta-review={t('cta.review')} data-cta-clarity={t('cta.clarity')} data-book-live={isLive('book') ? '1' : '0'}
+  data-pillar={isLive('pillar') ? href('pillar') : ''} data-validate={isLive('validate') ? href('validate') : ''} data-build={isLive('build') ? href('build') : ''}>
+  <div class="quiz__intro" data-screen="intro">
+    <div class="quiz__resume" data-resume hidden>
+      <button type="button" class="btn btn--primary" data-resume-go>{c.resume.text}</button>
+      <button type="button" class="btn btn--secondary" data-restart>{c.resume.restart}</button>
+    </div>
+    <button type="button" class="btn btn--primary" data-start>{c.start}</button>
+    <p class="small muted">{c.privacy}</p>
+  </div>
+
+  <div class="quiz__progress" data-progress-wrap hidden>
+    <p class="mono small" data-progress-text></p>
+    <div class="quiz__bar" aria-hidden="true"><span data-progress-bar></span></div>
+  </div>
+
+  {questions.map((q, i) => (
+    <form class="quiz__step" data-screen={`q${i + 1}`} data-qid={q.id} hidden novalidate>
+      <fieldset aria-describedby={`${q.id}-err`}>
+        <legend><h2 class="h2 quiz__q" tabindex="-1">{q.title}</h2></legend>
+        {q.helper && <p class="muted quiz__helper">{q.helper}</p>}
+        <div class="quiz__options">
+          {q.options.map((o) => (
+            <div class="opt"><input type="radio" id={`${q.id}-${o.value}`} name={q.id} value={o.value} required /><label for={`${q.id}-${o.value}`}>{o.label}</label></div>
+          ))}
+        </div>
+        <p class="quiz__err" id={`${q.id}-err`} data-err hidden>{c.error}</p>
+      </fieldset>
+      <div class="quiz__actions">
+        {i > 0 && <button type="button" class="btn btn--secondary" data-back>{c.back}</button>}
+        <button type="submit" class="btn btn--primary">{i === questions.length - 1 ? c.finish : c.next}</button>
+      </div>
+    </form>
+  ))}
+
+  <div class="quiz__result" data-screen="result" hidden>
+    <h2 class="h2" tabindex="-1" data-r-h2></h2>
+    <p class="lead" data-r-meaning></p>
+    <ul role="list" class="dims" data-r-dims>
+      {Object.entries(c.dimensions).map(([k, label]) => (
+        <li data-dim={k}><span class="dims__label">{label}</span><span class="dims__level" data-level></span><span class="dims__bar" aria-hidden="true"><span></span></span></li>
+      ))}
+    </ul>
+    <div data-r-risks-wrap hidden><h3 class="h3">{c.topRisks}</h3><ul role="list" class="risks" data-r-risks></ul></div>
+    <p data-r-body></p>
+    <p class="quiz__urgent" data-r-urgent hidden></p>
+    <div class="quiz__cta"><a class="btn btn--primary" data-r-cta href="/"></a><div data-r-terms="review" hidden><CtaTerms kind="review" /></div><div data-r-terms="clarity" hidden><CtaTerms kind="clarity" /></div></div>
+    <p data-r-secondary hidden></p>
+    {emailOn && (
+      <form class="email" data-email-form novalidate>
+        <h3 class="h3">{c.email.heading}</h3>
+        <p class="muted">{c.email.body}</p>
+        <label for="quiz-email" class="email__label">{c.email.label}</label>
+        <input id="quiz-email" name="email" type="email" autocomplete="email" dir="ltr" required aria-describedby="quiz-email-err" class="email__input" />
+        <p id="quiz-email-err" class="quiz__err" data-email-err hidden></p>
+        <label class="email__consent"><input type="checkbox" name="consent" required /><span>{c.email.consent}</span></label>
+        <input type="text" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button type="submit" class="btn btn--secondary" data-email-btn>{c.email.button}</button>
+        <p role="status" class="small" data-email-status></p>
+      </form>
+    )}
+    <button type="button" class="linkbtn" data-retake>{c.retake}</button>
+  </div>
+</div>
+<noscript><p class="quiz-noscript">{c.noscript}</p></noscript>
+
+<script>
+  import { mountQuiz } from '../../lib/quiz-app';
+  mountQuiz();
+</script>
+
+<style>
+  .quiz { display: grid; gap: var(--space-6); }
+  .quiz__intro, .quiz__resume { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+  .quiz__intro { display: grid; justify-items: start; }
+  .quiz__bar { block-size: 6px; border-radius: var(--radius-pill); background: var(--color-progress-track); overflow: hidden; }
+  .quiz__bar span { display: block; block-size: 100%; inline-size: 10%; background: var(--color-progress-fill); transition: inline-size var(--dur-base); }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: var(--space-4); min-inline-size: 0; }
+  legend { padding: 0; margin-block-end: var(--space-2); }
+  .quiz__q:focus { outline: none; }
+  .quiz__options { display: grid; gap: var(--space-3); }
+  .opt { position: relative; display: flex; align-items: center; gap: var(--space-3); min-block-size: 3.5rem; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border-control); border-radius: var(--radius-sm); background: var(--color-surface); cursor: pointer; }
+  .opt input { inline-size: 1.25rem; block-size: 1.25rem; accent-color: var(--color-action-bg); flex: none; margin: 0; }
+  .opt label { cursor: pointer; flex: 1; }
+  .opt label::after { content: ''; position: absolute; inset: 0; } /* whole card is the hit area */
+  .opt:has(:checked) { border: 2px solid var(--color-border-interactive); background: var(--color-surface-alt); }
+  .opt:has(:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+  .opt input:focus-visible { outline: none; }
+  @media (hover: hover) { .opt:hover { border-color: var(--color-border-interactive); } }
+  .quiz__err { color: var(--color-error-text); font-weight: var(--weight-medium); }
+  .quiz__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-block-size: 3rem; padding-inline: var(--space-6); border-radius: var(--radius-sm); font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-base); text-decoration: none; cursor: pointer; border: 1px solid transparent; }
+  .btn--primary { background: var(--color-action-bg); color: var(--color-action-text); }
+  .btn--secondary { background: transparent; color: var(--color-action-2-text); border-color: var(--color-action-2-border); }
+  @media (hover: hover) { .btn--primary:hover { background: var(--color-action-bg-hover); } .btn--secondary:hover { background: var(--color-action-2-bg-hover); } }
+  .quiz__result { display: grid; gap: var(--space-5); }
+  .quiz__result [data-r-secondary] { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+  .quiz__result [data-r-h2]:focus { outline: none; }
+  .dims { display: grid; gap: var(--space-3); }
+  .dims li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-1) var(--space-3); }
+  .dims__level { font-weight: var(--weight-medium); }
+  .dims__bar { grid-column: 1 / -1; block-size: 6px; border-radius: var(--radius-pill); background: var(--color-progress-track); overflow: hidden; }
+  .dims__bar span { display: block; block-size: 100%; inline-size: 0; background: var(--color-progress-fill); }
+  .risks { display: grid; gap: var(--space-3); padding-inline-start: var(--space-5); list-style: disc; }
+  .quiz__urgent { font-weight: var(--weight-semibold); color: var(--color-warning-text); }
+  .quiz__cta { display: grid; gap: var(--space-2); justify-items: start; }
+  .email { display: grid; gap: var(--space-3); padding: var(--space-6); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); max-inline-size: 32rem; }
+  .email__label { font-weight: var(--weight-medium); }
+  .email__input { min-block-size: 3rem; padding-inline: var(--space-4); border: 1px solid var(--color-border-control); border-radius: var(--radius-sm); font-size: max(1rem, var(--text-base)); background: var(--color-surface); }
+  .email__input[aria-invalid='true'] { box-shadow: inset 0 0 0 2px var(--color-error-text); }
+  .email__consent { display: flex; gap: var(--space-3); align-items: start; min-block-size: 2.75rem; }
+  .email__consent input { inline-size: 1.25rem; block-size: 1.25rem; accent-color: var(--color-action-bg); margin-block-start: 0.15rem; flex: none; }
+  .linkbtn { justify-self: start; background: none; border: 0; padding: 0; min-block-size: 2.75rem; color: var(--color-link); text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; font-weight: var(--weight-medium); }
+  .quiz-noscript { padding: var(--space-4); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); }
+  @media (prefers-reduced-motion: no-preference) { .quiz__step:not([hidden]), .quiz__result:not([hidden]) { animation: fade var(--dur-fast) var(--ease-enter); } @keyframes fade { from { opacity: 0; } } }
+</style>

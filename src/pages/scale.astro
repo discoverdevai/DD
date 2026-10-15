@@ -1,0 +1,76 @@
+---
+// /scale, service page (04 §4.3). Surfaces: hero ink, content paper/alt, process ink, band navy (06 §0).
+// Proof is anonymized, quotes omitted, retention line replaced (03 §0.7 [CONSENT]).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import Section from '../components/ui/Section.astro';
+import FitList from '../components/ui/FitList.astro';
+import CardGrid from '../components/ui/CardGrid.astro';
+import CheckList from '../components/ui/CheckList.astro';
+import Steps from '../components/ui/Steps.astro';
+import Faq from '../components/ui/Faq.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import CtaLink from '../components/ui/CtaLink.astro';
+import ProofList from '../components/services/ProofList.astro';
+import { scale as c } from '../content/copy/en/scale';
+import { href, isLive } from '../data/routes';
+import { graph, orgStub, webPage, canonical, ORG_ID } from '../lib/seo';
+
+const url = canonical('/scale');
+const service = {
+  '@type': 'Service', '@id': `${url}#service`, name: 'Scale', serviceType: 'Dedicated development team',
+  description: c.seo.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
+  audience: { '@type': 'BusinessAudience', audienceType: 'Startups with a live product' },
+  offers: { '@type': 'Offer', url: `${url}#pricing`, description: c.pricing.answer },
+};
+const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
+const jsonLd = graph(orgStub, service, webPage('/scale', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
+  <PageHero page="scale" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} meta={c.hero.meta} cta="clarity" />
+
+  <Section id="fit" surface="paper" title={c.fit.title}>
+    <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
+  </Section>
+
+  <Section id="outcomes" surface="alt" title={c.outcomes.title}>
+    <CardGrid items={c.outcomes.items} cols={3} />
+  </Section>
+
+  <Section id="included" surface="paper" title={c.included.title} width="narrow">
+    <CheckList items={c.included.items} />
+  </Section>
+
+  <Section id="process" surface="ink" title={c.process.title}>
+    <Steps steps={c.process.steps} />
+  </Section>
+
+  <Section id="pricing" surface="paper" title={c.pricing.title} width="narrow">
+    <p class="answer">{c.pricing.answer}</p>
+  </Section>
+
+  <Section id="team" surface="alt" title={c.team.title} width="narrow">
+    <p class="answer">{c.team.body}</p>
+  </Section>
+
+  <Section id="proof" surface="paper" title={c.proof.title}>
+    <ProofList items={c.proof.items} />
+    <p class="retention">{c.proof.retention}</p>
+    {isLive('workEdulens') && <CtaLink href={href('workEdulens')} ctaId="scale_mid_case" tier="secondary" position="mid" target="case" variant="text">{c.proof.caseLink}</CtaLink>}
+  </Section>
+
+  <Section id="ownership" surface="alt" title={c.ownership.title} width="narrow">
+    <p class="answer">{c.ownership.body}</p>
+  </Section>
+
+  <Section id="faq" surface="paper" title={c.faq.title}>
+    <Faq items={c.faq.items} />
+  </Section>
+
+  <CtaBand title={c.band.title} kind="clarity" page="scale" />
+</BaseLayout>
+
+<style>
+  .answer { font-size: var(--text-lg); max-inline-size: var(--measure-prose); }
+  .retention { margin-block: var(--space-8) var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-medium); }
+</style>

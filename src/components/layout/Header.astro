@@ -1,6 +1,6 @@
 ---
 // Site header (06 §9.1, 04 §3.1). Always on the ink surface (06 §0.4). Two variants:
-// default = logo, nav, Book a Review, menu button; minimal (/book, /launch-check) = logo + Back.
+// default = logo, nav, Book a call, menu button; minimal (/book, /launch-check) = logo + Back.
 import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
 import CtaLink from '../ui/CtaLink.astro';
@@ -11,9 +11,11 @@ import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
 interface Props { variant?: 'default' | 'minimal'; current?: string }
 const { variant = 'default', current = Astro.url.pathname } = Astro.props;
 
-const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 'build', 'scale', 'partners'] as const)
+const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 'build', 'scale', 'review', 'partners'] as const)
   .filter(isLive)
-  .map((key) => ({ key, label: t(`nav.${key}`), who: t(`nav.${key}.who`) }));
+  .map((key) => ({ key, label: t(key === 'review' ? 'nav.review.label' : `nav.${key}`), who: t(`nav.${key}.who`) }));
+// Strategy v2 (03 §1.1): "How we work" anchors to the Agile v2 section on home.
+const HOW = { path: '/#agile-v2', label: t('nav.how') };
 const TOP: { key: RouteKey; label: string }[] = (['work', 'insights', 'about'] as const).filter(isLive).map((key) => ({ key, label: t(`nav.${key}`) }));
 const isCurrent = (path: string) => current.replace(/\.html$/, '').replace(/\/$/, '') === path.replace(/\/$/, '');
 const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
@@ -25,7 +27,6 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
     {variant === 'default' && (
       <nav class="site-nav" aria-label={t('nav.label')}>
         <ul role="list" class="site-nav__list">
-          {isLive('review') && <li><a href={ROUTES.review.path} aria-current={isCurrent(ROUTES.review.path) ? 'page' : undefined}>{t('nav.review')}</a></li>}
           {SERVICES.length > 0 && (
             <li class="site-nav__services">
               <button type="button" class="site-nav__toggle" aria-expanded="false" aria-controls="services-panel" aria-current={servicesCurrent ? 'true' : undefined} data-disclosure>
@@ -38,6 +39,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
               </ul>
             </li>
           )}
+          <li><a href={HOW.path}>{HOW.label}</a></li>
           {TOP.map((i) => <li><a href={ROUTES[i.key].path} aria-current={isCurrent(ROUTES[i.key].path) ? 'page' : undefined}>{i.label}</a></li>)}
         </ul>
       </nav>
@@ -45,7 +47,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
 
     {variant === 'default' ? (
       <div class="site-header__actions">
-        <CtaLink href={bookHref('review')} ctaId="nav_book_review" tier="primary" position="nav" target="review" size="sm" class="site-header__book">{t('cta.review.short')}</CtaLink>
+        <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" class="site-header__book">{t('cta.clarity.short')}</CtaLink>
         <button type="button" class="site-header__menu" aria-haspopup="dialog" aria-controls="menu-sheet" data-menu-open>
           <Icon name="menu" size={20} /><span class="sr-only">{t('menu.open')}</span>
         </button>
@@ -54,12 +56,13 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
       <a href="/" class="site-header__back" data-back><Icon name="arrow-left" size={16} directional />{t('back')}</a>
     )}
   </div>
-  {variant === 'default' && <MobileMenu services={SERVICES} top={TOP} />}
+  {variant === 'default' && <MobileMenu services={SERVICES} top={TOP} how={HOW} />}
 </header>
 
 <style>
   .site-header { position: sticky; inset-block-start: 0; z-index: var(--z-header); background: var(--color-bg); transition: translate var(--dur-slow) var(--ease-exit), border-color var(--dur-color); border-block-end: 1px solid transparent; }
   .site-header[data-scrolled] { border-block-end-color: var(--color-border-subtle); }
+  @supports (backdrop-filter: blur(1px)) { .site-header[data-scrolled] { background: color-mix(in oklab, var(--color-bg) 78%, transparent); backdrop-filter: blur(14px) saturate(140%); } }
   .site-header[data-hidden] { translate: 0 -100%; }
   .site-header__bar { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--header-h); }
   @media (width >= 64rem) { .site-header__bar { gap: var(--space-6); } }

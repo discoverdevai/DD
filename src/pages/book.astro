@@ -1,0 +1,120 @@
+---
+// /book (04 §4.10, 03 §13): minimal header, no sticky bar, paper surface. ?type=review|clarity|partner (unknown → review).
+// Option switch = links (works without JS, 06 §9.17); JS swaps the text and re-renders the Cal namespace.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaTerms from '../components/ui/CtaTerms.astro';
+import CheckList from '../components/ui/CheckList.astro';
+import ProofChip from '../components/ui/ProofChip.astro';
+import CalEmbed from '../components/book/CalEmbed.astro';
+import { book as c } from '../content/copy/en/book';
+import { t } from '../i18n/t';
+import { graph, orgStub, webPage } from '../lib/seo';
+const jsonLd = graph(orgStub, webPage('/book', c.seo.title, c.seo.description));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="book" jsonLd={jsonLd} header="minimal" stickyBar={false}>
+  <section class="section book" data-surface="paper" aria-labelledby="book-title">
+    <div class="container book__grid">
+      <div class="book__main">
+        <h1 id="book-title" class="h1" data-book-h1>{c.h1}</h1>
+        <nav class="opts" aria-label={c.optionsLabel}>
+          <a href="/book?type=review" class="opt" aria-current="true" data-opt="review">{c.options.review.tab}</a>
+          <a href="/book?type=clarity" class="opt" data-opt="clarity">{c.options.clarity.tab}</a>
+          <a href="/book?type=partner" class="opt" data-opt="partner" hidden>{c.options.partner.tab}</a>
+        </nav>
+        <div class="opt-panel" data-panel="review"><p>{c.options.review.text}</p><CtaTerms kind="review" /></div>
+        <div class="opt-panel" data-panel="clarity" hidden><p>{c.options.clarity.text}</p><CtaTerms kind="clarity" /></div>
+        <div class="opt-panel" data-panel="partner" hidden><p>{c.options.partner.text}</p><CtaTerms kind="partner" /></div>
+        <CalEmbed />
+      </div>
+      <aside class="book__side" aria-label={c.call.title}>
+        <div class="side-block">
+          <h2 class="h3">{c.call.title}</h2>
+          <CheckList items={c.call.items} />
+          <p class="muted">{c.call.who}</p>
+        </div>
+        <div class="side-block">
+          <h2 class="h3">{c.terms.title}</h2>
+          <CheckList items={c.terms.items} />
+        </div>
+        <ProofChip />
+        <div class="side-block" id="contact">
+          <h2 class="h3">{c.write.title}</h2>
+          <p><a href={`mailto:${t('contact.email')}`} data-link-context="contact" dir="ltr">{t('contact.email')}</a></p>
+          <p class="muted">{c.write.languages}</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .book__grid { display: grid; gap: var(--space-12); }
+  @media (width >= 64rem) { .book__grid { grid-template-columns: 8fr 4fr; gap: var(--space-16); align-items: start; } }
+  .book__main { display: grid; gap: var(--space-6); min-inline-size: 0; }
+  .opts { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .opt { display: inline-flex; align-items: center; min-block-size: 2.75rem; padding-inline: var(--space-4); border: 1px solid var(--color-border-control); border-radius: var(--radius-sm); color: var(--color-text); text-decoration: none; font-weight: var(--weight-medium); }
+  .opt[aria-current='true'] { border: 2px solid var(--color-border-interactive); background: var(--color-surface-alt); color: var(--color-heading); }
+  .opt[hidden] { display: none; }
+  .opt-panel { display: grid; gap: var(--space-3); max-inline-size: var(--measure-prose); }
+  .book__side { display: grid; gap: var(--space-8); align-content: start; }
+  .side-block { display: grid; gap: var(--space-3); }
+</style>
+
+<script>
+  import { renderCal, EVENT, type BookType } from '../lib/cal';
+  import { track } from '../lib/analytics';
+  import { firstTouch } from '../lib/utm';
+
+  const params = new URLSearchParams(location.search);
+  const raw = params.get('type');
+  const type: BookType = raw === 'clarity' || raw === 'partner' ? raw : 'review';
+  const read = (k: string) => { try { return sessionStorage.getItem(k); } catch { return null; } };
+
+  // Option switch: current link, matching text; the partner tab exists only when asked for (04 §4.10).
+  if (type === 'partner') document.querySelector<HTMLElement>('[data-opt="partner"]')!.hidden = false;
+  document.querySelectorAll<HTMLAnchorElement>('[data-opt]').forEach((a) => {
+    if (a.dataset.opt === type) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+  });
+  document.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => (p.hidden = p.dataset.panel !== type));
+  document.querySelectorAll<HTMLElement>('[data-cal-link]').forEach((li) => (li.hidden = li.dataset.calLink !== type));
+
+  const root = document.querySelector<HTMLElement>('[data-cal]')!;
+  const el = document.querySelector<HTMLElement>('[data-cal-inline]')!;
+  const failed = document.querySelector<HTMLElement>('[data-cal-failed]')!;
+  const loading = document.querySelector<HTMLElement>('[data-cal-loading]')!;
+  const showFallback = () => { root.removeAttribute('data-ready'); loading.hidden = true; failed.hidden = false; };
+
+  const touch = firstTouch();
+  const entryCta = params.get('entry_cta') ?? read('entry_cta') ?? 'none';
+  const quizSegment = params.get('quiz_segment') ?? '';
+  let quizTarget = '';
+  try { quizTarget = JSON.parse(read('dd_quiz_v1') ?? '{}').answers?.launch_when ?? ''; } catch { /* ignore */ }
+  let prefillEmail = '';
+  try { prefillEmail = read('dd_prefill') ?? ''; } catch { /* ignore */ }
+
+  let started = false;
+  const ok = renderCal({
+    type, el,
+    metadata: { ...touch.utm, entry_cta: entryCta, quiz_segment: quizSegment, target_launch: quizTarget, page: 'book' },
+    prefill: prefillEmail ? { email: prefillEmail } : undefined,
+    onReady: () => {
+      root.setAttribute('data-ready', '');
+      const iframe = el.querySelector('iframe');
+      if (iframe && !iframe.title) iframe.title = root.dataset.iframeTitle ?? '';
+    },
+    onFailed: showFallback,
+    onViewed: (slotsLoaded) => {
+      if (started || !slotsLoaded) return;
+      started = true;
+      track('booking_started', { event_type: EVENT[type], entry_cta: entryCta, embed_page: 'book' });
+    },
+    onBooked: (data) => {
+      const start = typeof data.startTime === 'string' ? data.startTime : typeof data.date === 'string' ? data.date : '';
+      try { sessionStorage.setItem('dd_booking', JSON.stringify({ event_type: EVENT[type], start_time: start, quiz_segment: quizSegment, tracked: true })); } catch { /* ignore */ }
+      track('booking_completed', { event_type: EVENT[type], entry_cta: entryCta, embed_page: 'book', quiz_segment: quizSegment || undefined }, true);
+      setTimeout(() => location.assign('/book/confirmed?type=' + type), 300);
+    },
+  });
+  if (!ok) showFallback();
+  else setTimeout(() => { if (!root.hasAttribute('data-ready')) showFallback(); }, 10000);
+</script>

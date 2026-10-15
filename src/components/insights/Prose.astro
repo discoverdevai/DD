@@ -1,0 +1,59 @@
+---
+// Article body (06 §4 prose, §9.19 table, §9.22 code). Renders the Markdown/MDX slot, then at build time:
+// - wraps each <table> in a focusable scroll region labelled by the nearest preceding heading (or its header cells);
+// - makes each <pre> focusable (tabindex="0") so keyboard users can scroll long lines, and pins code to LTR.
+// Shiki is off (CSP, astro.config.mjs), so code is plain <pre><code> styled with tokens. Zero JS.
+interface Props { class?: string }
+const html = await Astro.slots.render('default');
+
+const strip = (s: string) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+const escAttr = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+let lastHeadingId: string | undefined;
+const body = html.replace(/<h[2-6][^>]*\sid="([^"]+)"[^>]*>|<table[\s>][\s\S]*?<\/table>|<pre(?=[\s>])/g, (m, headingId?: string) => {
+  if (headingId) { lastHeadingId = headingId; return m; }
+  if (m === '<pre') return '<pre tabindex="0" dir="ltr"';
+  const head = m.match(/<thead[\s\S]*?<\/thead>/)?.[0] ?? '';
+  const headers = [...head.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map((h) => strip(h[1])).filter(Boolean).join(', ');
+  const label = lastHeadingId ? `aria-labelledby="${lastHeadingId}"` : headers ? `aria-label="${escAttr(headers)}"` : '';
+  // A focusable region needs a name; without one the wrapper only scrolls.
+  return label ? `<div class="table-scroll" role="region" tabindex="0" ${label}>${m}</div>` : `<div class="table-scroll">${m}</div>`;
+});
+---
+<div class:list={['prose', Astro.props.class]} data-link-context="article" set:html={body} />
+
+<style>
+  .prose { font-size: var(--text-base); line-height: var(--leading-body); max-inline-size: var(--measure-prose); }
+  .prose > :global(* + *) { margin-block-start: var(--space-5); }
+  .prose :global(h2) { font-size: var(--text-2xl); margin-block-start: var(--space-16); scroll-margin-block-start: calc(var(--header-h) + var(--space-4)); }
+  .prose :global(h3) { font-size: var(--text-xl); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); margin-block-start: var(--space-10); }
+  .prose :global(h4) { font-size: var(--text-lg); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); margin-block-start: var(--space-8); }
+  .prose :global(:is(h2, h3, h4) + *) { margin-block-start: var(--space-4); }
+  .prose :global(:is(ul, ol):not([role])) { padding-inline-start: var(--space-6); display: grid; gap: var(--space-2); }
+  .prose :global(li > :is(ul, ol)) { margin-block-start: var(--space-2); }
+  .prose :global(li::marker) { color: var(--color-text-muted); }
+  .prose :global(strong) { font-weight: var(--weight-semibold); }
+  .prose :global(em) { font-style: normal; font-weight: var(--weight-semibold); } /* 06 §4: emphasis by weight, not italics */
+  .prose :global(blockquote) { padding-inline-start: var(--space-5); border-inline-start: 3px solid var(--color-border-accent); color: var(--color-text-muted); }
+  .prose :global(hr) { border: 0; border-block-start: 1px solid var(--color-border-subtle); margin-block: var(--space-12); }
+  .prose :global(img) { border-radius: var(--radius-md); }
+
+  /* Inline code (06 §9.22) */
+  .prose :global(:not(pre) > code) { padding: 0.1em 0.35em; border-radius: var(--radius-xs); background: var(--color-surface-sunken); unicode-bidi: isolate; direction: ltr; }
+
+  /* Code blocks (06 §9.22): token background, scroll, never wrap mid-token */
+  .prose :global(pre) { overflow-x: auto; padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--color-surface-sunken); border: 1px solid var(--color-border-subtle); font-size: var(--text-sm); line-height: 1.6; white-space: pre; tab-size: 2; text-align: start; }
+  .prose :global(pre code) { font-size: inherit; background: none; padding: 0; }
+
+  /* Tables (06 §9.19) */
+  .prose :global(.table-scroll) { overflow-x: auto; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); }
+  .prose :global(table) { inline-size: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: 1.5; }
+  .prose :global(:is(th, td)) { padding: var(--space-3) var(--space-4); text-align: start; vertical-align: top; border-block-end: 1px solid var(--color-border-subtle); }
+  .prose :global(tr:last-child > td) { border-block-end: 0; }
+  .prose :global(thead th) { background: var(--color-surface-sunken); font-weight: var(--weight-semibold); color: var(--color-heading); }
+  .prose :global(td) { font-variant-numeric: tabular-nums; }
+  @media (width < 48rem) {
+    .prose :global(:is(th, td):first-child) { position: sticky; inset-inline-start: 0; background: var(--color-bg); }
+    .prose :global(thead th:first-child) { background: var(--color-surface-sunken); }
+  }
+</style>

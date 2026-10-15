@@ -1,0 +1,26 @@
+---
+// Quiz banner (03 §15.5, 04 §4.7 item 5): outline link button to /launch-check. Renders nothing until that route is live.
+import CtaLink from '../ui/CtaLink.astro';
+import { insights as c } from '../../content/copy/en/insights';
+import { t } from '../../i18n/t';
+import { href, isLive } from '../../data/routes';
+interface Props { ctaId: string; position?: 'mid' | 'inline' }
+const { ctaId, position = 'mid' } = Astro.props;
+---
+{isLive('launchCheck') && (
+  <aside class="quiz" aria-labelledby={`${ctaId}-title`}>
+    <div class="quiz__copy">
+      <h2 id={`${ctaId}-title`} class="quiz__title">{c.quiz.title}</h2>
+      <p class="quiz__body">{c.quiz.body}</p>
+    </div>
+    <CtaLink href={href('launchCheck')} ctaId={ctaId} tier="low_commitment" position={position} target="launch_check" variant="secondary">{t('cta.launchCheck')}</CtaLink>
+  </aside>
+)}
+
+<style>
+  .quiz { display: grid; gap: var(--space-5); align-items: center; padding: var(--space-6) var(--space-8); background: var(--color-surface-alt); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); }
+  @media (width >= 48rem) { .quiz { grid-template-columns: minmax(0, 1fr) auto; } }
+  .quiz__copy { display: grid; gap: var(--space-2); }
+  .quiz__title { font-size: var(--text-xl); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+  .quiz__body { color: var(--color-text-muted); }
+</style>

@@ -1,0 +1,26 @@
+---
+// /about proof in numbers (03 §12.5, 04 §4.9 #5, 04 §11): rating as text + Clutch link, then true facts only.
+// No star widget, no AggregateRating/Review markup.
+import { t } from '../../i18n/t';
+import { CLUTCH_URL } from '../../lib/seo';
+interface Props { items: readonly string[] }
+const { items } = Astro.props;
+---
+<ul role="list" class="record">
+  <li class="record__item">
+    <p class="record__text">{t('proof.rating')}</p>
+    <a class="record__link" href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a>
+  </li>
+  {items.map((it) => (
+    <li class="record__item"><p class="record__text">{it}</p></li>
+  ))}
+</ul>
+
+<style>
+  .record { display: grid; gap: var(--grid-gap); }
+  @media (width >= 48rem) { .record { grid-template-columns: repeat(2, 1fr); } }
+  @media (width >= 64rem) { .record { grid-template-columns: repeat(4, 1fr); } }
+  .record__item { display: grid; gap: var(--space-3); align-content: start; border-block-start: 2px solid var(--color-border-accent); padding-block-start: var(--space-5); min-inline-size: 0; }
+  .record__text { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); line-height: var(--leading-snug); color: var(--color-heading); }
+  .record__link { font-weight: var(--weight-medium); justify-self: start; min-block-size: 1.5rem; }
+</style>

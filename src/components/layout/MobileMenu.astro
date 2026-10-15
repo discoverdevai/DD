@@ -6,10 +6,10 @@ import Icon from '../ui/Icon.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import { t } from '../../i18n/t';
-import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
+import { ROUTES, bookHref, type RouteKey } from '../../data/routes';
 
-interface Props { services: { key: RouteKey; label: string; who: string }[]; top: { key: RouteKey; label: string }[] }
-const { services, top } = Astro.props;
+interface Props { services: { key: RouteKey; label: string; who: string }[]; top: { key: RouteKey; label: string }[]; how: { path: string; label: string } }
+const { services, top, how } = Astro.props;
 ---
 <dialog id="menu-sheet" class="menu-sheet" data-surface="ink" aria-labelledby="menu-heading" data-menu>
   <div class="menu-sheet__top">
@@ -21,7 +21,6 @@ const { services, top } = Astro.props;
   <h2 id="menu-heading" class="sr-only">{t('menu.heading')}</h2>
   <nav aria-label={t('nav.label')}>
     <ul role="list" class="menu-sheet__list">
-      {isLive('review') && <li><a href={ROUTES.review.path}>{t('nav.review')}</a></li>}
       {services.length > 0 && (
         <li>
           <span class="menu-sheet__group">{t('nav.services')}</span>
@@ -30,12 +29,13 @@ const { services, top } = Astro.props;
           </ul>
         </li>
       )}
+      <li><a href={how.path}>{how.label}</a></li>
       {top.map((i) => <li><a href={ROUTES[i.key].path}>{i.label}</a></li>)}
     </ul>
   </nav>
   <div class="menu-sheet__cta">
-    <CtaLink href={bookHref('review')} ctaId="navm_book_review" tier="primary" position="nav" target="review" wide>{t('cta.review.short')}</CtaLink>
-    <CtaTerms kind="review" />
+    <CtaLink href={bookHref('clarity')} ctaId="navm_book_clarity" tier="primary" position="nav" target="clarity" wide>{t('cta.clarity.short')}</CtaLink>
+    <CtaTerms kind="clarity" />
   </div>
   <ul role="list" class="menu-sheet__contact">
     <li><a href={`mailto:${t('contact.email')}`} data-link-context="contact"><Icon name="mail" size={20} />{t('contact.email.label')}<span dir="ltr">{t('contact.email')}</span></a></li>

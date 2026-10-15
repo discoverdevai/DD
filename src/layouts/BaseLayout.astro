@@ -7,6 +7,7 @@ import StickyBookBar from '../components/layout/StickyBookBar.astro';
 import { LOCALES, localeOf } from '../i18n/locales';
 import { t } from '../i18n/t';
 import { canonical } from '../lib/seo';
+import { PUBLIC_CF_BEACON_TOKEN } from 'astro:env/client';
 import '../styles/tokens.css';
 import '../styles/base.css';
 
@@ -21,8 +22,9 @@ interface Props {
   ogType?: 'website' | 'article';
   header?: 'default' | 'minimal';
   stickyBar?: boolean;
+  stickyKind?: 'clarity' | 'review';
 }
-const { title, description, pageType, jsonLd, noindex = false, ogImage = '/og/default.png', ogType = 'website', header = 'default', stickyBar = header === 'default' } = Astro.props;
+const { title, description, pageType, jsonLd, noindex = false, ogImage = '/og/default.png', ogType = 'website', header = 'default', stickyBar = header === 'default', stickyKind = 'clarity' } = Astro.props;
 const locale = localeOf(Astro.currentLocale);
 const L = LOCALES[locale];
 const url = canonical(Astro.url.pathname);
@@ -65,9 +67,18 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
       <slot />
     </main>
     <Footer />
-    {stickyBar && <StickyBookBar />}
+    {stickyBar && <StickyBookBar kind={stickyKind} />}
+    {PUBLIC_CF_BEACON_TOKEN && Astro.site?.hostname === 'discoverdev.ai' && (
+      <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: PUBLIC_CF_BEACON_TOKEN })}></script>
+    )}
   </body>
 </html>
+
+<script>
+  // Analytics on every page (07 §9): delegated cta/outbound listeners + PostHog after load. Inert off discoverdev.ai.
+  import { initAnalytics } from '../lib/analytics';
+  initAnalytics();
+</script>
 
 <style>
   .skip-link { position: fixed; inset-block-start: var(--space-2); inset-inline-start: var(--space-2); z-index: var(--z-skip); padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--neutral-0); color: var(--blue-800); font-weight: var(--weight-medium); translate: 0 -200%; }

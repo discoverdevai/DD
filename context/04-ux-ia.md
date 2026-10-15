@@ -76,14 +76,18 @@ Legend: `idx` = indexable + in sitemap · `noidx` = `<meta name="robots" content
 ## 3. Navigation
 
 ### 3.1 Primary nav (desktop)
+Strategy v2 (2026-10-16, `docs/strategy-v2.md`): the Review leaves the top level and joins Services; the nav button becomes the clarity call.
+
 | Order | Label | Target | Notes |
 |---|---|---|---|
-| 1 | Review | `/launch-ready` | |
-| 2 | Services ▾ | disclosure `<button aria-expanded>` | Submenu links in DOM (crawlable): Validate `/validate`, Build `/build`, Scale `/scale`, Partners `/partners`. Each item: label + 1-line "who it's for" (copy) |
+| 1 | Services ▾ | disclosure `<button aria-expanded>` | Submenu links in DOM (crawlable): Validate `/validate`, Build `/build`, Scale `/scale`, Launch-Ready Review `/launch-ready`, Partners `/partners`. Each item: label + 1-line "who it's for" (copy) |
+| 2 | How we work | `/#agile-v2` | Anchor to the Agile v2 section on home |
 | 3 | Work | `/work` | Hidden if 0 published cases |
 | 4 | Insights | `/insights` | |
 | 5 | About | `/about` | |
-| btn | Book a Review | `/book?type=review` | Filled button. `ctaId: nav_book_review` |
+| btn | Book a call | `/book?type=clarity` | Filled button. `ctaId: nav_book_clarity` |
+
+Superseded v1 rows (for reference): Review `/launch-ready` at order 1; button "Book a Review" `/book?type=review`.
 
 - [ ] Header: small, opaque, sticky. Hide on scroll down, show on scroll up (300–400 ms transition, reduced-motion = no animation, instant show).
 - [ ] `aria-current="page"` on the active item (and on Services when on a child page).
@@ -91,12 +95,12 @@ Legend: `idx` = indexable + in sitemap · `noidx` = `<meta name="robots" content
 - [ ] Submenu: opens on click/Enter/Space, closes on Esc and outside click, focus returns to the button. No hover-only menus.
 
 ### 3.2 Mobile nav (< 64rem / 1024 px, per `06-design-system.md` §9.1)
-- [ ] Bar: Logo · `Book a Review` button (`/book?type=review`, `ctaId: navm_book_review`) · menu button (`aria-expanded`, label "Menu").
+- [ ] Bar: Logo · `Book a call` button (`/book?type=clarity`, `ctaId: navm_book_clarity`) · menu button (`aria-expanded`, label "Menu").
 - [ ] Menu = full-height `<dialog>` sheet: 5 items (Services expanded inline as a list), then primary CTA, then email + WhatsApp (same order as footer).
 - [ ] Focus trapped in the dialog, Esc closes, focus returns to the menu button. Body scroll locked while open.
 
 ### 3.3 Sticky mobile CTA bar
-- [ ] Shows after the hero leaves the viewport (IntersectionObserver). Label "Book a Review" → `/book?type=review`, `ctaId: sticky_book_review`.
+- [ ] Shows after the hero leaves the viewport (IntersectionObserver). Label "Book a call" → `/book?type=clarity`, `ctaId: sticky_book_clarity`. On `/launch-ready` it stays "Book a Review" → `/book?type=review`, `ctaId: sticky_book_review`.
 - [ ] Hidden on `/book`, `/book/confirmed`, `/launch-check`, `/404`, legal pages, and while any input/select has focus.
 - [ ] One CTA only. Never covers the focused element: set `scroll-padding-block-end` ≥ bar height and `scroll-padding-block-start` ≥ header height.
 
@@ -124,7 +128,21 @@ Legend: `idx` = indexable + in sitemap · `noidx` = `<meta name="robots" content
 ## 4. Page-type blueprints
 Format: `#. Section (component) → purpose`. Copy lives in `03-copy.md` under the same page + section name. CTA ids follow §6.3.
 
-### 4.1 Home `/`
+### 4.1 Home `/` (v3, strategy v2, 2026-10-16; copy `03` §2A)
+1. Header.
+2. Hero → "Build the right thing. Ship it fast."; primary "Book a free clarity call" + terms; secondary outline "See how we work" (#agile-v2); delivery scene (AI lane + senior lane, labelled Example).
+3. Proof band → rating + Clutch link, 4 continents, AI in production, Arabic and English, locations.
+4. Agile v2 (`#agile-v2`) → two-tone statement; "What AI does / What senior engineers own" split; responsibility line.
+5. Lifecycle → Discover · Plan · Build · Ship & Stay, with layer chips on Build.
+6. Engagements → Validate · Build · Scale (three large cards with duration and price model), then "Other ways in": Launch-Ready Review · Partners.
+7. What we build → four capability groups over the nine catalog lines.
+8. Case highlight → EdTech AI platform, 60–90% lower AI cost → `/work/edtech-ai-agents`.
+9. Why DiscoverDev → Product-first · Senior teams, AI-accelerated · We stay; ownership line.
+10. FAQ (6) → AI and safety, pricing, ownership, take-over, stacks, time zones.
+11. Final CTA → "Tell us what you're building." clarity call.
+12. Footer.
+
+v1 blueprint (superseded on home, kept for reference):
 1. Header (`Header`) → fast wayfinding.
 2. Hero (`Hero`) → founder problem + outcome; primary CTA "Book a Launch-Ready Review" + risk microcopy; text link "Take the 3-minute launch check"; proof chip "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + link "Read our reviews on Clutch" (rules §11). Must pass a 5-second test.
 3. Proof strip (`ProofStrip`, `ClientLogos`) → "Clients on 4 continents" + consented logos only. 0 consented logos → text only.
@@ -303,6 +321,8 @@ Success: `booking_completed{event_type: clarity_call}`.
 ## 6. CTA system
 
 ### 6.1 Tiers
+Strategy v2 (2026-10-16): "Book a free clarity call" is the primary on Home too (filled), and "Book a call" is the nav and sticky short form. "Book a Launch-Ready Review" is primary only on `/launch-ready`, quiz results, prototype-to-launch articles and the 404. The rows below are otherwise unchanged.
+
 | Tier | Label (exact) | Destination | Used on | Style |
 |---|---|---|---|---|
 | Primary | Book a Launch-Ready Review | `/book?type=review` (or `#book` on `/launch-ready`) | Home, `/launch-ready`, prototype-to-launch articles, `/insights`, 404 | Filled |

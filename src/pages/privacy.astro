@@ -1,0 +1,12 @@
+---
+// Privacy notice (04 §4.13, 05 §1.1). Draft per D-25; text in content/copy/en/legal.ts.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalPage from '../components/legal/LegalPage.astro';
+import { privacy as c } from '../content/copy/en/legal';
+import { graph, orgStub, webPage } from '../lib/seo';
+
+const jsonLd = graph(orgStub, webPage('/privacy', c.seo.title, c.seo.description));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="legal" stickyBar={false} jsonLd={jsonLd}>
+  <LegalPage doc={c} />
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+// Key takeaways box (04 §4.8 item 3, 03 §15.8): 3–5 bullets for skimmers and answer engines. Paper surface, sign-off checks.
+import CheckList from '../ui/CheckList.astro';
+import { insights as c } from '../../content/copy/en/insights';
+interface Props { items: readonly string[] }
+const { items } = Astro.props;
+---
+<aside class="takeaways" aria-labelledby="takeaways-title">
+  <h2 id="takeaways-title" class="takeaways__title">{c.article.takeawaysTitle}</h2>
+  <CheckList items={items} />
+</aside>
+
+<style>
+  .takeaways { display: grid; gap: var(--space-4); padding: var(--space-6); background: var(--color-surface-sunken); border: 1px solid var(--color-border-subtle); border-inline-start: 3px solid var(--color-human-mark); border-radius: var(--radius-md); }
+  .takeaways__title { font-size: var(--text-lg); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+</style>

@@ -1,0 +1,68 @@
+---
+// Problem section (03 §2.4) as three line-art figures (Linear-style "fig." plates) instead of text cards.
+// Figures are decorative (aria-hidden); the meaning is in the H3 + paragraph. No text inside the drawings (RTL rule).
+interface Card { title: string; body: string }
+interface Props { title: string; cards: readonly Card[]; closing: string }
+const { title, cards, closing } = Astro.props;
+---
+<section class="probs" data-surface="ink" aria-labelledby="probs-title">
+  <div class="container">
+    <h2 id="probs-title" class="probs__title reveal">{title}</h2>
+    <ul role="list" class="probs__grid reveal-stagger">
+      {cards.map((card, i) => (
+        <li class="probs__item">
+          <div class="probs__plate" data-spotlight>
+            <span class="probs__fig" aria-hidden="true">fig. 0{i + 1}</span>
+            {i === 0 && (
+              <svg viewBox="0 0 240 160" aria-hidden="true" class="probs__art">
+                <g class="ln"><ellipse cx="120" cy="40" rx="62" ry="16" pathLength="1" /><path d="M58 40v28c0 9 28 16 62 16s62-7 62-16V40" pathLength="1" /><path d="M58 68v28c0 9 28 16 62 16s62-7 62-16V68" pathLength="1" /><path d="M58 96v24c0 9 28 16 62 16s62-7 62-16V96" pathLength="1" /></g>
+                <g class="hl"><path d="M150 112h34a6 6 0 0 1 6 6v22a6 6 0 0 1-6 6h-34a6 6 0 0 1-6-6v-22a6 6 0 0 1 6-6z" pathLength="1" /><path d="M155 112v-10a12 12 0 0 1 23-5" pathLength="1" /></g>
+                <g class="dots"><circle cx="34" cy="82" r="3" /><circle cx="22" cy="100" r="3" /><circle cx="206" cy="58" r="3" /></g>
+              </svg>
+            )}
+            {i === 1 && (
+              <svg viewBox="0 0 240 160" aria-hidden="true" class="probs__art">
+                <g class="ln"><rect x="40" y="38" width="112" height="72" rx="10" pathLength="1" /><path d="M40 58h112" pathLength="1" /><path d="M56 92h30" pathLength="1" /></g>
+                <g class="hl"><path d="M160 74h22l10 10" stroke-dasharray="4 5" /><path d="M192 84l12-12M204 84l-12-12" pathLength="1" /></g>
+                <g class="ln"><rect x="88" y="62" width="112" height="72" rx="10" class="ghost" /></g>
+              </svg>
+            )}
+            {i === 2 && (
+              <svg viewBox="0 0 240 160" aria-hidden="true" class="probs__art">
+                <g class="ln"><rect x="28" y="30" width="44" height="30" rx="6" pathLength="1" /><rect x="168" y="30" width="44" height="30" rx="6" pathLength="1" /><rect x="98" y="100" width="44" height="30" rx="6" pathLength="1" /></g>
+                <g class="hl"><path d="M72 45c40 0 30 60 60 40s20-50 36-40" pathLength="1" /><path d="M72 52c30 30 60-20 46 48" pathLength="1" /><path d="M168 52c-20 30-50 0-46 48" pathLength="1" /></g>
+                <g class="dots"><circle cx="120" cy="64" r="3" /><circle cx="96" cy="78" r="3" /></g>
+              </svg>
+            )}
+          </div>
+          <h3 class="probs__h3">{card.title}</h3>
+          <p class="probs__body">{card.body}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="probs__closing">{closing}</p>
+  </div>
+</section>
+
+<style>
+  .probs { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
+  .probs__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; max-inline-size: 22ch; margin-block-end: var(--stack-lg); }
+  .probs__grid { display: grid; gap: var(--space-10); }
+  @media (width >= 48rem) { .probs__grid { grid-template-columns: repeat(3, 1fr); gap: 0; } .probs__item + .probs__item { border-inline-start: 1px solid var(--color-hairline); } .probs__item { padding-inline: var(--space-8); } .probs__item:first-child { padding-inline-start: 0; } .probs__item:last-child { padding-inline-end: 0; } }
+  .probs__item { display: grid; gap: var(--space-3); align-content: start; }
+  .probs__plate { position: relative; block-size: 12rem; border-radius: var(--radius-md); background: radial-gradient(80% 80% at 50% 30%, color-mix(in oklab, var(--blue-800) 45%, transparent), transparent 70%); display: grid; place-items: center; margin-block-end: var(--space-4); }
+  .probs__fig { position: absolute; inset-block-start: var(--space-3); inset-inline-start: var(--space-3); font-family: var(--ff-mono); font-size: 0.6875rem; color: var(--color-text-muted); }
+  .probs__art { inline-size: auto; block-size: 70%; max-inline-size: 90%; overflow: visible; }
+  .probs__art .ln { fill: none; stroke: color-mix(in oklab, var(--blue-200) 55%, transparent); stroke-width: 1.25; }
+  .probs__art .ln .ghost { stroke: color-mix(in oklab, var(--blue-200) 25%, transparent); stroke-dasharray: 3 4; }
+  .probs__art .hl { fill: none; stroke: var(--red-300); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .probs__art .dots { fill: var(--color-machine-mark); }
+  .probs__h3 { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
+  .probs__body { color: var(--color-text-muted); }
+  @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) {
+    .probs__art [pathLength] { stroke-dasharray: 1; animation: draw linear both; animation-timeline: view(); animation-range: entry 10% cover 45%; }
+    .probs__art .hl [pathLength] { animation-range: entry 25% cover 55%; }
+    @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  } }
+  .probs__closing { margin-block-start: var(--stack-lg); font-size: var(--text-lg); color: var(--color-text); max-inline-size: 52ch; padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-hairline); }
+</style>

@@ -1,0 +1,44 @@
+---
+// Booking embed container (06 §9.17, 07 §10.2). Reserved height stops CLS. Fallback links show until Cal's
+// `linkReady`, and come back on `linkFailed` or after 10s. No JS → <noscript> links. Cal script loads from lib/cal.ts.
+import { book as c } from '../../content/copy/en/book';
+import { t } from '../../i18n/t';
+import { directLink, calUsername, type BookType } from '../../lib/cal';
+import { isLive, href } from '../../data/routes';
+const types: BookType[] = ['review', 'clarity', 'partner'];
+---
+<div class="cal" data-cal data-cal-configured={calUsername ? 'true' : 'false'} data-iframe-title={c.calendar.title}>
+  <p class="cal__tz">{c.calendar.timezone}</p>
+  <div class="cal__frame">
+    <div id="cal-inline" class="cal__inline" data-cal-inline></div>
+    <div class="cal__fallback" data-cal-fallback>
+      <p class="cal__loading" data-cal-loading>{c.calendar.loading}</p>
+      <p class="cal__failed" role="status" data-cal-failed hidden>{c.calendar.failed}</p>
+      {calUsername && (
+        <ul role="list" class="cal__links">
+          {types.map((ty) => <li data-cal-link={ty}><a href={directLink(ty)} data-link-context="contact">{c.calendar.direct}: {c.options[ty].tab}</a></li>)}
+        </ul>
+      )}
+      <p><a href={`mailto:${t('contact.email')}`} data-link-context="contact" dir="ltr">{t('contact.email')}</a></p>
+    </div>
+  </div>
+  <noscript>
+    <p class="cal__noscript">{calUsername ? c.calendar.direct : c.calendar.failed}</p>
+  </noscript>
+  <p class="cal__cookies small">{c.calendar.cookies} {isLive('privacy') && <a href={href('privacy')}>{c.calendar.privacyLink}</a>}</p>
+</div>
+
+<style>
+  .cal { display: grid; gap: var(--space-3); }
+  .cal__tz { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .cal__frame { position: relative; min-block-size: 45rem; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-2); overflow: hidden; }
+  @media (width >= 48rem) { .cal__frame { min-block-size: 40rem; } }
+  .cal__inline { inline-size: 100%; min-block-size: inherit; }
+  .cal__inline:empty { display: none; }
+  .cal__fallback { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); }
+  .cal[data-ready] .cal__fallback { display: none; }
+  .cal__loading { color: var(--color-text-muted); }
+  .cal__links { display: grid; gap: var(--space-1); }
+  .cal__links a { display: inline-flex; align-items: center; min-block-size: 2.75rem; font-weight: var(--weight-medium); }
+  .cal__cookies { color: var(--color-text-muted); }
+</style>

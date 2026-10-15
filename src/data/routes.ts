@@ -2,20 +2,20 @@
 // Flip to true when the page ships (04 §1.1). Work/Insights hide while they have no published entries (04 §1.1, §9).
 export const ROUTES = {
   home: { path: '/', live: true },
-  review: { path: '/launch-ready', live: false },
-  validate: { path: '/validate', live: false },
-  build: { path: '/build', live: false },
-  scale: { path: '/scale', live: false },
-  partners: { path: '/partners', live: false },
-  work: { path: '/work', live: false },
-  workEdulens: { path: '/work/edulens', live: false },
-  insights: { path: '/insights', live: false },
-  pillar: { path: '/insights/ai-app-to-production', live: false },
-  about: { path: '/about', live: false },
-  launchCheck: { path: '/launch-check', live: false },
-  book: { path: '/book', live: false },
-  privacy: { path: '/privacy', live: false },
-  terms: { path: '/terms', live: false },
+  review: { path: '/launch-ready', live: true },
+  validate: { path: '/validate', live: true },
+  build: { path: '/build', live: true },
+  scale: { path: '/scale', live: true },
+  partners: { path: '/partners', live: true },
+  work: { path: '/work', live: true },
+  workEdulens: { path: '/work/edtech-ai-agents', live: true }, // anonymized EduLens case (D-06, 03 §0.7)
+  insights: { path: '/insights', live: true },
+  pillar: { path: '/insights/ai-app-to-production', live: true },
+  about: { path: '/about', live: true },
+  launchCheck: { path: '/launch-check', live: true },
+  book: { path: '/book', live: true },
+  privacy: { path: '/privacy', live: true },
+  terms: { path: '/terms', live: true },
 } as const satisfies Record<string, { path: string; live: boolean }>;
 
 export type RouteKey = keyof typeof ROUTES;

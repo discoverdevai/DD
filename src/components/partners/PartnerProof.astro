@@ -1,0 +1,22 @@
+---
+// Anonymized partner proof (03 §8.6 with §0.7 [CONSENT] applied): description + country, no names, logos or quotes.
+interface Item { text: string; where: string }
+interface Props { items: readonly Item[] }
+const { items } = Astro.props;
+---
+<ul role="list" class="pproof">
+  {items.map((it) => (
+    <li class="pproof__item">
+      <p class="pproof__text">{it.text}</p>
+      <p class="pproof__where">{it.where}</p>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .pproof { display: grid; gap: var(--grid-gap); }
+  @media (width >= 48rem) { .pproof { grid-template-columns: repeat(3, 1fr); } }
+  .pproof__item { display: grid; gap: var(--space-3); align-content: space-between; border-block-start: 1px solid var(--color-hairline); padding-block-start: var(--space-6); min-inline-size: 0; }
+  .pproof__text { font-weight: var(--weight-medium); font-size: var(--text-lg); line-height: var(--leading-snug); color: var(--color-heading); }
+  .pproof__where { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); }
+</style>

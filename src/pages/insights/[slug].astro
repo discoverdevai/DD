@@ -1,0 +1,19 @@
+---
+// Article route (04 §4.8). One page per published insight; the URL drops the locale prefix of the entry id (07 §6).
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { insightSlug, publishedInsights, type Insight } from '../../lib/insights';
+
+export const getStaticPaths = (async () => {
+  const entries = await publishedInsights('en');
+  return entries.map((entry) => ({ params: { slug: insightSlug(entry) }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+interface Props { entry: Insight }
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+<ArticleLayout entry={entry} headings={headings}>
+  <Content />
+</ArticleLayout>

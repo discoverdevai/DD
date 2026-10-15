@@ -19,7 +19,7 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 
 | Page | Primary kw | Secondaries | Intent | Diff |
 |---|---|---|---|---|
-| `/` | product development company for startups (est.) | DiscoverDev (brand); software development company for startups; launch AI-built app; senior product team US GCC | Nav + commercial | Brand L / generic H |
+| `/` | product development company for startups (est.) | DiscoverDev (brand); software development company for startups; AI-accelerated software development; AI development company Egypt; senior product team US GCC | Nav + commercial | Brand L / generic H |
 | `/launch-ready` | vibe code audit (est.) | Lovable app security review; AI-built app production readiness; Bolt / Cursor app code review; Supabase security audit | Commercial / transactional | M |
 | `/validate` | product discovery services (est.) | product discovery phase (50, 2026-08); startup idea validation service; MVP scoping; clickable prototype fixed estimate | Commercial | M |
 | `/build` | MVP development company (590, 2026-07, CPC $23) | MVP development services (880); mvp software development company (210); fixed price MVP development; MVP development company in USA (70) | Commercial | H |
@@ -39,7 +39,7 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 ### 1.1 Titles, metas, H1s (lengths checked: titles ≤ 60, metas ≤ 155; synced with `03-copy.md` on 2026-10-15; `03-copy.md` wins on conflict)
 | Page | Title | Meta description | H1 |
 |---|---|---|---|
-| `/` | Product & Engineering Partner for Founders \| DiscoverDev | Stuck with an AI-built prototype that can't launch? We review it, fix or rebuild it, and ship it to production. Senior team. You own all the code. | Your app works in the demo. We get it ready for real users. |
+| `/` | Product & Engineering Partner for Founders \| DiscoverDev | Build the right thing, then ship it fast. Senior product and engineering teams, AI-accelerated with Agile v2. Validate, build and scale. You own it all. | Build the right thing. Ship it fast. |
 | `/launch-ready` | Vibe Code Audit for Lovable, Bolt & Cursor \| DiscoverDev | A 5-day Launch-Ready Review of your AI-built app: security, data rules, payments, scale. Fixed fee, credited toward the fix. No useful findings, no charge. | Launch-Ready Review: a vibe code audit before you go live |
 | `/validate` | Product Discovery Services for Startups \| DiscoverDev | Validate your idea in 1–2 weeks: market read, scope, clickable prototype and a fixed build estimate. The fee credits toward your build. | Validate: product discovery before you write code |
 | `/build` | Fixed-Price MVP Development in 8–12 Weeks \| DiscoverDev | A senior team takes your MVP from scope to production in 8–12 weeks at a fixed price. Or we rebuild your AI prototype properly. You own all the code. | Build: MVP development, from scope to production |
@@ -539,6 +539,7 @@ Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews
 - [Book a call](https://discoverdev.ai/book)
 - Contact: hello@discoverdev.ai
 ```
+- [ ] Strategy v2 (2026-10-16): list Validate, Build, Scale first, then Launch-Ready Review, then Partners; add the line "How we work: Agile v2. AI does the heavy lifting; senior engineers own the quality, and a person is responsible for every line that reaches users. One team from discovery to after launch." under the summary.
 - [ ] Remove any line whose page is not live (e.g. C3, EduLens if anonymized → use anonymized URL/title).
 
 ### 5.3 Cloudflare AI-bot setting (do on DNS move day, recheck on launch day)

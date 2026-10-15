@@ -14,11 +14,15 @@
     "check": "astro check",
     "lint": "node scripts/css-logical-lint.mjs",
     "qa:static": "node qa/check-dist.mjs dist",
-    "qa": "npm run check && npm run lint && npm run build && npm run qa:static"
+    "qa": "npm run check && npm run lint && npm run test:unit && npm run build && npm run qa:static",
+    "test:unit": "node --test \"tests/unit/*.test.ts\""
   },
   "dependencies": {
+    "@astrojs/mdx": "8.0.3",
+    "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.4",
-    "astro": "7.3.8"
+    "astro": "7.3.8",
+    "posthog-js": "1.438.10"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",

@@ -1,0 +1,145 @@
+---
+// Article template (04 §4.8, 06 §9.11 `article` hero, 05 §4.5). Ink header band, paper for reading.
+// Analytics (07 §9.3 article_read): data-article-* on <article> and an invisible sentinel at 60% of the body.
+// The listener lives in lib/analytics.ts (wired elsewhere); this layout only provides the hooks.
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs, { type Crumb } from '../components/insights/Breadcrumbs.astro';
+import KeyTakeaways from '../components/insights/KeyTakeaways.astro';
+import Toc from '../components/insights/Toc.astro';
+import Prose from '../components/insights/Prose.astro';
+import EndCta from '../components/insights/EndCta.astro';
+import ArticleCard from '../components/insights/ArticleCard.astro';
+import { insights as c, fill } from '../content/copy/en/insights';
+import { href, isLive } from '../data/routes';
+import { canonical, graph, ORG_ID, SITE_URL } from '../lib/seo';
+import {
+  displayDate, getAuthor, insightPath, insightSlug, isoDate, publishedInsights, readNext, resolvePublished, wordCount, type Insight,
+} from '../lib/insights';
+
+interface Heading { depth: number; slug: string; text: string }
+interface Props { entry: Insight; headings: readonly Heading[] }
+const { entry, headings } = Astro.props;
+const d = entry.data;
+const slug = insightSlug(entry);
+const path = insightPath(entry);
+const url = canonical(path);
+const ctaPrefix = `article_${slug.replace(/-/g, '_')}`;
+
+const published = await publishedInsights(d.locale);
+const parent = d.role === 'cluster' ? resolvePublished(d.parent ? [d.parent] : [], published)[0] : undefined;
+const next = readNext(entry, published);
+const author = await getAuthor(d.author);
+// A named person only when the author entry says so (D-16 today: organization byline).
+const person = author && author.data.type === 'person' ? author : undefined;
+const showToc = wordCount(entry.body) > 1200;
+
+// Breadcrumbs (04 §3.5): Home › Insights › [pillar short title ›] title. Links only to live, published targets.
+// `ld` is the JSON-LD URL: the hub page is always built, so it is listed even before the nav links to it.
+const trail: (Crumb & { ld?: string })[] = [
+  { label: c.breadcrumb.home, href: '/', ld: '/' },
+  { label: c.breadcrumb.insights, href: isLive('insights') ? href('insights') : undefined, ld: href('insights') },
+  ...(parent ? [{ label: parent.data.shortTitle, href: insightPath(parent), ld: insightPath(parent) }] : []),
+  { label: d.shortTitle },
+];
+const crumbs: Crumb[] = trail.map(({ label, href: h }) => ({ label, href: h }));
+
+// JSON-LD (05 §4.5). D-16 = company byline, so author points at the Organization.
+const authorLd = person
+  ? {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/about#${person.id}`,
+      name: person.data.name,
+      ...(person.data.role ? { jobTitle: person.data.role } : {}),
+      ...(person.data.linkedin ? { sameAs: [person.data.linkedin] } : {}),
+      worksFor: { '@id': ORG_ID },
+    }
+  : { '@id': ORG_ID };
+const jsonLd = graph(
+  { '@type': 'Organization', '@id': ORG_ID, name: 'DiscoverDev', url: SITE_URL, logo: `${SITE_URL}/logo-512.png` },
+  {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: d.h1,
+    description: d.description,
+    image: [`${SITE_URL}/og/default.png`],
+    datePublished: isoDate(d.publishedAt),
+    dateModified: isoDate(d.updatedAt),
+    author: authorLd,
+    publisher: { '@id': ORG_ID },
+    ...(parent ? { isPartOf: { '@id': `${canonical(insightPath(parent))}#article` } } : {}),
+    ...(d.sources.length ? { citation: d.sources } : {}),
+    ...(d.tags.length ? { keywords: d.tags.map((tg) => c.topics[tg]).join(', ') } : {}),
+    mainEntityOfPage: url,
+    inLanguage: d.locale,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((cr, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: cr.label,
+      ...(cr.ld ? { item: canonical(cr.ld) } : {}),
+    })),
+  },
+);
+---
+<BaseLayout title={d.title} description={d.description} pageType="article" ogType="article" jsonLd={jsonLd}>
+  <link slot="head" rel="alternate" type="application/rss+xml" title="DiscoverDev Insights" href="/insights/rss.xml" />
+  <article data-article-slug={slug} data-pillar={d.pillar} data-role={d.role} aria-labelledby="article-title">
+    <header class="ahead" data-surface="ink">
+      <div class="container--prose ahead__inner">
+        <Breadcrumbs items={crumbs} />
+        <h1 id="article-title" class="h1">{d.h1}</h1>
+        <div class="ahead__meta">
+          <p class="ahead__byline">{person ? person.data.name : c.article.byline}</p>
+          <p class="ahead__dates">
+            <span><time datetime={isoDate(d.publishedAt)}>{fill(c.article.published, { date: displayDate(d.publishedAt, d.locale) })}</time></span>
+            <span><time datetime={isoDate(d.updatedAt)}>{fill(c.article.updated, { date: displayDate(d.updatedAt, d.locale) })}</time></span>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="abody" data-surface="paper">
+      <div class="container--prose abody__inner">
+        <KeyTakeaways items={d.takeaways} />
+        {showToc && <Toc headings={headings} />}
+        <div class="abody__prose">
+          <Prose><slot /></Prose>
+          <div class="sentinel" data-article-sentinel aria-hidden="true"></div>
+        </div>
+        {d.relatedService === 'review' && <EndCta ctaPrefix={ctaPrefix} />}
+      </div>
+    </div>
+  </article>
+
+  {next.length > 0 && (
+    <section class="next section--sm" data-surface="alt" aria-labelledby="next-title">
+      <div class="container">
+        <h2 id="next-title" class="h2 next__title">{c.article.relatedTitle}</h2>
+        <ul role="list" class="next__grid">
+          {next.map((e) => <li><ArticleCard entry={e} page={ctaPrefix} /></li>)}
+        </ul>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .ahead { padding-block: var(--space-12) var(--space-10); }
+  .ahead__inner { display: grid; gap: var(--space-6); }
+  .ahead__meta { display: grid; gap: var(--space-1); font-size: var(--text-sm); line-height: 1.5; }
+  .ahead__byline { font-weight: var(--weight-medium); color: var(--color-text); }
+  .ahead__dates { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); color: var(--color-text-muted); }
+  .abody { padding-block: var(--space-10) var(--section-y); }
+  .abody__inner { display: grid; gap: var(--space-10); }
+  .abody__inner > *, .ahead__inner > * { min-inline-size: 0; } /* grid items default to min-content: a wide table or code block would push the page wider than the phone */
+  /* The sentinel sits at 60% of the body's height (07 §9.3). Takes no space and is never announced. */
+  .abody__prose { position: relative; min-inline-size: 0; }
+  .sentinel { position: absolute; inset-block-start: 60%; inset-inline-start: 0; inline-size: 1px; block-size: 1px; pointer-events: none; }
+  .next { border-block-start: 1px solid var(--color-border-subtle); }
+  .next__title { margin-block-end: var(--stack-lg); }
+  .next__grid { display: grid; gap: var(--grid-gap); }
+  @media (width >= 40rem) { .next__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (width >= 64rem) { .next__grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

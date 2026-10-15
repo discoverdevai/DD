@@ -1,15 +1,15 @@
-// 03-copy.md §2 (Home). Verbatim, with §0.7 launch resolutions applied (noted inline).
+// 03-copy.md §2A (Home v3, strategy v2, 2026-10-16). Verbatim. §2.3 proof strip and §2.8 case highlight (anonymized
+// per §0.7) are reused from §2. The v1 Review copy lives on /launch-ready.
 export const home = {
   seo: {
     title: 'Product & Engineering Partner for Founders | DiscoverDev',
     description:
-      "Stuck with an AI-built prototype that can't launch? We review it, fix or rebuild it, and ship it to production. Senior team. You own all the code.",
+      'Build the right thing, then ship it fast. Senior product and engineering teams, AI-accelerated with Agile v2. Validate, build and scale. You own it all.',
   },
   hero: {
-    eyebrow: 'For founders with an AI-built or freelancer-built app',
-    h1: 'Your app works in the demo. We get it ready for real users.',
-    body: 'Built it with Lovable, Bolt, v0, Cursor or a freelancer? A senior team reviews it in about 5 working days. You learn what will break, what to fix and what it costs. Then we fix it or build it properly, and you own all of it.',
-    quizLink: 'Not sure yet? Take the 3-minute launch check',
+    pill: 'Agile v2 · AI-accelerated, senior-owned',
+    h1: 'Build the right thing. Ship it fast.',
+    sub: 'A product and engineering company for founders and teams. Senior people, AI-accelerated, without cutting corners. And you own everything.',
   },
   proofStrip: {
     title: 'Who we work with',
@@ -20,48 +20,54 @@ export const home = {
       { icon: 'map-pin', text: 'Texas, USA and Alexandria, Egypt' },
     ],
   },
-  problem: {
-    title: '“It works” and “it’s ready for strangers” are not the same thing',
-    cards: [
-      { icon: 'lock', title: 'Your data might be open', body: 'Can a signed-in user see someone else’s records? Are secret keys sitting in code the browser can read? You may not know until someone else finds out.' },
-      { icon: 'credit-card', title: 'Payments that fail quietly', body: 'A payment that works in test mode can still drop or double-charge in real life. You find out from an angry customer.' },
-      { icon: 'code', title: 'Code nobody can pick up', body: 'Every fix breaks something else. Your freelancer moved on. A new developer can’t tell what’s safe to change.' },
-    ],
-    closing: 'You don’t need a rewrite by default. You need someone senior to look, and tell you plainly.',
+  agile: {
+    label: 'How we work',
+    bright: 'Agile v2.',
+    dim: 'AI does the heavy lifting. Senior engineers own the quality.',
+    body: 'Agile v2 is how every project runs. AI speeds up the work that used to take days. Senior engineers make the decisions, review every change and sign off each release. You see results every week.',
+    ai: {
+      title: 'What AI does',
+      items: ['Drafts code from the agreed spec', 'Writes and runs tests', 'Drafts docs and migrations', 'Flags risky changes for review'],
+    },
+    human: {
+      title: 'What senior engineers own',
+      items: ['Product and architecture decisions', 'Review of every change', 'Security, data and payments', 'Sign-off on each release'],
+    },
+    line: 'A person is responsible for every line that reaches your users.',
   },
-  offer: {
-    title: 'What is a Launch-Ready Review?',
-    answer:
-      'A Launch-Ready Review is a fixed-fee check of your AI-built or freelancer-built app before real users, data and payments touch it. A senior team reviews security, data, payments, code quality, scale and ownership in about 5 working days. You get a ranked fix list, a keep, fix or replace verdict, and a fixed quote.',
-    gets: [
-      'A findings call where we walk you through every issue in plain words',
-      'A written report you keep, with each risk ranked',
-      'A clear verdict: keep, fix or replace, and why',
-      'A fixed quote for the fix work',
-    ],
-    // P1 → §0.7 replace
-    price: 'Fixed fee, quoted after a free 30-minute call. The fee is credited toward the fix or a Build with us.',
-    guarantee: 'No useful findings, no charge.',
-    microcopy: 'Starts with a free 30-minute scoping call',
-    link: 'See everything we check',
-  },
-  how: {
-    eyebrow: 'how a review runs',
-    title: 'How it works',
+  lifecycle: {
+    eyebrow: 'idea to after launch',
+    title: 'One team from idea to after launch',
     steps: [
-      { title: 'Book a scoping call', body: '30 minutes, free. Tell us what you built and what worries you. You get a fixed fee before anything starts.' },
-      { title: 'We review your app', body: 'About 5 working days. Senior engineers and a product lead go through your code and your live app.', chip: { kind: 'ai', label: 'AI-accelerated' } },
-      { title: 'Findings call', body: 'We walk you through the report. What’s risky, what’s fine, what to fix first.', chip: { kind: 'human', label: 'Senior sign-off' } },
-      { title: 'Fix or build', body: 'Hire us for the fix with the fee credited, or take the report to your own developer. It’s yours.' },
+      { title: 'Discover', body: 'Define the right product to build, not just the one asked for.' },
+      { title: 'Plan', body: 'Roadmap, tech decisions and team, before any code.' },
+      { title: 'Build', body: 'Agile v2 sprints. AI accelerates, seniors own quality. Results every week.', chips: [{ kind: 'ai', label: 'AI-accelerated' }, { kind: 'human', label: 'Senior sign-off' }] },
+      { title: 'Ship & Stay', body: 'Deploy, monitor, keep improving. We stay after launch.' },
+    ],
+    line: 'One team, no handoff gaps.',
+  },
+  engagements: {
+    title: 'Three ways to work with us',
+    lead: 'Start where you are. Validate’s fee credits toward Build.',
+    cards: [
+      { key: 'validate', who: 'I have an idea.', title: 'Validate', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate' },
+      { key: 'build', who: 'I’m ready to build.', title: 'Build', meta: ['8–12 weeks', 'Fixed price'], body: 'A production-ready product with real users. Design, build, QA and deployment.', linkLabel: 'See Build' },
+      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control.', linkLabel: 'See Scale' },
+    ],
+    otherTitle: 'Other ways in',
+    other: [
+      { key: 'review', who: 'Already built something?', title: 'Launch-Ready Review', body: 'Your AI-built or freelancer-built app, reviewed by a senior team in about 5 working days. A ranked fix list and a plain verdict.', linkLabel: 'See the Review' },
+      { key: 'partners', who: 'I run a software house.', title: 'Partners', body: 'White-label delivery and staff augmentation under your brand.', linkLabel: 'See Partners' },
     ],
   },
-  paths: {
-    title: 'Not at launch yet? Start where you are.',
-    cards: [
-      { key: 'validate', who: 'I have an idea.', title: 'Validate', body: '1–2 weeks. Market read, scope, clickable prototype and a fixed build estimate.', linkLabel: 'See Validate' },
-      { key: 'build', who: 'I’m ready to build.', title: 'Build', body: '8–12 weeks to a live product with real users. Fixed price.', linkLabel: 'See Build' },
-      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', body: 'A dedicated squad of developers, QA and a PM on a monthly retainer. You keep control.', linkLabel: 'See Scale' },
-      { key: 'partners', who: 'I run a software house.', title: 'Partners', body: 'White-label delivery and staff augmentation under your brand.', linkLabel: 'See Partners' },
+  capabilities: {
+    title: 'What we build',
+    lead: 'Nine service lines. One delivery team.',
+    groups: [
+      { title: 'Product', tagline: 'Find the right thing to build.', items: ['Product strategy and discovery', 'Product design (UX/UI)', 'Market and competitor studies'] },
+      { title: 'Engineering', tagline: 'Build it to last.', items: ['Web and mobile apps', 'APIs and enterprise systems', 'E-commerce and marketplaces', 'Legacy modernization and cloud migration', 'Quality, DevOps and cloud'] },
+      { title: 'AI and data', tagline: 'AI that works in production.', items: ['AI agents and chatbots in Arabic and English', 'Computer vision and NLP', 'Recommendations and document processing', 'Data engineering and analytics'] },
+      { title: 'Teams and advice', tagline: 'Senior people when you need them.', items: ['Architecture reviews and code audits', 'CTO advisory', 'Dedicated teams and staff augmentation'] },
     ],
   },
   // V12 → §0.7 anonymize ("EdTech AI platform, Egypt"); quote omitted.
@@ -74,29 +80,29 @@ export const home = {
     link: 'Read the case study',
   },
   why: {
-    title: 'Why founders choose DiscoverDev',
-    lead: 'Most teams just build what you ask for. We help you build the right thing, then ship it fast, and you own all of it.',
+    title: 'Why founders and teams choose DiscoverDev',
+    leadBright: 'Most teams just build what you ask for.',
+    leadDim: 'We help you build the right thing, then ship it fast, and you own all of it.',
     pillars: [
-      { title: 'Discover first', body: 'The “Discover” in our name is the point. Before we write code, we check it’s the right thing to build, and we say what to cut.' },
-      { title: 'Senior teams that stay', body: 'AI does the heavy lifting. Senior engineers own the quality, and a person is responsible for every line that reaches your users. One team from first call to launch and after. No handoff gaps.' },
-      { title: 'AI that pays for itself', body: 'We have AI in production across multiple clients. For an EdTech AI platform in Egypt, we cut AI costs by 60–90%.' },
+      { title: 'Product-first', body: 'The “Discover” in our name is the point. Before we write code, we check it’s the right thing to build, and we say what to cut.' },
+      { title: 'Senior teams, AI-accelerated', body: 'AI does the heavy lifting. Senior engineers own the quality. You get the speed without the mess that usually comes with it.' },
+      { title: 'We stay', body: 'One team from first call to launch and after. No handoff gaps. Four clients expanded scope with us.' },
     ],
     small: 'You own everything: full IP, no lock-in, clear contract from day one.',
   },
   faq: {
     title: 'Questions founders ask us',
     items: [
-      { id: 'cost', q: 'How much does a Launch-Ready Review cost?', a: 'The Review is a fixed fee, quoted for your app before you commit. The full fee is credited toward the fix or a Build with us. If the Review finds nothing useful, you pay nothing. You get your price on a free 30-minute scoping call.' },
-      { id: 'timeline', q: 'How long until my app is ready to launch?', a: 'The Review takes about 5 working days. After that you get a fixed quote for the fixes, with a timeline. How long fixes take depends on what we find. If the right answer is a rebuild, that is a Build of 8–12 weeks. You know which one you need before you pay for any fix work.' },
+      { id: 'ai', q: 'How do you use AI? Is the code safe?', a: 'AI does the heavy lifting: drafting code, tests and documentation. Senior engineers make the decisions, review every change and sign off each release. A person is responsible for every line that reaches your users.' },
+      { id: 'pricing', q: 'How does pricing work?', a: 'Validate is a fixed fee, credited toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer. You get a number after a free 30-minute clarity call, before you commit to anything.' },
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.' },
-      { id: 'rebuild', q: 'Will you tell me to rebuild everything?', a: 'Only if the evidence says so. The Review tells you what to keep, what to fix and what to replace, and why. A rebuild makes sense when the code can’t be owned, changed or made safe at a fair cost. If that’s the case, we scope it as a fixed-price Build.' },
-      { id: 'stacks', q: 'Which tools and stacks do you work with?', a: 'We review apps built with Lovable, Bolt, v0, Cursor and other AI tools, and apps built by freelancers or agencies. Our team works with React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure.' },
+      { id: 'take-over', q: 'We already built something with AI or a freelancer. Can you take it over?', a: 'Yes. Start with a Launch-Ready Review. A senior team reviews it in about 5 working days and tells you what to keep, fix or replace, and why. Then we fix it or build it properly.' },
+      { id: 'stacks', q: 'Which tools and stacks do you work with?', a: 'React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure. For AI: OpenAI, LangChain, RAG, computer vision and NLP.' },
       { id: 'time-zones', q: 'Your team is in Egypt. Will time zones be a problem?', a: 'Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US mornings and Europe, and Gulf time is 0–2 hours ahead. We work in Arabic and English, and we have a presence in Texas, USA. You choose a call time that suits you.' },
     ],
   },
   band: {
-    title: 'Find out what’s between your app and launch day',
-    body: 'A senior team, about 5 working days, and a plain answer.',
-    link: 'Not ready? Take the 3-minute launch check',
+    title: 'Tell us what you’re building.',
+    body: '30 minutes with a senior person. You leave with a next step, even if we’re not the right fit.',
   },
 } as const;

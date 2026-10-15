@@ -1,0 +1,62 @@
+---
+// /work (04 §4.5, 03 §9), anonymized per §0.7. One published case → single full-width card (04 §9). No filters.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/sections/PageHero.astro';
+import Section from '../../components/ui/Section.astro';
+import CtaBand from '../../components/ui/CtaBand.astro';
+import ProofChip from '../../components/ui/ProofChip.astro';
+import { work as c } from '../../content/copy/en/work';
+import { graph, orgStub, webPage, canonical, ORG_ID } from '../../lib/seo';
+import { href } from '../../data/routes';
+
+const caseHref = href('workEdulens');
+const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, 'CollectionPage', {
+  publisher: { '@id': ORG_ID },
+  mainEntity: { '@type': 'ItemList', itemListElement: [{ '@type': 'ListItem', position: 1, url: canonical(caseHref), name: c.card.summary }] },
+}));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="work_index" jsonLd={jsonLd}>
+  <PageHero page="work" h1={c.h1} lead={c.intro} cta="none" proof={false} />
+
+  <Section id="cases" surface="paper" title="Case studies" titleHidden>
+    <article class="case-card">
+      <div class="case-card__figure"><p class="case-card__metric">{c.card.metric}</p><p class="muted">{c.card.metricLabel}</p></div>
+      <div class="case-card__body">
+        <p class="case-card__tags"><span>{c.card.industry}</span><span>{c.card.region}</span></p>
+        <h2 class="h3"><a href={caseHref} data-cta-id="work_card_case" data-cta-tier="secondary" data-cta-position="card" data-cta-target="case">{c.card.client}</a></h2>
+        <p>{c.card.summary}</p>
+        <p class="case-card__more" aria-hidden="true">{c.card.link}</p>
+      </div>
+    </article>
+  </Section>
+
+  <Section id="more" surface="alt" title={c.more.title}>
+    <ul role="list" class="more">
+      {c.more.items.map((i) => <li><span>{i.text}</span><span class="more__where">{i.where}</span></li>)}
+    </ul>
+  </Section>
+
+  <Section id="reviews" surface="paper" title={c.reviewsTitle} size="sm">
+    <ProofChip />
+  </Section>
+
+  <CtaBand title={c.band.title} kind="clarity" page="work" link={{ label: c.band.link, to: 'review' }} />
+</BaseLayout>
+
+<style>
+  .case-card { position: relative; display: grid; gap: var(--space-6); padding: var(--space-8); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); background: var(--color-surface); }
+  @media (width >= 48rem) { .case-card { grid-template-columns: 4fr 8fr; align-items: center; } }
+  .case-card__metric { font-family: var(--ff-heading); font-weight: var(--weight-extrabold); font-size: var(--text-3xl); letter-spacing: -0.03em; color: var(--color-heading); font-variant-numeric: tabular-nums; }
+  .case-card__body { display: grid; gap: var(--space-3); }
+  .case-card__tags { display: flex; gap: var(--space-2); }
+  .case-card__tags span { font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 2px 10px; border-radius: var(--radius-pill); background: var(--color-neutral-badge-bg); color: var(--color-neutral-badge-text); }
+  .case-card h2 a { color: var(--color-heading); text-decoration: none; }
+  .case-card h2 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+  .case-card h2 a:focus-visible { outline: none; }
+  .case-card:has(a:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+  .case-card__more { color: var(--color-link); text-decoration: underline; font-weight: var(--weight-medium); }
+  @media (hover: hover) { .case-card:hover { border-color: var(--color-border-interactive); } }
+  .more { display: grid; gap: 0; }
+  .more li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-6); padding-block: var(--space-4); border-block-end: 1px solid var(--color-border-subtle); }
+  .more__where { color: var(--color-text-muted); font-size: var(--text-sm); }
+</style>

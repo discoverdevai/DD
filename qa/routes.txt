@@ -6,7 +6,7 @@
 /scale
 /partners
 /work
-/work/edulens
+/work/edtech-ai-agents
 /insights
 /insights/ai-app-to-production
 /insights/ai-built-app-security-holes

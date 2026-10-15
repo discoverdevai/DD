@@ -4,10 +4,15 @@
 import CtaLink from '../ui/CtaLink.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
+// Strategy v2 (04 §3.3): clarity call everywhere; /launch-ready keeps the Review.
+interface Props { kind?: 'clarity' | 'review' }
+const { kind = 'clarity' } = Astro.props;
 ---
 <div class="bottom-bar" data-surface="ink" data-bottom-bar hidden>
-  <CtaLink href={bookHref('review')} ctaId="sticky_book_review" tier="primary" position="sticky" target="review" wide>{t('cta.review.short')}</CtaLink>
-  <p class="bottom-bar__line">{t('sticky.line')}</p>
+  {kind === 'review'
+    ? <CtaLink href={bookHref('review')} ctaId="sticky_book_review" tier="primary" position="sticky" target="review" wide>{t('cta.review.short')}</CtaLink>
+    : <CtaLink href={bookHref('clarity')} ctaId="sticky_book_clarity" tier="primary" position="sticky" target="clarity" wide>{t('cta.clarity.short')}</CtaLink>}
+  <p class="bottom-bar__line">{t(kind === 'review' ? 'sticky.line' : 'sticky.line.clarity')}</p>
 </div>
 
 <style>

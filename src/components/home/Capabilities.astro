@@ -1,0 +1,60 @@
+---
+// What we build (03 §2A.7): the nine catalog lines in four groups. A 2×2 board of panels; each has a mono index,
+// a drawn glyph (decorative), the group name, a one-line promise and the service list.
+interface Group { title: string; tagline: string; items: readonly string[] }
+interface Props { title: string; lead: string; groups: readonly Group[] }
+const { title, lead, groups } = Astro.props;
+---
+<section id="capabilities" class="cap" data-surface="ink" aria-labelledby="cap-title">
+  <div class="container">
+    <div class="cap__head">
+      <h2 id="cap-title" class="cap__title reveal">{title}</h2>
+      <p class="cap__lead">{lead}</p>
+    </div>
+    <ul role="list" class="cap__grid reveal-stagger">
+      {groups.map((g, i) => (
+        <li class="cap__panel" data-spotlight>
+          <div class="cap__top">
+            <span class="cap__n" aria-hidden="true">0{i + 1}</span>
+            <svg class="cap__glyph" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+              {i === 0 && <g><circle cx="20" cy="20" r="11" /><path d="m28 28 10 10" /><path d="M15 20h10M20 15v10" class="cap__accent" /></g>}
+              {i === 1 && <g><path d="M17 14 7 24l10 10M31 14l10 10-10 10" /><path d="m27 10-6 28" class="cap__accent" /></g>}
+              {i === 2 && <g><rect x="12" y="12" width="24" height="24" rx="4" /><path d="M18 6v6M30 6v6M18 36v6M30 36v6M6 18h6M6 30h6M36 18h6M36 30h6" /><rect x="19" y="19" width="10" height="10" rx="2" class="cap__accent" /></g>}
+              {i === 3 && <g><circle cx="17" cy="17" r="6" /><circle cx="33" cy="20" r="5" /><path d="M6 38c1-7 6-11 11-11s10 4 11 11" /><path d="M27 37c1-5 3-8 7-8s7 3 8 8" class="cap__accent" /></g>}
+            </svg>
+          </div>
+          <h3 class="cap__h3">{g.title}</h3>
+          <p class="cap__tag">{g.tagline}</p>
+          <ul role="list" class="cap__list">
+            {g.items.map((it) => <li>{it}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cap { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
+  .cap__head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
+  @media (width >= 64rem) { .cap__head { grid-template-columns: 1fr 1fr; align-items: end; } }
+  .cap__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; }
+  .cap__lead { color: var(--color-text-muted); font-size: var(--text-lg); }
+  .cap__grid { display: grid; gap: 1px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-hairline); background: var(--color-hairline); }
+  @media (width >= 48rem) { .cap__grid { grid-template-columns: 1fr 1fr; } }
+  .cap__panel { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-8); background: var(--color-bg); }
+  .cap__top { display: flex; align-items: start; justify-content: space-between; margin-block-end: var(--space-4); }
+  .cap__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .cap__glyph { fill: none; stroke: color-mix(in oklab, var(--blue-200) 70%, transparent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .cap__glyph .cap__accent { stroke: var(--color-machine-mark); }
+  .cap__h3 { font-size: var(--text-2xl); font-weight: var(--weight-bold); letter-spacing: -0.03em; color: var(--color-heading); }
+  .cap__tag { color: var(--color-text-muted); }
+  .cap__list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-3); }
+  .cap__list li { font-size: var(--text-sm); padding: 6px 12px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); background: color-mix(in oklab, var(--blue-300) 5%, transparent); color: var(--color-text); }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .cap__glyph * { stroke-dasharray: 160; stroke-dashoffset: 160; animation: cap-draw linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+      @keyframes cap-draw { to { stroke-dashoffset: 0; } }
+    }
+  }
+</style>
