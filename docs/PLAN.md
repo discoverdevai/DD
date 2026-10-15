@@ -3,7 +3,25 @@
 Updated after every step (Mohamed's instruction, Oct 15). Strategy and dates: `context/00-master-plan.md`. Decisions: `context/11-open-decisions.md` §0b (launch defaults). QA kit: `qa/README.md`.
 
 **Go-live: Sat Oct 17, 2026, 09:00 Cairo** (fallback Sun Oct 18).
-**Design:** Signal, approved Oct 15 (`context/06-design-system.md` §0, `context/01-brand.md`, `context/03-copy.md` §2.2a).
+**Design:** Signal, approved Oct 15 (`context/06-design-system.md` §0, `context/01-brand.md`, `context/03-copy.md` §2.2a), then home v3 (all-ink, Oct 16), then the v4 service-page pattern (brand guidelines: white ~60%, navy openers, blue to point).
+
+## Where we are now (keep this block current)
+_Last updated: Fri Oct 16, 2026 (Cairo). Latest commit: `149b45c`._
+
+- **Done and approved:** strategy v2 (Agile v2 company, TrianglZ as reference, clarity call = primary CTA) · home v3 · v3 look on every inner page · home section review · code clean-up · launch-checklist code work (CI gates, OG images, proof check, events, functional suite) · v4 "hooks" pattern on /build, /validate, /scale (journey stepper + one signature section per page) · official logo and favicon set · responsive fixes (no split words, balanced footer) · section backgrounds (blueprint grid, dot field, arrow-mark watermark).
+- **Last gate:** `npm run qa` 0 findings · unit 10/10 · functional 37/37 · events 21/21 · axe clean · Lighthouse perf 97–100, LCP ≤ 1.81s.
+- **In progress:** enhancement program (Mohamed, Oct 16): review the site with UX laws and the installed skills, research best practice (CRO, SEO/AEO, GEO/AI search, competitors, tech, content), write one enhancement plan, then implement it. Five read-only review agents running: SEO/AEO/GEO, CRO + UX laws, competitors, content/blog + old-repo inventory, tech best practice. Performance audit finished (results in the log below).
+- **Planned, not started:** architecture clean-up in phases (`docs/architecture/cleanup-plan.md`).
+- **Waiting on Mohamed:** see "Needed from Mohamed" at the end. Client logos and project screenshots found in the old repo can't go live without written client consent (D-05).
+
+## Keeping this file in step with the chat
+Claude Code follows these steps so this file and its saved memory match what was said in the chat:
+1. **New request from Mohamed:** add it to "Where we are now" under *In progress* or *Planned*, in his words where short.
+2. **After each verified step** (build + QA pass): add one row to the progress log (when, step, result, notes with the commit hash), then move the item in "Where we are now" to *Done*.
+3. **Decision made in chat** (approval, direction change, "don't do X"): record it in the log, and in `context/11-open-decisions.md` if it closes a D-number. Copy changes go into `context/03-copy.md` first.
+4. **New blocker or something only Mohamed can provide:** add it to "Needed from Mohamed"; remove it when resolved.
+5. **End of each work session or milestone:** refresh the "Last updated" line and the latest commit, then update Claude's memory note (`discoverdev-landing-page-project`) with the same state, so a new chat starts from here.
+6. **Commit** docs changes with the work they describe, or as a separate `Docs:` commit.
 
 ## Architecture decisions
 | # | Decision | Why |
@@ -12,7 +30,7 @@ Updated after every step (Mohamed's instruction, Oct 15). Strategy and dates: `c
 | A2 | **Launch defaults instead of gates.** The `11` §0b default is the content: no price number, EduLens anonymized with its metric, no client names, quotes or logos, no team, no WhatsApp or reply-time promises. Items still unresolved are left out of the code entirely, never rendered as placeholders. | `11` §0b; CLAUDE.md "keep tagged items hidden"; `qa/check-dist.mjs` blocks any `[VERIFY]`-style text |
 | A3 | Page copy in typed per-locale modules `src/content/copy/en/*.ts`; every UI string through `t()` | CLAUDE.md "every string goes through the i18n layer"; `/ar` = add `copy/ar` |
 | A4 | Signal surfaces: `data-surface="ink"` (workshop) and `"paper"` (report); components read semantic tokens only | `06` §0 |
-| A5 | Interim logo: official mark PNG tinted by CSS mask per the `06` §11 colourways; wordmark cropped from the official reversed PNG (not traced, not typed). D-33 still open. | No SVG exists yet |
+| A5 | Official logo SVGs (`assets/logo/svg`, from the brand guidelines kit) served from `public/brand/` as `<img>`: for-dark on ink/navy, dark-text on white. D-33 resolved Oct 16 (replaced the interim PNG masks). | Brand rules: whole logo only, never recoloured |
 | A6 | No inline `style=""` attributes anywhere | Astro's CSP adds style hashes, so `'unsafe-inline'` would be ignored and inline styles blocked (verified in Astro docs, Oct 15) |
 | A7 | Third-party services env-driven and inert when unset (Cal.com, PostHog, CF beacon, Web3Forms) | `07` §19 |
 
@@ -74,8 +92,17 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 | Oct 16 | Clean-up | Done | Dedicated commit: 6 unused components + 1 copy file removed (389 lines), dead CSS and i18n key, Header special case gone. Spec fix kept separate (04318fe). QA 0 findings, browser audit 0 blockers |
 | Oct 16 | M5 + M6 + M7 (code side) | Done | CI gates from 07 §15 (cta-ids, inbound-links, jsonld-check, consent-gate, i18n-gate, redirects-test) in `npm run qa` and CI; internal links fixed per 03 §0.8 so every page has 3+ inbound links; satori share image per page and article; proof check (`docs/review/proof-check.md`), 25/25 external sources live; analytics events 21/21 (`qa/events.mjs`), cta/outbound now sendBeacon; functional + keyboard suite 37/37 (`qa/functional.mjs`), fixed FAQ deep links and sticky bar over footer. Redirects test runs in CI (workerd crashes on this Windows PC) |
 | Oct 16 | Gate (strategy v2) | Static pass | `npm run qa`: check 0 errors, lint OK, 10/10 unit, build 19 pages, check-dist 0 blockers (1 minor: optional C3 article). Browser audit: home a11y/SEO/BP 100, perf 97, LCP 2.26s (budget 2.0s, open); /launch-ready run-panel contrast flagged mid-animation (open); pillar article CLS 0.14 (open) |
+| Oct 16 | Build v4 pilot | Approved | Mohamed: "one signature section per page, merge thin sections, add the Validate → Build → Scale stepper; start with Build". JourneyStepper, WeekTrack, TermsDoc (price, team, ownership in one document). Commit `b8d5c6a` |
+| Oct 16 | Official logo + favicon | Done | Original logo SVGs everywhere; favicon.ico/svg, apple-touch, icons 192/512, manifest, OG default from the SVGs; off-screen logos lazy. Commit `7fe5905` |
+| Oct 16 | Responsive | Done | No split words in tables/cards (break-word for headings and cells); footer balanced 2-col → 4-col at 80rem. Commit `226c9ed` |
+| Oct 16 | Section backgrounds | Done | Blueprint grid, dot field and arrow-mark watermark from the brand mark, used to separate service-page sections. Commit `983cc12` |
+| Oct 16 | Validate + Scale v4 | Done | Mohamed approved the Build pattern. Validate: DecisionBoard (4 steps → verdict). Scale: SquadLoop (roster + sprint ring). All gates pass. Commit `00395c5` |
+| Oct 16 | Clean-up plan | Saved | Architecture review: target folders, duplication table, dead code, phases 0–6 and a do-not-touch list. `docs/architecture/cleanup-plan.md`, commit `149b45c` |
+| Oct 16 | Performance audit | Done (report) | Lighthouse mobile 97–100, LCP 1.52–1.81s, TBT 0, 8–10 requests. Fixes queued: /launch-check CLS 0.093 (07 budget is 0.05; quiz un-hides after JS), font-swap CLS on slow first visits, forced layout in Header/StickyBookBar scripts, cache headers for /brand /og /favicons, narrower font axes, inline small page CSS, drop orphan PostHog chunk |
+| Oct 16 | Enhancement program | Started | Mohamed: review with UX laws + skills, research CRO / SEO-AEO / GEO / competitors / tech / content, plan, then implement. Five review agents launched |
 
 ## Needed from Mohamed (launch blockers outside the code)
 - **Accounts and keys:** D-14 DNS access (Cloudflare zone) · D-23 Cal.com username (then the dry run, 10 §3) · PostHog EU project key · CF Web Analytics token · Web3Forms key (quiz email, optional) · GitHub repo to push to (CI then runs the redirects test on Linux).
-- **Confirm or decide:** D-15 old SPA routes for `_redirects` · D-33 logo SVGs (interim PNG masks in use) · GMT+2 wording (wrong in Egyptian summer time, `docs/review/proof-check.md`) · the "What AI does" task list on home · legal text review for /privacy and /terms (D-25) · partner table strings marked * in 03 §8.3.
+- **Confirm or decide:** D-15 old SPA routes for `_redirects` · GMT+2 wording (wrong in Egyptian summer time, `docs/review/proof-check.md`) · the "What AI does" task list on home · legal text review for /privacy and /terms (D-25) · partner table strings marked * in 03 §8.3.
+- **Consent (D-05):** written OK from each client before their name, logo, quote or project screenshot appears. The old repo has logos (Arabi, Ascend, Beacon, Biobnk, CE, Darb, EduLens, Jeel, Nile, Orange, Resort, Rise, Upscend, Zest) and project screens (Amstdd, Athkado, CTC, Entrepreneurs, Rushr, Yawmy).
 - **Your machine (optional):** update the Microsoft Visual C++ Redistributable if you want `wrangler dev` to run locally.
