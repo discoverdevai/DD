@@ -25,6 +25,8 @@ for (const vp of [{ name: 'mobile', width: 390, height: 844 }, { name: 'desktop'
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
     const res = await page.goto(base + r, { waitUntil: 'networkidle' }).catch(e => ({ status: () => 'ERR ' + e.message }));
     if (res.status() !== 200) { rows.push(['BLOCKER', vp.name, r, 'http', String(res.status())]); blockers++; await page.close(); continue; }
+    // One-time entrance sequences are capped at 2.4s (06 §9.6); audit the settled state, not a mid-fade frame.
+    await page.waitForTimeout(2600);
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     for (const v of axe.violations) {
       const sev = ['critical', 'serious'].includes(v.impact) ? 'BLOCKER' : 'MINOR';

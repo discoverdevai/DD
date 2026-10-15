@@ -18,9 +18,11 @@ const { ctaId, position = 'mid' } = Astro.props;
 )}
 
 <style>
-  .quiz { display: grid; gap: var(--space-5); align-items: center; padding: var(--space-6) var(--space-8); background: var(--color-surface-alt); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); }
+  .quiz { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); align-items: center; padding: var(--space-6) clamp(var(--space-5), 4vw, var(--space-8)); background: var(--color-surface-alt); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); }
   @media (width >= 48rem) { .quiz { grid-template-columns: minmax(0, 1fr) auto; } }
   .quiz__copy { display: grid; gap: var(--space-2); }
+  /* The label is long; let it wrap on narrow phones instead of widening the page (320px check). */
+  @media (width < 48rem) { .quiz :global(.cta) { white-space: normal; justify-self: stretch; } }
   .quiz__title { font-size: var(--text-xl); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
   .quiz__body { color: var(--color-text-muted); }
 </style>

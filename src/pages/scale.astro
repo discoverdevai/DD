@@ -8,10 +8,12 @@ import FitList from '../components/ui/FitList.astro';
 import CardGrid from '../components/ui/CardGrid.astro';
 import CheckList from '../components/ui/CheckList.astro';
 import Steps from '../components/ui/Steps.astro';
-import Faq from '../components/ui/Faq.astro';
+import FaqSplit from '../components/home/FaqSplit.astro';
 import CtaBand from '../components/ui/CtaBand.astro';
 import CtaLink from '../components/ui/CtaLink.astro';
 import ProofList from '../components/services/ProofList.astro';
+import ServiceGlance from '../components/services/ServiceGlance.astro';
+import { t } from '../i18n/t';
 import { scale as c } from '../content/copy/en/scale';
 import { href, isLive } from '../data/routes';
 import { graph, orgStub, webPage, canonical, ORG_ID } from '../lib/seo';
@@ -27,17 +29,19 @@ const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items
 const jsonLd = graph(orgStub, service, webPage('/scale', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
-  <PageHero page="scale" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} meta={c.hero.meta} cta="clarity" />
+  <PageHero page="scale" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
+    <ServiceGlance slot="aside" name={t('nav.scale')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
+  </PageHero>
 
-  <Section id="fit" surface="paper" title={c.fit.title}>
+  <Section id="fit" surface="ink" title={c.fit.title}>
     <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
   </Section>
 
-  <Section id="outcomes" surface="alt" title={c.outcomes.title}>
+  <Section id="outcomes" surface="raised" title={c.outcomes.title}>
     <CardGrid items={c.outcomes.items} cols={3} />
   </Section>
 
-  <Section id="included" surface="paper" title={c.included.title} width="narrow">
+  <Section id="included" surface="ink" title={c.included.title} width="narrow">
     <CheckList items={c.included.items} />
   </Section>
 
@@ -45,27 +49,25 @@ const jsonLd = graph(orgStub, service, webPage('/scale', c.seo.title, c.seo.desc
     <Steps steps={c.process.steps} />
   </Section>
 
-  <Section id="pricing" surface="paper" title={c.pricing.title} width="narrow">
+  <Section id="pricing" surface="ink" title={c.pricing.title} width="narrow">
     <p class="answer">{c.pricing.answer}</p>
   </Section>
 
-  <Section id="team" surface="alt" title={c.team.title} width="narrow">
+  <Section id="team" surface="raised" title={c.team.title} width="narrow">
     <p class="answer">{c.team.body}</p>
   </Section>
 
-  <Section id="proof" surface="paper" title={c.proof.title}>
+  <Section id="proof" surface="ink" title={c.proof.title}>
     <ProofList items={c.proof.items} />
     <p class="retention">{c.proof.retention}</p>
     {isLive('workEdulens') && <CtaLink href={href('workEdulens')} ctaId="scale_mid_case" tier="secondary" position="mid" target="case" variant="text">{c.proof.caseLink}</CtaLink>}
   </Section>
 
-  <Section id="ownership" surface="alt" title={c.ownership.title} width="narrow">
+  <Section id="ownership" surface="raised" title={c.ownership.title} width="narrow">
     <p class="answer">{c.ownership.body}</p>
   </Section>
 
-  <Section id="faq" surface="paper" title={c.faq.title}>
-    <Faq items={c.faq.items} />
-  </Section>
+  <FaqSplit title={c.faq.title} items={c.faq.items} />
 
   <CtaBand title={c.band.title} kind="clarity" page="scale" />
 </BaseLayout>

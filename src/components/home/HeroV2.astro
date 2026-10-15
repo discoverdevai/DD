@@ -24,18 +24,6 @@ const c = home.hero;
   <div class="hero__stage">
     <div class="hero__light" aria-hidden="true"></div>
     <div class="container hero__scene"><DeliveryScene /></div>
-    <script>
-      // Pointer-tracked light for [data-spotlight] (fine pointers only; CSS vars via CSSOM, CSP-safe).
-      if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        document.addEventListener('pointermove', (e) => {
-          const el = (e.target as Element | null)?.closest?.<HTMLElement>('[data-spotlight]');
-          if (!el) return;
-          const r = el.getBoundingClientRect();
-          el.style.setProperty('--mx', `${e.clientX - r.left}px`);
-          el.style.setProperty('--my', `${e.clientY - r.top}px`);
-        }, { passive: true });
-      }
-    </script>
   </div>
 </section>
 

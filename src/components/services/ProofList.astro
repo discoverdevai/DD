@@ -1,25 +1,25 @@
 ---
 // Anonymized proof items for service pages (04 §4.3 #8, 03 §0.7 [CONSENT]): what we did, where, optional detail.
-// No names, logos or quotes. CardGrid needs a body on every item; some §9.3 items have none, hence this list.
+// No names, logos or quotes. v3: home tiles with the region as a mono tag.
 interface Item { title: string; where?: string; body?: string }
 interface Props { items: readonly Item[] }
 const { items } = Astro.props;
 ---
-<ul role="list" class="proof">
+<ul role="list" class="proof reveal-stagger">
   {items.map((it) => (
-    <li class="proof__item">
-      <h3 class="h3 proof__title">{it.title}</h3>
+    <li class="proof__item" data-spotlight>
       {it.where && <p class="proof__where">{it.where}</p>}
+      <h3 class="h3 proof__title">{it.title}</h3>
       {it.body && <p class="proof__body">{it.body}</p>}
     </li>
   ))}
 </ul>
 
 <style>
-  .proof { display: grid; gap: var(--grid-gap); }
+  .proof { display: grid; gap: var(--space-4); }
   @media (width >= 48rem) { .proof { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); } }
-  .proof__item { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; background: var(--color-surface); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); padding: var(--space-6); }
-  .proof__title { font-size: var(--text-lg); }
-  .proof__where { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .proof__item { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; padding: var(--space-6) var(--space-6) var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); }
+  .proof__title { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
+  .proof__where { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); padding: 2px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 25%, transparent); }
   .proof__body { color: var(--color-text-muted); }
 </style>

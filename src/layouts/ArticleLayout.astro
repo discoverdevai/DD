@@ -127,13 +127,16 @@ const jsonLd = graph(
 
 <style>
   .ahead { padding-block: var(--space-12) var(--space-10); }
-  .ahead__inner { display: grid; gap: var(--space-6); }
+  .ahead__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
   .ahead__meta { display: grid; gap: var(--space-1); font-size: var(--text-sm); line-height: 1.5; }
   .ahead__byline { font-weight: var(--weight-medium); color: var(--color-text); }
-  .ahead__dates { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); color: var(--color-text-muted); }
+  /* Stacked on phones so the line count never depends on which font has loaded (fallback vs Rubik width: CLS, 07). */
+  .ahead__dates { display: grid; gap: var(--space-1); color: var(--color-text-muted); }
+  .ahead__dates span { white-space: nowrap; }
+  @media (width >= 40rem) { .ahead__dates { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); } }
   .abody { padding-block: var(--space-10) var(--section-y); }
-  .abody__inner { display: grid; gap: var(--space-10); }
-  .abody__inner > *, .ahead__inner > * { min-inline-size: 0; } /* grid items default to min-content: a wide table or code block would push the page wider than the phone */
+  .abody__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-10); }
+  .abody__inner > :global(*), .ahead__inner > :global(*) { min-inline-size: 0; } /* minmax(0, 1fr) track + this: grid items default to min-content: a wide table or code block would push the page wider than the phone */
   /* The sentinel sits at 60% of the body's height (07 §9.3). Takes no space and is never announced. */
   .abody__prose { position: relative; min-inline-size: 0; }
   .sentinel { position: absolute; inset-block-start: 60%; inset-inline-start: 0; inline-size: 1px; block-size: 1px; pointer-events: none; }

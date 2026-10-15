@@ -1,6 +1,6 @@
 ---
-// Closing band (06 §9.16 + §0.5 blade): navy chapter, centred, the only filled button in view.
-// kind sets the button, terms and analytics target. data-cta-band hides the sticky bar while in view.
+// Closing band (06 §9.16, §0.4 v3): the ink "horizon" (brand-blue light from below), large centred headline, the only
+// filled button in view. kind sets the button, terms and analytics target. data-cta-band hides the sticky bar in view.
 import CtaLink from './CtaLink.astro';
 import CtaTerms from './CtaTerms.astro';
 import { t } from '../../i18n/t';
@@ -11,10 +11,10 @@ const label = { review: t('cta.review'), clarity: t('cta.clarity'), partner: t('
 const tier = kind === 'partner' ? 'partner' : kind === 'review' ? 'primary' : 'secondary';
 const linkTarget = link?.to === 'review' ? 'review' : 'launch_check';
 ---
-<section id={id} class="band" data-surface="inverse" aria-labelledby={`${id}-title`} data-cta-band>
-  <div class="band__blade" aria-hidden="true"></div>
+<section id={id} class="band" data-surface="ink" aria-labelledby={`${id}-title`} data-cta-band>
+  <div class="band__light" aria-hidden="true"></div>
   <div class="container--narrow band__inner">
-    <h2 id={`${id}-title`} class="band__title">{title}</h2>
+    <h2 id={`${id}-title`} class="band__title reveal">{title}</h2>
     {body && <p class="band__body">{body}</p>}
     <CtaLink href={bookHref(kind)} ctaId={`${page}_band_${kind}`} tier={tier} position="band" target={kind}>{label}</CtaLink>
     <CtaTerms kind={kind} class="band__terms" />
@@ -25,11 +25,11 @@ const linkTarget = link?.to === 'review' ? 'review' : 'launch_check';
 </section>
 
 <style>
-  .band { position: relative; overflow: hidden; padding-block: var(--section-y); }
-  .band__blade { position: absolute; inset-block-end: -40%; inset-inline-end: -12%; inline-size: min(56vw, 44rem); aspect-ratio: 1; pointer-events: none; background: linear-gradient(200deg, var(--blue-700), var(--blue-800) 70%); clip-path: polygon(30% 4%, 100% 40%, 46% 46%); }
-  :dir(rtl) .band__blade { scale: -1 1; }
+  .band { position: relative; overflow: clip; isolation: isolate; padding-block: calc(var(--section-y) * 1.3); border-block-start: 1px solid var(--color-hairline); }
+  .band__light { position: absolute; inset-inline: 0; inset-block-end: -10%; block-size: 85%; z-index: -1; pointer-events: none; background: radial-gradient(55% 70% at 50% 100%, color-mix(in oklab, var(--blue-600) 80%, transparent), color-mix(in oklab, var(--blue-800) 40%, transparent) 45%, transparent 80%); }
+  .band__light::before { content: ''; position: absolute; inset-inline: 20%; inset-block-end: 12%; block-size: 1px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--blue-200) 75%, transparent), transparent); }
   .band__inner { position: relative; display: grid; gap: var(--space-5); justify-items: center; text-align: center; }
-  .band__title { font-size: var(--text-3xl); font-weight: var(--weight-extrabold); letter-spacing: -0.03em; max-inline-size: 18ch; }
+  .band__title { font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem); font-weight: var(--weight-bold); letter-spacing: -0.045em; line-height: 1.05; max-inline-size: 18ch; text-wrap: balance; }
   .band__body { font-size: var(--text-lg); color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
   .band__inner :global(.band__terms) { justify-content: center; }
 </style>

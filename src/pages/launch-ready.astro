@@ -9,7 +9,7 @@ import CardGrid from '../components/ui/CardGrid.astro';
 import CheckList from '../components/ui/CheckList.astro';
 import Steps from '../components/ui/Steps.astro';
 import ReviewSnapshot from '../components/ui/ReviewSnapshot.astro';
-import Faq from '../components/ui/Faq.astro';
+import FaqSplit from '../components/home/FaqSplit.astro';
 import CtaLink from '../components/ui/CtaLink.astro';
 import CtaTerms from '../components/ui/CtaTerms.astro';
 import { launchReady as c } from '../content/copy/en/launch-ready';
@@ -33,22 +33,22 @@ const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.s
     <RunPanel slot="aside" />
   </PageHero>
 
-  <Section id="is-this-you" surface="paper" title={c.isThisYou.title}>
+  <Section id="is-this-you" surface="ink" title={c.isThisYou.title}>
     <CheckList items={c.isThisYou.items} tone="machine" />
     <p class="emph">{c.isThisYou.line}</p>
   </Section>
 
-  <Section id="what-we-check" surface="alt" title={c.check.title} lead={c.check.answer}>
+  <Section id="what-we-check" surface="raised" title={c.check.title} lead={c.check.answer}>
     <CardGrid items={c.check.areas} cols={3} />
   </Section>
 
-  <Section id="what-you-get" surface="paper">
+  <Section id="what-you-get" surface="ink">
     <div class="split">
       <div class="stack">
-        <h2 id="what-you-get-title" class="h2">{c.gets.title}</h2>
+        <h2 id="what-you-get-title" class="h2 section-title">{c.gets.title}</h2>
         <CheckList items={c.gets.items} />
       </div>
-      <ReviewSnapshot />
+      <div class="doc" data-surface="paper"><ReviewSnapshot /></div>
     </div>
   </Section>
 
@@ -56,21 +56,21 @@ const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.s
     <Steps steps={c.timeline.steps} />
   </Section>
 
-  <Section id="pricing" surface="paper" title={c.price.title} width="narrow">
+  <Section id="pricing" surface="ink" title={c.price.title} width="narrow">
     <div class="stack">
       <p class="answer">{c.price.answer}</p>
       <p class="small muted">{c.price.small}</p>
     </div>
   </Section>
 
-  <Section id="guarantee" surface="alt" width="narrow">
+  <Section id="guarantee" surface="raised" width="narrow">
     <div class="guarantee">
       <h2 id="guarantee-title" class="h2">{c.guarantee.title}</h2>
       <p>{c.guarantee.body}</p>
     </div>
   </Section>
 
-  <Section id="proof" surface="paper" title={c.proof.title}>
+  <Section id="proof" surface="ink" title={c.proof.title}>
     <article class="case-card">
       <p class="case-card__client">{c.proof.caseTitle}</p>
       <p class="case-card__metric">{c.proof.caseBody}</p>
@@ -78,7 +78,7 @@ const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.s
     </article>
   </Section>
 
-  <Section id="not-for" surface="alt" title={c.notFor.title}>
+  <Section id="not-for" surface="raised" title={c.notFor.title}>
     <ul role="list" class="notfor">
       {c.notFor.items.map((i) => (
         <li><strong>{i.lead}</strong> {i.text}{'link' in i && isLive(i.link.to) && <> <a href={ROUTES[i.link.to].path}>{i.link.label}</a></>}</li>
@@ -86,13 +86,12 @@ const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.s
     </ul>
   </Section>
 
-  <Section id="faq" surface="paper" title={c.faq.title}>
-    <Faq items={c.faq.items} />
-  </Section>
+  <FaqSplit title={c.faq.title} items={c.faq.items} />
 
-  <section id="book" class="book" data-surface="inverse" aria-labelledby="book-title" data-cta-band>
+  <section id="book" class="book" data-surface="ink" aria-labelledby="book-title" data-cta-band>
+    <div class="book__light" aria-hidden="true"></div>
     <div class="container--narrow book__inner">
-      <h2 id="book-title" class="h2">{c.book.title}</h2>
+      <h2 id="book-title" class="book__title reveal">{c.book.title}</h2>
       <p class="lead">{c.book.body}</p>
       <CtaLink href={bookHref('review')} ctaId="offer_end_review" tier="primary" position="end" target="review">{t('cta.review')}</CtaLink>
       <CtaTerms kind="review" />
@@ -108,13 +107,19 @@ const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.s
   @media (width >= 64rem) { .split { grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items: start; } }
   .stack { display: grid; gap: var(--space-5); align-content: start; }
   .answer { font-size: var(--text-lg); }
-  .guarantee { display: grid; gap: var(--space-4); padding: var(--space-8); border: 1px solid var(--color-border-subtle); border-inline-start: 4px solid var(--color-human-mark); border-radius: var(--radius-md); background: var(--color-surface); }
-  .case-card { display: grid; gap: var(--space-3); max-inline-size: 36rem; padding: var(--space-6); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); background: var(--color-surface); }
+  .guarantee { display: grid; gap: var(--space-4); padding: var(--space-8); border: 1px solid color-mix(in oklab, var(--color-human-mark) 35%, transparent); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--color-human-mark) 8%, var(--color-surface)); }
+  .guarantee :global(.h2) { color: var(--color-human-text); }
+  .case-card { display: grid; gap: var(--space-3); max-inline-size: 36rem; padding: var(--space-8); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); }
   .case-card__client { font-size: var(--text-sm); color: var(--color-text-muted); }
   .case-card__metric { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xl); color: var(--color-heading); }
   .notfor { display: grid; gap: var(--space-4); max-inline-size: var(--measure-prose); }
   .notfor strong { font-weight: var(--weight-semibold); }
-  .book { padding-block: var(--section-y); }
-  .book__inner { display: grid; gap: var(--space-5); justify-items: start; }
+  .book { position: relative; overflow: clip; isolation: isolate; padding-block: calc(var(--section-y) * 1.3); border-block-start: 1px solid var(--color-hairline); text-align: center; }
+  .book__light { position: absolute; inset-inline: 0; inset-block-end: -10%; block-size: 85%; z-index: -1; pointer-events: none; background: radial-gradient(55% 70% at 50% 100%, color-mix(in oklab, var(--blue-600) 80%, transparent), color-mix(in oklab, var(--blue-800) 40%, transparent) 45%, transparent 80%); }
+  .book__inner { display: grid; gap: var(--space-5); justify-items: center; }
+  .book__inner :global(.cta-terms) { justify-content: center; }
+  .book__title { font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem); font-weight: var(--weight-bold); letter-spacing: -0.045em; line-height: 1.05; max-inline-size: 18ch; text-wrap: balance; }
+  .doc { background: transparent; border-radius: var(--radius-lg); }
+  .doc :global(.snap) { box-shadow: 0 30px 80px -20px color-mix(in oklab, var(--blue-975) 90%, transparent), 0 0 0 1px color-mix(in oklab, var(--neutral-0) 20%, transparent); }
   .book__fallback { color: var(--color-text-muted); }
 </style>

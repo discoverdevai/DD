@@ -57,8 +57,9 @@ const jsonLd = graph(
 </BaseLayout>
 
 <style>
-  .hub__inner { display: grid; gap: var(--grid-gap); }
-  .hub__grid { display: grid; gap: var(--grid-gap); }
+  .hub__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--grid-gap); }
+  .hub__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--grid-gap); }
+  .hub__grid > li { min-inline-size: 0; }
   @media (width >= 40rem) { .hub__grid { grid-template-columns: repeat(2, 1fr); } }
   @media (width >= 64rem) { .hub__grid { grid-template-columns: repeat(3, 1fr); } }
 </style>

@@ -110,6 +110,8 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
 - Rule: switch surface only when the topic changes. Ink → paper transitions are hard edges, no gradients.
 - Reading templates (article, legal, `/book`, `/launch-check`): paper throughout, ink header only.
 
+**v3 amendment (approved by Mohamed 2026-10-16, "roll the home v3 look across the service, About, Partners and Work pages"):** the table above is superseded by the home v3 build (`03` §2A, `docs/strategy-v2.md`). Home, `/validate`, `/build`, `/scale`, `/partners`, `/about`, `/work`, `/work/*` and `/launch-ready` are **all-ink** ("workshop"): sections separate with a 1px hairline, alternate sections may use the `raised` variant (ink with a faint blue-975 → surface gradient), and the closing band is the ink "horizon" (brand-blue radial light from below) instead of the navy blade. Paper appears inside ink only as a document (the Review report). Reading templates keep paper. Section titles: Manrope semibold, `clamp(1.75rem, 1.2rem + 2.2vw, 3rem)`, tracking −0.035em; hero H1s bold, tracking −0.045em. Cards: radius-lg, hairline border, ink-to-blue-800 gradient, pointer spotlight on fine pointers.
+
 ### 0.5 New components (spec per `design-systems` template)
 
 #### RunPanel (organism)

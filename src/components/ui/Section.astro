@@ -1,21 +1,23 @@
 ---
-// Section wrapper (06 §5): owns vertical rhythm and the surface (ink = workshop, paper/alt = report, inverse = navy chapter).
-// Head: optional eyebrow, H2 (id for aria-labelledby), optional lead. Content goes in the default slot.
+// Section wrapper (06 §5, §0.4 v3): owns vertical rhythm and the surface. v3 inner pages are all-ink: `ink` (workshop),
+// `raised` (ink with a faint gradient, for rhythm), `paper`/`alt` (reading templates, documents), `inverse` (navy).
+// Head: optional mono eyebrow, H2 (id for aria-labelledby), optional lead. Content goes in the default slot.
 import Eyebrow from './Eyebrow.astro';
 interface Props {
   id: string; title?: string; titleHidden?: boolean; lead?: string; eyebrow?: string;
-  surface?: 'ink' | 'paper' | 'alt' | 'inverse'; size?: 'md' | 'sm'; width?: 'default' | 'narrow' | 'prose'; divider?: boolean; class?: string;
+  surface?: 'ink' | 'raised' | 'paper' | 'alt' | 'inverse'; size?: 'md' | 'sm'; width?: 'default' | 'narrow' | 'prose'; divider?: boolean; class?: string;
 }
 const { id, title, titleHidden = false, lead, eyebrow, surface = 'paper', size = 'md', width = 'default', divider = false, class: cls } = Astro.props;
 const titleId = `${id}-title`;
 const container = width === 'default' ? 'container' : `container--${width}`;
+const dataSurface = surface === 'raised' ? 'ink' : surface;
 ---
-<section id={id} data-surface={surface} class:list={['section', { 'section--sm': size === 'sm', 'section-divider': divider }, cls]} aria-labelledby={title ? titleId : undefined}>
+<section id={id} data-surface={dataSurface} class:list={['section', { 'section--sm': size === 'sm', 'section-divider': divider, 'section--raised': surface === 'raised', 'section--dark': dataSurface === 'ink' }, cls]} aria-labelledby={title ? titleId : undefined}>
   <div class={container}>
     {(title || eyebrow) && (
       <header class:list={['section-head', { 'sr-only': titleHidden }]}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-        {title && <h2 id={titleId} class="h2">{title}</h2>}
+        {title && <h2 id={titleId} class="h2 section-title reveal">{title}</h2>}
         {lead && <p class="lead">{lead}</p>}
       </header>
     )}
@@ -25,5 +27,7 @@ const container = width === 'default' ? 'container' : `container--${width}`;
 
 <style>
   .section-head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
-  .section-head :global(.h2) { max-inline-size: var(--measure-heading); }
+  .section-head :global(.lead) { max-inline-size: 42rem; }
+  .section--dark { border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
+  .section--raised { background: linear-gradient(180deg, var(--blue-925) 0%, var(--color-bg) 70%); }
 </style>

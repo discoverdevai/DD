@@ -5,7 +5,7 @@ import PageHero from '../components/sections/PageHero.astro';
 import Section from '../components/ui/Section.astro';
 import CardGrid from '../components/ui/CardGrid.astro';
 import CheckList from '../components/ui/CheckList.astro';
-import Faq from '../components/ui/Faq.astro';
+import FaqSplit from '../components/home/FaqSplit.astro';
 import CtaBand from '../components/ui/CtaBand.astro';
 import CtaLink from '../components/ui/CtaLink.astro';
 import PartnerModels from '../components/partners/PartnerModels.astro';
@@ -33,11 +33,11 @@ const jsonLd = graph(orgStub, service, webPage('/partners', c.seo.title, c.seo.d
     <PartnerModels slot="aside" models={c.hero.models} />
   </PageHero>
 
-  <Section id="why" surface="paper" title={c.why.title}>
+  <Section id="why" surface="ink" title={c.why.title}>
     <CardGrid items={c.why.cards} cols={3} />
   </Section>
 
-  <Section id="models" surface="alt" title={c.models.title} lead={c.models.answer}>
+  <Section id="models" surface="raised" title={c.models.title} lead={c.models.answer}>
     <ComparisonTable id="models-table" caption={c.models.caption} columns={c.models.columns} rows={c.models.rows} />
     <div class="mid-cta">
       <CtaLink href={bookHref('partner')} ctaId="partners_mid_partner" tier="partner" position="mid" target="partner" variant="secondary">{t('cta.partner')}</CtaLink>
@@ -52,13 +52,11 @@ const jsonLd = graph(orgStub, service, webPage('/partners', c.seo.title, c.seo.d
     <p class="answer">{c.quality.body}</p>
   </Section>
 
-  <Section id="proof" surface="paper" title={c.proof.title}>
+  <Section id="proof" surface="ink" title={c.proof.title}>
     <PartnerProof items={c.proof.items} />
   </Section>
 
-  <Section id="faq" surface="paper" title={c.faq.title} divider>
-    <Faq items={c.faq.items} />
-  </Section>
+  <FaqSplit title={c.faq.title} items={c.faq.items} />
 
   <CtaBand title={c.band.title} kind="partner" page="partners" />
 </BaseLayout>

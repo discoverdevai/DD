@@ -19,7 +19,7 @@ const jsonLd = graph(orgFull, website, webPage('/about', c.seo.title, c.seo.desc
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="about" jsonLd={jsonLd}>
   <PageHero page="about" h1={c.hero.h1} lead={c.hero.lead} cta="clarity" />
 
-  <Section id="story" surface="paper" width="narrow">
+  <Section id="story" surface="ink" width="narrow">
     <div class="story">
       <p class="story__body">{c.story.body}</p>
       <p class="story__entity">{ENTITY_LINE}</p>
@@ -30,14 +30,14 @@ const jsonLd = graph(orgFull, website, webPage('/about', c.seo.title, c.seo.desc
     <CardGrid items={c.beliefs.pillars} cols={3} variant="rule" />
   </Section>
 
-  <Section id="where" surface="paper" title={c.where.title}>
+  <Section id="where" surface="ink" title={c.where.title}>
     <div class="where">
       <p class="where__body">{c.where.body}</p>
       <TimeOverlap label={c.where.strip.label} places={c.where.strip.places} hubTag={c.where.strip.hubTag} text={c.where.strip.text} />
     </div>
   </Section>
 
-  <Section id="track-record" surface="alt" title={c.record.title}>
+  <Section id="track-record" surface="raised" title={c.record.title}>
     <TrackRecord items={c.record.items} />
   </Section>
 
@@ -46,7 +46,7 @@ const jsonLd = graph(orgFull, website, webPage('/about', c.seo.title, c.seo.desc
     <p class="how__line">{c.how.line}</p>
   </Section>
 
-  <Section id="what-we-build" surface="paper" title={c.build.title}>
+  <Section id="what-we-build" surface="ink" title={c.build.title}>
     <div class="capabilities">
       <CheckList items={c.build.items} />
     </div>

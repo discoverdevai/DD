@@ -1,11 +1,11 @@
 ---
-// Hero for offer, service, partners, about and index pages (06 §9.11 `offer`/`service`, §0.4 ink).
+// Hero for offer, service, partners, about and index pages (06 §9.11, §0.4 v3 ink "workshop").
 // One H1, lead, optional <dl> meta row (Timeline / Model / Team), primary CTA + terms, optional text link, proof chip.
-// Put a figure (RunPanel, ReviewSnapshot) in the `aside` slot to get the two-column offer layout.
+// Put a figure (RunPanel, ServiceGlance, PartnerModels) in the `aside` slot to get the two-column layout; the aside
+// sits on a brand-blue light like the home scene. Same load sequence as the home hero (H1 stays opaque for LCP).
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import ProofChip from '../ui/ProofChip.astro';
-import Eyebrow from '../ui/Eyebrow.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
 interface Props {
@@ -18,11 +18,12 @@ const hasAside = Astro.slots.has('aside');
 ---
 <section class:list={['phero', { 'phero--split': hasAside }]} data-surface="ink" aria-labelledby="page-title">
   <div class="phero__grid-bg" aria-hidden="true"></div>
+  <div class="phero__light" aria-hidden="true"></div>
   <div class="container phero__inner">
     <div class="phero__copy">
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h1 id="page-title" class="h1">{h1}</h1>
-      <p class="lead">{lead}</p>
+      {eyebrow && <p class="phero__pill"><span class="phero__dot" aria-hidden="true"></span>{eyebrow}</p>}
+      <h1 id="page-title" class="phero__h1">{h1}</h1>
+      <p class="phero__lead">{lead}</p>
       {meta && meta.length > 0 && (
         <dl class="phero__meta">{meta.map((m) => <div><dt>{m.label}</dt><dd>{m.value}</dd></div>)}</dl>
       )}
@@ -40,15 +41,29 @@ const hasAside = Astro.slots.has('aside');
 </section>
 
 <style>
-  .phero { position: relative; overflow: hidden; padding-block: clamp(2.5rem, 1.6rem + 3.8vw, 5.5rem) var(--section-y); }
-  .phero__grid-bg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 5rem 5rem; mask-image: radial-gradient(70% 70% at 70% 20%, #000 10%, transparent 80%); }
+  .phero { position: relative; overflow: clip; isolation: isolate; padding-block: clamp(3rem, 1.8rem + 4.5vw, 6.5rem) var(--section-y); }
+  .phero__grid-bg { position: absolute; inset: 0; z-index: -2; pointer-events: none; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; mask-image: radial-gradient(70% 70% at 70% 10%, #000 5%, transparent 75%); opacity: 0.7; }
+  .phero__light { position: absolute; z-index: -1; pointer-events: none; inset-block-start: 5%; inset-inline-end: -15%; inline-size: min(70vw, 56rem); aspect-ratio: 1; background: radial-gradient(closest-side, color-mix(in oklab, var(--blue-700) 45%, transparent), color-mix(in oklab, var(--blue-800) 18%, transparent) 55%, transparent); filter: blur(10px); }
+  .phero:not(.phero--split) .phero__light { inset-block-start: -35%; opacity: 0.7; }
   .phero__inner { position: relative; display: grid; gap: var(--space-12); }
-  .phero__copy { display: grid; gap: var(--space-6); align-content: start; max-inline-size: var(--container-narrow); min-inline-size: 0; }
-  @media (width >= 64rem) { .phero--split .phero__inner { grid-template-columns: 6.2fr 5.8fr; align-items: center; gap: var(--space-16); } }
-  .phero__meta { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-10); }
+  .phero__copy { display: grid; gap: var(--space-6); align-content: start; justify-items: start; max-inline-size: 46rem; min-inline-size: 0; }
+  @media (width >= 64rem) { .phero--split .phero__inner { grid-template-columns: 6fr 5fr; align-items: center; gap: var(--space-16); } }
+  .phero__pill { display: inline-flex; align-items: center; gap: var(--space-2); padding: 6px 14px 6px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .phero__dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
+  .phero__h1 { font-size: clamp(2.25rem, 1.3rem + 3.6vw, 4.25rem); font-weight: var(--weight-bold); line-height: 1.04; letter-spacing: -0.045em; color: var(--color-heading); max-inline-size: 18ch; text-wrap: balance; }
+  .phero__lead { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 40rem; text-wrap: pretty; }
+  .phero__meta { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-10); padding-block: var(--space-4); border-block: 1px solid var(--color-hairline); inline-size: 100%; }
   .phero__meta div { display: grid; gap: 2px; }
   .phero__meta dt { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .phero__meta dd { margin: 0; font-weight: var(--weight-medium); }
+  .phero__meta dd { margin: 0; font-weight: var(--weight-medium); color: var(--color-text); }
   .phero__cta { display: grid; gap: var(--space-3); justify-items: start; }
   .phero__aside { min-inline-size: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .phero__pill { animation: dd-in 700ms var(--ease-enter) both; }
+    .phero__h1 { animation: phero-h1 900ms var(--ease-enter) both; }
+    .phero__lead { animation: dd-in 700ms 120ms var(--ease-enter) both; }
+    .phero__meta, .phero__cta { animation: dd-in 700ms 200ms var(--ease-enter) both; }
+    .phero__aside { animation: dd-in 1000ms 300ms var(--ease-enter) both; }
+    @keyframes phero-h1 { from { translate: 0 0.5rem; filter: blur(8px); } to { translate: 0 0; filter: blur(0); } }
+  }
 </style>

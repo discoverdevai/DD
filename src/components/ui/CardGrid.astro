@@ -1,17 +1,23 @@
 ---
 // Plain content cards (problem cards, outcomes, pillars, review areas). Not links: one link per card max (06 §9.8).
-// cols = columns from 48rem; 1 column below.
+// cols = columns from 48rem; 1 column below. v3 (06 §0.4): `card` = home tile (radius-lg, ink→blue-800 gradient,
+// pointer spotlight, mono index); `rule` = hairline-topped column like the home pillars.
 import Icon from './Icon.astro';
 import LayerChip from './LayerChip.astro';
 type IconName = Parameters<typeof Icon>[0]['name'];
 interface Item { title: string; body: string; icon?: IconName; chip?: { kind: 'ai' | 'human'; label: string } }
-interface Props { items: readonly Item[]; cols?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'; variant?: 'card' | 'rule' }
-const { items, cols = 3, headingLevel: H = 'h3', variant = 'card' } = Astro.props;
+interface Props { items: readonly Item[]; cols?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'; variant?: 'card' | 'rule'; index?: boolean }
+const { items, cols = 3, headingLevel: H = 'h3', variant = 'card', index = true } = Astro.props;
 ---
-<ul role="list" class:list={['grid', `grid--${cols}`, `grid--${variant}`]}>
-  {items.map((it) => (
-    <li class="item">
-      {it.icon && <span class="item__icon"><Icon name={it.icon} size={20} /></span>}
+<ul role="list" class:list={['grid', `grid--${cols}`, `grid--${variant}`, 'reveal-stagger']}>
+  {items.map((it, i) => (
+    <li class="item" data-spotlight={variant === 'card' ? '' : undefined}>
+      {(it.icon || index) && (
+        <span class="item__top" aria-hidden="true">
+          {index && <span class="item__n">{String(i + 1).padStart(2, '0')}</span>}
+          {it.icon && <span class="item__icon"><Icon name={it.icon} size={20} /></span>}
+        </span>
+      )}
       <H class="h3 item__title">{it.title}</H>
       <p class="item__body">{it.body}</p>
       {it.chip && <LayerChip kind={it.chip.kind}>{it.chip.label}</LayerChip>}
@@ -20,13 +26,18 @@ const { items, cols = 3, headingLevel: H = 'h3', variant = 'card' } = Astro.prop
 </ul>
 
 <style>
-  .grid { display: grid; gap: var(--grid-gap); }
+  .grid { display: grid; gap: var(--space-4); }
   @media (width >= 48rem) { .grid--2 { grid-template-columns: repeat(2, 1fr); } .grid--3 { grid-template-columns: repeat(3, 1fr); } .grid--4 { grid-template-columns: repeat(2, 1fr); } }
   @media (width >= 64rem) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+  .grid--rule { gap: var(--space-8); }
   .item { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; }
-  .grid--card .item { background: var(--color-surface); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); padding: var(--space-6); }
-  .grid--rule .item { border-block-start: 1px solid var(--color-hairline); padding-block-start: var(--space-6); }
+  .grid--card .item { padding: var(--space-6) var(--space-6) var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
+  [data-surface='paper'] .grid--card .item, [data-surface='alt'] .grid--card .item { background: var(--color-surface); border-radius: var(--radius-md); }
+  @media (hover: hover) { .grid--card .item:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
+  .grid--rule .item { border-block-start: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); padding-block-start: var(--space-5); }
+  .item__top { display: flex; align-items: center; justify-content: space-between; margin-block-end: var(--space-3); }
+  .item__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .item__icon { inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-sm); display: grid; place-items: center; border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
-  .item__title { font-size: var(--text-lg); }
+  .item__title { font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; }
   .item__body { color: var(--color-text-muted); }
 </style>

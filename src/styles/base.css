@@ -97,6 +97,8 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: 0.9em; }
 .h1 { font-size: var(--text-3xl); font-weight: var(--weight-extrabold); max-inline-size: var(--measure-heading); }
 .h2 { font-size: var(--text-2xl); font-weight: var(--weight-bold); max-inline-size: var(--measure-heading); }
 .h3 { font-size: var(--text-xl); font-weight: var(--weight-bold); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); }
+/* v3 section title (06 §0.4 v3): same scale as the home section titles. */
+.section-title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; max-inline-size: 22ch; text-wrap: balance; }
 .lead { font-size: var(--text-lg); color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
 .muted { color: var(--color-text-muted); }
 .small { font-size: var(--text-sm); line-height: 1.5; }
