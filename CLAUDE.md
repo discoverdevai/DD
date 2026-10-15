@@ -3,6 +3,7 @@
 You are building discoverdev.ai: a static, multi-page Astro 7 site on Cloudflare Workers static assets, built by Mohamed (PM, non-engineer) and Claude Code. Budget $0. Go-live **Sat Oct 17, 2026, 09:00 Cairo** (fallback Sun Oct 18); this supersedes Nov dates in other files. Open decisions use the launch defaults in `11` §0b. After each milestone, stop and let Mohamed request a QA run (`qa/README.md`); fix the list in `qa/reports/` before moving on.
 
 ## Read first (in this order)
+0. `docs/MEMORY.md`: shared decisions and the steps to keep memory in sync with the chats (update it when something durable changes).
 1. `context/00-master-plan.md`: phases, milestones, which skills to use.
 2. `context/11-open-decisions.md`: check before each milestone. Never ship a page whose blocking decision is open; use the documented default instead.
 3. The file for the task at hand:

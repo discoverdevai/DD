@@ -6,22 +6,16 @@ Updated after every step (Mohamed's instruction, Oct 15). Strategy and dates: `c
 **Design:** Signal, approved Oct 15 (`context/06-design-system.md` §0, `context/01-brand.md`, `context/03-copy.md` §2.2a), then home v3 (all-ink, Oct 16), then the v4 service-page pattern (brand guidelines: white ~60%, navy openers, blue to point).
 
 ## Where we are now (keep this block current)
-_Last updated: Fri Oct 16, 2026 (Cairo). Latest commit: `149b45c`._
+_Last updated: Fri Oct 16, 2026, 02:00 Cairo. Latest commit: `f88a541`._
 
 - **Done and approved:** strategy v2 (Agile v2 company, TrianglZ as reference, clarity call = primary CTA) · home v3 · v3 look on every inner page · home section review · code clean-up · launch-checklist code work (CI gates, OG images, proof check, events, functional suite) · v4 "hooks" pattern on /build, /validate, /scale (journey stepper + one signature section per page) · official logo and favicon set · responsive fixes (no split words, balanced footer) · section backgrounds (blueprint grid, dot field, arrow-mark watermark).
 - **Last gate:** `npm run qa` 0 findings · unit 10/10 · functional 37/37 · events 21/21 · axe clean · Lighthouse perf 97–100, LCP ≤ 1.81s.
-- **In progress:** enhancement program (Mohamed, Oct 16): review the site with UX laws and the installed skills, research best practice (CRO, SEO/AEO, GEO/AI search, competitors, tech, content), write one enhancement plan, then implement it. Reports in: performance, competitors (`docs/review/enhancement/competitors.md`), content + old-repo inventory (`docs/review/enhancement/content.md`). Still running: SEO/AEO/GEO, CRO + UX laws, tech best practice. Performance quick fixes built (QA pending).
+- **In progress:** enhancement program (plan: `docs/review/enhancement/PLAN.md`; Phases 1–3 done: performance/platform `719f54e`, SEO + CRO code `f88a541`; next: Phase 4 copy through `03`) (Mohamed, Oct 16): review the site with UX laws and the installed skills, research best practice (CRO, SEO/AEO, GEO/AI search, competitors, tech, content), write one enhancement plan, then implement it. Reports in: performance, competitors (`docs/review/enhancement/competitors.md`), content + old-repo inventory (`docs/review/enhancement/content.md`). Still running: SEO/AEO/GEO, CRO + UX laws, tech best practice. Performance quick fixes built (QA pending).
 - **Planned, not started:** architecture clean-up in phases (`docs/architecture/cleanup-plan.md`).
 - **Waiting on Mohamed:** see "Needed from Mohamed" at the end. Client logos and project screenshots found in the old repo can't go live without written client consent (D-05).
 
 ## Keeping this file in step with the chat
-Claude Code follows these steps so this file and its saved memory match what was said in the chat:
-1. **New request from Mohamed:** add it to "Where we are now" under *In progress* or *Planned*, in his words where short.
-2. **After each verified step** (build + QA pass): add one row to the progress log (when, step, result, notes with the commit hash), then move the item in "Where we are now" to *Done*.
-3. **Decision made in chat** (approval, direction change, "don't do X"): record it in the log, and in `context/11-open-decisions.md` if it closes a D-number. Copy changes go into `context/03-copy.md` first.
-4. **New blocker or something only Mohamed can provide:** add it to "Needed from Mohamed"; remove it when resolved.
-5. **End of each work session or milestone:** refresh the "Last updated" line and the latest commit, then update Claude's memory note (`discoverdev-landing-page-project`) with the same state, so a new chat starts from here.
-6. **Commit** docs changes with the work they describe, or as a separate `Docs:` commit.
+The steps live in `docs/MEMORY.md` ("How to keep this in step with the chats"), shared by Claude Code and the project chat. In short: decisions and blockers go in `docs/MEMORY.md`; progress goes in the log below and in "Where we are now"; refresh both at the end of each session or milestone.
 
 ## Architecture decisions
 | # | Decision | Why |
@@ -101,6 +95,7 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 | Oct 16 | Performance audit | Done (report) | Lighthouse mobile 97–100, LCP 1.52–1.81s, TBT 0, 8–10 requests. Fixes queued: /launch-check CLS 0.093 (07 budget is 0.05; quiz un-hides after JS), font-swap CLS on slow first visits, forced layout in Header/StickyBookBar scripts, cache headers for /brand /og /favicons, narrower font axes, inline small page CSS, drop orphan PostHog chunk |
 | Oct 16 | Enhancement program | Started | Mohamed: review with UX laws + skills, research CRO / SEO-AEO / GEO / competitors / tech / content, plan, then implement. Five review agents launched |
 | Oct 16 | Perf + content quick fixes | Built, QA pending | /launch-check CLS 0.077 → 0.003 (quiz intro rendered visible; `scripting: none` hides it without JS); font-swap CLS on slow first visits up to 0.147 → 0.000 (Rubik + Mono `display: optional`); no forced layout at startup (Header lazy `lastY`, sticky bar height via ResizeObserver); spotlight rAF-throttled; cache headers for /brand /og /favicons /icons. Articles: "cheaper" → "costs less"; fix-or-rebuild now linked from 3 articles. Competitor and content reports in `docs/review/enhancement/` |
+| Oct 16 | Enhancement Phases 2–3 | Done | SEO/GEO code (RSS canonicals, llms.txt Work + guide notes, headings without sr-only suffixes, sitemap lastmod, `/#webpage`, hasOfferCatalog) and CRO code (article in-body launch check + Review sticky bar, /book clarity default + filled tab + collapsed empty calendar, partner cards → table, verdict/roster as lists, filled week-track bars). QA 0 findings, functional 37/37, events 21/21. Commit `f88a541` |
 
 ## Needed from Mohamed (launch blockers outside the code)
 - **Accounts and keys:** D-14 DNS access (Cloudflare zone) · D-23 Cal.com username (then the dry run, 10 §3) · PostHog EU project key · CF Web Analytics token · Web3Forms key (quiz email, optional) · GitHub repo to push to (CI then runs the redirects test on Linux).
