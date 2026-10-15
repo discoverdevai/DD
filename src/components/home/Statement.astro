@@ -12,7 +12,7 @@ const { id, bright, dim, label } = Astro.props;
 </section>
 
 <style>
-  .stmt { padding-block: var(--section-y); scroll-margin-block-start: var(--header-h); }
+  .stmt { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
   /* Same section-label style as the timeline eyebrow: mono, muted text, signal-blue slashes (H4 consistency). */
   .stmt__label { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); margin-block-end: var(--space-4); }
   .stmt__label span { color: var(--color-machine-text); }

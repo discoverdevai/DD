@@ -22,7 +22,7 @@ const { items } = Astro.props;
 </section>
 
 <style>
-  .pband { border-block: 1px solid var(--color-hairline); padding-block: var(--space-8); }
+  .pband { border-block-start: 1px solid var(--color-hairline); /* bottom edge = next section's hairline */ padding-block: var(--space-8); }
   .pband__inner { display: grid; gap: var(--space-6); align-items: center; }
   @media (width >= 64rem) { .pband__inner { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-12); } }
   .pband__rating { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; gap: var(--space-4); }

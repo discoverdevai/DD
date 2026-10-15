@@ -18,7 +18,7 @@ const columns = [
 ].filter((c) => c.items.length > 0);
 const year = new Date().getFullYear();
 ---
-<footer class="site-footer" data-surface="footer">
+<footer class="site-footer" data-surface="ink">
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
       <a href="/" aria-label={t('logo.home')} class="site-footer__logo"><Logo /></a>
@@ -50,7 +50,7 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .site-footer { padding-block: var(--section-y-sm); font-size: var(--text-sm); }
+  .site-footer { padding-block: var(--section-y-sm); font-size: var(--text-sm); border-block-start: 1px solid var(--color-hairline); background: linear-gradient(180deg, var(--blue-925), var(--color-bg) 60%); } /* 06 §0.4 v3: ink footer */
   .site-footer__grid { display: grid; gap: var(--space-10); }
   @media (width >= 64rem) { .site-footer__grid { grid-template-columns: 5fr 7fr; gap: var(--space-16); } }
   .site-footer__brand { display: grid; gap: var(--space-4); align-content: start; }
@@ -60,12 +60,14 @@ const year = new Date().getFullYear();
   .site-footer__entity { max-inline-size: 52ch; }
   .site-footer__contact { display: grid; gap: var(--space-1); }
   .site-footer__contact a { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; }
-  .site-footer__nav { display: grid; gap: var(--space-8); grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); align-content: start; }
+  .site-footer__nav { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; }
+  @media (width >= 80rem) { .site-footer__nav { grid-template-columns: repeat(4, minmax(0, 1fr)); } } /* 2×2 until there is room for four even columns (was 3 + 1 at 1024) */
   .site-footer__h { font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-muted); letter-spacing: 0; margin-block-end: var(--space-3); }
-  .site-footer__nav ul { display: grid; gap: var(--space-1); }
-  .site-footer__nav a { display: inline-flex; align-items: center; min-block-size: 2.75rem; color: var(--color-text); text-decoration: none; }
+  .site-footer__nav ul { display: grid; }
+  .site-footer__nav a { display: inline-flex; align-items: center; min-block-size: 2rem; color: var(--color-text); text-decoration: none; }
   @media (hover: hover) { .site-footer__nav a:hover { color: var(--color-link-hover); text-decoration: underline; } }
   .site-footer__base { margin-block-start: var(--space-10); padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-border-subtle); display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-8); }
-  .site-footer__proof { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
-  .site-footer__proof :global(.icon) { color: var(--color-human-mark); }
+  /* Inline flow: the star stays on the first line instead of sitting alone above the text on phones. */
+  .site-footer__proof :global(.icon) { display: inline-block; color: var(--color-human-mark); vertical-align: -3px; margin-inline-end: var(--space-2); }
+  .site-footer__proof a { display: inline-flex; align-items: center; min-block-size: 1.5rem; } /* 24px target */
 </style>

@@ -19,6 +19,7 @@ const { items } = Astro.props;
   .faq { max-inline-size: 52rem; border-block-start: 1px solid var(--color-border-subtle); }
   .faq__item { border-block-end: 1px solid var(--color-border-subtle); }
   .faq__q { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); min-block-size: 3.5rem; padding-block: var(--space-5); font-weight: var(--weight-medium); font-size: var(--text-lg); line-height: var(--leading-snug); }
+  .faq__q span { text-wrap: pretty; } /* no one-word last lines ("safe?", "over?") */
   .faq__q::-webkit-details-marker { display: none; }
   .faq__q :global(.icon) { flex: none; color: var(--color-link); }
   @media (hover: hover) { .faq__q:hover { color: var(--color-link); } }
