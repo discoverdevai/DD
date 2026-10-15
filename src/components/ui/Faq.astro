@@ -39,6 +39,7 @@ const { items } = Astro.props;
 
 <script>
   // Deep links (#faq-ownership) open the matching item (06 §9.15).
-  const open = () => { const el = location.hash && document.querySelector<HTMLDetailsElement>(`details${CSS.escape(location.hash)}`); if (el) el.open = true; };
+  // Escape only the id: CSS.escape(location.hash) also escaped the '#', so the selector never matched (found by qa/functional.mjs).
+  const open = () => { const el = location.hash.length > 1 && document.querySelector<HTMLDetailsElement>(`details#${CSS.escape(location.hash.slice(1))}`); if (el) el.open = true; };
   open(); addEventListener('hashchange', open);
 </script>

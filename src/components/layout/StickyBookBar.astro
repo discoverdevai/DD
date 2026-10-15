@@ -41,7 +41,8 @@ const { kind = 'clarity' } = Astro.props;
       document.documentElement.style.setProperty('--bottom-bar-h', show ? `${bar.offsetHeight}px` : '0px');
     };
     new IntersectionObserver(([e]) => { heroGone = !e.isIntersecting && e.boundingClientRect.top < 0; sync(); }).observe(heroCta);
-    if (band) new IntersectionObserver(([e]) => { bandIn = e.isIntersecting; sync(); }).observe(band);
+    // Stay hidden once the closing band is reached (in view or scrolled past), so the bar never covers the footer.
+    if (band) new IntersectionObserver(([e]) => { bandIn = e.isIntersecting || e.boundingClientRect.top < 0; sync(); }).observe(band);
     document.addEventListener('focusin', (e) => { typing = (e.target as Element).matches('input, select, textarea'); sync(); });
     document.addEventListener('focusout', () => { typing = false; sync(); });
     mq.addEventListener('change', sync);
