@@ -34,7 +34,7 @@ publishedAt: 2026-10-16
 updatedAt: 2026-10-16
 faqs: []
 relatedService: review
-related: ["en/ai-app-to-production", "en/ai-built-app-security-holes"]
+related: ["en/ai-app-to-production", "en/ai-built-app-security-holes", "en/fix-or-rebuild-ai-app"]
 draft: false
 ---
 

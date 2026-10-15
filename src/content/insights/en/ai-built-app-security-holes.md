@@ -33,7 +33,7 @@ publishedAt: 2026-10-16
 updatedAt: 2026-10-16
 faqs: []
 relatedService: review
-related: ["en/ai-app-to-production", "en/lovable-launch-checklist"]
+related: ["en/ai-app-to-production", "en/lovable-launch-checklist", "en/fix-or-rebuild-ai-app"]
 draft: false
 ---
 

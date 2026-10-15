@@ -70,7 +70,7 @@ Look for these:
 - **You cannot get the code or the accounts.** If the code sits in someone else's account and you cannot export it, recovering it comes first. If it truly cannot be recovered, you are rebuilding whether you planned to or not.
 - **The data model is wrong at the core.** For example, there is no concept of teams when you sell to teams, or every customer's data shares one record. Every feature sits on the data model, so a core mistake spreads everywhere.
 - **The stack cannot meet a hard need.** For example, your product must work offline on a phone, and the app is a web page that cannot. Patching around a hard limit costs more over time.
-- **Every fix breaks something unrelated, across the whole app.** When bugs come from everywhere and nobody can explain how the parts connect, the code may not be worth saving. Check the data model first. Sometimes a refactor is still cheaper.
+- **Every fix breaks something unrelated, across the whole app.** When bugs come from everywhere and nobody can explain how the parts connect, the code may not be worth saving. Check the data model first. Sometimes a refactor still costs less.
 
 "The code is ugly" is not on this list. Neither is "it was built with AI". A developer who says rebuild should name the signal behind it, part by part. If they cannot, ask for evidence before you agree.
 
