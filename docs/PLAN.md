@@ -40,10 +40,10 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 - 🔄 Claude Code: `/launch-ready`, `/book` + `/book/confirmed` (Cal.com), `/launch-check` quiz, `/work` + `/work/edulens`, analytics + UTM
 
 ### M5 Content + SEO (Fri). Skills: cseo-schema, geo-llmstxt, geo-citability, searchfit-seo:internal-linking, rampstack-skills:long-form-content-frameworks
-- ⏳ Pillar, C1, C2 drafts; `/work/edulens` anonymized; JSON-LD, OG, RSS, final `llms.txt`
+- ✅ Pillar, C1, C2 drafts; `/work/edulens` anonymized; JSON-LD, OG, RSS, final `llms.txt`
 
 ### M6 Wiring (Fri). Skills: rampstack-skills:product-analytics-setup, rampstack-skills:security-baseline
-- ⏳ PostHog events, Cal.com embed, quiz + Web3Forms, CSP check, redirects
+- ✅ Events verified in dev (21/21), CSP clean, redirect rules checked; live PostHog/Cal/Web3Forms need Mohamed's keys
 
 ## Progress log
 | When (Cairo) | Step | Result | Notes |
@@ -72,7 +72,10 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 | Oct 16 | Gate | Pass | `npm run qa`: 0 errors, lint OK, 10/10 unit, 19 pages, 0 blockers. Browser audit: all Lighthouse rows PASS (perf 99, a11y/SEO/BP 100, LCP ≤ 1.81s, CLS ≤ 0.032); axe clean on all converted pages at 1440/375 and reduced motion. Only open item: optional C3 article `/insights/fix-or-rebuild-ai-app` not written yet |
 | Oct 16 | Home section review | Approved | 19 fixes across 12 sections, one commit per section (acf4559 … 96d43b5), report in `docs/review/home-section-review.md`. Skills: design-critique (Nielsen, Laws of UX), frontend-ui-engineering. Every section re-audited at 320/375/768/1024/1440 with 0 findings |
 | Oct 16 | Clean-up | Done | Dedicated commit: 6 unused components + 1 copy file removed (389 lines), dead CSS and i18n key, Header special case gone. Spec fix kept separate (04318fe). QA 0 findings, browser audit 0 blockers |
+| Oct 16 | M5 + M6 + M7 (code side) | Done | CI gates from 07 §15 (cta-ids, inbound-links, jsonld-check, consent-gate, i18n-gate, redirects-test) in `npm run qa` and CI; internal links fixed per 03 §0.8 so every page has 3+ inbound links; satori share image per page and article; proof check (`docs/review/proof-check.md`), 25/25 external sources live; analytics events 21/21 (`qa/events.mjs`), cta/outbound now sendBeacon; functional + keyboard suite 37/37 (`qa/functional.mjs`), fixed FAQ deep links and sticky bar over footer. Redirects test runs in CI (workerd crashes on this Windows PC) |
 | Oct 16 | Gate (strategy v2) | Static pass | `npm run qa`: check 0 errors, lint OK, 10/10 unit, build 19 pages, check-dist 0 blockers (1 minor: optional C3 article). Browser audit: home a11y/SEO/BP 100, perf 97, LCP 2.26s (budget 2.0s, open); /launch-ready run-panel contrast flagged mid-animation (open); pillar article CLS 0.14 (open) |
 
-## Needed from Mohamed (blocks nothing in M1)
-D-14 DNS access · D-15 old routes · D-23 Cal.com username · D-33 logo SVGs · PostHog key · Web3Forms key · GitHub repo.
+## Needed from Mohamed (launch blockers outside the code)
+- **Accounts and keys:** D-14 DNS access (Cloudflare zone) · D-23 Cal.com username (then the dry run, 10 §3) · PostHog EU project key · CF Web Analytics token · Web3Forms key (quiz email, optional) · GitHub repo to push to (CI then runs the redirects test on Linux).
+- **Confirm or decide:** D-15 old SPA routes for `_redirects` · D-33 logo SVGs (interim PNG masks in use) · GMT+2 wording (wrong in Egyptian summer time, `docs/review/proof-check.md`) · the "What AI does" task list on home · legal text review for /privacy and /terms (D-25) · partner table strings marked * in 03 §8.3.
+- **Your machine (optional):** update the Microsoft Visual C++ Redistributable if you want `wrangler dev` to run locally.
