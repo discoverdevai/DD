@@ -8,7 +8,7 @@ interface Col { title: string; body: string; link?: { label: string; to: RouteKe
 interface Props { id?: string; title: string; docTitle: string; docMeta: string; cols: readonly Col[] }
 const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
 ---
-<section id={id} class="td" data-surface="paper" aria-labelledby={`${id}-title`}>
+<section id={id} class="td bg-dots" data-surface="paper" aria-labelledby={`${id}-title`}>
   <div class="container">
     <h2 id={`${id}-title`} class="section-title td__title reveal">{title}</h2>
     <article class="td__doc reveal">

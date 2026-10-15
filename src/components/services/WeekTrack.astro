@@ -15,7 +15,7 @@ const main = spans.reduce((m, s, i) => (s.to - s.from > spans[m].to - spans[m].f
 // Placement by class (the CSP blocks inline style): s = start column, n = span length (1–12 supported).
 const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.from + 1}`;
 ---
-<section id={id} class="wt" data-surface="paper" aria-labelledby={`${id}-title`}>
+<section id={id} class="wt bg-lines" data-surface="paper" aria-labelledby={`${id}-title`}>
   <div class="container">
     <header class="wt__head">
       <h2 id={`${id}-title`} class="section-title reveal">{title}</h2>

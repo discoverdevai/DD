@@ -3,7 +3,7 @@
 interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy' }
 const { id, bright, dim, label, surface = 'ink' } = Astro.props;
 ---
-<section id={id} class:list={['stmt', { 'stmt--navy': surface === 'navy' }]} data-surface={surface === 'navy' ? 'inverse' : 'ink'} aria-labelledby={`${id}-title`}>
+<section id={id} class:list={['stmt', { 'stmt--navy bg-mark': surface === 'navy' }]} data-surface={surface === 'navy' ? 'inverse' : 'ink'} aria-labelledby={`${id}-title`}>
   <div class="container">
     {label && <p class="stmt__label"><span aria-hidden="true">//</span> {label}</p>}
     <h2 id={`${id}-title`} class="stmt__text reveal"><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>

@@ -41,7 +41,7 @@ const jsonLd = graph(orgStub, service, webPage('/build', c.seo.title, c.seo.desc
 
   <WeekTrack title={c.track.title} example={c.track.example} weeks={c.track.weeks} weekLabel={c.track.weekLabel} demoLabel={c.track.demoLabel} liveLabel={c.track.liveLabel} phases={c.process.steps} spans={c.track.spans} />
 
-  <Section id="outcomes" surface="alt" title={c.outcomes.title}>
+  <Section id="outcomes" surface="alt" title={c.outcomes.title} class="bg-dots">
     <CardGrid items={c.outcomes.items} cols={3} variant="brand" />
     <div class="included">
       <h3 class="included__title">{c.included.title}</h3>
