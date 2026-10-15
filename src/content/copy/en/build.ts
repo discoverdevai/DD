@@ -63,6 +63,31 @@ export const build = {
       { title: 'Ship and stay', body: 'Deploy, monitor and keep improving. The same team stays after launch if you want it to.' },
     ],
   },
+  // 03 §6.12 (v4 pilot): signature week-by-week track, statement band and the merged terms document.
+  track: {
+    title: '8–12 weeks. Results every week.',
+    example: 'Example: a 10-week Build. Your exact timeline is set in your plan before we start.',
+    weeks: 10,
+    weekLabel: 'Week',
+    demoLabel: 'Weekly demo with you',
+    liveLabel: 'Live with real users',
+    // Titles and bodies = §6.5 (process.steps); week spans are the labelled example above.
+    spans: [
+      { from: 1, to: 1, label: 'Week 1' },
+      { from: 2, to: 2, label: 'Week 2' },
+      { from: 3, to: 9, label: 'Weeks 3–9' },
+      { from: 10, to: 10, label: 'Week 10 and after', open: true },
+    ],
+  },
+  statement: {
+    bright: 'Senior engineers own the quality,',
+    dim: 'and a person is responsible for every line that reaches your users.',
+  },
+  terms: {
+    title: 'Price, team and ownership',
+    docTitle: 'Build',
+    docMeta: 'Agreed before we start',
+  },
   pricing: {
     title: 'How is a Build priced?',
     // [PRICE: P3] → §0.7 model only, no number (tag removed).

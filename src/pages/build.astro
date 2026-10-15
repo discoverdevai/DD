@@ -7,13 +7,15 @@ import Section from '../components/ui/Section.astro';
 import FitList from '../components/ui/FitList.astro';
 import CardGrid from '../components/ui/CardGrid.astro';
 import CheckList from '../components/ui/CheckList.astro';
-import Steps from '../components/ui/Steps.astro';
 import FaqSplit from '../components/home/FaqSplit.astro';
 import CtaBand from '../components/ui/CtaBand.astro';
-import InlineLink from '../components/ui/InlineLink.astro';
 import CtaLink from '../components/ui/CtaLink.astro';
 import ProofList from '../components/services/ProofList.astro';
 import ServiceGlance from '../components/services/ServiceGlance.astro';
+import JourneyStepper from '../components/services/JourneyStepper.astro';
+import WeekTrack from '../components/services/WeekTrack.astro';
+import TermsDoc from '../components/services/TermsDoc.astro';
+import Statement from '../components/home/Statement.astro';
 import { t } from '../i18n/t';
 import { build as c } from '../content/copy/en/build';
 import { href, isLive } from '../data/routes';
@@ -35,45 +37,44 @@ const jsonLd = graph(orgStub, service, webPage('/build', c.seo.title, c.seo.desc
     <ServiceGlance slot="aside" name={t('nav.build')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
   </PageHero>
 
-  <Section id="fit" surface="ink" title={c.fit.title}>
+  <JourneyStepper current="build" />
+
+  <WeekTrack title={c.track.title} example={c.track.example} weeks={c.track.weeks} weekLabel={c.track.weekLabel} demoLabel={c.track.demoLabel} liveLabel={c.track.liveLabel} phases={c.process.steps} spans={c.track.spans} />
+
+  <Section id="outcomes" surface="alt" title={c.outcomes.title}>
+    <CardGrid items={c.outcomes.items} cols={3} variant="brand" />
+    <div class="included">
+      <h3 class="included__title">{c.included.title}</h3>
+      <CheckList items={c.included.items} class="included__list" />
+    </div>
+  </Section>
+
+  <Section id="fit" surface="paper" title={c.fit.title}>
     <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
   </Section>
 
-  <Section id="outcomes" surface="raised" title={c.outcomes.title}>
-    <CardGrid items={c.outcomes.items} cols={3} />
-  </Section>
+  <Statement id="quality" surface="navy" bright={c.statement.bright} dim={c.statement.dim} />
 
-  <Section id="included" surface="ink" title={c.included.title} width="narrow">
-    <CheckList items={c.included.items} />
-  </Section>
+  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
+    { title: c.pricing.title, body: c.pricing.answer },
+    { title: c.team.title, body: c.team.body, link: c.team.link },
+    { title: c.ownership.title, body: c.ownership.body },
+  ]} />
 
-  <Section id="process" surface="ink" title={c.process.title}>
-    <Steps steps={c.process.steps} />
-  </Section>
-
-  <Section id="pricing" surface="ink" title={c.pricing.title} width="narrow">
-    <p class="answer">{c.pricing.answer}</p>
-  </Section>
-
-  <Section id="team" surface="raised" title={c.team.title} width="narrow">
-    <p class="answer">{c.team.body}</p>
-    <p class="more-link"><InlineLink text="" link={c.team.link} /></p>
-  </Section>
-
-  <Section id="proof" surface="ink" title={c.proof.title}>
+  <Section id="proof" surface="paper" title={c.proof.title}>
     <ProofList items={c.proof.items} />
   </Section>
 
-  <Section id="ownership" surface="raised" title={c.ownership.title} width="narrow">
-    <p class="answer">{c.ownership.body}</p>
-  </Section>
-
-  <FaqSplit title={c.faq.title} items={c.faq.items} />
+  <FaqSplit surface="paper" title={c.faq.title} items={c.faq.items} />
 
   <CtaBand title={c.band.title} kind="clarity" page="build" link={{ label: c.band.link, to: 'review' }} />
 </BaseLayout>
 
 <style>
-  .answer { font-size: var(--text-lg); max-inline-size: var(--measure-prose); }
-  .more-link { margin-block-start: var(--space-4); font-weight: var(--weight-medium); }
+  /* v4 pilot (03 §6.12): "What's included" sits under the outcome cards instead of its own band. */
+  .included { display: grid; gap: var(--space-4); margin-block-start: var(--space-10); padding-block-start: var(--space-8); border-block-start: 1px solid var(--blue-100); }
+  @media (width >= 56rem) { .included { grid-template-columns: 1fr 2fr; align-items: start; } }
+  .included__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--neutral-950); }
+  .included :global(.included__list) { display: grid; gap: var(--space-3) var(--space-8); }
+  @media (width >= 40rem) { .included :global(.included__list) { grid-template-columns: 1fr 1fr; } }
 </style>

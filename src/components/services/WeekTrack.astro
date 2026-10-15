@@ -1,0 +1,113 @@
+---
+// Signature section for /build (03 §6.12): an example week-by-week plan on white (brand guidelines: diagrams that explain
+// how something works). Phases are bars across the week grid; the Build bar is primary blue with the AI chip; a demo
+// dot under every week ("results every week"); a flag at the end for "Live with real users".
+// The chart is decorative (aria-hidden); the ordered phase list below carries the same content for everyone, and on
+// phones it is the only view, each phase with a small span bar.
+import LayerChip from '../ui/LayerChip.astro';
+type Chip = { kind: 'ai' | 'human'; label: string };
+interface Phase { title: string; body: string; chip?: Chip }
+interface Span { from: number; to: number; label: string; open?: boolean }
+interface Props { id?: string; title: string; example: string; weeks: number; weekLabel: string; demoLabel: string; liveLabel: string; phases: readonly Phase[]; spans: readonly Span[] }
+const { id = 'process', title, example, weeks, weekLabel, demoLabel, liveLabel, phases, spans } = Astro.props;
+const W = Array.from({ length: weeks }, (_, i) => i + 1);
+const main = spans.reduce((m, s, i) => (s.to - s.from > spans[m].to - spans[m].from ? i : m), 0);
+// Placement by class (the CSP blocks inline style): s = start column, n = span length (1–12 supported).
+const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.from + 1}`;
+---
+<section id={id} class="wt" data-surface="paper" aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <header class="wt__head">
+      <h2 id={`${id}-title`} class="section-title reveal">{title}</h2>
+      <p class="wt__example">{example}</p>
+    </header>
+
+    <div class="wt__chart reveal" aria-hidden="true">
+      <div class="wt__grid" data-weeks={weeks}>
+        <span class="wt__rowlabel r1"></span>
+        {W.map((w) => <span class:list={['wt__week', 'r1', `s${w + 1}`, 'n1']}>{weekLabel} {w}</span>)}
+        {phases.map((p, i) => (
+          <>
+            <span class:list={['wt__rowlabel', 'wt__rowlabel--phase', `r${i + 2}`]}>{p.title}</span>
+            <span class:list={['wt__bar', place(spans[i], 1), `r${i + 2}`, { 'wt__bar--main': i === main, 'wt__bar--open': spans[i].open }]}>
+              <span class="wt__bar-fill"></span>
+            </span>
+          </>
+        ))}
+        <span class:list={['wt__rowlabel', 'wt__rowlabel--demo', `r${phases.length + 2}`]}>{demoLabel}</span>
+        {W.map((w) => <span class:list={['wt__demo', `r${phases.length + 2}`, `s${w + 1}`, 'n1']}><i></i></span>)}
+      </div>
+      <p class="wt__live"><span class="wt__flag"></span>{liveLabel}</p>
+    </div>
+
+    <ol role="list" class="wt__phases reveal-stagger">
+      {phases.map((p, i) => (
+        <li class:list={['wt__phase', { 'wt__phase--main': i === main }]}>
+          <span class="wt__range">{spans[i].label}</span>
+          <span class="wt__mini" aria-hidden="true" data-weeks={weeks}><i class={place(spans[i], 0)}></i></span>
+          <h3 class="wt__h3">{p.title}</h3>
+          <p class="wt__body">{p.body}</p>
+          {p.chip && <LayerChip kind={p.chip.kind}>{p.chip.label}</LayerChip>}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .wt { padding-block: var(--section-y); background: var(--color-bg); color: var(--color-text); }
+  .wt__head { display: grid; gap: var(--space-3); margin-block-end: var(--space-10); }
+  .wt__example { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); max-inline-size: 60ch; }
+
+  /* Chart: tablet and up only. Grid = row label + one column per week; rows are placed with CSS, so markup stays flat. */
+  .wt__chart { display: none; }
+  @media (width >= 48rem) {
+    .wt__chart { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-50); border: 1px solid var(--blue-100); margin-block-end: var(--space-10); }
+  }
+  .wt__grid { display: grid; grid-template-columns: 9.5rem repeat(var(--wt-n, 10), minmax(0, 1fr)); grid-auto-rows: minmax(2.5rem, auto); align-items: center; column-gap: 4px; row-gap: var(--space-2); }
+  .wt__week { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); text-align: center; padding-block-end: var(--space-1); border-block-end: 1px solid var(--blue-100); }
+  .wt__rowlabel { grid-column: 1; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--neutral-950); }
+  .wt__rowlabel--demo { font-family: var(--ff-body); font-weight: var(--weight-medium); color: var(--color-text-muted); }
+  .wt__bar { position: relative; block-size: 2rem; }
+  .wt__bar-fill { position: absolute; inset: 0; border-radius: var(--radius-sm); background: var(--neutral-0); border: 2px solid var(--blue-800); transform-origin: 0 50%; }
+  :dir(rtl) .wt__bar-fill { transform-origin: 100% 50%; }
+  .wt__bar--main .wt__bar-fill { background: linear-gradient(90deg, var(--blue-700), #2C59C1); border-color: transparent; }
+  .wt__bar--main .wt__bar-fill::after { content: ''; position: absolute; inset-block: 25%; inset-inline: 10px; background: repeating-linear-gradient(90deg, rgb(254 254 254 / 0.55) 0 2px, transparent 2px calc(100% / 7)); border-radius: 2px; opacity: 0.6; }
+  .wt__bar--open .wt__bar-fill { border-color: var(--green-700); background: var(--green-50); border-inline-end-style: dashed; }
+  .wt__demo { display: grid; place-items: center; }
+  .wt__demo i { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--blue-700); box-shadow: 0 0 0 3px var(--blue-100); }
+  .wt__live { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--green-700); }
+  .wt__flag { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--green-700); box-shadow: 0 0 0 4px var(--green-50); }
+
+  /* Phase list: always present; the main phase carries the brand blue rule (brand guidelines: cards topped with blue). */
+  .wt__phases { display: grid; gap: var(--space-4); }
+  @media (width >= 48rem) { .wt__phases { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); } }
+  .wt__phase { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); border-radius: var(--radius-md); background: var(--neutral-0); border: 1px solid var(--color-border-subtle); border-block-start: 4px solid var(--blue-800); }
+  .wt__phase--main { border-block-start-color: var(--blue-700); background: var(--blue-50); }
+  .wt__range { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-700); }
+  .wt__mini { display: grid; grid-template-columns: repeat(var(--wt-n, 10), minmax(0, 1fr)); block-size: 6px; border-radius: 3px; background: var(--blue-100); margin-block: var(--space-1) var(--space-2); overflow: hidden; }
+  .wt__mini i { border-radius: 3px; background: var(--blue-700); }
+  .wt__phase:last-child .wt__mini i { background: var(--green-700); }
+  @media (width >= 48rem) { .wt__mini { display: none; } } /* the chart shows the spans */
+  .wt__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.015em; color: var(--neutral-950); }
+  .wt__body { color: var(--color-text-muted); }
+
+  /* Rows are explicit (auto-placement put labels beside the wrong bars). */
+  .r1 { grid-row: 1; } .r2 { grid-row: 2; } .r3 { grid-row: 3; } .r4 { grid-row: 4; } .r5 { grid-row: 5; } .r6 { grid-row: 6; } .r7 { grid-row: 7; } .r8 { grid-row: 8; }
+  /* Column count per plan length, and placement classes (start s1–s13, span n1–n12). */
+  [data-weeks='8'] { --wt-n: 8; } [data-weeks='10'] { --wt-n: 10; } [data-weeks='12'] { --wt-n: 12; }
+  .s1 { grid-column-start: 1; } .s2 { grid-column-start: 2; } .s3 { grid-column-start: 3; } .s4 { grid-column-start: 4; } .s5 { grid-column-start: 5; } .s6 { grid-column-start: 6; } .s7 { grid-column-start: 7; }
+  .s8 { grid-column-start: 8; } .s9 { grid-column-start: 9; } .s10 { grid-column-start: 10; } .s11 { grid-column-start: 11; } .s12 { grid-column-start: 12; } .s13 { grid-column-start: 13; }
+  .n1 { grid-column-end: span 1; } .n2 { grid-column-end: span 2; } .n3 { grid-column-end: span 3; } .n4 { grid-column-end: span 4; } .n5 { grid-column-end: span 5; } .n6 { grid-column-end: span 6; }
+  .n7 { grid-column-end: span 7; } .n8 { grid-column-end: span 8; } .n9 { grid-column-end: span 9; } .n10 { grid-column-end: span 10; } .n11 { grid-column-end: span 11; } .n12 { grid-column-end: span 12; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .wt__bar-fill { animation: wt-grow linear both; animation-timeline: view(); animation-range: entry 20% cover 45%; }
+      .wt__bar--main .wt__bar-fill { animation-range: entry 30% cover 55%; }
+      .wt__demo i { animation: wt-pop linear both; animation-timeline: view(); animation-range: entry 35% cover 60%; }
+      @keyframes wt-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      @keyframes wt-pop { from { transform: scale(0); } to { transform: scale(1); } }
+    }
+  }
+</style>

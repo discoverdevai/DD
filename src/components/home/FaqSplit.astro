@@ -3,10 +3,10 @@
 import Faq from '../ui/Faq.astro';
 import { t } from '../../i18n/t';
 import type { RouteKey } from '../../data/routes';
-interface Props { title: string; items: readonly { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }[] }
-const { title, items } = Astro.props;
+interface Props { surface?: 'ink' | 'paper'; title: string; items: readonly { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }[] }
+const { title, items, surface = 'ink' } = Astro.props;
 ---
-<section id="faq" class="fs" data-surface="ink" aria-labelledby="fs-title">
+<section id="faq" class:list={['fs', { 'fs--paper': surface === 'paper' }]} data-surface={surface} aria-labelledby="fs-title">
   <div class="container fs__grid">
     <div class="fs__head">
       <h2 id="fs-title" class="fs__title">{title}</h2>
@@ -21,6 +21,8 @@ const { title, items } = Astro.props;
   .fs__grid { display: grid; gap: var(--space-10); }
   @media (width >= 64rem) { .fs__grid { grid-template-columns: 4fr 7fr; gap: var(--space-16); align-items: start; } .fs__head { position: sticky; inset-block-start: calc(var(--header-h) + var(--space-8)); } }
   .fs__head { display: grid; gap: var(--space-4); }
+  .fs--paper { border-block-start: 1px solid var(--color-border-subtle); }
+  .fs--paper .fs__title { color: var(--neutral-950); font-weight: var(--weight-bold); letter-spacing: -0.03em; }
   .fs__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; }
   .fs__help { color: var(--color-text-muted); }
   .fs__grid :global(.faq) { max-inline-size: none; }

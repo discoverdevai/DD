@@ -1,9 +1,9 @@
 ---
 // Two-tone statement (docs/home-teardown.md): first sentence bright, the rest dim. Dim text is ≥ 24px, so 3:1 applies (06 §3).
-interface Props { id: string; bright: string; dim: string; label?: string }
-const { id, bright, dim, label } = Astro.props;
+interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy' }
+const { id, bright, dim, label, surface = 'ink' } = Astro.props;
 ---
-<section id={id} class="stmt" data-surface="ink" aria-labelledby={`${id}-title`}>
+<section id={id} class:list={['stmt', { 'stmt--navy': surface === 'navy' }]} data-surface={surface === 'navy' ? 'inverse' : 'ink'} aria-labelledby={`${id}-title`}>
   <div class="container">
     {label && <p class="stmt__label"><span aria-hidden="true">//</span> {label}</p>}
     <h2 id={`${id}-title`} class="stmt__text reveal"><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>
@@ -19,4 +19,7 @@ const { id, bright, dim, label } = Astro.props;
   .stmt__text { font-size: clamp(1.75rem, 1.1rem + 2.7vw, 3.5rem); font-weight: var(--weight-semibold); line-height: 1.12; letter-spacing: -0.035em; max-inline-size: 24ch; text-wrap: balance; }
   .stmt__bright { color: var(--color-heading); }
   .stmt__dim { color: color-mix(in oklab, var(--neutral-0) 50%, var(--color-bg)); }
+  /* Navy band (brand guidelines: navy for openers and statements) for pages that alternate white and navy. */
+  .stmt--navy { background: var(--blue-800); border-block-start: 0; }
+  .stmt--navy .stmt__dim { color: var(--blue-200); }
 </style>

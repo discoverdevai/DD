@@ -54,7 +54,7 @@ const year = new Date().getFullYear();
   .site-footer__grid { display: grid; gap: var(--space-10); }
   @media (width >= 64rem) { .site-footer__grid { grid-template-columns: 5fr 7fr; gap: var(--space-16); } }
   .site-footer__brand { display: grid; gap: var(--space-4); align-content: start; }
-  .site-footer__logo { justify-self: start; padding-block: var(--space-2); }
+  .site-footer__logo { justify-self: start; display: inline-flex; align-items: center; min-block-size: 2.75rem; } /* 44px target (axe target-size at 768px) */
   .site-footer__core { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); color: var(--color-text); max-inline-size: 36ch; }
   .site-footer__entity, .site-footer__contact, .site-footer__base { color: var(--color-text-muted); }
   .site-footer__entity { max-inline-size: 52ch; }

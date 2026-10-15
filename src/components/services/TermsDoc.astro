@@ -1,0 +1,48 @@
+---
+// "Price, team and ownership" (03 §6.12): the three short sections a service page used to spread over three bands, as
+// one white document on the light blue surface (brand guidelines: document header with one blue rule, Manrope headings,
+// Rubik body, nothing else decorative). Column titles stay H3 so the page outline keeps every topic.
+import InlineLink from '../ui/InlineLink.astro';
+import type { RouteKey } from '../../data/routes';
+interface Col { title: string; body: string; link?: { label: string; to: RouteKey } }
+interface Props { id?: string; title: string; docTitle: string; docMeta: string; cols: readonly Col[] }
+const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
+---
+<section id={id} class="td" data-surface="paper" aria-labelledby={`${id}-title`}>
+  <div class="container">
+    <h2 id={`${id}-title`} class="section-title td__title reveal">{title}</h2>
+    <article class="td__doc reveal">
+      <header class="td__head">
+        <p class="td__brand">DiscoverDev <span>· {docTitle}</span></p>
+        <p class="td__meta">{docMeta}</p>
+      </header>
+      <div class="td__cols">
+        {cols.map((c, i) => (
+          <div class="td__col">
+            <span class="td__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="td__h3">{c.title}</h3>
+            <p class="td__body">{c.body}</p>
+            {c.link && <p class="td__more"><InlineLink text="" link={c.link} /></p>}
+          </div>
+        ))}
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .td { padding-block: var(--section-y); background: var(--blue-50); }
+  .td__title { color: var(--neutral-950); margin-block-end: var(--space-8); }
+  .td__doc { background: var(--neutral-0); border-radius: var(--radius-md); border: 1px solid var(--blue-100); box-shadow: 0 24px 60px -32px rgb(3 41 147 / 0.25); padding: clamp(var(--space-6), 1rem + 3vw, var(--space-12)); }
+  .td__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-2) var(--space-6); padding-block-end: var(--space-4); margin-block-end: var(--space-8); border-block-end: 2px solid var(--blue-700); }
+  .td__brand { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--neutral-950); }
+  .td__brand span { color: var(--blue-700); }
+  .td__meta { font-size: var(--text-sm); color: var(--neutral-600); }
+  .td__cols { display: grid; gap: var(--space-8); }
+  @media (width >= 56rem) { .td__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); } .td__col + .td__col { padding-inline-start: var(--space-10); border-inline-start: 1px solid var(--neutral-200); } }
+  .td__col { display: grid; gap: var(--space-3); align-content: start; }
+  .td__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-700); }
+  .td__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.015em; color: var(--neutral-950); }
+  .td__body { color: var(--neutral-600); line-height: 1.6; }
+  .td__more { font-weight: var(--weight-medium); }
+</style>

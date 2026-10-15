@@ -1062,6 +1062,20 @@ You do. Full IP, no lock-in, clear contract from day one.
 - Text link: Have a prototype? Start with a Launch-Ready Review
 - Related reading (when live): Fix or rebuild your AI app · Who owns your app's code
 
+### 6.12 Build v4 layout (pilot, 2026-10-16; hooks approach approved by Mohamed, brand guidelines v4 colour rhythm)
+Order: Hero → Journey stepper → Week-by-week track (signature) → Outcomes + What's included → Fit → Statement → Price, team and ownership (document) → Proof → FAQ → Final CTA. §6.5–6.7 and §6.9 copy is reused verbatim inside the new blocks.
+- **Journey stepper** (shared by /validate, /build, /scale): label "Validate, Build, Scale" (screen readers: "Where this service fits"). Stages reuse §2A.6 (name, "who" line, duration). Current stage tag: "You are here". Other stages link to their page.
+- **Week-by-week track** (replaces the §6.5 step strip):
+  - H2: 8–12 weeks. Results every week.
+  - Label: Example: a 10-week Build. Your exact timeline is set in your plan before we start.
+  - Phases (titles and bodies = §6.5) with range labels: Discover "Week 1" · Plan "Week 2" · Build "Weeks 3–9" · Ship and stay "Week 10 and after".
+  - Row labels: "Week" · "Weekly demo with you" (§2A.2) · end marker "Live with real users" (§6.3 outcome 1 wording).
+- **Statement** (navy band): bright "Senior engineers own the quality," dim "and a person is responsible for every line that reaches your users." (§6.7 wording).
+- **Price, team and ownership** (one white document replaces §6.6, §6.7, §6.9 sections):
+  - H2: Price, team and ownership
+  - Document header: "Build" · "Agreed before we start" (§6.6 wording)
+  - Columns: §6.6 title + answer · §6.7 title + body + "About DiscoverDev and where we work" link (§0.8) · §6.9 title + body.
+
 ---
 
 ## 7. Scale (/scale)

@@ -6,7 +6,7 @@ import Icon from './Icon.astro';
 import LayerChip from './LayerChip.astro';
 type IconName = Parameters<typeof Icon>[0]['name'];
 interface Item { title: string; body: string; icon?: IconName; chip?: { kind: 'ai' | 'human'; label: string } }
-interface Props { items: readonly Item[]; cols?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'; variant?: 'card' | 'rule'; index?: boolean }
+interface Props { items: readonly Item[]; cols?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'; variant?: 'card' | 'rule' | 'brand'; index?: boolean }
 const { items, cols = 3, headingLevel: H = 'h3', variant = 'card', index = true } = Astro.props;
 ---
 <ul role="list" class:list={['grid', `grid--${cols}`, `grid--${variant}`, 'reveal-stagger']}>
@@ -30,9 +30,13 @@ const { items, cols = 3, headingLevel: H = 'h3', variant = 'card', index = true 
   @media (width >= 48rem) { .grid--2 { grid-template-columns: repeat(2, 1fr); } .grid--3 { grid-template-columns: repeat(3, 1fr); } .grid--4 { grid-template-columns: repeat(2, 1fr); } }
   @media (width >= 64rem) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
   .grid--rule { gap: var(--space-8); }
+  /* brand (guidelines: cards topped with a 4px blue rule) for white and light-blue sections. */
+  .grid--brand .item { padding: var(--space-6) var(--space-6) var(--space-8); background: var(--neutral-0); border: 1px solid var(--blue-100); border-block-start: 4px solid var(--blue-700); border-radius: 4px 4px var(--radius-md) var(--radius-md); }
+  .grid--brand .item__title { color: var(--neutral-950); font-weight: var(--weight-bold); }
+  .grid--brand .item__n { color: var(--blue-700); }
   .item { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; }
   .grid--card .item { padding: var(--space-6) var(--space-6) var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
-  [data-surface='paper'] .grid--card .item, [data-surface='alt'] .grid--card .item { background: var(--color-surface); border-radius: var(--radius-md); }
+  :global([data-surface='paper']) .grid--card .item, :global([data-surface='alt']) .grid--card .item { background: var(--color-surface); border-radius: var(--radius-md); }
   @media (hover: hover) { .grid--card .item:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
   .grid--rule .item { border-block-start: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); padding-block-start: var(--space-5); }
   .item__top { display: flex; align-items: center; justify-content: space-between; margin-block-end: var(--space-3); }
