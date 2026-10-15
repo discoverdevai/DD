@@ -104,6 +104,6 @@ export const home = {
   },
   band: {
     title: 'Tell us what you’re building.',
-    body: '30 minutes with a senior person. You leave with a next step, even if we’re not the right fit.',
+    body: '30 minutes, no pitch. You leave with a next step, even if we’re not the right fit.',
   },
 } as const;

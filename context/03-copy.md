@@ -395,7 +395,7 @@ React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL,
 
 ### 2A.11 Final CTA
 - H2: Tell us what you're building.
-- Body: 30 minutes with a senior person. You leave with a next step, even if we're not the right fit.
+- Body: 30 minutes, no pitch. You leave with a next step, even if we're not the right fit. (Proof check 2026-10-16: "with a senior person" removed; 09 does not say who takes the clarity call.)
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
 
