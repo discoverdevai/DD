@@ -74,7 +74,7 @@ h1, h2, h3, h4 {
   letter-spacing: var(--tracking-tight);
 }
 /* text-wrap: pretty is costly on long pages (Lighthouse styleLayout); kept only on leads and short card copy. */
-.lead, .item__body, .path__body { text-wrap: pretty; }
+.lead, .item__body { text-wrap: pretty; }
 /* Long tokens (URLs, code names, compound words) may break only when they would overflow, so grids never push a 320px page wider (WCAG 1.4.10 reflow). */
 main :where(p, li, dd, dt, h1, h2, h3, h4, td, th, a, figcaption) { overflow-wrap: anywhere; }
 img, svg, video { display: block; max-inline-size: 100%; block-size: auto; }

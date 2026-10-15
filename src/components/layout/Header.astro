@@ -13,7 +13,7 @@ const { variant = 'default', current = Astro.url.pathname } = Astro.props;
 
 const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 'build', 'scale', 'review', 'partners'] as const)
   .filter(isLive)
-  .map((key) => ({ key, label: t(key === 'review' ? 'nav.review.label' : `nav.${key}`), who: t(`nav.${key}.who`) }));
+  .map((key) => ({ key, label: t(`nav.${key}`), who: t(`nav.${key}.who`) }));
 // Strategy v2 (03 §1.1): "How we work" anchors to the Agile v2 section on home.
 const HOW = { path: '/#agile-v2', label: t('nav.how') };
 const TOP: { key: RouteKey; label: string }[] = (['work', 'insights', 'about'] as const).filter(isLive).map((key) => ({ key, label: t(`nav.${key}`) }));

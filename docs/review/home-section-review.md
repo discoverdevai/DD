@@ -1,6 +1,6 @@
 # Home page: section-by-section review and fixes
 
-Date: 2026-10-16 · Scope: `/` (header, 10 sections, footer) · Status: **awaiting Mohamed's approval**, then a dedicated clean-up commit.
+Date: 2026-10-16 · Scope: `/` (header, 10 sections, footer) · Status: **approved by Mohamed 2026-10-16**; clean-up done in a dedicated commit (see below).
 
 ## Method
 - Each section captured and measured at **320, 375, 768, 1024 and 1440px** with a scripted audit: section height, padding, container offset, unclipped overflow, text under 13px (06 `--text-xs` floor), tap targets under 24px (WCAG 2.5.8).
@@ -38,5 +38,12 @@ Date: 2026-10-16 · Scope: `/` (header, 10 sections, footer) · Status: **awaiti
 - Header: the "Book a call" button hides below 360px (logo + menu only), as specified in 04 §3.2.
 - Skip link: visible in some element screenshots only because of how full-element captures resize the viewport; it stays hidden until focused.
 
-## Next, after approval
-A dedicated clean-up commit: remove unused v1 home components (ProblemFigures, OfferSplit, PathTiles, WorkspaceScene and its copy file, PathCards if unused), unused UI strings and CSS, and scan for leftover console logs. Then `npm run qa` and the browser audit again.
+## Clean-up (after approval)
+Separate fix first (`04318fe`): the proof band's visually hidden H2 now reads the 03 §2.3 heading "Who we work with" instead of the rating sentence.
+
+Clean-up commit:
+- Deleted 6 components no page imports: `home/OfferSplit`, `home/PathTiles`, `home/ProblemFigures`, `home/WorkspaceScene` (v1/v2 home, replaced by strategy v2), `sections/ProofStrip` (replaced by ProofBand), `ui/PathCards` (replaced by Engagements). Deleted `content/copy/en/workspace.ts`, used only by WorkspaceScene. 389 lines removed.
+- `base.css`: dropped `.path__body` (PathCards only) from the text-wrap rule.
+- `en.json`: `nav.review` was dead (old top-level "Review" nav item). It now holds "Launch-Ready Review" and `nav.review.label` is gone, so the Header maps every service with one `nav.${key}` rule instead of a special case.
+- Checked and kept on purpose: `console.error` in `t()` (surfaces a missing translation key during a build), `console.info` in analytics (dev mode only), CLI output in `scripts/` and `qa/`; `public/` system files (robots.txt, `_headers`, `_redirects`, security.txt) that are read by name, not imported. Scoped-CSS scan found no dead rules: the flagged classes are built at runtime (`grid--${cols}`, `en__card--${i}`). No unused exports in `lib/`, `data/` or `i18n/`.
+- Verified after: `astro check` 0/0/0, lint OK, 10/10 unit, 20 pages with 0 static findings, browser audit 0 blockers (perf 99, a11y/SEO/BP 100), no overflow at 320/1440.
