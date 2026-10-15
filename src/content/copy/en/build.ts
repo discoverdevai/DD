@@ -28,9 +28,10 @@ export const build = {
       'Or your AI-built prototype needs to be rebuilt properly.',
     ],
     not: [
-      { text: 'You’re still testing the idea (see Validate).' },
-      { text: 'Your app mostly works and needs fixes (start with a Review).' },
-      { text: 'You need ongoing capacity on a live product (see Scale).' },
+      // 03 §0.8: existing words become links.
+      { text: 'You’re still testing the idea (see Validate).', link: { label: 'see Validate', to: 'validate' as const } },
+      { text: 'Your app mostly works and needs fixes (start with a Review).', link: { label: 'start with a Review', to: 'review' as const } },
+      { text: 'You need ongoing capacity on a live product (see Scale).', link: { label: 'see Scale', to: 'scale' as const } },
     ],
   },
   outcomes: {
@@ -71,6 +72,7 @@ export const build = {
   team: {
     title: 'Who builds it',
     body: 'A full squad: a tech lead, developers, QA, a product manager and a designer. Senior engineers own the quality, and a person is responsible for every line that reaches your users. The team that scopes your product builds it. No handoff gaps.',
+    link: { label: 'About DiscoverDev and where we work', to: 'about' as const }, // 03 §0.8
   },
   proof: {
     title: 'Products we’ve built',

@@ -16,7 +16,7 @@ export const work = {
       { text: 'Embedded data and ML team for a smart ride-sharing platform', where: 'Saudi Arabia' },
       { text: 'Health app that explains lab reports in plain language, with medical safety guardrails', where: 'HealthTech' },
       { text: 'AI agents for call operations and staff augmentation', where: 'USA' },
-      { text: 'White-label websites and mobile apps for a software house', where: 'UK' },
+      { text: 'White-label websites and mobile apps for a software house', where: 'UK', link: { label: 'White-label websites and mobile apps', to: 'partners' as const } }, // 03 §0.8
     ],
   },
   reviewsTitle: 'What clients say',
@@ -73,6 +73,7 @@ export const caseStudy = {
   results: {
     title: 'The results',
     items: ['60–90% lower AI cost', 'Cached content served at close to zero marginal cost', 'Three AI agents in production'],
+    link: { label: 'How Scale works: a team that stays with your product', to: 'scale' as const }, // 03 §0.8
   },
   cta: { title: 'AI costs too high?', body: 'If your AI bill grows faster than your users, we can look at where the cost goes and what to change.' },
 };

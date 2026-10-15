@@ -10,6 +10,7 @@ import CheckList from '../components/ui/CheckList.astro';
 import Steps from '../components/ui/Steps.astro';
 import FaqSplit from '../components/home/FaqSplit.astro';
 import CtaBand from '../components/ui/CtaBand.astro';
+import InlineLink from '../components/ui/InlineLink.astro';
 import ProofList from '../components/services/ProofList.astro';
 import ServiceGlance from '../components/services/ServiceGlance.astro';
 import { t } from '../i18n/t';
@@ -53,6 +54,7 @@ const jsonLd = graph(orgStub, service, webPage('/validate', c.seo.title, c.seo.d
 
   <Section id="team" surface="raised" title={c.team.title} width="narrow">
     <p class="answer">{c.team.body}</p>
+    <p class="more-link"><InlineLink text="" link={c.team.link} /></p>
   </Section>
 
   <Section id="proof" surface="ink" title={c.proof.title}>
@@ -70,4 +72,5 @@ const jsonLd = graph(orgStub, service, webPage('/validate', c.seo.title, c.seo.d
 
 <style>
   .answer { font-size: var(--text-lg); max-inline-size: var(--measure-prose); }
+  .more-link { margin-block-start: var(--space-4); font-weight: var(--weight-medium); }
 </style>

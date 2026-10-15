@@ -6,6 +6,7 @@ import Section from '../../components/ui/Section.astro';
 import CheckList from '../../components/ui/CheckList.astro';
 import CardGrid from '../../components/ui/CardGrid.astro';
 import CtaBand from '../../components/ui/CtaBand.astro';
+import InlineLink from '../../components/ui/InlineLink.astro';
 import { caseStudy as c } from '../../content/copy/en/work';
 import { graph, canonical, ORG_ID, SITE_URL } from '../../lib/seo';
 import { href, isLive } from '../../data/routes';
@@ -56,6 +57,7 @@ const jsonLd = graph(
 
   <Section id="results" surface="ink" title={c.results.title} width="narrow">
     <CheckList items={c.results.items} />
+    <p class="more-link"><InlineLink text="" link={c.results.link} /></p>
   </Section>
 
   <CtaBand title={c.cta.title} body={c.cta.body} kind="clarity" page="case_edtech" />
@@ -84,6 +86,7 @@ const jsonLd = graph(
   .story .h2 { margin-block-start: var(--space-6); font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); font-weight: var(--weight-semibold); letter-spacing: -0.03em; line-height: 1.15; }
   .story .h2:first-child { margin-block-start: 0; }
   .answer { font-size: var(--text-lg); }
+  .more-link { margin-block-start: var(--space-8); font-weight: var(--weight-medium); }
 </style>
 
 <script>

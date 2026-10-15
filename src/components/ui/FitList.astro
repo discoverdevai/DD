@@ -1,7 +1,8 @@
 ---
 // "Who it's for / not for" (04 §4.3 #2). Two columns from 48rem. Not-for items may link to the better path (live routes only).
 import Icon from './Icon.astro';
-import { ROUTES, isLive, type RouteKey } from '../../data/routes';
+import InlineLink from './InlineLink.astro';
+import type { RouteKey } from '../../data/routes';
 interface NotFor { text: string; link?: { label: string; to: RouteKey } }
 interface Props { forTitle: string; forItems: readonly string[]; notTitle: string; notItems: readonly NotFor[] }
 const { forTitle, forItems, notTitle, notItems } = Astro.props;
@@ -15,7 +16,7 @@ const { forTitle, forItems, notTitle, notItems } = Astro.props;
     <h3 class="h3 fit__h">{notTitle}</h3>
     <ul role="list">
       {notItems.map((i) => (
-        <li><Icon name="x" size={20} class="fit__no" /><span>{i.text}{i.link && isLive(i.link.to) && <> <a href={ROUTES[i.link.to].path}>{i.link.label}</a></>}</span></li>
+        <li><Icon name="x" size={20} class="fit__no" /><span><InlineLink text={i.text} link={i.link} /></span></li>
       ))}
     </ul>
   </div>

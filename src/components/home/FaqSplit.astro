@@ -2,7 +2,8 @@
 // FAQ (03 §2.12) in a two-column layout: sticky heading + help line at inline-start, accordion at inline-end.
 import Faq from '../ui/Faq.astro';
 import { t } from '../../i18n/t';
-interface Props { title: string; items: readonly { id: string; q: string; a: string }[] }
+import type { RouteKey } from '../../data/routes';
+interface Props { title: string; items: readonly { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }[] }
 const { title, items } = Astro.props;
 ---
 <section id="faq" class="fs" data-surface="ink" aria-labelledby="fs-title">

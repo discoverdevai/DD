@@ -160,6 +160,19 @@ How the build treats each tag in this deck. "Keep" = render the tagged text with
 
 ---
 
+### 0.8 Internal links for `05` §3 (added 2026-10-16)
+The inbound-link gate (`07` §15: ≥ 3 links from the `<main>` of distinct pages) failed for /about, /partners, /validate, /build, /scale and /work. Fixes, in this order of preference:
+1. **Existing words become links (no new copy):**
+   - /validate §5.2 not-for: "Launch-Ready Review" → /launch-ready; "See Scale" → /scale.
+   - /build §6.2 not-for: "see Validate" → /validate; "start with a Review" → /launch-ready; "see Scale" → /scale.
+   - /scale §7.2 not-for: "see Build" → /build; "see Partners" → /partners.
+   - /work §9.3: "White-label websites and mobile apps" (software-house item) → /partners.
+2. **New link labels:**
+   - /validate §5.7, /build §6.7, /scale §7.7 (Team shape), after the body: "About DiscoverDev and where we work" → /about.
+   - Home §2A.8 case highlight, after "Read the case study": "See all our work" → /work (05 §3 rule 1).
+   - Home §2A.10 FAQ "We already built something…", after the answer: "Read the guide to taking an AI-built app to production" → /insights/ai-app-to-production (05 §3 rule 1).
+   - Case study (/work/edtech-ai-agents), end of Results: "How Scale works: a team that stays with your product" → /scale (05 §3 rule 6).
+
 ## 1. Global elements
 
 ### 1.1 Header and navigation

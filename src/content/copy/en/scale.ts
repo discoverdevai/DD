@@ -27,8 +27,9 @@ export const scale = {
       'You want a team that learns your product and stays.',
     ],
     not: [
-      { text: 'You need a single project with a fixed end (see Build).' },
-      { text: 'You run a software house and need engineers under your brand (see Partners).' },
+      // 03 §0.8: existing words become links.
+      { text: 'You need a single project with a fixed end (see Build).', link: { label: 'see Build', to: 'build' as const } },
+      { text: 'You run a software house and need engineers under your brand (see Partners).', link: { label: 'see Partners', to: 'partners' as const } },
     ],
   },
   outcomes: {
@@ -66,6 +67,7 @@ export const scale = {
   team: {
     title: 'Who’s on the squad',
     body: 'From one specialist to a full squad: a lead, developers, QA, a PM and a designer. Skills cover full-stack, mobile, AI and ML, computer vision, data and QA. Senior engineers own the quality.',
+    link: { label: 'About DiscoverDev and where we work', to: 'about' as const }, // 03 §0.8
   },
   proof: {
     title: 'Teams that stayed',

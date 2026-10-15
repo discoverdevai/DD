@@ -28,8 +28,9 @@ export const validate = {
       'You need a real number for your build budget or your investors.',
     ],
     not: [
-      { text: 'You already have a working prototype. Start with a Launch-Ready Review.' },
-      { text: 'You need a team on an existing product. See Scale.' },
+      // 03 §0.8: existing words become links.
+      { text: 'You already have a working prototype. Start with a Launch-Ready Review.', link: { label: 'Launch-Ready Review', to: 'review' as const } },
+      { text: 'You need a team on an existing product. See Scale.', link: { label: 'See Scale', to: 'scale' as const } },
     ],
   },
   outcomes: {
@@ -64,6 +65,7 @@ export const validate = {
     title: 'Who works on it',
     // [VERIFY: V16 Validate team shape] → §0.7 V16 keep (tag removed).
     body: 'A product lead and a designer, with an engineer who checks that the scope can be built in time and on budget. The same team can carry on into Build. No handoff gaps.',
+    link: { label: 'About DiscoverDev and where we work', to: 'about' as const }, // 03 §0.8
   },
   proof: {
     title: 'Discovery work we’ve done',

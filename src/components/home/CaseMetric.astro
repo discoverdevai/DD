@@ -3,7 +3,7 @@
 import CtaLink from '../ui/CtaLink.astro';
 import { caseStudy } from '../../content/copy/en/work';
 import { href, isLive } from '../../data/routes';
-interface Props { c: { title: string; body: string; metric: string; metricLabel: string; stack: readonly string[]; link: string } }
+interface Props { c: { title: string; body: string; metric: string; metricLabel: string; stack: readonly string[]; link: string; allLink: string } }
 const { c } = Astro.props;
 const levers = caseStudy.approach.items.map((i) => i.title);
 ---
@@ -20,7 +20,10 @@ const levers = caseStudy.approach.items.map((i) => i.title);
       <ol role="list" class="cm__levers reveal-stagger">
         {levers.map((l, i) => <li><span class="cm__lnum">0{i + 1}</span>{l}</li>)}
       </ol>
-      {isLive('workEdulens') && <CtaLink href={href('workEdulens')} ctaId="home_mid_case" tier="secondary" position="mid" target="case" variant="text">{c.link}</CtaLink>}
+      <p class="cm__links">
+        {isLive('workEdulens') && <CtaLink href={href('workEdulens')} ctaId="home_mid_case" tier="secondary" position="mid" target="case" variant="text">{c.link}</CtaLink>}
+        {isLive('work') && <a href={href('work')} class="cm__all">{c.allLink}</a>}
+      </p>
     </div>
   </div>
 </section>
@@ -40,5 +43,7 @@ const levers = caseStudy.approach.items.map((i) => i.title);
   .cm__body { color: var(--color-text-muted); font-size: var(--text-lg); line-height: 1.55; }
   .cm__levers { display: grid; inline-size: 100%; border-block-start: 1px solid var(--color-hairline); }
   .cm__levers li { display: flex; align-items: baseline; gap: var(--space-4); padding-block: var(--space-3); border-block-end: 1px solid var(--color-hairline); font-weight: var(--weight-medium); }
+  .cm__links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-6); }
+  .cm__all { color: var(--color-text-muted); }
   .cm__lnum { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
 </style>
