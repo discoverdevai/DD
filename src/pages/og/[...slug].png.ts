@@ -1,7 +1,7 @@
 // Build-time share images (05 §6, 07 §5): satori renders the card to SVG (text as paths), sharp rasterises it to PNG.
 // One image per OG_PAGES route plus one per published article. Prerendered: nothing runs at request time.
-// The logo is the official artwork (assets/logo/source), recoloured with sharp the same way the site's CSS masks do it
-// (06 §11 two-tone: "Discover" light, "Dev" and the mark in brand blue). Fonts are OFL woff files in src/assets/og.
+// The logo is the official horizontal SVG for dark backgrounds (assets/logo/svg, brand guidelines asset kit), rasterised
+// by sharp, never recoloured. Fonts are OFL woff files in src/assets/og.
 import type { APIRoute, GetStaticPaths } from 'astro';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,15 +25,7 @@ export const getStaticPaths = (async () => {
 const root = process.cwd();
 const font = (f: string) => fs.readFileSync(path.join(root, 'src/assets/og', f));
 let fonts: Parameters<typeof satori>[1]['fonts'] | undefined;
-let logo: { mark: string; discover: string; dev: string; markW: number; discoverW: number; devW: number } | undefined;
-
-/** White mask PNG → solid colour with the mask's alpha, as a data URI (what CSS mask-image does on the site). */
-async function tint(input: string | Buffer, colour: string, height: number) {
-  const mask = await sharp(typeof input === 'string' ? path.join(root, input) : input).trim().resize({ height }).ensureAlpha().png().toBuffer();
-  const { width = 0 } = await sharp(mask).metadata();
-  const png = await sharp({ create: { width, height, channels: 4, background: colour } }).composite([{ input: mask, blend: 'dest-in' }]).png().toBuffer();
-  return { uri: `data:image/png;base64,${png.toString('base64')}`, width };
-}
+let logo: { uri: string; width: number } | undefined;
 
 async function assets() {
   fonts ??= [
@@ -43,13 +35,9 @@ async function assets() {
     { name: 'JetBrains Mono', data: font('jetbrains-mono-latin-500-normal.woff'), weight: 500, style: 'normal' },
   ];
   if (!logo) {
-    const mark = await tint('assets/logo/source/mark-white.png', C.blue, 46);
-    // The stacked white lockup holds the wordmark; the same crop as scripts/brand-assets.mjs, split at the "Dev" join.
-    const lockup = 'assets/logo/source/logo-stacked-white.png';
-    const crop = (left: number, right: number) => sharp(path.join(root, lockup)).extract({ left, top: 383, width: right - left + 1, height: 72 }).png().toBuffer();
-    const discover = await tint(await crop(92, 405), C.text, 34);
-    const dev = await tint(await crop(406, 555), C.blue, 34);
-    logo = { mark: mark.uri, markW: mark.width, discover: discover.uri, discoverW: discover.width, dev: dev.uri, devW: dev.width };
+    const png = await sharp(path.join(root, 'assets/logo/svg/logo-horizontal-for-dark.svg'), { density: 300 }).resize({ height: 46 * 2 }).png().toBuffer();
+    const { width = 0 } = await sharp(png).metadata();
+    logo = { uri: `data:image/png;base64,${png.toString('base64')}`, width: Math.round(width / 2) };
   }
   return { fonts, logo };
 }
@@ -67,10 +55,7 @@ export const GET: APIRoute = async ({ props }) => {
     backgroundColor: C.ink, color: C.text, fontFamily: 'Rubik',
     backgroundImage: `radial-gradient(60% 80% at 88% 110%, rgba(33,82,209,0.95) 0%, rgba(18,64,190,0.45) 40%, rgba(1,8,45,0) 75%), linear-gradient(180deg, ${C.raised} 0%, ${C.ink} 60%)`,
   }, [
-    el('div', { display: 'flex', alignItems: 'center', gap: 16 }, [
-      img(logo.mark, logo.markW, 46),
-      el('div', { display: 'flex', alignItems: 'center' }, [img(logo.discover, logo.discoverW, 34), img(logo.dev, logo.devW, 34)]),
-    ]),
+    el('div', { display: 'flex' }, [img(logo.uri, logo.width, 46)]),
     el('div', { display: 'flex', flexDirection: 'column', gap: 22 }, [
       el('div', { display: 'flex', fontFamily: 'JetBrains Mono', fontWeight: 500, fontSize: 24, color: C.muted }, [
         el('span', { color: C.machine, marginRight: 12 }, '//'), eyebrow,

@@ -13,7 +13,7 @@ const { services, top, how } = Astro.props;
 ---
 <dialog id="menu-sheet" class="menu-sheet" data-surface="ink" aria-labelledby="menu-heading" data-menu>
   <div class="menu-sheet__top">
-    <a href="/" aria-label={t('logo.home')}><Logo /></a>
+    <a href="/" aria-label={t('logo.home')}><Logo lazy /></a>
     <button type="button" class="menu-sheet__close" data-menu-close autofocus>
       <Icon name="x" size={20} /><span class="sr-only">{t('menu.close')}</span>
     </button>

@@ -43,9 +43,10 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     {description && <meta name="description" content={description} />}
     {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={url} />}
     <meta name="theme-color" content="#01082D" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-heading" preload />
     <Font cssVariable="--font-body" />

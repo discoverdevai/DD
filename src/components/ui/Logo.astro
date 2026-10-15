@@ -1,23 +1,17 @@
 ---
-// Horizontal lockup (06 §9.24, §11). INTERIM: masks cut from the official PNG until the SVG set lands (D-33).
-// Colour comes from the surface: colour on paper, reversed (mark + "Dev" blue-300, "Discover" white) on ink, navy and footer.
-interface Props { class?: string }
-const { class: cls } = Astro.props;
+// Official horizontal logo (assets/logo/svg, from the brand guidelines asset kit; D-33 resolved). Brand rules: whole
+// logo only, never recoloured; on dark ink use the "for dark" version (white "Discover", blue gradient mark and "Dev");
+// on white use the dark-text version; min 120 px wide. Decorative here: the link around it carries the name.
+// `lazy` for copies below the fold (footer, mobile menu); the header copy loads eagerly.
+interface Props { tone?: 'for-dark' | 'dark-text'; lazy?: boolean; class?: string }
+const { tone = 'for-dark', lazy = false, class: cls } = Astro.props;
+const src = tone === 'for-dark' ? '/brand/logo-horizontal-for-dark.svg' : '/brand/logo-horizontal-dark-text.svg';
 ---
-<span class:list={['logo', cls]} aria-hidden="true">
-  <span class="logo__mark"></span>
-  <span class="logo__discover"></span>
-  <span class="logo__dev"></span>
-</span>
+<img class:list={['logo', cls]} src={src} alt="" width="825" height="175" decoding="async" loading={lazy ? 'lazy' : 'eager'} />
 
 <style>
-  .logo { --logo-h: 1.5rem; display: inline-flex; align-items: center; gap: calc(var(--logo-h) * 0.3); block-size: var(--logo-h); }
-  @media (width >= 40rem) { .logo { --logo-h: 1.75rem; } }
-  @media (width >= 64rem) { .logo { --logo-h: 2rem; } }
-  .logo > span { display: block; block-size: 100%; background: var(--logo-word, var(--neutral-950)); mask-repeat: no-repeat; mask-position: center; mask-size: contain; }
-  .logo__mark { aspect-ratio: 90 / 96; background: var(--logo-accent, var(--blue-700)) !important; mask-image: url('/brand/mark.png'); }
-  .logo__discover { block-size: 66% !important; aspect-ratio: 314 / 72; mask-image: url('/brand/wordmark-discover.png'); }
-  .logo__dev { block-size: 66% !important; aspect-ratio: 150 / 72; margin-inline-start: calc(var(--logo-h) * -0.3); background: var(--logo-accent, var(--blue-700)) !important; mask-image: url('/brand/wordmark-dev.png'); }
-  :global([data-surface='ink']) .logo, :global([data-surface='inverse']) .logo, :global([data-surface='footer']) .logo { --logo-word: var(--neutral-0); --logo-accent: var(--blue-300); }
-  @media (forced-colors: active) { .logo > span { background: CanvasText !important; } }
+  /* viewBox 825×175 → height drives width; 30px tall = 141px wide (above the 120px minimum). */
+  .logo { display: block; block-size: 1.875rem; inline-size: auto; }
+  @media (width >= 64rem) { .logo { block-size: 2.125rem; } }
+  @media (forced-colors: active) { .logo { forced-color-adjust: none; } }
 </style>
