@@ -12,7 +12,7 @@ const base = (args.find(a => !a.startsWith('--')) || 'http://localhost:4321').re
 const ri = args.indexOf('--report'); const reportPath = ri > -1 ? args[ri + 1] : null;
 const routes = fs.readFileSync(new URL('./routes.txt', import.meta.url), 'utf8').split('\n')
   .map(l => l.trim()).filter(l => l && !l.startsWith('#')).map(l => l.replace(/^\?/, ''));
-const budget = { lcp: 2000, cls: 0.1, tbt: 200, perf: 90 };
+const budget = { lcp: 2000, cls: 0.05, tbt: 200, perf: 90 }; // 07 §13 lab budgets (CLS 0.05 in the lab, 0.1 field)
 
 const rows = []; let blockers = 0;
 const exe = process.env.CHROME_PATH || chromium.executablePath();

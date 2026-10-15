@@ -1,6 +1,7 @@
 ---
 // Launch check (04 §8, 06 §9.23). Server-rendered markup for every screen; quiz-app.ts shows one at a time.
-// Without JS the quiz stays hidden and <noscript> + the static block below the quiz carry the page.
+// The intro renders visible (no layout shift when the script runs; it was CLS 0.09). Without JS, `scripting: none`
+// hides the quiz and <noscript> + the static block below the quiz carry the page.
 import { questions, quizCopy as c } from '../../content/copy/en/quiz';
 import { t } from '../../i18n/t';
 import CtaTerms from '../ui/CtaTerms.astro';
@@ -8,7 +9,7 @@ import { PUBLIC_WEB3FORMS_KEY } from 'astro:env/client';
 import { isLive, href } from '../../data/routes';
 const emailOn = Boolean(PUBLIC_WEB3FORMS_KEY);
 ---
-<div class="quiz" data-quiz hidden data-email={emailOn ? 'on' : 'off'} data-progress={c.progress}
+<div class="quiz" data-quiz data-email={emailOn ? 'on' : 'off'} data-progress={c.progress}
   data-cta-review={t('cta.review')} data-cta-clarity={t('cta.clarity')} data-book-live={isLive('book') ? '1' : '0'}
   data-pillar={isLive('pillar') ? href('pillar') : ''} data-validate={isLive('validate') ? href('validate') : ''} data-build={isLive('build') ? href('build') : ''}>
   <div class="quiz__intro" data-screen="intro">
@@ -122,6 +123,7 @@ const emailOn = Boolean(PUBLIC_WEB3FORMS_KEY);
   .email__consent { display: flex; gap: var(--space-3); align-items: start; min-block-size: 2.75rem; }
   .email__consent input { inline-size: 1.25rem; block-size: 1.25rem; accent-color: var(--color-action-bg); margin-block-start: 0.15rem; flex: none; }
   .linkbtn { justify-self: start; background: none; border: 0; padding: 0; min-block-size: 2.75rem; color: var(--color-link); text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; font-weight: var(--weight-medium); }
+  @media (scripting: none) { .quiz { display: none; } }
   .quiz-noscript { padding: var(--space-4); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-md); }
   @media (prefers-reduced-motion: no-preference) { .quiz__step:not([hidden]), .quiz__result:not([hidden]) { animation: fade var(--dur-fast) var(--ease-enter); } @keyframes fade { from { opacity: 0; } } }
 </style>

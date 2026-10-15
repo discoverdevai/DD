@@ -35,11 +35,14 @@ const { kind = 'clarity' } = Astro.props;
   if (bar && heroCta) {
     const mq = matchMedia('(width < 64rem)');
     let heroGone = false, bandIn = false, typing = false;
-    const sync = () => {
-      const show = mq.matches && heroGone && !bandIn && !typing;
-      bar.hidden = !show;
-      document.documentElement.style.setProperty('--bottom-bar-h', show ? `${bar.offsetHeight}px` : '0px');
-    };
+    const sync = () => { bar.hidden = !(mq.matches && heroGone && !bandIn && !typing); };
+    // The bar's height reaches --bottom-bar-h through a ResizeObserver (0 while hidden), so showing it never forces a
+    // synchronous layout inside a scroll frame, and <html> is only restyled when the value really changes.
+    let barH = 0;
+    new ResizeObserver(([e]) => {
+      const h = Math.round(e.borderBoxSize[0]?.blockSize ?? 0);
+      if (h !== barH) { barH = h; document.documentElement.style.setProperty('--bottom-bar-h', `${h}px`); }
+    }).observe(bar);
     new IntersectionObserver(([e]) => { heroGone = !e.isIntersecting && e.boundingClientRect.top < 0; sync(); }).observe(heroCta);
     // Stay hidden once the closing band is reached (in view or scrolled past), so the bar never covers the footer.
     if (band) new IntersectionObserver(([e]) => { bandIn = e.isIntersecting || e.boundingClientRect.top < 0; sync(); }).observe(band);

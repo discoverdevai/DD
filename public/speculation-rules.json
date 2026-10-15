@@ -1,0 +1,16 @@
+{
+  "prefetch": [
+    {
+      "where": {
+        "and": [
+          { "href_matches": "/*" },
+          { "not": { "href_matches": "/book*" } },
+          { "not": { "href_matches": "/og/*" } },
+          { "not": { "href_matches": "/*.xml" } },
+          { "not": { "href_matches": "/*.txt" } }
+        ]
+      },
+      "eagerness": "moderate"
+    }
+  ]
+}

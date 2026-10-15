@@ -76,13 +76,17 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <script>
       // Pointer-tracked light for [data-spotlight] cards on every page (fine pointers only; CSS vars via CSSOM, CSP-safe).
       if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        document.addEventListener('pointermove', (e) => {
-          const el = (e.target as Element | null)?.closest?.<HTMLElement>('[data-spotlight]');
-          if (!el) return;
+        // One read + write per frame (rAF): reading the rect right after the last write forced a style recalc per move.
+        let last: PointerEvent | null = null;
+        const paint = () => {
+          const e = last; last = null;
+          const el = (e?.target as Element | null)?.closest?.<HTMLElement>('[data-spotlight]');
+          if (!e || !el) return;
           const r = el.getBoundingClientRect();
           el.style.setProperty('--mx', `${e.clientX - r.left}px`);
           el.style.setProperty('--my', `${e.clientY - r.top}px`);
-        }, { passive: true });
+        };
+        document.addEventListener('pointermove', (e) => { if (!last) requestAnimationFrame(paint); last = e; }, { passive: true });
       }
     </script>
     {PUBLIC_CF_BEACON_TOKEN && Astro.site?.hostname === 'discoverdev.ai' && (

@@ -14,7 +14,7 @@ const { services, top, how } = Astro.props;
 <dialog id="menu-sheet" class="menu-sheet" data-surface="ink" aria-labelledby="menu-heading" data-menu>
   <div class="menu-sheet__top">
     <a href="/" aria-label={t('logo.home')}><Logo lazy /></a>
-    <button type="button" class="menu-sheet__close" data-menu-close autofocus>
+    <button type="button" class="menu-sheet__close" commandfor="menu-sheet" command="close" data-menu-close autofocus>
       <Icon name="x" size={20} /><span class="sr-only">{t('menu.close')}</span>
     </button>
   </div>
@@ -63,7 +63,8 @@ const { services, top, how } = Astro.props;
 </style>
 
 <script>
-  // Open with showModal(); focus starts on Close (autofocus) and returns to the menu button on close (06 §9.2).
+  // Invoker commands (commandfor/command) open and close the sheet even before or without this script; showModal() on an
+  // open dialog is a no-op, so both paths together are safe. Open with showModal(); focus starts on Close (autofocus) and returns to the menu button on close (06 §9.2).
   const dialog = document.querySelector<HTMLDialogElement>('[data-menu]');
   const opener = document.querySelector<HTMLButtonElement>('[data-menu-open]');
   opener?.addEventListener('click', () => { dialog?.showModal(); opener.setAttribute('aria-expanded', 'true'); });

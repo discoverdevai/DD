@@ -34,6 +34,8 @@ export function track(name: EventName, props: Props = {}, beacon = false) {
 
 async function loadPostHog() {
   if (!PROD || !PUBLIC_POSTHOG_KEY) return;
+  // Global Privacy Control: a browser-level opt-out signal; honour it by not loading analytics at all.
+  if ((navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true) return;
   try {
     const { default: posthog } = await import('posthog-js');
     posthog.init(PUBLIC_POSTHOG_KEY, {
@@ -44,6 +46,7 @@ async function loadPostHog() {
       capture_pageview: true,
       capture_pageleave: false,
       disable_session_recording: true,
+      capture_exceptions: true, // PostHog error tracking: same origin as analytics, no new third party
     });
     ph = posthog as unknown as PH;
     for (const [n, p, b] of queue.splice(0)) ph.capture(n, p, b ? { transport: 'sendBeacon' } : undefined);
