@@ -29,6 +29,7 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 
 ## Method: Agile v2 + full SDLC
 - "AI does the heavy lifting; senior engineers own the quality." Humans responsible for every line that reaches users.
+- A senior engineer signs off every release before it reaches users (confirmed by Mohamed, Oct 16 2026).
 - "We own the full lifecycle and we stay." One team, no handoff gaps (confirmed true on every engagement).
 - Stages: Discover (define the right product) → Plan (roadmap, tech, team before code) → Build (Agile v2 sprints, results every week) → Ship & Stay (deploy, monitor, keep improving).
 
