@@ -38,7 +38,7 @@ publishedAt: 2026-10-16
 updatedAt: 2026-10-16
 faqs: []
 relatedService: review
-related: ["en/ai-built-app-security-holes", "en/lovable-launch-checklist"]
+related: ["en/ai-built-app-security-holes", "en/lovable-launch-checklist", "en/fix-or-rebuild-ai-app"]
 draft: false
 ---
 
@@ -144,7 +144,7 @@ You can also gather your own evidence before anyone else looks. Three questions 
 - **Does the data model match your business?** Write down your main things (users, teams, orders, bookings) and how they relate. Then compare with the database tables. Small gaps are fine. A missing core idea is not.
 - **Where do bugs come from?** If most bugs come from one feature, that feature may need replacing. If they come from everywhere, the code may need a refactor first.
 
-The cost of being wrong runs both ways. Rebuilding too early throws away working features and months of learning. Fixing too long keeps you paying for patches on a foundation that will not hold. A clear verdict before you spend costs less than either mistake.
+The cost of being wrong runs both ways. Rebuilding too early throws away working features and months of learning. Fixing too long keeps you paying for patches on a foundation that will not hold. A clear verdict before you spend costs less than either mistake. For every signal side by side, with what each path costs and takes, read [how to decide whether to fix or rebuild your AI-built app](/insights/fix-or-rebuild-ai-app).
 
 ## What does it cost and how long does it take?
 

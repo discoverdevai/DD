@@ -1,6 +1,8 @@
 // /llms.txt (05 §5.2; strategy v2 order: lifecycle first, Review as one service). Built from the route registry so it only ever lists live pages.
+// Guides come from publishedInsights(), which never returns drafts, so an unpublished article cannot appear here.
 import type { APIRoute } from 'astro';
 import { ROUTES, type RouteKey } from '../data/routes';
+import { insightPath, publishedInsights } from '../lib/insights';
 import { ENTITY_LINE, SITE_URL, CLUTCH_URL } from '../lib/seo';
 
 const SERVICES: [RouteKey, string, string][] = [
@@ -14,8 +16,13 @@ const COMPANY: [RouteKey, string][] = [['about', 'About'], ['launchCheck', 'Laun
 
 const line = (k: RouteKey, name: string, desc?: string) => (ROUTES[k].live ? `- [${name}](${SITE_URL}${ROUTES[k].path})${desc ? `: ${desc}` : ''}` : null);
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = async () => {
   const services = SERVICES.map(([k, n, d]) => line(k, n, d)).filter(Boolean);
+  // Pillar first, then clusters in publish order (05 §5.2).
+  const insights = ROUTES.insights.live ? await publishedInsights('en') : [];
+  const guides = insights
+    .sort((a, b) => Number(b.data.role === 'pillar') - Number(a.data.role === 'pillar') || a.data.publishedAt.getTime() - b.data.publishedAt.getTime() || a.id.localeCompare(b.id))
+    .map((e) => `- [${e.data.h1}](${SITE_URL}${insightPath(e)})`);
   const company = COMPANY.map(([k, n]) => line(k, n)).filter(Boolean);
   const body = [
     '# DiscoverDev',
@@ -27,6 +34,7 @@ export const GET: APIRoute = () => {
     `Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct): ${CLUTCH_URL}`,
     '',
     ...(services.length ? ['## Services', ...services, ''] : []),
+    ...(guides.length ? ['## Guides', ...guides, ''] : []),
     '## Company',
     `- [Home](${SITE_URL}/)`,
     ...company,
