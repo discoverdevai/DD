@@ -5,6 +5,16 @@
   --color-action-border: transparent;
 }
 
+/* Signal layer tokens on navy chapters and the footer (06 §0.2 defines them for paper and ink only). */
+[data-surface="inverse"],
+[data-surface="footer"] {
+  --color-machine-text: var(--blue-300);
+  --color-machine-mark: var(--blue-400);
+  --color-human-text: var(--green-300);
+  --color-human-mark: var(--green-300);
+  --color-hairline: rgb(254 254 254 / 0.16);
+}
+
 @media (width >= 64rem) { :root { --header-h: 4.5rem; } }
 
 *, *::before, *::after { box-sizing: border-box; }

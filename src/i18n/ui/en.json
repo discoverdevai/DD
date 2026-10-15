@@ -56,5 +56,6 @@
   "footer.copyright": "© {year} DiscoverDev",
   "back": "Back",
   "footer.location.us": "Texas, USA",
-  "footer.location.eg": "Alexandria, Egypt (engineering hub)"
+  "footer.location.eg": "Alexandria, Egypt (engineering hub)",
+  "steps.label": "Step {n}:"
 }

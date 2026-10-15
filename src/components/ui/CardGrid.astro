@@ -1,0 +1,32 @@
+---
+// Plain content cards (problem cards, outcomes, pillars, review areas). Not links: one link per card max (06 §9.8).
+// cols = columns from 48rem; 1 column below.
+import Icon from './Icon.astro';
+import LayerChip from './LayerChip.astro';
+type IconName = Parameters<typeof Icon>[0]['name'];
+interface Item { title: string; body: string; icon?: IconName; chip?: { kind: 'ai' | 'human'; label: string } }
+interface Props { items: readonly Item[]; cols?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'; variant?: 'card' | 'rule' }
+const { items, cols = 3, headingLevel: H = 'h3', variant = 'card' } = Astro.props;
+---
+<ul role="list" class:list={['grid', `grid--${cols}`, `grid--${variant}`]}>
+  {items.map((it) => (
+    <li class="item">
+      {it.icon && <span class="item__icon"><Icon name={it.icon} size={20} /></span>}
+      <H class="h3 item__title">{it.title}</H>
+      <p class="item__body">{it.body}</p>
+      {it.chip && <LayerChip kind={it.chip.kind}>{it.chip.label}</LayerChip>}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .grid { display: grid; gap: var(--grid-gap); }
+  @media (width >= 48rem) { .grid--2 { grid-template-columns: repeat(2, 1fr); } .grid--3 { grid-template-columns: repeat(3, 1fr); } .grid--4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (width >= 64rem) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+  .item { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; }
+  .grid--card .item { background: var(--color-surface); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); padding: var(--space-6); }
+  .grid--rule .item { border-block-start: 1px solid var(--color-hairline); padding-block-start: var(--space-6); }
+  .item__icon { inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-sm); display: grid; place-items: center; border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
+  .item__title { font-size: var(--text-lg); }
+  .item__body { color: var(--color-text-muted); }
+</style>

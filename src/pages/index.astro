@@ -1,12 +1,104 @@
 ---
-// Home (04 §4.1). M1 ships the hero; remaining sections land in M4.
+// Home (04 §4.1, surface map 06 §0.4). Team (#10) and testimonials (#11) are omitted at launch (03 §0.7: [TEAM], [CONSENT]).
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHero from '../components/sections/HomeHero.astro';
-import { home } from '../content/copy/en/home';
-import { graph, orgFull, website, webPage } from '../lib/seo';
+import ProofStrip from '../components/sections/ProofStrip.astro';
+import Section from '../components/ui/Section.astro';
+import CardGrid from '../components/ui/CardGrid.astro';
+import CheckList from '../components/ui/CheckList.astro';
+import Steps from '../components/ui/Steps.astro';
+import PathCards from '../components/ui/PathCards.astro';
+import ReviewSnapshot from '../components/ui/ReviewSnapshot.astro';
+import Faq from '../components/ui/Faq.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import CtaLink from '../components/ui/CtaLink.astro';
+import { home as c } from '../content/copy/en/home';
+import { t } from '../i18n/t';
+import { bookHref, href, isLive } from '../data/routes';
+import { graph, orgFull, website, webPage, ORG_ID } from '../lib/seo';
 
-const jsonLd = graph(orgFull, website, webPage('/', home.seo.title, home.seo.description, 'WebPage', { about: { '@id': 'https://discoverdev.ai/#org' } }));
+const faqLd = { '@type': 'FAQPage', '@id': 'https://discoverdev.ai/#faq', mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
+const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
 ---
-<BaseLayout title={home.seo.title} description={home.seo.description} pageType="home" jsonLd={jsonLd}>
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd}>
   <HomeHero />
+  <ProofStrip title={c.proofStrip.title} items={c.proofStrip.items} />
+
+  <Section id="problem" surface="ink" title={c.problem.title}>
+    <CardGrid items={c.problem.cards} cols={3} />
+    <p class="closing">{c.problem.closing}</p>
+  </Section>
+
+  <Section id="offer" surface="paper">
+    <div class="offer">
+      <div class="offer__copy">
+        <h2 id="offer-title" class="h2">{c.offer.title}</h2>
+        <p class="offer__answer">{c.offer.answer}</p>
+        <CheckList items={c.offer.gets} />
+        <p class="offer__price">{c.offer.price}</p>
+        <p class="offer__guarantee">{c.offer.guarantee}</p>
+        <div class="offer__cta">
+          <CtaLink href={bookHref('review')} ctaId="home_mid_review" tier="primary" position="mid" target="review" wide>{t('cta.review')}</CtaLink>
+          <p class="small muted">{c.offer.microcopy}</p>
+          {isLive('review') && <CtaLink href={`${href('review')}#what-we-check`} ctaId="home_mid_review_scope" tier="primary" position="mid" target="review" variant="text">{c.offer.link}</CtaLink>}
+        </div>
+      </div>
+      <ReviewSnapshot />
+    </div>
+  </Section>
+
+  <Section id="how-it-works" surface="ink" eyebrow={c.how.eyebrow} title={c.how.title}>
+    <Steps steps={c.how.steps} />
+  </Section>
+
+  {isLive('validate') || isLive('build') || isLive('scale') || isLive('partners') ? (
+    <Section id="paths" surface="alt" title={c.paths.title}>
+      <PathCards cards={c.paths.cards} page="home" />
+    </Section>
+  ) : null}
+
+  <Section id="case" surface="paper">
+    <div class="case">
+      <div class="case__figure">
+        <p class="case__metric">{c.caseHighlight.metric}</p>
+        <p class="case__label">{c.caseHighlight.metricLabel}</p>
+        <ul role="list" class="case__stack">{c.caseHighlight.stack.map((s) => <li>{s}</li>)}</ul>
+      </div>
+      <div class="case__copy">
+        <h2 id="case-title" class="h2">{c.caseHighlight.title}</h2>
+        <p>{c.caseHighlight.body}</p>
+        {isLive('workEdulens') && <CtaLink href={href('workEdulens')} ctaId="home_mid_case" tier="secondary" position="mid" target="case" variant="text">{c.caseHighlight.link}</CtaLink>}
+      </div>
+    </div>
+  </Section>
+
+  <Section id="why" surface="ink" title={c.why.title} lead={c.why.lead}>
+    <CardGrid items={c.why.pillars} cols={3} variant="rule" />
+    <p class="small muted why__own">{c.why.small}</p>
+  </Section>
+
+  <Section id="faq" surface="paper" title={c.faq.title}>
+    <Faq items={c.faq.items} />
+  </Section>
+
+  <CtaBand title={c.band.title} body={c.band.body} kind="review" page="home" link={{ label: c.band.link, to: 'launchCheck' }} />
 </BaseLayout>
+
+<style>
+  .closing { margin-block-start: var(--space-8); font-size: var(--text-lg); font-weight: var(--weight-medium); max-inline-size: 60ch; }
+  .offer { display: grid; gap: var(--space-12); }
+  @media (width >= 64rem) { .offer { grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items: start; } }
+  .offer__copy { display: grid; gap: var(--space-5); align-content: start; }
+  .offer__answer { font-size: var(--text-lg); max-inline-size: var(--measure-lead); }
+  .offer__price { color: var(--color-text-muted); }
+  .offer__guarantee { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); color: var(--color-heading); }
+  .offer__cta { display: grid; gap: var(--space-2); justify-items: start; }
+  .case { display: grid; gap: var(--space-8); }
+  @media (width >= 64rem) { .case { grid-template-columns: 5fr 7fr; gap: var(--space-16); align-items: center; } }
+  .case__metric { font-family: var(--ff-heading); font-weight: var(--weight-extrabold); font-size: clamp(3.5rem, 2rem + 6vw, 6.5rem); line-height: 1; letter-spacing: -0.04em; color: var(--color-heading); font-variant-numeric: tabular-nums; }
+  .case__label { font-size: var(--text-lg); color: var(--color-text-muted); margin-block-start: var(--space-2); }
+  .case__stack { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-5); }
+  .case__stack li { font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px var(--space-2); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xs); color: var(--color-text-muted); }
+  .case__copy { display: grid; gap: var(--space-4); max-inline-size: var(--measure-prose); }
+  .why__own { margin-block-start: var(--space-8); }
+</style>

@@ -1,0 +1,13 @@
+---
+// LayerChip (06 §0.5): marks which layer does a step. machine = AI-accelerated, human = senior sign-off.
+interface Props { kind: 'ai' | 'human' }
+const { kind } = Astro.props;
+---
+<span class:list={['chip', `chip--${kind}`]}><slot /></span>
+
+<style>
+  .chip { justify-self: start; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--ff-mono); font-size: var(--text-xs); font-weight: var(--weight-medium); padding: 2px var(--space-2); border-radius: var(--radius-xs); }
+  .chip::before { content: ''; inline-size: 6px; block-size: 6px; border-radius: 50%; background: currentColor; }
+  .chip--ai { color: var(--color-machine-text); background: color-mix(in oklab, var(--color-machine-mark) 14%, transparent); }
+  .chip--human { color: var(--color-human-text); background: color-mix(in oklab, var(--color-human-mark) 14%, transparent); }
+</style>

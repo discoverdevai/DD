@@ -1,0 +1,24 @@
+---
+// Check-mark list (what you get, symptoms, deliverables). Item = plain text or { lead, text } for a bold lead-in.
+import Icon from './Icon.astro';
+type Item = string | { lead: string; text: string };
+interface Props { items: readonly Item[]; tone?: 'human' | 'machine'; class?: string }
+const { items, tone = 'human', class: cls } = Astro.props;
+---
+<ul role="list" class:list={['checks', `checks--${tone}`, cls]}>
+  {items.map((it) => (
+    <li>
+      <Icon name="check" size={20} />
+      {typeof it === 'string' ? <span>{it}</span> : <span><strong>{it.lead}</strong> {it.text}</span>}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .checks { display: grid; gap: var(--space-3); }
+  .checks li { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: var(--space-3); align-items: start; }
+  .checks :global(.icon) { margin-block-start: 0.2em; }
+  .checks--human :global(.icon) { color: var(--color-human-mark); }
+  .checks--machine :global(.icon) { color: var(--color-machine-text); }
+  .checks strong { font-weight: var(--weight-semibold); color: var(--color-text); }
+</style>

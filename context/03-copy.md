@@ -115,6 +115,41 @@ Tag format in the copy: `[VERIFY: Vn]`, `[PRICE: Pn]`, `[CONSENT: name]`, `[METR
 - **D4 Arabic before /ar.** market-voc suggests a short Arabic summary block on /launch-ready and /book before Q1 2027. Not written here (English-only brief). Add if you want it; needs a native reviewer.
 - **D5 External facts.** No external statistics (CVE counts, leak stories) are used in page copy, because the brief limits facts to master. They belong in /insights articles with citations.
 
+### 0.7 Launch resolution of every tag (weekend launch, applied Oct 16; source `11` §0b)
+How the build treats each tag in this deck. "Keep" = render the tagged text without the tag. "Omit" = the tagged sentence, bullet or FAQ is not built. "Replace" = use the text given here. Change a row here first to change the site.
+
+| Tag | Resolution | Source |
+|---|---|---|
+| V1 founding year | Omit | D-21 |
+| V2 six Review areas · V3 deliverables + Day 0–5 | Keep | `02` Offers ("~5 working days, read-only access, ranked findings + fix/refactor/rebuild verdict + fixed quote"); `09` Offer |
+| V4 "useful" definition | Replace with: "A useful finding is an issue we rate medium severity or higher." | D-03 |
+| V5 read-only access · NDA on request | Keep | `02` Offers (read-only); company profile deck trust slide ("NDA on every engagement", cleared external) |
+| V6 your repo and accounts from day one | Keep | Company profile deck ("Your repositories, your infrastructure, from the first commit", cleared external) |
+| V7 reply time · quote turnaround | Omit both promises | D-10, D-40 |
+| V8 call slots in US and Gulf hours | Keep | D-42 availability (Mon–Thu 12:00–20:00, Sun 12:00–17:00 Cairo) |
+| V9 entity name · US contract FAQ | Omit (footer © shows "DiscoverDev" only; the "Do you sign a contract with US clients?" FAQ is not built) | D-08 |
+| V10 launch in under 2 weeks | Replace FAQ answer with: "Tell us your date. We review critical paths first." | D-20 |
+| V11 Supabase, Firebase experience | Omit "Supabase" and "Firebase" from stack claims (FAQ lists). Keep Supabase RLS as an example of *what we check* (§3.4 area 1) and Stripe (Stripe Connect proven, `09` Rushr) | `09` has no Supabase/Firebase project |
+| V12 EduLens | Anonymize as "EdTech AI platform, Egypt": metric and the five mechanisms kept (all in `09`); name, quote, timeline, team and "What's next" omitted; no baseline line | D-05/D-06 |
+| V13 partner terms | Keep: white-label "your brand only" (deck: "our name never needs to appear"), "Per project", staff aug 3 months, NDA and IP to you. Omit: replacement terms, client-contact and non-solicit lines, start time | Deck trust slide; `09` engagement models |
+| V14 cost vs agencies | Keep | `09` guardrails ("cost = fraction of agency cost, a consequence not a hook") |
+| V15 cookieless, no banner | Keep (with the Cal.com cookie line) | D-24 |
+| V16 who you'll meet | Keep "A senior member of our product team." No names or photos | D-16 |
+| V17 Yawmy Care, academic collaborations | Omit §12.8 | D-32 |
+| V18 quiz thresholds | Keep v1 | D-39 |
+| V19 free scoping call first | Keep | D-04 |
+| V20 payment terms | Omit | D-02 |
+| V21 change pricing during Build | Omit that sentence; keep "We agree a clear scope before we start, then price that scope." | Not in `09` |
+| V22 squad start, resize notice, month-to-month | Omit those FAQs and clauses | Not in `09` |
+| P1 Review price | Replace with: "Fixed fee, quoted after a free 30-minute call." | D-01 |
+| P2–P5 Validate, Build, Scale, Partner prices | Model only, no numbers (text already in each pricing section) | D-18, D-19 |
+| [TEAM] | Omit team sections and grids | D-16, D-17 |
+| [WHATSAPP] | Omit | D-09 |
+| [CONSENT: client] | Omit names, logos and quotes. Use the anonymized descriptions from §9.3. Retention line becomes "Four clients expanded scope with us." | D-05 |
+| [METRIC] Rushr | Rushr hidden everywhere | D-07 |
+| [ASSET] sample report | ReviewSnapshot in HTML, labelled "Sample report, not a client" | D-26 |
+| Testimonial sections | Omit; keep rating text + Clutch link | D-05, `04` §9 |
+
 ---
 
 ## 1. Global elements

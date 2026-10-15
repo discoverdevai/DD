@@ -1,0 +1,29 @@
+---
+// Section wrapper (06 §5): owns vertical rhythm and the surface (ink = workshop, paper/alt = report, inverse = navy chapter).
+// Head: optional eyebrow, H2 (id for aria-labelledby), optional lead. Content goes in the default slot.
+import Eyebrow from './Eyebrow.astro';
+interface Props {
+  id: string; title?: string; titleHidden?: boolean; lead?: string; eyebrow?: string;
+  surface?: 'ink' | 'paper' | 'alt' | 'inverse'; size?: 'md' | 'sm'; width?: 'default' | 'narrow' | 'prose'; divider?: boolean; class?: string;
+}
+const { id, title, titleHidden = false, lead, eyebrow, surface = 'paper', size = 'md', width = 'default', divider = false, class: cls } = Astro.props;
+const titleId = `${id}-title`;
+const container = width === 'default' ? 'container' : `container--${width}`;
+---
+<section id={id} data-surface={surface} class:list={['section', { 'section--sm': size === 'sm', 'section-divider': divider }, cls]} aria-labelledby={title ? titleId : undefined}>
+  <div class={container}>
+    {(title || eyebrow) && (
+      <header class:list={['section-head', { 'sr-only': titleHidden }]}>
+        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+        {title && <h2 id={titleId} class="h2">{title}</h2>}
+        {lead && <p class="lead">{lead}</p>}
+      </header>
+    )}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section-head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
+  .section-head :global(.h2) { max-inline-size: var(--measure-heading); }
+</style>

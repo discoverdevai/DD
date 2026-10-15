@@ -1,0 +1,39 @@
+---
+// FAQ (06 §9.15): native <details>, answers stay in static HTML for crawlers; several can be open; deep links via #faq-*.
+// Returns FAQPage-ready data through the `items` prop so JSON-LD text equals the visible text (05 §4.8).
+import Icon from './Icon.astro';
+interface Item { id: string; q: string; a: string }
+interface Props { items: readonly Item[] }
+const { items } = Astro.props;
+---
+<div class="faq">
+  {items.map((it) => (
+    <details id={`faq-${it.id}`} class="faq__item">
+      <summary class="faq__q"><span>{it.q}</span><Icon name="chevron-down" size={20} /></summary>
+      <div class="faq__a"><p>{it.a}</p></div>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq { max-inline-size: 52rem; border-block-start: 1px solid var(--color-border-subtle); }
+  .faq__item { border-block-end: 1px solid var(--color-border-subtle); }
+  .faq__q { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); min-block-size: 3.5rem; padding-block: var(--space-5); font-weight: var(--weight-medium); font-size: var(--text-lg); line-height: var(--leading-snug); }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q :global(.icon) { flex: none; color: var(--color-link); }
+  @media (hover: hover) { .faq__q:hover { color: var(--color-link); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .faq__q :global(.icon) { transition: rotate var(--dur-base) var(--ease-standard); }
+    .faq__item { interpolate-size: allow-keywords; }
+    .faq__item::details-content { block-size: 0; overflow: clip; transition: block-size var(--dur-base) var(--ease-standard), content-visibility var(--dur-base) allow-discrete; }
+    .faq__item[open]::details-content { block-size: auto; }
+  }
+  .faq__item[open] .faq__q :global(.icon) { rotate: 180deg; }
+  .faq__a { padding-block-end: var(--space-5); max-inline-size: var(--measure-prose); }
+</style>
+
+<script>
+  // Deep links (#faq-ownership) open the matching item (06 §9.15).
+  const open = () => { const el = location.hash && document.querySelector<HTMLDetailsElement>(`details${CSS.escape(location.hash)}`); if (el) el.open = true; };
+  open(); addEventListener('hashchange', open);
+</script>

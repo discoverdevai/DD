@@ -1,0 +1,35 @@
+---
+// Closing band (06 §9.16 + §0.5 blade): navy chapter, centred, the only filled button in view.
+// kind sets the button, terms and analytics target. data-cta-band hides the sticky bar while in view.
+import CtaLink from './CtaLink.astro';
+import CtaTerms from './CtaTerms.astro';
+import { t } from '../../i18n/t';
+import { bookHref, href, isLive } from '../../data/routes';
+interface Props { id?: string; title: string; body?: string; kind?: 'review' | 'clarity' | 'partner'; page: string; link?: { label: string; to: 'launchCheck' | 'review' } }
+const { id = 'cta', title, body, kind = 'review', page, link } = Astro.props;
+const label = { review: t('cta.review'), clarity: t('cta.clarity'), partner: t('cta.partner') }[kind];
+const tier = kind === 'partner' ? 'partner' : kind === 'review' ? 'primary' : 'secondary';
+const linkTarget = link?.to === 'review' ? 'review' : 'launch_check';
+---
+<section id={id} class="band" data-surface="inverse" aria-labelledby={`${id}-title`} data-cta-band>
+  <div class="band__blade" aria-hidden="true"></div>
+  <div class="container--narrow band__inner">
+    <h2 id={`${id}-title`} class="band__title">{title}</h2>
+    {body && <p class="band__body">{body}</p>}
+    <CtaLink href={bookHref(kind)} ctaId={`${page}_band_${kind}`} tier={tier} position="band" target={kind}>{label}</CtaLink>
+    <CtaTerms kind={kind} class="band__terms" />
+    {link && isLive(link.to) && (
+      <CtaLink href={href(link.to)} ctaId={`${page}_band_${linkTarget}`} tier={link.to === 'review' ? 'primary' : 'low_commitment'} position="band" target={linkTarget} variant="text">{link.label}</CtaLink>
+    )}
+  </div>
+</section>
+
+<style>
+  .band { position: relative; overflow: hidden; padding-block: var(--section-y); }
+  .band__blade { position: absolute; inset-block-end: -40%; inset-inline-end: -12%; inline-size: min(56vw, 44rem); aspect-ratio: 1; pointer-events: none; background: linear-gradient(200deg, var(--blue-700), var(--blue-800) 70%); clip-path: polygon(30% 4%, 100% 40%, 46% 46%); }
+  :dir(rtl) .band__blade { scale: -1 1; }
+  .band__inner { position: relative; display: grid; gap: var(--space-5); justify-items: center; text-align: center; }
+  .band__title { font-size: var(--text-3xl); font-weight: var(--weight-extrabold); letter-spacing: -0.03em; max-inline-size: 18ch; }
+  .band__body { font-size: var(--text-lg); color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
+  .band__inner :global(.band__terms) { justify-content: center; }
+</style>

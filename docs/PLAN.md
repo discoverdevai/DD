@@ -26,11 +26,11 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 - ✅ S4 `tokens.css` (06 §2 + §0), `base.css`, fonts (Manrope, Rubik, JetBrains Mono)
 - ✅ S5 i18n registry + `t()`, `lib/seo.ts`
 - ✅ S6 Brand assets: interim mark and wordmark, favicon, apple-touch, `logo-512`
-- 🔄 S7 BaseLayout, SkipLink, Header (Services disclosure, mobile `<dialog>`), Footer, Logo, CtaLink, Icon
-- ⏳ S8 Home hero with RunPanel (the token proof), 404
-- ⏳ S9 System files: `robots.txt`, `_headers`, `_redirects`, `security.txt`, `llms.txt`, sitemap
-- ⏳ S10 css-logical-lint, CI workflow, git init + first commit
-- ⏳ S11 Gate: build, `astro check`, lint, `qa/check-dist.mjs` (route-missing blockers expected until M4), axe on the shell
+- ✅ S7 BaseLayout, SkipLink, Header (Services disclosure, mobile `<dialog>`), Footer, Logo, CtaLink, Icon
+- ✅ S8 Home hero with RunPanel (the token proof), 404
+- ✅ S9 System files: `robots.txt`, `_headers`, `_redirects`, `security.txt`, `llms.txt`, sitemap
+- ✅ S10 css-logical-lint, CI workflow, git init + first commit
+- 🔄 S11 Gate: build, `astro check`, lint, `qa/check-dist.mjs` (route-missing blockers expected until M4), axe on the shell
 
 ### M2 + M4 Components and every page (Fri Oct 16). Skills: design-skills:design-systems, rampstack-skills:accessibility-audit, agent-protocols:performance-optimization, copywriting-kit:copy-proof-check, mkt-cro, rampstack-skills:scheduler-and-booking-design, rampstack-skills:quiz-and-assessment-design
 - ⏳ Components in `06` §9 + §0; all routes in `qa/routes.txt` from `03`
@@ -51,6 +51,11 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 | Oct 16 01:50 | S4 tokens | Done | `tokens.css` is generated from 06 by `scripts/build-tokens.mjs` (06 stays the source of truth; spec and code can't drift) |
 | Oct 16 01:55 | S5 i18n + SEO | Done | `t()` with named args; 58 UI keys from 03 §1. The locations line is split into 2 strings so it renders as a list, not middle-dot text (06 §1) |
 | Oct 16 02:00 | S6 brand assets | Done | `scripts/brand-assets.mjs`: wordmark split into "Discover" and "Dev" masks from the official white PNG, so 06 §11 two-tone colourways work on ink and paper. Favicon, apple-touch, logo-512. Interim until D-33 |
+| Oct 16 02:10 | S7 shell | Done | Header (Services disclosure, `<dialog>` menu), Footer, StickyBookBar, Logo, CtaLink (validates ctaId), CtaTerms, ProofChip, Eyebrow. Route registry: nav, footer and CTAs link only to live routes; booking falls back to email until `/book` ships |
+| Oct 16 02:15 | S8 hero + 404 | Done | RunPanel from 03 §2.2a. Visual check at 1440 and 375 found: run sequence 3.0s (over 06's 2.4s cap), so AI steps cut to 220ms (2.38s); header CTA wrapped at 375, so nowrap + tighter mobile header; star alone on its line, so the proof chip uses inline flow |
+| Oct 16 02:20 | S9 system files | Done | `llms.txt` generated from live routes (05 §5.2 "only live pages"). HSTS without `includeSubDomains` (D-41 default). security.txt uses hello@ (D-22) |
+| Oct 16 02:25 | S10 lint + CI + git | Done | `scripts/css-logical-lint.mjs` OK; `.github/workflows/ci.yml`; first commit `034607a`. Shiki off (inline styles conflict with CSP; decide in M5) |
+| Oct 16 02:25 | S11 gate | Static OK | `astro check` 0 errors; lint OK; `check-dist`: 0 major, only the 17 not-yet-built routes as blockers (expected until M4). Two QA kit bugs fixed: `%20` in folder path skipped `routes.txt`; tags inside inlined JS were read as `<a>`. axe/Lighthouse tooling installing |
 
 ## Needed from Mohamed (blocks nothing in M1)
 D-14 DNS access · D-15 old routes · D-23 Cal.com username · D-33 logo SVGs · PostHog key · Web3Forms key · GitHub repo.

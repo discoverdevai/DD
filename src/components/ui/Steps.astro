@@ -1,0 +1,31 @@
+---
+// ProcessSteps (06 §9.14) with layer chips (06 §0.5). A real sequence, so numbering is meaningful.
+// Horizontal from 64rem with a block-start connector; vertical below with an inline-start connector (both logical).
+import LayerChip from './LayerChip.astro';
+import { t } from '../../i18n/t';
+interface Step { title: string; body: string; meta?: string; chip?: { kind: 'ai' | 'human'; label: string } }
+interface Props { steps: readonly Step[] }
+const { steps } = Astro.props;
+---
+<ol role="list" class="steps">
+  {steps.map((s, i) => (
+    <li class="step">
+      <span class="step__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+      <h3 class="h3 step__title"><span class="sr-only">{t('steps.label', 'en', { n: i + 1 })} </span>{s.title}</h3>
+      {s.meta && <p class="step__meta">{s.meta}</p>}
+      <p class="step__body">{s.body}</p>
+      {s.chip && <LayerChip kind={s.chip.kind}>{s.chip.label}</LayerChip>}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .steps { display: grid; gap: 0; }
+  @media (width >= 64rem) { .steps { grid-auto-flow: column; grid-auto-columns: 1fr; } }
+  .step { display: grid; gap: var(--space-3); align-content: start; padding-block: var(--space-6); padding-inline-start: var(--space-6); border-inline-start: 2px solid var(--color-border-accent); position: relative; min-inline-size: 0; }
+  @media (width >= 64rem) { .step { border-inline-start: 0; border-block-start: 2px solid var(--color-border-accent); padding-inline: 0 var(--space-6); padding-block: var(--space-6) 0; } }
+  .step__n { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
+  .step__title { font-size: var(--text-lg); }
+  .step__meta { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .step__body { color: var(--color-text-muted); }
+</style>
