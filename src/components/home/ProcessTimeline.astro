@@ -2,11 +2,13 @@
 // Step timeline with a mini UI vignette per step. Home v3 uses it for the lifecycle (03 §2A.5): choose (fork),
 // plan (calendar), build (AI log), ship (rising bars + live dot). Vignettes are decorative (aria-hidden).
 import LayerChip from '../ui/LayerChip.astro';
+import Artifact from '../how/Artifact.astro';
 import { t } from '../../i18n/t';
 type Chip = { kind: 'ai' | 'human'; label: string };
 type Vig = 'cal' | 'log' | 'sign' | 'fork' | 'ship';
 interface Tool { name: string; what: string }
-interface Step { title: string; body: string; chip?: Chip; chips?: readonly Chip[]; when?: string; gets?: string; tools?: readonly Tool[] }
+// `art`: name of the framework drawing (components/how/Artifact) shown on top of a step card (home, Oct 16).
+interface Step { title: string; body: string; chip?: Chip; chips?: readonly Chip[]; when?: string; art?: string; gets?: string; tools?: readonly Tool[] }
 // `track`: a progress line across the steps that fills as the section scrolls in, each step lighting up in turn
 // (replaces the vignettes; design review: grey placeholder thumbnails read as a fake dashboard).
 interface Props { eyebrow: string; title: string; lead?: string; more?: { label: string; href: string }; steps: readonly Step[]; vigs?: readonly Vig[]; line?: string; id?: string; track?: boolean; getsLabel?: string }
@@ -19,8 +21,8 @@ const { eyebrow, title, lead, more, steps, vigs = ['cal', 'log', 'sign', 'fork']
     {lead && <p class="tl__lead">{lead}</p>}
     <ol role="list" class:list={['tl__steps', 'reveal-stagger', { 'tl__steps--track': track }]}>
       {steps.map((s, i) => (
-        <li class="tl__step">
-          {track ? <span class="tl__node" aria-hidden="true"></span> : <div class="tl__vig" aria-hidden="true">
+        <li class:list={['tl__step', { 'tl__step--card': s.art }]}>
+          {s.art ? <div class="tl__art"><Artifact name={s.art} /></div> : track ? <span class="tl__node" aria-hidden="true"></span> : <div class="tl__vig" aria-hidden="true">
             {vigs[i] === 'cal' && <div class="v-cal">{Array.from({ length: 12 }, (_, k) => <span class:list={{ on: k === 6 }}></span>)}</div>}
             {vigs[i] === 'log' && <div class="v-log">{[0, 1, 2, 3].map(() => <span><i></i><b></b></span>)}</div>}
             {vigs[i] === 'sign' && <div class="v-sign"><span class="v-sign__check"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span class="v-sign__lines"><i></i><i></i></span></div>}
@@ -115,4 +117,9 @@ const { eyebrow, title, lead, more, steps, vigs = ['cal', 'log', 'sign', 'fork']
   .tl__lead { max-inline-size: 46rem; margin-block-end: var(--stack-lg); font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); text-wrap: pretty; }
   .tl__more { margin-block-start: var(--space-6); }
   .tl__more a { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
+  /* Card steps with one framework drawing each (home, Oct 16: the E2 look, kept simple). */
+  .tl__step--card { padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .tl__art { padding: var(--space-2); margin-block-end: var(--space-2); border-radius: var(--radius-md); background: var(--color-bg); }
+  /* Phones: drawing beside the words so four cards stay short. */
+  @media (width < 36rem) { .tl__step--card { grid-template-columns: 7.5rem minmax(0, 1fr); column-gap: var(--space-4); align-items: start; } .tl__step--card .tl__art { grid-row: 1 / span 4; margin: 0; } }
 </style>
