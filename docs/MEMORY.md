@@ -24,6 +24,7 @@ Last updated: Fri Oct 16, 2026, 12:05 Cairo · by Claude Code · site commit: se
 ## Decisions (newest first)
 | Date | Decision | Made in |
 |---|---|---|
+| Oct 16 | Art direction started before go-live, on main (Mohamed's choice). Pilot review: **keep the dark theme, header and hero** ("the last theme was perfect"); add art and motion on top. Keystone arch frames the hero headline and builds on scroll in The DiscoverDev Way section. White-led colour from the design review is on hold. `06` §0.8 | Claude Code (Mohamed) |
 | Oct 16 | Method renamed **The DiscoverDev Way**: "Discover first. Build with AI. Seniors sign off." Picture: "AI lays the bricks. A senior sets the keystone." Brand one-pager `docs/brand/discoverdev-way.md` | Claude Code (Mohamed) |
 | Oct 16 | A senior engineer signs off every release (confirmed fact, in `09`) | Claude Code (Mohamed) |
 | Oct 16 | Art direction: keystone arch as the site-wide system, signed-release fragments in Build and case studies, drawing set on About. Brand-safe fixes before go-live; full art direction after launch. Review: `docs/review/design-review.html` | Claude Code (Mohamed) |
