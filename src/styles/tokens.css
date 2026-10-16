@@ -240,13 +240,6 @@
   /* Reference tier: ramp extension (OKLCH h≈263.6, chroma reduced to stay in gamut) */
   --blue-925: #02103E;   /* L 0.20, ink raised */
   --blue-975: #01082D;   /* L 0.16, ink canvas */
-  --arch-blue-2: #2C59C1; /* §0.8: second stop of the arrow mark's own gradient (logo SVG), arch stones only (decor) */
-
-  /* §0.8 keystone arch roles (decor; never text) */
-  --arch-stone:      var(--blue-700);
-  --arch-stone-2:    var(--arch-blue-2);
-  --arch-stone-tint: var(--blue-100);   /* a stone not yet laid / ghost course */
-  --arch-key:        var(--blue-800);
 
   /* Reference tier: type */
   --ff-mono: var(--font-mono, "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace);
