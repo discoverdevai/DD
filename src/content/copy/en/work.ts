@@ -7,16 +7,31 @@ export const work = {
   h1: 'Products we helped ship',
   intro: 'From AI agents to marketplaces, for founders and teams on 4 continents. Each case shows the problem, what we did and what changed.',
   card: { client: 'EdTech AI platform', industry: 'EdTech', region: 'Egypt', metric: '60–90%', metricLabel: 'lower AI cost', summary: 'Three AI agents. 60–90% lower AI cost.', link: 'Read the case study' },
+  // Second case card (03 §9.2): anonymized, no client and no case page yet.
+  card2: { client: 'Customer-support AI agent', industry: 'Support automation', tag2: 'AI agents', metric: 'Once', metricLabel: 'per unique question', summary: 'When many users ask the same question at once, the agent answers it once and shares the result. LLM cost grows with unique questions, not total requests.' },
+  // Grouped by stage (03 §9.3); group headings link to the service page.
   more: {
     title: 'More of our work',
-    items: [
-      { text: 'AR furniture e-commerce with AI recommendations', where: 'Saudi Arabia' },
-      { text: '12-month embedded product team for a B2B learning platform', where: 'UK' },
-      { text: 'Data, ML and automation for an EdTech platform with 20,000+ students', where: 'Egypt' },
-      { text: 'Embedded data and ML team for a smart ride-sharing platform', where: 'Saudi Arabia' },
-      { text: 'Health app that explains lab reports in plain language, with medical safety guardrails', where: 'HealthTech' },
-      { text: 'AI agents for call operations and staff augmentation', where: 'USA' },
-      { text: 'White-label websites and mobile apps for a software house', where: 'UK', link: { label: 'White-label websites and mobile apps', to: 'partners' as const } }, // 03 §0.8
+    groups: [
+      { key: 'validate' as const, title: 'Validate', items: [
+        { text: 'Market research and a go-to-market plan for a sports company entering Egypt', where: 'Italy' },
+        { text: 'Demand testing and sentiment analysis before building', where: '' },
+        { text: 'Feasibility sprints across several startup ideas, ending in build, pivot or shelve decisions', where: 'Saudi Arabia' },
+        { text: 'Market research, go-to-market and discovery for individual founders', where: 'Kuwait, Switzerland, UK, Spain' },
+        { text: 'Tourism and hospitality market research for a consulting firm', where: 'Kuwait' },
+      ] },
+      { key: 'build' as const, title: 'Build', items: [
+        { text: 'AR furniture e-commerce with AI recommendations', where: 'Saudi Arabia' },
+        { text: 'Health app that explains lab reports in plain language, with medical safety guardrails', where: '' },
+        { text: 'AI agents for call operations, a landing page and staff augmentation', where: 'USA' },
+        { text: 'White-label websites and mobile apps for a software house', where: 'UK', link: { label: 'White-label websites and mobile apps', to: 'partners' as const } },
+      ] },
+      { key: 'scale' as const, title: 'Scale', items: [
+        { text: '12-month embedded product team for a B2B learning platform', where: 'UK' },
+        { text: 'Data, ML and automation for an EdTech platform with 20,000+ students', where: 'Egypt' },
+        { text: 'Embedded data and ML team for a smart ride-sharing platform', where: 'Saudi Arabia' },
+        { text: 'An ML engineer placed for 3 months on restaurant procurement', where: 'Saudi Arabia' },
+      ] },
     ],
   },
   band: { title: 'Want results like these for your product?', link: 'Have a prototype? Start with a Launch-Ready Review' },

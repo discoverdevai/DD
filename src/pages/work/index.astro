@@ -1,5 +1,6 @@
 ---
-// /work (04 §4.5, 03 §9), anonymized per §0.7. One published case → single full-width card (04 §9). No filters.
+// /work (04 §4.5, 03 §9), anonymized per §0.7. Case cards (one linked case page, one anonymized card), then the
+// rest of the work grouped by stage (Validate / Build / Scale). No filters.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/sections/PageHero.astro';
 import Section from '../../components/ui/Section.astro';
@@ -7,7 +8,7 @@ import CtaBand from '../../components/ui/CtaBand.astro';
 import InlineLink from '../../components/ui/InlineLink.astro';
 import { work as c } from '../../content/copy/en/work';
 import { graph, orgStub, webPage, canonical, ORG_ID } from '../../lib/seo';
-import { href } from '../../data/routes';
+import { href, ROUTES } from '../../data/routes';
 
 const caseHref = href('workEdulens');
 const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, 'CollectionPage', {
@@ -28,12 +29,27 @@ const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, '
         <p class="case-card__more" aria-hidden="true">{c.card.link}</p>
       </div>
     </article>
+    <article class="case-card case-card--static">
+      <div class="case-card__figure"><p class="case-card__metric">{c.card2.metric}</p><p class="muted">{c.card2.metricLabel}</p></div>
+      <div class="case-card__body">
+        <p class="case-card__tags"><span>{c.card2.industry}</span><span>{c.card2.tag2}</span></p>
+        <h2 class="h3">{c.card2.client}</h2>
+        <p>{c.card2.summary}</p>
+      </div>
+    </article>
   </Section>
 
   <Section id="more" surface="raised" title={c.more.title}>
-    <ul role="list" class="more">
-      {c.more.items.map((i) => <li><span><InlineLink text={i.text} link={'link' in i ? i.link : undefined} /></span><span class="more__where">{i.where}</span></li>)}
-    </ul>
+    <div class="groups">
+      {c.more.groups.map((g) => (
+        <div class="group">
+          <h3 class="group__title"><a href={ROUTES[g.key].path}>{g.title}</a></h3>
+          <ul role="list" class="more">
+            {g.items.map((i) => <li><span><InlineLink text={i.text} link={'link' in i ? i.link : undefined} /></span>{i.where && <span class="more__where">{i.where}</span>}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
   </Section>
 
 
@@ -55,7 +71,15 @@ const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, '
   .case-card__more { color: var(--color-link); font-weight: var(--weight-medium); }
   .case-card__more::after { content: ' →'; }
   :dir(rtl) .case-card__more::after { content: ' ←'; }
-  @media (hover: hover) { .case-card:hover { border-color: var(--color-border-interactive); } }
+  @media (hover: hover) { .case-card:not(.case-card--static):hover { border-color: var(--color-border-interactive); } } /* the static card has no link, so no hover */
+  .case-card + .case-card { margin-block-start: var(--space-6); }
+  .case-card--static .case-card__metric { font-size: clamp(2.5rem, 1.8rem + 3vw, 4.5rem); }
+  .groups { display: grid; gap: var(--space-10); }
+  @media (width >= 64rem) { .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); } }
+  .group { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; }
+  .group__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); padding-block-end: var(--space-3); border-block-end: 4px solid var(--blue-700); }
+  .group__title a { color: var(--color-heading); text-decoration: none; }
+  @media (hover: hover) { .group__title a:hover { text-decoration: underline; text-underline-offset: 0.2em; } }
   .more { display: grid; gap: 0; }
   .more li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-6); padding-block: var(--space-4); border-block-end: 1px solid var(--color-border-subtle); }
   .more__where { color: var(--color-text-muted); font-size: var(--text-sm); }

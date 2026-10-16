@@ -1295,19 +1295,30 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - Purpose: metric-led cards (pattern from Robusta, done honestly).
 - Card · EduLens · EdTech · Egypt: "Three AI agents. 60–90% lower AI cost." Link: Read the EduLens case study
 - Card · Rushr · Home services · USA (November): "A marketplace built from zero in 16 weeks." [METRIC] Link: Read the Rushr case study
+- Card · Customer-support AI agent (anonymized, no client; added Oct 16) · tags: Support automation · AI agents · figure: "Once" / "per unique question" · summary: "When many users ask the same question at once, the agent answers it once and shares the result. LLM cost grows with unique questions, not total requests." No link (no case page yet). Source: 09 case studies.
 - No filter until there are 6 or more cases.
 - Visual: card with one figure in large HTML text, tags, 1-line summary. No "coming soon" cards.
 
 ### 9.3 More of our work
-- Purpose: show range without full case studies. Names only with consent; anonymized otherwise.
+- Purpose: show range without full case studies. Names only with consent; anonymized otherwise. Grouped by stage (Oct 16): each group heading is the service name and links to its page.
 - H2: More of our work
-- AR furniture e-commerce with AI recommendations · Saudi Arabia [CONSENT: Athkado to name]
-- 12-month embedded product team for a B2B learning platform · UK [CONSENT: Upscend to name]
-- Data, ML and automation for an EdTech platform with 20,000+ students · Egypt [CONSENT: Pyramakerz to name]
-- Embedded data and ML team for a smart ride-sharing platform · Saudi Arabia [CONSENT: Arheb to name]
-- Health app that explains lab reports in plain language, with medical safety guardrails · HealthTech [CONSENT: BioBank to name]
-- AI agents for call operations and staff augmentation · USA [CONSENT: Nile Support to name]
-- White-label websites and mobile apps for a software house · UK [CONSENT: Amstadd to name]
+- Group · Validate (→ /validate)
+  - Market research and a go-to-market plan for a sports company entering Egypt · Italy
+  - Demand testing and sentiment analysis before building
+  - Feasibility sprints across several startup ideas, ending in build, pivot or shelve decisions · Saudi Arabia
+  - Market research, go-to-market and discovery for individual founders · Kuwait, Switzerland, UK, Spain
+  - Tourism and hospitality market research for a consulting firm · Kuwait
+- Group · Build (→ /build)
+  - AR furniture e-commerce with AI recommendations · Saudi Arabia
+  - Health app that explains lab reports in plain language, with medical safety guardrails
+  - AI agents for call operations, a landing page and staff augmentation · USA
+  - White-label websites and mobile apps for a software house · UK
+- Group · Scale (→ /scale)
+  - 12-month embedded product team for a B2B learning platform · UK
+  - Data, ML and automation for an EdTech platform with 20,000+ students · Egypt
+  - Embedded data and ML team for a smart ride-sharing platform · Saudi Arabia
+  - An ML engineer placed for 3 months on restaurant procurement · Saudi Arabia
+- Not listed until resolved: the US home-services marketplace (D-07), the US therapy practice (clinician consent), research collaborations (publication and collaborator consent). The EdTech AI platform is the case card above. White-label row keeps its link to /partners (§0.8).
 
 ### 9.4 Reviews strip
 - Section removed Oct 16 (design review: one line under a section heading reads as a hole; the rating already sits in the footer and on service pages). Was: H2 How clients rate us (Phase 4, Oct 16: no quotes until consent, so the heading promises a rating, not quotes; switch back to "What clients say" when quotes ship)
