@@ -208,7 +208,7 @@ The inbound-link gate (`07` §15: ≥ 3 links from the `<main>` of distinct page
 - Entity line (same wording on Clutch, LinkedIn, Upwork): "DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything."
 - Columns:
   - **Services:** Validate · Build · Scale · Launch-Ready Review · Partners
-  - **Work:** EduLens · All work (add Rushr when live)
+  - **Work:** EdTech AI agents case study (anonymized, /work/edtech-ai-agents) · All work (add Rushr when live). Oct 16: link columns no longer wrap on desktop.
   - **Insights:** Guides · Take the launch check
   - **Company:** About · Book a call · Privacy · Terms
 - Contact block (same order and place on every page, WCAG 3.2.6):
@@ -438,7 +438,8 @@ React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL,
 
 ### 2A.11 Final CTA
 - H2: Tell us what you're building.
-- Body: 30 minutes, no pitch. You leave with a next step, even if we're not the right fit. (Proof check 2026-10-16: "with a senior person" removed; 09 does not say who takes the clarity call.)
+- Body: Bring an idea, a prototype or a product that needs a team. We'll tell you where to start, even if we're not the right fit. (Oct 16 section review: the old body repeated the microcopy under the button; this names the three entry points: Validate, Review, Scale.)
+- Previous body (Proof check 2026-10-16: "with a senior person" removed; 09 does not say who takes the clarity call.)
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
 

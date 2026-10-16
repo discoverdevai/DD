@@ -12,7 +12,7 @@ const col = (items: Item[]) =>
   items.filter((i) => (i.key ? isLive(i.key) : true)).map((i) => ({ href: i.href ?? ROUTES[i.key!].path, label: i.label }));
 const columns = [
   { title: t('footer.services'), items: col([{ key: 'validate', label: t('nav.validate') }, { key: 'build', label: t('nav.build') }, { key: 'scale', label: t('nav.scale') }, { key: 'review', label: t('footer.review') }, { key: 'partners', label: t('nav.partners') }]) },
-  { title: t('footer.work'), items: col([{ key: 'work', label: t('footer.allWork') }]) },
+  { title: t('footer.work'), items: col([{ key: 'workEdulens', label: t('footer.case') }, { key: 'work', label: t('footer.allWork') }]) },
   { title: t('footer.insights'), items: col([{ key: 'insights', label: t('footer.guides') }, { key: 'launchCheck', label: t('footer.launchCheck') }]) },
   { title: t('footer.company'), items: col([{ key: 'about', label: t('footer.about') }, ...(isLive('book') ? [{ href: bookHref('clarity'), label: t('footer.book') }] : []), { key: 'privacy', label: t('footer.privacy') }, { key: 'terms', label: t('footer.terms') }]) },
 ].filter((c) => c.items.length > 0);
@@ -65,7 +65,7 @@ const year = new Date().getFullYear();
      Work group no longer leaves a hole; reading order is unchanged. Four even columns from 80rem. */
   .site-footer__nav { columns: 2; column-gap: var(--space-6); }
   .site-footer__nav > div { break-inside: avoid; margin-block-end: var(--space-8); }
-  @media (width >= 80rem) { .site-footer__nav { columns: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); align-content: start; } .site-footer__nav > div { margin-block-end: 0; } }
+  @media (width >= 80rem) { .site-footer__nav { columns: auto; display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; gap: var(--space-8); align-content: start; } .site-footer__nav > div { margin-block-end: 0; } .site-footer__nav a { white-space: nowrap; } }
   .site-footer__h { font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-text-muted); letter-spacing: 0; margin-block-end: var(--space-3); }
   .site-footer__nav ul { display: grid; }
   .site-footer__nav a { display: inline-flex; align-items: center; min-block-size: 2rem; color: var(--color-text); text-decoration: none; }
