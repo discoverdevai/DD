@@ -29,11 +29,11 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
       <WayFlow {...c.agile.flow} />
     </AgileSplit>
   </Statement>
-  <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} steps={c.lifecycle.steps} vigs={['fork', 'cal', 'log', 'ship']} line={c.lifecycle.line} />
+  <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} steps={c.lifecycle.steps} track line={c.lifecycle.line} />
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Capabilities title={c.capabilities.title} lead={c.capabilities.lead} groups={c.capabilities.groups} />
   <CaseMetric c={c.caseHighlight} />
-  <Statement id="why" label={c.why.title} bright={c.why.leadBright} dim={c.why.leadDim}>
+  <Statement id="why" surface="navy" label={c.why.title} bright={c.why.leadBright} dim={c.why.leadDim}>
     <Pillars items={c.why.pillars} small={c.why.small} />
   </Statement>
   <FaqSplit title={c.faq.title} items={c.faq.items} />

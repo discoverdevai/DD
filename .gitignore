@@ -16,3 +16,5 @@ docs/review/**/*.png
 dist-wip/
 docs/review/audit-2026-10-16/*.jpg
 .artifacts/
+docs/review/gradients/
+docs/review/home-v4/

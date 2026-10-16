@@ -179,3 +179,35 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: 0.9em; }
 }
 @media (width < 48rem) { .bg-mark::after { inline-size: 70vw; inset-inline-end: -25%; opacity: 0.6; } }
 @media (forced-colors: active) { .bg-lines::before, .bg-dots::before, .bg-mark::after { display: none; } }
+
+/* Section backgrounds (Mohamed, Oct 16): dark sections after the hero alternate two shades of the same ink, so each
+   section reads as its own band. Each opens with a brand-blue light (alternating sides) above a seam that fades out at
+   both ends. The light fades in as its section scrolls into view and then drifts very slowly; reduced motion = still.
+   Closing bands (data-cta-band) keep their own horizon light. Colours stay the site's dark tokens. Decorative only. */
+main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]) {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  border-block-start: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgb(108 154 255 / 0.45) 50%, transparent) 1;
+}
+main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(even) { background-color: var(--blue-925); }
+main > section[data-surface="ink"]:not(:first-child):not([data-cta-band])::before {
+  content: ''; position: absolute; inset-inline: -10%; inset-block-start: 0; block-size: min(36rem, 85%); z-index: -1; pointer-events: none;
+  background: radial-gradient(60% 100% at 25% 0%, rgb(18 64 190 / 0.36), rgb(18 64 190 / 0.08) 55%, transparent 78%);
+}
+main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(odd)::before {
+  background: radial-gradient(60% 100% at 75% 0%, rgb(18 64 190 / 0.36), rgb(18 64 190 / 0.08) 55%, transparent 78%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Slow ambient drift: translate only (compositor), 18s each way, opposite directions on alternate sections. */
+  main > section[data-surface="ink"]:not(:first-child):not([data-cta-band])::before { animation: dd-drift 18s ease-in-out infinite alternate; }
+  main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(odd)::before { animation-direction: alternate-reverse; }
+  @keyframes dd-drift { from { translate: -4% 0; } to { translate: 4% 0; } }
+  @supports (animation-timeline: view()) {
+    main > section[data-surface="ink"]:not(:first-child):not([data-cta-band])::before { animation: dd-glow linear both, dd-drift 18s ease-in-out infinite alternate; animation-timeline: view(), auto; animation-range: entry 0% cover 35%, normal; }
+    main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(odd)::before { animation-direction: normal, alternate-reverse; }
+    @keyframes dd-glow { from { opacity: 0; transform: scaleY(0.6); transform-origin: 50% 0; } to { opacity: 1; transform: none; } }
+  }
+}
+@media (forced-colors: active) { main > section[data-surface="ink"]::before { display: none; } }

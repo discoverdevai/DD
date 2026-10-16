@@ -6,23 +6,25 @@ import { t } from '../../i18n/t';
 type Chip = { kind: 'ai' | 'human'; label: string };
 type Vig = 'cal' | 'log' | 'sign' | 'fork' | 'ship';
 interface Step { title: string; body: string; chip?: Chip; chips?: readonly Chip[] }
-interface Props { eyebrow: string; title: string; steps: readonly Step[]; vigs?: readonly Vig[]; line?: string; id?: string }
-const { eyebrow, title, steps, vigs = ['cal', 'log', 'sign', 'fork'], line, id = 'how-it-works' } = Astro.props;
+// `track`: a progress line across the steps that fills as the section scrolls in, each step lighting up in turn
+// (replaces the vignettes; design review: grey placeholder thumbnails read as a fake dashboard).
+interface Props { eyebrow: string; title: string; steps: readonly Step[]; vigs?: readonly Vig[]; line?: string; id?: string; track?: boolean }
+const { eyebrow, title, steps, vigs = ['cal', 'log', 'sign', 'fork'], line, id = 'how-it-works', track = false } = Astro.props;
 ---
 <section id={id} class="tl" data-surface="ink" aria-labelledby="tl-title">
   <div class="container">
     <p class="tl__eyebrow">{eyebrow}</p>
     <h2 id="tl-title" class="tl__title reveal">{title}</h2>
-    <ol role="list" class="tl__steps reveal-stagger">
+    <ol role="list" class:list={['tl__steps', 'reveal-stagger', { 'tl__steps--track': track }]}>
       {steps.map((s, i) => (
         <li class="tl__step">
-          <div class="tl__vig" aria-hidden="true">
+          {track ? <span class="tl__node" aria-hidden="true"></span> : <div class="tl__vig" aria-hidden="true">
             {vigs[i] === 'cal' && <div class="v-cal">{Array.from({ length: 12 }, (_, k) => <span class:list={{ on: k === 6 }}></span>)}</div>}
             {vigs[i] === 'log' && <div class="v-log">{[0, 1, 2, 3].map(() => <span><i></i><b></b></span>)}</div>}
             {vigs[i] === 'sign' && <div class="v-sign"><span class="v-sign__check"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span class="v-sign__lines"><i></i><i></i></span></div>}
             {vigs[i] === 'fork' && <div class="v-fork"><span></span><span></span><span></span></div>}
             {vigs[i] === 'ship' && <div class="v-ship"><span></span><span></span><span></span><span></span><span></span><b></b></div>}
-          </div>
+          </div>}
           <span class="tl__n">0{i + 1}</span>
           <h3 class="tl__h3"><span class="sr-only">{t('steps.label', 'en', { n: i + 1 })} </span>{s.title}</h3>
           <p class="tl__body">{s.body}</p>
@@ -45,6 +47,27 @@ const { eyebrow, title, steps, vigs = ['cal', 'log', 'sign', 'fork'], line, id =
   @media (width >= 48rem) { .tl__steps { grid-template-columns: repeat(2, 1fr); } }
   @media (width >= 64rem) { .tl__steps { grid-template-columns: repeat(4, 1fr); gap: var(--space-6); } }
   .tl__step { display: grid; gap: var(--space-3); align-content: start; }
+  /* Progress track: each step has a 2px rail on top; the blue fill runs across the steps in order as the section
+     scrolls in, and each node lights up when its fill arrives. Finished state = all filled (reduced motion too). */
+  .tl__steps--track .tl__step { position: relative; padding-block-start: var(--space-8); }
+  .tl__steps--track .tl__step::before, .tl__steps--track .tl__step::after { content: ''; position: absolute; inset-block-start: 5px; inset-inline: 0; block-size: 2px; border-radius: 2px; }
+  .tl__steps--track .tl__step::before { background: var(--color-hairline); }
+  .tl__steps--track .tl__step::after { background: var(--blue-400); transform-origin: 0 50%; }
+  :dir(rtl) .tl__steps--track .tl__step::after { transform-origin: 100% 50%; }
+  .tl__node { position: absolute; inset-block-start: 0; inset-inline-start: 0; z-index: 1; inline-size: 12px; block-size: 12px; border-radius: 50%; background: var(--blue-400); }
+  .tl__steps--track .tl__step:last-child .tl__node { background: var(--color-human-mark); }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .tl__steps--track .tl__step::after { animation: tl-fill linear both; animation-timeline: view(); }
+      .tl__steps--track .tl__node { animation: tl-node linear both; animation-timeline: view(); }
+      .tl__steps--track .tl__step:nth-child(1)::after, .tl__steps--track .tl__step:nth-child(1) .tl__node { animation-range: entry 30% cover 30%; }
+      .tl__steps--track .tl__step:nth-child(2)::after, .tl__steps--track .tl__step:nth-child(2) .tl__node { animation-range: entry 45% cover 38%; }
+      .tl__steps--track .tl__step:nth-child(3)::after, .tl__steps--track .tl__step:nth-child(3) .tl__node { animation-range: entry 60% cover 46%; }
+      .tl__steps--track .tl__step:nth-child(4)::after, .tl__steps--track .tl__step:nth-child(4) .tl__node { animation-range: entry 75% cover 54%; }
+      @keyframes tl-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      @keyframes tl-node { from { transform: scale(0.4); opacity: 0.3; } to { transform: scale(1); opacity: 1; } }
+    }
+  }
   .tl__vig { block-size: 6.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 80%, var(--blue-800)), var(--color-surface)); display: grid; place-items: center; margin-block-end: var(--space-3); overflow: hidden; }
   @media (width >= 48rem) { .tl__vig { block-size: 9rem; } } /* phones: shorter plates, the four stacked made the section ~1640px tall */
   .tl__n { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
