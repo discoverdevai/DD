@@ -401,10 +401,11 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.9 Why DiscoverDev
 - Label: Why founders and teams choose DiscoverDev
 - Two-tone lead: core idea (bright: "Most teams just build what you ask for." dim: the rest)
-- Pillar 1 · Product-first: The "Discover" in our name is the point. Before we write code, we check it's the right thing to build, and we say what to cut.
-- Pillar 2 · Senior teams, AI-accelerated: AI does the heavy lifting. Senior engineers own the quality. You get the speed without the mess that usually comes with it.
-- Pillar 3 · We stay: One team from first call to launch and after. No handoff gaps. Four clients expanded scope with us.
-- Small text: You own everything: full IP, no lock-in, clear contract from day one.
+- Pillar 1 · Product-first: The "Discover" in our name is the point. Before any code, we check it's the right thing to build, and we tell you what to cut.
+- Pillar 2 · Senior-led, AI-fast: Senior engineers lead every project and sign off every release. AI handles the routine work, so you get speed without the mess.
+- Pillar 3 · We stay: One team from first call to launch and after, with no handoff gaps. Four clients expanded scope with us.
+- Pillar 4 · You own it all: Full IP, no lock-in and a clear contract from day one.
+- Oct 16 section review: ownership moved from small print to a pillar (top founder objection, 02: "IP/NDA?"); pillar 2 answers "offshore means juniors" instead of repeating §2A.4; small text removed.
 
 ### 2A.10 FAQ
 - H2: Questions founders ask us

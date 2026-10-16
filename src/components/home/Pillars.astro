@@ -1,6 +1,6 @@
 ---
 // Why DiscoverDev pillars (03 §2.9), rendered inside the two-tone Statement. Mono index + rule + text.
-interface Props { items: readonly { title: string; body: string }[]; small: string }
+interface Props { items: readonly { title: string; body: string }[]; small?: string }
 const { items, small } = Astro.props;
 ---
 <ul role="list" class="pl reveal-stagger">
@@ -11,11 +11,12 @@ const { items, small } = Astro.props;
     </li>
   ))}
 </ul>
-<p class="pl__small">{small}</p>
+{small && <p class="pl__small">{small}</p>}
 
 <style>
   .pl { display: grid; gap: var(--space-8); margin-block-start: var(--stack-lg); }
-  @media (width >= 48rem) { .pl { grid-template-columns: repeat(3, 1fr); } }
+  @media (width >= 48rem) { .pl { grid-template-columns: repeat(2, 1fr); } }
+  @media (width >= 64rem) { .pl { grid-template-columns: repeat(var(--pl-n, 4), 1fr); } }
   .pl__item { display: grid; gap: var(--space-3); align-content: start; padding-block-start: var(--space-5); border-block-start: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); }
   .pl__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .pl__h3 { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; }

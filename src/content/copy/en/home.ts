@@ -128,11 +128,11 @@ export const home = {
     leadBright: 'Most teams just build what you ask for.',
     leadDim: 'We help you build the right thing, then ship it fast, and you own all of it.',
     pillars: [
-      { title: 'Product-first', body: 'The “Discover” in our name is the point. Before we write code, we check it’s the right thing to build, and we say what to cut.' },
-      { title: 'Senior teams, AI-accelerated', body: 'AI does the heavy lifting. Senior engineers own the quality. You get the speed without the mess that usually comes with it.' },
-      { title: 'We stay', body: 'One team from first call to launch and after. No handoff gaps. Four clients expanded scope with us.' },
+      { title: 'Product-first', body: 'The “Discover” in our name is the point. Before any code, we check it’s the right thing to build, and we tell you what to cut.' },
+      { title: 'Senior-led, AI-fast', body: 'Senior engineers lead every project and sign off every release. AI handles the routine work, so you get speed without the mess.' },
+      { title: 'We stay', body: 'One team from first call to launch and after, with no handoff gaps. Four clients expanded scope with us.' },
+      { title: 'You own it all', body: 'Full IP, no lock-in and a clear contract from day one.' },
     ],
-    small: 'You own everything: full IP, no lock-in, clear contract from day one.',
   },
   faq: {
     title: 'Questions founders ask us',
