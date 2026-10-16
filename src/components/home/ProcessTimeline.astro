@@ -120,6 +120,13 @@ const { eyebrow, title, lead, more, steps, vigs = ['cal', 'log', 'sign', 'fork']
   /* Card steps with one framework drawing each (home, Oct 16: the E2 look, kept simple). */
   .tl__step--card { padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
   .tl__art { padding: var(--space-2); margin-block-end: var(--space-2); border-radius: var(--radius-md); background: var(--color-bg); }
-  /* Phones: drawing beside the words so four cards stay short. */
-  @media (width < 36rem) { .tl__step--card { grid-template-columns: 7.5rem minmax(0, 1fr); column-gap: var(--space-4); align-items: start; } .tl__step--card .tl__art { grid-row: 1 / span 4; margin: 0; } }
+  /* Card sizing (Oct 16 measurement, 360–1920): keep cards 260–560px wide and body lines at 25+ characters.
+     1 column on small phones, 2 from 36rem (576px), 4 only from 72rem (1152px; at 1024 four columns gave ~17ch).
+     Small phones: the drawing sits on top, capped at 6rem tall, so the text keeps the full card width. */
+  .tl__steps:has(> .tl__step--card) { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+  @media (width >= 36rem) { .tl__steps:has(> .tl__step--card) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (width >= 72rem) { .tl__steps:has(> .tl__step--card) { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); } }
+  .tl__step--card .tl__art :global(svg) { max-block-size: 6rem; margin-inline: auto; }
+  .tl__steps .tl__step--card .tl__body { font-size: 1rem; line-height: 1.55; } /* 16px in cards: ~25ch per line at 4 columns */
+  @media (width >= 36rem) { .tl__step--card .tl__art :global(svg) { max-block-size: 9.5rem; } }
 </style>
