@@ -36,6 +36,6 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
   <Statement id="why" surface="navy" label={c.why.title} bright={c.why.leadBright} dim={c.why.leadDim}>
     <Pillars items={c.why.pillars} />
   </Statement>
-  <FaqSplit title={c.faq.title} items={c.faq.items} />
+  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="home" />
   <Closer title={c.band.title} body={c.band.body} />
 </BaseLayout>

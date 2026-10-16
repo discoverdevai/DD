@@ -411,10 +411,18 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - H2: Questions founders ask us
 
 **How do you use AI? Is the code safe?**
-AI does the heavy lifting: drafting code, tests and documentation. Senior engineers make the decisions, review every change and sign off each release. A person is responsible for every line that reaches your users.
+Yes. AI drafts code, tests and documentation. Senior engineers make the decisions, review every change and sign off each release. A person is responsible for every line that reaches your users.
 
 **How does pricing work?**
 Validate is a fixed fee, credited toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer. You get a number after a free 30-minute clarity call, before you commit to anything.
+
+**How long does it take to build an MVP?**
+Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.
+
+**What is the DiscoverDev Way?**
+It is how every DiscoverDev project runs. We agree on the right product first, AI drafts the work, and a senior engineer reviews every change and signs off every release. You see progress every week.
+
+(Oct 16 section review: timeline and method questions added (02 top questions; 05 §5 definitional answer for AI search); AI answer opens with "Yes."; a clarity-call button sits under the FAQ heading.)
 
 **Who owns the code?**
 You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.
