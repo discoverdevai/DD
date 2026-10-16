@@ -368,6 +368,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Step 2 · Plan · Time: Before any code · Body: Roadmap, tech decisions and team, agreed before any code. · You get: A release plan and written tech decisions. · Frameworks: User Story Mapping: The user journey, split into releases. | Shape Up: Fixed time, flexible scope. | RICE: Rank features by reach, impact, confidence and effort. | ADRs: A written record of each tech decision.
 - Step 3 · Build · Time: 8–12 weeks · Body: Weekly sprints, with a demo for you every week. · You get: A production-ready product, signed off by a senior engineer. · Frameworks: Weekly sprints: Plan, build and demo every week. | Definition of Done: A shared checklist before anything counts as done.
 - Step 4 · Ship & Stay · Time: Ongoing · Body: Deploy, monitor and keep improving. The same team stays after launch. · You get: A live product that keeps improving, with the same team. · Frameworks: DORA metrics: How often and how safely we ship. | Continuous discovery: Keep talking to users after launch. | HEART metrics: Happiness, engagement, adoption, retention, task success.
+- Home shows only the four steps with time and one line, plus a link "See how we work in detail" → /how-we-work (Oct 16, Mohamed: keep home simple). "You get" and frameworks render on /how-we-work.
 - Oct 16 lifecycle upgrade (Mohamed: real frameworks, inspired by live studio process pages that name time and deliverable per stage; TrianglZ's Agile V2.0 page has neither): each stage shows time (09: Validate 1–2 weeks, Build 8–12 weeks, Scale ongoing), a "You get" line and each framework with a one-line explanation. Frameworks confirmed by Mohamed (09).
 - Oct 16 section review: steps rewritten so they don't repeat §2A.4 (AI and senior sign-off chips removed); the section's own point is one team for the whole lifecycle. Facts: 09 Offer (Validate deliverables), Method (stages, weekly results, we stay).
 - Line: One team, no handoff gaps.
@@ -1229,6 +1230,22 @@ Order: Hero → Journey stepper → Squad and loop (signature) → Outcomes + Wh
 - **Document:** "Price, team and ownership" · header "Scale" · "Monthly retainer" (§7.6 wording); columns §7.6, §7.7 (+ §0.8 About link), §7.9.
 
 ---
+
+## 7.13 How we work (/how-we-work; linked from the §6.12 journey stepper on Validate, Build and Scale: "See how every step works"; added Oct 16, Mohamed: simple home section + a detailed page)
+- SEO title: How We Work: The DiscoverDev Way | DiscoverDev · Meta: How every DiscoverDev project runs: discover, plan, build, ship and stay. The frameworks we use and what you get, for new and existing products.
+- Hero · Eyebrow: The DiscoverDev Way · H1: How we work · Lead: Every project runs the same way, whether you start from an idea or from code you already have. AI drafts the work, a senior engineer signs off every release, and you see progress every week. · CTA: Book a free clarity call
+- Two ways in · Lead: Greenfield or brownfield, you join the same four steps. Only the start is different.
+  - Greenfield · New product: Start with Validate: 1–2 weeks of discovery that ends with a tested prototype and a fixed build estimate. · Link: See Validate
+  - Brownfield · Existing code: Start with a Launch-Ready Review: a senior team reviews your app in about 5 working days and gives you a ranked fix list and a plain verdict. · Link: See the Review
+- Who does what · H2: AI drafts it. A senior engineer signs it. · Body: In every step, AI does the routine work so it moves fast. Senior engineers make the decisions, review every change and sign off every release, so speed never costs you quality. · Visual: the §2A.4 journey (Discover → AI drafts → A senior signs → Live).
+- The four steps · H2: One team from idea to after launch · each step: time, body and "You get" from §2A.5, then "Frameworks we use": each framework with a text-free drawing of what it produces (E2 direction) and its one-line explanation (§2A.5).
+- FAQ · H2: Questions about how we work
+  - How long does each step take? Discover takes 1–2 weeks. Build takes 8–12 weeks to a production-ready product. Plan happens before any code, and Ship & Stay continues after launch with the same team.
+  - Can you work on an existing codebase? Yes. Brownfield work starts with a Launch-Ready Review of what you have, then we fix it or build it properly. We also do legacy modernization and cloud migration.
+  - Which frameworks do you use? Jobs to be Done and Design Sprints in Discover. User Story Mapping, Shape Up, RICE and Architecture Decision Records in Plan. Weekly sprints and a Definition of Done in Build. DORA metrics, continuous discovery and HEART metrics after launch.
+  - How do I see progress? You get a demo every week, and every release is signed off by a senior engineer before it reaches your users.
+  - Who owns the code? You do. You own everything we build: full IP, no lock-in, and a clear contract from day one.
+- Closer: home §2A.11 band.
 
 ## 8. Partners (/partners)
 

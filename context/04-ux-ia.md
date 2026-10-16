@@ -474,3 +474,6 @@ Implementation ids (fixed; used in analytics and sessionStorage):
 - [ ] Proof sits next to the claim it supports: EduLens metric beside "AI that pays for itself"; rating + quotes beside primary CTAs.
 - [ ] Show "Updated" dates on articles and the year on case studies.
 - [ ] Never claim GCC offices. Locations = "Texas, USA" (pending D-08 wording) and "Alexandria, Egypt (engineering hub)".
+
+## Oct 16 addition: /how-we-work
+- New route `/how-we-work` (Mohamed approved the URL): the detailed DiscoverDev Way page (03 §7.13). Nav item "How we work" now links to `/how-we-work` (was `/#how-we-work`). Home keeps a simple four-step section with a link to the page; the hero "See how we work" link still scrolls to `#how-we-work` on home.

@@ -15,6 +15,8 @@ import CaseMetric from '../components/home/CaseMetric.astro';
 import Pillars from '../components/home/Pillars.astro';
 import FaqSplit from '../components/home/FaqSplit.astro';
 import Closer from '../components/home/Closer.astro';
+import { howWeWork } from '../content/copy/en/how-we-work';
+import { href } from '../data/routes';
 import { home as c } from '../content/copy/en/home';
 import { graph, orgFull, website, webPage, ORG_ID } from '../lib/seo';
 
@@ -29,7 +31,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
       <WayFlow {...c.agile.flow} />
     </AgileSplit>
   </Statement>
-  <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} lead={c.lifecycle.lead} steps={c.lifecycle.steps} getsLabel={c.lifecycle.getsLabel} track line={c.lifecycle.line} />
+  <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} lead={c.lifecycle.lead} steps={c.lifecycle.steps.map(({ title, when, body }) => ({ title, when, body }))} more={{ label: howWeWork.more, href: href('howWeWork') }} track line={c.lifecycle.line} />
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Capabilities title={c.capabilities.title} lead={c.capabilities.lead} groups={c.capabilities.groups} />
   <CaseMetric c={c.caseHighlight} />

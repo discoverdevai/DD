@@ -4,8 +4,8 @@ import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
-interface Props { title: string; body: string }
-const { title, body } = Astro.props;
+interface Props { title: string; body: string; page?: string }
+const { title, body, page = 'home' } = Astro.props;
 ---
 <section id="cta" class="cl" data-surface="ink" aria-labelledby="cl-title" data-cta-band>
   <div class="cl__light" aria-hidden="true"></div>
@@ -13,7 +13,7 @@ const { title, body } = Astro.props;
     <h2 id="cl-title" class="cl__title reveal">{title}</h2>
     <p class="cl__body">{body}</p>
     <div class="cl__ctas">
-      <CtaLink href={bookHref('clarity')} ctaId="home_band_clarity" tier="primary" position="band" target="clarity">{t('cta.clarity')}</CtaLink>
+      <CtaLink href={bookHref('clarity')} ctaId={`${page}_band_clarity`} tier="primary" position="band" target="clarity">{t('cta.clarity')}</CtaLink>
     </div>
     <CtaTerms kind="clarity" class="cl__terms" />
   </div>

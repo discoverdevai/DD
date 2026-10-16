@@ -9,8 +9,8 @@ interface Tool { name: string; what: string }
 interface Step { title: string; body: string; chip?: Chip; chips?: readonly Chip[]; when?: string; gets?: string; tools?: readonly Tool[] }
 // `track`: a progress line across the steps that fills as the section scrolls in, each step lighting up in turn
 // (replaces the vignettes; design review: grey placeholder thumbnails read as a fake dashboard).
-interface Props { eyebrow: string; title: string; lead?: string; steps: readonly Step[]; vigs?: readonly Vig[]; line?: string; id?: string; track?: boolean; getsLabel?: string }
-const { eyebrow, title, lead, steps, vigs = ['cal', 'log', 'sign', 'fork'], line, id = 'how-it-works', track = false, getsLabel } = Astro.props;
+interface Props { eyebrow: string; title: string; lead?: string; more?: { label: string; href: string }; steps: readonly Step[]; vigs?: readonly Vig[]; line?: string; id?: string; track?: boolean; getsLabel?: string }
+const { eyebrow, title, lead, more, steps, vigs = ['cal', 'log', 'sign', 'fork'], line, id = 'how-it-works', track = false, getsLabel } = Astro.props;
 ---
 <section id={id} class="tl" data-surface="ink" aria-labelledby="tl-title">
   <div class="container">
@@ -42,6 +42,7 @@ const { eyebrow, title, lead, steps, vigs = ['cal', 'log', 'sign', 'fork'], line
       ))}
     </ol>
     {line && <p class="tl__line">{line}</p>}
+    {more && <p class="tl__more"><a href={more.href}>{more.label}<span class="icon--dir" aria-hidden="true"> →</span></a></p>}
   </div>
 </section>
 
@@ -112,4 +113,6 @@ const { eyebrow, title, lead, steps, vigs = ['cal', 'log', 'sign', 'fork'], line
   .v-fork span:nth-child(3) { inset-inline-end: 0; inset-block-end: 0; inline-size: 38%; block-size: 34%; border-color: var(--color-human-mark); }
   .tl__title:has(+ .tl__lead) { margin-block-end: var(--space-4); }
   .tl__lead { max-inline-size: 46rem; margin-block-end: var(--stack-lg); font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); text-wrap: pretty; }
+  .tl__more { margin-block-start: var(--space-6); }
+  .tl__more a { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
 </style>

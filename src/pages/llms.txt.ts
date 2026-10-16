@@ -13,7 +13,7 @@ const SERVICES: [RouteKey, string, string][] = [
   ['review', 'Launch-Ready Review', 'A review of an AI-built or freelancer-built app (security, data rules, payments, code quality, scale, ownership) in about 5 working days. From $1,490 (USD): a fixed fee for your app, quoted after a free 30-minute call, credited toward the fix or Build. No useful findings, no charge.'],
   ['partners', 'Partners', 'White-label delivery and staff augmentation for software houses.'],
 ];
-const COMPANY: [RouteKey, string][] = [['about', 'About'], ['work', 'Work'], ['insights', 'Insights'], ['launchCheck', 'Launch check (10-question self-assessment)'], ['book', 'Book a call']];
+const COMPANY: [RouteKey, string][] = [['howWeWork', 'How we work (the DiscoverDev Way: steps, frameworks, greenfield and brownfield)'], ['about', 'About'], ['work', 'Work'], ['insights', 'Insights'], ['launchCheck', 'Launch check (10-question self-assessment)'], ['book', 'Book a call']];
 
 const line = (k: RouteKey, name: string, desc?: string) => (ROUTES[k].live ? `- [${name}](${SITE_URL}${ROUTES[k].path})${desc ? `: ${desc}` : ''}` : null);
 

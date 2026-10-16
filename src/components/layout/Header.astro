@@ -15,7 +15,7 @@ const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 
   .filter(isLive)
   .map((key) => ({ key, label: t(`nav.${key}`), who: t(`nav.${key}.who`) }));
 // Strategy v2 (03 §1.1): "How we work" anchors to the DiscoverDev Way section on home.
-const HOW = { path: '/#how-we-work', label: t('nav.how') };
+const HOW = { path: '/how-we-work', label: t('nav.how') }; // detailed page since Oct 16 (04)
 const TOP: { key: RouteKey; label: string }[] = (['work', 'insights', 'about'] as const).filter(isLive).map((key) => ({ key, label: t(`nav.${key}`) }));
 const isCurrent = (path: string) => current.replace(/\.html$/, '').replace(/\/$/, '') === path.replace(/\/$/, '');
 const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));

@@ -20,6 +20,7 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 | Page | Primary kw | Secondaries | Intent | Diff |
 |---|---|---|---|---|
 | `/` | product development company for startups (est.) | DiscoverDev (brand); software development company for startups; AI-accelerated software development; AI development company Egypt; senior product team US GCC | Nav + commercial | Brand L / generic H |
+| `/how-we-work` | How We Work: The DiscoverDev Way \| DiscoverDev | How every DiscoverDev project runs: discover, plan, build, ship and stay. The frameworks we use and what you get, for new and existing products. | How we work |
 | `/launch-ready` | vibe code audit (est.) | Lovable app security review; AI-built app production readiness; Bolt / Cursor app code review; Supabase security audit | Commercial / transactional | M |
 | `/validate` | product discovery services (est.) | product discovery phase (50, 2026-08); startup idea validation service; MVP scoping; clickable prototype fixed estimate | Commercial | M |
 | `/build` | MVP development company (590, 2026-07, CPC $23) | MVP development services (880); mvp software development company (210); fixed price MVP development; MVP development company in USA (70) | Commercial | H |

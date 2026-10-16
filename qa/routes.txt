@@ -12,6 +12,7 @@
 /insights/ai-built-app-security-holes
 /insights/lovable-launch-checklist
 ?/insights/fix-or-rebuild-ai-app
+/how-we-work
 /about
 /launch-check
 /book

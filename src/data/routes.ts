@@ -15,6 +15,7 @@ export const ROUTES = {
   guideSecurity: { path: '/insights/ai-built-app-security-holes', live: true },
   guideLovable: { path: '/insights/lovable-launch-checklist', live: true },
   guideFixRebuild: { path: '/insights/fix-or-rebuild-ai-app', live: true },
+  howWeWork: { path: '/how-we-work', live: true }, // 03 §7.13 (Oct 16)
   about: { path: '/about', live: true },
   launchCheck: { path: '/launch-check', live: true },
   book: { path: '/book', live: true },

@@ -3,14 +3,14 @@
 // this service sits and links to the stages either side. One connected track; the current stage is filled blue with a
 // "You are here" tag. Stacks on phones, three columns from 48rem.
 import { journey as c } from '../../content/copy/en/journey';
-import { ROUTES, isLive, type RouteKey } from '../../data/routes';
+import { ROUTES, isLive, href, type RouteKey } from '../../data/routes';
 interface Props { current: RouteKey }
 const { current } = Astro.props;
 const idx = c.stages.findIndex((s) => s.key === current);
 ---
 <nav class="js" data-surface="inverse" aria-label={c.srLabel}>
   <div class="container js__inner">
-    <p class="js__label">{c.label}</p>
+    <div class="js__top"><p class="js__label">{c.label}</p>{isLive('howWeWork') && <a class="js__how" href={href('howWeWork')}>{c.howLink}</a>}</div>
     <ol role="list" class="js__list">
       {c.stages.map((s, i) => {
         const here = s.key === current;
@@ -58,4 +58,6 @@ const idx = c.stages.findIndex((s) => s.key === current);
   .js__who { font-size: var(--text-sm); color: var(--blue-100); }
   .js__dur { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); margin-inline-start: var(--space-1); white-space: nowrap; }
   .js__here { font-family: var(--ff-heading); font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-800); background: var(--neutral-0); padding: 2px 8px; border-radius: var(--radius-pill); white-space: nowrap; }
+  .js__top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-4); }
+  .js__how { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--neutral-0); text-underline-offset: 0.2em; }
 </style>

@@ -3,6 +3,7 @@ import { home } from './home';
 
 export const journey = {
   label: 'Validate, Build, Scale',
+  howLink: 'See how every step works',
   srLabel: 'Where this service fits',
   current: 'You are here',
   stages: home.engagements.cards.map((c) => ({ key: c.key, title: c.title, who: c.who, duration: c.meta[0] })),
