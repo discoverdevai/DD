@@ -170,6 +170,13 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
 - `css-logical-lint` unchanged. Add `scripts/token-lint.mjs`: fail on raw hex in `src/components/**` (06 "semantic tokens only").
 - Changelog: record this as 06 v1.1 (2026-10-16) with "Signal" and link to `docs/creative-brief-signal.md`.
 
+### 0.8 Journey visual (WayFlow, home `#how-we-work`; Mohamed 2026-10-16)
+- **Scope:** one section visual on the existing dark theme; no surface, colour or hero changes (the keystone and white-led pilots were rejected and reverted the same day).
+- **Anatomy:** `<figure>` of four step cards (surface, hairline, radius-lg) showing one product screen evolving: 1 Discover (white chalk strokes on ink) → 2 AI drafts (dashed `--color-machine-mark` outlines, mono tag) → 3 A senior signs (white sheet: checklist with green ticks, signature stroke, green "Signed off" stamp) → 4 Live (phone, green "Live" dot). Numbers because the order is real; arrows between cards from 64rem. Strings from 03 §2A.4; sr-only figcaption.
+- **Green only at the sign-off and live moments.** Mono only on the AI draft tag.
+- **Motion:** once at 35% visible (tiny IntersectionObserver island): cards rise 300ms apart, then signature, stamp and live dot; ≈2.3s; transform and opacity only. No JS or reduced motion: finished state.
+- **Responsive:** 4 columns ≥ 64rem, 2×2 ≥ 36rem, picture beside text below.
+
 ---
 
 ## 1. Visual direction
