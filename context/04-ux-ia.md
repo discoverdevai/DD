@@ -81,7 +81,7 @@ Strategy v2 (2026-10-16, `docs/strategy-v2.md`): the Review leaves the top level
 | Order | Label | Target | Notes |
 |---|---|---|---|
 | 1 | Services ▾ | disclosure `<button aria-expanded>` | Submenu links in DOM (crawlable): Validate `/validate`, Build `/build`, Scale `/scale`, Launch-Ready Review `/launch-ready`, Partners `/partners`. Each item: label + 1-line "who it's for" (copy) |
-| 2 | How we work | `/#agile-v2` | Anchor to the Agile v2 section on home |
+| 2 | How we work | `/#how-we-work` | Anchor to the The DiscoverDev Way section on home |
 | 3 | Work | `/work` | Hidden if 0 published cases |
 | 4 | Insights | `/insights` | |
 | 5 | About | `/about` | |
@@ -130,9 +130,9 @@ Format: `#. Section (component) → purpose`. Copy lives in `03-copy.md` under t
 
 ### 4.1 Home `/` (v3, strategy v2, 2026-10-16; copy `03` §2A)
 1. Header.
-2. Hero → "Build the right thing. Ship it fast."; primary "Book a free clarity call" + terms; secondary outline "See how we work" (#agile-v2); delivery scene (AI lane + senior lane, labelled Example).
+2. Hero → "Build the right thing. Ship it fast."; primary "Book a free clarity call" + terms; secondary outline "See how we work" (#how-we-work); delivery scene (AI lane + senior lane, labelled Example).
 3. Proof band → rating + Clutch link, 4 continents, AI in production, Arabic and English, locations.
-4. Agile v2 (`#agile-v2`) → two-tone statement; "What AI does / What senior engineers own" split; responsibility line.
+4. The DiscoverDev Way (`#how-we-work`) → two-tone statement; "What AI does / What senior engineers own" split; responsibility line.
 5. Lifecycle → Discover · Plan · Build · Ship & Stay, with layer chips on Build.
 6. Engagements → Validate · Build · Scale (three large cards with duration and price model), then "Other ways in": Launch-Ready Review · Partners.
 7. What we build → four capability groups over the nine catalog lines.

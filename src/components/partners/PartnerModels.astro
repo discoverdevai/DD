@@ -6,9 +6,8 @@ interface Props { models: readonly Model[]; href?: string }
 const { models, href = '#models' } = Astro.props;
 ---
 <ul role="list" class="pmodels">
-  {models.map((m, i) => (
+  {models.map((m) => (
     <li class="pmodels__item">
-      <span class="pmodels__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
       <p class="pmodels__label"><a class="pmodels__link" href={href}>{m.label}<span class="pmodels__arrow icon--dir" aria-hidden="true">↓</span></a></p>
       <p class="pmodels__text">{m.text}</p>
     </li>

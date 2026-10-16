@@ -2,7 +2,7 @@
 Full evidence: `research/market-voc.md` (JTBD, verbatim pain-language bank, 12 objections + answers, GCC trust signals).
 
 ## Who the site is for (strategy v2, 2026-10-16; see `docs/strategy-v2.md`)
-DiscoverDev is positioned as a product and engineering company that builds with Agile v2 (AI does the heavy lifting, senior engineers own the quality). The Launch-Ready Review is one service, not the front door. Primary action site-wide: free clarity call.
+DiscoverDev is positioned as a product and engineering company that builds the DiscoverDev Way (AI does the heavy lifting, senior engineers own the quality). The Launch-Ready Review is one service, not the front door. Primary action site-wide: free clarity call.
 
 | Segment | Situation | Door | Priority |
 |---|---|---|---|

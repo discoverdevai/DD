@@ -10,7 +10,7 @@ const idx = c.stages.findIndex((s) => s.key === current);
 ---
 <nav class="js" data-surface="inverse" aria-label={c.srLabel}>
   <div class="container js__inner">
-    <p class="js__label"><span aria-hidden="true">//</span> {c.label}</p>
+    <p class="js__label">{c.label}</p>
     <ol role="list" class="js__list">
       {c.stages.map((s, i) => {
         const here = s.key === current;

@@ -18,7 +18,7 @@ const levers = caseStudy.approach.items.map((i) => i.title);
       <h2 id="cm-title" class="cm__title">{c.title}</h2>
       <p class="cm__body">{c.body}</p>
       <ol role="list" class="cm__levers reveal-stagger">
-        {levers.map((l, i) => <li><span class="cm__lnum">0{i + 1}</span>{l}</li>)}
+        {levers.map((l) => <li><span class="cm__lnum" aria-hidden="true"></span>{l}</li>)}
       </ol>
       <p class="cm__links">
         {isLive('workEdulens') && <CtaLink href={href('workEdulens')} ctaId="home_mid_case" tier="secondary" position="mid" target="case" variant="text">{c.link}</CtaLink>}
@@ -45,5 +45,5 @@ const levers = caseStudy.approach.items.map((i) => i.title);
   .cm__levers li { display: flex; align-items: baseline; gap: var(--space-4); padding-block: var(--space-3); border-block-end: 1px solid var(--color-hairline); font-weight: var(--weight-medium); }
   .cm__links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-6); }
   .cm__all { color: var(--color-text-muted); }
-  .cm__lnum { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .cm__lnum { display: inline-block; inline-size: 8px; block-size: 8px; flex: none; background: var(--color-machine-mark); margin-block-start: 0.55em; }
 </style>

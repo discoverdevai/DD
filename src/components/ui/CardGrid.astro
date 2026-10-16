@@ -7,7 +7,7 @@ import LayerChip from './LayerChip.astro';
 type IconName = Parameters<typeof Icon>[0]['name'];
 interface Item { title: string; body: string; icon?: IconName; chip?: { kind: 'ai' | 'human'; label: string } }
 interface Props { items: readonly Item[]; cols?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'; variant?: 'card' | 'rule' | 'brand'; index?: boolean }
-const { items, cols = 3, headingLevel: H = 'h3', variant = 'card', index = true } = Astro.props;
+const { items, cols = 3, headingLevel: H = 'h3', variant = 'card', index = false } = Astro.props;
 ---
 <ul role="list" class:list={['grid', `grid--${cols}`, `grid--${variant}`, 'reveal-stagger']}>
   {items.map((it, i) => (

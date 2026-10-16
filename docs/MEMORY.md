@@ -5,7 +5,7 @@ Two sessions write here:
 - **Claude Code** (Mohamed's PC): builds the site.
 - **Claude, DiscoverDev project chat** (claude.ai): plans, researches, tests.
 
-Last updated: Fri Oct 16, 2026, 02:20 Cairo · by Claude Code · site commit: see `docs/PLAN.md`.
+Last updated: Fri Oct 16, 2026, 12:05 Cairo · by Claude Code · site commit: see `docs/PLAN.md`.
 
 ## Where things live
 | What | File |
@@ -24,6 +24,10 @@ Last updated: Fri Oct 16, 2026, 02:20 Cairo · by Claude Code · site commit: se
 ## Decisions (newest first)
 | Date | Decision | Made in |
 |---|---|---|
+| Oct 16 | Method renamed **The DiscoverDev Way**: "Discover first. Build with AI. Seniors sign off." Picture: "AI lays the bricks. A senior sets the keystone." Brand one-pager `docs/brand/discoverdev-way.md` | Claude Code (Mohamed) |
+| Oct 16 | A senior engineer signs off every release (confirmed fact, in `09`) | Claude Code (Mohamed) |
+| Oct 16 | Art direction: keystone arch as the site-wide system, signed-release fragments in Build and case studies, drawing set on About. Brand-safe fixes before go-live; full art direction after launch. Review: `docs/review/design-review.html` | Claude Code (Mohamed) |
+| Oct 16 | tasteskill v2 installed (`.claude/skills/taste-frontend`, `taste-redesign`); its scripts need Mohamed's OK; brand guide wins where its rules conflict | Claude Code (Mohamed) |
 | Oct 16 | Launch-Ready Review price: **from $1,490 USD** (D-01 closed). Market middle for fixed-fee audits is ~$1,000; boutique reviews $1,500–10,000 | Claude Code (Mohamed) |
 | Oct 16 | "Agile v2" will be renamed (clash with TrianglZ). Options researched in `docs/review/enhancement/naming.md`; Mohamed to pick | Claude Code (Mohamed) |
 | Oct 16 | Named people (D-16), Cal.com (D-23) and dashboard settings: Mohamed will come back on these later | Claude Code (Mohamed) |
@@ -67,7 +71,6 @@ Last updated: Fri Oct 16, 2026, 02:20 Cairo · by Claude Code · site commit: se
 - **PostHog:** turn on cookieless mode in the project settings, or cookieless events are ignored.
 - **Decisions:**
   - Brand rollout of v4 to home.
-  - Hero pill and method naming vs TrianglZ (they market "AI-Native Agile v2.0" and define it in their llms.txt).
   - Content hubs B–D (Validate, Build, Scale guides) vs `05` §2 "wait 6 months".
   - Price cues for Validate/Build (D-18, D-19). Review price done (D-01).
   - Named people (D-16, D-17).

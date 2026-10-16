@@ -20,18 +20,19 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 
 ## Offer (website naming per Oct 2026 decision: Validate / Build / Scale; master doc older name for Build = "Launch")
 - Validate — "I have an idea." 1–2 weeks, fixed fee. Market & competitor read, product scope, clickable prototype, fixed build estimate. Fee credits toward Build.
-- Build — "I'm ready to build." 8–12 weeks (vs typical 12–16), fixed price. Production-ready product, real users, live deployment; design, build, QA, deploy. Agile v2.
+- Build — "I'm ready to build." 8–12 weeks (vs typical 12–16), fixed price. Production-ready product, real users, live deployment; design, build, QA, deploy. The DiscoverDev Way.
 - Scale — "It's working, grow it." Ongoing monthly retainer. Dedicated squad (devs + QA + PM), roadmap & sprint ownership. Client keeps control.
 - Front door (Oct 2026): Launch-Ready Review — ~5 working days, fixed fee quoted per client, credits toward fix or Build, guarantee "no useful findings, no charge", booked on Cal.com.
 - Review price (decided by Mohamed, Oct 16 2026, D-01): **from $1,490 USD**; the exact fee depends on app size and is quoted on the free 30-minute scoping call. Market context (vendor asking prices, Oct 2026): entry audits $149–199, fixed-fee audits ~$800–1,500 (median ~$1,000), boutique reviews $1,500–10,000.
 - Engagement models (internal; can be named, no prices): fixed-price, T&M, dedicated team (min 6 months), POC package 2–4 wks, MVP package 6–12 wks, white-label (NDA + IP), staff augmentation (min 3 months).
 - Standard CTA (older): "Book a free 30-minute consultation. Free, 30 minutes, no pitch." (Now: clarity call.)
 
-## Method: Agile v2 + full SDLC
+## Method: The DiscoverDev Way + full SDLC (renamed from "Agile v2" Oct 16 2026; TrianglZ markets "AI-Native Agile v2.0")
+- Name and line: "The DiscoverDev Way" · "Discover first. Build with AI. Seniors sign off." · picture: "AI lays the bricks. A senior sets the keystone."
 - "AI does the heavy lifting; senior engineers own the quality." Humans responsible for every line that reaches users.
 - A senior engineer signs off every release before it reaches users (confirmed by Mohamed, Oct 16 2026).
 - "We own the full lifecycle and we stay." One team, no handoff gaps (confirmed true on every engagement).
-- Stages: Discover (define the right product) → Plan (roadmap, tech, team before code) → Build (Agile v2 sprints, results every week) → Ship & Stay (deploy, monitor, keep improving).
+- Stages: Discover (define the right product) → Plan (roadmap, tech, team before code) → Build (weekly sprints, AI does the heavy lifting, results every week) → Ship & Stay (deploy, monitor, keep improving).
 
 ## Services catalog
 Product strategy & discovery · Product design (UX/UI) · Software development (web, mobile, APIs, microservices, enterprise, gov integrations, legacy modernization, cloud migration) · AI & ML (agents, AR/EN chatbots, NLP, CV, recommendations, document processing, predictive) · Data engineering & analytics · E-commerce (marketplaces, AI recs, AR, payments) · Quality, DevOps & cloud (testing, CI/CD, Docker, K8s, AWS/Azure/GCP, IaC, tiered SLAs) · Technical consulting & PM (architecture reviews, code audits, due diligence, CTO advisory) · Dedicated teams & staffing.
@@ -89,7 +90,7 @@ Frontend React, Next.js, Angular, Vue · Backend Node.js, Spring Boot, Python (D
 Egypt hub; in-house PMs and designers + freelancer network (Figma, research, prototyping). Models: individual specialists → full squads (lead + devs + QA + PM + designer).
 
 ## Differentiators
-Product-first · Senior teams, AI-accelerated (Agile v2) · You own everything · Full lifecycle, one partner · AI as core (EduLens, BioBank, Nile Support; research) · High retention (Athkado, Upscend, Arheb, Pyramakerz expanded scope) · Proven (5.0 across 11 reviews, 4 continents).
+Product-first · Senior teams, AI-accelerated (The DiscoverDev Way) · You own everything · Full lifecycle, one partner · AI as core (EduLens, BioBank, Nile Support; research) · High retention (Athkado, Upscend, Arheb, Pyramakerz expanded scope) · Proven (5.0 across 11 reviews, 4 continents).
 
 ## Boilerplate
 - One line: DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast — senior teams, AI-accelerated, and you own everything.

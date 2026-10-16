@@ -39,6 +39,7 @@ const updated = entry.data.updatedAt;
   .icard__meta { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); font-size: var(--text-sm); line-height: 1.5; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
   .icard__more { font-weight: var(--weight-medium); color: var(--color-link); text-decoration: underline; text-underline-offset: 0.2em; }
   .icard--featured { padding: var(--space-8); border-color: var(--color-border-accent); }
+  .icard:not(.icard--featured) .icard__title { font-size: var(--text-xl); } /* card titles stay within two lines in three columns */
   .icard--featured .icard__title { font-size: var(--text-2xl); }
   .icard--featured .icard__summary { -webkit-line-clamp: unset; line-clamp: none; font-size: var(--text-lg); }
   @media (hover: hover) {

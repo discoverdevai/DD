@@ -4,9 +4,8 @@ interface Props { items: readonly { title: string; body: string }[]; small: stri
 const { items, small } = Astro.props;
 ---
 <ul role="list" class="pl reveal-stagger">
-  {items.map((p, i) => (
+  {items.map((p) => (
     <li class="pl__item">
-      <span class="pl__n" aria-hidden="true">0{i + 1}</span>
       <h3 class="pl__h3">{p.title}</h3>
       <p class="pl__body">{p.body}</p>
     </li>

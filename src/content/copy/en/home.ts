@@ -4,10 +4,10 @@ export const home = {
   seo: {
     title: 'Product & Engineering Partner for Founders | DiscoverDev',
     description:
-      'Build the right thing, then ship it fast. Senior product and engineering teams, AI-accelerated with Agile v2. Validate, build and scale. You own it all.',
+      'Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all.',
   },
   hero: {
-    pill: 'Agile v2 · AI-accelerated, senior-owned',
+    pill: 'The DiscoverDev Way · senior-signed',
     h1: 'Build the right thing. Ship it fast.',
     sub: 'A product and engineering company for founders and teams. Senior people, AI-accelerated, without cutting corners. And you own everything.',
   },
@@ -21,19 +21,19 @@ export const home = {
     ],
   },
   agile: {
-    label: 'How we work',
-    bright: 'Agile v2.',
-    dim: 'AI does the heavy lifting. Senior engineers own the quality.',
-    body: 'Agile v2 is how every project runs. AI speeds up the work that used to take days. Senior engineers make the decisions, review every change and sign off each release. You see results every week.',
+    label: 'The DiscoverDev Way',
+    bright: 'Discover first. Build with AI. Seniors sign off.',
+    dim: '',
+    body: 'The DiscoverDev Way is how every project runs. We find the right thing to build first. AI does the heavy lifting, so work that used to take days moves faster. Senior engineers make the decisions, review every change and sign off every release. You see results every week.',
     ai: {
       title: 'What AI does',
       items: ['Drafts code from the agreed spec', 'Writes and runs tests', 'Drafts docs and migrations', 'Flags risky changes for review'],
     },
     human: {
       title: 'What senior engineers own',
-      items: ['Product and architecture decisions', 'Review of every change', 'Security, data and payments', 'Sign-off on each release'],
+      items: ['Product and architecture decisions', 'Review of every change', 'Security, data and payments', 'Sign-off on every release'],
     },
-    line: 'A person is responsible for every line that reaches your users.',
+    line: 'AI lays the bricks. A senior sets the keystone.',
   },
   lifecycle: {
     eyebrow: 'idea to after launch',
@@ -41,7 +41,7 @@ export const home = {
     steps: [
       { title: 'Discover', body: 'Define the right product to build, not just the one asked for.' },
       { title: 'Plan', body: 'Roadmap, tech decisions and team, before any code.' },
-      { title: 'Build', body: 'Agile v2 sprints. AI accelerates, seniors own quality. Results every week.', chips: [{ kind: 'ai', label: 'AI-accelerated' }, { kind: 'human', label: 'Senior sign-off' }] },
+      { title: 'Build', body: 'Weekly sprints. AI accelerates, seniors sign off. Results every week.', chips: [{ kind: 'ai', label: 'AI-accelerated' }, { kind: 'human', label: 'Senior sign-off' }] },
       { title: 'Ship & Stay', body: 'Deploy, monitor, keep improving. We stay after launch.' },
     ],
     line: 'One team, no handoff gaps.',

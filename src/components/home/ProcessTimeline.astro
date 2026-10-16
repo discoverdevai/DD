@@ -11,7 +11,7 @@ const { eyebrow, title, steps, vigs = ['cal', 'log', 'sign', 'fork'], line, id =
 ---
 <section id={id} class="tl" data-surface="ink" aria-labelledby="tl-title">
   <div class="container">
-    <p class="tl__eyebrow"><span aria-hidden="true">//</span> {eyebrow}</p>
+    <p class="tl__eyebrow">{eyebrow}</p>
     <h2 id="tl-title" class="tl__title reveal">{title}</h2>
     <ol role="list" class="tl__steps reveal-stagger">
       {steps.map((s, i) => (

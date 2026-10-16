@@ -32,7 +32,7 @@ export const GET: APIRoute = async () => {
     '',
     `> ${ENTITY_LINE}`,
     '',
-    'How we work: Agile v2. AI does the heavy lifting; senior engineers own the quality, and a person is responsible for every line that reaches users. One team from discovery to after launch.',
+    'How we work: The DiscoverDev Way. Discover first. Build with AI. Seniors sign off. We find the right thing to build first, AI does the heavy lifting, and a senior engineer signs off every release. One team from discovery to after launch.',
     '',
     `Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct): ${CLUTCH_URL}`,
     '',

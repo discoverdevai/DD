@@ -5,7 +5,6 @@ import PageHero from '../../components/sections/PageHero.astro';
 import Section from '../../components/ui/Section.astro';
 import CtaBand from '../../components/ui/CtaBand.astro';
 import InlineLink from '../../components/ui/InlineLink.astro';
-import ProofChip from '../../components/ui/ProofChip.astro';
 import { work as c } from '../../content/copy/en/work';
 import { graph, orgStub, webPage, canonical, ORG_ID } from '../../lib/seo';
 import { href } from '../../data/routes';
@@ -37,15 +36,12 @@ const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, '
     </ul>
   </Section>
 
-  <Section id="reviews" surface="ink" title={c.reviewsTitle} size="sm">
-    <ProofChip />
-  </Section>
 
   <CtaBand title={c.band.title} kind="clarity" page="work" link={{ label: c.band.link, to: 'review' }} />
 </BaseLayout>
 
 <style>
-  .case-card { position: relative; display: grid; gap: var(--space-6); padding: var(--space-10) var(--space-8); border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); border-radius: var(--radius-lg); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); box-shadow: 0 40px 120px -40px color-mix(in oklab, var(--blue-700) 60%, transparent); }
+  .case-card { position: relative; display: grid; gap: var(--space-6); padding: var(--space-10) var(--space-8); border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); border-radius: var(--radius-lg); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); }
   @media (width >= 48rem) { .case-card { grid-template-columns: 4fr 8fr; align-items: center; } }
   .case-card__metric { font-family: var(--ff-heading); font-weight: var(--weight-extrabold); font-size: clamp(3rem, 2rem + 4vw, 5.5rem); line-height: 1; letter-spacing: -0.05em; color: var(--color-heading); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .case-card__body { display: grid; gap: var(--space-3); }

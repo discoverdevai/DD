@@ -18,9 +18,8 @@ const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
         <p class="td__meta">{docMeta}</p>
       </header>
       <div class="td__cols">
-        {cols.map((c, i) => (
+        {cols.map((c) => (
           <div class="td__col" id={c.id}>
-            <span class="td__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="td__h3">{c.title}</h3>
             <p class="td__body">{c.body}</p>
             {c.link && <p class="td__more"><InlineLink text="" link={c.link} /></p>}
@@ -34,7 +33,7 @@ const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
 <style>
   .td { padding-block: var(--section-y); background: var(--blue-50); }
   .td__title { color: var(--neutral-950); margin-block-end: var(--space-8); }
-  .td__doc { background: var(--neutral-0); border-radius: var(--radius-md); border: 1px solid var(--blue-100); box-shadow: 0 24px 60px -32px rgb(3 41 147 / 0.25); padding: clamp(var(--space-6), 1rem + 3vw, var(--space-12)); }
+  .td__doc { background: var(--neutral-0); border-radius: var(--radius-md); border: 1px solid var(--blue-100); padding: clamp(var(--space-6), 1rem + 3vw, var(--space-12)); }
   .td__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-2) var(--space-6); padding-block-end: var(--space-4); margin-block-end: var(--space-8); border-block-end: 2px solid var(--blue-700); }
   .td__brand { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--neutral-950); }
   .td__brand span { color: var(--blue-700); }

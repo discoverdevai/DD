@@ -4,13 +4,14 @@
 import CtaLink from '../ui/CtaLink.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
-interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy'; ctaPage?: string }
-const { id, bright, dim, label, surface = 'ink', ctaPage } = Astro.props;
+// `display` keeps a short line (the method tagline) at headline size; long statements use statement size.
+interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy'; ctaPage?: string; display?: boolean }
+const { id, bright, dim, label, surface = 'ink', ctaPage, display = false } = Astro.props;
 ---
 <section id={id} class:list={['stmt', { 'stmt--navy bg-mark': surface === 'navy' }]} data-surface={surface === 'navy' ? 'inverse' : 'ink'} aria-labelledby={`${id}-title`}>
   <div class="container">
-    {label && <p class="stmt__label"><span aria-hidden="true">//</span> {label}</p>}
-    <h2 id={`${id}-title`} class="stmt__text reveal"><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>
+    {label && <p class="stmt__label">{label}</p>}
+    <h2 id={`${id}-title`} class:list={['stmt__text', 'reveal', { 'stmt__text--display': display }]}><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>
     <slot />
     {ctaPage && <p class="stmt__cta"><CtaLink href={bookHref('clarity')} ctaId={`${ctaPage}_mid_clarity`} tier="primary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink></p>}
   </div>
@@ -19,9 +20,10 @@ const { id, bright, dim, label, surface = 'ink', ctaPage } = Astro.props;
 <style>
   .stmt { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
   /* Same section-label style as the timeline eyebrow: mono, muted text, signal-blue slashes (H4 consistency). */
-  .stmt__label { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); margin-block-end: var(--space-4); }
+  .stmt__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-4); }
   .stmt__label span { color: var(--color-machine-text); }
-  .stmt__text { font-size: clamp(1.75rem, 1.1rem + 2.7vw, 3.5rem); font-weight: var(--weight-semibold); line-height: 1.12; letter-spacing: -0.035em; max-inline-size: 24ch; text-wrap: balance; }
+  .stmt__text { font-size: clamp(1.5rem, 1.05rem + 1.6vw, 2.25rem); font-weight: var(--weight-semibold); line-height: 1.12; letter-spacing: -0.035em; max-inline-size: 30ch; text-wrap: balance; } /* statement size (<= 36px): reads as a statement, not a headline (design review) */
+  .stmt__text--display { font-size: clamp(1.75rem, 1.1rem + 2.7vw, 3.5rem); max-inline-size: 24ch; }
   .stmt__bright { color: var(--color-heading); }
   .stmt__dim { color: color-mix(in oklab, var(--neutral-0) 50%, var(--color-bg)); }
   /* Navy band (brand guidelines: navy for openers and statements) for pages that alternate white and navy. */

@@ -15,7 +15,6 @@ const { title, lead, groups } = Astro.props;
       {groups.map((g, i) => (
         <li class="cap__panel" data-spotlight>
           <div class="cap__top">
-            <span class="cap__n" aria-hidden="true">0{i + 1}</span>
             <svg class="cap__glyph" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
               {i === 0 && <g><circle cx="20" cy="20" r="11" /><path d="m28 28 10 10" /><path d="M15 20h10M20 15v10" class="cap__accent" /></g>}
               {i === 1 && <g><path d="M17 14 7 24l10 10M31 14l10 10-10 10" /><path d="m27 10-6 28" class="cap__accent" /></g>}

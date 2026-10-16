@@ -1,6 +1,6 @@
 # Strategy v2: from "app rescue" to product and engineering company
 
-Status: applied 2026-10-16 · Trigger: Mohamed, "the rebuild is one of our services not the main… the nearest one of us is TrianglZ… Agile v2 and using AI in acceleration the development and more."
+Status: applied 2026-10-16 · **Update Oct 16: the method "Agile v2" is renamed "The DiscoverDev Way" (clash with TrianglZ); read every "Agile v2" below as that. See `docs/brand/discoverdev-way.md`.** · Trigger: Mohamed, "the rebuild is one of our services not the main… the nearest one of us is TrianglZ… Agile v2 and using AI in acceleration the development and more."
 Sources: `context/09-proof.md` (only source of facts), master source doc §6–7 (Agile v2, service catalog, boilerplates), trianglz.com and trianglz.com/services (captured 2026-10-15), skills `marketing-strategy-pmm` (Dunford positioning, message hierarchy), `mkt-cro`, sales objections from `research/market-voc.md`.
 
 ## Bottom line

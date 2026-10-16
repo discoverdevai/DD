@@ -2,7 +2,7 @@
 // `// comment` eyebrow (06 §9.22): mono, machine colour, at most 2 per page, never on consecutive sections.
 interface Props { class?: string }
 ---
-<p class:list={['eyebrow', Astro.props.class]}><span class="eyebrow__slashes" aria-hidden="true">//</span> <slot /></p>
+<p class:list={['eyebrow', Astro.props.class]}><slot /></p>
 
 <style>
   .eyebrow { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); }

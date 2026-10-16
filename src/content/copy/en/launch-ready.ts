@@ -7,8 +7,8 @@ export const launchReady = {
   },
   hero: {
     eyebrow: 'For apps built with Lovable, Bolt, v0, Cursor or a freelancer',
-    h1: 'Launch-Ready Review: a vibe code audit before you go live',
-    body: 'Your app works in the demo. Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote.',
+    h1: 'Launch‑Ready Review', // non-breaking hyphen: never splits as "Launch- / Ready"
+    body: 'A vibe code audit before you go live. Your app works in the demo. Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote.',
     quizLink: 'Take the 3-minute launch check first',
   },
   isThisYou: {

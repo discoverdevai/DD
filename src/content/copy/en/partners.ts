@@ -10,7 +10,7 @@ export const partners = {
   },
   hero: {
     eyebrow: 'For software houses and agencies',
-    h1: 'A white-label development partner for software houses',
+    h1: 'Partners: white-label development',
     body: 'Your extra senior team, under your brand. Take on more projects with white-label delivery or add engineers to your team with staff augmentation. We work in your tools and your process.',
     // §8.1 visual: two-column "White-label" / "Staff augmentation" (HTML labels). Lines reuse §8.3 "What you get".
     models: [

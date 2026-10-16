@@ -7,7 +7,7 @@ export const validate = {
   },
   hero: {
     eyebrow: 'I have an idea.',
-    h1: 'Validate: product discovery before you write code',
+    h1: 'Validate: discovery before code',
     body: 'In 1–2 weeks you learn if the idea is worth building, what to build first and what it will cost. You leave with a market read, a product scope, a clickable prototype and a fixed build estimate.',
     // Meta row labels come from 06 §9.11 (`service` hero: Timeline, Model, Team); values from 03 §5.1, §5.6, §5.7.
     // Team value = opening words of §5.7 (V16 → §0.7 keep).

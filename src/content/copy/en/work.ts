@@ -19,7 +19,6 @@ export const work = {
       { text: 'White-label websites and mobile apps for a software house', where: 'UK', link: { label: 'White-label websites and mobile apps', to: 'partners' as const } }, // 03 §0.8
     ],
   },
-  reviewsTitle: 'How clients rate us', // 03 §9.4 Phase 4: no quotes until consent
   band: { title: 'Want results like these for your product?', link: 'Have a prototype? Start with a Launch-Ready Review' },
 };
 
@@ -29,7 +28,7 @@ export const caseStudy = {
     description: 'Caption-first ingestion, cross-user caching, model routing and token trimming cut an EdTech platform’s AI costs by 60–90%. What we changed and why.',
   },
   crumb: 'EdTech AI platform',
-  h1: 'An EdTech AI platform: three AI agents, 60–90% lower AI cost',
+  h1: 'Three AI agents for an EdTech platform',
   body: 'An EdTech company in Egypt. We built three AI agents for its learners and teams, then cut the cost of running them by 60–90%.',
   metric: { value: '60–90%', label: 'lower AI cost' },
   updated: { label: 'Updated', date: 'October 16, 2026', iso: '2026-10-16' },

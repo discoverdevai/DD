@@ -1,6 +1,6 @@
 ---
 // Home hero (03 §2A.1, strategy v2): centred H1 + one sentence + two buttons + one quiet terms line,
-// then the Agile v2 delivery scene on a brand-blue horizon light. The H1 stays the LCP element (text, preloaded font).
+// then the DiscoverDev Way delivery scene on a brand-blue horizon light. The H1 stays the LCP element (text, preloaded font).
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import DeliveryScene from './DeliveryScene.astro';
@@ -17,7 +17,7 @@ const c = home.hero;
     <p class="hero__sub">{c.sub}</p>
     <div class="hero__ctas">
       <CtaLink href={bookHref('clarity')} ctaId="home_hero_clarity" tier="primary" position="hero" target="clarity" data-hero-cta>{t('cta.clarity')}</CtaLink>
-      <CtaLink href="#agile-v2" ctaId="home_hero_how_we_work" tier="low_commitment" position="hero" target="how_we_work" variant="secondary">{t('cta.how')}</CtaLink>
+      <CtaLink href="#how-we-work" ctaId="home_hero_how_we_work" tier="low_commitment" position="hero" target="how_we_work" variant="secondary">{t('cta.how')}</CtaLink>
     </div>
     <CtaTerms kind="clarity" class="hero__terms" />
   </div>

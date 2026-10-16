@@ -6,7 +6,7 @@ export const insights = {
     description:
       'Plain guides for founders with an AI-built app: taking it to production, the security holes to close, a Lovable launch checklist, fix or rebuild.',
   },
-  h1: 'Insights for founders shipping AI-built products',
+  h1: 'Guides for shipping AI-built apps',
   intro:
     'Plain guides on taking an app built with Lovable, Bolt, v0, Cursor or a freelancer to production. What breaks, what to check, when to fix and when to rebuild, and what it costs.',
   // §15.2. Shown only once the pillar is published.

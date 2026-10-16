@@ -23,5 +23,5 @@ export const delivery = {
     demo: 'Weekly demo with you',
   },
   footer: 'A person is responsible for every line that reaches your users.',
-  caption: 'Example of an Agile v2 sprint: AI drafts the work, then senior engineers review and approve it before release.',
+  caption: 'Example of a sprint the DiscoverDev Way: AI drafts the work, then senior engineers review and approve it before release.',
 } as const;

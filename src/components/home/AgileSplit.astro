@@ -1,5 +1,5 @@
 ---
-// Agile v2 explainer (03 §2A.4), slotted under the two-tone Statement. Two panels: the AI layer (mono, signal blue,
+// DiscoverDev Way explainer (03 §2A.4), slotted under the two-tone Statement. Two panels: the AI layer (mono, signal blue,
 // square marks) and the human layer (green, round marks), joined by a hand-off seam. The responsibility line closes it.
 interface Panel { title: string; items: readonly string[] }
 interface Props { body: string; ai: Panel; human: Panel; line: string }
@@ -11,7 +11,7 @@ const { body, ai, human, line } = Astro.props;
     <div class="ag__panel ag__panel--ai" data-spotlight>
       <h3 class="ag__h3"><span class="ag__mark" aria-hidden="true"></span>{ai.title}</h3>
       <ul role="list" class="ag__list">
-        {ai.items.map((i, n) => <li><span class="ag__n" aria-hidden="true">{String(n + 1).padStart(2, '0')}</span>{i}</li>)}
+        {ai.items.map((i) => <li><span class="ag__n" aria-hidden="true"></span>{i}</li>)}
       </ul>
     </div>
     <div class="ag__seam" aria-hidden="true"><span></span></div>
@@ -41,7 +41,7 @@ const { body, ai, human, line } = Astro.props;
   /* Fixed row rhythm so the AI rows (mono, smaller) and the senior rows (sans) line up across the two panels. */
   .ag__list li { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); align-items: center; gap: var(--space-2); min-block-size: 3.25rem; padding-block: var(--space-2); border-block-start: 1px solid var(--color-hairline); color: var(--color-text); }
   .ag__panel--ai .ag__list li { font-family: var(--ff-mono); font-size: var(--text-sm); }
-  .ag__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .ag__n { inline-size: 8px; block-size: 8px; flex: none; background: var(--color-machine-mark); } /* AI layer: square mark, no index number */
   .ag__tick { color: var(--color-human-mark); }
   .ag__seam { display: none; }
   @media (width >= 56rem) {

@@ -1,6 +1,6 @@
 ---
-// Home v3 (03 §2A, 04 §4.1, docs/strategy-v2.md): DiscoverDev as a product and engineering company built on Agile v2.
-// All-ink "workshop": centred hero + delivery scene, proof band, Agile v2 split, lifecycle timeline, engagements,
+// Home v3 (03 §2A, 04 §4.1, docs/strategy-v2.md): DiscoverDev as a product and engineering company built on DiscoverDev Way.
+// All-ink "workshop": centred hero + delivery scene, proof band, DiscoverDev Way split, lifecycle timeline, engagements,
 // capabilities board, case metric, two-tone why + pillars, split FAQ, horizon closer.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroV2 from '../components/home/HeroV2.astro';
@@ -23,7 +23,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd}>
   <HeroV2 />
   <ProofBand title={c.proofStrip.title} items={c.proofStrip.items} />
-  <Statement id="agile-v2" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} ctaPage="home">
+  <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} ctaPage="home" display>
     <AgileSplit body={c.agile.body} ai={c.agile.ai} human={c.agile.human} line={c.agile.line} />
   </Statement>
   <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} steps={c.lifecycle.steps} vigs={['fork', 'cal', 'log', 'ship']} line={c.lifecycle.line} />

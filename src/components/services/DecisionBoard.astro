@@ -69,7 +69,7 @@ const { id = 'process', title, lead, steps, deliverables, label, options } = Ast
     .decision__join::before { content: ''; position: absolute; inset-block-start: calc(50% - 4px); inset-inline-end: 4px; inline-size: 8px; block-size: 8px; border-block-start: 1.5px solid var(--blue-700); border-inline-end: 1.5px solid var(--blue-700); rotate: 45deg; }
     :dir(rtl) .decision__join::before { rotate: -45deg; }
   }
-  .decision__verdict { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); color: var(--neutral-0); box-shadow: 0 30px 70px -36px rgb(3 41 147 / 0.6); }
+  .decision__verdict { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); color: var(--neutral-0); }
   .decision__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); }
   .decision__options { display: grid; }
   /* Outcomes read as a list, not buttons (Jakob): rows with hairlines; only the Build row carries a link. */

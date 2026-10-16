@@ -53,7 +53,7 @@ For founders, funded startups and software houses in the US, GCC and Egypt who n
 
 ## Brand architecture
 - DiscoverDev is the master brand.
-- **Positioning (strategy v2, 2026-10-16):** a product and engineering company that builds with Agile v2: AI does the heavy lifting, senior engineers own the quality. See `docs/strategy-v2.md`.
+- **Positioning (strategy v2, 2026-10-16):** a product and engineering company that builds the DiscoverDev Way: AI does the heavy lifting, senior engineers own the quality. See `docs/strategy-v2.md`.
 - **Offers:** Validate, Build, Scale (the lifecycle). Launch-Ready Review is one service for apps already built ("Already built something?"). Partners (white-label and staffing) is a separate track.
 - **Yawmy Care:** endorsed "by DiscoverDev". Product page comes in 2027; mention only as proof of product DNA.
 

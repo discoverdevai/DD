@@ -22,11 +22,11 @@ Sources: `context/11-open-decisions.md` §0 (locked decisions), `context/09-proo
 
 ### 0.2 Message hierarchy (strategy v2, 2026-10-16; full reasoning in `docs/strategy-v2.md`)
 
-DiscoverDev is sold as a product and engineering company that builds with Agile v2. The Launch-Ready Review is one service ("Already built something?"), no longer the front door.
+DiscoverDev is sold as a product and engineering company that builds the DiscoverDev Way (renamed from Agile v2, Oct 16). The Launch-Ready Review is one service ("Already built something?"), no longer the front door.
 
 1. **Core idea (repeat on every page, verbatim):** "Most teams just build what you ask for. We help you build the right thing, then ship it fast, and you own all of it."
 2. **Headline:** Build the right thing. Ship it fast.
-3. **Method (the sell):** Agile v2. AI does the heavy lifting. Senior engineers own the quality. A person is responsible for every line that reaches your users.
+3. **Method (the sell):** The DiscoverDev Way. Discover first. Build with AI. Seniors sign off. A person is responsible for every line that reaches your users.
 4. **Lifecycle:** Discover → Plan → Build → Ship & Stay. One team, no handoff gaps.
 5. **Engagements:** Validate (1–2 weeks) · Build (8–12 weeks, fixed price) · Scale (dedicated squad). Other ways in: Launch-Ready Review (already built something) · Partners (software houses).
 6. **Three pillars:** Product-first · Senior teams, AI-accelerated · We stay, you own it.
@@ -193,7 +193,7 @@ The inbound-link gate (`07` §15: ≥ 3 links from the `<main>` of distinct page
     - Scale: "A dedicated squad that stays with your product."
     - Launch-Ready Review: "Already built something? A senior review in about 5 working days."
     - Partners: "Senior capacity for software houses and agencies."
-  - How we work → /#agile-v2
+  - How we work → /#how-we-work
   - Work → /work
   - Insights → /insights
   - About → /about
@@ -301,15 +301,15 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 proof strip, §2.8 case highlight (anonymized per §0.7). The Review copy in §2.2a, §2.2b, §2.5 and §2.6 moves to /launch-ready and is not shown on home. Facts trace to `09` (Method, Offer, Services catalog, Differentiators).
 
 - **SEO title (56):** Product & Engineering Partner for Founders | DiscoverDev
-- **Meta (151):** Build the right thing, then ship it fast. Senior product and engineering teams, AI-accelerated with Agile v2. Validate, build and scale. You own it all.
+- **Meta (145):** Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all.
 - **H1:** Build the right thing. Ship it fast.
 - **Primary CTA:** Book a free clarity call
 
 ### 2A.1 Hero
-- Pill: Agile v2 · AI-accelerated, senior-owned
+- Pill: The DiscoverDev Way · senior-signed
 - H1: Build the right thing. Ship it fast.
 - Sub: A product and engineering company for founders and teams. Senior people, AI-accelerated, without cutting corners. And you own everything.
-- Buttons: Book a free clarity call (primary) · See how we work (secondary, outline, → #agile-v2)
+- Buttons: Book a free clarity call (primary) · See how we work (secondary, outline, → #how-we-work)
 - Quiet line: 30 minutes · No pitch · Leave with a next step
 - Visual: the delivery scene (2A.2). HTML only, labelled as an example.
 
@@ -328,25 +328,25 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - Release approved
 - Release card: Release 0.4 · Shipped to staging · Signed off by a senior engineer · Weekly demo with you
 - Footer line: A person is responsible for every line that reaches your users.
-- Caption (screen readers): Example of an Agile v2 sprint: AI drafts the work, then senior engineers review and approve it before release.
+- Caption (screen readers): Example of a sprint the DiscoverDev Way: AI drafts the work, then senior engineers review and approve it before release.
 
 ### 2A.3 Proof band
 - §2.3 items, plus the rating line and Clutch link (§0.4).
 
-### 2A.4 Agile v2 (id `agile-v2`)
-- Label: How we work
-- H2 (two-tone): **Agile v2.** AI does the heavy lifting. Senior engineers own the quality.
-- Body: Agile v2 is how every project runs. AI speeds up the work that used to take days. Senior engineers make the decisions, review every change and sign off each release. You see results every week.
+### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
+- Label: The DiscoverDev Way
+- H2: Discover first. Build with AI. Seniors sign off.
+- Body: The DiscoverDev Way is how every project runs. We find the right thing to build first. AI does the heavy lifting, so work that used to take days moves faster. Senior engineers make the decisions, review every change and sign off every release. You see results every week.
 - Column A · What AI does: Drafts code from the agreed spec · Writes and runs tests · Drafts docs and migrations · Flags risky changes for review
-- Column B · What senior engineers own: Product and architecture decisions · Review of every change · Security, data and payments · Sign-off on each release
-- Line: A person is responsible for every line that reaches your users.
+- Column B · What senior engineers own: Product and architecture decisions · Review of every change · Security, data and payments · Sign-off on every release
+- Line: AI lays the bricks. A senior sets the keystone.
 
 ### 2A.5 Lifecycle
 - Label: idea to after launch
 - H2: One team from idea to after launch
 - Step 1 · Discover: Define the right product to build, not just the one asked for.
 - Step 2 · Plan: Roadmap, tech decisions and team, before any code.
-- Step 3 · Build: Agile v2 sprints. AI accelerates, seniors own quality. Results every week. Chips: "AI-accelerated" · "Senior sign-off"
+- Step 3 · Build: Weekly sprints. AI accelerates, seniors sign off. Results every week. Chips: "AI-accelerated" · "Senior sign-off"
 - Step 4 · Ship & Stay: Deploy, monitor, keep improving. We stay after launch.
 - Line: One team, no handoff gaps.
 
@@ -588,14 +588,14 @@ Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US
 - **Slug:** /launch-ready
 - **SEO title (56):** Vibe Code Audit for Lovable, Bolt & Cursor | DiscoverDev
 - **Meta (155):** A 5-day Launch-Ready Review of your AI-built app: security, data rules, payments, scale. Fixed fee, credited toward the fix. No useful findings, no charge.
-- **H1:** Launch-Ready Review: a vibe code audit before you go live
+- **H1:** Launch-Ready Review (Phase 4b, "a vibe code audit before you go live" opens the lead; Oct 16: two-line headline rule from the design review; the full keyword phrase stays in the title tag and the lead.)
 - **Primary CTA:** Book a Launch-Ready Review (inline Cal.com embed at the end)
 
 ### 3.1 Hero
 - Purpose: instant match to the visitor's situation.
 - Eyebrow: For apps built with Lovable, Bolt, v0, Cursor or a freelancer
-- H1: Launch-Ready Review: a vibe code audit before you go live
-- Body: Your app works in the demo. Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote. [VERIFY: V3]
+- H1: Launch-Ready Review
+- Body: A vibe code audit before you go live. Your app works in the demo. Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote. [VERIFY: V3]
 - CTA: Book a Launch-Ready Review
 - Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Text link: Take the 3-minute launch check first
@@ -884,13 +884,13 @@ Restart link (all results): Retake the check
 - **Slug:** /validate
 - **SEO title (53):** Product Discovery Services for Startups | DiscoverDev
 - **Meta (135):** Validate your idea in 1–2 weeks: market read, scope, clickable prototype and a fixed build estimate. The fee credits toward your build.
-- **H1:** Validate: product discovery before you write code
+- **H1:** Validate: discovery before code (Phase 4b, Oct 16: two-line headline rule from the design review; the full keyword phrase stays in the title tag and the lead.)
 - **Primary CTA:** Book a free clarity call
 
 ### 5.1 Hero
 - Purpose: state outcome, timeline, model and CTA.
 - Eyebrow: I have an idea.
-- H1: Validate: product discovery before you write code
+- H1: Validate: discovery before code
 - Body: In 1–2 weeks you learn if the idea is worth building, what to build first and what it will cost. You leave with a market read, a product scope, a clickable prototype and a fixed build estimate.
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
@@ -992,12 +992,12 @@ Order: Hero → Journey stepper → Decision board (signature) → Outcomes + Wh
 - **Slug:** /build
 - **SEO title (55):** Fixed-Price MVP Development in 8–12 Weeks | DiscoverDev
 - **Meta (149):** A senior team takes your MVP from scope to production in 8–12 weeks at a fixed price. Or we rebuild your AI prototype properly. You own all the code.
-- **H1:** Build: MVP development, from scope to production
+- **H1:** Build: an MVP in 8–12 weeks (Phase 4b, Oct 16: two-line headline rule from the design review; the full keyword phrase stays in the title tag and the lead.)
 - **Primary CTA:** Book a free clarity call (+ "Have a prototype? Start with a Review")
 
 ### 6.1 Hero
 - Eyebrow: I'm ready to build.
-- H1: Build: MVP development, from scope to production
+- H1: Build: an MVP in 8–12 weeks
 - Body: A senior team designs, builds, tests and deploys your product in 8–12 weeks, at a fixed price. You launch with real users on a live product, and you own all of it.
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
@@ -1100,12 +1100,12 @@ Order: Hero → Journey stepper → Week-by-week track (signature) → Outcomes 
 - **Slug:** /scale
 - **SEO title (52):** Dedicated Development Team on Retainer | DiscoverDev
 - **Meta (149):** A dedicated squad of developers, QA and a PM that stays with your product. Monthly retainer. Engineering hub in Egypt, working in Arabic and English.
-- **H1:** Scale: a dedicated development team that stays
+- **H1:** Scale: a team that stays (Phase 4b, Oct 16: two-line headline rule from the design review; the full keyword phrase stays in the title tag and the lead.)
 - **Primary CTA:** Book a free clarity call
 
 ### 7.1 Hero
 - Eyebrow: It's working. Grow it.
-- H1: Scale: a dedicated development team that stays
+- H1: Scale: a team that stays
 - Body: A dedicated squad of developers, QA and a product manager joins your product on a monthly retainer. They own the roadmap and sprints with you. You keep control.
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
@@ -1197,12 +1197,12 @@ Order: Hero → Journey stepper → Squad and loop (signature) → Outcomes + Wh
 - **Slug:** /partners
 - **SEO title (58):** White-Label Development Partner for Agencies | DiscoverDev
 - **Meta (146):** White-label delivery and staff augmentation for software houses. Senior engineers working under your brand, your process and your client contract.
-- **H1:** A white-label development partner for software houses
+- **H1:** Partners: white-label development (Phase 4b, Oct 16: two-line headline rule from the design review; the full keyword phrase stays in the title tag and the lead.)
 - **Primary CTA:** Book a partner call
 
 ### 8.1 Hero
 - Eyebrow: For software houses and agencies
-- H1: A white-label development partner for software houses
+- H1: Partners: white-label development
 - Body: Your extra senior team, under your brand. Take on more projects with white-label delivery or add engineers to your team with staff augmentation. We work in your tools and your process.
 - CTA: Book a partner call
 - Microcopy: 30 minutes · NDA on request [VERIFY: V5]
@@ -1310,7 +1310,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - White-label websites and mobile apps for a software house · UK [CONSENT: Amstadd to name]
 
 ### 9.4 Reviews strip
-- H2: How clients rate us (Phase 4, Oct 16: no quotes until consent, so the heading promises a rating, not quotes; switch back to "What clients say" when quotes ship)
+- Section removed Oct 16 (design review: one line under a section heading reads as a hole; the rating already sits in the footer and on service pages). Was: H2 How clients rate us (Phase 4, Oct 16: no quotes until consent, so the heading promises a rating, not quotes; switch back to "What clients say" when quotes ship)
 - Two quotes from the proof bank (not used elsewhere on the page) + "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + link "Read our reviews on Clutch".
 
 ### 9.5 Final CTA
@@ -1327,6 +1327,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - **SEO title (48):** EduLens: Cutting AI Costs 60–90% Across 3 Agents
 - **Meta (145):** Caption-first ingestion, cross-user caching, model routing and token trimming cut EduLens' AI costs by 60–90%. What we changed and why it worked.
 - **H1:** EduLens: three AI agents, 60–90% lower AI cost
+- **Anonymized H1 (live at /work/edtech-ai-agents, D-06; Oct 16 two-line rule, the metric stays the display stat):** Three AI agents for an EdTech platform
 - **Primary CTA:** Book a free clarity call ("AI costs too high?")
 - Publish condition: [CONSENT: EduLens name, quote and details] and [VERIFY: V12]. Show a visible "Updated" date.
 
@@ -1635,11 +1636,11 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - **Slug:** /insights
 - **SEO title (47):** Guides for Shipping AI-Built Apps | DiscoverDev
 - **Meta (145):** Plain guides for founders with an AI-built app: taking it to production, the security holes to close, a Lovable launch checklist, fix or rebuild. (Phase 4: matches the four live guides; widen as new guides publish.)
-- **H1:** Insights for founders shipping AI-built products
+- **H1:** Guides for shipping AI-built apps (Phase 4b, Oct 16: two-line headline rule from the design review; the full keyword phrase stays in the title tag and the lead.)
 
 ### 15.1 Intro
 - Purpose: say what the hub covers.
-- H1: Insights for founders shipping AI-built products
+- H1: Guides for shipping AI-built apps
 - Body: Plain guides on taking an app built with Lovable, Bolt, v0, Cursor or a freelancer to production. What breaks, what to check, when to fix and when to rebuild, and what it costs.
 
 ### 15.2 Featured guide

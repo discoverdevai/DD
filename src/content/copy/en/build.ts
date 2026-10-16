@@ -7,7 +7,7 @@ export const build = {
   },
   hero: {
     eyebrow: 'I’m ready to build.',
-    h1: 'Build: MVP development, from scope to production',
+    h1: 'Build: an MVP in 8–12 weeks',
     body: 'A senior team designs, builds, tests and deploys your product in 8–12 weeks, at a fixed price. You launch with real users on a live product, and you own all of it.',
     reviewLink: 'Have a prototype already? Start with a Launch-Ready Review',
     // Meta row labels come from 06 §9.11 (`service` hero: Timeline, Model, Team); values from 03 §6.1, §6.6, §6.7.

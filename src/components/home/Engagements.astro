@@ -18,7 +18,7 @@ const liveOther = other.filter((o) => isLive(o.key));
       <ol role="list" class="en__grid reveal-stagger">
         {live.map((c, i) => (
           <li class:list={['en__card', `en__card--${i}`]} data-spotlight>
-            <span class="en__stage" aria-hidden="true"><span class="en__node"></span><span class="en__n">0{i + 1}</span></span>
+            <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
             <p class="en__who">{c.who}</p>
             <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}</a></h3>
             <ul role="list" class="en__meta">{c.meta.map((m) => <li>{m}</li>)}</ul>
@@ -77,7 +77,6 @@ const liveOther = other.filter((o) => isLive(o.key));
 
   .en__other { margin-block-start: var(--space-12); display: grid; gap: var(--space-4); }
   .en__other-title { font-family: var(--ff-mono); font-size: var(--text-sm); font-weight: var(--weight-regular); color: var(--color-text-muted); }
-  .en__other-title::before { content: '// ' / ''; color: var(--color-machine-text); } /* decorative: empty alt text keeps it out of screen readers */
   .en__rows { display: grid; gap: var(--space-3); }
   @media (width >= 48rem) { .en__rows { grid-template-columns: 1fr 1fr; } }
   .en__row { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; align-content: stretch; gap: var(--space-1) var(--space-6); padding: var(--space-5) var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); transition: border-color var(--dur-color), background-color var(--dur-color); }
