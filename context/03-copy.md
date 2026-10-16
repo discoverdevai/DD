@@ -313,19 +313,17 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Quiet line: 30 minutes · No pitch · Leave with a next step
 - Visual: the delivery scene (2A.2). HTML only, labelled as an example.
 
-### 2A.2 Delivery scene strings (home hero visual; labelled as an example)
+### 2A.2 Delivery scene strings (home hero visual; labelled as an example; three rows per lane since Oct 16, batch 2)
 - Window path: your-product / sprint-board · Badge: Example
 - Status: Build · Week 4 of 10
 - Lane 1 title: AI does the heavy lifting · State labels: "drafting" (in progress) → "drafted"
   - Draft the booking API from the spec
   - Write tests for every endpoint
   - Draft migrations and seed data
-  - Flag risky changes for review
 - Lane 2 title: Senior engineers own the quality · State labels: "reviewing" (in progress) → "approved"
   - Architecture decision recorded
   - Code review: 2 changes requested
   - Payments tested end to end
-  - Release approved
 - Release card: Release 0.4 · Shipped to staging · Signed off by a senior engineer · Weekly demo with you
 - Footer line: A person is responsible for every line that reaches your users.
 - Caption (screen readers): Example of a sprint the DiscoverDev Way: AI drafts the work, then senior engineers review and approve it before release.
@@ -337,8 +335,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Label: The DiscoverDev Way
 - H2: Discover first. Build with AI. Seniors sign off.
 - Body: The DiscoverDev Way is how every project runs. We find the right thing to build first. AI does the heavy lifting, so work that used to take days moves faster. Senior engineers make the decisions, review every change and sign off every release. You see results every week.
-- Column A · What AI does: Drafts code from the agreed spec · Writes and runs tests · Drafts docs and migrations · Flags risky changes for review
-- Column B · What senior engineers own: Product and architecture decisions · Review of every change · Security, data and payments · Sign-off on every release
+- Columns "What AI does" / "What senior engineers own": removed Oct 16 (batch 2; Mohamed: the hero board and the journey visual already say this). The journey visual (Discover → AI drafts → A senior signs → Live) sits between the body and the line.
 - Line: AI drafts it. A senior engineer signs it. (Oct 16: replaces the keystone line, which Mohamed found unclear.)
 - **Journey visual (Oct 16, Mohamed: "from discovery to be live … like visuals for section"):** four cards side by side between the body and the two columns, played once on scroll. Illustration, not a client product; no text inside images.
   - 1 · Discover · Line: The right thing, sketched first.

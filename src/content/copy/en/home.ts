@@ -25,14 +25,6 @@ export const home = {
     bright: 'Discover first. Build with AI. Seniors sign off.',
     dim: '',
     body: 'The DiscoverDev Way is how every project runs. We find the right thing to build first. AI does the heavy lifting, so work that used to take days moves faster. Senior engineers make the decisions, review every change and sign off every release. You see results every week.',
-    ai: {
-      title: 'What AI does',
-      items: ['Drafts code from the agreed spec', 'Writes and runs tests', 'Drafts docs and migrations', 'Flags risky changes for review'],
-    },
-    human: {
-      title: 'What senior engineers own',
-      items: ['Product and architecture decisions', 'Review of every change', 'Security, data and payments', 'Sign-off on every release'],
-    },
     line: 'AI drafts it. A senior engineer signs it.',
     // §2A.4 journey visual (Oct 16): Discover → AI drafts → A senior signs → Live.
     flow: {

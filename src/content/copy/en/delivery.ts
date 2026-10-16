@@ -9,12 +9,12 @@ export const delivery = {
   ai: {
     title: 'AI does the heavy lifting',
     states: { pending: 'drafting', done: 'drafted' },
-    items: ['Draft the booking API from the spec', 'Write tests for every endpoint', 'Draft migrations and seed data', 'Flag risky changes for review'],
+    items: ['Draft the booking API from the spec', 'Write tests for every endpoint', 'Draft migrations and seed data'],
   },
   human: {
     title: 'Senior engineers own the quality',
     states: { pending: 'reviewing', done: 'approved' },
-    items: ['Architecture decision recorded', 'Code review: 2 changes requested', 'Payments tested end to end', 'Release approved'],
+    items: ['Architecture decision recorded', 'Code review: 2 changes requested', 'Payments tested end to end'],
   },
   release: {
     title: 'Release 0.4',

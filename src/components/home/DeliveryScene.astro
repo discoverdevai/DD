@@ -79,8 +79,8 @@ const check = 'M20 6 9 17l-5-5';
   /* Wide: two lanes on shared subgrid rows, so each review sits beside the AI item it checks; a hand-off arrow
      (pseudo-elements on the review card) crosses the gap and lights when the review is approved. */
   @container (inline-size >= 44rem) {
-    .ds__lanes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto repeat(4, auto); gap: var(--space-2) var(--space-10); }
-    .ds__lane { grid-row: 1 / span 5; grid-template-rows: subgrid; gap: var(--space-2); }
+    .ds__lanes { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto repeat(3, auto); gap: var(--space-2) var(--space-10); }
+    .ds__lane { grid-row: 1 / span 4; grid-template-rows: subgrid; gap: var(--space-2); }
     .ds__items { display: contents; }
     .ds__lane--human .ds__item::before { content: ''; position: absolute; inset-inline-end: calc(100% + 0.5rem); inset-block-start: 50%; inline-size: calc(var(--space-10) - 1rem); block-size: 1px; background: linear-gradient(90deg, var(--color-machine-mark), var(--color-human-mark)); transition: opacity var(--dur-base); }
     .ds__lane--human .ds__item::after { content: ''; position: absolute; inset-inline-end: calc(100% + 0.5rem); inset-block-start: 50%; inline-size: 6px; block-size: 6px; border-block-start: 1px solid var(--color-human-mark); border-inline-end: 1px solid var(--color-human-mark); translate: 0 -50%; rotate: 45deg; transition: opacity var(--dur-base); }
@@ -110,7 +110,7 @@ const check = 'M20 6 9 17l-5-5';
   .ds__prog { grid-column: 1 / -1; block-size: 2px; border-radius: 2px; background: color-mix(in oklab, var(--color-machine-mark) 18%, transparent); overflow: hidden; }
   .ds__prog i { display: block; block-size: 100%; background: var(--color-machine-mark); transform-origin: 0 50%; transition: transform 320ms var(--ease-standard); }
   :dir(rtl) .ds__prog i { transform-origin: 100% 50%; }
-  @container (inline-size < 34rem) { .ds__item:nth-child(4) { display: none; } .ds__lanes, .ds__head { padding: var(--space-4); } .ds__state { display: none; } .ds__lane--human .ds__item { grid-template-columns: auto minmax(0, 1fr); } .ds__lane--ai .ds__item { grid-template-columns: minmax(0, 1fr); } .ds .ds__rel-status { display: block; margin-inline-start: 0; } .ds .ds__seal { grid-row: span 4; align-self: start; } .ds__foot { padding-inline: var(--space-4); } }
+  @container (inline-size < 34rem) { .ds__lanes, .ds__head { padding: var(--space-4); } .ds__state { display: none; } .ds__lane--human .ds__item { grid-template-columns: auto minmax(0, 1fr); } .ds__lane--ai .ds__item { grid-template-columns: minmax(0, 1fr); } .ds .ds__rel-status { display: block; margin-inline-start: 0; } .ds .ds__seal { grid-row: span 4; align-self: start; } .ds__foot { padding-inline: var(--space-4); } }
 
   .ds__release { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px var(--space-3); align-items: center; margin: 0 var(--space-5) var(--space-4); padding: var(--space-4); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-human-mark) 9%, var(--color-surface)); border: 1px solid color-mix(in oklab, var(--color-human-mark) 35%, transparent); transition: opacity var(--dur-slow), translate var(--dur-slow) var(--ease-enter); }
   /* One-row release bar only when there is room for all four parts; below that it stacks beside the seal. */
