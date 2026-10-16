@@ -356,6 +356,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - 2 · AI drafts · Card tag (mono): AI draft · Line: AI writes the first draft from the agreed spec.
   - 3 · A senior signs · Checklist: Review of every change · Security, data and payments · Sign-off on every release · Stamp: Signed off · Line: A senior engineer reviews it and signs it off.
   - 4 · Live · Chip: Live · Line: Your users get it, and we keep improving it.
+  - Visual redesign Oct 16 (Mohamed): one screen in four states on the dark theme; card 3 = the draft made solid with a dark review panel (checks, signature, green stamp), card 4 = the finished screen in brand colour with a rising usage line (no numbers).
   - Oct 16 copy pass: lines say what happens at each step, in the client's terms.
   - Caption (screen readers): An illustration of the DiscoverDev Way: a rough sketch, an AI draft, a senior engineer's sign-off, then the live product.
 

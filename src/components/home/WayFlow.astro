@@ -1,6 +1,8 @@
 ---
 // Journey visual for The DiscoverDev Way (03 §2A.4, Oct 16): one product screen goes Discover (chalk sketch) → AI drafts
-// (dashed blue, mono tag) → A senior signs (white sheet, checklist, signature, green stamp) → Live (phone, green dot).
+// (dashed blue, mono tag) → A senior signs (the same screen made solid, a dark review panel with checks, signature and a
+// green stamp) → Live (the finished screen in colour, Live chip, a rising usage line). Redesigned Oct 16: one screen, four
+// states, all on the dark theme (the white sheet and the empty phone read as off-brand).
 // Illustration, not a client product. Plays once at 35% visible: cards rise in order, then the signature, stamp and
 // live dot land. Transform and opacity only. No JS or reduced motion: the finished state.
 interface Step { title: string; line: string }
@@ -56,31 +58,38 @@ const check = 'M20 6 9 17l-5-5';
             </>
           )}
           {i === 2 && (
-            <div class="wf__sheet">
-              <ul role="list" class="wf__checks">
-                {checks.map((c) => <li><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg>{c}</li>)}
-              </ul>
-              <div class="wf__signrow">
-                <svg viewBox="0 0 120 32" aria-hidden="true" focusable="false" class="wf__sig"><path d="M4 22c6-10 10-16 13-14s-4 16 0 15 9-14 13-13-2 11 2 11 7-8 11-8 2 6 6 6 8-6 13-6 5 4 10 3 12-5 18-6 10 1 22-2" /></svg>
-                <span class="wf__stamp"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg>{stamp}</span>
+            <>
+              <svg viewBox="0 0 160 120" aria-hidden="true" focusable="false" class="wf__svg wf__solid">
+                <rect x="4" y="4" width="152" height="112" rx="4" />
+                <path d="M4 14H156" />
+                <rect x={pic.x} y={pic.y} width={pic.w} height={pic.h} rx="2" />
+                {lines.map((l) => <path d={`M${l.x} ${l.y}H${l.x + l.w}`} />)}
+                <rect x={btn.x} y={btn.y} width={btn.w} height={btn.h} rx="3" />
+              </svg>
+              <div class="wf__review">
+                <ul role="list" class="wf__checks">
+                  {checks.map((c) => <li><svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg>{c}</li>)}
+                </ul>
+                <div class="wf__signrow">
+                  <svg viewBox="0 0 120 32" aria-hidden="true" focusable="false" class="wf__sig"><path d="M4 22c6-10 10-16 13-14s-4 16 0 15 9-14 13-13-2 11 2 11 7-8 11-8 2 6 6 6 8-6 13-6 5 4 10 3 12-5 18-6 10 1 22-2" /></svg>
+                  <span class="wf__stamp"><svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg>{stamp}</span>
+                </div>
               </div>
-            </div>
+            </>
           )}
           {i === 3 && (
             <>
               <span class="wf__live"><span class="wf__dot" aria-hidden="true"></span>{live}</span>
-              <svg viewBox="0 0 160 120" aria-hidden="true" focusable="false" class="wf__svg wf__phone">
-                <rect class="wf__ph-body" x="55" y="4" width="50" height="112" rx="9" />
+              <svg viewBox="0 0 160 120" aria-hidden="true" focusable="false" class="wf__svg wf__final">
+                <defs><linearGradient id="wf-pic" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="wf__g1" /><stop offset="1" class="wf__g2" /></linearGradient></defs>
                 <g class="wf__ph-screen">
-                  <rect class="wf__ph-bg" x="59" y="12" width="42" height="96" rx="3" />
-                  <rect class="wf__ph-bar" x="59" y="12" width="42" height="7" rx="2" />
-                  <rect class="wf__ph-pic" x="63" y="23" width="34" height="24" rx="2" />
-                  <rect class="wf__ph-line" x="63" y="51" width="30" height="3" rx="1.5" />
-                  <rect class="wf__ph-line" x="63" y="57" width="22" height="3" rx="1.5" />
-                  <rect class="wf__ph-btn" x="63" y="64" width="20" height="8" rx="2" />
-                  <rect class="wf__ph-card" x="63" y="78" width="16" height="12" rx="2" />
-                  <rect class="wf__ph-card" x="81" y="78" width="16" height="12" rx="2" />
-                  <rect class="wf__ph-card" x="63" y="92" width="34" height="10" rx="2" />
+                  <rect class="wf__f-frame" x="4" y="4" width="152" height="112" rx="4" />
+                  <rect class="wf__f-bar" x="4" y="4" width="152" height="10" rx="4" />
+                  <rect x={pic.x} y={pic.y} width={pic.w} height={pic.h} rx="3" fill="url(#wf-pic)" />
+                  {lines.map((l, k) => <rect class="wf__f-line" x={l.x} y={l.y - 2} width={l.w} height={k === 0 ? 5 : 3.5} rx="1.75" />)}
+                  <rect class="wf__f-btn" x={btn.x} y={btn.y} width={btn.w} height={btn.h} rx="3" />
+                  {cards.map((c) => <rect class="wf__f-card" x={c.x} y={c.y} width={c.w} height={c.h} rx="3" />)}
+                  <path class="wf__f-trend" d="M14 104 L30 100 L46 101 L62 95 L78 96 L94 89 L110 90 L126 83 L146 76" />
                 </g>
               </svg>
             </>
@@ -129,26 +138,27 @@ const check = 'M20 6 9 17l-5-5';
   .wf__chalk .wf__chalk-2 { stroke-width: 0.7; opacity: 0.35; translate: 0.6px 0.5px; }
   .wf__draft :is(rect, path) { fill: none; stroke: var(--color-machine-mark); stroke-width: 1.2; stroke-dasharray: 4 3; }
   .wf__tag { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); padding: 1px 6px; border-radius: var(--radius-xs); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); background: color-mix(in oklab, var(--color-machine-mark) 16%, var(--color-bg)); }
-  .wf__vis--3 { background: var(--neutral-0); color: var(--neutral-950); }
-  .wf__sheet { position: absolute; inset: 0; display: grid; align-content: space-between; gap: var(--space-3); padding: var(--space-3); }
-  /* Phones: the sign-off sheet grows with its checklist instead of clipping it. */
-  @media (width < 36rem) { .wf__vis--3 { aspect-ratio: auto; } .wf__sheet { position: static; } }
-  .wf__checks { display: grid; gap: 6px; font-size: var(--text-xs); line-height: 1.3; }
+  /* 3 · reviewed: the draft made solid, with a dark review panel docked at the bottom. */
+  .wf__solid :is(rect, path) { fill: none; stroke: var(--blue-200); stroke-width: 1.2; opacity: 0.55; }
+  .wf__review { position: absolute; inset-inline: var(--space-2); inset-block-end: var(--space-2); display: grid; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-bg) 88%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 40%, transparent); box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--color-human-mark) 45%, transparent); }
+  @media (width < 36rem) { .wf__vis--3 { aspect-ratio: auto; display: grid; } .wf__vis--3 .wf__solid { display: none; } .wf__review { position: static; } }
+  .wf__checks { display: grid; gap: 4px; font-size: var(--text-xs); line-height: 1.3; color: var(--color-text); }
   .wf__checks li { display: flex; align-items: center; gap: 6px; }
-  .wf__checks svg { flex: none; color: var(--green-700); }
-  .wf__signrow { display: flex; align-items: end; justify-content: space-between; gap: var(--space-2); border-block-start: 1px solid var(--neutral-200); padding-block-start: var(--space-2); }
-  .wf__sig { inline-size: 55%; max-inline-size: 7rem; }
-  .wf__sig path { fill: none; stroke: var(--blue-800); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .wf__stamp { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xs); white-space: nowrap; color: var(--green-700); background: var(--green-50); border: 1px solid var(--green-700); }
-  .wf__live { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); display: inline-flex; align-items: center; gap: 6px; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xs); color: var(--color-human-text); }
-  .wf__dot { inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--color-human-mark); }
-  .wf__ph-body { fill: var(--blue-925); stroke: color-mix(in oklab, var(--blue-300) 45%, transparent); stroke-width: 1; }
-  .wf__ph-bg { fill: var(--neutral-0); }
-  .wf__ph-bar { fill: var(--blue-800); }
-  .wf__ph-pic { fill: var(--blue-200); }
-  .wf__ph-line { fill: var(--neutral-200); }
-  .wf__ph-btn { fill: var(--blue-700); }
-  .wf__ph-card { fill: var(--blue-50); stroke: var(--blue-100); stroke-width: 0.6; }
+  .wf__checks svg { flex: none; color: var(--color-human-mark); }
+  .wf__signrow { display: flex; align-items: end; justify-content: space-between; gap: var(--space-2); border-block-start: 1px solid var(--color-hairline); padding-block-start: var(--space-2); }
+  .wf__sig { inline-size: 50%; max-inline-size: 6rem; }
+  .wf__sig path { fill: none; stroke: var(--blue-300); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .wf__stamp { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xs); white-space: nowrap; color: var(--color-human-text); background: color-mix(in oklab, var(--color-human-mark) 14%, transparent); border: 1px solid var(--color-human-mark); }
+  /* 4 · live: the same screen finished, in brand colour, with a rising usage line. */
+  .wf__live { position: absolute; z-index: 1; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 999px; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xs); color: var(--color-human-text); background: color-mix(in oklab, var(--color-bg) 80%, transparent); }
+  .wf__dot { inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-human-mark) 25%, transparent); }
+  .wf__f-frame { fill: var(--blue-925); stroke: color-mix(in oklab, var(--blue-300) 35%, transparent); stroke-width: 1; }
+  .wf__f-bar { fill: var(--blue-800); }
+  .wf__g1 { stop-color: var(--blue-700); } .wf__g2 { stop-color: var(--blue-400); }
+  .wf__f-line { fill: color-mix(in oklab, var(--blue-200) 55%, transparent); }
+  .wf__f-btn { fill: var(--blue-500); }
+  .wf__f-card { fill: color-mix(in oklab, var(--blue-300) 12%, transparent); stroke: color-mix(in oklab, var(--blue-300) 30%, transparent); stroke-width: 0.6; }
+  .wf__f-trend { fill: none; stroke: var(--color-human-mark); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .wf__h { display: flex; align-items: center; gap: var(--space-2); margin-block-start: var(--space-2); font-size: var(--text-base); font-weight: var(--weight-semibold); letter-spacing: -0.01em; color: var(--color-heading); }
   .wf__n { display: inline-grid; place-items: center; flex: none; inline-size: 1.375rem; block-size: 1.375rem; border-radius: 50%; font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--color-machine-text); border: 1px solid color-mix(in oklab, var(--color-machine-mark) 60%, transparent); }
   .wf__line { font-size: var(--text-sm); line-height: 1.5; color: var(--color-text-muted); }
@@ -170,6 +180,6 @@ const check = 'M20 6 9 17l-5-5';
     @keyframes wf-fade { from { opacity: 0; } to { opacity: 1; } }
   }
   @media (forced-colors: active) {
-    .wf__chalk path, .wf__draft :is(rect, path), .wf__sig path { stroke: CanvasText; }
+    .wf__chalk path, .wf__draft :is(rect, path), .wf__solid :is(rect, path), .wf__sig path, .wf__f-trend { stroke: CanvasText; }
   }
 </style>
