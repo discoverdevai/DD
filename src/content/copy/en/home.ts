@@ -16,7 +16,8 @@ export const home = {
     // §2A.3 facts map (09 countries).
     map: {
       label: 'Map of where we work: clients in North America, Europe, Africa and Asia, with teams in Texas, USA and Alexandria, Egypt.',
-      regions: ['North America', 'Europe', 'Africa', 'Asia'],
+      legendWorked: 'Countries we’ve worked in',
+      legendHome: 'Our teams: Texas and Alexandria',
     },
     title: 'What we’ve built',
     logosTitle: 'Teams we’ve built for',
