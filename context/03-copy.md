@@ -381,11 +381,12 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 
 ### 2A.7 What we build
 - H2: What we build
-- Lead: Nine service lines. One delivery team.
-- Group · Product · "Find the right thing to build.": Product strategy and discovery · Product design (UX/UI) · Market and competitor studies
-- Group · Engineering · "Build it to last.": Web and mobile apps · APIs and enterprise systems · E-commerce and marketplaces · Legacy modernization and cloud migration · Quality, DevOps and cloud
-- Group · AI and data · "AI that works in production.": AI agents and chatbots in Arabic and English · Computer vision and NLP · Recommendations and document processing · Data engineering and analytics
-- Group · Teams and advice · "Senior people when you need them.": Architecture reviews and code audits · CTO advisory · Dedicated teams and staff augmentation
+- Lead: Product, engineering, AI and data in one senior team, so nothing gets lost in a handoff. (Oct 16 section review: "Nine service lines" sat over 15 items in 4 groups and read as a mismatch; 09: one team, no handoff gaps)
+- Group · Product · "Decide what to build before any code.": Product strategy and discovery · Product design (UX/UI) · Market and competitor studies
+- Group · Engineering · "Tested, deployed and kept running.": Web and mobile apps · APIs and enterprise systems · E-commerce and marketplaces · Legacy modernization and cloud migration · Quality, DevOps and cloud
+- Group · AI and data · "AI in production, in Arabic and English.": AI agents and chatbots in Arabic and English · Computer vision and NLP · Recommendations and document processing · Data engineering and analytics
+- Group · Teams and advice · "Senior people on your team or a second opinion.":
+- Taglines rewritten Oct 16 (swap test: the old ones fit any agency). Layout: four compact columns from 64rem. Architecture reviews and code audits · CTO advisory · Dedicated teams and staff augmentation
 
 ### 2A.8 Case highlight
 - §2.8 (anonymized per §0.7).

@@ -95,12 +95,12 @@ export const home = {
   },
   capabilities: {
     title: 'What we build',
-    lead: 'Nine service lines. One delivery team.',
+    lead: 'Product, engineering, AI and data in one senior team, so nothing gets lost in a handoff.',
     groups: [
-      { title: 'Product', tagline: 'Find the right thing to build.', items: ['Product strategy and discovery', 'Product design (UX/UI)', 'Market and competitor studies'] },
-      { title: 'Engineering', tagline: 'Build it to last.', items: ['Web and mobile apps', 'APIs and enterprise systems', 'E-commerce and marketplaces', 'Legacy modernization and cloud migration', 'Quality, DevOps and cloud'] },
-      { title: 'AI and data', tagline: 'AI that works in production.', items: ['AI agents and chatbots in Arabic and English', 'Computer vision and NLP', 'Recommendations and document processing', 'Data engineering and analytics'] },
-      { title: 'Teams and advice', tagline: 'Senior people when you need them.', items: ['Architecture reviews and code audits', 'CTO advisory', 'Dedicated teams and staff augmentation'] },
+      { title: 'Product', tagline: 'Decide what to build before any code.', items: ['Product strategy and discovery', 'Product design (UX/UI)', 'Market and competitor studies'] },
+      { title: 'Engineering', tagline: 'Tested, deployed and kept running.', items: ['Web and mobile apps', 'APIs and enterprise systems', 'E-commerce and marketplaces', 'Legacy modernization and cloud migration', 'Quality, DevOps and cloud'] },
+      { title: 'AI and data', tagline: 'AI in production, in Arabic and English.', items: ['AI agents and chatbots in Arabic and English', 'Computer vision and NLP', 'Recommendations and document processing', 'Data engineering and analytics'] },
+      { title: 'Teams and advice', tagline: 'Senior people on your team or a second opinion.', items: ['Architecture reviews and code audits', 'CTO advisory', 'Dedicated teams and staff augmentation'] },
     ],
   },
   // V12 → §0.7 anonymize ("EdTech AI platform, Egypt"); quote omitted.
