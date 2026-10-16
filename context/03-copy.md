@@ -311,7 +311,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Sub: A product and engineering company for founders and teams. Senior people, AI-accelerated, without cutting corners. And you own everything.
 - Buttons: Book a free clarity call (primary) · See how we work (secondary, outline, → #how-we-work)
 - Quiet line: 30 minutes · No pitch · Leave with a next step
-- Visual: the delivery scene (2A.2). HTML only, labelled as an example.
+- Visual: the delivery scene (2A.2), framed by the keystone arch (art direction v5, 06 §0.8, Oct 16; decorative, no text in the image, hidden from screen readers). HTML only, labelled as an example.
 
 ### 2A.2 Delivery scene strings (home hero visual; labelled as an example)
 - Window path: your-product / sprint-board · Badge: Example
@@ -340,6 +340,12 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Column A · What AI does: Drafts code from the agreed spec · Writes and runs tests · Drafts docs and migrations · Flags risky changes for review
 - Column B · What senior engineers own: Product and architecture decisions · Review of every change · Security, data and payments · Sign-off on every release
 - Line: AI lays the bricks. A senior sets the keystone.
+- **v5 layout (06 §0.8, Oct 16): the three moves.** Each move scrolls past the arch and adds to it. Strings from `docs/brand/discoverdev-way.md` §3; facts from `09` (Method, Build).
+  - Move 1 · H3: Discover first · What we do: We check it's the right thing before any code. · You get: No money spent building the wrong product.
+  - Move 2 · H3: Build with AI · What we do: AI does the heavy lifting, with results every week. · You get: Live in 8–12 weeks, at a fixed price. · List: Column A items (heading "What AI does").
+  - Move 3 · H3: Seniors sign off · What we do: A senior engineer signs off every release. · You get: Someone answers for every line your users see. · List: Column B items (heading "What senior engineers own").
+  - "You get" label (visible, before each outcome): You get
+  - Arch caption (visible, under the arch): the Line above.
 
 ### 2A.5 Lifecycle
 - Label: idea to after launch

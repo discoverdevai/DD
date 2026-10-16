@@ -1,7 +1,7 @@
 # 06 · Design system and visual direction
 
 DiscoverDev marketing site. Astro 7 static, plain CSS custom properties, logical properties only, no Tailwind. WCAG 2.2 AA. English live Nov 2026, `/ar` RTL in Q1 2027.
-Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brief (locked decisions), `research/cro-ux.md`, `research/tech-stack.md`, `research/market-voc.md`, logo JPG.
+Status: v1.2 (art direction §0.8, 2026-10-16). v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brief (locked decisions), `research/cro-ux.md`, `research/tech-stack.md`, `research/market-voc.md`, logo JPG.
 **[needed]** = asset or decision the build cannot invent.
 
 ---
@@ -28,6 +28,13 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
   /* Reference tier: ramp extension (OKLCH h≈263.6, chroma reduced to stay in gamut) */
   --blue-925: #02103E;   /* L 0.20, ink raised */
   --blue-975: #01082D;   /* L 0.16, ink canvas */
+  --arch-blue-2: #2C59C1; /* §0.8: second stop of the arrow mark's own gradient (logo SVG), arch stones only (decor) */
+
+  /* §0.8 keystone arch roles (decor; never text) */
+  --arch-stone:      var(--blue-700);
+  --arch-stone-2:    var(--arch-blue-2);
+  --arch-stone-tint: var(--blue-100);   /* a stone not yet laid / ghost course */
+  --arch-key:        var(--blue-800);
 
   /* Reference tier: type */
   --ff-mono: var(--font-mono, "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace);
@@ -169,6 +176,34 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
 ### 0.7 Lint and governance
 - `css-logical-lint` unchanged. Add `scripts/token-lint.mjs`: fail on raw hex in `src/components/**` (06 "semantic tokens only").
 - Changelog: record this as 06 v1.1 (2026-10-16) with "Signal" and link to `docs/creative-brief-signal.md`.
+
+### 0.8 Art direction v5: The DiscoverDev Way (approved by Mohamed 2026-10-16; build started 2026-10-16, home pilot first)
+**Adds to §0.4 (v3/v4 surfaces stay).** Sources: `docs/review/design-review.html` (concepts A + C + B), `docs/brand/discoverdev-way.md`, `docs/review/enhancement/taste-critique.md`. Rolled out page by page, home first; a page keeps its v3/v4 look until it is converted.
+
+**The idea.** "AI lays the bricks. A senior sets the keystone." One owned picture, drawn three ways:
+| Device | Where | What it shows |
+|---|---|---|
+| **A. Keystone arch** (site-wide system) | Leads on the home hero; shrinks to a glyph elsewhere; **absent on `/book`** | Many small blue stones = the work AI lays. One keystone (navy on white, white on ink) = the senior's sign-off, set last. The arch only stands once the keystone is in |
+| **C. Signed release** (UI fragment) | Inside `/build` ("Build with AI") and the case study | AI commits arrive → checks pass → "Approved by a senior engineer" → Release. HTML, labelled as an example |
+| **B. Drawing set** | `/about` only | Rough sketch → finished drawing; credited Alexandria archive plates (licence checked per image) |
+
+**A. Keystone arch: geometry and roles**
+- **Cut from the mark.** Stones are voussoirs whose joints lean at the slant of the arrow mark's blades (up to 6° off radial, mirrored on each side), filled with the mark's own two-stop blue (`#1240BE → #2C59C1`, `--blue-700 → --arch-blue-2`). The keystone is the one true, symmetric stone, filled navy `--blue-800` on white, white `--neutral-0` on ink and navy, and stands proud of the ring by 12% of its depth. Odd stone count (23 hero, 9 section and glyph); the lean is capped at a third of one stone's angle; the keystone is always the middle one.
+- **Roles (Stripe wave rule: leads, supports, disappears):**
+  - `hero`: the home opener only. A doorway: a half-round arch of 23 stones stands on the sprint board's top edge, the headline sits in its opening, and the keystone lands above the pill. Its height follows the hero, so narrow screens see the crown only. On load the stones are laid from the springings up (110ms apart) and the keystone is set last (≈1.7s), once.
+  - `build`: the live thing on the home "The DiscoverDev Way" section (below).
+  - `glyph`: 24–64px marks: sign-off steps, stage markers, the closing band. Never more than one arch per viewport except glyphs in a list.
+  - Never on `/book`, legal, quiz or article bodies. Never as a background pattern.
+- **Live thing (home, The DiscoverDev Way):** three moves scroll past a sticky arch (≥ 56rem). "Discover first" lays the footings, "Build with AI" lays the courses, "Seniors sign off" drops the keystone in and the line "AI lays the bricks. A senior sets the keystone." appears. Courses fade in over a ghost of the whole arch, so the shape reads from the start. CSS scroll-driven (`view-timeline` per move + `timeline-scope` on the section), zero JS. Unsupported browsers and `prefers-reduced-motion: reduce` show the finished arch. Below 56rem there is no sticky stage: each move carries a static glyph of the arch at that stage.
+- **SVG rules:** inline SVG generated at build time (`src/lib/arch.ts`), `aria-hidden="true"` unless it carries meaning (then `role="img"` + a label from `03`). No text inside the SVG. Mirrors in RTL (the arch is symmetric; only the label side flips). Forced colours: stones `CanvasText` outline, keystone `Highlight`.
+
+**Colour: keep the dark theme (Mohamed, Oct 16, pilot review: "the last theme was perfect, we needed to add some motions, arts").** The v3/v4 surfaces, header and hero stay as they are, grid and horizon light included. The art goes on top of them: the arch on ink uses brand-blue stones (`--blue-700 → --arch-blue-2`; deeper `--blue-800 → --blue-700` in the hero so it frames the headline without competing) and a white keystone; mortar is the surface colour. The white-led rollout (≈60% white, navy openers and closers only) from the design review is **on hold** until Mohamed asks for it; the paper and navy arch variants exist for the v4 white sections.
+
+**Type.** Mono (JetBrains Mono) only inside `data-ui` fragments, where it stands for a line AI wrote. No mono labels, eyebrows, index numbers or captions outside them. Section labels are Manrope 700 at `--text-sm` in `--color-machine-text`. Index numbers only where order is real (Discover → Plan → Build → Ship).
+
+**Layout.** No two card grids in a row; on converted pages card grids become an index (rows with a rule), a path (stages joined by one line with arch glyphs), or the arch itself.
+
+**UI fragments (`data-ui`).** A fragment is a slice of a real interface: a pull request, a check run, a findings report. Rules: `<figure data-ui>` with a visible "Example" badge and a `<figcaption>`; ink or white surface with a 1px border; mono only for AI-written lines and file paths; the human approval in Manrope 700 with the green check; final state always in the DOM, any sequence is an `aria-hidden` overlay; strings from `03`.
 
 ---
 
