@@ -7,14 +7,18 @@ export interface Project {
   id: string; stage: Stage; industry: string; where?: string; title: string;
   brief?: string; did: string; result?: string; metric?: { value: string; label: string };
   art: Art; quotes?: readonly string[]; link?: 'workEdulens' | 'partners';
-  // A real product screen (from Figma) replaces the drawing once the client approves screens (D-05). Path under
-  // assets/projects/, read at build time like the client logos.
-  screen?: string;
+  // Real product screens (exported from our Figma files, Oct 16) replace the drawing. Files under assets/projects/.
+  // `device` picks the frame: browser window for web apps, tablet for the iPad apps. Two screens = a layered pair.
+  screens?: readonly string[]; device?: 'browser' | 'tablet'; screenAlt?: string;
+  // `hold`: the decision that keeps a project off the live site (e.g. D-07). Shown only in a local preview build.
+  hold?: string;
 }
 
-export const projects: readonly Project[] = [
+const all: readonly Project[] = [
   { id: 'edtech-agents', stage: 'build', industry: 'EdTech', where: 'Egypt', title: 'AI agents for an EdTech platform', brief: 'Every request was processed from scratch, so AI costs rose with every new student.', did: 'Captions first, answers shared across users and the right model for each task.', result: 'AI costs down 60–90%, and cost now grows slower than the user base.', metric: { value: '60–90%', label: 'lower AI cost' }, art: 'edtech', quotes: ['Youssef'], link: 'workEdulens' },
-  { id: 'ar-commerce', stage: 'build', industry: 'E-commerce', where: 'Saudi Arabia', title: 'AR furniture store with AI recommendations', did: 'Market study, discovery, UX/UI, development, an AI recommendation engine and AR visualization.', art: 'ar', quotes: ['Nojoud Alarfaj'] },
+  { id: 'ar-commerce', stage: 'build', industry: 'E-commerce', where: 'Saudi Arabia', title: 'AR furniture store with AI recommendations', did: 'Market study, discovery, UX/UI, development, an AI recommendation engine and AR visualization.', art: 'ar', quotes: ['Nojoud Alarfaj'], screens: ['njwar-product.webp'], device: 'browser', screenAlt: 'Product page of the furniture store in Arabic, with photos, dimensions, colour options and an add-to-cart button' },
+  { id: 'yawmy-care', stage: 'build', industry: 'Childcare · our own product', title: 'Yawmy Care, a nursery management platform', did: 'One platform for parents, teachers and management, with billing and multiple locations. Built as our own white-label product.', result: 'Launching in 2027.', art: 'lms', screens: ['yawmy-dashboard.webp'], device: 'browser', screenAlt: 'Yawmy Care dashboard for a nursery: totals for children, teachers and check-ins, and a daily attendance chart' },
+  { id: 'home-services', stage: 'build', industry: 'Marketplace', where: 'USA', title: 'Home-services marketplace', brief: 'A greenfield product for booking verified home-service pros.', did: 'A full product team for 16 weeks: post a job, auto-match the nearest verified contractor, Stripe escrow, real-time messaging and admin tools.', art: 'devices', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'tablet', hold: 'D-07', screenAlt: 'Tablet app screens: a map with matched home-service pros, and the home screen with service categories' },
   { id: 'health-app', stage: 'build', industry: 'HealthTech', title: 'Health app that explains lab reports', did: 'Plain-language explanations of lab reports, recommendations, conversational follow-up and medical safety guardrails.', art: 'health' },
   { id: 'call-ops', stage: 'build', industry: 'AI agents', where: 'USA', title: 'AI agents for call operations', did: 'AI agents for call operations, a landing page and staff augmentation.', art: 'agent', quotes: ['CEO'] },
   { id: 'support-agent', stage: 'build', industry: 'Support automation', title: 'Customer-support AI agent', brief: 'Many users asked the same question at once, and each request paid for its own AI call.', did: 'A runtime cache answers identical questions once and shares the result.', result: 'AI cost follows unique questions, not total requests.', art: 'agent' },
@@ -30,14 +34,46 @@ export const projects: readonly Project[] = [
   { id: 'tourism', stage: 'validate', industry: 'Tourism and hospitality', where: 'Kuwait', title: 'Market research for a consulting firm', did: 'Tourism and hospitality market research.', art: 'research', quotes: ['Farah Alkhaldi'] },
 ];
 
+// Held projects (hold set) appear only in a local preview build (SHOWCASE_MOCK=1), never on the live site.
+const MOCK = typeof process !== 'undefined' && process.env.SHOWCASE_MOCK === '1';
+export const projects: readonly Project[] = all.filter((p) => !p.hold || MOCK);
+
 export const showcase = {
   label: 'Selected work',
   title: 'Products we’ve helped build',
   caseLink: 'Read the case study',
   partnersLink: 'See Partners',
   allLink: 'See all our work',
-  ids: ['edtech-agents', 'ar-commerce', 'lms-team', 'health-app', 'support-agent'],
+  // Below the chapters: the projects the chapters don't cover, the EdTech case first.
+  ids: ['edtech-agents', 'lms-team', 'health-app', 'support-agent', 'call-ops'],
+  moreTitle: 'More products we’ve helped build',
   labels: { brief: 'The brief', did: 'What we did', result: 'Result' },
   stages: { all: 'All', validate: 'Validate', build: 'Build', scale: 'Scale' } as Record<'all' | Stage, string>,
   filterLabel: 'Filter by stage',
 } as const;
+
+// 03 §2A.8a project chapters (Oct 16): one product per full screen, real screens from our Figma on 3D devices.
+export interface Chapter {
+  id: string; project: string; name: string; tags: readonly string[]; line: string; note?: string;
+  web?: { file: string; alt: string }; phones: readonly { file: string; alt: string }[];
+  tryIt?: { label: string; href: string }; hold?: string;
+}
+const allChapters: readonly Chapter[] = [
+  { id: 'njwar', project: 'ar-commerce', name: 'NJWAR', tags: ['Build', 'E-commerce', 'AR', 'Saudi Arabia'],
+    line: 'An AR furniture store with AI recommendations: place a piece in your room at real size, change its colour and add more.',
+    note: 'Web store on the laptop, AR on the phone. On a phone, the demo places a chair in your room.',
+    web: { file: 'njwar-web.webp', alt: 'NJWAR web store home page in Arabic, inviting shoppers to try furniture in their home' },
+    phones: [{ file: 'njwar-ar.webp', alt: 'NJWAR mobile AR view: an armchair placed in a room, with colour and rotate controls' }],
+    tryIt: { label: 'Try our AR prototype', href: 'https://furniture-webar.pages.dev/' } },
+  { id: 'yawmy', project: 'yawmy-care', name: 'Yawmy Care', tags: ['Build', 'Childcare', 'Our own product'],
+    line: 'Our own nursery platform for management, teachers and parents, with billing and multiple locations.',
+    note: 'Admin dashboard on the web, parent app on the phone.',
+    web: { file: 'yawmy-dashboard.webp', alt: 'Yawmy Care admin dashboard with totals and a daily attendance chart' },
+    phones: [{ file: 'yawmy-parent-home.webp', alt: 'Yawmy Care parent app: today’s attendance and schedule' }, { file: 'yawmy-parent-logs.webp', alt: 'Yawmy Care parent app: daily log with mood, meals and nap' }] },
+  { id: 'rushr', project: 'home-services', name: 'Rushr', tags: ['Build', 'Marketplace', 'USA'],
+    line: 'A home-services marketplace: post a job, get matched with the nearest verified pro, pay through escrow.',
+    phones: [{ file: 'rushr-m-searching.webp', alt: 'Rushr app searching for a technician nearby' }, { file: 'rushr-m-dispatch.webp', alt: 'Rushr app showing a matched plumber with accept and decline' }, { file: 'rushr-m-progress.webp', alt: 'Rushr request in progress with live cost' }],
+    hold: 'D-07' },
+];
+export const chapters: readonly Chapter[] = allChapters.filter((c) => !c.hold || MOCK);
+export const chapterCopy = { label: 'Featured work', view: 'View project' } as const;

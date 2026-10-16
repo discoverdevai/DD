@@ -4,7 +4,8 @@
 import ProjectVisual from '../work/ProjectVisual.astro';
 import { projects, showcase as c } from '../../content/copy/en/projects';
 import { href, isLive } from '../../data/routes';
-const tiles = c.ids.map((id) => projects.find((p) => p.id === id)!).filter(Boolean);
+const fallback = ['health-app', 'support-agent'];
+const tiles = [...c.ids, ...fallback].map((id) => projects.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p)).slice(0, 5);
 const [feat, ...rest] = tiles;
 const target = (p: (typeof tiles)[number]) => (p.link && isLive(p.link) ? href(p.link) : href('work'));
 const stageName = (s: keyof typeof c.stages) => c.stages[s];
@@ -14,7 +15,7 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
     <div class="sc__head">
       <div>
         <p class="sc__label">{c.label}</p>
-        <h2 id="sc-title" class="sc__title">{c.title}</h2>
+        <h2 id="sc-title" class="sc__title">{c.moreTitle}</h2>
       </div>
       {isLive('work') && <a class="sc__all" href={href('work')}>{c.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
     </div>

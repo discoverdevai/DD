@@ -1,19 +1,51 @@
 ---
-// Project visual: an approved real product screen (assets/projects/, added only after the client approves screens,
-// D-05) or the text-free drawing of the product type.
+// Project visual (03 §2A.8b, §9.3). With real screens: the screen inside a device frame (browser window for web apps,
+// tablet for iPad apps; a second screen layers behind the first). Without: the text-free drawing of the product type.
+// Screens are cropped to the first view and saved as WebP in assets/projects/ (exported from our Figma files).
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import ProjectArt from './ProjectArt.astro';
 import type { Project } from '../../content/copy/en/projects';
 interface Props { project: Project; sizes?: string }
 const { project, sizes = '(min-width: 64rem) 40vw, 100vw' } = Astro.props;
-const screens = import.meta.glob<{ default: ImageMetadata }>('/assets/projects/*.{png,jpg,jpeg,webp}', { eager: true });
-const screen = project.screen ? screens[`/assets/projects/${project.screen}`]?.default : undefined;
+import path from 'node:path';
+import sharp from 'sharp';
+const files = import.meta.glob<{ default: ImageMetadata }>('/assets/projects/*.{png,jpg,jpeg,webp}');
+// Held projects (preview builds only) read their screens from assets/projects-held/ as inline data, so those files are
+// never part of the live build's assets.
+const held = !!project.hold;
+const screens = held
+  ? await Promise.all((project.screens ?? []).map(async (f) => `data:image/webp;base64,${(await sharp(path.join(process.cwd(), 'assets/projects-held', f)).resize({ width: 640 }).webp({ quality: 70 }).toBuffer()).toString('base64')}`))
+  : (await Promise.all((project.screens ?? []).map(async (f) => (await files[`/assets/projects/${f}`]?.())?.default))).filter(Boolean);
+const alt = (i: number) => (i === 0 ? project.screenAlt ?? '' : '');
+const device = project.device ?? 'browser';
 ---
-{screen
-  ? <Image src={screen} alt="" widths={[480, 800, 1200]} sizes={sizes} class="pv__img" loading="lazy" decoding="async" />
-  : <ProjectArt name={project.art} />}
+{screens.length > 0 ? (
+  <div class:list={['pv', `pv--${device}`, { 'pv--pair': screens.length > 1 }]}>
+    {screens.slice(0, 2).map((src, i) => (
+      <div class:list={['pv__frame', { 'pv__frame--back': i === 1 }]}>
+        {device === 'browser' && <span class="pv__bar" aria-hidden="true"><i></i><i></i><i></i></span>}
+        {typeof src === 'string'
+          ? <img src={src} alt={alt(i)} width="640" height="853" class="pv__img" loading="lazy" decoding="async" />
+          : <Image src={src!} alt={alt(i)} widths={[480, 800, 1200]} sizes={sizes} class="pv__img" loading="lazy" decoding="async" />}
+      </div>
+    ))}
+  </div>
+) : <ProjectArt name={project.art} />}
 
 <style>
-  .pv__img { display: block; inline-size: 100%; block-size: auto; border-radius: var(--radius-md); }
+  /* Stage: one shape for every screen (16:10), dark brand backdrop so light product screens read as objects. */
+  .pv { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 6% 7% 0; overflow: hidden; border-radius: var(--radius-md); background: radial-gradient(80% 90% at 50% 100%, color-mix(in oklab, var(--blue-700) 45%, transparent), transparent 70%), var(--blue-925); border: 1px solid var(--color-hairline); }
+  .pv__frame { position: relative; inline-size: 100%; align-self: end; overflow: hidden; background: var(--neutral-0); box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.6); }
+  .pv__img { display: block; inline-size: 100%; block-size: auto; }
+  /* Browser window: rounded top, three dots. */
+  .pv--browser .pv__frame { border-radius: 10px 10px 0 0; }
+  .pv__bar { display: flex; gap: 5px; padding: 7px 10px; background: var(--neutral-100, #eef0f4); }
+  .pv__bar i { inline-size: 7px; block-size: 7px; border-radius: 50%; background: color-mix(in oklab, var(--blue-975) 25%, transparent); }
+  /* Tablet: dark bezel, rounded; shown upright and cropped by the stage so it reads as a device. */
+  .pv--tablet { padding: 6% 0 0; }
+  .pv--tablet .pv__frame { inline-size: 46%; border: 6px solid #0b1022; border-block-end: 0; border-radius: 18px 18px 0 0; }
+  .pv--tablet.pv--pair .pv__frame { grid-area: 1 / 1; }
+  .pv--tablet.pv--pair .pv__frame:not(.pv__frame--back) { translate: 22% 4%; z-index: 1; }
+  .pv--tablet.pv--pair .pv__frame--back { translate: -22% 0; opacity: 0.9; }
 </style>

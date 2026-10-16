@@ -7,6 +7,7 @@ import PageHero from '../../components/sections/PageHero.astro';
 import Section from '../../components/ui/Section.astro';
 import CtaBand from '../../components/ui/CtaBand.astro';
 import ProjectRows from '../../components/work/ProjectRows.astro';
+import Chapters from '../../components/work/Chapters.astro';
 import { work as c } from '../../content/copy/en/work';
 import { graph, orgStub, webPage, canonical, ORG_ID } from '../../lib/seo';
 import { href } from '../../data/routes';
@@ -19,6 +20,8 @@ const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, '
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="work_index" jsonLd={jsonLd}>
   <PageHero page="work" h1={c.h1} lead={c.intro} cta="none" proof={false} />
+
+  <Chapters />
 
   <Section id="projects" surface="ink" title={c.more.title} titleHidden>
     <ProjectRows />

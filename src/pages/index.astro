@@ -15,6 +15,7 @@ import Pillars from '../components/home/Pillars.astro';
 import FaqSplit from '../components/home/FaqSplit.astro';
 import Closer from '../components/home/Closer.astro';
 import Showcase from '../components/home/Showcase.astro';
+import Chapters from '../components/work/Chapters.astro';
 import Reviews from '../components/home/Reviews.astro';
 import Guides from '../components/home/Guides.astro';
 import { howWeWork } from '../content/copy/en/how-we-work';
@@ -36,6 +37,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
   <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} lead={c.lifecycle.lead} steps={c.lifecycle.steps.map(({ title, when, body, tools }) => ({ title, when, body, art: tools[0].name === 'Jobs to be Done' ? 'Jobs to be Done' : tools.find((x) => ['Shape Up', 'Weekly sprints', 'DORA metrics'].includes(x.name))?.name }))} more={{ label: howWeWork.more, href: href('howWeWork') }} line={c.lifecycle.line} />
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Capabilities title={c.capabilities.title} lead={c.capabilities.lead} groups={c.capabilities.groups} />
+  <Chapters />
   <Showcase />
   <Reviews {...c.reviews} />
   <Statement id="why" surface="navy" label={c.why.title} bright={c.why.leadBright} dim={c.why.leadDim}>

@@ -52,6 +52,9 @@ BUILD
 - CTC (Continuum Therapy Collective) · USA · speech therapy practice · bilingual EN/AR site with online booking for a US-licensed, ASHA-certified therapist; virtual therapy now, in-person (Cairo) coming (per Mohamed, Oct 16). Clinician consent needed before showing anything identifying.
 - Nile Support · USA · landing page, AI agents for call operations, staff augmentation. Review: "The quality of their work is top-notch." CEO
 - Amstadd · UK · white-label websites and mobile apps.
+- NJWAR (AR furniture store; Figma "NJWAR-AR", shared by Mohamed Oct 16 2026): web store and mobile AR module. AR lets a shopper place a piece in their room at real size, change its colour, rotate it and add more pieces. A live web AR prototype exists: https://furniture-webar.pages.dev/ (demo brand "Hearth & Form"). Client link to Athkado unconfirmed.
+- Rushr is a mobile app (Mohamed, Oct 16 2026): post a job, get matched with the nearest verified pro, track the request, pay through Stripe escrow.
+- Yawmy Care apps (Figma, Mohamed Oct 16 2026): admin web dashboard, admin mobile app, teacher app and parent app (check-in and attendance, daily schedule, daily logs, chat, announcements, media).
 SCALE
 - Upscend · UK B2B LMS · 12-month embedded partnership; dedicated PM + engineering team owning roadmap, backlog, sprints; supports US & UK enterprise growth.
 - Pyramakerz · Egypt EdTech · 20,000+ students · data analysis, ML, automations, data engineering.

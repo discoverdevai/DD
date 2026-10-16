@@ -23,3 +23,17 @@ docs/review/hero-v6/
 docs/review/hero-v7/
 docs/review/pband-v1/
 docs/review/sections/
+
+# Held client screens (preview builds only, not approved for publishing)
+assets/projects-held/
+# Unused single-colour logo experiments
+assets/clients/mono/
+# Local preview server config
+.claude/launch.json
+
+# Held client screens (preview builds only, not approved for publishing)
+assets/projects-held/
+# Unused single-colour logo experiments
+assets/clients/mono/
+# Local preview server config
+.claude/launch.json

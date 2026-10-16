@@ -1,0 +1,111 @@
+---
+// Project chapters (03 §2A.8a, Oct 16): one product per full screen in the site theme (ink, brand-blue light,
+// Manrope), huge product name, real screens from our Figma on 3D devices. Layouts by screen mix: web + 1 phone,
+// web + 2 phones, 3 phones. Held chapters (e.g. Rushr, D-07) render only in a preview build, from assets/projects-held
+// as inline data so their files never reach the live build. Devices are decorative frames; each screen has alt text.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import path from 'node:path';
+import sharp from 'sharp';
+import { chapters, chapterCopy as c } from '../../content/copy/en/projects';
+import { href } from '../../data/routes';
+interface Props { headingLevel?: 'h2' | 'h3' }
+const { headingLevel = 'h2' } = Astro.props;
+const H = headingLevel;
+const files = import.meta.glob<{ default: ImageMetadata }>('/assets/projects/*.{png,jpg,jpeg,webp}');
+const load = async (file: string, held: boolean, width: number) => held
+  ? `data:image/webp;base64,${(await sharp(path.join(process.cwd(), 'assets/projects-held', file)).resize({ width }).webp({ quality: 78 }).toBuffer()).toString('base64')}`
+  : (await files[`/assets/projects/${file}`]()).default;
+const rows = await Promise.all(chapters.map(async (ch) => ({
+  ...ch,
+  layout: ch.web ? (ch.phones.length > 1 ? 'web2' : 'web1') : 'phones',
+  webSrc: ch.web ? await load(ch.web.file, !!ch.hold, 1440) : undefined,
+  phoneSrcs: await Promise.all(ch.phones.map((p) => load(p.file, !!ch.hold, 600))),
+})));
+---
+{rows.length > 0 && (
+  <div class="chs">
+    {rows.map((ch) => (
+      <section class:list={['ch', `ch--${ch.layout}`]} data-surface="ink" aria-labelledby={`ch-${ch.id}`} id={`chapter-${ch.id}`}>
+        <div class="ch__copy">
+          <ul role="list" class="ch__tags">{ch.tags.map((t) => <li>{t}</li>)}</ul>
+          <H id={`ch-${ch.id}`} class="ch__name">{ch.name}</H>
+          <p class="ch__line">{ch.line}</p>
+          <div class="ch__acts">
+            <a class="ch__view" href={`${href('work')}#project-${ch.project}`}>{c.view}<span class="icon--dir" aria-hidden="true">&nbsp;→</span></a>
+            {ch.tryIt && <a class="ch__try" href={ch.tryIt.href} target="_blank" rel="noopener" data-link-context="ar_demo">{ch.tryIt.label}<span aria-hidden="true">&nbsp;↗</span></a>}
+          </div>
+          {ch.note && <p class="ch__note">{ch.note}</p>}
+        </div>
+        <div class="ch__scene">
+          {ch.webSrc && ch.web && (
+            <div class="ch__laptop"><div class="ch__lid"><div class="ch__screen">
+              {typeof ch.webSrc === 'string'
+                ? <img src={ch.webSrc} alt={ch.web.alt} width="1440" height="900" loading="lazy" decoding="async" />
+                : <Image src={ch.webSrc} alt={ch.web.alt} widths={[640, 960, 1440]} sizes="(min-width: 64rem) 50vw, 90vw" loading="lazy" decoding="async" />}
+            </div></div><div class="ch__base" aria-hidden="true"></div></div>
+          )}
+          {ch.phoneSrcs.map((src, i) => (
+            <div class:list={['ch__phone', `ch__phone--${i + 1}`]}><div class="ch__glass">
+              {typeof src === 'string'
+                ? <img src={src} alt={ch.phones[i].alt} width="375" height="812" loading="lazy" decoding="async" />
+                : <Image src={src} alt={ch.phones[i].alt} widths={[300, 600]} sizes="(min-width: 64rem) 18vw, 40vw" loading="lazy" decoding="async" />}
+              <span class="ch__island" aria-hidden="true"></span>
+            </div></div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+)}
+
+<style>
+  .ch { position: relative; overflow: clip; display: grid; gap: var(--space-10); align-items: center; padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline);
+    background: radial-gradient(52% 64% at 74% 56%, rgb(18 64 190 / 0.5), rgb(3 41 147 / 0.16) 55%, transparent 75%), var(--color-bg); }
+  @media (width >= 64rem) { .ch { grid-template-columns: minmax(0, 42fr) minmax(0, 58fr); gap: 0; min-block-size: min(100svh, 56rem); padding-block: var(--space-16); padding-inline-start: max(var(--gutter), (100% - var(--container)) / 2); } }
+  @media (width < 64rem) { .ch { padding-inline: var(--gutter); } }
+  .ch__copy { position: relative; z-index: 3; display: grid; gap: var(--space-5); align-content: center; }
+  .ch__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .ch__tags li { padding: 4px 12px; border-radius: var(--radius-pill); background: color-mix(in oklab, var(--blue-300) 14%, transparent); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--blue-200); }
+  .ch__tags li:first-child { background: var(--blue-300); color: var(--blue-975); font-weight: var(--weight-bold); }
+  .ch__name { font-family: var(--ff-heading); font-size: clamp(3.25rem, 1rem + 7.5vw, 8.5rem); font-weight: var(--weight-bold); line-height: 0.9; letter-spacing: -0.055em; color: var(--color-heading); text-wrap: balance; }
+  .ch__line { max-inline-size: 31ch; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem); line-height: 1.5; color: var(--blue-200); }
+  .ch__acts { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); margin-block-start: var(--space-1); }
+  .ch__view, .ch__try { display: inline-flex; align-items: center; min-block-size: 3rem; padding-inline: var(--space-6); border-radius: var(--radius-sm); font-family: var(--ff-heading); font-weight: var(--weight-bold); text-decoration: none; }
+  .ch__view { background: var(--color-action-bg); color: var(--color-action-text); }
+  .ch__try { border: 1px solid color-mix(in oklab, var(--blue-300) 50%, transparent); color: var(--color-heading); }
+  @media (hover: hover) { .ch__view:hover { background: var(--color-action-bg-hover); } .ch__try:hover { background: color-mix(in oklab, var(--blue-300) 10%, transparent); } }
+  .ch__note { max-inline-size: 44ch; font-size: var(--text-sm); color: var(--color-machine-text); }
+
+  /* Scene: one coordinate box, devices placed in %; 3D tilt shared by every device. */
+  .ch__scene { position: relative; aspect-ratio: 4 / 3; perspective: 2000px; container-type: inline-size; }
+  @media (width >= 64rem) { .ch__scene { aspect-ratio: auto; block-size: 100%; min-block-size: 36rem; } }
+  .ch__laptop, .ch__phone { position: absolute; transform: rotateY(-18deg) rotateX(8deg) rotateZ(2deg); }
+  .ch__lid { padding: 2cqi; border-radius: 2.4cqi 2.4cqi 0.8cqi 0.8cqi; background: #0b0f1c; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1) inset, 0 60px 120px -40px #000; }
+  .ch__screen { overflow: hidden; aspect-ratio: 16 / 10; border-radius: 0.6cqi; background: var(--neutral-0); }
+  .ch__screen :global(img), .ch__glass :global(img) { display: block; inline-size: 100%; block-size: auto; }
+  .ch__base { block-size: 2.4cqi; margin-inline: -5cqi; border-radius: 0 0 2.8cqi 2.8cqi; background: #1a2033; }
+  .ch__phone { padding: 1.3cqi; border-radius: 6cqi; background: #0b0f1c; box-shadow: 0 0 0 1.5px #2a3150 inset, 0 60px 120px -40px #000; }
+  .ch__glass { position: relative; overflow: hidden; aspect-ratio: 375 / 812; border-radius: 4.8cqi; background: var(--neutral-0); }
+  .ch__island { position: absolute; inset-block-start: 3%; inset-inline-start: 50%; inline-size: 30%; block-size: 3%; translate: -50% 0; border-radius: 999px; background: #0b0f1c; }
+
+  /* web + 1 phone (NJWAR, RTL web: phone on the start side so the Arabic headline shows) */
+  .ch--web1 .ch__laptop { inset-inline-start: 26%; inset-block-start: 14%; inline-size: 90%; }
+  .ch--web1 .ch__phone--1 { inset-inline-start: 4%; inset-block-start: 8%; inline-size: 30%; z-index: 2; }
+  /* web + 2 phones (Yawmy) */
+  .ch--web2 .ch__laptop { inset-inline-start: 2%; inset-block-start: 14%; inline-size: 90%; }
+  .ch--web2 .ch__phone--1 { inset-inline-start: 54%; inset-block-start: 10%; inline-size: 29%; z-index: 3; }
+  .ch--web2 .ch__phone--2 { inset-inline-start: 76%; inset-block-start: 4%; inline-size: 26%; z-index: 2; opacity: 0.92; }
+  /* 3 phones (Rushr) */
+  .ch--phones .ch__phone--1 { inset-inline-start: 4%; inset-block-start: 10%; inline-size: 28%; z-index: 1; }
+  .ch--phones .ch__phone--2 { inset-inline-start: 31%; inset-block-start: 2%; inline-size: 34%; z-index: 3; }
+  .ch--phones .ch__phone--3 { inset-inline-start: 62%; inset-block-start: 12%; inline-size: 28%; z-index: 2; }
+  @media (width >= 64rem) {
+    .ch--web1 .ch__laptop, .ch--web2 .ch__laptop { inset-block-start: 24%; }
+    .ch--web1 .ch__phone--1 { inset-block-start: 22%; }
+    .ch--web2 .ch__phone--1 { inset-block-start: 26%; } .ch--web2 .ch__phone--2 { inset-block-start: 18%; }
+    .ch--phones .ch__phone--1 { inset-block-start: 20%; } .ch--phones .ch__phone--2 { inset-block-start: 10%; } .ch--phones .ch__phone--3 { inset-block-start: 22%; }
+  }
+  :dir(rtl) .ch__laptop, :dir(rtl) .ch__phone { transform: rotateY(18deg) rotateX(8deg) rotateZ(-2deg); }
+  @media (forced-colors: active) { .ch__lid, .ch__phone { border: 1px solid CanvasText; } }
+</style>
