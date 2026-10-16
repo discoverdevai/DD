@@ -346,15 +346,17 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
 - Label: The DiscoverDev Way
 - H2: Discover first. Build with AI. Seniors sign off.
-- Body: The DiscoverDev Way is how every project runs: we agree on the right product first, AI drafts the work, and a senior engineer reviews every change and signs off every release. You see progress every week.
+- Body: The DiscoverDev Way is how every project runs. We agree on what is worth building before any code. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality. You see progress every week.
+  - Oct 16 copy pass: each sentence pairs what we do with what the client gets (speed, quality, visibility).
   - Oct 16 section review (GEO/copy): one defining sentence instead of 60 words that repeated the hero.
 - Columns "What AI does" / "What senior engineers own": removed Oct 16 (batch 2; Mohamed: the hero board and the journey visual already say this). The journey visual (Discover → AI drafts → A senior signs → Live) sits between the body and the line.
 - Line: removed from the home section Oct 16 (section review: it repeated the hero pill "AI drafts. Seniors sign off."). "AI drafts it. A senior engineer signs it." stays the brand line in 09 and elsewhere.
 - **Journey visual (Oct 16, Mohamed: "from discovery to be live … like visuals for section"):** four cards side by side between the body and the two columns, played once on scroll. Illustration, not a client product; no text inside images.
-  - 1 · Discover · Line: The right thing, sketched first.
-  - 2 · AI drafts · Card tag (mono): AI draft · Line: AI drafts it from the agreed spec.
-  - 3 · A senior signs · Checklist: Review of every change · Security, data and payments · Sign-off on every release · Stamp: Signed off · Line: A senior engineer signs off every release.
-  - 4 · Live · Chip: Live · Line: Live with real users.
+  - 1 · Discover · Line: We test the idea and sketch the product before any code.
+  - 2 · AI drafts · Card tag (mono): AI draft · Line: AI writes the first draft from the agreed spec.
+  - 3 · A senior signs · Checklist: Review of every change · Security, data and payments · Sign-off on every release · Stamp: Signed off · Line: A senior engineer reviews it and signs it off.
+  - 4 · Live · Chip: Live · Line: Your users get it, and we keep improving it.
+  - Oct 16 copy pass: lines say what happens at each step, in the client's terms.
   - Caption (screen readers): An illustration of the DiscoverDev Way: a rough sketch, an AI draft, a senior engineer's sign-off, then the live product.
 
 ### 2A.5 Lifecycle
@@ -391,9 +393,9 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.8 Case highlight
 - §2.8 (anonymized per §0.7), with the Oct 16 section review:
   - Label: Case study · EdTech · Egypt
-  - Body ends at "...sent each task to the right model." (the 60–90% figure already sits in the H2 and the card)
+  - Body (Oct 16 copy pass, problem first; 09 challenge and outcome): An EdTech platform in Egypt runs three AI agents: a support chatbot, a video-to-lesson and quiz generator, and a student learning assistant. Every request was processed from scratch, so AI costs rose with every new student. We changed that, and now cost grows slower than the user base.
   - Card: 60–90% · lower AI cost · results: Three AI agents in production · Cached content served at close to zero cost (09 outcomes) · stack row
-  - The five changes, each with one line (from the case study, /work/edtech-ai-agents): Captions first: Use existing captions. Transcribe only when there are none. | Reuse across users: Each video is processed once, then shared. | The right model for each task: Large models only where they are needed. | Shorter prompts: Send each model only what it needs. | Faster transcription: Long audio split into chunks and transcribed in parallel.
+  - The five changes, each with one line (from the case study, /work/edtech-ai-agents): Captions first: Free captions first. Paid transcription only when a video has none. | Reuse across users: Each video is processed once and shared, so repeat views cost close to nothing. | The right model for each task: Lower-cost models by default, larger ones only where they pay off. | Shorter prompts: Each request carries only what the model needs, so fewer tokens are billed. | Faster transcription: Long audio is split into 2-minute chunks and transcribed in parallel.
 
 ### 2A.9 Why DiscoverDev
 - Label: Why founders and teams choose DiscoverDev
