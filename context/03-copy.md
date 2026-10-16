@@ -339,7 +339,13 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Body: The DiscoverDev Way is how every project runs. We find the right thing to build first. AI does the heavy lifting, so work that used to take days moves faster. Senior engineers make the decisions, review every change and sign off every release. You see results every week.
 - Column A · What AI does: Drafts code from the agreed spec · Writes and runs tests · Drafts docs and migrations · Flags risky changes for review
 - Column B · What senior engineers own: Product and architecture decisions · Review of every change · Security, data and payments · Sign-off on every release
-- Line: AI lays the bricks. A senior sets the keystone.
+- Line: AI drafts it. A senior engineer signs it. (Oct 16: replaces the keystone line, which Mohamed found unclear.)
+- **Journey visual (Oct 16, Mohamed: "from discovery to be live … like visuals for section"):** four cards side by side between the body and the two columns, played once on scroll. Illustration, not a client product; no text inside images.
+  - 1 · Discover · Line: The right thing, sketched first.
+  - 2 · AI drafts · Card tag (mono): AI draft · Line: AI drafts it from the agreed spec.
+  - 3 · A senior signs · Checklist: Review of every change · Security, data and payments · Sign-off on every release · Stamp: Signed off · Line: A senior engineer signs off every release.
+  - 4 · Live · Chip: Live · Line: Live with real users.
+  - Caption (screen readers): An illustration of the DiscoverDev Way: a rough sketch, an AI draft, a senior engineer's sign-off, then the live product.
 
 ### 2A.5 Lifecycle
 - Label: idea to after launch

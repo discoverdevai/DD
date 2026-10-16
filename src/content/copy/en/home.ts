@@ -33,7 +33,21 @@ export const home = {
       title: 'What senior engineers own',
       items: ['Product and architecture decisions', 'Review of every change', 'Security, data and payments', 'Sign-off on every release'],
     },
-    line: 'AI lays the bricks. A senior sets the keystone.',
+    line: 'AI drafts it. A senior engineer signs it.',
+    // §2A.4 journey visual (Oct 16): Discover → AI drafts → A senior signs → Live.
+    flow: {
+      caption: 'An illustration of the DiscoverDev Way: a rough sketch, an AI draft, a senior engineer’s sign-off, then the live product.',
+      steps: [
+        { title: 'Discover', line: 'The right thing, sketched first.' },
+        { title: 'AI drafts', line: 'AI drafts it from the agreed spec.' },
+        { title: 'A senior signs', line: 'A senior engineer signs off every release.' },
+        { title: 'Live', line: 'Live with real users.' },
+      ],
+      tag: 'AI draft',
+      checks: ['Review of every change', 'Security, data and payments', 'Sign-off on every release'],
+      stamp: 'Signed off',
+      live: 'Live',
+    },
   },
   lifecycle: {
     eyebrow: 'idea to after launch',

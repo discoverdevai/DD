@@ -28,7 +28,7 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 - Standard CTA (older): "Book a free 30-minute consultation. Free, 30 minutes, no pitch." (Now: clarity call.)
 
 ## Method: The DiscoverDev Way + full SDLC (renamed from "Agile v2" Oct 16 2026; TrianglZ markets "AI-Native Agile v2.0")
-- Name and line: "The DiscoverDev Way" · "Discover first. Build with AI. Seniors sign off." · picture: "AI lays the bricks. A senior sets the keystone."
+- Name and line: "The DiscoverDev Way" · "Discover first. Build with AI. Seniors sign off." · line: "AI drafts it. A senior engineer signs it." (keystone picture dropped Oct 16)
 - "AI does the heavy lifting; senior engineers own the quality." Humans responsible for every line that reaches users.
 - A senior engineer signs off every release before it reaches users (confirmed by Mohamed, Oct 16 2026).
 - "We own the full lifecycle and we stay." One team, no handoff gaps (confirmed true on every engagement).

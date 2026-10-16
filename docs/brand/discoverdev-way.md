@@ -21,8 +21,8 @@
 | **Seniors sign off** | A senior engineer signs off every release | Someone answers for every line your users see |
 
 ## 4. The picture
-**AI lays the bricks. A senior sets the keystone.**
-The keystone is the last stone set, and the whole arch depends on it. That's our job on every release.
+**AI drafts it. A senior engineer signs it.**
+Shown as the journey Discover → AI drafts → A senior signs → Live (the keystone picture was dropped on Oct 16 as unclear).
 
 ## 5. Where we stand
 - **For:** founders and product teams who need the right product, built fast.
