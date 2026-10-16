@@ -1,5 +1,6 @@
 ---
-// DiscoverDev Way explainer (03 §2A.4), slotted under the two-tone Statement. Two panels: the AI layer (mono, signal blue,
+// DiscoverDev Way explainer (03 §2A.4), slotted under the two-tone Statement. The default slot (the journey visual) sits
+// between the body and the panels. Two panels: the AI layer (mono, signal blue,
 // square marks) and the human layer (green, round marks), joined by a hand-off seam. The responsibility line closes it.
 interface Panel { title: string; items: readonly string[] }
 interface Props { body: string; ai: Panel; human: Panel; line: string }
@@ -7,6 +8,7 @@ const { body, ai, human, line } = Astro.props;
 ---
 <div class="ag">
   <p class="ag__body">{body}</p>
+  <slot />
   <div class="ag__split reveal">
     <div class="ag__panel ag__panel--ai" data-spotlight>
       <h3 class="ag__h3"><span class="ag__mark" aria-hidden="true"></span>{ai.title}</h3>

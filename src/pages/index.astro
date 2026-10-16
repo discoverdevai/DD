@@ -7,6 +7,7 @@ import HeroV2 from '../components/home/HeroV2.astro';
 import ProofBand from '../components/home/ProofBand.astro';
 import Statement from '../components/home/Statement.astro';
 import AgileSplit from '../components/home/AgileSplit.astro';
+import WayFlow from '../components/home/WayFlow.astro';
 import ProcessTimeline from '../components/home/ProcessTimeline.astro';
 import Engagements from '../components/home/Engagements.astro';
 import Capabilities from '../components/home/Capabilities.astro';
@@ -24,7 +25,9 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
   <HeroV2 />
   <ProofBand title={c.proofStrip.title} items={c.proofStrip.items} />
   <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} ctaPage="home" display>
-    <AgileSplit body={c.agile.body} ai={c.agile.ai} human={c.agile.human} line={c.agile.line} />
+    <AgileSplit body={c.agile.body} ai={c.agile.ai} human={c.agile.human} line={c.agile.line}>
+      <WayFlow {...c.agile.flow} />
+    </AgileSplit>
   </Statement>
   <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} steps={c.lifecycle.steps} vigs={['fork', 'cal', 'log', 'ship']} line={c.lifecycle.line} />
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
