@@ -141,7 +141,9 @@ const check = 'M20 6 9 17l-5-5';
   /* 3 · reviewed: the draft made solid, with a dark review panel docked at the bottom. */
   .wf__solid :is(rect, path) { fill: none; stroke: var(--blue-200); stroke-width: 1.2; opacity: 0.55; }
   .wf__review { position: absolute; inset-inline: var(--space-2); inset-block-end: var(--space-2); display: grid; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-bg) 88%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 40%, transparent); box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--color-human-mark) 45%, transparent); }
-  @media (width < 36rem) { .wf__vis--3 { aspect-ratio: auto; display: grid; } .wf__vis--3 .wf__solid { display: none; } .wf__review { position: static; } }
+  /* Phones: same small picture as the other cards; only the stamp shows over the solid screen (the checklist is in the
+     step text and on wider screens). */
+  @media (width < 36rem) { .wf__review { inset: auto var(--space-2) var(--space-2) auto; padding: 0; background: none; border: 0; box-shadow: none; } .wf__review .wf__checks, .wf__review .wf__sig { display: none; } .wf__signrow { border: 0; padding: 0; } }
   .wf__checks { display: grid; gap: 4px; font-size: var(--text-xs); line-height: 1.3; color: var(--color-text); }
   .wf__checks li { display: flex; align-items: center; gap: 6px; }
   .wf__checks svg { flex: none; color: var(--color-human-mark); }
