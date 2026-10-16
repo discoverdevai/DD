@@ -48,7 +48,7 @@ BUILD
 - Athkado (AR commerce) · KSA · furniture e-commerce: market study, discovery, UX/UI, dev, AI recommendation engine, AR visualization. React, Spring Boot, AI/ML, mobile AR, PostgreSQL, AWS. Review: "Professional work and great communication." Nojoud Alarfaj
 - EduLens · Egypt · three AI agents (support chatbot, video-to-lesson + quiz generator, student learning assistant). 60–90% AI cost reduction (caption-first ingestion, cross-user cache, model/provider routing, token trimming, chunked parallel Whisper). Cached content approaches zero marginal cost. Python, OpenAI, LangChain, RAG, Whisper, YouTube API, Node.js. Review: "Practical, scalable, aligned with our users' needs." Youssef, CEO
 - BioBank · HealthTech · mobile app turning lab reports into plain-language explanations, recommendations, conversational follow-up, medical safety guardrails. React Native, Python, OpenAI, LangChain, RAG, PostgreSQL, AWS.
-- CTC (Continuum Therapy Collective) · USA · bilingual EN/AR site with online booking for a US-licensed therapist (clinician consent needed before showing).
+- CTC (Continuum Therapy Collective) · USA · speech therapy practice · bilingual EN/AR site with online booking for a US-licensed, ASHA-certified therapist; virtual therapy now, in-person (Cairo) coming (per Mohamed, Oct 16). Clinician consent needed before showing anything identifying.
 - Nile Support · USA · landing page, AI agents for call operations, staff augmentation. Review: "The quality of their work is top-notch." CEO
 - Amstadd · UK · white-label websites and mobile apps.
 SCALE
@@ -60,14 +60,14 @@ SCALE
 OWN PRODUCT
 - Yawmy Care · nursery/childcare platform (parents, teachers, management; billing, multi-location). White-label. "Product DNA, not just agency DNA." Endorsed "by DiscoverDev", launch 2027.
 RESEARCH
-- NurViD-MAE + Virtual Shadowing · nursing action recognition: 73.74% operation / 56.57% action accuracy on NurViD; ~+10% / ~+40% over SlowFast, I3D, C3D; ~512K trainable params, single GPU; 1,289 videos, 4,717 clips; Unity + ROS digital twin. (Verify publication venue + collaborator consent.)
-- Marine Life Analysis & Detection · underwater CV, YOLOv8 etc. (no metrics yet).
+- NurViD-MAE + Virtual Shadowing · nursing action recognition: 73.74% operation / 56.57% action accuracy on NurViD; ~+10% / ~+40% over SlowFast, I3D, C3D; 56.18% mAP@0.5 temporal localization; fine-grained action recognition ~17% (baselines) → 56.57%; class imbalance up to ~289×, handled with Focal Loss + label smoothing; frozen VideoMAE (Kinetics-400) + lightweight temporal transformer, dual operation/action heads; ~512K trainable params (~0.6%), single GPU; 1,289 videos, 4,717 clips, RGB + optical flow, checkpoint/resume; Unity + ROS digital twin (vital checks, medication, pain assessment) with telemetry export; working demo exists. (Verify publication venue + collaborator names/consent before external use.)
+- Marine Life Analysis & Detection · underwater video CV pipeline: image enhancement (Gray-World, histogram equalization, CLAHE), Canny edges, transfer-learning classification (VGG16, DenseNet, ResNet50), YOLOv8 detection + instance segmentation. Collaboration with named researchers. No accuracy/dataset metrics yet: do not publish numbers.
 - Academic collaborations · Ireland, USA, Switzerland, KSA. Review: "Absolutely amazing… level of detail." Michelle Boehm, Switzerland
 - Consulting firm · Kuwait · tourism & hospitality research. Review: "Thank you for going above and beyond." Farah Alkhaldi
 
 ## Case studies (publishable arcs: context, challenge, what we did, outcome, proof)
-- EduLens (full arc available; see above). Best for AI cost / AI in production.
-- Customer-support AI agent: runtime memory cache deduplicating concurrent identical queries; Qdrant retrieval; LLM cost scales with unique questions not total requests.
+- EduLens. Context: EdTech company (Egypt) turning YouTube educational videos into AI summaries and quizzes. Challenge: transcription and LLM generation ran per video and per request, so cost scaled linearly with users. What we did: free YouTube captions first, paid transcription only when missing; summaries/quizzes cached and shared across users (each video processed once); model/provider routing (cost-optimized default, premium only when justified); token trimming; unavoidable transcription split into fixed 120-second chunks, transcribed in parallel (up to 15 workers) with retry/backoff. Outcome: 60–90% overall cost reduction depending on cache hit rate and caption availability; popular cached content approaches zero marginal cost; total cost grows slower than the user base. Proof: Youssef, CEO (consent for name/quote: D-05/D-06). Best for AI cost / AI in production / EdTech.
+- Customer-support AI agent (companion to the EduLens cost work; no client named). Challenge: many users asking the same question at once made naive systems run the LLM once per request, paying repeatedly and spiking under load. What we did: a runtime memory cache (independent of the vector store) normalizes each query to a key; a matching in-progress request makes later ones wait on the same result; a completed one returns the cached answer; only true misses trigger Qdrant retrieval and a single LLM call. Outcome: identical concurrent queries processed once; the cache absorbs traffic spikes; LLM cost scales with unique questions, not total requests. Publishable anonymized (no client, no numbers).
 - NurViD-MAE (research credibility; verify).
 - Stubs, do not publish: Pyramakerz, Arheb, Marine Life.
 - Planned Q4 2026: Rushr (Nov), EduLens (Dec).
@@ -79,9 +79,9 @@ RESEARCH
 - "Thank you for going above and beyond." Farah Alkhaldi, Consulting Firm, Kuwait · Market Research, Tourism & Hospitality
 - "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia · White-Label + E-Commerce
 - "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!" Michelle Boehm, Academic Researcher, Switzerland · ML Algorithms & Data Analysis
-- "I will become a regular customer going forward now." Andrei Chejneanu, Entrepreneur, UK · Market Research
-- "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time." Lea Nechitailo, Entrepreneur, Spain · Market Research
-(Quote permissions for website: verify per client.)
+- "I will become a regular customer going forward now." Andrei Chejneanu, Entrepreneur, UK · Market Research, Auto Spare Parts & Trucking in Saudi Arabia
+- "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time." Lea Nechitailo, Entrepreneur, Spain · Market Research, K-Cosmetics Brand Expansion
+(Quote permissions for website: verify per client. Portfolio, case studies and reviews re-confirmed by Mohamed Oct 16 2026 from the master source; named clients and quotes still need each client's consent before public use, D-05.)
 
 ## Tech stack
 Frontend React, Next.js, Angular, Vue · Backend Node.js, Spring Boot, Python (Django, FastAPI), PHP, .NET, NestJS · Mobile React Native, Flutter, Swift, Kotlin · AI OpenAI, LangChain, RAG, CV, NLP, custom ML · Data PostgreSQL, MongoDB, Redis, Elasticsearch, ETL · Cloud AWS, GCP, Azure, Docker, K8s, CI/CD · AR/3D.
