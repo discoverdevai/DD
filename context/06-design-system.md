@@ -178,6 +178,8 @@ Status: v1.2 (art direction §0.8, 2026-10-16). v1.1 spec (Signal), 2026-10-15. 
 - Changelog: record this as 06 v1.1 (2026-10-16) with "Signal" and link to `docs/creative-brief-signal.md`.
 
 ### 0.8 Art direction v5: The DiscoverDev Way (approved by Mohamed 2026-10-16; build started 2026-10-16, home pilot first)
+> **Status: home pilot rejected and reverted (Mohamed, Oct 16: "it is too much bad").** Nothing below is live. Kept as notes for the post-launch rethink; do not build from it without a new direction from Mohamed.
+
 **Adds to §0.4 (v3/v4 surfaces stay).** Sources: `docs/review/design-review.html` (concepts A + C + B), `docs/brand/discoverdev-way.md`, `docs/review/enhancement/taste-critique.md`. Rolled out page by page, home first; a page keeps its v3/v4 look until it is converted.
 
 **The idea.** "AI lays the bricks. A senior sets the keystone." One owned picture, drawn three ways:

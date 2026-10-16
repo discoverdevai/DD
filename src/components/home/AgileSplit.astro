@@ -1,0 +1,56 @@
+---
+// DiscoverDev Way explainer (03 §2A.4), slotted under the two-tone Statement. Two panels: the AI layer (mono, signal blue,
+// square marks) and the human layer (green, round marks), joined by a hand-off seam. The responsibility line closes it.
+interface Panel { title: string; items: readonly string[] }
+interface Props { body: string; ai: Panel; human: Panel; line: string }
+const { body, ai, human, line } = Astro.props;
+---
+<div class="ag">
+  <p class="ag__body">{body}</p>
+  <div class="ag__split reveal">
+    <div class="ag__panel ag__panel--ai" data-spotlight>
+      <h3 class="ag__h3"><span class="ag__mark" aria-hidden="true"></span>{ai.title}</h3>
+      <ul role="list" class="ag__list">
+        {ai.items.map((i) => <li><span class="ag__n" aria-hidden="true"></span>{i}</li>)}
+      </ul>
+    </div>
+    <div class="ag__seam" aria-hidden="true"><span></span></div>
+    <div class="ag__panel ag__panel--human" data-spotlight>
+      <h3 class="ag__h3"><span class="ag__mark" aria-hidden="true"></span>{human.title}</h3>
+      <ul role="list" class="ag__list">
+        {human.items.map((i) => <li><svg class="ag__tick" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>{i}</li>)}
+      </ul>
+    </div>
+  </div>
+  <p class="ag__line">{line}</p>
+</div>
+
+<style>
+  .ag { display: grid; gap: var(--stack-lg); margin-block-start: var(--space-8); }
+  .ag__body { max-inline-size: 44rem; font-size: var(--text-lg); line-height: 1.6; color: var(--color-text-muted); text-wrap: pretty; }
+  .ag__split { display: grid; gap: var(--space-4); }
+  @media (width >= 56rem) { .ag__split { grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr); gap: 0; align-items: stretch; } }
+  .ag__panel { position: relative; display: grid; gap: var(--space-5); align-content: start; padding: clamp(var(--space-5), 1rem + 2vw, var(--space-8)); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); }
+  .ag__panel--ai { background: linear-gradient(180deg, color-mix(in oklab, var(--blue-975) 70%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 60%, transparent)); }
+  .ag__panel--human { background: linear-gradient(180deg, color-mix(in oklab, var(--color-human-mark) 8%, var(--color-surface)), color-mix(in oklab, var(--color-surface) 60%, transparent)); border-color: color-mix(in oklab, var(--color-human-mark) 26%, transparent); }
+  .ag__h3 { display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--color-heading); }
+  .ag__mark { inline-size: 10px; block-size: 10px; flex: none; }
+  .ag__panel--ai .ag__mark { background: var(--color-machine-mark); border-radius: 2px; }
+  .ag__panel--human .ag__mark { background: var(--color-human-mark); border-radius: 50%; }
+  .ag__list { display: grid; }
+  /* Fixed row rhythm so the AI rows (mono, smaller) and the senior rows (sans) line up across the two panels. */
+  .ag__list li { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); align-items: center; gap: var(--space-2); min-block-size: 3.25rem; padding-block: var(--space-2); border-block-start: 1px solid var(--color-hairline); color: var(--color-text); }
+  .ag__panel--ai .ag__list li { font-family: var(--ff-mono); font-size: var(--text-sm); }
+  .ag__n { inline-size: 8px; block-size: 8px; flex: none; background: var(--color-machine-mark); } /* AI layer: square mark, no index number */
+  .ag__tick { color: var(--color-human-mark); }
+  .ag__seam { display: none; }
+  @media (width >= 56rem) {
+    .ag__seam { display: grid; place-items: center; }
+    .ag__seam span { inline-size: 100%; block-size: 2px; background: linear-gradient(90deg, var(--color-machine-mark), var(--color-human-mark)); position: relative; }
+    .ag__seam span::after { content: ''; position: absolute; inset-inline-end: -1px; inset-block-start: 50%; inline-size: 8px; block-size: 8px; border-block-start: 2px solid var(--color-human-mark); border-inline-end: 2px solid var(--color-human-mark); translate: 0 -50%; rotate: 45deg; }
+    :dir(rtl) .ag__seam span { background: linear-gradient(-90deg, var(--color-machine-mark), var(--color-human-mark)); }
+    :dir(rtl) .ag__seam span::after { rotate: -45deg; }
+  }
+  .ag__line { display: flex; align-items: baseline; gap: var(--space-3); font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-human-text); }
+  .ag__line::before { content: ''; inline-size: 8px; block-size: 8px; border-radius: 50%; translate: 0 -1px; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); flex: none; }
+</style>
