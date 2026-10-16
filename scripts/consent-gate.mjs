@@ -12,7 +12,8 @@ const NAMES = [
   // reviewers (09 All reviews)
   'Roberto', 'Youssef', 'Nojoud', 'Alarfaj', 'Michelle Boehm', 'Boehm', 'Andrei', 'Chejneanu', 'Lea Nechitailo', 'Nechitailo', 'Farah Alkhaldi', 'Alkhaldi',
 ];
-const CONSENTED = new Set([/* e.g. 'EduLens' // D-05, consent email 2026-11-02 */]);
+// D-05: logos approved by Mohamed in chat, 2026-10-16 (names appear as logo alt text on home).
+const CONSENTED = new Set(['EduLens', 'Upscend', 'Arheb', 'Nile Support', 'BioBank', 'Jumlaty', 'Zest', 'Continuum Therapy Collective', 'Rushr']);
 const blocked = NAMES.filter((n) => !CONSENTED.has(n));
 const re = new RegExp(`\\b(${blocked.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`, 'g');
 const problems = [];

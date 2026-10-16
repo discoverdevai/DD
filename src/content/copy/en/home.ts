@@ -13,7 +13,15 @@ export const home = {
     sub: 'DiscoverDev builds it with senior engineers and AI, in 8⁠–⁠12 weeks. You own everything.',
   },
   proofStrip: {
-    title: 'Who we work with',
+    title: 'What we’ve built',
+    logosTitle: 'Teams we’ve built for',
+    // §2A.3 project cards (anonymized, facts in 09). Shown until 4+ client logos have written consent.
+    projects: [
+      { stage: 'Build', href: '/work/edtech-ai-agents', what: 'AI agents for an EdTech platform', where: 'Egypt', proof: 'Three AI agents in production. AI costs down 60–90%.' },
+      { stage: 'Build', href: '/build', what: 'AR furniture store with AI recommendations', where: 'Saudi Arabia', proof: 'Market study, design, build, AI and AR in one team.' },
+      { stage: 'Scale', href: '/scale', what: 'Embedded product team for a B2B learning platform', where: 'UK', proof: '12 months owning the roadmap, backlog and sprints.' },
+      { stage: 'Scale', href: '/scale', what: 'Data and ML for an EdTech platform with 20,000+ students', where: 'Egypt', proof: 'Data engineering, ML and automations.' },
+    ],
     items: [
       { icon: 'globe', text: 'Clients on 4 continents' },
       { icon: 'cpu', text: 'AI in production across multiple clients' },

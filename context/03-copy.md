@@ -330,8 +330,17 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Footer line: A person is responsible for every line that reaches your users.
 - Caption (screen readers): Example of a sprint the DiscoverDev Way: AI drafts the work, then senior engineers review and approve it before release.
 
-### 2A.3 Proof band
-- §2.3 items. The rating line and Clutch link (§0.4) moved up into the hero under the buttons (hero split, Oct 16), so the page does not show the rating twice in one screen.
+### 2A.3 Proof band ("What we've built"; logos or projects, never mixed; Oct 16)
+- Oct 16: Mohamed approved all ten logos (EduLens, Upscend, Arheb, Nile Support, BioBank, Jumlaty, Zest, Continuum Therapy Collective, Rushr, Yawmy Care), so the band shows the logo row.
+- Rule: when 4 or more clients have written consent recorded in `src/data/clients.ts` (D-05), the band shows a still row of their logos (no motion). Until then it shows the four project cards below. Logo candidates (09): Upscend, Zest, Arheb, BioBank, EduLens, Jumlaty, Nile Support, Continuum Therapy Collective (client + clinician consent), Yawmy Care (own product; name to confirm). Rushr ("R" mark) stays hidden (D-07). Not candidates until named and added to 09: the "AD" and "F" marks, Darb, Beacon, the resort and Orange logos.
+- Label (logos): Teams we've built for · Label (projects): What we've built
+- Project cards (facts in 09; anonymized per §0.7; stage tag = service name, links to its page):
+  1. Build · AI agents for an EdTech platform · Egypt · "Three AI agents in production. AI costs down 60–90%." (→ /work/edtech-ai-agents)
+  2. Build · AR furniture store with AI recommendations · Saudi Arabia · "Market study, design, build, AI and AR in one team."
+  3. Scale · Embedded product team for a B2B learning platform · UK · "12 months owning the roadmap, backlog and sprints."
+  4. Scale · Data and ML for an EdTech platform with 20,000+ students · Egypt · "Data engineering, ML and automations."
+- Then the §2.3 facts as one quiet row. The rating line and Clutch link (§0.4) sit in the hero (Oct 16).
+- Why (Oct 16 review): mixing logos and text in one moving strip read as noise; moving text can't be read and needs a pause control (WCAG 2.2.2). Each card names the product type, the work and the country, so search and AI answers can quote it.
 
 ### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
 - Label: The DiscoverDev Way

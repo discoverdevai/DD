@@ -81,7 +81,7 @@ RESEARCH
 - "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!" Michelle Boehm, Academic Researcher, Switzerland · ML Algorithms & Data Analysis
 - "I will become a regular customer going forward now." Andrei Chejneanu, Entrepreneur, UK · Market Research, Auto Spare Parts & Trucking in Saudi Arabia
 - "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time." Lea Nechitailo, Entrepreneur, Spain · Market Research, K-Cosmetics Brand Expansion
-(Quote permissions for website: verify per client. Portfolio, case studies and reviews re-confirmed by Mohamed Oct 16 2026 from the master source; named clients and quotes still need each client's consent before public use, D-05.)
+(Quote permissions for website: verify per client. Portfolio, case studies and reviews re-confirmed by Mohamed Oct 16 2026 from the master source; named clients and quotes still need each client's consent before public use, D-05. Logos approved Oct 16 2026 by Mohamed: EduLens, Upscend, Arheb, Nile Support, BioBank, Jumlaty, Zest, Continuum Therapy Collective, Rushr, Yawmy Care; logo use only, quotes and case names still need consent.)
 
 ## Tech stack
 Frontend React, Next.js, Angular, Vue · Backend Node.js, Spring Boot, Python (Django, FastAPI), PHP, .NET, NestJS · Mobile React Native, Flutter, Swift, Kotlin · AI OpenAI, LangChain, RAG, CV, NLP, custom ML · Data PostgreSQL, MongoDB, Redis, Elasticsearch, ETL · Cloud AWS, GCP, Azure, Docker, K8s, CI/CD · AR/3D.
