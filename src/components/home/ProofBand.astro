@@ -103,12 +103,14 @@ const logos = showLogos
   .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
   /* WCAG 2.2.2: the row moves on its own, so it gets a pause control (shown only when it moves and JS runs). */
-  /* Quiet text control (Oct 16: the round button drew too much attention). Pressed = paused (aria-pressed). */
-  .pband__toggle { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 1.5rem; padding: 0; border: 0; background: none; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); cursor: pointer; }
+  /* Pause control (WCAG 2.2.2) hidden until keyboard focus (Mohamed, Oct 16: no visible button). Mouse: hover pauses.
+     Touch: tapping the row toggles pause (script). Pressed = paused (aria-pressed). */
+  .pband__toggle { position: absolute; inset-inline-end: var(--gutter); display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 1.5rem; padding: 2px 8px; border: 0; border-radius: var(--radius-sm); background: var(--color-bg); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-heading); cursor: pointer; opacity: 0; pointer-events: none; }
+  .pband__toggle:focus-visible { opacity: 1; pointer-events: auto; }
+  .pband__head { position: relative; }
   .pband__toggle[hidden] { display: none; }
   .pband__toggle .pband__i-play, .pband__toggle[aria-pressed='true'] .pband__i-pause { display: none; }
   .pband__toggle[aria-pressed='true'] .pband__i-play { display: block; }
-  @media (hover: hover) { .pband__toggle:hover { color: var(--color-heading); } }
 
   /* Client cards in one moving row; edges fade out. */
   .pband__strip { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
@@ -121,7 +123,7 @@ const logos = showLogos
   .pband__client strong { font-family: var(--ff-heading); font-size: var(--text-sm); color: var(--color-heading); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .pband__client span { font-size: var(--text-xs); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (prefers-reduced-motion: no-preference) {
-    .pband__track { animation: pband-scroll 55s linear infinite; }
+    .pband__track { animation: pband-scroll 90s linear infinite; }
     :dir(rtl) .pband__track { animation-name: pband-scroll-rtl; }
     .pband__strip:hover .pband__track, .pband[data-paused] .pband__track { animation-play-state: paused; }
     @keyframes pband-scroll { to { transform: translateX(-50%); } }
@@ -180,12 +182,14 @@ const logos = showLogos
 </style>
 
 <script>
-  // Pause control for the moving client row (WCAG 2.2.2). Hidden without JS; the row still pauses on hover.
+  // Pause for the moving client row (WCAG 2.2.2): keyboard = the focus-only button; touch = tap the row. Mouse hover
+  // pauses in CSS. Without JS the row still pauses on hover, and reduced motion keeps it still.
   document.querySelectorAll<HTMLButtonElement>('[data-pband-toggle]').forEach((btn) => {
+    const band = btn.closest<HTMLElement>('.pband');
+    if (!band) return;
     btn.hidden = false;
-    btn.addEventListener('click', () => {
-      const paused = btn.closest('.pband')?.toggleAttribute('data-paused') ?? false;
-      btn.setAttribute('aria-pressed', String(paused));
-    });
+    const toggle = () => btn.setAttribute('aria-pressed', String(band.toggleAttribute('data-paused')));
+    btn.addEventListener('click', toggle);
+    band.querySelector('.pband__strip')?.addEventListener('pointerup', (e) => { if ((e as PointerEvent).pointerType !== 'mouse') toggle(); });
   });
 </script>
