@@ -357,12 +357,13 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - Caption (screen readers): An illustration of the DiscoverDev Way: a rough sketch, an AI draft, a senior engineer's sign-off, then the live product.
 
 ### 2A.5 Lifecycle
-- Label: idea to after launch
+- Label: How a project runs (Oct 16: the old label repeated the H2)
 - H2: One team from idea to after launch
-- Step 1 · Discover: Define the right product to build, not just the one asked for.
-- Step 2 · Plan: Roadmap, tech decisions and team, before any code.
-- Step 3 · Build: Weekly sprints. AI accelerates, seniors sign off. Results every week. Chips: "AI-accelerated" · "Senior sign-off"
-- Step 4 · Ship & Stay: Deploy, monitor, keep improving. We stay after launch.
+- Step 1 · Discover: Market read, product scope and a clickable prototype.
+- Step 2 · Plan: Roadmap, tech decisions and team, agreed before any code.
+- Step 3 · Build: Weekly sprints, with a demo for you every week.
+- Step 4 · Ship & Stay: Deploy, monitor and keep improving. The same team stays after launch.
+- Oct 16 section review: steps rewritten so they don't repeat §2A.4 (AI and senior sign-off chips removed); the section's own point is one team for the whole lifecycle. Facts: 09 Offer (Validate deliverables), Method (stages, weekly results, we stay).
 - Line: One team, no handoff gaps.
 
 ### 2A.6 Engagements

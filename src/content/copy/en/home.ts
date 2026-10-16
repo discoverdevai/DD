@@ -51,13 +51,13 @@ export const home = {
     },
   },
   lifecycle: {
-    eyebrow: 'idea to after launch',
+    eyebrow: 'How a project runs',
     title: 'One team from idea to after launch',
     steps: [
-      { title: 'Discover', body: 'Define the right product to build, not just the one asked for.' },
-      { title: 'Plan', body: 'Roadmap, tech decisions and team, before any code.' },
-      { title: 'Build', body: 'Weekly sprints. AI accelerates, seniors sign off. Results every week.', chips: [{ kind: 'ai', label: 'AI-accelerated' }, { kind: 'human', label: 'Senior sign-off' }] },
-      { title: 'Ship & Stay', body: 'Deploy, monitor, keep improving. We stay after launch.' },
+      { title: 'Discover', body: 'Market read, product scope and a clickable prototype.' },
+      { title: 'Plan', body: 'Roadmap, tech decisions and team, agreed before any code.' },
+      { title: 'Build', body: 'Weekly sprints, with a demo for you every week.' },
+      { title: 'Ship & Stay', body: 'Deploy, monitor and keep improving. The same team stays after launch.' },
     ],
     line: 'One team, no handoff gaps.',
   },
