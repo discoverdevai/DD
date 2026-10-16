@@ -5,7 +5,7 @@ Two sessions write here:
 - **Claude Code** (Mohamed's PC): builds the site.
 - **Claude, DiscoverDev project chat** (claude.ai): plans, researches, tests.
 
-Last updated: Fri Oct 16, 2026, 12:05 Cairo · by Claude Code · site commit: see `docs/PLAN.md`.
+Last updated: Fri Oct 16, 2026, 14:45 Cairo · by Claude Code · site commit: see `docs/PLAN.md`.
 
 ## Where things live
 | What | File |
@@ -24,6 +24,7 @@ Last updated: Fri Oct 16, 2026, 12:05 Cairo · by Claude Code · site commit: se
 ## Decisions (newest first)
 | Date | Decision | Made in |
 |---|---|---|
+| Oct 16 | **Home hero refresh approved** (supersedes "no hero redesign" below): split layout from laptop width (copy left, compact sprint board right, both in the first screen; phones stacked). H1 **"Turn your idea into a live product in weeks."** (Jobs to be Done + "Now you can" test; Mohamed picked it over "Build the right thing. Ship it fast.", which stays as the promise in the core idea and meta). Sub "DiscoverDev builds it with senior engineers and AI, in 8–12 weeks. You own everything." Pill "AI drafts. Seniors sign off." Rating line moved from the proof band into the hero; "See how we work" is a text link; slow drifting brand-blue background. Same dark theme and colours | Claude Code (Mohamed) |
 | Oct 16 | **How we work journey visual approved for launch** (Discover → AI drafts → A senior signs → Live, four compact cards on the dark theme, played once; `b67391c`, 06 §0.8). It is the only art piece; no hero redesign, keystone, white-led surfaces or other live components | Claude Code (Mohamed) |
 | Oct 16 | **Scope cut:** keep the site's dark theme and existing colours exactly; no hero redesign. Only addition: the Discover → AI drafts → A senior signs → Live journey as the visual for the home "How we work" section | Claude Code (Mohamed) |
 | Oct 16 | Theme stays **dark** (Mohamed overrode the brand guide's white-led rule for the site). Visual idea: **Sketch to Ship** (product window: sketch → AI draft dashed blue → senior-signed solid white + signature + green "Signed off" → live); keystone/arch dropped as unclear. One moving piece per page; official logo files only. Concept board: https://claude.ai/artifact/GYiLTgCjpHx6idPgQHwuhb (awaiting final OK) | Claude Code (Mohamed) |

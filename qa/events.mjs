@@ -55,7 +55,7 @@ ok('first-touch UTMs persist across pages', take('cta_clicked')[0]?.payload?.utm
 
 // 2. outbound_clicked: Clutch (proof) and email (mailto)
 await page.goto(`${base}/`, { waitUntil: 'networkidle' }); reset();
-const clutch = page.locator('.pband a[data-link-context="proof"]');
+const clutch = page.locator('.hero__proof a[data-link-context="proof"]');
 await clutch.evaluate((a) => a.addEventListener('click', (e) => e.preventDefault(), { once: true })); // stay on the page to read the log
 await clutch.click(); await settle();
 const out = take('outbound_clicked')[0];

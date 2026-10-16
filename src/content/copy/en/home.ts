@@ -7,9 +7,10 @@ export const home = {
       'Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all.',
   },
   hero: {
-    pill: 'The DiscoverDev Way · senior-signed',
-    h1: 'Build the right thing. Ship it fast.',
-    sub: 'A product and engineering company for founders and teams. Senior people, AI-accelerated, without cutting corners. And you own everything.',
+    pill: 'AI drafts. Seniors sign off.',
+    h1: 'Turn your idea into a live product in weeks.',
+    h1Accent: 'a live product',
+    sub: 'DiscoverDev builds it with senior engineers and AI, in 8⁠–⁠12 weeks. You own everything.',
   },
   proofStrip: {
     title: 'Who we work with',

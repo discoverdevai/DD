@@ -1,59 +1,116 @@
 ---
-// Home hero (03 §2A.1, strategy v2): centred H1 + one sentence + two buttons + one quiet terms line,
-// then the DiscoverDev Way delivery scene on a brand-blue horizon light. The H1 stays the LCP element (text, preloaded font).
+// Home hero (03 §2A.1, strategy v2): H1 + one sentence + button + text link + terms + rating line, and the DiscoverDev
+// Way delivery scene on a brand-blue light. Phones/tablets: centred copy, board below. From 64rem (hero split, Oct 16):
+// copy left, compact board right, so the words and the visual share the first screen. The H1 stays the LCP element.
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
+import ProofChip from '../ui/ProofChip.astro';
 import DeliveryScene from './DeliveryScene.astro';
 import { home } from '../../content/copy/en/home';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
 const c = home.hero;
+// Two-tone H1: the accent phrase ("a live product") in brand blue carries the outcome.
+const [h1Before, h1After] = c.h1.split(c.h1Accent);
 ---
 <section class="hero" data-surface="ink" aria-labelledby="hero-title">
+  <div class="hero__aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="hero__grid" aria-hidden="true"></div>
-  <div class="hero__copy container">
+  <div class="container hero__wrap">
+  <div class="hero__copy">
     <p class="hero__pill"><span class="hero__pill-dot" aria-hidden="true"></span>{c.pill}</p>
-    <h1 id="hero-title" class="hero__h1">{c.h1}</h1>
+    <h1 id="hero-title" class="hero__h1">{h1Before}<span class="hero__accent">{c.h1Accent}</span>{' '}<span class="hero__tail">{h1After.trim()}</span></h1>
     <p class="hero__sub">{c.sub}</p>
     <div class="hero__ctas">
       <CtaLink href={bookHref('clarity')} ctaId="home_hero_clarity" tier="primary" position="hero" target="clarity" data-hero-cta>{t('cta.clarity')}</CtaLink>
-      <CtaLink href="#how-we-work" ctaId="home_hero_how_we_work" tier="low_commitment" position="hero" target="how_we_work" variant="secondary">{t('cta.how')}</CtaLink>
+      <CtaLink href="#how-we-work" ctaId="home_hero_how_we_work" tier="low_commitment" position="hero" target="how_we_work" variant="text" class="hero__how">{t('cta.how')}<span class="hero__arrow icon--dir" aria-hidden="true">→</span></CtaLink>
     </div>
     <CtaTerms kind="clarity" class="hero__terms" />
+    <ProofChip class="hero__proof" />
   </div>
   <div class="hero__stage">
     <div class="hero__light" aria-hidden="true"></div>
-    <div class="container hero__scene"><DeliveryScene /></div>
+    <div class="hero__scene"><DeliveryScene compact /></div>
+  </div>
   </div>
 </section>
 
 <style>
   .hero { position: relative; overflow: clip; padding-block-start: clamp(3rem, 1.5rem + 6vw, 7rem); text-align: center; isolation: isolate; }
   .hero__grid { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; background-position: center top; mask-image: radial-gradient(60% 55% at 50% 0%, #000 0%, transparent 100%); opacity: 0.7; }
+  /* Ambient background (Oct 16): three soft brand-blue fields drift very slowly behind the grid, so the hero feels lit
+     and alive without competing with the words. Gradients only (no filters), transform-only motion, still under
+     reduced motion, hidden in forced colours. */
+  .hero__aurora { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+  .hero__aurora i { position: absolute; border-radius: 50%; will-change: transform; }
+  .hero__aurora i:nth-child(1) { inline-size: min(70vw, 56rem); aspect-ratio: 1; inset-block-start: -30%; inset-inline-start: -18%; background: radial-gradient(closest-side, rgb(18 64 190 / 0.42), rgb(18 64 190 / 0.12) 55%, transparent); }
+  .hero__aurora i:nth-child(2) { inline-size: min(80vw, 64rem); aspect-ratio: 1; inset-block-start: 5%; inset-inline-end: -25%; background: radial-gradient(closest-side, rgb(3 41 147 / 0.6), rgb(3 41 147 / 0.18) 55%, transparent); }
+  .hero__aurora i:nth-child(3) { inline-size: min(40vw, 30rem); aspect-ratio: 1; inset-block-end: -20%; inset-inline-start: 30%; background: radial-gradient(closest-side, rgb(108 154 255 / 0.16), transparent); }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__aurora i:nth-child(1) { animation: hero-drift-a 26s ease-in-out infinite alternate; }
+    .hero__aurora i:nth-child(2) { animation: hero-drift-b 32s ease-in-out infinite alternate; }
+    .hero__aurora i:nth-child(3) { animation: hero-drift-c 22s ease-in-out infinite alternate; }
+    @keyframes hero-drift-a { from { transform: translate(0, 0) scale(1); } to { transform: translate(10%, 8%) scale(1.12); } }
+    @keyframes hero-drift-b { from { transform: translate(0, 0) scale(1.05); } to { transform: translate(-8%, -6%) scale(0.95); } }
+    @keyframes hero-drift-c { from { transform: translate(0, 0); opacity: 0.6; } to { transform: translate(-14%, -10%); opacity: 1; } }
+    /* The board's light breathes slowly once the scene has settled. */
+    .hero__light { animation: hero-breathe 9s 2s ease-in-out infinite alternate; }
+    @keyframes hero-breathe { from { opacity: 0.75; } to { opacity: 1; } }
+  }
+  @media (forced-colors: active) { .hero__aurora, .hero__light { display: none; } }
   .hero__copy { display: grid; justify-items: center; gap: var(--space-6); }
   .hero__pill { display: inline-flex; align-items: center; gap: var(--space-2); max-inline-size: 100%; padding: 6px 14px 6px 10px; border-radius: 1.25rem; text-wrap: balance; text-align: start; border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); color: var(--color-text-muted); }
   .hero__pill-dot { flex: none; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
   .hero__h1 { font-size: clamp(2.5rem, 1.35rem + 4.9vw, 5.25rem); font-weight: var(--weight-bold); line-height: 1.02; letter-spacing: -0.045em; max-inline-size: 15ch; color: var(--color-heading); text-wrap: balance; }
+  .hero__accent { color: var(--blue-300); white-space: nowrap; }
+  .hero__tail { white-space: nowrap; } /* no orphaned last word */ /* the outcome phrase never splits across lines */
   .hero__sub { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 38rem; text-wrap: balance; }
-  .hero__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-block-start: var(--space-2); }
+  .hero__ctas { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-3) var(--space-8); margin-block-start: var(--space-2); }
+  /* Secondary = text link with an arrow, so the clarity call is the one clear action (Von Restorff). */
+  .hero__ctas :global(.hero__how) { justify-content: center; color: var(--color-heading); text-decoration-color: color-mix(in oklab, var(--color-heading) 35%, transparent); }
+  .hero__arrow { display: inline-block; }
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) { .hero__arrow { transition: translate var(--dur-base) var(--ease-standard); } .hero__ctas :global(.hero__how:hover) .hero__arrow { translate: 4px 0; } :dir(rtl) .hero__ctas :global(.hero__how:hover) .hero__arrow { translate: -4px 0; } }
+  .hero__copy :global(.hero__proof) { margin-block-start: calc(var(--space-2) * -1); color: var(--color-text-muted); text-wrap: balance; }
+  /* The Clutch link takes its own line, so the rating never breaks mid-phrase. */
+  .hero__copy :global(.hero__proof.proof-chip a) { display: flex; align-items: center; min-block-size: 1.5rem; inline-size: fit-content; margin-inline: auto; } /* own line = no longer inline text, so 24px target (WCAG 2.5.8) */
   /* Phones: equal full-width buttons instead of two ragged widths. */
   @media (width < 30rem) { .hero__ctas { inline-size: 100%; flex-direction: column; } .hero__ctas > :global(*) { inline-size: 100%; } }
   .hero__copy :global(.hero__terms) { justify-content: center; }
   .hero__stage { position: relative; margin-block-start: clamp(3rem, 2rem + 4vw, 5.5rem); padding-block-end: var(--space-16); }
   .hero__light { position: absolute; inset-inline: 0; inset-block-start: 10%; block-size: 70%; z-index: -1; background: radial-gradient(45% 55% at 50% 60%, color-mix(in oklab, var(--blue-700) 55%, transparent) 0%, color-mix(in oklab, var(--blue-800) 25%, transparent) 45%, transparent 75%); filter: blur(10px); }
   .hero__light::after { content: ''; position: absolute; inset-inline: 15%; inset-block-start: 58%; block-size: 1px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--blue-200) 70%, transparent), transparent); }
-  .hero__scene { max-inline-size: 72rem; perspective: 1600px; }
+  .hero__scene { max-inline-size: 72rem; margin-inline: auto; perspective: 1600px; }
+  /* Split: copy left (start-aligned), board right; both in the first screen at 1366–1440 laptops. */
+  @media (width >= 64rem) {
+    .hero { padding-block: clamp(1.5rem, 0.5rem + 2vw, 3.5rem) var(--space-16); text-align: start; }
+    .hero__wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: clamp(2.5rem, 1rem + 3vw, 4.5rem); align-items: center; }
+    .hero__copy { justify-items: start; gap: var(--space-5); }
+    .hero__h1 { font-size: clamp(2.75rem, 1rem + 3vw, 4rem); max-inline-size: 16ch; }
+    .hero__sub { max-inline-size: 34rem; text-wrap: balance; }
+    .hero__ctas { justify-content: flex-start; }
+    .hero__copy :global(.hero__terms) { justify-content: flex-start; }
+    .hero__copy :global(.hero__proof) { margin-block-start: 0; }
+    .hero__copy :global(.hero__proof.proof-chip a) { margin-inline: 0; }
+    .hero__stage { margin-block-start: 0; padding-block-end: 0; }
+    .hero__light { inset-inline: -20%; inset-block: -10%; block-size: auto; }
+    .hero__scene { max-inline-size: none; }
+    .hero__grid { mask-image: radial-gradient(70% 70% at 70% 30%, #000 0%, transparent 100%); }
+  }
+  /* Short laptop screens (720–800px tall): less top space so the whole board fits in the first screen. */
+  @media (width >= 64rem) and (height <= 50rem) { .hero { padding-block-start: var(--space-4); } }
   @media (prefers-reduced-motion: no-preference) {
     .hero__pill { animation: dd-in 700ms var(--ease-enter) both; }
     .hero__h1 { animation: hero-h1 900ms var(--ease-enter) both; }
     .hero__sub { animation: dd-in 700ms 120ms var(--ease-enter) both; }
     .hero__ctas { animation: dd-in 700ms 200ms var(--ease-enter) both; }
     .hero__copy :global(.hero__terms) { animation: dd-in 700ms 260ms var(--ease-enter) both; }
+    .hero__copy :global(.hero__proof) { animation: dd-in 700ms 300ms var(--ease-enter) both; }
     .hero__stage { animation: dd-in 1000ms 320ms var(--ease-enter) both; }
     @keyframes hero-h1 { from { translate: 0 0.5rem; filter: blur(8px); } to { translate: 0 0; filter: blur(0); } }
     @supports (animation-timeline: view()) {
       .hero__scene :global(.ds) { transform-origin: 50% 0%; animation: scene-flatten linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
       @keyframes scene-flatten { from { transform: rotateX(18deg) scale(0.94); } to { transform: none; } }
+      @media (width >= 64rem) { .hero__scene :global(.ds) { animation: none; } }
     }
   }
 </style>

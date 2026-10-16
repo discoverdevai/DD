@@ -39,7 +39,7 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 ### 1.1 Titles, metas, H1s (lengths checked: titles ≤ 60, metas ≤ 155; synced with `03-copy.md` on 2026-10-15; `03-copy.md` wins on conflict)
 | Page | Title | Meta description | H1 |
 |---|---|---|---|
-| `/` | Product & Engineering Partner for Founders \| DiscoverDev | Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all. | Build the right thing. Ship it fast. |
+| `/` | Product & Engineering Partner for Founders \| DiscoverDev | Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all. | Turn your idea into a live product in weeks. |
 | `/launch-ready` | Vibe Code Audit for Lovable, Bolt & Cursor \| DiscoverDev | A 5-day Launch-Ready Review of your AI-built app: security, data rules, payments, scale. Fixed fee, credited toward the fix. No useful findings, no charge. | Launch-Ready Review |
 | `/validate` | Product Discovery Services for Startups \| DiscoverDev | Validate your idea in 1–2 weeks: market read, scope, clickable prototype and a fixed build estimate. The fee credits toward your build. | Validate: discovery before code |
 | `/build` | Fixed-Price MVP Development in 8–12 Weeks \| DiscoverDev | A senior team takes your MVP from scope to production in 8–12 weeks at a fixed price. Or we rebuild your AI prototype properly. You own all the code. | Build: an MVP in 8–12 weeks |

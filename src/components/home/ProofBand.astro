@@ -1,20 +1,13 @@
 ---
-// Proof band under the hero (03 §2A.3): rating + the four §2.3 facts, set like a logo strip (no logos until consent).
-// Layout: stacked list on phones; 2×2 facts from 48rem; rating beside the 2×2 grid from 64rem (a single row of five
-// squeezed each fact to 4–5 lines at 1440).
+// Proof band under the hero (03 §2A.3): the four §2.3 facts, set like a logo strip (no logos until consent). The rating
+// moved into the hero (Oct 16). Layout: stacked list on phones; 2×2 from 48rem; one row of four from 64rem.
 import Icon from '../ui/Icon.astro';
-import { t } from '../../i18n/t';
-import { CLUTCH_URL } from '../../lib/seo';
 interface Props { title: string; items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[] }
 const { title, items } = Astro.props;
 ---
 <section class="pband" data-surface="ink" aria-labelledby="pband-title">
   <h2 id="pband-title" class="sr-only">{title}</h2>
   <div class="container pband__inner">
-    <p class="pband__rating">
-      <span class="pband__score">5.0</span>
-      <span class="pband__text">{t('proof.rating')} <a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a></span>
-    </p>
     <ul role="list" class="pband__facts">
       {items.map((i) => <li><Icon name={i.icon} size={20} /><span>{i.text}</span></li>)}
     </ul>
@@ -23,14 +16,9 @@ const { title, items } = Astro.props;
 
 <style>
   .pband { border-block-start: 1px solid var(--color-hairline); /* bottom edge = next section's hairline */ padding-block: var(--space-8); }
-  .pband__inner { display: grid; gap: var(--space-6); align-items: center; }
-  @media (width >= 64rem) { .pband__inner { grid-template-columns: auto minmax(0, 1fr); gap: var(--space-12); } }
-  .pband__rating { display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; gap: var(--space-4); }
-  .pband__score { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: 2.75rem; letter-spacing: -0.04em; line-height: 1; color: var(--color-heading); }
-  .pband__text { font-size: var(--text-sm); color: var(--color-text-muted); max-inline-size: 30ch; }
-  .pband__text a { display: inline-flex; align-items: center; min-block-size: 1.5rem; } /* 24px target (WCAG 2.5.8) */
   .pband__facts { display: grid; gap: var(--space-4) var(--space-6); }
   @media (width >= 48rem) { .pband__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (width >= 64rem) { .pband__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .pband__facts li { display: flex; align-items: center; gap: var(--space-3); padding-inline-start: var(--space-5); border-inline-start: 1px solid var(--color-hairline); color: var(--color-text); font-weight: var(--weight-medium); }
   .pband__facts :global(.icon) { color: var(--color-machine-text); flex: none; }
 </style>

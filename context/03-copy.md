@@ -25,7 +25,7 @@ Sources: `context/11-open-decisions.md` §0 (locked decisions), `context/09-proo
 DiscoverDev is sold as a product and engineering company that builds the DiscoverDev Way (renamed from Agile v2, Oct 16). The Launch-Ready Review is one service ("Already built something?"), no longer the front door.
 
 1. **Core idea (repeat on every page, verbatim):** "Most teams just build what you ask for. We help you build the right thing, then ship it fast, and you own all of it."
-2. **Headline:** Build the right thing. Ship it fast.
+2. **Headline (home H1, Mohamed Oct 16):** Turn your idea into a live product in weeks. (Jobs to be Done + "Now you can" test; 09: Build = live in 8–12 weeks.) "Build the right thing, then ship it fast" stays as the promise in the core idea and the meta.
 3. **Method (the sell):** The DiscoverDev Way. Discover first. Build with AI. Seniors sign off. A person is responsible for every line that reaches your users.
 4. **Lifecycle:** Discover → Plan → Build → Ship & Stay. One team, no handoff gaps.
 5. **Engagements:** Validate (1–2 weeks) · Build (8–12 weeks, fixed price) · Scale (dedicated squad). Other ways in: Launch-Ready Review (already built something) · Partners (software houses).
@@ -302,18 +302,20 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 
 - **SEO title (56):** Product & Engineering Partner for Founders | DiscoverDev
 - **Meta (145):** Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all.
-- **H1:** Build the right thing. Ship it fast.
+- **H1:** Turn your idea into a live product in weeks.
 - **Primary CTA:** Book a free clarity call
 
 ### 2A.1 Hero
-- Pill: The DiscoverDev Way · senior-signed
-- H1: Build the right thing. Ship it fast.
-- Sub: A product and engineering company for founders and teams. Senior people, AI-accelerated, without cutting corners. And you own everything.
-- Buttons: Book a free clarity call (primary) · See how we work (secondary, outline, → #how-we-work)
+- Pill: AI drafts. Seniors sign off. (hero copy pass Oct 16, CRO/copy: replaces "The DiscoverDev Way · senior-signed"; plain words, mirrors the board)
+- H1: Turn your idea into a live product in weeks. ("a live product" set in brand blue; Mohamed Oct 16, replaces "Build the right thing. Ship it fast.")
+- Sub: DiscoverDev builds it with senior engineers and AI, in 8–12 weeks. You own everything.
+  - Oct 16 hero copy pass (CRO/GEO/copy, chosen by Mohamed): short; names the entity so the line can be quoted on its own (05 §5); 09: Build = live deployment in 8–12 weeks; full IP. Trimmed when the H1 took "in weeks" (no repeat). Replaces "A product and engineering company … without cutting corners. And you own everything."
+- Buttons: Book a free clarity call (primary) · See how we work (text link with an arrow, → #how-we-work; hero batch Oct 16)
 - Quiet line: 30 minutes · No pitch · Leave with a next step
-- Visual: the delivery scene (2A.2). HTML only, labelled as an example.
+- Proof line (hero batch Oct 16): the global rating line + Clutch link (§0 proof.rating / proof.clutch, from 09), under the quiet line.
+- Visual: the delivery scene (2A.2). HTML only, labelled as an example. Layout (hero split, Oct 16): from laptop width the copy sits left and the board right, both in the first screen; phones stay stacked.
 
-### 2A.2 Delivery scene strings (home hero visual; labelled as an example; three rows per lane since Oct 16, batch 2)
+### 2A.2 Delivery scene strings (home hero visual; labelled as an example; three rows per lane since Oct 16, batch 2; phones show the first two rows per lane, hero batch Oct 16)
 - Window path: your-product / sprint-board · Badge: Example
 - Status: Build · Week 4 of 10
 - Lane 1 title: AI does the heavy lifting · State labels: "drafting" (in progress) → "drafted"
@@ -329,7 +331,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Caption (screen readers): Example of a sprint the DiscoverDev Way: AI drafts the work, then senior engineers review and approve it before release.
 
 ### 2A.3 Proof band
-- §2.3 items, plus the rating line and Clutch link (§0.4).
+- §2.3 items. The rating line and Clutch link (§0.4) moved up into the hero under the buttons (hero split, Oct 16), so the page does not show the rating twice in one screen.
 
 ### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
 - Label: The DiscoverDev Way

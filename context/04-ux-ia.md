@@ -130,7 +130,7 @@ Format: `#. Section (component) → purpose`. Copy lives in `03-copy.md` under t
 
 ### 4.1 Home `/` (v3, strategy v2, 2026-10-16; copy `03` §2A)
 1. Header.
-2. Hero → "Build the right thing. Ship it fast."; primary "Book a free clarity call" + terms; secondary outline "See how we work" (#how-we-work); delivery scene (AI lane + senior lane, labelled Example).
+2. Hero (split from laptop width: copy left, board right) → "Turn your idea into a live product in weeks."; primary "Book a free clarity call" + terms + rating line; secondary text link "See how we work" (#how-we-work); delivery scene (AI lane + senior lane, labelled Example).
 3. Proof band → rating + Clutch link, 4 continents, AI in production, Arabic and English, locations.
 4. The DiscoverDev Way (`#how-we-work`) → two-tone statement; "What AI does / What senior engineers own" split; responsibility line.
 5. Lifecycle → Discover · Plan · Build · Ship & Stay, with layer chips on Build.
