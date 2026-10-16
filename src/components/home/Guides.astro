@@ -1,0 +1,56 @@
+---
+// Guides and tools (03 §2A.9b, Oct 16): the pillar guide plus two cluster guides (title and description from each
+// guide's front matter) and the launch check. Internal links for SEO and a next step for visitors not ready to book.
+import { publishedInsights, insightPath } from '../../lib/insights';
+import { href, isLive } from '../../data/routes';
+interface Props { label: string; title: string; readLabel: string; check: { title: string; body: string; cta: string } }
+const { label, title, readLabel, check } = Astro.props;
+const all = await publishedInsights('en');
+const pick = ['ai-app-to-production', 'ai-built-app-security-holes', 'fix-or-rebuild-ai-app']
+  .map((slug) => all.find((e) => e.id.endsWith(slug)))
+  .filter((e): e is NonNullable<typeof e> => Boolean(e));
+---
+{(pick.length > 0 || isLive('launchCheck')) && (
+  <section id="guides" class="gd" data-surface="ink" aria-labelledby="gd-title">
+    <div class="container">
+      <p class="gd__label">{label}</p>
+      <h2 id="gd-title" class="gd__title">{title}</h2>
+      <ul role="list" class="gd__grid">
+        {pick.map((e) => (
+          <li class="gd__card">
+            <h3 class="gd__h"><a href={insightPath(e)}>{e.data.h1}</a></h3>
+            <p class="gd__body">{e.data.description}</p>
+            <p class="gd__more" aria-hidden="true">{readLabel}<span class="icon--dir"> →</span></p>
+          </li>
+        ))}
+        {isLive('launchCheck') && (
+          <li class="gd__card gd__card--check">
+            <h3 class="gd__h"><a href={href('launchCheck')}>{check.title}</a></h3>
+            <p class="gd__body">{check.body}</p>
+            <p class="gd__more" aria-hidden="true">{check.cta}<span class="icon--dir"> →</span></p>
+          </li>
+        )}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .gd { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
+  .gd__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
+  .gd__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; margin-block-end: var(--stack-lg); }
+  .gd__grid { display: grid; gap: var(--space-4); }
+  @media (width >= 40rem) { .gd__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (width >= 72rem) { .gd__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .gd__card { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .gd__card--check { border-color: color-mix(in oklab, var(--color-human-mark) 35%, transparent); background: color-mix(in oklab, var(--color-human-mark) 7%, var(--color-surface)); }
+  .gd__h { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); line-height: 1.3; color: var(--color-heading); text-wrap: balance; }
+  .gd__h a { color: inherit; text-decoration: none; }
+  .gd__h a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+  .gd__card:has(a:focus-visible) { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
+  .gd__h a:focus-visible { outline: none; }
+  .gd__body { font-size: 1rem; line-height: 1.55; color: var(--color-text-muted); }
+  .gd__more { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
+  .gd__card--check .gd__more { color: var(--color-human-text); }
+  @media (hover: hover) { .gd__card:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
+</style>

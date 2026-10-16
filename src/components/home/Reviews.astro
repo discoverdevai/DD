@@ -1,0 +1,60 @@
+---
+// Client reviews (03 §2A.8c, Oct 16): the 8 verified quotes from 09, approved by Mohamed with names and roles (D-05).
+// Quotes are shown verbatim. No star graphics and no AggregateRating (CLAUDE.md, 05). Desktop: masonry columns so long
+// and short quotes pack evenly; phones: a swipeable row (scroll-snap, no auto motion).
+import ProofChip from '../ui/ProofChip.astro';
+interface Review { quote: string; name: string; role: string; service: string }
+interface Props { label: string; title: string; items: readonly Review[] }
+const { label, title, items } = Astro.props;
+const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+---
+<section id="reviews" class="rv" data-surface="ink" aria-labelledby="rv-title">
+  <div class="container">
+    <p class="rv__label">{label}</p>
+    <h2 id="rv-title" class="rv__title">{title}</h2>
+    <ProofChip class="rv__proof" />
+    <ul role="list" class="rv__list" tabindex="0" aria-labelledby="rv-title">
+      {items.map((r) => (
+        <li class="rv__card">
+          <figure>
+            <blockquote class="rv__quote"><p>{r.quote}</p></blockquote>
+            <figcaption class="rv__by">
+              <span class="rv__avatar" aria-hidden="true">{initials(r.name)}</span>
+              <span class="rv__who"><strong>{r.name}</strong><span>{r.role}</span></span>
+            </figcaption>
+            <p class="rv__service">{r.service}</p>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .rv { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
+  .rv__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
+  .rv__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; max-inline-size: 22ch; }
+  .rv :global(.rv__proof) { margin-block: var(--space-4) var(--stack-lg); color: var(--color-text-muted); }
+
+  /* Phones: one swipeable row of cards (85% width so the next card peeks). From 48rem: masonry columns. */
+  .rv__list { display: grid; grid-auto-flow: column; grid-auto-columns: 85%; gap: var(--space-4); overflow-x: auto; scroll-snap-type: x mandatory; padding-block-end: var(--space-3); overscroll-behavior-x: contain; }
+  .rv__card { scroll-snap-align: start; }
+  /* Keyboard: the row is focusable so arrow keys scroll it on phones (axe scrollable-region-focusable). */
+  .rv__list:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); border-radius: var(--radius-lg); }
+  @media (width >= 48rem) {
+    .rv__list { display: block; columns: 2; column-gap: var(--space-5); overflow: visible; padding: 0; }
+    .rv__card { break-inside: avoid; margin-block-end: var(--space-5); }
+  }
+  @media (width >= 72rem) { .rv__list { columns: 3; } }
+  @media (width >= 90rem) { .rv__list { columns: 4; } }
+
+  .rv__card figure { display: grid; gap: var(--space-4); block-size: 100%; padding: var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .rv__quote { position: relative; padding-block-start: var(--space-6); font-size: var(--text-base); line-height: 1.6; color: var(--color-text); }
+  .rv__quote::before { content: '“'; position: absolute; inset-block-start: -0.35em; inset-inline-start: 0; font-family: var(--ff-heading); font-size: 3.5rem; line-height: 1; color: var(--blue-400); }
+  .rv__by { display: flex; align-items: center; gap: var(--space-3); }
+  .rv__avatar { display: grid; place-items: center; flex: none; inline-size: 2.5rem; block-size: 2.5rem; border-radius: 50%; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--blue-975); background: var(--blue-300); }
+  .rv__who { display: grid; }
+  .rv__who strong { font-family: var(--ff-heading); color: var(--color-heading); }
+  .rv__who span { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .rv__service { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); line-height: 1.5; padding: 2px 8px; border-radius: var(--radius-sm); border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
+</style>

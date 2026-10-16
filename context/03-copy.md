@@ -400,6 +400,30 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - Card: 60–90% · lower AI cost · results: Three AI agents in production · Cached content served at close to zero cost (09 outcomes) · stack row
   - The five changes, each with one line (from the case study, /work/edtech-ai-agents): Captions first: Free captions first. Paid transcription only when a video has none. | Reuse across users: Each video is processed once and shared, so repeat views cost close to nothing. | The right model for each task: Lower-cost models by default, larger ones only where they pay off. | Shorter prompts: Each request carries only what the model needs, so fewer tokens are billed. | Faster transcription: Long audio is split into 2-minute chunks and transcribed in parallel.
 
+### 2A.8b Selected work (Oct 16, after the case highlight; anonymized lines from §9.3 and 09)
+- Label: Selected work · H2: More products we've helped build · Link: See all our work (→ /work)
+- Card · Build · AI agents for an EdTech platform · Egypt · "Three AI agents in production. AI costs down 60–90%." (→ /work/edtech-ai-agents)
+- Card · Build · AR furniture store with AI recommendations · Saudi Arabia · "Market study, design, build, AI and AR in one team." (→ /build)
+- Card · Build · Customer-support AI agent · "Identical questions answered once, so AI cost follows unique questions, not total requests." (→ /build)
+- Card · Scale · Embedded product team for a B2B learning platform · UK · "12 months owning the roadmap, backlog and sprints." (→ /scale)
+- Card · Scale · Data and ML for an EdTech platform with 20,000+ students · Egypt · "Data engineering, ML and automations." (→ /scale)
+- Card · Validate · Feasibility sprints across several startup ideas · Saudi Arabia · "Each sprint ends in a build, pivot or shelve decision." (→ /validate)
+
+### 2A.8c Client reviews (Oct 16; Mohamed approved all 8 quotes from 09 with names and roles, D-05)
+- Label: What clients say · H2: Verified reviews from founders and teams · Rating line + Clutch link (§0.4) under the heading. Quotes verbatim from 09 (no edits, exclamation marks kept as written by the client). No star graphics, no AggregateRating.
+- "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable." Roberto, Fantacalcio · Market research · Fantasy football
+- "They focused on building solutions that were practical, scalable, and aligned with our users’ needs." Youssef, CEO, EduLens · AI agents · EdTech
+- "The quality of their work is top-notch." CEO, Nile Support, USA · AI agents, website and staff augmentation
+- "Thank you for going above and beyond." Farah Alkhaldi, Consulting firm, Kuwait · Market research · Tourism and hospitality
+- "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia · White-label and e-commerce
+- "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!" Michelle Boehm, Academic researcher, Switzerland · ML algorithms and data analysis
+- "I will become a regular customer going forward now." Andrei Chejneanu, Entrepreneur, UK · Market research · Saudi Arabia expansion
+- "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time." Lea Nechitailo, Entrepreneur, Spain · Market research · Brand expansion
+
+### 2A.9b Guides and tools (Oct 16, before the FAQ)
+- Label: Guides and tools · H2: Read before you build · three guide cards (pillar first, then the security and fix-or-rebuild guides; title and description from each guide) with "Read the guide"
+- Launch check card · Take the launch check · 10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive. · Start the check (→ /launch-check)
+
 ### 2A.9 Why DiscoverDev
 - Label: Why founders and teams choose DiscoverDev
 - Two-tone lead: core idea (bright: "Most teams just build what you ask for." dim: the rest)

@@ -15,6 +15,9 @@ import CaseMetric from '../components/home/CaseMetric.astro';
 import Pillars from '../components/home/Pillars.astro';
 import FaqSplit from '../components/home/FaqSplit.astro';
 import Closer from '../components/home/Closer.astro';
+import WorkGrid from '../components/home/WorkGrid.astro';
+import Reviews from '../components/home/Reviews.astro';
+import Guides from '../components/home/Guides.astro';
 import { howWeWork } from '../content/copy/en/how-we-work';
 import { href } from '../data/routes';
 import { home as c } from '../content/copy/en/home';
@@ -35,9 +38,12 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Capabilities title={c.capabilities.title} lead={c.capabilities.lead} groups={c.capabilities.groups} />
   <CaseMetric c={c.caseHighlight} />
+  <WorkGrid {...c.work} />
+  <Reviews {...c.reviews} />
   <Statement id="why" surface="navy" label={c.why.title} bright={c.why.leadBright} dim={c.why.leadDim}>
     <Pillars items={c.why.pillars} />
   </Statement>
+  <Guides {...c.guides} />
   <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="home" />
   <Closer title={c.band.title} body={c.band.body} />
 </BaseLayout>

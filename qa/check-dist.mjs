@@ -134,7 +134,9 @@ for (const f of htmlFiles) {
   // placeholders / copy rules (visible text only)
   const ph = body.match(placeholder);
   if (ph) add('BLOCKER', page, 'placeholder', `shipped placeholder: "${ph[0]}"`);
-  const bangs = (body.match(/[A-Za-z0-9)]!(\s|$)/g) || []).length;
+  // Voice rule covers our copy; client quotes in <blockquote> are verbatim (03 §2A.8c), so they are left out of this count.
+  const ownCopy = text((html.split(/<body[^>]*>/i)[1] || html).replace(/<blockquote[\s\S]*?<\/blockquote>/gi, ' '));
+  const bangs = (ownCopy.match(/[A-Za-z0-9)]!(\s|$)/g) || []).length;
   if (bangs) add('MINOR', page, 'voice', `${bangs} exclamation mark(s) in visible copy`);
   const forbidden = body.match(/\b(world-class|cutting-edge|synergy|cheap|affordable)\b/i);
   if (forbidden) add('MINOR', page, 'voice', `banned word: "${forbidden[0]}"`);

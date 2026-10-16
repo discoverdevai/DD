@@ -141,6 +141,40 @@ export const home = {
       { title: 'You own it all', body: 'Full IP, no lock-in and a clear contract from day one.' },
     ],
   },
+  // §2A.8b–d (Oct 16): selected work, client reviews (quotes approved by Mohamed with names and roles, D-05), guides.
+  work: {
+    label: 'Selected work',
+    title: 'More products we’ve helped build',
+    allLink: 'See all our work',
+    items: [
+      { stage: 'Build', href: '/work/edtech-ai-agents', what: "AI agents for an EdTech platform", where: 'Egypt', proof: "Three AI agents in production. AI costs down 60–90%." },
+      { stage: 'Build', href: '/build', what: "AR furniture store with AI recommendations", where: 'Saudi Arabia', proof: "Market study, design, build, AI and AR in one team." },
+      { stage: 'Build', href: '/build', what: "Customer-support AI agent", where: '', proof: "Identical questions answered once, so AI cost follows unique questions, not total requests." },
+      { stage: 'Scale', href: '/scale', what: "Embedded product team for a B2B learning platform", where: 'UK', proof: "12 months owning the roadmap, backlog and sprints." },
+      { stage: 'Scale', href: '/scale', what: "Data and ML for an EdTech platform with 20,000+ students", where: 'Egypt', proof: "Data engineering, ML and automations." },
+      { stage: 'Validate', href: '/validate', what: "Feasibility sprints across several startup ideas", where: 'Saudi Arabia', proof: "Each sprint ends in a build, pivot or shelve decision." },
+    ],
+  },
+  reviews: {
+    label: 'What clients say',
+    title: 'Verified reviews from founders and teams',
+    items: [
+      { quote: "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable.", name: "Roberto", role: "Fantacalcio", service: "Market research · Fantasy football" },
+      { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: "Youssef", role: "CEO, EduLens", service: "AI agents · EdTech" },
+      { quote: "The quality of their work is top-notch.", name: "CEO", role: "Nile Support, USA", service: "AI agents, website and staff augmentation" },
+      { quote: "Thank you for going above and beyond.", name: "Farah Alkhaldi", role: "Consulting firm, Kuwait", service: "Market research · Tourism and hospitality" },
+      { quote: "Professional work and great communication.", name: "Nojoud Alarfaj", role: "Athkado, Saudi Arabia", service: "White-label and e-commerce" },
+      { quote: "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!", name: "Michelle Boehm", role: "Academic researcher, Switzerland", service: "ML algorithms and data analysis" },
+      { quote: "I will become a regular customer going forward now.", name: "Andrei Chejneanu", role: "Entrepreneur, UK", service: "Market research · Saudi Arabia expansion" },
+      { quote: "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time.", name: "Lea Nechitailo", role: "Entrepreneur, Spain", service: "Market research · Brand expansion" },
+    ],
+  },
+  guides: {
+    label: 'Guides and tools',
+    title: 'Read before you build',
+    readLabel: 'Read the guide',
+    check: { title: 'Take the launch check', body: '10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive.', cta: 'Start the check' },
+  },
   faq: {
     title: 'Questions founders ask us',
     items: [

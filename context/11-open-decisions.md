@@ -13,7 +13,7 @@ Full site map v1 · English live, Arabic-ready, `/ar` Q1 2027 · fresh copy (no 
 | D-02 | Payment terms stated only in the quote, not on site |
 | D-03 | "No useful findings, no charge"; useful = at least one issue rated medium or higher |
 | D-04 | Free 30-min `review-intro` call, then quote |
-| D-05/D-06 | Logos approved by Mohamed Oct 16 (10 clients, home logo row). No other client names or quotes until consent; Clutch 5.0 as text + link; EduLens anonymized "EdTech AI platform, Egypt" (metric kept, no name, no quote) |
+| D-05/D-06 | Logos approved by Mohamed Oct 16 (10 clients, home logo row); the 8 review quotes in 09 approved Oct 16 for the home page with names and roles. Case studies stay anonymized; Clutch 5.0 as text + link; EduLens anonymized "EdTech AI platform, Egypt" (metric kept, no name, no quote) |
 | D-07 | Rushr hidden |
 | D-08 | "Texas, USA" presence only; no address; no legal-recourse FAQ |
 | D-09/D-10/D-40 | WhatsApp, reply-time and quote-time promises omitted |
