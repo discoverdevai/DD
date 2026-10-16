@@ -1,0 +1,293 @@
+<title>DiscoverDev Design Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Rubik:wght@400;500&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: a white working document opened by one navy band; blue rules mark findings, the keystone arch is the only illustration motif. */
+:root {
+  --bg: #FEFEFE; --panel: #F3F7FE; --ink: #0F0F0F; --muted: #5B6275; --line: #DCE5F7;
+  --navy: #032993; --blue: #1240BE; --blue-soft: #E5EDFE; --green: #1F7A4D; --green-soft: #E3F4EA; --warn: #8A5A00; --warn-soft: #FBF1DC;
+  --on-navy: #FEFEFE; --on-navy-muted: #C9DBFF;
+  --ff-head: "Manrope", system-ui, sans-serif; --ff-body: "Rubik", system-ui, sans-serif; --ff-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #050B2A; --panel: #0B1640; --ink: #EEF2FF; --muted: #A9B4D6; --line: #1D2C66;
+  --navy: #0A2479; --blue: #6C9AFF; --blue-soft: #14245E; --green: #7FD8A6; --green-soft: #0F3324; --warn: #F2C46B; --warn-soft: #3A2C0E; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #050B2A; --panel: #0B1640; --ink: #EEF2FF; --muted: #A9B4D6; --line: #1D2C66;
+  --navy: #0A2479; --blue: #6C9AFF; --blue-soft: #14245E; --green: #7FD8A6; --green-soft: #0F3324; --warn: #F2C46B; --warn-soft: #3A2C0E; color-scheme: dark }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--ff-body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--ff-head); letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.4rem); font-weight: 800; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+a { color: var(--blue); }
+section { padding-block: 64px; }
+section + section { border-top: 1px solid var(--line); }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 62ch; }
+.stack { display: grid; gap: 16px; }
+.opener { background: var(--navy); color: var(--on-navy); padding-block: 56px 48px; }
+.opener h1 { font-size: clamp(2.2rem, 1.4rem + 3.4vw, 4rem); font-weight: 800; line-height: 1.02; }
+.opener .lead { color: var(--on-navy-muted); }
+.opener-grid { display: grid; gap: 32px; align-items: center; }
+@media (min-width: 860px) { .opener-grid { grid-template-columns: 1.25fr 1fr; } }
+.facts { display: flex; flex-wrap: wrap; gap: 24px 40px; margin-top: 28px; }
+.fact b { display: block; font-family: var(--ff-head); font-size: 2rem; font-weight: 800; line-height: 1; }
+.fact span { color: var(--on-navy-muted); font-size: .9rem; }
+.scores { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.scores th, .scores td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.scores th { font-family: var(--ff-head); font-size: .85rem; color: var(--muted); font-weight: 700; }
+.bar { display: flex; align-items: center; gap: 10px; }
+.bar i { display: block; height: 8px; border-radius: 4px; background: var(--blue); }
+.tablebox { overflow-x: auto; }
+.grid2 { display: grid; gap: 20px; }
+@media (min-width: 760px) { .grid2 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+.grid3 { display: grid; gap: 20px; }
+@media (min-width: 900px) { .grid3 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+.finding { padding: 20px 22px; background: var(--panel); border-top: 4px solid var(--blue); display: grid; gap: 8px; min-width: 0; }
+.finding .n { font-family: var(--ff-head); font-weight: 800; color: var(--blue); font-size: 1.4rem; }
+.tag { display: inline-block; font-size: .78rem; padding: 2px 9px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-weight: 500; }
+.tag.g { background: var(--green-soft); color: var(--green); }
+.tag.w { background: var(--warn-soft); color: var(--warn); }
+.page { padding: 18px 20px; border: 1px solid var(--line); display: grid; gap: 8px; min-width: 0; }
+.page h3 { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.page h3 span { font-variant-numeric: tabular-nums; color: var(--blue); }
+.page dt { font-weight: 500; font-size: .85rem; color: var(--muted); }
+.page dd { margin: 0 0 6px; }
+.concept { display: grid; gap: 14px; padding: 24px; background: var(--panel); min-width: 0; }
+.concept.rec { outline: 2px solid var(--blue); }
+.art { aspect-ratio: 16/10; width: 100%; background: var(--bg); display: block; }
+.opener .art { background: transparent; }
+.refs { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.refs li { padding-bottom: 14px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.refs .meta { color: var(--muted); font-size: .9rem; }
+.decide { display: grid; gap: 14px; }
+.decide li { margin-bottom: 6px; }
+.pr { background: var(--bg); border: 1px solid var(--line); padding: 14px; font-size: .85rem; display: grid; gap: 8px; }
+.pr .row { display: flex; justify-content: space-between; gap: 8px; padding: 6px 8px; background: var(--panel); }
+.pr .ai { font-family: var(--ff-mono); font-size: .78rem; color: var(--muted); }
+.pr .ok { color: var(--green); font-weight: 500; }
+.pr .sign { background: var(--navy); color: var(--on-navy); padding: 8px; display: flex; justify-content: space-between; }
+footer { padding-block: 40px; color: var(--muted); font-size: .9rem; }
+@media (prefers-reduced-motion: no-preference) { .key { animation: drop .9s cubic-bezier(.2,0,0,1) .3s both; } @keyframes drop { from { transform: translateY(-40px); opacity: 0; } } }
+</style>
+
+<header class="opener">
+  <div class="wrap opener-grid">
+    <div class="stack">
+      <h1>Design review: where the site stands and where it goes next</h1>
+      <p class="lead">A full audit of all 13 pages of the new discoverdev.ai, scored with the tasteskill v2 rubric, plus references and three art-direction concepts built on The DiscoverDev Way. Reviewed Fri Oct 16, 2026.</p>
+      <div class="facts">
+        <div class="fact"><b>13</b><span>pages audited</span></div>
+        <div class="fact"><b>99</b><span>screenshots, desktop and phone</span></div>
+        <div class="fact"><b>6.1</b><span>average score out of 10</span></div>
+        <div class="fact"><b>7.5–8</b><span>where award winners land</span></div>
+      </div>
+    </div>
+    <svg id="hero-arch" class="art" viewBox="0 0 400 250" role="img" aria-label="A keystone arch: blue stones laid around a curve, one navy keystone set at the top"></svg>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap stack">
+    <h2>The verdict</h2>
+    <p class="lead">The site is clean, fast and honest, and every page works. It reads as a well-made kit rather than as DiscoverDev. Three things hold every score at 6.5 or lower: no idea that only we own, no real pictures, and template devices repeated on every page.</p>
+    <div class="tablebox">
+      <table class="scores">
+        <thead><tr><th>Page</th><th>Score</th><th>Seen in one second</th><th>Biggest problem</th></tr></thead>
+        <tbody id="score-rows"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack">
+    <h2>Eight fixes that lift every page</h2>
+    <p class="lead">Ranked by how much they change the whole site. The first is already done.</p>
+    <div class="grid2">
+      <div class="finding"><span class="n">1</span><h3>Brand fonts on first visit <span class="tag g">Fixed today</span></h3><p>Rubik and JetBrains Mono showed as Arial and Courier for new visitors. They now load properly (commit c66b19d).</p></div>
+      <div class="finding"><span class="n">2</span><h3>White-led colour, as the brand guide says</h3><p>About 65% of every page is near-black navy; the guide asks for white on about 60%. Open in navy, then turn white. Keep navy for openers and the closing band only.</p></div>
+      <div class="finding"><span class="n">3</span><h3>One picture of how we work</h3><p>Rename "Agile v2" to The DiscoverDev Way and draw it once: the keystone arch. Use that one system to replace the card grids (six check areas, five partner reasons, five cost changes).</p></div>
+      <div class="finding"><span class="n">4</span><h3>Headlines in two lines</h3><p>Nine pages run three or four lines. Keep the product name as the headline and move the rest into the lead, through 03-copy first.</p></div>
+      <div class="finding"><span class="n">5</span><h3>Mono means AI, and only AI</h3><p>Monospace now covers about ten jobs (numbers, tags, countries, labels), so it signals nothing. Keep it inside product fragments where AI wrote the line.</p></div>
+      <div class="finding"><span class="n">6</span><h3>Real pictures, honestly sourced</h3><p>Zero today. Start with real interface fragments (a findings report, a pull request with a senior's approval), then team and hub photos, then credited Alexandria archive images.</p></div>
+      <div class="finding"><span class="n">7</span><h3>Fewer outlines, glows and numbers</h3><p>Hairline boxes on 13 of 13 pages, glows on 10, 01/02 numbering on 8. Use tone steps instead of lines, and keep numbers where order is real.</p></div>
+      <div class="finding"><span class="n">8</span><h3>Close the holes</h3><p>Empty hero halves (Insights, About, Launch check), one-line sections (Work rating, Partners process), 3+2 orphan grids, and the "Alexandri a" word break.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack">
+    <h2>Page by page</h2>
+    <p class="lead">One line on what lands, the first thing to fix, and where art can add something only we would show.</p>
+    <div class="grid2" id="page-cards"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack">
+    <h2>Three art directions</h2>
+    <p class="lead">Each one turns our own story into the picture. TrianglZ owns cooking and taste; we own construction and accountability: a named role, a signature, a gate.</p>
+    <div class="grid3">
+      <article class="concept rec">
+        <span class="tag">Recommended system</span>
+        <h3>A. The keystone arch</h3>
+        <svg id="arch-a" class="art" viewBox="0 0 400 250" role="img" aria-label="Half-built arch with the navy keystone dropping into the gap"></svg>
+        <p>The arrow mark's two shards become the stones of an arch. Many small blue stones are laid by AI, and one navy keystone is set last by a senior.</p>
+        <p><b>Live thing:</b> as you scroll The DiscoverDev Way, each step adds a course of stones. The arch only locks at "Seniors sign off".</p>
+        <p class="refs meta">Draws on The New Industrials, Pentagram MIT Media Lab, Stripe's wave roles, The Queue.</p>
+      </article>
+      <article class="concept">
+        <span class="tag">For About and the Alexandria story</span>
+        <h3>B. The drawing set</h3>
+        <svg id="arch-b" class="art" viewBox="0 0 400 250" role="img" aria-label="Elevation drawing of an arch with dashed leader lines and a title block"></svg>
+        <p>The project's drawing set becomes the layout: rough marker sketches for Discover, precise drawings for Build, and the senior's sign-off as the stamp in the title block.</p>
+        <p><b>Live thing:</b> drag a slider to turn a rough discovery sketch into the finished drawing of the same screen.</p>
+        <p class="refs meta">Draws on Illoca, Basecamp Shape Up, Mosby's Files, Oxide.</p>
+      </article>
+      <article class="concept">
+        <span class="tag">For Build and case studies</span>
+        <h3>C. The signed release</h3>
+        <div class="pr" aria-label="Illustrative pull request: AI commits, passing checks, senior approval">
+          <div class="row"><span class="ai">ai-agent · drafted booking API</span><span class="ok">checks pass</span></div>
+          <div class="row"><span class="ai">ai-agent · added tests</span><span class="ok">checks pass</span></div>
+          <div class="row"><span class="ai">ai-agent · migration</span><span class="ok">checks pass</span></div>
+          <div class="sign"><span>Approved by a senior engineer</span><span>Release ▸</span></div>
+        </div>
+        <p>A real pull request becomes the picture: AI-written commits arrive, checks pass, and nothing ships until a senior approves.</p>
+        <p><b>Live thing:</b> a three-step stepper (Discover, Build, Sign off) that swaps the fragment.</p>
+        <p class="refs meta">Draws on Rows, Oxide, Linear's 2026 refresh.</p>
+      </article>
+    </div>
+    <p class="lead">Suggested mix: A as the site-wide system, C inside "Build with AI" and on case studies, and B's archive plates and sketch-to-drawing device on About.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid2">
+    <div class="stack">
+      <h2>From the gallery study</h2>
+      <p class="lead">Picked from the 181 award-level sites in the taste skill's library, for a senior software studio with a construction story.</p>
+      <ul class="refs" id="lib-refs"></ul>
+    </div>
+    <div class="stack">
+      <h2>Live references</h2>
+      <p class="lead">Studios and tool makers with strong art direction in 2025–2026, and the one device worth borrowing from each.</p>
+      <ul class="refs" id="live-refs"></ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack decide">
+    <h2>Decisions for Mohamed</h2>
+    <p class="lead">The taste skill bans a few devices our approved Signal design uses on purpose. Where they disagree, the brand guide wins until you choose.</p>
+    <ol>
+      <li><b>Art direction:</b> A + C + B as above, or one concept only.</li>
+      <li><b>Monospace:</b> keep it only for AI-written lines inside product fragments (recommended), or keep today's wider use.</li>
+      <li><b>Numbered steps:</b> keep only where order is real (Discover → Plan → Build → Ship), or drop everywhere.</li>
+      <li><b>Hero pill and the blueprint grid:</b> keep on navy openers only, or remove.</li>
+      <li><b>Timing:</b> brand-safe fixes before go-live (Sat 09:00 Cairo) and the full art direction after launch, or start the art direction now.</li>
+      <li><b>Pictures:</b> team and hub photos (D-16), and consent for real product screens (D-05).</li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Sources: tasteskill v2 critique rubric applied to screenshots of the live build at 1440×900 and 390×844; reference research with links above. Prepared for the DiscoverDev team.</div></footer>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+function arch(svg, { stones = 13, built = 13, keystone = true, drop = false, lines = false, onNavy = false }) {
+  const cx = 200, cy = 225, R = 160, r = 112, gap = 0.012;
+  const css = getComputedStyle(document.documentElement);
+  const blue = css.getPropertyValue('--blue').trim(), navy = css.getPropertyValue('--navy').trim(), soft = css.getPropertyValue('--blue-soft').trim(), muted = css.getPropertyValue('--muted').trim();
+  const stoneFill = onNavy ? css.getPropertyValue('--on-navy-muted').trim() : blue, keyFill = onNavy ? css.getPropertyValue('--on-navy').trim() : navy;
+  const n = stones, step = Math.PI / n;
+  for (let i = 0; i < n; i++) {
+    const isKey = i === Math.floor(n / 2);
+    if (isKey && !keystone) continue;
+    const a0 = Math.PI - i * step - (isKey ? 0 : gap), a1 = Math.PI - (i + 1) * step + (isKey ? 0 : gap);
+    const pts = [[R, a0], [R, a1], [r, a1], [r, a0]].map(([rad, a]) => `${(cx + rad * Math.cos(a)).toFixed(1)},${(cy - rad * Math.sin(a)).toFixed(1)}`).join(' ');
+    const p = document.createElementNS(NS, 'polygon');
+    p.setAttribute('points', pts);
+    const laid = isKey || i < built / 2 || i >= n - built / 2;
+    if (lines) { p.setAttribute('fill', isKey ? navy : 'none'); p.setAttribute('stroke', isKey ? navy : blue); p.setAttribute('stroke-width', '1.5'); }
+    else p.setAttribute('fill', isKey ? keyFill : laid ? stoneFill : soft);
+    if (isKey && drop) p.setAttribute('class', 'key');
+    svg.appendChild(p);
+  }
+  if (lines) {
+    const mk = (d) => { const e = document.createElementNS(NS, 'path'); e.setAttribute('d', d); e.setAttribute('fill', 'none'); e.setAttribute('stroke', muted); e.setAttribute('stroke-dasharray', '4 4'); svg.appendChild(e); };
+    mk('M200 62 L300 24 L370 24'); mk('M70 180 L24 120 L24 60');
+    const t = (x, y, s) => { const e = document.createElementNS(NS, 'text'); e.setAttribute('x', x); e.setAttribute('y', y); e.setAttribute('fill', muted); e.setAttribute('font-size', '11'); e.setAttribute('font-family', 'Rubik, sans-serif'); e.textContent = s; svg.appendChild(e); };
+    t(300, 18, 'Signed by a senior'); t(10, 52, 'Drafted with AI');
+    const box = document.createElementNS(NS, 'rect'); box.setAttribute('x', 290); box.setAttribute('y', 200); box.setAttribute('width', 100); box.setAttribute('height', 40); box.setAttribute('fill', 'none'); box.setAttribute('stroke', blue); svg.appendChild(box);
+    t(298, 218, 'The DiscoverDev Way'); t(298, 232, 'Sheet 1 · approved');
+  }
+}
+arch(document.getElementById('hero-arch'), { drop: true, onNavy: true });
+arch(document.getElementById('arch-a'), { built: 9, drop: true });
+arch(document.getElementById('arch-b'), { lines: true });
+
+const pages = [
+  ['Home', 6.5, 'A centred headline on navy', 'Navy from top to bottom, and the method is said, never drawn', 'Keystone arch on the hero right; real fragments replace the grey process thumbnails'],
+  ['Validate', 6.5, 'Three-line headline and a window panel', 'Three rows of identical cards', 'One arrow stroke that forks into Build, Change direction and Stop'],
+  ['Build', 6.5, 'The week-by-week timeline (the strongest real thing)', 'Two card rows in a row repeat the timeline', 'Move the timeline into the hero; stones fill week by week, keystone turns green at launch'],
+  ['Scale', 6.5, 'A stepper window like Build', 'Hard to tell apart from Build and Validate', 'A months strip: one arch added per month, showing a team that stays'],
+  ['Launch-Ready', 6.5, 'The dark checklist panel', 'Four-line headline; six identical AI rows hide the sign-off', 'The white findings report as the hero object, with a "fix, don’t rebuild" verdict stamp'],
+  ['Partners', 6.0, 'A big headline, then nothing', 'Hero cards too small; a five-card grid with an empty slot', '"Your brand, our bricks": the partner’s logo slot as the keystone over our blocks'],
+  ['About', 5.6, '"About DiscoverDev" and an empty glow', 'Generic headline; three column rows in a row', 'Credited Alexandria photography; a west-to-east hours strip with Alexandria as the keystone'],
+  ['Work', 5.4, '"60–90%"', 'A whole section holding one rating line; rows link inconsistently', 'One geometric glyph per project built from the arrow mark, no logos needed'],
+  ['Case study', 6.1, '"60–90%", three times in the fold', 'Five changes shown as a 3+2 card grid', 'A drawn request pipeline: captions, cache, router, short prompt, chunked Whisper'],
+  ['Insights', 6.1, 'A three-line headline beside an empty half', 'Featured guide looks like the others; summaries cut mid-word', 'Arrow-mark cover system for every guide and its share image'],
+  ['Article', 6.4, 'Navy title band and a takeaways box', '"AI- / built" breaks; right third empty for 15 minutes of reading', 'Real diagrams: demo vs production, the fix-or-rebuild tree, a sourced cost ladder'],
+  ['Launch check', 6.4, 'A blue question and one button', '60% of the fold empty; the quiz hides behind "Start"', 'Question 1 in the fold, and a six-segment result bar (AI-checkable vs senior sign-off)'],
+  ['Book', 5.3, '"The calendar didn’t load"', 'The one job of the page needs the Cal.com account (D-23)', 'Your hours against Alexandria’s, overlap in green; the person you’ll meet, once photos exist'],
+];
+const rows = document.getElementById('score-rows'), cards = document.getElementById('page-cards');
+for (const [name, score, seen, problem, art] of pages) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><b></b></td><td><div class="bar"><i style="width:${Math.round(score * 10)}px"></i><span></span></div></td><td></td><td></td>`;
+  tr.children[0].firstChild.textContent = name; tr.querySelector('span').textContent = score.toFixed(1);
+  tr.children[2].textContent = seen; tr.children[3].textContent = problem; rows.appendChild(tr);
+  const c = document.createElement('article'); c.className = 'page';
+  c.innerHTML = '<h3><b></b><span></span></h3><dl><dt>Fix first</dt><dd></dd><dt>Art opportunity</dt><dd></dd></dl>';
+  c.querySelector('b').textContent = name; c.querySelector('h3 span').textContent = score.toFixed(1);
+  const dd = c.querySelectorAll('dd'); dd[0].textContent = problem; dd[1].textContent = art; cards.appendChild(c);
+}
+const lib = [
+  ['The New Industrials', 'https://thenewindustrials.com', '8.3', 'One family of objects recurs at three scales and assembles into a monogram at the end', 'Arrow shards become stones across the page; the footer completes the arch'],
+  ['Wild.as craft essay', 'https://craft.wild.as', '8.3', 'Every graphic drawn from one primitive in a fixed cobalt and navy palette', 'All our art from one shape: the shard in the mark'],
+  ['Illoca', 'https://illoca.unseen.co', '8.2', 'A drafting-table scene in two inks; scroll pushes the camera into the drawing', 'Hero illustration for The DiscoverDev Way'],
+  ['Monolog', 'https://bymonolog.com', '8.2', 'Result cards laid over the hero', 'Proof section, using only facts from 09'],
+  ['The Queue', 'https://sheets.works/data-viz/the-queue', '8.1', 'The subject itself becomes the section divider, redrawn per chapter', 'A row of stones between sections that grows per step'],
+  ['Juggle', 'https://joinjuggle.com', '8.0', 'Two colour fields split the hero; the headline changes colour at the seam', '"AI lays the bricks" on white, "a senior sets the keystone" on navy'],
+  ['Mosby’s Files', 'https://mosbyfiles.com', '8.0', 'Notation borrowed from the subject’s own documents', 'Sign-off notation: a signature line and an approval stamp'],
+  ['SSTR', 'https://sstr.tech/en', '7.7', 'One product shape runs buttons, icons and the loader', 'The chevron as bullet, button arrow and step marker'],
+];
+const live = [
+  ['Linear design refresh', 'https://linear.app/now/behind-the-latest-design-refresh', 'Structure implied rather than drawn; quieter borders and icons', 'Quiet interface fragments so the blue rule and keystone carry the emphasis'],
+  ['Vercel Geist grid', 'https://vercel.com/geist/grid', 'A visible construction grid, used deliberately and marked decorative', 'One grid behind the hero arch only, never the whole page'],
+  ['Stripe wave system by Field', 'https://field.io/work/stripe-wave-brand-system', 'The brand motif has roles: leads, supports, disappears', 'The arch leads on home, shrinks to a glyph elsewhere, absent on /book'],
+  ['Basecamp Shape Up', 'https://basecamp.com/shapeup', 'Fat-marker sketches and hill charts explain a method honestly', 'Rough sketches for Discover, precise drawings for Build'],
+  ['Oxide Computer', 'https://oxide.computer/', 'Engineering shown as a technical document with real artefacts', 'A code review, a CI check, a deploy log as our imagery'],
+  ['Resend and Spline', 'https://blog.spline.design/how-resend-uses-spline-for-3d-design', 'One tactile object makes infrastructure concrete', 'The keystone as our one object, drawn flat in SVG for speed'],
+  ['Pentagram, MIT Media Lab', 'https://www.pentagram.com/work/mit-media-lab/story', 'One grid generates the logo and every sub-mark', 'Every illustration cut from the arrow mark’s geometry'],
+];
+const fill = (el, items, withScore) => { for (const it of items) {
+  const li = document.createElement('li');
+  const [name, url, a, b, c] = it;
+  li.innerHTML = '<a target="_blank" rel="noopener"></a><span class="meta"></span><span></span>';
+  const link = li.querySelector('a'); link.href = url; link.textContent = withScore ? `${name} · ${a}` : name;
+  li.children[1].textContent = withScore ? b : a; li.children[2].textContent = 'For us: ' + (withScore ? c : b);
+  el.appendChild(li);
+} };
+fill(document.getElementById('lib-refs'), lib, true);
+fill(document.getElementById('live-refs'), live, false);
+</script>
