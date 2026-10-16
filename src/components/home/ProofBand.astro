@@ -15,7 +15,7 @@ import { WORLD, LAND_DOTS, CLIENT_DOTS } from '../../data/world-dots';
 interface Project { stage: string; href: string; what: string; where: string; proof: string }
 interface Props {
   title: string; logosTitle: string; clientRoles: Record<string, string>; projects: readonly Project[];
-  map: { label: string; legendWorked: string; legendHome: string };
+  map: { label: string; legendWorked: string; legendHome: string; pins: ReadonlyArray<readonly [string, number, number]> };
   items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[];
 }
 const { title, logosTitle, clientRoles, projects, items, map } = Astro.props;
@@ -23,6 +23,7 @@ const { title, logosTitle, clientRoles, projects, items, map } = Astro.props;
 // pulsing green with an arc between them. Same projection as the generated dots.
 const P = (lat: number, lon: number) => ({ x: +((lon - WORLD.lon0) * WORLD.k).toFixed(1), y: +((WORLD.lat0 - lat) * WORLD.k).toFixed(1) });
 const homes = [P(31, -99), P(31.2, 29.9)];
+const pins = map.pins.map(([name, lat, lon]) => ({ name, ...P(lat, lon) }));
 
 const MOCK = process.env.LOGO_MOCK === '1';
 const MIN_LOGOS = 4;
@@ -91,6 +92,7 @@ const logos = showLogos
         <path d={LAND_DOTS} class="pband__land" />
         <path d={CLIENT_DOTS} class="pband__worked" />
         <path d={`M${homes[0].x} ${homes[0].y} Q ${(homes[0].x + homes[1].x) / 2} ${Math.min(homes[0].y, homes[1].y) - 150} ${homes[1].x} ${homes[1].y}`} class="pband__arc" pathLength="1" />
+        {pins.map((p) => (<g class="pband__pin"><title>{p.name}</title><circle cx={p.x} cy={p.y} r="9" class="pband__pin-halo" /><circle cx={p.x} cy={p.y} r="4.5" class="pband__pin-dot" /></g>))}
         {homes.map((h) => (<g class="pband__home"><circle cx={h.x} cy={h.y} r="6" class="pband__home-ring" /><circle cx={h.x} cy={h.y} r="5" class="pband__home-dot" /></g>))}
       </svg>
       <figcaption class="pband__legend" aria-hidden="true"><span class="pband__key pband__key--worked">{map.legendWorked}</span><span class="pband__key pband__key--home">{map.legendHome}</span></figcaption>
@@ -169,6 +171,9 @@ const logos = showLogos
   .pband__key--home::before { background: var(--color-human-mark); }
   .pband__stop-a { stop-color: var(--blue-400); } .pband__stop-b { stop-color: var(--color-human-mark); }
   .pband__arc { fill: none; stroke: url(#pband-arc); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0.01 0.012; }
+  /* Client-country markers: a bright dot with a soft halo, one per country (09). */
+  .pband__pin-halo { fill: color-mix(in oklab, var(--blue-300) 22%, transparent); }
+  .pband__pin-dot { fill: var(--blue-200); stroke: var(--color-bg); stroke-width: 2; }
   .pband__home-dot { fill: var(--color-human-mark); stroke: var(--color-bg); stroke-width: 2; }
   .pband__home-ring { fill: none; stroke: var(--color-human-mark); stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
   @media (prefers-reduced-motion: no-preference) {

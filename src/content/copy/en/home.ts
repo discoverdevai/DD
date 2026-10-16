@@ -17,6 +17,11 @@ export const home = {
     map: {
       label: 'Map of where we work: clients in North America, Europe, Africa and Asia, with teams in Texas, USA and Alexandria, Egypt.',
       legendWorked: 'Countries we’ve worked in',
+      // One marker per client country (09); [name, lat, lon] at a main city.
+      pins: [
+        ['USA', 40.7, -74], ['United Kingdom', 51.5, -0.1], ['Ireland', 53.3, -6.3], ['Spain', 40.4, -3.7],
+        ['Switzerland', 47.4, 8.5], ['Italy', 41.9, 12.5], ['Saudi Arabia', 24.7, 46.7], ['Kuwait', 29.4, 48], ['Egypt', 30, 31.2],
+      ] as ReadonlyArray<readonly [string, number, number]>,
       legendHome: 'Our teams: Texas and Alexandria',
     },
     title: 'What we’ve built',
