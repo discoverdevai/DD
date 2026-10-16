@@ -402,7 +402,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 
 ### 2A.8b Selected work (Oct 16, after the case highlight; anonymized lines from §9.3 and 09)
 - Label: Selected work · H2: More products we've helped build · Link: See all our work (→ /work)
-- Card · Build · AI agents for an EdTech platform · Egypt · "Three AI agents in production. AI costs down 60–90%." (→ /work/edtech-ai-agents)
+- Card · Build · Health app that explains lab reports in plain language · "Recommendations, follow-up questions and medical safety guardrails." (→ /build) (Oct 16 review: replaces the EdTech card, which repeated the case highlight above; 09 BioBank)
 - Card · Build · AR furniture store with AI recommendations · Saudi Arabia · "Market study, design, build, AI and AR in one team." (→ /build)
 - Card · Build · Customer-support AI agent · "Identical questions answered once, so AI cost follows unique questions, not total requests." (→ /build)
 - Card · Scale · Embedded product team for a B2B learning platform · UK · "12 months owning the roadmap, backlog and sprints." (→ /scale)
@@ -410,6 +410,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Card · Validate · Feasibility sprints across several startup ideas · Saudi Arabia · "Each sprint ends in a build, pivot or shelve decision." (→ /validate)
 
 ### 2A.8c Client reviews (Oct 16; Mohamed approved all 8 quotes from 09 with names and roles, D-05)
+- Order (Oct 16 psychology review: similarity and availability): product-build quotes first (EduLens CEO featured larger, beside the case it backs), then research, then Validate market research. Service tag starts with the stage (Build / Research / Validate). "Book a free clarity call" under the reviews (proof next to the CTA).
 - Label: What clients say · H2: Verified reviews from founders and teams · Rating line + Clutch link (§0.4) under the heading. Quotes verbatim from 09 (no edits, exclamation marks kept as written by the client). No star graphics, no AggregateRating.
 - "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable." Roberto, Fantacalcio · Market research · Fantasy football
 - "They focused on building solutions that were practical, scalable, and aligned with our users’ needs." Youssef, CEO, EduLens · AI agents · EdTech
@@ -421,7 +422,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time." Lea Nechitailo, Entrepreneur, Spain · Market research · Brand expansion
 
 ### 2A.9b Guides and tools (Oct 16, before the FAQ)
-- Label: Guides and tools · H2: Read before you build · three guide cards (pillar first, then the security and fix-or-rebuild guides; title and description from each guide) with "Read the guide"
+- Label: Guides and tools · H2: Free guides and a launch check (Oct 16: "free" up front, zero-price effect) · launch check card first (lowest effort first step), then three guide cards (pillar first, then the security and fix-or-rebuild guides; title and description from each guide) with "Read the guide"
 - Launch check card · Take the launch check · 10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive. · Start the check (→ /launch-check)
 
 ### 2A.9 Why DiscoverDev

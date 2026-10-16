@@ -3,9 +3,13 @@
 // Quotes are shown verbatim. No star graphics and no AggregateRating (CLAUDE.md, 05). Desktop: masonry columns so long
 // and short quotes pack evenly; phones: a swipeable row (scroll-snap, no auto motion).
 import ProofChip from '../ui/ProofChip.astro';
+import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
+import { t } from '../../i18n/t';
+import { bookHref } from '../../data/routes';
 interface Review { quote: string; name: string; role: string; service: string }
-interface Props { label: string; title: string; items: readonly Review[] }
-const { label, title, items } = Astro.props;
+interface Props { label: string; title: string; items: readonly Review[]; cta?: boolean }
+const { label, title, items, cta = false } = Astro.props;
 const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
 ---
 <section id="reviews" class="rv" data-surface="ink" aria-labelledby="rv-title">
@@ -14,8 +18,8 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0
     <h2 id="rv-title" class="rv__title">{title}</h2>
     <ProofChip class="rv__proof" />
     <ul role="list" class="rv__list" tabindex="0" aria-labelledby="rv-title">
-      {items.map((r) => (
-        <li class="rv__card">
+      {items.map((r, i) => (
+        <li class:list={['rv__card', { 'rv__card--featured': i === 0 }]}>
           <figure>
             <blockquote class="rv__quote"><p>{r.quote}</p></blockquote>
             <figcaption class="rv__by">
@@ -27,6 +31,12 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0
         </li>
       ))}
     </ul>
+    {cta && (
+      <div class="rv__cta">
+        <CtaLink href={bookHref('clarity')} ctaId="home_reviews_clarity" tier="primary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
+        <CtaTerms kind="clarity" />
+      </div>
+    )}
   </div>
 </section>
 
@@ -57,4 +67,8 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0
   .rv__who strong { font-family: var(--ff-heading); color: var(--color-heading); }
   .rv__who span { font-size: var(--text-sm); color: var(--color-text-muted); }
   .rv__service { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); line-height: 1.5; padding: 2px 8px; border-radius: var(--radius-sm); border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
+  /* Featured first quote (the build review behind the case study): larger text, accent edge. */
+  .rv__card--featured figure { border-color: color-mix(in oklab, var(--blue-400) 45%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 30%, var(--color-surface)), var(--color-surface) 70%); }
+  .rv__card--featured .rv__quote { font-size: var(--text-lg); line-height: 1.5; font-weight: var(--weight-medium); color: var(--color-heading); }
+  .rv__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-block-start: var(--space-8); }
 </style>
