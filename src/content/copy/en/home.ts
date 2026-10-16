@@ -105,8 +105,17 @@ export const home = {
   },
   // V12 → §0.7 anonymize ("EdTech AI platform, Egypt"); quote omitted.
   caseHighlight: {
+    eyebrow: 'Case study · EdTech · Egypt',
+    results: ['Three AI agents in production', 'Cached content served at close to zero cost'],
+    levers: [
+      { title: 'Captions first', line: 'Use existing captions. Transcribe only when there are none.' },
+      { title: 'Reuse across users', line: 'Each video is processed once, then shared.' },
+      { title: 'The right model for each task', line: 'Large models only where they are needed.' },
+      { title: 'Shorter prompts', line: 'Send each model only what it needs.' },
+      { title: 'Faster transcription', line: 'Long audio split into chunks and transcribed in parallel.' },
+    ],
     title: 'How an EdTech AI platform cut its AI costs by 60–90%',
-    body: 'An EdTech AI platform in Egypt runs three AI agents: a support chatbot, a video-to-lesson and quiz generator, and a student learning assistant. We changed how they read videos, reused answers across users and sent each task to the right model. AI costs fell by 60–90%.',
+    body: 'An EdTech AI platform in Egypt runs three AI agents: a support chatbot, a video-to-lesson and quiz generator, and a student learning assistant. We changed how they read videos, reused answers across users and sent each task to the right model.',
     metric: '60–90%',
     metricLabel: 'lower AI cost',
     stack: ['Python', 'OpenAI', 'LangChain', 'Whisper'],

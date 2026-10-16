@@ -43,9 +43,10 @@ const logos = showLogos
   <div class="container pband__head">
     <h2 id="pband-title" class="pband__label">{showLogos ? logosTitle : title}</h2>
     {showLogos && (
-      <button type="button" class="pband__toggle" aria-pressed="false" aria-label={t('strip.pause')} data-pband-toggle hidden>
-        <svg class="pband__i-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" /></svg>
-        <svg class="pband__i-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
+      <button type="button" class="pband__toggle" aria-pressed="false" data-pband-toggle hidden>
+        <svg class="pband__i-pause" viewBox="0 0 24 24" width="10" height="10" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" /></svg>
+        <svg class="pband__i-play" viewBox="0 0 24 24" width="10" height="10" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
+        {t('strip.pause')}
       </button>
     )}
   </div>
@@ -105,11 +106,12 @@ const logos = showLogos
   .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
   /* WCAG 2.2.2: the row moves on its own, so it gets a pause control (shown only when it moves and JS runs). */
-  .pband__toggle { display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; border: 1px solid var(--color-hairline); background: transparent; color: var(--color-text); cursor: pointer; }
+  /* Quiet text control (Oct 16: the round button drew too much attention). Pressed = paused (aria-pressed). */
+  .pband__toggle { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 1.5rem; padding: 0; border: 0; background: none; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); cursor: pointer; }
   .pband__toggle[hidden] { display: none; }
   .pband__toggle .pband__i-play, .pband__toggle[aria-pressed='true'] .pband__i-pause { display: none; }
   .pband__toggle[aria-pressed='true'] .pband__i-play { display: block; }
-  @media (hover: hover) { .pband__toggle:hover { background: color-mix(in oklab, var(--blue-300) 10%, transparent); } }
+  @media (hover: hover) { .pband__toggle:hover { color: var(--color-heading); } }
 
   /* Client cards in one moving row; edges fade out. */
   .pband__strip { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }

@@ -5,11 +5,13 @@ import CtaLink from '../ui/CtaLink.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
 // `display` keeps a short line (the method tagline) at headline size; long statements use statement size.
-interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy'; ctaPage?: string; display?: boolean }
-const { id, bright, dim, label, surface = 'ink', ctaPage, display = false } = Astro.props;
+// `split` (desktop): label + heading left, the slot's body and the CTA right, the slot's visual full width below
+// (Oct 16: the stacked layout spent ~400px before the visual).
+interface Props { id: string; bright: string; dim: string; label?: string; surface?: 'ink' | 'navy'; ctaPage?: string; display?: boolean; split?: boolean }
+const { id, bright, dim, label, surface = 'ink', ctaPage, display = false, split = false } = Astro.props;
 ---
 <section id={id} class:list={['stmt', { 'stmt--navy bg-mark': surface === 'navy' }]} data-surface={surface === 'navy' ? 'inverse' : 'ink'} aria-labelledby={`${id}-title`}>
-  <div class="container">
+  <div class:list={['container', { 'stmt__split': split }]}>
     {label && <p class="stmt__label">{label}</p>}
     <h2 id={`${id}-title`} class:list={['stmt__text', 'reveal', { 'stmt__text--display': display }]}><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>
     <slot />
@@ -30,4 +32,13 @@ const { id, bright, dim, label, surface = 'ink', ctaPage, display = false } = As
   .stmt__cta { margin-block-start: var(--space-8); }
   .stmt--navy { background: var(--blue-800); border-block-start: 0; }
   .stmt--navy .stmt__dim { color: var(--blue-200); }
+  @media (width >= 64rem) {
+    .stmt__split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--space-16); align-items: end; }
+    .stmt__split > .stmt__label { grid-column: 1; grid-row: 1; }
+    .stmt__split > .stmt__text { grid-column: 1; grid-row: 2; }
+    .stmt__split > :global(.ag) { display: contents; }
+    .stmt__split :global(.ag__body) { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
+    .stmt__split > .stmt__cta { grid-column: 2; grid-row: 3; margin-block-start: var(--space-6); }
+    .stmt__split :global(.wf) { grid-column: 1 / -1; grid-row: 4; margin-block-start: var(--space-10); }
+  }
 </style>
