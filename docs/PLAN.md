@@ -14,6 +14,7 @@ _Last updated: Fri Oct 16, 2026, 17:30 Cairo. See the progress log for the lates
 - **Art direction pilot (home, Oct 16): rejected by Mohamed and reverted** (`5181d12`). Home is the approved v3 look. Art direction will be rethought after go-live; `06` §0.8 is notes only.
 - **Planned after launch:** rest of the art direction from the design review (keystone arch system, white-led colour, real pictures, signed-release fragments, drawing-set About; `docs/review/design-review.html`, `docs/brand/discoverdev-way.md`) and the architecture clean-up (`docs/architecture/cleanup-plan.md`).
 - **After launch:** real product screens from Figma in the project showcase, per client approval (D-05); drawings ship at launch.
+- **Hosting:** Vercel (Oct 16). Push the repo, point the Vercel project at github.com/discoverdevai/Discoverdev-landing-page, then add discoverdev.ai as the domain.
 - **Waiting on Mohamed:** see "Needed from Mohamed" at the end. Client logos and project screenshots found in the old repo can't go live without written client consent (D-05).
 
 ## Keeping this file in step with the chat

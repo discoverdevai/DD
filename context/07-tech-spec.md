@@ -715,3 +715,6 @@ Owner: Mohamed (launch lead + operator). Claude Code: prep + QA. Dates: T-0 = Tu
 | `CLOUDFLARE_API_TOKEN` | only if deploying from Actions (not planned) | GitHub Actions secret | Yes |
 - [ ] Commit `.env.example` with names only. Never commit `.env`.
 - Accounts (owner holds; 2FA on all): registrar, Cloudflare, GitHub, Cal.com, PostHog, Web3Forms, Google Search Console, Bing Webmaster Tools, Clutch.
+
+## Oct 16 change: hosting on Vercel
+Mohamed chose Vercel over Cloudflare Workers. `vercel.json` mirrors `public/_headers` and `public/_redirects` (checked by `scripts/vercel-parity.mjs` in `test:gates`); Vercel serves `dist/404.html` with HTTP 404 for unknown URLs. `wrangler.jsonc` and the Cloudflare files stay for a later move. Commercial use needs the Vercel Pro plan.

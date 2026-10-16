@@ -1,0 +1,60 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/home", "destination": "/", "statusCode": 301 },
+    { "source": "/staff", "destination": "/scale", "statusCode": 301 },
+    { "source": "/services", "destination": "/build", "statusCode": 301 },
+    { "source": "/launch", "destination": "/build", "statusCode": 301 },
+    { "source": "/contact", "destination": "/book", "statusCode": 301 },
+    { "source": "/consultation", "destination": "/book", "statusCode": 301 },
+    { "source": "/about-us", "destination": "/about", "statusCode": 301 },
+    { "source": "/team", "destination": "/about", "statusCode": 301 },
+    { "source": "/portfolio", "destination": "/work", "statusCode": 301 },
+    { "source": "/case-studies", "destination": "/work", "statusCode": 301 },
+    { "source": "/blog", "destination": "/insights", "statusCode": 301 },
+    { "source": "/staff/:path+", "destination": "/scale", "statusCode": 301 },
+    { "source": "/services/:path+", "destination": "/build", "statusCode": 301 },
+    { "source": "/portfolio/:path+", "destination": "/work", "statusCode": 301 },
+    { "source": "/case-studies/:path+", "destination": "/work", "statusCode": 301 },
+    { "source": "/blog/:path+", "destination": "/insights", "statusCode": 301 }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()" },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin-allow-popups" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Content-Security-Policy", "value": "frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'; upgrade-insecure-requests" },
+        { "key": "Speculation-Rules", "value": "\"/speculation-rules.json\"" }
+      ]
+    },
+    { "source": "/speculation-rules.json", "headers": [{ "key": "Content-Type", "value": "application/speculationrules+json" }] },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Cross-Origin-Resource-Policy", "value": "same-site" }
+      ]
+    },
+    { "source": "/brand/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }] },
+    { "source": "/og/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }] },
+    { "source": "/favicon(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }] },
+    { "source": "/icon-(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }] },
+    { "source": "/apple-touch-icon.png", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }] },
+    { "source": "/book/confirmed", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "(.*)\\.vercel\\.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    }
+  ]
+}
