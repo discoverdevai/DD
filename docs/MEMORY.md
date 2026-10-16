@@ -24,10 +24,11 @@ Last updated: Fri Oct 16, 2026, 12:05 Cairo · by Claude Code · site commit: se
 ## Decisions (newest first)
 | Date | Decision | Made in |
 |---|---|---|
+| Oct 16 | Theme stays **dark** (Mohamed overrode the brand guide's white-led rule for the site). Visual idea: **Sketch to Ship** (product window: sketch → AI draft dashed blue → senior-signed solid white + signature + green "Signed off" → live); keystone/arch dropped as unclear. One moving piece per page; official logo files only. Concept board: https://claude.ai/artifact/GYiLTgCjpHx6idPgQHwuhb (awaiting final OK) | Claude Code (Mohamed) |
 | Oct 16 | Keystone-arch home pilot **rejected and reverted** ("it is too much bad"); home is back to the approved v3 look for launch. Earlier in the same review: keep the dark theme, header and hero ("the last theme was perfect"), so white-led colour is off too. `06` §0.8 kept only as notes; art direction to be rethought after go-live with Mohamed | Claude Code (Mohamed) |
 | Oct 16 | Method renamed **The DiscoverDev Way**: "Discover first. Build with AI. Seniors sign off." Picture: "AI lays the bricks. A senior sets the keystone." Brand one-pager `docs/brand/discoverdev-way.md` | Claude Code (Mohamed) |
 | Oct 16 | A senior engineer signs off every release (confirmed fact, in `09`) | Claude Code (Mohamed) |
-| Oct 16 | Art direction: keystone arch as the site-wide system, signed-release fragments in Build and case studies, drawing set on About. Brand-safe fixes before go-live; full art direction after launch. Review: `docs/review/design-review.html` | Claude Code (Mohamed) |
+| Oct 16 | (Superseded same day by Sketch to Ship, dark theme.) Art direction: keystone arch as the site-wide system, signed-release fragments in Build and case studies, drawing set on About. Brand-safe fixes before go-live; full art direction after launch. Review: `docs/review/design-review.html` | Claude Code (Mohamed) |
 | Oct 16 | tasteskill v2 installed (`.claude/skills/taste-frontend`, `taste-redesign`); its scripts need Mohamed's OK; brand guide wins where its rules conflict | Claude Code (Mohamed) |
 | Oct 16 | Launch-Ready Review price: **from $1,490 USD** (D-01 closed). Market middle for fixed-fee audits is ~$1,000; boutique reviews $1,500–10,000 | Claude Code (Mohamed) |
 | Oct 16 | "Agile v2" will be renamed (clash with TrianglZ). Options researched in `docs/review/enhancement/naming.md`; Mohamed to pick | Claude Code (Mohamed) |

@@ -15,3 +15,4 @@ docs/review/**/*.png
 # Parallel local build for review while agents read dist/
 dist-wip/
 docs/review/audit-2026-10-16/*.jpg
+.artifacts/
