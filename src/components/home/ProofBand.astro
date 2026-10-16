@@ -1,19 +1,22 @@
 ---
-// Proof band under the hero (03 §2A.3): logos OR projects, never mixed, no motion.
-// - 4+ client logos with recorded written consent (D-05, src/data/clients.ts) → a still row of logos.
-// - Otherwise → four anonymized project cards (facts in 09), each linking to its service or case page.
+// Proof band under the hero (03 §2A.3): client cards OR project cards, never mixed.
+// - 4+ clients with recorded consent (D-05, src/data/clients.ts) → client cards (logo in its own colours + name + one
+//   line) in one slow moving row (Mohamed, Oct 16): two copies, the second aria-hidden, -50% loop; pauses on hover and
+//   with a pause button (WCAG 2.2.2); reduced motion = still, wrapped.
+// - Otherwise → four anonymized project cards (facts in 09).
 // Then the §2.3 facts as a quiet row. Logos are read from assets/clients at build time and inlined as small WebP data
 // URIs, only for consented entries, so an unconsented file never reaches dist. LOGO_MOCK=1 = local preview with all.
 import path from 'node:path';
 import sharp from 'sharp';
 import Icon from '../ui/Icon.astro';
+import { t } from '../../i18n/t';
 import { clientLogos } from '../../data/clients';
 interface Project { stage: string; href: string; what: string; where: string; proof: string }
 interface Props {
-  title: string; logosTitle: string; projects: readonly Project[];
+  title: string; logosTitle: string; clientRoles: Record<string, string>; projects: readonly Project[];
   items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[];
 }
-const { title, logosTitle, projects, items } = Astro.props;
+const { title, logosTitle, clientRoles, projects, items } = Astro.props;
 
 const MOCK = process.env.LOGO_MOCK === '1';
 const MIN_LOGOS = 4;
@@ -23,25 +26,41 @@ const dir = path.join(process.cwd(), 'assets/clients');
 const logos = showLogos
   ? await Promise.all(eligible.map(async (l) => {
       const buf = await sharp(path.join(dir, l.file))
-        .resize(112, 112, { fit: l.fit === 'contain' ? 'contain' : 'cover', background: '#ffffff' })
-        .webp({ quality: 70 })
+        .resize(96, 96, { fit: l.fit === 'contain' ? 'contain' : 'cover', background: '#ffffff' })
+        .webp({ quality: 75 })
         .toBuffer();
       return { ...l, src: `data:image/webp;base64,${buf.toString('base64')}` };
     }))
   : [];
 ---
 <section class="pband" data-surface="ink" aria-labelledby="pband-title">
-  <div class="container pband__inner">
+  <div class="container pband__head">
     <h2 id="pband-title" class="pband__label">{showLogos ? logosTitle : title}</h2>
-    {showLogos ? (
-      <ul role="list" class="pband__logos">
-        {logos.map((l) => (
-          <li class:list={['pband__logo', { 'pband__logo--contain': l.fit === 'contain' }]}>
-            <img src={l.src} alt={l.name} width="72" height="72" loading="lazy" decoding="async" />
-          </li>
+    {showLogos && (
+      <button type="button" class="pband__toggle" aria-pressed="false" aria-label={t('strip.pause')} data-pband-toggle hidden>
+        <svg class="pband__i-pause" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none" /></svg>
+        <svg class="pband__i-play" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
+      </button>
+    )}
+  </div>
+
+  {showLogos ? (
+    <div class="pband__strip">
+      <div class="pband__track">
+        {[0, 1].map((copy) => (
+          <ul role="list" class="pband__clients" aria-hidden={copy === 1 ? 'true' : undefined}>
+            {logos.map((l) => (
+              <li class="pband__client">
+                <img src={l.src} alt="" width="44" height="44" loading="lazy" decoding="async" class:list={{ 'is-contain': l.fit === 'contain' }} />
+                <p><strong>{l.name}</strong><span>{clientRoles[l.id]}</span></p>
+              </li>
+            ))}
+          </ul>
         ))}
-      </ul>
-    ) : (
+      </div>
+    </div>
+  ) : (
+    <div class="container">
       <ul role="list" class="pband__projects">
         {projects.map((p) => (
           <li class="pband__card">
@@ -52,7 +71,10 @@ const logos = showLogos
           </li>
         ))}
       </ul>
-    )}
+    </div>
+  )}
+
+  <div class="container">
     <ul role="list" class="pband__facts">
       {items.map((i) => <li><Icon name={i.icon} size={20} /><span>{i.text}</span></li>)}
     </ul>
@@ -60,11 +82,42 @@ const logos = showLogos
 </section>
 
 <style>
-  .pband { border-block-start: 1px solid var(--color-hairline); /* bottom edge = next section's hairline */ padding-block: var(--space-12) var(--space-10); }
-  .pband__inner { display: grid; gap: var(--space-6); }
+  .pband { border-block-start: 1px solid var(--color-hairline); /* bottom edge = next section's hairline */ padding-block: var(--space-12) var(--space-10); display: grid; gap: var(--space-6); }
+  .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
+  /* WCAG 2.2.2: the row moves on its own, so it gets a pause control (shown only when it moves and JS runs). */
+  .pband__toggle { display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; border: 1px solid var(--color-hairline); background: transparent; color: var(--color-text); cursor: pointer; }
+  .pband__toggle[hidden] { display: none; }
+  .pband__toggle .pband__i-play, .pband__toggle[aria-pressed='true'] .pband__i-pause { display: none; }
+  .pband__toggle[aria-pressed='true'] .pband__i-play { display: block; }
+  @media (hover: hover) { .pband__toggle:hover { background: color-mix(in oklab, var(--blue-300) 10%, transparent); } }
 
-  /* Projects: four equal cards; the title link covers the card (one link, one tab stop). */
+  /* Client cards in one moving row; edges fade out. */
+  .pband__strip { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .pband__track { display: flex; inline-size: max-content; }
+  .pband__clients { display: flex; gap: var(--space-3); padding-inline-end: var(--space-3); }
+  .pband__client { flex: none; display: flex; align-items: center; gap: var(--space-3); inline-size: 19.5rem; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
+  .pband__client img { flex: none; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; object-fit: cover; background: var(--neutral-0); }
+  .pband__client img.is-contain { object-fit: contain; padding: 3px; }
+  .pband__client p { display: grid; min-inline-size: 0; }
+  .pband__client strong { font-family: var(--ff-heading); font-size: var(--text-sm); color: var(--color-heading); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pband__client span { font-size: var(--text-xs); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @media (prefers-reduced-motion: no-preference) {
+    .pband__track { animation: pband-scroll 55s linear infinite; }
+    :dir(rtl) .pband__track { animation-name: pband-scroll-rtl; }
+    .pband__strip:hover .pband__track, .pband[data-paused] .pband__track { animation-play-state: paused; }
+    @keyframes pband-scroll { to { transform: translateX(-50%); } }
+    @keyframes pband-scroll-rtl { to { transform: translateX(50%); } }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pband__toggle { display: none !important; }
+    .pband__strip { mask-image: none; }
+    .pband__track { inline-size: auto; padding-inline: var(--gutter); }
+    .pband__clients { flex-wrap: wrap; justify-content: center; padding-inline-end: 0; }
+    .pband__clients[aria-hidden] { display: none; }
+  }
+
+  /* Projects (fallback): four equal cards; the title link covers the card (one link, one tab stop). */
   .pband__projects { display: grid; gap: var(--space-4); }
   @media (width >= 40rem) { .pband__projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (width >= 64rem) { .pband__projects { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
@@ -80,16 +133,20 @@ const logos = showLogos
   .pband__where { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-xs); color: var(--color-text-muted); }
   .pband__where :global(.icon) { color: var(--color-machine-text); }
 
-  /* Logos: the clients' own round tiles in their own colours, one size, still. */
-  .pband__logos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5) var(--space-8); }
-  .pband__logo { flex: none; inline-size: 4.5rem; block-size: 4.5rem; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px var(--color-hairline); }
-  .pband__logo img { inline-size: 100%; block-size: 100%; object-fit: cover; }
-  .pband__logo--contain { background: var(--neutral-0); padding: 6px; }
-  .pband__logo--contain img { object-fit: contain; }
-
   .pband__facts { display: grid; gap: var(--space-4) var(--space-6); padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-hairline); }
   @media (width >= 48rem) { .pband__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (width >= 64rem) { .pband__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .pband__facts li { display: flex; align-items: center; gap: var(--space-3); padding-inline-start: var(--space-5); border-inline-start: 1px solid var(--color-hairline); color: var(--color-text-muted); font-size: var(--text-sm); font-weight: var(--weight-medium); }
   .pband__facts :global(.icon) { color: var(--color-machine-text); flex: none; }
 </style>
+
+<script>
+  // Pause control for the moving client row (WCAG 2.2.2). Hidden without JS; the row still pauses on hover.
+  document.querySelectorAll<HTMLButtonElement>('[data-pband-toggle]').forEach((btn) => {
+    btn.hidden = false;
+    btn.addEventListener('click', () => {
+      const paused = btn.closest('.pband')?.toggleAttribute('data-paused') ?? false;
+      btn.setAttribute('aria-pressed', String(paused));
+    });
+  });
+</script>

@@ -15,6 +15,19 @@ export const home = {
   proofStrip: {
     title: 'What we’ve built',
     logosTitle: 'Teams we’ve built for',
+    // §2A.3 one line per client card (09).
+    clientRoles: {
+      'edulens': 'EdTech AI platform · Egypt',
+      'upscend': 'B2B learning platform · UK',
+      'arheb': 'Ride-sharing data and ML · Saudi Arabia',
+      'nile-support': 'AI call operations · USA',
+      'biobank': 'HealthTech app',
+      'jumlaty': 'Restaurant procurement · Saudi Arabia',
+      'rushr': 'Home-services marketplace · USA',
+      'zest': 'Market study',
+      'ctc': 'Speech therapy practice · USA',
+      'yawmy-care': 'Childcare platform · our product',
+    } as Record<string, string>,
     // §2A.3 project cards (anonymized, facts in 09). Shown until 4+ client logos have written consent.
     projects: [
       { stage: 'Build', href: '/work/edtech-ai-agents', what: 'AI agents for an EdTech platform', where: 'Egypt', proof: 'Three AI agents in production. AI costs down 60–90%.' },
@@ -54,10 +67,10 @@ export const home = {
     eyebrow: 'How a project runs',
     title: 'One team from idea to after launch',
     steps: [
-      { title: 'Discover', body: 'Market read, product scope and a clickable prototype.' },
-      { title: 'Plan', body: 'Roadmap, tech decisions and team, agreed before any code.' },
-      { title: 'Build', body: 'Weekly sprints, with a demo for you every week.' },
-      { title: 'Ship & Stay', body: 'Deploy, monitor and keep improving. The same team stays after launch.' },
+      { title: 'Discover', body: 'Market read, product scope and a clickable prototype.', tools: ['Jobs to be Done', 'Design Sprint'] },
+      { title: 'Plan', body: 'Roadmap, tech decisions and team, agreed before any code.', tools: ['User Story Mapping', 'Shape Up', 'RICE', 'ADRs'] },
+      { title: 'Build', body: 'Weekly sprints, with a demo for you every week.', tools: ['Weekly sprints', 'Definition of Done'] },
+      { title: 'Ship & Stay', body: 'Deploy, monitor and keep improving. The same team stays after launch.', tools: ['DORA metrics', 'Continuous discovery', 'HEART metrics'] },
     ],
     line: 'One team, no handoff gaps.',
   },

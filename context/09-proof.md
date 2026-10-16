@@ -33,6 +33,7 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 - A senior engineer signs off every release before it reaches users (confirmed by Mohamed, Oct 16 2026).
 - "We own the full lifecycle and we stay." One team, no handoff gaps (confirmed true on every engagement).
 - Stages: Discover (define the right product) → Plan (roadmap, tech, team before code) → Build (weekly sprints, AI does the heavy lifting, results every week) → Ship & Stay (deploy, monitor, keep improving).
+- Frameworks per stage (confirmed by Mohamed, Oct 16 2026): Discover: Jobs to be Done, Design Sprint · Plan: User Story Mapping, Shape Up appetite (fixed time, flexible scope), RICE / MoSCoW prioritisation, Architecture Decision Records · Build: weekly sprints with a client demo, Definition of Done · Ship & Stay: DORA metrics, continuous discovery, HEART / AARRR product metrics.
 
 ## Services catalog
 Product strategy & discovery · Product design (UX/UI) · Software development (web, mobile, APIs, microservices, enterprise, gov integrations, legacy modernization, cloud migration) · AI & ML (agents, AR/EN chatbots, NLP, CV, recommendations, document processing, predictive) · Data engineering & analytics · E-commerce (marketplaces, AI recs, AR, payments) · Quality, DevOps & cloud (testing, CI/CD, Docker, K8s, AWS/Azure/GCP, IaC, tiered SLAs) · Technical consulting & PM (architecture reviews, code audits, due diligence, CTO advisory) · Dedicated teams & staffing.

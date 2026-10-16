@@ -333,7 +333,8 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.3 Proof band ("What we've built"; logos or projects, never mixed; Oct 16)
 - Oct 16: Mohamed approved all ten logos (EduLens, Upscend, Arheb, Nile Support, BioBank, Jumlaty, Zest, Continuum Therapy Collective, Rushr, Yawmy Care), so the band shows the logo row.
 - Rule: when 4 or more clients have written consent recorded in `src/data/clients.ts` (D-05), the band shows a still row of their logos (no motion). Until then it shows the four project cards below. Logo candidates (09): Upscend, Zest, Arheb, BioBank, EduLens, Jumlaty, Nile Support, Continuum Therapy Collective (client + clinician consent), Yawmy Care (own product; name to confirm). Rushr ("R" mark) stays hidden (D-07). Not candidates until named and added to 09: the "AD" and "F" marks, Darb, Beacon, the resort and Orange logos.
-- Label (logos): Teams we've built for · Label (projects): What we've built
+- Label (logos): Teams we've built for
+- Logo style (Mohamed, Oct 16): client cards in one moving row (logo in its own colours + name + one line); pauses on hover, pause button ("Pause the moving list", WCAG 2.2.2), still and wrapped under reduced motion. Card lines (09): edulens: EdTech AI platform · Egypt; upscend: B2B learning platform · UK; arheb: Ride-sharing data and ML · Saudi Arabia; nile-support: AI call operations · USA; biobank: HealthTech app; jumlaty: Restaurant procurement · Saudi Arabia; rushr: Home-services marketplace · USA; zest: Market study; ctc: Speech therapy practice · USA; yawmy-care: Childcare platform · our product · Label (projects): What we've built
 - Project cards (facts in 09; anonymized per §0.7; stage tag = service name, links to its page):
   1. Build · AI agents for an EdTech platform · Egypt · "Three AI agents in production. AI costs down 60–90%." (→ /work/edtech-ai-agents)
   2. Build · AR furniture store with AI recommendations · Saudi Arabia · "Market study, design, build, AI and AR in one team."
@@ -363,6 +364,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Step 2 · Plan: Roadmap, tech decisions and team, agreed before any code.
 - Step 3 · Build: Weekly sprints, with a demo for you every week.
 - Step 4 · Ship & Stay: Deploy, monitor and keep improving. The same team stays after launch.
+- Frameworks line under each step (09, confirmed Oct 16): Discover: Jobs to be Done · Design Sprint | Plan: User Story Mapping · Shape Up · RICE · ADRs | Build: Weekly sprints · Definition of Done | Ship & Stay: DORA metrics · Continuous discovery · HEART metrics. Screen-reader prefix: "Frameworks:". Inspired by the gap in TrianglZ's Agile V2.0 page (metaphor, no stages or frameworks); none of their wording or roles used.
 - Oct 16 section review: steps rewritten so they don't repeat §2A.4 (AI and senior sign-off chips removed); the section's own point is one team for the whole lifecycle. Facts: 09 Offer (Validate deliverables), Method (stages, weekly results, we stay).
 - Line: One team, no handoff gaps.
 
