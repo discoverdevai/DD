@@ -334,13 +334,13 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Oct 16: Mohamed approved all ten logos (EduLens, Upscend, Arheb, Nile Support, BioBank, Jumlaty, Zest, Continuum Therapy Collective, Rushr, Yawmy Care), so the band shows the logo row.
 - Rule: when 4 or more clients have written consent recorded in `src/data/clients.ts` (D-05), the band shows a still row of their logos (no motion). Until then it shows the four project cards below. Logo candidates (09): Upscend, Zest, Arheb, BioBank, EduLens, Jumlaty, Nile Support, Continuum Therapy Collective (client + clinician consent), Yawmy Care (own product; name to confirm). Rushr ("R" mark) stays hidden (D-07). Not candidates until named and added to 09: the "AD" and "F" marks, Darb, Beacon, the resort and Orange logos.
 - Label (logos): Teams we've built for
-- Logo style (Mohamed, Oct 16): client cards in one moving row (logo in its own colours + name + one line); pauses on hover, pause button ("Pause the moving list", WCAG 2.2.2), still and wrapped under reduced motion. Card lines (09): edulens: EdTech AI platform · Egypt; upscend: B2B learning platform · UK; arheb: Ride-sharing data and ML · Saudi Arabia; nile-support: AI call operations · USA; biobank: HealthTech app; jumlaty: Restaurant procurement · Saudi Arabia; rushr: Home-services marketplace · USA; zest: Market study; ctc: Speech therapy practice · USA; yawmy-care: Childcare platform · our product · Label (projects): What we've built
+- Logo style (Mohamed, Oct 16): client cards in one moving row (logo in its own colours + name + one line); pauses on hover, pause button ("Pause the moving list", WCAG 2.2.2), still and wrapped under reduced motion. Card lines (09): edulens: EdTech AI platform · Egypt; upscend: B2B learning platform · UK; arheb: Ride-sharing ML · Saudi Arabia; nile-support: AI call operations · USA; biobank: HealthTech app; jumlaty: Restaurant procurement · Saudi Arabia; rushr: Home-services marketplace · USA; zest: Market study; ctc: Speech therapy practice · USA; yawmy-care: Childcare platform · our product · Label (projects): What we've built
 - Project cards (facts in 09; anonymized per §0.7; stage tag = service name, links to its page):
   1. Build · AI agents for an EdTech platform · Egypt · "Three AI agents in production. AI costs down 60–90%." (→ /work/edtech-ai-agents)
   2. Build · AR furniture store with AI recommendations · Saudi Arabia · "Market study, design, build, AI and AR in one team."
   3. Scale · Embedded product team for a B2B learning platform · UK · "12 months owning the roadmap, backlog and sprints."
   4. Scale · Data and ML for an EdTech platform with 20,000+ students · Egypt · "Data engineering, ML and automations."
-- Then the §2.3 facts as one quiet row. The rating line and Clutch link (§0.4) sit in the hero (Oct 16).
+- Then the §2.3 facts beside a small map (Oct 16, Mohamed: make the facts visual and on-brand): abstract dot-grid map, client locations as blue dots (09 countries: USA, UK, Ireland, Spain, Switzerland, Italy, Saudi Arabia, Kuwait), our two homes pulsing green (Texas, USA · Alexandria, Egypt) joined by an arc. Labels: North America · Europe · Africa · Asia. Screen-reader label: "Map of where we work: clients in North America, Europe, Africa and Asia, with teams in Texas, USA and Alexandria, Egypt." Previously: The rating line and Clutch link (§0.4) sit in the hero (Oct 16).
 - Why (Oct 16 review): mixing logos and text in one moving strip read as noise; moving text can't be read and needs a pause control (WCAG 2.2.2). Each card names the product type, the work and the country, so search and AI answers can quote it.
 
 ### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
@@ -371,9 +371,10 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.6 Engagements
 - H2: Three ways to work with us
 - Lead: Start where you are. Validate's fee credits toward Build.
-- Card · Validate · "I have an idea." · Meta: 1–2 weeks · Fixed fee · Body: Market and competitor read, product scope, a clickable prototype and a fixed build estimate. · Link: See Validate
-- Card · Build · "I'm ready to build." · Meta: 8–12 weeks · Fixed price · Body: A production-ready product with real users. Design, build, QA and deployment. · Link: See Build
-- Card · Scale · "It's working. Grow it." · Meta: Ongoing · Monthly retainer · Body: A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control. · Link: See Scale
+- Card · Validate · "I have an idea." · Kind: Product discovery · Meta: 1–2 weeks · Fixed fee · Body: Market and competitor read, product scope, a clickable prototype and a fixed build estimate. · Link: See Validate
+- Card · Build · "I'm ready to build." · Kind: MVP development · Meta: 8–12 weeks · Fixed price · Body: A live product with real users: design, build, QA and deployment, with a demo for you every week. · Link: See Build
+- Card · Scale · "It's working. Grow it." · Kind: Dedicated product team · Meta: Ongoing · Monthly retainer · Body: A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control. · Link: See Scale
+- Oct 16 section review (SEO/GEO/CRO): each card names its service in the words founders search for (Kind line, matches 05 keywords: product discovery, MVP development, dedicated team); Build body says what you get each week (09: live deployment, weekly demo).
 - Sub-heading: Other ways in
 - Row · Launch-Ready Review · "Already built something?" · Your AI-built or freelancer-built app, reviewed by a senior team in about 5 working days. A ranked fix list and a plain verdict. · Link: See the Review
 - Row · Partners · "I run a software house." · White-label delivery and staff augmentation under your brand. · Link: See Partners

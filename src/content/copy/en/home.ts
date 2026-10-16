@@ -13,13 +13,18 @@ export const home = {
     sub: 'DiscoverDev builds it with senior engineers and AI, in 8⁠–⁠12 weeks. You own everything.',
   },
   proofStrip: {
+    // §2A.3 facts map (09 countries).
+    map: {
+      label: 'Map of where we work: clients in North America, Europe, Africa and Asia, with teams in Texas, USA and Alexandria, Egypt.',
+      regions: ['North America', 'Europe', 'Africa', 'Asia'],
+    },
     title: 'What we’ve built',
     logosTitle: 'Teams we’ve built for',
     // §2A.3 one line per client card (09).
     clientRoles: {
       'edulens': 'EdTech AI platform · Egypt',
       'upscend': 'B2B learning platform · UK',
-      'arheb': 'Ride-sharing data and ML · Saudi Arabia',
+      'arheb': 'Ride-sharing ML · Saudi Arabia',
       'nile-support': 'AI call operations · USA',
       'biobank': 'HealthTech app',
       'jumlaty': 'Restaurant procurement · Saudi Arabia',
@@ -78,9 +83,9 @@ export const home = {
     title: 'Three ways to work with us',
     lead: 'Start where you are. Validate’s fee credits toward Build.',
     cards: [
-      { key: 'validate', who: 'I have an idea.', title: 'Validate', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate' },
-      { key: 'build', who: 'I’m ready to build.', title: 'Build', meta: ['8–12 weeks', 'Fixed price'], body: 'A production-ready product with real users. Design, build, QA and deployment.', linkLabel: 'See Build' },
-      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control.', linkLabel: 'See Scale' },
+      { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate' },
+      { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build' },
+      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated product team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control.', linkLabel: 'See Scale' },
     ],
     otherTitle: 'Other ways in',
     other: [

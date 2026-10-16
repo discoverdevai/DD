@@ -1,7 +1,7 @@
 ---
 // Engagements (03 §2A.6): Validate · Build · Scale as three tall stage cards (stage nodes fill left to right), then "Other ways in" as two compact rows (Review, Partners). Each card is one stretched link.
 import { ROUTES, isLive, type RouteKey } from '../../data/routes';
-interface Card { key: RouteKey; who: string; title: string; meta: readonly string[]; body: string; linkLabel: string }
+interface Card { key: RouteKey; who: string; title: string; kind?: string; meta: readonly string[]; body: string; linkLabel: string }
 interface Other { key: RouteKey; who: string; title: string; body: string; linkLabel: string }
 interface Props { title: string; lead: string; cards: readonly Card[]; otherTitle: string; other: readonly Other[] }
 const { title, lead, cards, otherTitle, other } = Astro.props;
@@ -20,7 +20,7 @@ const liveOther = other.filter((o) => isLive(o.key));
           <li class:list={['en__card', `en__card--${i}`]} data-spotlight>
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
             <p class="en__who">{c.who}</p>
-            <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}</a></h3>
+            <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
             <ul role="list" class="en__meta">{c.meta.map((m) => <li>{m}</li>)}</ul>
             <p class="en__body">{c.body}</p>
             <p class="en__more" aria-hidden="true">{c.linkLabel}<span class="en__arrow icon--dir">→</span></p>
@@ -47,6 +47,8 @@ const liveOther = other.filter((o) => isLive(o.key));
 )}
 
 <style>
+  /* Service name in search words (03 §2A.6 Kind), under the stage name, part of the heading. */
+  .en__kind { display: block; margin-block-start: var(--space-1); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-machine-text); letter-spacing: 0; }
   .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
   .en__head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
   @media (width >= 64rem) { .en__head { grid-template-columns: 1fr 1fr; align-items: end; } }

@@ -14,9 +14,15 @@ import { clientLogos } from '../../data/clients';
 interface Project { stage: string; href: string; what: string; where: string; proof: string }
 interface Props {
   title: string; logosTitle: string; clientRoles: Record<string, string>; projects: readonly Project[];
+  map: { label: string; regions: readonly string[] };
   items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[];
 }
-const { title, logosTitle, clientRoles, projects, items } = Astro.props;
+const { title, logosTitle, clientRoles, projects, items, map } = Astro.props;
+// Facts map: equirectangular crop (lat 62..12, lon -125..60) on a 740x200 view box: x = (lon + 125) * 4, y = (62 - lat) * 4.
+const P = (lat: number, lon: number) => ({ x: +((lon + 125) * 4).toFixed(1), y: +((62 - lat) * 4).toFixed(1) });
+const clients = [P(37, -120), P(40.7, -74), P(52, -1), P(53, -8), P(40, -4), P(46.8, 8.2), P(42.5, 12.5), P(24.7, 46.7), P(29.4, 47.9)];
+const homes = [P(31, -99), P(31.2, 29.9)];
+const regionAt = [P(52, -112), P(60, 0), P(20, 15), P(36, 52)];
 
 const MOCK = process.env.LOGO_MOCK === '1';
 const MIN_LOGOS = 4;
@@ -74,10 +80,23 @@ const logos = showLogos
     </div>
   )}
 
-  <div class="container">
+  <div class="container pband__world">
     <ul role="list" class="pband__facts">
       {items.map((i) => <li><Icon name={i.icon} size={20} /><span>{i.text}</span></li>)}
     </ul>
+    <svg class="pband__map" viewBox="0 0 740 200" role="img" aria-label={map.label}>
+      <defs>
+        <pattern id="pband-dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1.1" class="pband__dot" /></pattern>
+        <linearGradient id="pband-arc" x1="0" x2="1"><stop offset="0" class="pband__stop-a" /><stop offset="1" class="pband__stop-b" /></linearGradient>
+        <radialGradient id="pband-fade" cx="50%" cy="50%" r="60%"><stop offset="0.55" stop-color="#fff" /><stop offset="1" stop-color="#fff" stop-opacity="0" /></radialGradient>
+        <mask id="pband-mask"><rect width="740" height="200" fill="url(#pband-fade)" /></mask>
+      </defs>
+      <rect width="740" height="200" fill="url(#pband-dots)" mask="url(#pband-mask)" />
+      {map.regions.map((r, i) => <text x={regionAt[i].x} y={regionAt[i].y} class="pband__region">{r}</text>)}
+      <path d={`M${homes[0].x} ${homes[0].y} Q ${(homes[0].x + homes[1].x) / 2} -20 ${homes[1].x} ${homes[1].y}`} class="pband__arc" pathLength="1" />
+      {clients.map((c) => <circle cx={c.x} cy={c.y} r="4" class="pband__client-dot" />)}
+      {homes.map((h) => (<g class="pband__home"><circle cx={h.x} cy={h.y} r="6" class="pband__home-ring" /><circle cx={h.x} cy={h.y} r="5" class="pband__home-dot" /></g>))}
+    </svg>
   </div>
 </section>
 
@@ -133,9 +152,26 @@ const logos = showLogos
   .pband__where { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-xs); color: var(--color-text-muted); }
   .pband__where :global(.icon) { color: var(--color-machine-text); }
 
-  .pband__facts { display: grid; gap: var(--space-4) var(--space-6); padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-hairline); }
-  @media (width >= 48rem) { .pband__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (width >= 64rem) { .pband__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  /* Facts + map: facts list beside an abstract dot-grid map in brand colours (03 §2A.3). */
+  .pband__world { display: grid; gap: var(--space-6); align-items: center; padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-hairline); }
+  @media (width >= 64rem) { .pband__world { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: var(--space-10); } }
+  .pband__facts { display: grid; gap: var(--space-4); }
+  @media (width >= 48rem) and (width < 64rem) { .pband__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .pband__map { inline-size: 100%; block-size: auto; overflow: visible; }
+  .pband__dot { fill: color-mix(in oklab, var(--blue-300) 34%, transparent); }
+  .pband__region { font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.04em; fill: var(--color-text-muted); text-anchor: middle; }
+  .pband__stop-a { stop-color: var(--blue-400); } .pband__stop-b { stop-color: var(--color-human-mark); }
+  .pband__arc { fill: none; stroke: url(#pband-arc); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0.01 0.012; }
+  @media (width < 48rem) { .pband__region { font-size: 20px; } }
+  .pband__client-dot { fill: var(--blue-400); stroke: var(--color-bg); stroke-width: 2; }
+  .pband__home-dot { fill: var(--color-human-mark); stroke: var(--color-bg); stroke-width: 2; }
+  .pband__home-ring { fill: none; stroke: var(--color-human-mark); stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .pband__home-ring { animation: pband-ping 2.8s var(--ease-standard) infinite; }
+    .pband__home:nth-of-type(2) .pband__home-ring { animation-delay: 1.4s; }
+    @keyframes pband-ping { from { transform: scale(1); opacity: 0.8; } to { transform: scale(3.2); opacity: 0; } }
+  }
+  @media (forced-colors: active) { .pband__dot { fill: GrayText; } .pband__client-dot, .pband__home-dot { fill: CanvasText; } .pband__arc { stroke: CanvasText; } }
   .pband__facts li { display: flex; align-items: center; gap: var(--space-3); padding-inline-start: var(--space-5); border-inline-start: 1px solid var(--color-hairline); color: var(--color-text-muted); font-size: var(--text-sm); font-weight: var(--weight-medium); }
   .pband__facts :global(.icon) { color: var(--color-machine-text); flex: none; }
 </style>
