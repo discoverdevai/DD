@@ -41,12 +41,10 @@ export default defineConfig({
     // Heading: the LCP element on most pages, so it is the one preloaded font (06 §4).
     { provider: fontProviders.fontsource(), name: 'Manrope', cssVariable: '--font-heading',
       weights: ['600 800'], styles: ['normal'], subsets: ['latin'], fallbacks: ['system-ui', 'sans-serif'] },
-    // Body + mono use `optional`: on a slow first visit the metric-matched fallback stays for that view instead of
-    // swapping late (the swap re-wrapped hero microcopy: CLS up to 0.15 with fonts delayed 900ms). Cached afterwards.
-    { provider: fontProviders.fontsource(), name: 'Rubik', cssVariable: '--font-body', display: 'optional',
+    { provider: fontProviders.fontsource(), name: 'Rubik', cssVariable: '--font-body',
       weights: ['400 600'], styles: ['normal'], subsets: ['latin'], fallbacks: ['system-ui', 'sans-serif'] },
     // Signal machine voice (06 §0.3). Not preloaded.
-    { provider: fontProviders.fontsource(), name: 'JetBrains Mono', cssVariable: '--font-mono', display: 'optional',
+    { provider: fontProviders.fontsource(), name: 'JetBrains Mono', cssVariable: '--font-mono',
       weights: ['400 500'], styles: ['normal'], subsets: ['latin'], fallbacks: ['monospace'] },
   ],
   env: {
