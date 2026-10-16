@@ -34,13 +34,6 @@ export const home = {
       items: ['Product and architecture decisions', 'Review of every change', 'Security, data and payments', 'Sign-off on every release'],
     },
     line: 'AI lays the bricks. A senior sets the keystone.',
-    // §2A.4 v5 layout (06 §0.8): the three moves, each adding to the arch.
-    youGet: 'You get',
-    moves: [
-      { title: 'Discover first', does: 'We check it’s the right thing before any code.', get: 'No money spent building the wrong product.' },
-      { title: 'Build with AI', does: 'AI does the heavy lifting, with results every week.', get: 'Live in 8–12 weeks, at a fixed price.' },
-      { title: 'Seniors sign off', does: 'A senior engineer signs off every release.', get: 'Someone answers for every line your users see.' },
-    ],
   },
   lifecycle: {
     eyebrow: 'idea to after launch',
