@@ -144,3 +144,11 @@ Findings (none of these were installed):
 ## Optional API keys (none required)
 
 Google PSI/CrUX API key, or OAuth for GSC/GA4 (field data in `cseo-technical`/`cseo-audit`). DataForSEO MCP (SERP data in `cseo-cluster`/`cseo-sxo`/`cseo-content-brief`; they fall back to WebSearch). Moz and Bing Webmaster (backlinks; not installed).
+
+## taste-skill (added 2026-10-16, Mohamed's request)
+
+Source: https://github.com/Leonxlnx/taste-skill (MIT, commit `f624f37`, licence in `_licenses/LICENSE-taste-skill.txt`). Installed: `taste-frontend` (skill `design-taste-frontend`, tasteskill v2: art direction, house rules, critique rubric, references, library) and `taste-redesign` (skill `redesign-existing-projects`, audit checklist). Not installed: `install.sh`, `skill.sh`, sponsor assets, the other style skills.
+
+**Scripts (not run without Mohamed's OK):** `taste-frontend/scripts/draw.mjs` (deals directions from the local library), `lint.mjs` (scans source), `inspect.mjs` (spawns local Chrome over CDP, local server, screenshots), `assets.mjs` (**network**: Openverse, Wikimedia Commons, Art Institute of Chicago, the Met; downloads images). Reviewed: no secrets, no settings writes, no install steps.
+
+**Conflicts with our approved brand (`06` §0, brand guidelines) — brand wins:** the skill bans monospace, index numbers (01/02), thin rules and grid lines, gradients, pill badges/eyebrows and shadows at rest. Our Signal system uses JetBrains Mono for the AI layer, numbered steps, the blueprint grid and the hero pill. Use the skill as a critique lens (`references/critique.md`, `tells.md`, laws) and adopt a rule only after Mohamed approves the change in `06`.
