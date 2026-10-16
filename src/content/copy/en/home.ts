@@ -78,11 +78,12 @@ export const home = {
     eyebrow: 'How a project runs',
     title: 'One team from idea to after launch',
     steps: [
-      { title: 'Discover', body: 'Market read, product scope and a clickable prototype.', tools: ['Jobs to be Done', 'Design Sprint'] },
-      { title: 'Plan', body: 'Roadmap, tech decisions and team, agreed before any code.', tools: ['User Story Mapping', 'Shape Up', 'RICE', 'ADRs'] },
-      { title: 'Build', body: 'Weekly sprints, with a demo for you every week.', tools: ['Weekly sprints', 'Definition of Done'] },
-      { title: 'Ship & Stay', body: 'Deploy, monitor and keep improving. The same team stays after launch.', tools: ['DORA metrics', 'Continuous discovery', 'HEART metrics'] },
+      { title: 'Discover', when: '1–2 weeks', body: 'Market read, product scope and a clickable prototype.', gets: 'A tested prototype and a fixed build estimate.', tools: [{ name: 'Jobs to be Done', what: 'Find the job users hire the product to do.' }, { name: 'Design Sprint', what: 'Test a clickable prototype with users early.' }] },
+      { title: 'Plan', when: 'Before any code', body: 'Roadmap, tech decisions and team, agreed before any code.', gets: 'A release plan and written tech decisions.', tools: [{ name: 'User Story Mapping', what: 'The user journey, split into releases.' }, { name: 'Shape Up', what: 'Fixed time, flexible scope.' }, { name: 'RICE', what: 'Rank features by reach, impact, confidence and effort.' }, { name: 'ADRs', what: 'A written record of each tech decision.' }] },
+      { title: 'Build', when: '8–12 weeks', body: 'Weekly sprints, with a demo for you every week.', gets: 'A production-ready product, signed off by a senior engineer.', tools: [{ name: 'Weekly sprints', what: 'Plan, build and demo every week.' }, { name: 'Definition of Done', what: 'A shared checklist before anything counts as done.' }] },
+      { title: 'Ship & Stay', when: 'Ongoing', body: 'Deploy, monitor and keep improving. The same team stays after launch.', gets: 'A live product that keeps improving, with the same team.', tools: [{ name: 'DORA metrics', what: 'How often and how safely we ship.' }, { name: 'Continuous discovery', what: 'Keep talking to users after launch.' }, { name: 'HEART metrics', what: 'Happiness, engagement, adoption, retention, task success.' }] },
     ],
+    getsLabel: 'You get',
     line: 'One team, no handoff gaps.',
   },
   engagements: {

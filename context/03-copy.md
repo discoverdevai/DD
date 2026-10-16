@@ -363,11 +363,11 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.5 Lifecycle
 - Label: How a project runs (Oct 16: the old label repeated the H2)
 - H2: One team from idea to after launch
-- Step 1 · Discover: Market read, product scope and a clickable prototype.
-- Step 2 · Plan: Roadmap, tech decisions and team, agreed before any code.
-- Step 3 · Build: Weekly sprints, with a demo for you every week.
-- Step 4 · Ship & Stay: Deploy, monitor and keep improving. The same team stays after launch.
-- Frameworks line under each step (09, confirmed Oct 16): Discover: Jobs to be Done · Design Sprint | Plan: User Story Mapping · Shape Up · RICE · ADRs | Build: Weekly sprints · Definition of Done | Ship & Stay: DORA metrics · Continuous discovery · HEART metrics. Screen-reader prefix: "Frameworks:". Inspired by the gap in TrianglZ's Agile V2.0 page (metaphor, no stages or frameworks); none of their wording or roles used.
+- Step 1 · Discover · Time: 1–2 weeks · Body: Market read, product scope and a clickable prototype. · You get: A tested prototype and a fixed build estimate. · Frameworks: Jobs to be Done: Find the job users hire the product to do. | Design Sprint: Test a clickable prototype with users early.
+- Step 2 · Plan · Time: Before any code · Body: Roadmap, tech decisions and team, agreed before any code. · You get: A release plan and written tech decisions. · Frameworks: User Story Mapping: The user journey, split into releases. | Shape Up: Fixed time, flexible scope. | RICE: Rank features by reach, impact, confidence and effort. | ADRs: A written record of each tech decision.
+- Step 3 · Build · Time: 8–12 weeks · Body: Weekly sprints, with a demo for you every week. · You get: A production-ready product, signed off by a senior engineer. · Frameworks: Weekly sprints: Plan, build and demo every week. | Definition of Done: A shared checklist before anything counts as done.
+- Step 4 · Ship & Stay · Time: Ongoing · Body: Deploy, monitor and keep improving. The same team stays after launch. · You get: A live product that keeps improving, with the same team. · Frameworks: DORA metrics: How often and how safely we ship. | Continuous discovery: Keep talking to users after launch. | HEART metrics: Happiness, engagement, adoption, retention, task success.
+- Oct 16 lifecycle upgrade (Mohamed: real frameworks, inspired by live studio process pages that name time and deliverable per stage; TrianglZ's Agile V2.0 page has neither): each stage shows time (09: Validate 1–2 weeks, Build 8–12 weeks, Scale ongoing), a "You get" line and each framework with a one-line explanation. Frameworks confirmed by Mohamed (09).
 - Oct 16 section review: steps rewritten so they don't repeat §2A.4 (AI and senior sign-off chips removed); the section's own point is one team for the whole lifecycle. Facts: 09 Offer (Validate deliverables), Method (stages, weekly results, we stay).
 - Line: One team, no handoff gaps.
 
