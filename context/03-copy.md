@@ -363,6 +363,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.5 Lifecycle
 - Label: How a project runs (Oct 16: the old label repeated the H2)
 - H2: One team from idea to after launch
+- Lead (Oct 16, Mohamed): New product or existing code, greenfield or brownfield, the same four steps apply. With existing code, Discover starts with a review of what you have. (09: greenfield builds such as the marketplace; take-overs, legacy modernization and the Launch-Ready Review for existing code.)
 - Step 1 · Discover · Time: 1–2 weeks · Body: Market read, product scope and a clickable prototype. · You get: A tested prototype and a fixed build estimate. · Frameworks: Jobs to be Done: Find the job users hire the product to do. | Design Sprint: Test a clickable prototype with users early.
 - Step 2 · Plan · Time: Before any code · Body: Roadmap, tech decisions and team, agreed before any code. · You get: A release plan and written tech decisions. · Frameworks: User Story Mapping: The user journey, split into releases. | Shape Up: Fixed time, flexible scope. | RICE: Rank features by reach, impact, confidence and effort. | ADRs: A written record of each tech decision.
 - Step 3 · Build · Time: 8–12 weeks · Body: Weekly sprints, with a demo for you every week. · You get: A production-ready product, signed off by a senior engineer. · Frameworks: Weekly sprints: Plan, build and demo every week. | Definition of Done: A shared checklist before anything counts as done.

@@ -77,6 +77,7 @@ export const home = {
   lifecycle: {
     eyebrow: 'How a project runs',
     title: 'One team from idea to after launch',
+    lead: 'New product or existing code, greenfield or brownfield, the same four steps apply. With existing code, Discover starts with a review of what you have.',
     steps: [
       { title: 'Discover', when: '1–2 weeks', body: 'Market read, product scope and a clickable prototype.', gets: 'A tested prototype and a fixed build estimate.', tools: [{ name: 'Jobs to be Done', what: 'Find the job users hire the product to do.' }, { name: 'Design Sprint', what: 'Test a clickable prototype with users early.' }] },
       { title: 'Plan', when: 'Before any code', body: 'Roadmap, tech decisions and team, agreed before any code.', gets: 'A release plan and written tech decisions.', tools: [{ name: 'User Story Mapping', what: 'The user journey, split into releases.' }, { name: 'Shape Up', what: 'Fixed time, flexible scope.' }, { name: 'RICE', what: 'Rank features by reach, impact, confidence and effort.' }, { name: 'ADRs', what: 'A written record of each tech decision.' }] },

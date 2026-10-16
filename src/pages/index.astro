@@ -29,7 +29,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
       <WayFlow {...c.agile.flow} />
     </AgileSplit>
   </Statement>
-  <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} steps={c.lifecycle.steps} getsLabel={c.lifecycle.getsLabel} track line={c.lifecycle.line} />
+  <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} lead={c.lifecycle.lead} steps={c.lifecycle.steps} getsLabel={c.lifecycle.getsLabel} track line={c.lifecycle.line} />
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Capabilities title={c.capabilities.title} lead={c.capabilities.lead} groups={c.capabilities.groups} />
   <CaseMetric c={c.caseHighlight} />
