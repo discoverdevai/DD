@@ -1,0 +1,86 @@
+---
+// /work project story rows (03 §9.3, Oct 16): filter buttons (All / Validate / Build / Scale) above alternating rows.
+// Each row: visual, stage + industry + country, title, brief / what we did / result (only where 09 states them), the
+// client's own review where one exists (approved quotes, D-05), and a link where a page exists. Without JS every row
+// shows and the filter stays hidden.
+import ProjectVisual from './ProjectVisual.astro';
+import { projects, showcase as c, type Stage } from '../../content/copy/en/projects';
+import { home } from '../../content/copy/en/home';
+import { href, isLive } from '../../data/routes';
+const quoteBy = (name: string) => home.reviews.items.find((r) => r.name === name);
+const stages: readonly ('all' | Stage)[] = ['all', 'validate', 'build', 'scale'];
+const order: Stage[] = ['build', 'scale', 'validate'];
+const rows = [...projects].sort((a, b) => order.indexOf(a.stage) - order.indexOf(b.stage));
+---
+<div class="pr" data-pr>
+  <div class="pr__filter" role="group" aria-label={c.filterLabel} hidden data-pr-filter>
+    {stages.map((s) => <button type="button" class="pr__btn" aria-pressed={s === 'all' ? 'true' : 'false'} data-stage={s}>{c.stages[s]}</button>)}
+  </div>
+  <ol role="list" class="pr__list">
+    {rows.map((p, i) => (
+      <li class:list={['pr__row', { 'pr__row--rev': i % 2 === 1, 'pr__row--feat': !!p.metric && p.link === 'workEdulens' }]} data-stage={p.stage} id={`project-${p.id}`}>
+        <div class="pr__vis"><ProjectVisual project={p} sizes="(min-width: 64rem) 45vw, 100vw" /></div>
+        <div class="pr__txt">
+          <p class="pr__meta"><span class="pr__stage">{c.stages[p.stage]}</span>{p.industry}{p.where && ` · ${p.where}`}</p>
+          <h3 class="pr__h">{p.title}</h3>
+          {p.metric && <p class="pr__metric"><b>{p.metric.value}</b><span>{p.metric.label}</span></p>}
+          <dl class="pr__dl">
+            {p.brief && <><dt>{c.labels.brief}</dt><dd>{p.brief}</dd></>}
+            <dt>{c.labels.did}</dt><dd>{p.did}</dd>
+            {p.result && <><dt>{c.labels.result}</dt><dd>{p.result}</dd></>}
+          </dl>
+          {(p.quotes ?? []).map((n) => quoteBy(n)).filter(Boolean).map((q) => (
+            <figure class="pr__quote"><blockquote><p>{q!.quote}</p></blockquote><figcaption>{q!.name}, {q!.role}</figcaption></figure>
+          ))}
+          {p.link && isLive(p.link) && <p class="pr__link"><a href={href(p.link)}>{p.link === 'workEdulens' ? c.caseLink : c.partnersLink}<span class="icon--dir" aria-hidden="true"> →</span></a></p>}
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<script>
+  // Stage filter: buttons with aria-pressed; rows hide with the hidden attribute. Shown only when JS runs.
+  document.querySelectorAll<HTMLElement>('[data-pr]').forEach((root) => {
+    const bar = root.querySelector<HTMLElement>('[data-pr-filter]');
+    if (!bar) return;
+    bar.hidden = false;
+    const btns = [...bar.querySelectorAll<HTMLButtonElement>('button[data-stage]')];
+    const rows = [...root.querySelectorAll<HTMLElement>('li[data-stage]')];
+    btns.forEach((b) => b.addEventListener('click', () => {
+      const s = b.dataset.stage;
+      btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      rows.forEach((r) => { r.hidden = s !== 'all' && r.dataset.stage !== s; });
+    }));
+  });
+</script>
+
+<style>
+  .pr__filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-end: var(--space-6); }
+  .pr__filter[hidden] { display: none; }
+  .pr__btn { min-block-size: 2.5rem; padding-inline: var(--space-4); border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); background: transparent; font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); cursor: pointer; }
+  .pr__btn[aria-pressed='true'] { background: var(--blue-400); border-color: var(--blue-400); color: var(--blue-975); }
+  @media (hover: hover) { .pr__btn:hover { border-color: color-mix(in oklab, var(--blue-300) 50%, transparent); } }
+  .pr__list { display: grid; gap: var(--space-5); }
+  .pr__row { display: grid; gap: var(--space-6); align-items: center; padding: var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .pr__row[hidden] { display: none; }
+  @media (width >= 64rem) {
+    .pr__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--space-10); padding: var(--space-6); }
+    .pr__row--rev .pr__vis { order: 2; }
+  }
+  .pr__row--feat { border-color: color-mix(in oklab, var(--blue-400) 40%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 24%, var(--color-surface)), var(--color-surface) 60%); }
+  .pr__txt { display: grid; gap: var(--space-3); align-content: start; }
+  .pr__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .pr__stage { padding: 1px 7px; border-radius: 4px; color: var(--blue-975); background: var(--blue-300); }
+  .pr__h { font-family: var(--ff-heading); font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.625rem); font-weight: var(--weight-bold); line-height: 1.25; color: var(--color-heading); }
+  .pr__metric { display: flex; align-items: baseline; gap: var(--space-3); }
+  .pr__metric b { font-family: var(--ff-heading); font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); line-height: 1; letter-spacing: -0.045em; color: var(--color-heading); }
+  .pr__metric span { color: var(--color-machine-text); }
+  .pr__dl { display: grid; grid-template-columns: minmax(6.5rem, max-content) minmax(0, 1fr); gap: var(--space-2) var(--space-4); }
+  .pr__dl dt { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); padding-block-start: 3px; }
+  .pr__dl dd { font-size: 1rem; line-height: 1.55; color: var(--color-text-muted); }
+  .pr__quote { padding-inline-start: var(--space-4); border-inline-start: 2px solid var(--color-human-mark); }
+  .pr__quote blockquote { font-size: 1rem; line-height: 1.55; color: var(--color-text); }
+  .pr__quote figcaption { margin-block-start: var(--space-1); font-size: var(--text-sm); color: var(--color-machine-text); }
+  .pr__link a { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
+</style>

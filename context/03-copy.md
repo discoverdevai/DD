@@ -400,14 +400,10 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - Card: 60–90% · lower AI cost · results: Three AI agents in production · Cached content served at close to zero cost (09 outcomes) · stack row
   - The five changes, each with one line (from the case study, /work/edtech-ai-agents): Captions first: Free captions first. Paid transcription only when a video has none. | Reuse across users: Each video is processed once and shared, so repeat views cost close to nothing. | The right model for each task: Lower-cost models by default, larger ones only where they pay off. | Shorter prompts: Each request carries only what the model needs, so fewer tokens are billed. | Faster transcription: Long audio is split into 2-minute chunks and transcribed in parallel.
 
-### 2A.8b Selected work (Oct 16, after the case highlight; anonymized lines from §9.3 and 09)
-- Label: Selected work · H2: More products we've helped build · Link: See all our work (→ /work)
-- Card · Build · Health app that explains lab reports in plain language · "Recommendations, follow-up questions and medical safety guardrails." (→ /build) (Oct 16 review: replaces the EdTech card, which repeated the case highlight above; 09 BioBank)
-- Card · Build · AR furniture store with AI recommendations · Saudi Arabia · "Market study, design, build, AI and AR in one team." (→ /build)
-- Card · Build · Customer-support AI agent · "Identical questions answered once, so AI cost follows unique questions, not total requests." (→ /build)
-- Card · Scale · Embedded product team for a B2B learning platform · UK · "12 months owning the roadmap, backlog and sprints." (→ /scale)
-- Card · Scale · Data and ML for an EdTech platform with 20,000+ students · Egypt · "Data engineering, ML and automations." (→ /scale)
-- Card · Validate · Feasibility sprints across several startup ideas · Saudi Arabia · "Each sprint ends in a build, pivot or shelve decision." (→ /validate)
+### 2A.8b Selected work: bento showcase (Oct 16, Mohamed; replaces the case block §2A.8 and the six-card grid on home)
+- Label: Selected work · H2: Products we've helped build · Link: See all our work (→ /work)
+- One featured tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · Read the case study) and four tiles (AR furniture store, Embedded product team for a B2B learning platform, Health app that explains lab reports, Customer-support AI agent). Data from `src/content/copy/en/projects.ts` (all lines from 09).
+- Each tile shows a text-free drawing of the product type; a real product screen replaces it once the client approves screens (Mohamed suggested Figma screens, Oct 16; D-05).
 
 ### 2A.8c Client reviews (Oct 16; Mohamed approved all 8 quotes from 09 with names and roles, D-05)
 - Order (Oct 16 psychology review: similarity and availability): product-build quotes first (EduLens CEO featured larger, beside the case it backs), then research, then Validate market research. Service tag starts with the stage (Build / Research / Validate). "Book a free clarity call" under the reviews (proof next to the CTA).
@@ -1379,26 +1375,10 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - No filter until there are 6 or more cases.
 - Visual: card with one figure in large HTML text, tags, 1-line summary. No "coming soon" cards.
 
-### 9.3 More of our work
-- Purpose: show range without full case studies. Names only with consent; anonymized otherwise. Grouped by stage (Oct 16): each group heading is the service name and links to its page.
-- H2: More of our work
-- Group · Validate (→ /validate)
-  - Market research and a go-to-market plan for a sports company entering Egypt · Italy
-  - Demand testing and sentiment analysis before building
-  - Feasibility sprints across several startup ideas, ending in build, pivot or shelve decisions · Saudi Arabia
-  - Market research, go-to-market and discovery for individual founders · Kuwait, Switzerland, UK, Spain
-  - Tourism and hospitality market research for a consulting firm · Kuwait
-- Group · Build (→ /build)
-  - AR furniture e-commerce with AI recommendations · Saudi Arabia
-  - Health app that explains lab reports in plain language, with medical safety guardrails
-  - AI agents for call operations, a landing page and staff augmentation · USA
-  - White-label websites and mobile apps for a software house · UK
-- Group · Scale (→ /scale)
-  - 12-month embedded product team for a B2B learning platform · UK
-  - Data, ML and automation for an EdTech platform with 20,000+ students · Egypt
-  - Embedded data and ML team for a smart ride-sharing platform · Saudi Arabia
-  - An ML engineer placed for 3 months on restaurant procurement · Saudi Arabia
-- Not listed until resolved: the US home-services marketplace (D-07), the US therapy practice (clinician consent), research collaborations (publication and collaborator consent). The EdTech AI platform is the case card above. White-label row keeps its link to /partners (§0.8).
+### 9.3 Projects (Oct 16, Mohamed: story rows with Validate / Build / Scale filters; replaces the grouped list and the case cards)
+- Filter (buttons, pressed state; without JS all rows show): All · Validate · Build · Scale. Group label for screen readers: Filter by stage.
+- Each row: drawing (or approved screen), stage chip, industry, country, title, then "The brief" (only where 09 states it), "What we did", "Result" (only where 09 states one), the client's own review where that client gave one (approved quotes, §2A.8c), and a link where a page exists ("Read the case study" → /work/edtech-ai-agents; white-label → /partners).
+- Rows and every line: `src/content/copy/en/projects.ts` (15 projects from 09 Portfolio and Case studies; titles anonymized). Not listed: the US home-services marketplace (D-07), the US therapy practice (clinician consent), research collaborations.
 
 ### 9.4 Reviews strip
 - Section removed Oct 16 (design review: one line under a section heading reads as a hole; the rating already sits in the footer and on service pages). Was: H2 How clients rate us (Phase 4, Oct 16: no quotes until consent, so the heading promises a rating, not quotes; switch back to "What clients say" when quotes ship)
