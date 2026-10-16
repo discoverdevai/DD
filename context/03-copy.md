@@ -345,9 +345,10 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
 - Label: The DiscoverDev Way
 - H2: Discover first. Build with AI. Seniors sign off.
-- Body: The DiscoverDev Way is how every project runs. We find the right thing to build first. AI does the heavy lifting, so work that used to take days moves faster. Senior engineers make the decisions, review every change and sign off every release. You see results every week.
+- Body: The DiscoverDev Way is how every project runs: we agree on the right product first, AI drafts the work, and a senior engineer reviews every change and signs off every release. You see progress every week.
+  - Oct 16 section review (GEO/copy): one defining sentence instead of 60 words that repeated the hero.
 - Columns "What AI does" / "What senior engineers own": removed Oct 16 (batch 2; Mohamed: the hero board and the journey visual already say this). The journey visual (Discover → AI drafts → A senior signs → Live) sits between the body and the line.
-- Line: AI drafts it. A senior engineer signs it. (Oct 16: replaces the keystone line, which Mohamed found unclear.)
+- Line: removed from the home section Oct 16 (section review: it repeated the hero pill "AI drafts. Seniors sign off."). "AI drafts it. A senior engineer signs it." stays the brand line in 09 and elsewhere.
 - **Journey visual (Oct 16, Mohamed: "from discovery to be live … like visuals for section"):** four cards side by side between the body and the two columns, played once on scroll. Illustration, not a client product; no text inside images.
   - 1 · Discover · Line: The right thing, sketched first.
   - 2 · AI drafts · Card tag (mono): AI draft · Line: AI drafts it from the agreed spec.

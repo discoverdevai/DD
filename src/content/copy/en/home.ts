@@ -33,7 +33,7 @@ export const home = {
     label: 'The DiscoverDev Way',
     bright: 'Discover first. Build with AI. Seniors sign off.',
     dim: '',
-    body: 'The DiscoverDev Way is how every project runs. We find the right thing to build first. AI does the heavy lifting, so work that used to take days moves faster. Senior engineers make the decisions, review every change and sign off every release. You see results every week.',
+    body: 'The DiscoverDev Way is how every project runs: we agree on the right product first, AI drafts the work, and a senior engineer reviews every change and signs off every release. You see progress every week.',
     line: 'AI drafts it. A senior engineer signs it.',
     // §2A.4 journey visual (Oct 16): Discover → AI drafts → A senior signs → Live.
     flow: {

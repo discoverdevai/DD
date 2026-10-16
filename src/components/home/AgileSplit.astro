@@ -2,13 +2,14 @@
 // DiscoverDev Way explainer (03 §2A.4), slotted under the Statement: the body, the journey visual (default slot) and the
 // responsibility line. The "What AI does / What senior engineers own" panels were removed Oct 16 (batch 2): the hero
 // board and the journey already say it.
-interface Props { body: string; line: string }
+// The closing line was dropped Oct 16 (it repeated the hero pill); `line` stays optional for reuse.
+interface Props { body: string; line?: string }
 const { body, line } = Astro.props;
 ---
 <div class="ag">
   <p class="ag__body">{body}</p>
   <slot />
-  <p class="ag__line">{line}</p>
+  {line && <p class="ag__line">{line}</p>}
 </div>
 
 <style>
