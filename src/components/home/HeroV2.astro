@@ -1,9 +1,11 @@
 ---
 // Home hero (03 §2A.1, strategy v2): centred H1 + one sentence + two buttons + one quiet terms line,
-// then the DiscoverDev Way delivery scene on a brand-blue horizon light. The H1 stays the LCP element (text, preloaded font).
+// then the DiscoverDev Way delivery scene on a brand-blue horizon light, framed by the keystone arch (06 §0.8 A): its
+// stones are laid on load and the keystone is set last, above the board. The H1 stays the LCP element (text, preloaded font).
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import DeliveryScene from './DeliveryScene.astro';
+import Keystone from '../ui/Keystone.astro';
 import { home } from '../../content/copy/en/home';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
@@ -12,6 +14,7 @@ const c = home.hero;
 <section class="hero" data-surface="ink" aria-labelledby="hero-title">
   <div class="hero__grid" aria-hidden="true"></div>
   <div class="hero__copy container">
+    <div class="hero__arch"><Keystone id="hero" count={23} depth={0.09} variant="hero" /></div>
     <p class="hero__pill"><span class="hero__pill-dot" aria-hidden="true"></span>{c.pill}</p>
     <h1 id="hero-title" class="hero__h1">{c.h1}</h1>
     <p class="hero__sub">{c.sub}</p>
@@ -28,9 +31,11 @@ const c = home.hero;
 </section>
 
 <style>
-  .hero { position: relative; overflow: clip; padding-block-start: clamp(3rem, 1.5rem + 6vw, 7rem); text-align: center; isolation: isolate; }
+  .hero { --hero-pt: clamp(6.75rem, 5rem + 3vw, 7.5rem); --hero-gap: clamp(3rem, 2rem + 4vw, 5.5rem); position: relative; overflow: clip; padding-block-start: var(--hero-pt); text-align: center; isolation: isolate; }
   .hero__grid { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; background-position: center top; mask-image: radial-gradient(60% 55% at 50% 0%, #000 0%, transparent 100%); opacity: 0.7; }
-  .hero__copy { display: grid; justify-items: center; gap: var(--space-6); }
+  /* Phones: the arch's crown is wide relative to the pill, so the copy starts lower to clear the ring. */
+  @media (width < 40rem) { .hero { --hero-pt: 8.5rem; } }
+  .hero__copy { position: relative; display: grid; justify-items: center; gap: var(--space-6); }
   .hero__pill { display: inline-flex; align-items: center; gap: var(--space-2); max-inline-size: 100%; padding: 6px 14px 6px 10px; border-radius: 1.25rem; text-wrap: balance; text-align: start; border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); color: var(--color-text-muted); }
   .hero__pill-dot { flex: none; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
   .hero__h1 { font-size: clamp(2.5rem, 1.35rem + 4.9vw, 5.25rem); font-weight: var(--weight-bold); line-height: 1.02; letter-spacing: -0.045em; max-inline-size: 15ch; color: var(--color-heading); text-wrap: balance; }
@@ -39,10 +44,16 @@ const c = home.hero;
   /* Phones: equal full-width buttons instead of two ragged widths. */
   @media (width < 30rem) { .hero__ctas { inline-size: 100%; flex-direction: column; } .hero__ctas > :global(*) { inline-size: 100%; } }
   .hero__copy :global(.hero__terms) { justify-content: center; }
-  .hero__stage { position: relative; margin-block-start: clamp(3rem, 2rem + 4vw, 5.5rem); padding-block-end: var(--space-16); }
+  .hero__stage { position: relative; margin-block-start: var(--hero-gap); padding-block-end: var(--space-16); }
   .hero__light { position: absolute; inset-inline: 0; inset-block-start: 10%; block-size: 70%; z-index: -1; background: radial-gradient(45% 55% at 50% 60%, color-mix(in oklab, var(--blue-700) 55%, transparent) 0%, color-mix(in oklab, var(--blue-800) 25%, transparent) 45%, transparent 75%); filter: blur(10px); }
   .hero__light::after { content: ''; position: absolute; inset-inline: 15%; inset-block-start: 58%; block-size: 1px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--blue-200) 70%, transparent), transparent); }
   .hero__scene { max-inline-size: 72rem; perspective: 1600px; }
+  /* Doorway (06 §0.8 A): the arch spans from just under the header to the board's top edge, so the headline sits in its
+     opening and the keystone lands above the pill. Its height follows the hero; its width follows from the arch's own
+     proportions, so narrow screens see the crown and the springings run off the sides. */
+  .hero__arch { position: absolute; z-index: -1; inset-block: calc(0.75rem - var(--hero-pt)) calc(-2rem - var(--hero-gap)); inset-inline-start: 50%; translate: -50% 0; pointer-events: none; }
+  .hero__arch :global(.arch) { block-size: 100%; inline-size: auto; max-inline-size: none; }
+  :dir(rtl) .hero__arch { translate: 50% 0; }
   @media (prefers-reduced-motion: no-preference) {
     .hero__pill { animation: dd-in 700ms var(--ease-enter) both; }
     .hero__h1 { animation: hero-h1 900ms var(--ease-enter) both; }

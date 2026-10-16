@@ -6,7 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroV2 from '../components/home/HeroV2.astro';
 import ProofBand from '../components/home/ProofBand.astro';
 import Statement from '../components/home/Statement.astro';
-import AgileSplit from '../components/home/AgileSplit.astro';
+import WayArch from '../components/home/WayArch.astro';
 import ProcessTimeline from '../components/home/ProcessTimeline.astro';
 import Engagements from '../components/home/Engagements.astro';
 import Capabilities from '../components/home/Capabilities.astro';
@@ -23,9 +23,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd}>
   <HeroV2 />
   <ProofBand title={c.proofStrip.title} items={c.proofStrip.items} />
-  <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} ctaPage="home" display>
-    <AgileSplit body={c.agile.body} ai={c.agile.ai} human={c.agile.human} line={c.agile.line} />
-  </Statement>
+  <WayArch label={c.agile.label} title={c.agile.bright} body={c.agile.body} moves={c.agile.moves} youGet={c.agile.youGet} ai={c.agile.ai} human={c.agile.human} line={c.agile.line} />
   <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} steps={c.lifecycle.steps} vigs={['fork', 'cal', 'log', 'ship']} line={c.lifecycle.line} />
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Capabilities title={c.capabilities.title} lead={c.capabilities.lead} groups={c.capabilities.groups} />
