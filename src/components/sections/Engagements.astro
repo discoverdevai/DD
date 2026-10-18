@@ -22,7 +22,7 @@ const liveOther = other.filter((o) => isLive(o.key));
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
             <p class="en__who">{c.who}</p>
             <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
-            <ul role="list" class="en__meta">{c.meta.map((m) => <li>{m}</li>)}</ul>
+            <ul role="list" class="en__meta">{c.meta.map((m) => <li class="tag">{m}</li>)}</ul>
             <p class="en__body">{c.body}</p>
             <p class="en__more" aria-hidden="true">{c.linkLabel}<span class="en__arrow icon--dir">→</span></p>
           </li>
@@ -70,7 +70,7 @@ const liveOther = other.filter((o) => isLive(o.key));
   .en__h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); font-weight: var(--weight-bold); letter-spacing: -0.03em; }
   .en__h3 a, .en__row-h a { color: var(--color-heading); text-decoration: none; }
   .en__meta { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-  .en__meta li { font-family: var(--ff-mono); font-size: var(--text-xs); padding: 3px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 28%, transparent); color: var(--color-text); }
+  .en__meta li { color: var(--color-text); }
   .en__body { color: var(--color-text-muted); max-inline-size: 52ch; }
   .en__more, .en__row-more { margin-block-start: auto; padding-block-start: var(--space-4); display: inline-flex; gap: var(--space-2); color: var(--color-link); font-weight: var(--weight-medium); }
 

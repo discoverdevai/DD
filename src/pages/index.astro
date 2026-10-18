@@ -1,4 +1,5 @@
 ---
+import CtaBand from '../components/sections/CtaBand.astro';
 // Home v3 (03 §2A, 04 §4.1, docs/strategy-v2.md): DiscoverDev as a product and engineering company built on DiscoverDev Way.
 // All-ink "workshop": centred hero + delivery scene, proof band, DiscoverDev Way split, lifecycle timeline, engagements,
 // capabilities board, case metric, two-tone why + pillars, split FAQ, horizon closer.
@@ -13,7 +14,7 @@ import Engagements from '../components/sections/Engagements.astro';
 import Capabilities from '../components/sections/Capabilities.astro';
 import Pillars from '../components/blocks/Pillars.astro';
 import FaqSplit from '../components/sections/FaqSplit.astro';
-import Closer from '../components/sections/Closer.astro';
+
 import Showcase from '../components/sections/Showcase.astro';
 import Chapters from '../components/work/Chapters.astro';
 import Reviews from '../components/sections/Reviews.astro';
@@ -45,5 +46,5 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
   </Statement>
   <Guides {...c.guides} />
   <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="home" />
-  <Closer title={c.band.title} body={c.band.body} />
+  <CtaBand size="large" tier="primary" kind="clarity" page="home" title={c.band.title} body={c.band.body} />
 </BaseLayout>

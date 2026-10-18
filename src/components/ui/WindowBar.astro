@@ -1,0 +1,14 @@
+---
+// WindowBar (06 §9.27): the three-dot title bar of a product window (DeliveryScene, ServiceGlance). Decorative dots;
+// the slot holds the window's own label (path, name, badge).
+---
+<div class="wbar">
+  <span class="wbar__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+  <slot />
+</div>
+
+<style>
+  .wbar { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-block-end: 1px solid var(--color-hairline); }
+  .wbar__dots { display: inline-flex; gap: 6px; }
+  .wbar__dots i { inline-size: 10px; block-size: 10px; border-radius: 50%; background: color-mix(in oklab, var(--blue-300) 28%, transparent); }
+</style>

@@ -1077,6 +1077,29 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
 
 ---
 
+### 9.25 SectionHead (`ui/SectionHead.astro`, `styles/patterns.css`)
+- **Purpose:** open a section with an optional label and one H2. Replaces eight hand-written copies.
+- **Anatomy:** `.section-label` (heading font, bold, small, machine text) + `.section-heading` (clamp 28–48px, semibold, tracking -0.035em, line-height 1.1). Renders a fragment: the caller keeps its own wrapper (row with an action link, split grid).
+- **Variants:** `measure` 18 / 22 / 24 ch (max width of the heading); `reveal` adds the scroll reveal.
+- **Accessibility:** the H2 id is the section's `aria-labelledby`; one H2 per section, never skip levels.
+- **Tokens:** `--ff-heading`, `--text-sm`, `--color-machine-text`, `--space-3`, `--weight-*`.
+- **Not for:** the page H1 (PageHero) or the mono `//` eyebrow (Eyebrow).
+
+### 9.26 Card link (`.card-link`, `styles/patterns.css`) and Tag (`.tag`)
+- **Card link purpose:** make a whole card one link target without nesting links. Put `.card-link` on the card; the link inside its H2–H4 (or an anchor with `.card-link__target`) stretches over the card with `::after`. One link per card.
+- **States:** focus shows once, as a `--color-focus` ring on the card (`:has(a:focus-visible)`); the inner link has no outline of its own. Hover styling stays with the card.
+- **Tag purpose:** a short fact next to a title (time, place, kind). Mono, extra-small, outlined pill, `--blue-300` 30% border, machine text. Dark surfaces. Variants: none (the filled stage tag on /work and Chapters stays component-local until a third use).
+- **Rule:** a new card or tag starts from these classes; add a variant only after two uses.
+
+### 9.27 Device and WindowBar (`ui/Device.astro`, `ui/WindowBar.astro`)
+- **Device purpose:** show a real product screen in a laptop or phone frame (`kind="laptop" | "phone"`). The slot is the image; the image carries the alt text, the frame is decorative. Size and tilt come from the caller in `cqi` units, so the frame scales with its scene. RTL mirrors the tilt in the caller.
+- **WindowBar purpose:** the three-dot title bar of a product window (DeliveryScene, ServiceGlance). The slot holds the window's own label.
+- **Tokens:** `--device-body`, `--device-base`, `--device-edge`, `--device-edge-light`, `--black`. Forced-colors adds a border.
+- **Open:** the flat browser and tablet frames in `work/ProjectVisual` still carry their own CSS; they join Device when the drawings are replaced by real screens.
+
+### 9.16a CtaBand sizes
+- `CtaBand` is the only closing band. `size="large"` is the home closer (and /how-we-work): bigger headline, more air, wide container. `tier` overrides the analytics tier (the home closer is `primary`). Glow strength is two custom properties, `--glow-1` and `--glow-2`.
+
 ## 10. Iconography and imagery
 
 ### Icons

@@ -20,7 +20,7 @@ const { eyebrow, title, lead, more, steps, line, id = 'how-it-works' } = Astro.p
           {s.art && <div class="tl__art"><Artifact name={s.art} /></div>}
           <span class="tl__n">0{i + 1}</span>
           <h3 class="tl__h3"><span class="sr-only">{t('steps.label', 'en', { n: i + 1 })} </span>{s.title}</h3>
-          {s.when && <p class="tl__when">{s.when}</p>}
+          {s.when && <p class="tag">{s.when}</p>}
           <p class="tl__body">{s.body}</p>
         </li>
       ))}
@@ -42,7 +42,6 @@ const { eyebrow, title, lead, more, steps, line, id = 'how-it-works' } = Astro.p
   .tl__h3 { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
   .tl__body { color: var(--color-text-muted); }
   /* Time pill per step (Oct 16). */
-  .tl__when { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); color: var(--color-machine-text); }
   .tl__line { margin-block-start: var(--space-12); padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-hairline); font-family: var(--ff-heading); font-weight: var(--weight-semibold); font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--color-heading); }
   .tl :global(.section-heading:has(+ .tl__lead)) { margin-block-end: var(--space-4); }
   .tl__lead { max-inline-size: 46rem; margin-block-end: var(--stack-lg); font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); text-wrap: pretty; }

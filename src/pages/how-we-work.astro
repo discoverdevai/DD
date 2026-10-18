@@ -1,4 +1,5 @@
 ---
+import CtaBand from '../components/sections/CtaBand.astro';
 // /how-we-work (03 §7.13, 04 Oct 16 addition): the detailed DiscoverDev Way. Hero → two ways in (greenfield /
 // brownfield) → who does what (journey visual) → the four steps in depth (time, body, you get, frameworks with
 // text-free artifact drawings) → FAQ → closer. Home keeps the short version and links here.
@@ -6,7 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/sections/PageHero.astro';
 import WayFlow from '../components/scenes/WayFlow.astro';
 import FaqSplit from '../components/sections/FaqSplit.astro';
-import Closer from '../components/sections/Closer.astro';
+
 import Artifact from '../components/how/Artifact.astro';
 import { howWeWork as c } from '../content/copy/en/how-we-work';
 import { home } from '../content/copy/en/home';
@@ -33,7 +34,7 @@ import SectionHead from '../components/ui/SectionHead.astro';
       <ul role="list" class="hw__paths">
         {c.paths.items.map((p) => (
           <li class="hw__path card-link">
-            <p class="hw__tag">{p.tag}</p>
+            <p class="tag">{p.tag}</p>
             <h3 class="hw__h3"><a href={href(p.key)}>{p.title}</a></h3>
             <p class="hw__body">{p.body}</p>
             <p class="hw__more" aria-hidden="true">{p.link}<span class="icon--dir">→</span></p>
@@ -60,7 +61,7 @@ import SectionHead from '../components/ui/SectionHead.astro';
             <div class="hw__stephead">
               <p class="hw__n">0{i + 1}</p>
               <h3 class="hw__h3">{s.title}</h3>
-              <p class="hw__when">{s.when}</p>
+              <p class="tag">{s.when}</p>
               <p class="hw__body">{s.body}</p>
               <p class="hw__gets"><span>{c.steps.getsLabel}</span>{s.gets}</p>
             </div>
@@ -83,7 +84,7 @@ import SectionHead from '../components/ui/SectionHead.astro';
   </section>
 
   <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="how_we_work" />
-  <Closer title={home.band.title} body={home.band.body} page="how_we_work" />
+  <CtaBand size="large" tier="primary" kind="clarity" page="how_we_work" title={home.band.title} body={home.band.body} />
 </BaseLayout>
 
 <style>
@@ -97,7 +98,6 @@ import SectionHead from '../components/ui/SectionHead.astro';
   @media (width >= 48rem) { .hw__paths { grid-template-columns: 1fr 1fr; } }
   .hw__path { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
   .hw__path:last-child { border-color: color-mix(in oklab, var(--color-human-mark) 30%, transparent); }
-  .hw__tag { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
   .hw__path h3 a { color: inherit; text-decoration: none; }
   .hw__more { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
   @media (hover: hover) { .hw__path:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
@@ -108,7 +108,6 @@ import SectionHead from '../components/ui/SectionHead.astro';
   @media (width >= 64rem) { .hw__step { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-10); padding: var(--space-8); } }
   .hw__stephead { display: grid; gap: var(--space-3); align-content: start; }
   .hw__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .hw__when { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); color: var(--color-machine-text); }
   .hw__gets { display: grid; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-human-mark) 8%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 25%, transparent); font-size: var(--text-sm); }
   .hw__gets span { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-human-text); }
   .hw__toolslabel { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); margin-block-end: var(--space-3); }

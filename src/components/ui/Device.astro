@@ -1,0 +1,25 @@
+---
+// Device (06 §9.27): a laptop or phone frame around a real screen (the slot: an image). Decorative chrome; the image
+// inside carries the alt text. The caller positions and tilts it (container-query units, `cqi`, so it scales with the scene).
+interface Props { kind: 'laptop' | 'phone' }
+const { kind } = Astro.props;
+---
+{kind === 'laptop' ? (
+  <>
+    <div class="dev-lid"><div class="dev-screen"><slot /></div></div>
+    <div class="dev-base" aria-hidden="true"></div>
+  </>
+) : (
+  <div class="dev-phone"><div class="dev-glass"><slot /><span class="dev-island" aria-hidden="true"></span></div></div>
+)}
+
+<style>
+  .dev-lid { padding: 2cqi; border-radius: 2.4cqi 2.4cqi 0.8cqi 0.8cqi; background: var(--device-body); box-shadow: 0 0 0 1px var(--device-edge-light) inset, 0 60px 120px -40px var(--black); }
+  .dev-screen { overflow: hidden; aspect-ratio: 16 / 10; border-radius: 0.6cqi; background: var(--neutral-0); }
+  .dev-screen :global(img), .dev-glass :global(img) { display: block; inline-size: 100%; block-size: auto; }
+  .dev-base { block-size: 2.4cqi; margin-inline: -5cqi; border-radius: 0 0 2.8cqi 2.8cqi; background: var(--device-base); }
+  .dev-phone { padding: 1.3cqi; border-radius: 6cqi; background: var(--device-body); box-shadow: 0 0 0 1.5px var(--device-edge) inset, 0 60px 120px -40px var(--black); }
+  .dev-glass { position: relative; overflow: hidden; aspect-ratio: 375 / 812; border-radius: 4.8cqi; background: var(--neutral-0); }
+  .dev-island { position: absolute; inset-block-start: 3%; inset-inline-start: 50%; inline-size: 30%; block-size: 3%; translate: -50% 0; border-radius: 999px; background: var(--device-body); }
+  @media (forced-colors: active) { .dev-lid, .dev-phone { border: 1px solid CanvasText; } }
+</style>

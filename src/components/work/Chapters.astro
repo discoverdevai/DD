@@ -9,6 +9,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { chapters, chapterCopy as c } from '../../content/copy/en/projects';
 import { href } from '../../data/routes';
+import Device from '../ui/Device.astro';
 interface Props { headingLevel?: 'h2' | 'h3' }
 const { headingLevel = 'h2' } = Astro.props;
 const H = headingLevel;
@@ -39,19 +40,18 @@ const rows = await Promise.all(chapters.map(async (ch) => ({
         </div>
         <div class="ch__scene">
           {ch.webSrc && ch.web && (
-            <div class="ch__laptop"><div class="ch__lid"><div class="ch__screen">
+            <div class="ch__laptop"><Device kind="laptop">
               {typeof ch.webSrc === 'string'
                 ? <img src={ch.webSrc} alt={ch.web.alt} width="1440" height="900" loading="lazy" decoding="async" />
                 : <Image src={ch.webSrc} alt={ch.web.alt} widths={[640, 960, 1440]} sizes="(min-width: 64rem) 50vw, 90vw" loading="lazy" decoding="async" />}
-            </div></div><div class="ch__base" aria-hidden="true"></div></div>
+            </Device></div>
           )}
           {ch.phoneSrcs.map((src, i) => (
-            <div class:list={['ch__phone', `ch__phone--${i + 1}`]}><div class="ch__glass">
+            <div class:list={['ch__phone', `ch__phone--${i + 1}`]}><Device kind="phone">
               {typeof src === 'string'
                 ? <img src={src} alt={ch.phones[i].alt} width="375" height="812" loading="lazy" decoding="async" />
                 : <Image src={src} alt={ch.phones[i].alt} widths={[300, 600]} sizes="(min-width: 64rem) 18vw, 40vw" loading="lazy" decoding="async" />}
-              <span class="ch__island" aria-hidden="true"></span>
-            </div></div>
+            </Device></div>
           ))}
         </div>
       </section>
@@ -81,13 +81,6 @@ const rows = await Promise.all(chapters.map(async (ch) => ({
   .ch__scene { position: relative; aspect-ratio: 4 / 3; perspective: 2000px; container-type: inline-size; }
   @media (width >= 64rem) { .ch__scene { aspect-ratio: auto; block-size: 100%; min-block-size: 36rem; } }
   .ch__laptop, .ch__phone { position: absolute; transform: rotateY(-18deg) rotateX(8deg) rotateZ(2deg); }
-  .ch__lid { padding: 2cqi; border-radius: 2.4cqi 2.4cqi 0.8cqi 0.8cqi; background: var(--device-body); box-shadow: 0 0 0 1px var(--device-edge-light) inset, 0 60px 120px -40px var(--black); }
-  .ch__screen { overflow: hidden; aspect-ratio: 16 / 10; border-radius: 0.6cqi; background: var(--neutral-0); }
-  .ch__screen :global(img), .ch__glass :global(img) { display: block; inline-size: 100%; block-size: auto; }
-  .ch__base { block-size: 2.4cqi; margin-inline: -5cqi; border-radius: 0 0 2.8cqi 2.8cqi; background: var(--device-base); }
-  .ch__phone { padding: 1.3cqi; border-radius: 6cqi; background: var(--device-body); box-shadow: 0 0 0 1.5px var(--device-edge) inset, 0 60px 120px -40px var(--black); }
-  .ch__glass { position: relative; overflow: hidden; aspect-ratio: 375 / 812; border-radius: 4.8cqi; background: var(--neutral-0); }
-  .ch__island { position: absolute; inset-block-start: 3%; inset-inline-start: 50%; inline-size: 30%; block-size: 3%; translate: -50% 0; border-radius: 999px; background: var(--device-body); }
 
   /* web + 1 phone (NJWAR, RTL web: phone on the start side so the Arabic headline shows) */
   .ch--web1 .ch__laptop { inset-inline-start: 26%; inset-block-start: 14%; inline-size: 90%; }
@@ -107,5 +100,4 @@ const rows = await Promise.all(chapters.map(async (ch) => ({
     .ch--phones .ch__phone--1 { inset-block-start: 20%; } .ch--phones .ch__phone--2 { inset-block-start: 10%; } .ch--phones .ch__phone--3 { inset-block-start: 22%; }
   }
   :dir(rtl) .ch__laptop, :dir(rtl) .ch__phone { transform: rotateY(18deg) rotateX(8deg) rotateZ(-2deg); }
-  @media (forced-colors: active) { .ch__lid, .ch__phone { border: 1px solid CanvasText; } }
 </style>
