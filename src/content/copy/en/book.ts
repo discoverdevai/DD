@@ -1,10 +1,8 @@
 // 03-copy.md §13 (/book) and §14 (/book/confirmed). Verbatim with §0.7 applied.
 export const book = {
-  // V1.0 (03 §2V1): clarity call only. The Review wording (seoReview) returns in V1.2.
-  seo: { title: 'Book a Free Clarity Call | DiscoverDev', description: 'Book a free 30-minute clarity call with DiscoverDev. No pitch. You leave with a next step, even if we’re not the right fit. Calls run in US and Gulf hours.' },
-  seoReview: {
-    title: 'Book a Launch-Ready Review or Clarity Call | DiscoverDev',
-    description: 'Book a 5-day Launch-Ready Review of your app, or a free 30-minute clarity call. No pitch. Pick a time that works for you in the US or the Gulf.',
+  seo: {
+    title: 'Book a Free Clarity Call | DiscoverDev', // V1.0; the Review title returns in V1.2 (03 §13),
+    description: 'Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step.',
   },
   h1: 'Book a review or a free clarity call',
   h1Clarity: 'Book a free clarity call', // V1.0: the Review is offered from V1.2 (03 §2V1)

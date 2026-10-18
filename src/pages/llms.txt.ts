@@ -26,6 +26,8 @@ export const GET: APIRoute = async () => {
     .map((e) => `- [${e.data.h1}](${SITE_URL}${insightPath(e)}): ${e.data.description}`);
   // Case studies (05 §5.2 "## Work"): anonymized title from the case page (D-06), never a client name.
   const work = [line('workEdulens', caseStudy.h1)].filter(Boolean);
+  // V1.0: the case lives on the home page; same anonymized fact as the tile (09), no client name.
+  const homeWork = ['- AI agents for an EdTech platform, Egypt: AI costs down 60–90%, depending on cache hit rate and caption availability. ' + `${SITE_URL}/#work`];
   const company = COMPANY.map(([k, n]) => line(k, n)).filter(Boolean);
   const body = [
     '# DiscoverDev',
@@ -40,9 +42,16 @@ export const GET: APIRoute = async () => {
     '',
     'Book: a free 30-minute clarity call, no pitch, at ' + SITE_URL + '/book',
     '',
+    '## Facts',
+    '- Engineering hub in Alexandria, Egypt (GMT+2); presence in Texas, USA',
+    '- Working day overlaps US mornings and Europe; Gulf time is 0–2 hours ahead; calls run in US and Gulf hours',
+    '- Clients on 4 continents; four clients expanded scope with us',
+    '- Full IP, in your own repository, no lock-in',
+    '- Languages: English and Arabic',
+    '',
     // V1.0 (03 §2V1): while the service pages are off, the three offers are listed as text and point to the home section.
-    ...(services.length ? ['## Services', ...services, ''] : ['## Services', ...SERVICES.slice(0, 3).map(([, n, d]) => `- ${n}: ${d}`), '- Validate is a fixed fee that credits toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer.', `- Details: ${SITE_URL}/#services`, '']),
-    ...(work.length ? ['## Work', ...work, ''] : []),
+    ...(services.length ? ['## Services', ...services, ''] : ['## Services', ...SERVICES.slice(0, 3).map(([, n, d]) => `- ${n}: ${d}`), `- Details: ${SITE_URL}/#services`, '']),
+    ...(work.length ? ['## Work', ...work, ''] : ['## Work', ...homeWork, '']),
     ...(guides.length ? ['## Guides', ...guides, ''] : []),
     '## Company',
     `- [Home](${SITE_URL}/)`,

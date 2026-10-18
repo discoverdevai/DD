@@ -12,17 +12,18 @@ export const ENTITY_LINE =
 /** Absolute canonical: no trailing slash, no query (04 §2). */
 export const canonical = (path: string) => {
   const clean = path.split(/[?#]/)[0].replace(/\.html$/, '').replace(/\/index$/, '/');
-  const noSlash = clean !== '/' ? clean.replace(/\/$/, '') : '';
-  return `${SITE_URL}${noSlash}`;
+  const out = clean !== '/' ? clean.replace(/\/$/, '') : '/'; // home keeps its slash so it matches the sitemap
+  return `${SITE_URL}${out}`;
 };
 
 export const orgStub = { '@type': 'Organization', '@id': ORG_ID, name: 'DiscoverDev', url: SITE_URL };
 
-const INLINE_OFFERS = {
-  validate: { name: 'Validate', serviceType: 'Product discovery', description: 'A 1–2 week product discovery for a fixed fee: market and competitor read, product scope, a clickable prototype and a fixed build estimate.' },
-  build: { name: 'Build', serviceType: 'MVP development', description: 'An MVP to production in 8–12 weeks at a fixed price: design, build, QA and deployment, with a demo every week.' },
-  scale: { name: 'Scale', serviceType: 'Dedicated development team', description: 'A dedicated squad of developers, QA and a PM on a monthly retainer. You keep control.' },
-};
+/** V1.0 offers (09 Offer; same words as the home cards, 03 §2A.6). Used inline while the service pages are off. */
+const OFFERS = [
+  { key: 'validate', name: 'Validate', serviceType: 'Product discovery', description: 'Product discovery in 1–2 weeks at a fixed fee: market and competitor read, product scope, a clickable prototype and a fixed build estimate. The fee credits toward Build.' },
+  { key: 'build', name: 'Build', serviceType: 'MVP development', description: 'MVP development in 8–12 weeks at a fixed price: a live product with real users, covering design, build, QA and deployment, with a demo every week.' },
+  { key: 'scale', name: 'Scale', serviceType: 'Dedicated development team', description: 'A dedicated development team of developers, QA and a PM on a monthly retainer. The PM runs the roadmap with you and you keep control.' },
+] as const;
 
 /** Full Organization, home and /about only. foundingDate omitted (D-21); address = Alexandria only (D-08); sameAs = Clutch (+ LinkedIn when its URL is confirmed, D-29). */
 export const orgFull = {
@@ -36,20 +37,24 @@ export const orgFull = {
   contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: 'hello@discoverdev.ai', availableLanguage: ['en', 'ar'] }],
   address: [{ '@type': 'PostalAddress', addressLocality: 'Alexandria', addressCountry: 'EG' }],
   areaServed: ['United States', 'Saudi Arabia', 'United Arab Emirates', 'Kuwait', 'Egypt', 'United Kingdom'].map((name) => ({ '@type': 'Country', name })),
-  knowsAbout: ['MVP development', 'AI app security review', 'Production readiness', 'LLM cost optimization', 'Product discovery', 'Dedicated development teams'],
+  // Only topics the live pages show (05 §0); the Review topics return with the Review page (V1.2).
+  knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots', ...(ROUTES.review.live ? ['AI app security review', 'Production readiness', 'LLM cost optimization'] : [])],
   knowsLanguage: ['en', 'ar'],
   sameAs: [CLUTCH_URL],
   // Ties each live service page's Service node (`<page>#service`) to the company for knowledge graphs.
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Services',
-    // A live service page is referenced by id; while it is off (V1.0) the offer is described inline from 09 (times and price models only).
-    itemListElement: (['validate', 'build', 'scale', 'review', 'partners'] as RouteKey[])
-      .filter((k) => ROUTES[k].live || k in INLINE_OFFERS)
-      .map((k) => ({
+    itemListElement: [
+      // Live service pages are referenced by their Service node; the rest are described inline, pointing at the home section.
+      ...(['validate', 'build', 'scale', 'review', 'partners'] as RouteKey[])
+        .filter((k) => ROUTES[k].live)
+        .map((k) => ({ '@type': 'Offer', itemOffered: { '@id': `${SITE_URL}${ROUTES[k].path}#service` } })),
+      ...OFFERS.filter((o) => !ROUTES[o.key].live).map((o) => ({
         '@type': 'Offer',
-        itemOffered: ROUTES[k].live ? { '@id': `${SITE_URL}${ROUTES[k].path}#service` } : { '@type': 'Service', '@id': `${SITE_URL}/#service-${k}`, url: `${SITE_URL}/#services`, provider: { '@id': ORG_ID }, ...INLINE_OFFERS[k as keyof typeof INLINE_OFFERS] },
+        itemOffered: { '@type': 'Service', '@id': `${SITE_URL}/#service-${o.key}`, name: o.name, serviceType: o.serviceType, description: o.description, url: `${SITE_URL}/#services`, provider: { '@id': ORG_ID } },
       })),
+    ],
   },
 };
 
