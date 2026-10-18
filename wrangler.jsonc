@@ -2,6 +2,9 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "discoverdev-site",
   "compatibility_date": "2026-10-15",
+  // Build the site before every deploy, so `wrangler deploy` works even when the CI build command is empty
+  // (Workers Builds, Oct 18: the deploy ran with no dist/).
+  "build": { "command": "npm run build" },
   "assets": {
     "directory": "./dist",
     // Unknown URLs serve dist/404.html with HTTP 404, never the home page.
