@@ -203,25 +203,31 @@ Built today: V1.0–V1.2 (21 pages). To build: V1.3 onward, per the URL map in �
 
 **Pages:** `/` · `/book` · `/book/confirmed` (noindex) · `/privacy` · `/terms` · `/404`, plus the system files (robots, sitemap with only the indexable V1 pages, `llms.txt`, og image).
 
-**Home sections, in order (the home edits from the parallel session are the base):**
+**Home sections, in order** (refined Oct 18 after one-page structure research: hero → logos → problem → offer → how it works → proof next to the CTA → FAQ → final CTA; [Lowcode Agency](https://www.lowcode.agency/blog/b2b-website-services-page-best-practices), [Wapiti](https://wapiti.digital/service-page-seo-how-to-structure-schema-and-convert-b2b-visitors/)). The parallel session's home edits are the base:
 
 | # | Section (anchor) | Job: one job per section | Primary action |
 |---|---|---|---|
 | 1 | Hero | Say what we do and for whom; the rating line | Book a free clarity call |
-| 2 | Client cards + map (`#clients`) | Prove real clients on 4 continents | — |
-| 3 | The DiscoverDev Way (`#how-we-work`) | The method: AI drafts, a senior signs; the journey cards | — |
-| 4 | Three ways to work (`#services`) | Validate · Build · Scale: time, price model, what you get. In V1 each card links to `/book` (with the offer named), not to a service page. | Book |
-| 5 | Project chapter + showcase (`#work`) | Proof: NJWAR chapter, the EdTech case with 60–90%, 4 projects | — |
-| 6 | Reviews (`#reviews`) | 8 verified reviews (layout per the parallel session's pick) | Book |
-| 7 | FAQ (`#faq`) | Objections: AI and code safety, pricing, timeline, ownership, time zones, take-over | Book |
-| 8 | Closing band | One last ask | Book |
+| 2 | Client cards + map (`#clients`) | Quick proof: real clients on 4 continents | — |
+| 3 | Problem (`#why`) | Two lines, the core idea from 09: "Most teams just build what you ask for. We help you build the right thing, then ship it fast, and you own all of it." | — |
+| 4 | Three ways to work (`#services`) | Validate · Build · Scale, written around what the client gets: time, price model, what you get. In V1 each card links to `/book` with the offer named. | Book |
+| 5 | The DiscoverDev Way (`#how-we-work`) | How it works: AI drafts, a senior signs; the journey cards | — |
+| 6 | Projects (`#work`) | Proof: the EdTech case with 60–90%, the NJWAR chapter, other projects | — |
+| 7 | Reviews (`#reviews`) | 8 verified reviews (layout per the parallel session's pick), right after the projects so all proof sits together beside the CTA | Book |
+| 8 | FAQ (`#faq`) | Objections: AI and code safety, pricing, timeline, ownership, time zones, take-over | Book |
+| 9 | Closing band | One last ask | Book |
+
+**Changes from the first draft:**
+- Problem statement added (#3).
+- Services moved before the method (#4 before #5).
+- Projects and reviews grouped as one proof block next to the CTA (#6–7).
 
 **Removed from home in V1** (back in V1.2): the Guides and launch-check section, the "Other ways in" row (Review, Partners) and the FAQ link to the pillar guide. The take-over FAQ answer stays, without the link.
 
 **Header (V1):**
 - Logo
-- How we work → `#how-we-work`
 - Services → `#services`
+- How we work → `#how-we-work`
 - Work → `#work`
 - Reviews → `#reviews`
 - FAQ → `#faq`
@@ -251,7 +257,7 @@ Every link jumps to a section on the same page. The Services dropdown comes back
 | 2 | Copy first | `03`: a V1 section listing the home order above, the V1 nav and footer, the offer-card change (links to `/book`), what's removed and why. `04` §1 marks V1.0. | `03` and `04` updated |
 | 3 | Switch pages off | `routes.ts`: everything outside V1.0 gets `live: false`. Pages that are switched off are not built into the live site (excluded from the build), not in the sitemap, not in `llms.txt`, and have no og image. | The built site has exactly 6 HTML pages + the system files |
 | 4 | Re-point every link | Nav and mobile menu, footer, the hero's "See how we work", offer cards → `/book?type=clarity`, FAQ links, journey bar, the 404 page links, `/book` page links, CtaBand secondary links. A grep for every switched-off URL in `dist/` must return nothing. | Zero links to switched-off pages |
-| 5 | Home tidy | Remove the Guides section and the "Other ways in" row; add the section anchors; check the H2 keywords. | Home matches the §8 table |
+| 5 | Home tidy | Apply the 9-section order: add the problem statement (copy in `03` first), move Services above The DiscoverDev Way, keep Projects + Reviews together; remove the Guides section and the "Other ways in" row; add the section anchors; check the H2 keywords. | Home matches the §8 table |
 | 6 | SEO / GEO | Home schema (FAQPage, ItemList), `llms.txt` V1 version, sitemap check, `05` §1 fix (the `/how-we-work` row), og image. | `jsonld-check` OK; `llms.txt` lists 3 URLs |
 | 7 | Gates | Adjust `inbound-links` and `qa/routes.txt` to the V1 list; switched-off pages listed as "later release" so the gates don't expect them. | `npm run qa` 0 findings |
 | 8 | Full checks | Functional + events (update the tests that open switched-off pages), axe, Lighthouse, 9-size layout check, consent gate. | All pass |
