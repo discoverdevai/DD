@@ -1,5 +1,7 @@
 # Design system and code clean-up plan (Oct 18, 2026)
 
+**Status: all phases done Oct 18 (commits c409c86 → phase 7).** What was built: `scripts/dist-diff.mjs`, folders layout/ui/blocks/sections/scenes, tokens + `token-lint`, SectionHead, `.card-link`, `.tag`, Device, WindowBar, CtaBand (absorbs Closer), `section-contract`, the private `/design-system` page, specs in `context/06` §9.25–9.27, shared `scripts/lib/dist.mjs`, `tests/unit/utm.test.ts`. Left for later: the flat browser and tablet frames in `work/ProjectVisual` (join Device when real screens replace drawings), a Figma library (when a designer joins), a quarterly check of the reference page.
+
 **Goal:** one source of truth for how discoverdev.ai looks and is built, so new pages are faster and consistent, and duplicated code goes away. **No visible change** to the live site during the clean-up; every step is checked against the current build.
 
 **Builds on:** `docs/architecture/cleanup-plan.md` (Oct 16 architecture review). This plan adds the design-system layer and what changed since (reviews, guides, showcase, chapters, /how-we-work).

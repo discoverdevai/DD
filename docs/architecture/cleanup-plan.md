@@ -1,6 +1,6 @@
 # Clean-up and restructure plan (architecture review, 2026-10-16)
 
-Source: read-only architecture review (Plan agent) of `src/`, `scripts/`, `qa/`, checked against CLAUDE.md, 07 §5/§16 and 06 §0. Status: proposed. Phases 0–1 are safe any time; Phases 2–4 move files and shared CSS, so each needs a dist diff and screenshots.
+Source: read-only architecture review (Plan agent) of `src/`, `scripts/`, `qa/`, checked against CLAUDE.md, 07 §5/§16 and 06 §0. Status: done Oct 18, folded into `design-system-plan.md`. Phases 0–1 are safe any time; Phases 2–4 move files and shared CSS, so each needs a dist diff and screenshots.
 
 ## Target folder structure
 ```

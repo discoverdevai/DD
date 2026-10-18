@@ -5,9 +5,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DIST as dist, pages, allFiles } from '../scripts/lib/dist.mjs';
 
 const args = process.argv.slice(2);
-const dist = path.resolve(args.find(a => !a.startsWith('--')) || 'dist');
 const reportIdx = args.indexOf('--report');
 const reportPath = reportIdx > -1 ? args[reportIdx + 1] : null;
 // fileURLToPath decodes %20, so folders with spaces (e.g. "Discoverdev Landing Page") still find routes.txt.
@@ -16,23 +16,9 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const findings = []; // {sev, page, rule, msg}
 const add = (sev, page, rule, msg) => findings.push({ sev, page, rule, msg });
 
-if (!fs.existsSync(dist)) { console.error(`No build at ${dist}. Run npm run build first.`); process.exit(2); }
-
-// ---------- collect files ----------
-const walk = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => {
-  const p = path.join(d, e.name);
-  return e.isDirectory() ? walk(p) : [p];
-});
-const files = walk(dist);
-const rel = f => '/' + path.relative(dist, f).split(path.sep).join('/');
-const htmlFiles = files.filter(f => f.endsWith('.html'));
-const fileSet = new Set(files.map(rel));
-
-const routeFor = f => {
-  let r = rel(f).replace(/\.html$/, '');
-  if (r.endsWith('/index')) r = r.slice(0, -6) || '/';
-  return r === '' ? '/' : r;
-};
+// ---------- collect files (shared with the CI gates: scripts/lib/dist.mjs) ----------
+const allPages = pages();
+const fileSet = new Set(allFiles());
 const resolves = href => {
   let p = href.split('#')[0].split('?')[0];
   if (p === '' ) return true;
@@ -77,9 +63,7 @@ for (const r of routes) {
 // ---------- per-page checks ----------
 const titles = new Map(), metas = new Map();
 const placeholder = /\[(VERIFY|PRICE|CONSENT|METRIC|TEAM|WHATSAPP|ASSET|TODO|TBD)[^\]]*\]|\bTODO\b|lorem ipsum/i;
-for (const f of htmlFiles) {
-  const page = routeFor(f);
-  const html = fs.readFileSync(f, 'utf8');
+for (const { route: page, html } of allPages) {
   const is404 = /\/404$/.test(page);
   const robots = (attr(meta(html, 'name', 'robots') || '', 'content') || '').toLowerCase();
   const noindex = robots.includes('noindex');
@@ -189,7 +173,7 @@ const count = s => findings.filter(f => f.sev === s).length;
 const lines = [
   `# QA report: ${path.basename(dist)} (${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC)`,
   '',
-  `Pages: ${htmlFiles.length} · Blockers: ${count('BLOCKER')} · Major: ${count('MAJOR')} · Minor: ${count('MINOR')}`,
+  `Pages: ${allPages.length} · Blockers: ${count('BLOCKER')} · Major: ${count('MAJOR')} · Minor: ${count('MINOR')}`,
   '',
   '| Severity | Page | Rule | Detail |', '|---|---|---|---|',
   ...findings.map(f => `| ${f.sev} | ${f.page} | ${f.rule} | ${f.msg.replace(/\|/g, '\\|')} |`),

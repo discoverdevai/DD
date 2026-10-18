@@ -3,7 +3,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const DIST = path.resolve(process.argv.find((a) => a.startsWith('--dist='))?.slice(7) ?? 'dist');
+// The build folder: `--dist=<dir>`, or the first bare argument (qa/check-dist.mjs takes it that way), default `dist`.
+const argv = process.argv.slice(2);
+const bare = argv.find((a, i) => !a.startsWith('--') && argv[i - 1] !== '--report');
+export const DIST = path.resolve(argv.find((a) => a.startsWith('--dist='))?.slice(7) ?? bare ?? 'dist');
+
+/** Every file in the build as a root-relative path ('/robots.txt', '/_astro/x.css'). */
+export function allFiles() {
+  if (!fs.existsSync(DIST)) fail(`No build at ${DIST}. Run npm run build first.`);
+  return (function walk(dir) {
+    return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : ['/' + path.relative(DIST, path.join(dir, e.name)).split(path.sep).join('/')]);
+  })(DIST);
+}
 
 /** Every built HTML page as { route, file, html }. `build.format: 'file'` → /about = about.html. */
 export function pages() {
