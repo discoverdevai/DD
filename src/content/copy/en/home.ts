@@ -101,7 +101,7 @@ export const home = {
   },
   reviews: {
     title: 'What clients say about working with us',
-    cta: true,
+    cta: false, // no button in the reviews section (03 §2A.8c, Oct 18)
     items: [
       { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: "Youssef", role: "CEO, EduLens", service: "Build · AI agents · EdTech" },
       { quote: "The quality of their work is top-notch.", name: "CEO", role: "Nile Support, USA", service: "Build · AI agents, website and staff augmentation" },
