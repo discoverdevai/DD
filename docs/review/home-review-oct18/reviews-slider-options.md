@@ -87,3 +87,10 @@ Refined mock: anchor sign-off sheet plus a slow row of 7 sheets, key phrases hig
 - **Reduced motion:** nothing moves; the margin becomes a still list you scroll.
 - **Background:** pick one: hairline grid fading out from the card (default in the mock, matches the hero grid), a very faint large quote mark, or none.
 - **Mockup:** shown in the chat on Oct 18; build it from this spec. Not built in `src/` (the main session builds it into V1.0).
+
+## Decisions after the UX-laws pass (Mohamed, Oct 18) — supersede the spec above where they differ
+- **No button in the reviews section for now.** The featured card ends with the result (60–90% lower AI cost, three AI agents in production); the "Book a free clarity call" button and its "30 minutes · No pitch" line are removed from the card. Reason: the brand button on the dark card measured 2.2:1 (fails the 3:1 edge rule), and every fix tried (light fill, light ring, white fill, paper strip, pill with white arrow, link row) was rejected because it did not match the existing button component. The page keeps its call to action in the hero and the closing band. Revisit once the V1.0 button component has an on-card variant.
+- **One margin column** (not two staggered columns).
+- **Background:** very faint dot field fading out from the card, or none (open).
+- **Pause button:** 44 px, first tab stop. Quotes 16 px or more; small labels 13 px.
+- **Card heights:** with no button, the featured card and the margin column are the same height (540 px desktop); the card content is label, quote, name with the EduLens logo, then the result row.
