@@ -12,7 +12,7 @@ import { isLive } from '../data/routes';
 // V1.0 (03 §2V1): the Launch-Ready Review is not offered until V1.2, so /book offers the clarity call only.
 const reviewOn = isLive('review');
 import { graph, orgStub, webPage } from '../lib/seo';
-const seo = reviewOn ? c.seoReview : c.seo;
+const seo = c.seo; // V1.0 clarity-call title; the Review title returns in V1.2 (03 §13)
 const jsonLd = graph(orgStub, webPage('/book', seo.title, seo.description));
 ---
 <BaseLayout title={seo.title} description={seo.description} pageType="book" jsonLd={jsonLd} header="minimal" stickyBar={false}>
