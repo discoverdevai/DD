@@ -1781,6 +1781,9 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 
 ---
 
+## 16a. /design-system (internal, Oct 18)
+- Not marketing copy: a private, noindex reference page for the team. Its text lives in `src/content/copy/en/design-system.ts` and describes the real tokens and components (06). No claims, no proof, never linked from the site.
+
 ## 17. Proof-check log (run against the master source doc = `context/09-proof.md`, 2026-10-15)
 
 - Client quotes: all 6 used quotes match master verbatim. Every one carries a [CONSENT] tag. Michelle and Lea quotes left out (exclamation marks).

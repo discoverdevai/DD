@@ -41,7 +41,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage('/launch-ready', c.seo.title, c
     <CardGrid items={c.check.areas} />
   </Section>
 
-  <Section id="what-you-get" surface="ink">
+  <Section id="what-you-get" surface="ink" labelledby="what-you-get-title">
     <div class="split">
       <div class="stack">
         <h2 id="what-you-get-title" class="h2 section-title">{c.gets.title}</h2>
@@ -62,7 +62,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage('/launch-ready', c.seo.title, c
     </div>
   </Section>
 
-  <Section id="guarantee" surface="raised" width="narrow">
+  <Section id="guarantee" surface="raised" width="narrow" labelledby="guarantee-title">
     <div class="guarantee">
       <h2 id="guarantee-title" class="h2">{c.guarantee.title}</h2>
       <p>{c.guarantee.body}</p>

@@ -1077,6 +1077,12 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
 
 ---
 
+### Section contract (enforced by `scripts/section-contract.mjs`, in `test:gates`)
+- Every top-level `<section>` in `<main>` has `data-surface` (`ink | paper | alt | inverse`; `raised` is ink with a gradient) and an accessible name: `aria-labelledby` pointing at a heading on the page. `Section` sets it from its title; pass `labelledby` when the heading lives inside or is the page H1.
+- A section takes `id` (the anchor and the base of its title id, `<id>-title`) and `surface`. Page sections render through `Section`; the older section components (ProofBand, Statement, Engagements…) set the same attributes themselves.
+- Naming: folders say the role (`layout`, `ui` atoms, `blocks` content patterns, `sections` page bands, `scenes` product pictures); a component named for a page is named for the page, not a version (`HomeHero`, not `HeroV2`).
+- Legal documents (`/privacy`, `/terms`) are exempt: their clauses are sections of one document.
+
 ### 9.25 SectionHead (`ui/SectionHead.astro`, `styles/patterns.css`)
 - **Purpose:** open a section with an optional label and one H2. Replaces eight hand-written copies.
 - **Anatomy:** `.section-label` (heading font, bold, small, machine text) + `.section-heading` (clamp 28–48px, semibold, tracking -0.035em, line-height 1.1). Renders a fragment: the caller keeps its own wrapper (row with an action link, split grid).

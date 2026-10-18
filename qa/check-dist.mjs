@@ -118,7 +118,8 @@ for (const f of htmlFiles) {
     for (const k of ['og:title', 'og:description', 'og:image', 'og:url']) if (!meta(html, 'property', k)) add('MINOR', page, 'open-graph', `${k} missing`);
   }
   if (page === '/book/confirmed' && !noindex) add('MAJOR', page, 'robots', '/book/confirmed must be noindex');
-  if (/noindex/.test(robots) && !is404 && !/\/book\/confirmed$/.test(page)) add('BLOCKER', page, 'robots', 'page is noindex (preview leak?)');
+  if (page === '/design-system' && !noindex) add('BLOCKER', page, 'robots', '/design-system must be noindex (private reference)');
+  if (/noindex/.test(robots) && !is404 && !/\/(book\/confirmed|design-system)$/.test(page)) add('BLOCKER', page, 'robots', 'page is noindex (preview leak?)');
 
   // JSON-LD
   for (const m of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {

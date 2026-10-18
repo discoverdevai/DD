@@ -43,6 +43,7 @@ Legend: `idx` = indexable + in sitemap · `noidx` = `<meta name="robots" content
 ├─ /launch-check                          Quiz (lead magnet)           idx   v1
 ├─ /book                                  Booking (Cal.com inline)     idx   v1
 │  └─ /book/confirmed                     Booking confirmation         noidx v1
+/design-system                          Private reference (Oct 18)   noindex; not in nav, sitemap, llms.txt or any link; flat file dist/design-system.html
 ├─ /privacy                               Privacy notice               idx   v1  (footer only)
 ├─ /terms                                 Website terms                idx   v1  (footer only)
 ├─ /404                                   Not found (HTTP 404)         noidx v1

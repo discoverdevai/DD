@@ -20,7 +20,7 @@ const jsonLd = graph(orgFull, website, webPage('/about', c.seo.title, c.seo.desc
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="about" jsonLd={jsonLd}>
   <PageHero page="about" h1={c.hero.h1} lead={c.hero.lead} cta="clarity" />
 
-  <Section id="story" surface="ink" width="narrow">
+  <Section id="story" surface="ink" width="narrow" labelledby="page-title">
     <div class="story">
       <p class="story__body">{c.story.body}</p>
       <p class="story__entity">{ENTITY_LINE}</p>

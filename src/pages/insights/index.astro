@@ -39,7 +39,7 @@ const jsonLd = graph(
   <PageHero page="insights" h1={c.h1} lead={c.intro} cta="none" proof={false} />
 
   {listed.length > 0 && (
-    <section class="section hub" data-surface="paper">
+    <section class="section hub" data-surface="paper" aria-labelledby="page-title">
       <div class="container hub__inner">
         {featured && <ArticleCard entry={featured} page="insights" level={2} featured={c.featured} />}
         {firstRow.length > 0 && (

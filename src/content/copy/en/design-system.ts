@@ -1,0 +1,55 @@
+// Internal reference page (/design-system): private, noindex, not in the sitemap or the nav. Not marketing copy, so it is
+// not in 03-copy.md; it describes the real tokens and components (context/06) and renders them from the code.
+export const designSystem = {
+  seo: { title: 'Design system | DiscoverDev', description: 'Internal reference: the tokens and shared patterns behind discoverdev.ai, rendered from the real code.' },
+  hero: {
+    eyebrow: 'Internal',
+    h1: 'Design system',
+    lead: 'The tokens and shared patterns behind this site, rendered from the real components. Not linked from the site and not indexed. Spec: context/06. Rule: new UI starts from a pattern here; add a pattern only when it is used in two places.',
+  },
+  colour: {
+    title: 'Colour',
+    lead: 'Three tiers: a reference palette, semantic roles per surface, and component tokens. Components read semantic or component tokens, never a raw value (npm run lint checks this).',
+    palette: 'Reference palette',
+    semantic: 'Semantic roles on the ink surface',
+    notes: ['Small text on ink uses text, muted or subtle. Never brand blue 700 as text on ink (2.2:1).', 'Grey 500 is for large text and decoration only. Small muted text on paper uses grey 600.'],
+  },
+  type: {
+    title: 'Type and space',
+    lead: 'Manrope for headings, Rubik for text, JetBrains Mono for facts. Sizes are fluid; spacing is a fixed scale.',
+    sample: 'Build the right thing',
+    scale: 'Type scale',
+    space: 'Spacing scale',
+    radius: 'Radius',
+  },
+  patterns: {
+    title: 'Shared patterns',
+    lead: 'Each pattern is one component or one class in styles/patterns.css. Spec per pattern: context/06 §9.25 to §9.27.',
+    items: {
+      head: { name: 'SectionHead', use: 'Opens a section: an optional label and one H2. The H2 id is the section label.', rule: 'One H2 per section. Do not restyle the heading in the section.' },
+      button: { name: 'CtaLink', use: 'Every call to action. Primary is the only filled button in view; secondary and text links support it.', rule: 'Same action, same label everywhere. Every link carries a ctaId.' },
+      tag: { name: 'Tag and LayerChip', use: 'A tag states a short fact next to a title. A chip says which layer does a step: AI-accelerated or senior sign-off.', rule: 'Tags are facts, never buttons.' },
+      card: { name: 'Card link', use: 'The whole card is one link. Put card-link on the card; the link in its heading stretches over it.', rule: 'One link per card. Focus shows once, as a ring on the card.' },
+      device: { name: 'Device and WindowBar', use: 'Real product screens in a laptop or phone frame, and the title bar of a product window.', rule: 'The screen carries the alt text. The frame is decoration.' },
+      crumbs: { name: 'Breadcrumbs', use: 'Depth-two pages only. The last item is the current page.', rule: 'Separator comes from CSS so it mirrors in RTL.' },
+    },
+    demo: {
+      label: 'Label above a title',
+      title: 'A section opens like this',
+      primary: 'Primary action',
+      secondary: 'Secondary action',
+      text: 'Text link',
+      tags: ['Time: 1 to 2 weeks', 'Build', 'Egypt'],
+      ai: 'AI-accelerated',
+      human: 'Senior sign-off',
+      cardTitle: 'A card that is one link',
+      cardBody: 'Tab to it and one ring shows on the whole card.',
+      windowName: 'Window title',
+      crumbHome: 'Home',
+      crumbParent: 'Section',
+      crumbHere: 'This page',
+      laptopAlt: 'Admin dashboard of the Yawmy Care nursery platform',
+      phoneAlt: 'Parent home screen of the Yawmy Care app',
+    },
+  },
+} as const;

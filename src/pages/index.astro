@@ -4,7 +4,7 @@ import CtaBand from '../components/sections/CtaBand.astro';
 // All-ink "workshop": centred hero + delivery scene, proof band, DiscoverDev Way split, lifecycle timeline, engagements,
 // capabilities board, case metric, two-tone why + pillars, split FAQ, horizon closer.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroV2 from '../components/sections/HeroV2.astro';
+import HomeHero from '../components/sections/HomeHero.astro';
 import ProofBand from '../components/sections/ProofBand.astro';
 import Statement from '../components/sections/Statement.astro';
 import AgileSplit from '../components/blocks/AgileSplit.astro';
@@ -28,7 +28,7 @@ const faqLd = faqPage('https://discoverdev.ai/#faq', c.faq.items);
 const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd}>
-  <HeroV2 />
+  <HomeHero />
   <ProofBand title={c.proofStrip.title} logosTitle={c.proofStrip.logosTitle} clientRoles={c.proofStrip.clientRoles} map={c.proofStrip.map} items={c.proofStrip.items} projects={c.proofStrip.projects} />
   <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} ctaPage="home" display split>
     <AgileSplit body={c.agile.body}>

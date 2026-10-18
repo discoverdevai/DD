@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx';
 import { readdirSync, readFileSync } from 'node:fs';
 
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
-const NOT_IN_SITEMAP = /\/(404|book\/confirmed)$|\/og\//;
+const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\//;
 
 // Article lastmod for the sitemap (05 §6, 07 §7.1): each insight's `updatedAt` from its frontmatter, keyed by URL path.
 // Only articles get lastmod; it must stay accurate (Google ignores lastmod it can't trust).

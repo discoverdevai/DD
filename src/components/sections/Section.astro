@@ -1,18 +1,19 @@
 ---
 // Section wrapper (06 §5, §0.4 v3): owns vertical rhythm and the surface. v3 inner pages are all-ink: `ink` (workshop),
 // `raised` (ink with a faint gradient, for rhythm), `paper`/`alt` (reading templates, documents), `inverse` (navy).
+// `labelledby`: id of a heading inside (or the page title) when the section has no title of its own.
 // Head: optional mono eyebrow, H2 (id for aria-labelledby), optional lead. Content goes in the default slot.
 import Eyebrow from '../ui/Eyebrow.astro';
 interface Props {
-  id: string; title?: string; titleHidden?: boolean; lead?: string; eyebrow?: string;
+  id: string; title?: string; titleHidden?: boolean; labelledby?: string; lead?: string; eyebrow?: string;
   surface?: 'ink' | 'raised' | 'paper' | 'alt' | 'inverse'; size?: 'md' | 'sm'; width?: 'default' | 'narrow' | 'prose'; divider?: boolean; class?: string;
 }
-const { id, title, titleHidden = false, lead, eyebrow, surface = 'paper', size = 'md', width = 'default', divider = false, class: cls } = Astro.props;
+const { id, title, titleHidden = false, labelledby, lead, eyebrow, surface = 'paper', size = 'md', width = 'default', divider = false, class: cls } = Astro.props;
 const titleId = `${id}-title`;
 const container = width === 'default' ? 'container' : `container--${width}`;
 const dataSurface = surface === 'raised' ? 'ink' : surface;
 ---
-<section id={id} data-surface={dataSurface} class:list={['section', { 'section--sm': size === 'sm', 'section-divider': divider, 'section--raised': surface === 'raised', 'section--dark': dataSurface === 'ink' }, cls]} aria-labelledby={title ? titleId : undefined}>
+<section id={id} data-surface={dataSurface} class:list={['section', { 'section--sm': size === 'sm', 'section-divider': divider, 'section--raised': surface === 'raised', 'section--dark': dataSurface === 'ink' }, cls]} aria-labelledby={title ? titleId : labelledby}>
   <div class={container}>
     {(title || eyebrow) && (
       <header class:list={['section-head', { 'sr-only': titleHidden }]}>
