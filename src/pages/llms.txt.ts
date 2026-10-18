@@ -36,8 +36,6 @@ export const GET: APIRoute = async () => {
     '',
     'How we work: The DiscoverDev Way. Discover first. Build with AI. Seniors sign off. We find the right thing to build first, AI does the heavy lifting, and a senior engineer signs off every release. One team from discovery to after launch.',
     '',
-    'Facts: engineering hub in Alexandria, Egypt, and a presence in Texas, USA. Clients in the US, UK, Europe and the Gulf. Work in English and Arabic. Clients keep full IP, with no lock-in.',
-    '',
     `Reviews: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct): ${CLUTCH_URL}`,
     '',
     'Book: a free 30-minute clarity call, no pitch, at ' + SITE_URL + '/book',
