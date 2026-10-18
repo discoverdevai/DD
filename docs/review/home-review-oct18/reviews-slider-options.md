@@ -77,3 +77,13 @@ Sources are practitioner blogs and design galleries, not controlled studies; tre
 | Point to a bigger wall ("Read what 60 customers say"). | Prismic | "5.0 across 11 reviews. Read all on Clutch" in the section head. |
 | Faces (Frame.io, PandaPay) and video (Slack, Haptic) are common. | Really Good Designs | We have neither. Do not use stock or AI faces. Ask the three repeat clients for a short video or photo. |
 Refined mock: anchor sign-off sheet plus a slow row of 7 sheets, key phrases highlighted, larger attribution, case-study link, "Read all on Clutch".
+
+## Chosen: option C, margin notes (Mohamed, Oct 18). Build spec for V1.0
+- **Layout, desktop (from 1024 px):** heading across the top; featured card 5/12, margin 7/12, gap 56 px, section padding 64 px top and bottom. Both columns 520 px tall, so the heights match.
+- **Featured card:** label "Featured review · Build · AI agents" (mono, small); the EduLens quote at 30 px; Youssef, CEO, EduLens; a divider; the 60–90% result as a 40 px figure with "lower AI cost · three AI agents in production"; the "Book a free clarity call" button pinned to the bottom with the "30 minutes · No pitch · Leave with a next step" line. Facts from 09 only.
+- **Margin:** the pause button first (first tab stop); the other 7 reviews scroll upward about 15 px a second, with fade at the top and bottom; "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct). Read all on Clutch" at the bottom. Hover or focus stops the motion; the pause button keeps it stopped.
+- **Tablet and phone (under 1024 px):** heading, featured card, then the notes as one slow sideways row (264 px notes on a phone, 300 px on a tablet), then the Clutch line. Button 46 px tall.
+- **Arabic (RTL):** logical properties mirror everything; the sideways row runs the other way; the vertical scroll is unchanged.
+- **Reduced motion:** nothing moves; the margin becomes a still list you scroll.
+- **Background:** pick one: hairline grid fading out from the card (default in the mock, matches the hero grid), a very faint large quote mark, or none.
+- **Mockup:** shown in the chat on Oct 18; build it from this spec. Not built in `src/` (the main session builds it into V1.0).
