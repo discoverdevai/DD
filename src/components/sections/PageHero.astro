@@ -42,7 +42,7 @@ const hasAside = Astro.slots.has('aside');
 
 <style>
   .phero { position: relative; overflow: clip; isolation: isolate; padding-block: clamp(3rem, 1.8rem + 4.5vw, 6.5rem) var(--section-y); }
-  .phero__grid-bg { position: absolute; inset: 0; z-index: -2; pointer-events: none; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; mask-image: radial-gradient(70% 70% at 70% 10%, #000 5%, transparent 75%); opacity: 0.7; }
+  .phero__grid-bg { position: absolute; inset: 0; z-index: -2; pointer-events: none; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; mask-image: radial-gradient(70% 70% at 70% 10%, var(--black) 5%, transparent 75%); opacity: 0.7; }
   .phero__light { position: absolute; z-index: -1; pointer-events: none; inset-block-start: 5%; inset-inline-end: -15%; inline-size: min(70vw, 56rem); aspect-ratio: 1; background: radial-gradient(closest-side, color-mix(in oklab, var(--blue-700) 45%, transparent), color-mix(in oklab, var(--blue-800) 18%, transparent) 55%, transparent); filter: blur(10px); }
   .phero:not(.phero--split) .phero__light { inset-block-start: -35%; opacity: 0.7; }
   .phero__inner { position: relative; display: grid; gap: var(--space-12); }

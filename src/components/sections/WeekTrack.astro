@@ -72,7 +72,7 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
   .wt__bar-fill { position: absolute; inset: 0; border-radius: var(--radius-sm); background: var(--blue-800); border: 2px solid var(--blue-800); transform-origin: 0 50%; }
   :dir(rtl) .wt__bar-fill { transform-origin: 100% 50%; }
   .wt__bar--main .wt__bar-fill { background: linear-gradient(90deg, var(--blue-700), var(--blue-600)); border-color: transparent; }
-  .wt__bar--main .wt__bar-fill::after { content: ''; position: absolute; inset-block: 25%; inset-inline: 10px; background: repeating-linear-gradient(90deg, rgb(254 254 254 / 0.55) 0 2px, transparent 2px calc(100% / 7)); border-radius: 2px; opacity: 0.6; }
+  .wt__bar--main .wt__bar-fill::after { content: ''; position: absolute; inset-block: 25%; inset-inline: 10px; background: repeating-linear-gradient(90deg, rgb(var(--neutral-0-rgb) / 0.55) 0 2px, transparent 2px calc(100% / 7)); border-radius: 2px; opacity: 0.6; }
   .wt__bar--open .wt__bar-fill { border-color: var(--green-700); background: var(--green-50); border-inline-end-style: dashed; }
   .wt__demo { display: grid; place-items: center; }
   .wt__demo i { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--blue-700); box-shadow: 0 0 0 3px var(--blue-100); }

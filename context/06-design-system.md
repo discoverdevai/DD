@@ -38,6 +38,18 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
   --color-human-text:    var(--green-700);  /* human sign-off on paper: 6.53:1 */
   --color-human-mark:    var(--green-700);
   --color-hairline:      var(--color-border-subtle);
+
+  /* Reference tier: colour channels, so tints stay on the palette: rgb(var(--blue-700-rgb) / 0.5). Same values as the hex ramp. */
+  --black: #000000;  --black-rgb: 0 0 0;
+  --neutral-0-rgb: 254 254 254;  --blue-300-rgb: 162 193 254;  --blue-400-rgb: 108 154 255;
+  --blue-700-rgb: 18 64 190;  --blue-800-rgb: 3 41 147;  --green-300-rgb: 127 216 166;
+
+  /* Component tier: device frames (Chapters, ProjectVisual; one Device component in phase 4 of the clean-up) */
+  --device-body: #0b0f1c;        /* bezel of laptop, phone and tablet */
+  --device-base: #1a2033;        /* laptop base */
+  --device-edge: #2a3150;        /* phone rim */
+  --device-edge-light: rgb(255 255 255 / 0.1);  /* laptop lid inner edge */
+  --art-red: #dc2626;            /* the one red mark in the project drawings (decor, never text) */
 }
 
 /* Surfaces (semantic remap). paper = today's :root defaults, named explicitly */
@@ -167,7 +179,7 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
 | #858585 | ink | 5.30 | — | Do not use on ink (keep one rule: grey is light-surface decor) |
 
 ### 0.7 Lint and governance
-- `css-logical-lint` unchanged. Add `scripts/token-lint.mjs`: fail on raw hex in `src/components/**` (06 "semantic tokens only").
+- `css-logical-lint` unchanged. `scripts/token-lint.mjs` (in `npm run lint`) fails on a raw hex or numeric `rgb()` in `src/components`, `src/layouts` and `src/pages` (06 "semantic tokens only"). Tints use the channel tokens (`rgb(var(--blue-700-rgb) / 0.5)`); a value CSS cannot reach (the `theme-color` meta) carries `token-lint-ignore` plus a reason.
 - Changelog: record this as 06 v1.1 (2026-10-16) with "Signal" and link to `docs/creative-brief-signal.md`.
 
 ### 0.8 Journey visual (WayFlow, home `#how-we-work`; Mohamed 2026-10-16)

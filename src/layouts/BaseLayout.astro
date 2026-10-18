@@ -42,7 +42,7 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={url} />}
-    <meta name="theme-color" content="#01082D" />
+    <meta name="theme-color" content="#01082D" /> {/* token-lint-ignore: a meta attribute cannot use CSS variables; equals --blue-975 */}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

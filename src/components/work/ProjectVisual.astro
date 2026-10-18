@@ -36,15 +36,15 @@ const device = project.device ?? 'browser';
 <style>
   /* Stage: one shape for every screen (16:10), dark brand backdrop so light product screens read as objects. */
   .pv { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 6% 7% 0; overflow: hidden; border-radius: var(--radius-md); background: radial-gradient(80% 90% at 50% 100%, color-mix(in oklab, var(--blue-700) 45%, transparent), transparent 70%), var(--blue-925); border: 1px solid var(--color-hairline); }
-  .pv__frame { position: relative; inline-size: 100%; align-self: end; overflow: hidden; background: var(--neutral-0); box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.6); }
+  .pv__frame { position: relative; inline-size: 100%; align-self: end; overflow: hidden; background: var(--neutral-0); box-shadow: 0 20px 50px -20px rgb(var(--black-rgb) / 0.6); }
   .pv__img { display: block; inline-size: 100%; block-size: auto; }
   /* Browser window: rounded top, three dots. */
   .pv--browser .pv__frame { border-radius: 10px 10px 0 0; }
-  .pv__bar { display: flex; gap: 5px; padding: 7px 10px; background: var(--neutral-100, #eef0f4); }
+  .pv__bar { display: flex; gap: 5px; padding: 7px 10px; background: var(--neutral-100); }
   .pv__bar i { inline-size: 7px; block-size: 7px; border-radius: 50%; background: color-mix(in oklab, var(--blue-975) 25%, transparent); }
   /* Tablet: dark bezel, rounded; shown upright and cropped by the stage so it reads as a device. */
   .pv--tablet { padding: 6% 0 0; }
-  .pv--tablet .pv__frame { inline-size: 46%; border: 6px solid #0b1022; border-block-end: 0; border-radius: 18px 18px 0 0; }
+  .pv--tablet .pv__frame { inline-size: 46%; border: 6px solid var(--device-body); border-block-end: 0; border-radius: 18px 18px 0 0; }
   .pv--tablet.pv--pair .pv__frame { grid-area: 1 / 1; }
   .pv--tablet.pv--pair .pv__frame:not(.pv__frame--back) { translate: 22% 4%; z-index: 1; }
   .pv--tablet.pv--pair .pv__frame--back { translate: -22% 0; opacity: 0.9; }

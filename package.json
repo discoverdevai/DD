@@ -12,7 +12,7 @@
     "preview": "astro preview",
     "preview:cf": "npm run build && npx wrangler dev",
     "check": "astro check",
-    "lint": "node scripts/css-logical-lint.mjs && node scripts/i18n-gate.mjs",
+    "lint": "node scripts/css-logical-lint.mjs && node scripts/i18n-gate.mjs && node scripts/token-lint.mjs",
     "qa:static": "node qa/check-dist.mjs dist",
     "qa": "npm run check && npm run lint && npm run test:unit && npm run build && npm run qa:static && npm run test:gates",
     "test:unit": "node --test \"tests/unit/*.test.ts\"",

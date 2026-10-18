@@ -66,7 +66,7 @@ const jsonLd = graph(
 
 <style>
   .case-hero { position: relative; overflow: clip; isolation: isolate; padding-block: var(--space-10) var(--section-y); }
-  .case-hero__grid { position: absolute; inset: 0; z-index: -2; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; mask-image: radial-gradient(70% 70% at 70% 10%, #000 5%, transparent 75%); opacity: 0.7; }
+  .case-hero__grid { position: absolute; inset: 0; z-index: -2; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; mask-image: radial-gradient(70% 70% at 70% 10%, var(--black) 5%, transparent 75%); opacity: 0.7; }
   .case-hero__light { position: absolute; z-index: -1; inset-block-start: -20%; inset-inline-end: -10%; inline-size: min(70vw, 52rem); aspect-ratio: 1; background: radial-gradient(closest-side, color-mix(in oklab, var(--blue-700) 40%, transparent), transparent); filter: blur(10px); }
   .case-hero__h1 { font-size: clamp(2.25rem, 1.3rem + 3.6vw, 4.25rem); font-weight: var(--weight-bold); line-height: 1.04; letter-spacing: -0.045em; color: var(--color-heading); max-inline-size: 20ch; text-wrap: balance; }
   .case-hero__lead { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 42rem; }

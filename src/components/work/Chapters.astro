@@ -61,7 +61,7 @@ const rows = await Promise.all(chapters.map(async (ch) => ({
 
 <style>
   .ch { position: relative; overflow: clip; display: grid; gap: var(--space-10); align-items: center; padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline);
-    background: radial-gradient(52% 64% at 74% 56%, rgb(18 64 190 / 0.5), rgb(3 41 147 / 0.16) 55%, transparent 75%), var(--color-bg); }
+    background: radial-gradient(52% 64% at 74% 56%, rgb(var(--blue-700-rgb) / 0.5), rgb(var(--blue-800-rgb) / 0.16) 55%, transparent 75%), var(--color-bg); }
   @media (width >= 64rem) { .ch { grid-template-columns: minmax(0, 42fr) minmax(0, 58fr); gap: 0; min-block-size: min(100svh, 56rem); padding-block: var(--space-16); padding-inline-start: max(var(--gutter), (100% - var(--container)) / 2); } }
   @media (width < 64rem) { .ch { padding-inline: var(--gutter); } }
   .ch__copy { position: relative; z-index: 3; display: grid; gap: var(--space-5); align-content: center; }
@@ -81,13 +81,13 @@ const rows = await Promise.all(chapters.map(async (ch) => ({
   .ch__scene { position: relative; aspect-ratio: 4 / 3; perspective: 2000px; container-type: inline-size; }
   @media (width >= 64rem) { .ch__scene { aspect-ratio: auto; block-size: 100%; min-block-size: 36rem; } }
   .ch__laptop, .ch__phone { position: absolute; transform: rotateY(-18deg) rotateX(8deg) rotateZ(2deg); }
-  .ch__lid { padding: 2cqi; border-radius: 2.4cqi 2.4cqi 0.8cqi 0.8cqi; background: #0b0f1c; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1) inset, 0 60px 120px -40px #000; }
+  .ch__lid { padding: 2cqi; border-radius: 2.4cqi 2.4cqi 0.8cqi 0.8cqi; background: var(--device-body); box-shadow: 0 0 0 1px var(--device-edge-light) inset, 0 60px 120px -40px var(--black); }
   .ch__screen { overflow: hidden; aspect-ratio: 16 / 10; border-radius: 0.6cqi; background: var(--neutral-0); }
   .ch__screen :global(img), .ch__glass :global(img) { display: block; inline-size: 100%; block-size: auto; }
-  .ch__base { block-size: 2.4cqi; margin-inline: -5cqi; border-radius: 0 0 2.8cqi 2.8cqi; background: #1a2033; }
-  .ch__phone { padding: 1.3cqi; border-radius: 6cqi; background: #0b0f1c; box-shadow: 0 0 0 1.5px #2a3150 inset, 0 60px 120px -40px #000; }
+  .ch__base { block-size: 2.4cqi; margin-inline: -5cqi; border-radius: 0 0 2.8cqi 2.8cqi; background: var(--device-base); }
+  .ch__phone { padding: 1.3cqi; border-radius: 6cqi; background: var(--device-body); box-shadow: 0 0 0 1.5px var(--device-edge) inset, 0 60px 120px -40px var(--black); }
   .ch__glass { position: relative; overflow: hidden; aspect-ratio: 375 / 812; border-radius: 4.8cqi; background: var(--neutral-0); }
-  .ch__island { position: absolute; inset-block-start: 3%; inset-inline-start: 50%; inline-size: 30%; block-size: 3%; translate: -50% 0; border-radius: 999px; background: #0b0f1c; }
+  .ch__island { position: absolute; inset-block-start: 3%; inset-inline-start: 50%; inline-size: 30%; block-size: 3%; translate: -50% 0; border-radius: 999px; background: var(--device-body); }
 
   /* web + 1 phone (NJWAR, RTL web: phone on the start side so the Arabic headline shows) */
   .ch--web1 .ch__laptop { inset-inline-start: 26%; inset-block-start: 14%; inline-size: 90%; }
