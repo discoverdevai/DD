@@ -197,7 +197,7 @@ The dark v3 look uses soft light and one map. They are allowed only here, and on
 - **Allowed map:** the facts map in `ProofBand` (real land as dots, client countries lit, two team pins joined by an arc). It is a fact, not a hero image. No second map elsewhere.
 - **Limits:** decorative only (`aria-hidden`, `pointer-events: none`). No text sits on a glow without the text itself meeting AA against the darkest and lightest part of the glow. Glows never carry meaning. Hidden in forced colours.
 - **Motion:** a glow may fade or drift in once (scroll-driven or on load) and then holds still. Nothing ambient loops. The map pings play 3 times, then rest. Under `prefers-reduced-motion: reduce` nothing animates.
-- **Client marquee:** the only looping element. From 48rem it scrolls slowly with a small, always-visible pause button (and pauses on hover). Below 48rem it is a still two-column grid. Reduced motion shows the still wrapped list.
+- **Client row (Oct 18, Mohamed):** a still, wrapped row of cards. Nothing on the site loops or scrolls on its own, and there is no Pause control (a component that does not move needs none, WCAG 2.2.2). Do not add moving rows or carousels without a pause control and Mohamed's OK.
 
 ## 1. Visual direction
 
@@ -686,7 +686,7 @@ Rules:
 - Press: `:active` darkens (`--color-action-bg-active`). No transform.
 - Disclosure (FAQ, services panel, mobile menu): open and close at `--dur-base` with `--ease-enter` / `--ease-exit`. Chevrons rotate 180°.
 - Cross-document view transitions: root crossfade only, inside `prefers-reduced-motion: no-preference`.
-- Never: parallax, scroll-jacking, autoplay video, counters. Ambient decoration (glows, drift) never loops; it plays once and holds. The one allowed moving row is the client marquee in §0.9, which is still on phones and has a visible pause control (2.2.2).
+- Never: parallax, scroll-jacking, autoplay video, counters. Ambient decoration (glows, drift) never loops; it plays once and holds. No moving rows: the client row (§0.9) and the reviews are still (Oct 18).
 - Feedback within 100ms on every click. Embed loading shows a fallback immediately (§9.17).
 - Forced colours (Windows High Contrast): buttons keep `border: 1px solid transparent`, focus uses `outline`, icons use `currentColor`, and no meaning lives in a `background-image`.
 

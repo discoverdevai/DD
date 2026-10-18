@@ -1,8 +1,7 @@
 ---
 // Proof band under the hero (03 §2A.3): client cards OR project cards, never mixed.
 // - 4+ clients with recorded consent (D-05, src/data/clients.ts) → client cards (logo in its own colours + name + one
-//   line) in one slow moving row (Mohamed, Oct 16): two copies, the second aria-hidden, -50% loop; pauses on hover and
-//   with a pause button (WCAG 2.2.2); reduced motion = still, wrapped.
+//   line) in one still, wrapped row (Mohamed, Oct 18: no moving content and no pause control, so WCAG 2.2.2 does not apply).
 // - Otherwise → four anonymized project cards (facts in 09).
 // Then the §2.3 facts as a quiet row. Logos are read from assets/clients at build time and inlined as small WebP data
 // URIs, only for consented entries, so an unconsented file never reaches dist. LOGO_MOCK=1 = local preview with all.
@@ -43,13 +42,6 @@ const logos = showLogos
 <section class="pband" data-surface="ink" data-raised aria-labelledby="pband-title">
   <div class="container pband__head">
     <h2 id="pband-title" class="pband__label">{showLogos ? logosTitle : title}</h2>
-    {showLogos && (
-      <button type="button" class="pband__toggle" aria-pressed="false" data-pband-toggle hidden>
-        <svg class="pband__i-pause" viewBox="0 0 24 24" width="10" height="10" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none" /></svg>
-        <svg class="pband__i-play" viewBox="0 0 24 24" width="10" height="10" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
-        {t('strip.pause')}
-      </button>
-    )}
   </div>
 
   {showLogos ? (
@@ -104,30 +96,13 @@ const logos = showLogos
   .pband { border-block-start: 1px solid var(--color-hairline); /* bottom edge = next section's hairline */ padding-block: var(--space-12) var(--space-10); display: grid; gap: var(--space-6); }
   .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
-  /* WCAG 2.2.2: the row moves on its own, so it gets a pause control (shown only when it moves and JS runs). */
-  /* Pause control (WCAG 2.2.2): small, quiet and always visible where the row moves (from 48rem; V1.0.1, replaces the
-     focus-only button). Mouse: hover also pauses. Phones show a still grid, so no control there. Pressed = paused. */
-  .pband__toggle { position: absolute; inset-inline-end: var(--gutter); display: none; align-items: center; gap: var(--space-2); min-block-size: 1.75rem; padding: 2px 10px; border: 1px solid var(--color-hairline); border-radius: var(--radius-sm); background: transparent; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); cursor: pointer; }
-  @media (width >= 48rem) { .pband__toggle { display: inline-flex; } }
-  @media (hover: hover) { .pband__toggle:hover { color: var(--color-heading); border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
-  .pband__head { position: relative; }
-  .pband__toggle[hidden] { display: none; }
-  .pband__toggle .pband__i-play, .pband__toggle[aria-pressed='true'] .pband__i-pause { display: none; }
-  .pband__toggle[aria-pressed='true'] .pband__i-play { display: block; }
-
-  /* Client cards in one moving row; edges fade out. */
-  .pband__strip { overflow: hidden; }
-  .pband__track { display: block; }
+  /* Client cards: a still, wrapped row (no motion, no pause control). Phones: two columns, name only. */
   .pband__clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); padding-inline: var(--gutter); }
-  .pband__clients[aria-hidden] { display: none; }
   .pband__client span { display: none; }
   @media (width >= 48rem) {
-    .pband__strip { mask-image: linear-gradient(90deg, transparent, var(--black) 6%, var(--black) 94%, transparent); }
-    .pband__track { display: flex; inline-size: max-content; }
-    .pband__clients { display: flex; padding-inline: 0; padding-inline-end: var(--space-3); }
-    .pband__clients[aria-hidden] { display: flex; }
+    .pband__clients { display: flex; flex-wrap: wrap; justify-content: center; max-inline-size: 80rem; margin-inline: auto; }
     .pband__client span { display: block; }
-    .pband__client { flex: none; inline-size: 19.5rem; }
+    .pband__client { flex: 0 1 19.5rem; }
   }
   .pband__client { display: flex; min-inline-size: 0; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
   .pband__client img { flex: none; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; object-fit: cover; background: var(--neutral-0); }
@@ -135,27 +110,6 @@ const logos = showLogos
   .pband__client p { display: grid; min-inline-size: 0; }
   .pband__client strong { font-family: var(--ff-heading); font-size: var(--text-sm); color: var(--color-heading); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .pband__client span { font-size: var(--text-xs); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  @media (prefers-reduced-motion: no-preference) {
-    /* The loop copy is added by the script (data-loop), so the inlined logos are in the HTML once (Oct 18, LCP budget). */
-    @media (width >= 48rem) {
-      .pband[data-loop] .pband__track { animation: pband-scroll 90s linear infinite; }
-      :dir(rtl) .pband[data-loop] .pband__track { animation-name: pband-scroll-rtl; }
-      .pband__strip:hover .pband__track, .pband[data-paused] .pband__track { animation-play-state: paused; }
-    }
-    @keyframes pband-scroll { to { transform: translateX(-50%); } }
-    @keyframes pband-scroll-rtl { to { transform: translateX(50%); } }
-  }
-  /* Cascade order: this block must stay after the 48rem block above, whose rules it overrides. */
-  @media (prefers-reduced-motion: reduce) {
-    .pband__toggle { display: none !important; }
-    .pband__clients[aria-hidden] { display: none; }
-    @media (width >= 48rem) {
-      .pband__strip { mask-image: none; }
-      .pband__track { display: block; inline-size: auto; padding-inline: var(--gutter); }
-      .pband__clients { display: flex; flex-wrap: wrap; justify-content: center; padding-inline: 0; }
-    }
-  }
-
   /* Projects (fallback): four equal cards; the title link covers the card (one link, one tab stop). */
   .pband__projects { display: grid; gap: var(--space-4); }
   @media (width >= 40rem) { .pband__projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -199,25 +153,3 @@ const logos = showLogos
   .pband__facts li { display: flex; align-items: center; gap: var(--space-3); padding-inline-start: var(--space-5); border-inline-start: 1px solid var(--color-hairline); color: var(--color-text-muted); font-size: var(--text-sm); font-weight: var(--weight-medium); }
   .pband__facts :global(.icon) { color: var(--color-machine-text); flex: none; }
 </style>
-
-<script>
-  // Pause for the moving client row (WCAG 2.2.2): keyboard = the focus-only button; touch = tap the row. Mouse hover
-  // pauses in CSS. Without JS the row still pauses on hover, and reduced motion keeps it still.
-  document.querySelectorAll<HTMLElement>('.pband__track').forEach((track) => {
-    const first = track.querySelector('.pband__clients');
-    const band = track.closest<HTMLElement>('.pband');
-    if (!first || !band || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const copy = first.cloneNode(true) as HTMLElement;
-    copy.setAttribute('aria-hidden', 'true');
-    track.append(copy);
-    band.setAttribute('data-loop', '');
-  });
-  document.querySelectorAll<HTMLButtonElement>('[data-pband-toggle]').forEach((btn) => {
-    const band = btn.closest<HTMLElement>('.pband');
-    if (!band) return;
-    btn.hidden = false;
-    const toggle = () => btn.setAttribute('aria-pressed', String(band.toggleAttribute('data-paused')));
-    btn.addEventListener('click', toggle);
-    band.querySelector('.pband__strip')?.addEventListener('pointerup', (e) => { if ((e as PointerEvent).pointerType !== 'mouse') toggle(); });
-  });
-</script>
