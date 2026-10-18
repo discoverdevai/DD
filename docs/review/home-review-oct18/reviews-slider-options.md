@@ -94,3 +94,4 @@ Refined mock: anchor sign-off sheet plus a slow row of 7 sheets, key phrases hig
 - **Background:** very faint dot field fading out from the card, or none (open).
 - **Pause button:** 44 px, first tab stop. Quotes 16 px or more; small labels 13 px.
 - **Card heights:** with no button, the featured card and the margin column are the same height (540 px desktop); the card content is label, quote, name with the EduLens logo, then the result row.
+- **Background: none for now** (chosen Oct 18 for simplicity: no decoration competes with the quotes, no contrast or paint risk, and it matches the calm direction). The faint dot field stays an optional later addition.
