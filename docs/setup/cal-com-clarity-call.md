@@ -4,7 +4,7 @@ For V1.0 the site offers one booking: the free clarity call. Everything below co
 
 ## 0. Account
 1. Create the account at cal.com with the company email (hello@discoverdev.ai or Mohamed's work email). Turn on 2FA.
-2. Username: `discoverdev` (or the closest free one). **This is the value for `PUBLIC_CAL_USERNAME`.**
+2. Username: `mohamed-ali-plfh5u` (the account's own). **This is the value for `PUBLIC_CAL_USERNAME`.** Event link: https://cal.com/mohamed-ali-plfh5u/discoverycall. Title is still the default "30 min meeting": rename it to "Clarity call" and paste the description and questions below.
 3. Profile name: DiscoverDev. Profile picture: the DiscoverDev mark from `public/brand/`. Time zone: Africa/Cairo (GMT+2). Language: English.
 4. Settings > Appearance: brand colour `#1240BE`, light theme.
 5. Connect a calendar (the one that should block busy times) and set "add new bookings to" that calendar.
@@ -13,7 +13,7 @@ For V1.0 the site offers one booking: the free clarity call. Everything below co
 | Setting | Value |
 |---|---|
 | Title | Clarity call |
-| URL / slug | `clarity-call` (exact; the site links to `cal.com/<username>/clarity-call`) |
+| URL / slug | `discoverycall` (the site links to `cal.com/<username>/discoverycall`; set Oct 18, `SLUG.clarity` in `src/lib/cal.ts`) |
 | Duration | 30 minutes |
 | Price | Free |
 | Location | Cal Video (no account needed for the guest). Add Google Meet later if preferred. |
@@ -98,7 +98,7 @@ Title: QA test · slug `qa-test` · 15 minutes · Hidden · same questions as ab
 
 ## 6. Checklist
 - [ ] Account, 2FA, username, brand colour
-- [ ] Event `clarity-call` with the description and 5 questions above
+- [ ] Event `discoverycall` (renamed Clarity call) with the description and 5 questions above
 - [ ] Availability and buffers
 - [ ] Confirmation email and the two reminders
 - [ ] Event `qa-test` (hidden)

@@ -721,3 +721,5 @@ Mohamed chose Vercel over Cloudflare Workers. `vercel.json` mirrors `public/_hea
 
 ## Oct 18 change: hosting is Cloudflare Workers (final)
 Mohamed confirmed Cloudflare is the host; the live preview is https://dd.mohamed-ali-aec.workers.dev/ (Worker `dd`, built from `main` with `npm run build`, `wrangler.jsonc` + `public/_headers` + `public/_redirects`). This supersedes the Oct 16 Vercel note above. `vercel.json` and `scripts/vercel-parity.mjs` stay as a fallback and keep passing.
+
+**Oct 18:** Cal username `mohamed-ali-plfh5u`; the clarity event slug is `discoverycall` (not `clarity-call`), set in `src/lib/cal.ts`. `review-intro` and `partner-call` stay as listed for V1.2.

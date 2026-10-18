@@ -3,7 +3,7 @@
 import { PUBLIC_CAL_USERNAME } from 'astro:env/client';
 
 export type BookType = 'review' | 'clarity' | 'partner';
-export const SLUG: Record<BookType, string> = { review: 'review-intro', clarity: 'clarity-call', partner: 'partner-call' };
+export const SLUG: Record<BookType, string> = { review: 'review-intro', clarity: 'discoverycall', partner: 'partner-call' };
 export const EVENT: Record<BookType, string> = { review: 'review_intro', clarity: 'clarity_call', partner: 'partner_call' };
 export const calUsername = PUBLIC_CAL_USERNAME ?? '';
 export const directLink = (type: BookType) => (calUsername ? `https://cal.com/${calUsername}/${SLUG[type]}` : '');
