@@ -23,6 +23,13 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
   ok('Skip link moves focus to <main>', (await active(p)).startsWith('main'), await active(p));
 
   const toggle = p.locator('[data-disclosure]');
+  if (await toggle.count() === 0) {
+    // V1.0 one-page site (03 §2V1): no Services menu; the nav jumps to home sections, and every target exists.
+    const navLinks = await p.locator('.site-nav__list a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+    ok('V1 nav: Services, How we work, Work, Reviews, FAQ anchors', navLinks.join('|') === '/#services|/#how-we-work|/#work|/#reviews|/#faq', navLinks.join('|'));
+    const missing = await p.evaluate((hs) => hs.filter((h) => !document.getElementById(h.split('#')[1])), navLinks);
+    ok('V1 nav: every anchor target exists on home', missing.length === 0, missing.join(', '));
+  } else {
   await toggle.focus(); await p.keyboard.press('Enter');
   ok('Services: Enter opens', (await toggle.getAttribute('aria-expanded')) === 'true' && await p.locator('#services-panel').isVisible());
   await p.keyboard.press('Escape');
@@ -33,6 +40,7 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
   ok('Services: outside click closes', (await toggle.getAttribute('aria-expanded')) === 'false');
   const labels = await p.locator('#services-panel .services-panel__label').allTextContents();
   ok('Services: panel lists Validate, Build, Scale, Launch-Ready Review, Partners', labels.join('|') === 'Validate|Build|Scale|Launch-Ready Review|Partners', labels.join('|'));
+  }
 
   await p.evaluate(() => scrollTo(0, 1500)); await p.waitForTimeout(150); await p.evaluate(() => scrollTo(0, 2200)); await p.waitForTimeout(500);
   ok('Header hides on scroll down', await p.locator('[data-header]').evaluate((h) => h.hasAttribute('data-hidden')));
@@ -99,10 +107,12 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
   await p.evaluate(() => scrollTo(0, document.body.scrollHeight)); await p.waitForTimeout(600);
   ok('Sticky bar stays hidden from the closing CTA band to the footer', await bar.evaluate((b) => b.hidden));
 
-  await p.goto(base + '/launch-ready', { waitUntil: 'networkidle' });
-  ok('/launch-ready sticky bar is the Review', (await p.locator('[data-bottom-bar] a').getAttribute('data-cta-id')) === 'sticky_book_review');
+  // Pages switched off for a release return 404; their checks run again when they are live.
+  if ((await p.goto(base + '/launch-ready', { waitUntil: 'networkidle' }))?.status() === 200) {
+    ok('/launch-ready sticky bar is the Review', (await p.locator('[data-bottom-bar] a').getAttribute('data-cta-id')) === 'sticky_book_review');
+  }
 
-  for (const r of ['/book', '/book/confirmed', '/launch-check', '/privacy', '/terms', '/this-is-a-404']) {
+  for (const r of ['/book', '/book/confirmed', '/privacy', '/terms', '/this-is-a-404']) {
     await p.goto(base + r, { waitUntil: 'networkidle' }); await p.evaluate(() => scrollTo(0, 1200)); await p.waitForTimeout(300);
     const visible = await p.evaluate(() => { const b = document.querySelector('[data-bottom-bar]'); return !!b && !b.hidden; });
     ok(`No sticky bar on ${r}`, !visible);
@@ -113,7 +123,8 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
 // ---- /book type preselection + fallback without Cal configured
 {
   const p = await desktop.newPage();
-  for (const [q, want, partnerTab] of [['?type=review', 'review', false], ['?type=clarity', 'clarity', false], ['?type=partner', 'partner', true], ['?type=bogus', 'clarity', false], ['', 'clarity', false]]) {
+  // V1.0 (03 §2V1): Review and Partners are off, so ?type=review and ?type=partner fall back to the clarity call.
+  for (const [q, want, partnerTab] of [['?type=review', 'clarity', false], ['?type=clarity', 'clarity', false], ['?type=partner', 'clarity', false], ['?type=bogus', 'clarity', false], ['', 'clarity', false]]) {
     await p.goto(`${base}/book${q}`, { waitUntil: 'networkidle' });
     const cur = await p.locator('[data-opt][aria-current="true"]').getAttribute('data-opt');
     const tabShown = await p.locator('[data-opt="partner"]').isVisible();

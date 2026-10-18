@@ -8,6 +8,9 @@ import ProofChip from '../components/ui/ProofChip.astro';
 import CalEmbed from '../components/book/CalEmbed.astro';
 import { book as c } from '../content/copy/en/book';
 import { t } from '../i18n/t';
+import { isLive } from '../data/routes';
+// V1.0 (03 §2V1): the Launch-Ready Review is not offered until V1.2, so /book offers the clarity call only.
+const reviewOn = isLive('review');
 import { graph, orgStub, webPage } from '../lib/seo';
 const jsonLd = graph(orgStub, webPage('/book', c.seo.title, c.seo.description));
 ---
@@ -15,8 +18,8 @@ const jsonLd = graph(orgStub, webPage('/book', c.seo.title, c.seo.description));
   <section class="section book" data-surface="paper" aria-labelledby="book-title">
     <div class="container book__grid">
       <div class="book__main">
-        <h1 id="book-title" class="h1" data-book-h1>{c.h1}</h1>
-        <nav class="opts" aria-label={c.optionsLabel}>
+        <h1 id="book-title" class="h1" data-book-h1>{reviewOn ? c.h1 : c.h1Clarity}</h1>
+        <nav class="opts" hidden={!reviewOn} data-review-on={String(reviewOn)} aria-label={c.optionsLabel}>
           <a href="/book?type=clarity" class="opt" aria-current="true" data-opt="clarity">{c.options.clarity.tab}</a>
           <a href="/book?type=review" class="opt" data-opt="review">{c.options.review.tab}</a>
           <a href="/book?type=partner" class="opt" data-opt="partner" hidden>{c.options.partner.tab}</a>
@@ -69,7 +72,8 @@ const jsonLd = graph(orgStub, webPage('/book', c.seo.title, c.seo.description));
   const params = new URLSearchParams(location.search);
   const raw = params.get('type');
   // Default = clarity call, the primary CTA (strategy v2, 04 §7.1).
-  const type: BookType = raw === 'review' || raw === 'partner' ? raw : 'clarity';
+  const reviewOn = document.querySelector('.opts')?.getAttribute('data-review-on') === 'true';
+  const type: BookType = reviewOn && (raw === 'review' || raw === 'partner') ? (raw as BookType) : 'clarity';
   const read = (k: string) => { try { return sessionStorage.getItem(k); } catch { return null; } };
 
   // Option switch: current link, matching text; the partner tab exists only when asked for (04 §4.10).

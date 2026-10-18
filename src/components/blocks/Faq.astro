@@ -3,7 +3,7 @@
 // Returns FAQPage-ready data through the `items` prop so JSON-LD text equals the visible text (05 §4.8).
 import Icon from '../ui/Icon.astro';
 import InlineLink from '../ui/InlineLink.astro';
-import type { RouteKey } from '../../data/routes';
+import { isLive, type RouteKey } from '../../data/routes';
 // Optional `link` renders after the answer, outside the JSON-LD answer text (03 §0.8).
 interface Item { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }
 interface Props { items: readonly Item[] }
@@ -13,7 +13,7 @@ const { items } = Astro.props;
   {items.map((it) => (
     <details id={`faq-${it.id}`} class="faq__item">
       <summary class="faq__q"><span>{it.q}</span><Icon name="chevron-down" size={20} /></summary>
-      <div class="faq__a"><p>{it.a}</p>{it.link && <p class="faq__more"><InlineLink text="" link={it.link} /></p>}</div>
+      <div class="faq__a"><p>{it.a}</p>{it.link && isLive(it.link.to) && <p class="faq__more"><InlineLink text="" link={it.link} /></p>}</div>
     </details>
   ))}
 </div>

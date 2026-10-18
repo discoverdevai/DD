@@ -1,16 +1,19 @@
 ---
 import SectionHead from '../ui/SectionHead.astro';
 // Engagements (03 §2A.6): Validate · Build · Scale as three tall stage cards (stage nodes fill left to right), then "Other ways in" as two compact rows (Review, Partners). Each card is one stretched link.
-import { ROUTES, isLive, type RouteKey } from '../../data/routes';
-interface Card { key: RouteKey; who: string; title: string; kind?: string; meta: readonly string[]; body: string; linkLabel: string }
+import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
+// V1.0 (03 §2V1): while a service page is off, its card links to booking with "Book a call about …".
+interface Card { key: RouteKey; who: string; title: string; kind?: string; meta: readonly string[]; body: string; linkLabel: string; bookLabel?: string }
 interface Other { key: RouteKey; who: string; title: string; body: string; linkLabel: string }
 interface Props { title: string; lead: string; cards: readonly Card[]; scope?: { label: string; text: string }; otherTitle: string; other: readonly Other[] }
 const { title, lead, cards, scope, otherTitle, other } = Astro.props;
-const live = cards.filter((c) => isLive(c.key));
+const live = cards;
+const cardHref = (c: Card) => (isLive(c.key) ? ROUTES[c.key].path : bookHref('clarity'));
+const cardLabel = (c: Card) => (isLive(c.key) ? c.linkLabel : c.bookLabel ?? c.linkLabel);
 const liveOther = other.filter((o) => isLive(o.key));
 ---
 {live.length > 0 && (
-  <section id="engagements" class="en" data-surface="ink" aria-labelledby="en-title">
+  <section id="services" class="en" data-surface="ink" aria-labelledby="en-title">
     <div class="container">
       <div class="en__head">
         <SectionHead id="en-title" title={title} measure={18} reveal />
@@ -21,10 +24,10 @@ const liveOther = other.filter((o) => isLive(o.key));
           <li class:list={['en__card', 'card-link', `en__card--${i}`]} data-spotlight>
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
             <p class="en__who">{c.who}</p>
-            <h3 class="en__h3"><a href={ROUTES[c.key].path} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={c.key}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
+            <h3 class="en__h3"><a href={cardHref(c)} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={isLive(c.key) ? c.key : 'clarity'}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
             <ul role="list" class="en__meta">{c.meta.map((m) => <li class="tag">{m}</li>)}</ul>
             <p class="en__body">{c.body}</p>
-            <p class="en__more" aria-hidden="true">{c.linkLabel}<span class="en__arrow icon--dir">→</span></p>
+            <p class="en__more" aria-hidden="true">{cardLabel(c)}<span class="en__arrow icon--dir">→</span></p>
           </li>
         ))}
       </ol>

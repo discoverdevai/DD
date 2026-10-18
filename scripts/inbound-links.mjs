@@ -3,7 +3,8 @@
 import { pages, sitemapRoutes, redirectSources, mainOf, internalLinks, report } from './lib/dist.mjs';
 
 const MIN = 3;
-const EXEMPT = new Set(['/privacy', '/terms']);
+// /book is exempt while V1.0 is a one-page site (03 §2V1): only home and the 404 page have a <main> to link from.
+const EXEMPT = new Set(['/privacy', '/terms', '/book']);
 const all = pages();
 const routes = new Set(all.map((p) => p.route));
 const isFile = (r) => /\.[a-z0-9]+$/i.test(r); // /insights/rss.xml, /llms.txt, assets

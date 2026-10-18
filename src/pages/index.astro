@@ -5,6 +5,8 @@ import CtaBand from '../components/sections/CtaBand.astro';
 // capabilities board, case metric, two-tone why + pillars, split FAQ, horizon closer.
 // Oct 18 cut (docs/review/home-review-oct18/duplication-and-cuts.md, 03 §2A): one job per section. Lifecycle merged into the
 // Way, What we build is one line in Engagements, Why removed, one chapter, one case, three reviews.
+// V1.0 (03 §2V1, Oct 18): one-page site in 9 sections: hero, clients, problem, services, the Way, work, reviews, FAQ,
+// closing band. Guides moved to V1.2; links to switched-off pages are dropped.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHero from '../components/sections/HomeHero.astro';
 import ProofBand from '../components/sections/ProofBand.astro';
@@ -17,9 +19,8 @@ import FaqSplit from '../components/sections/FaqSplit.astro';
 import Showcase from '../components/sections/Showcase.astro';
 import Chapters from '../components/work/Chapters.astro';
 import Reviews from '../components/sections/Reviews.astro';
-import Guides from '../components/sections/Guides.astro';
 import { howWeWork } from '../content/copy/en/how-we-work';
-import { href } from '../data/routes';
+import { href, isLive } from '../data/routes';
 import { home as c } from '../content/copy/en/home';
 import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../lib/seo';
 
@@ -29,16 +30,18 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd} footerProof={false}>
   <HomeHero />
   <ProofBand title={c.proofStrip.title} logosTitle={c.proofStrip.logosTitle} clientRoles={c.proofStrip.clientRoles} map={c.proofStrip.map} items={c.proofStrip.items} projects={c.proofStrip.projects} />
+  <Statement id="why" label={c.problem.label} bright={c.problem.bright} dim={c.problem.dim} />
+  <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} scope={c.engagements.scope} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} display split>
-    <AgileSplit body={c.agile.body} more={{ label: howWeWork.more, href: href('howWeWork') }}>
+    <AgileSplit body={c.agile.body} more={isLive('howWeWork') ? { label: howWeWork.more, href: href('howWeWork') } : undefined}>
       <WayFlow {...c.agile.flow} />
     </AgileSplit>
   </Statement>
-  <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} scope={c.engagements.scope} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
-  <Chapters only={['njwar']} />
-  <Showcase />
+  <div id="work">
+    <Chapters only={['njwar']} />
+    <Showcase />
+  </div>
   <Reviews {...c.reviews} />
-  <Guides {...c.guides} />
   <FaqSplit title={c.faq.title} items={c.faq.items} />
   <CtaBand size="large" tier="primary" kind="clarity" page="home" title={c.band.title} body={c.band.body} />
 </BaseLayout>

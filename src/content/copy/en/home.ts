@@ -89,9 +89,9 @@ export const home = {
     title: 'Three ways to work with us',
     lead: 'Start where you are. Validate’s fee credits toward Build.',
     cards: [
-      { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate' },
-      { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build' },
-      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated product team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control.', linkLabel: 'See Scale' },
+      { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate', bookLabel: 'Book a call about Validate' },
+      { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build', bookLabel: 'Book a call about Build' },
+      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated product team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control.', linkLabel: 'See Scale', bookLabel: 'Book a call about Scale' },
     ],
     scope: { label: 'What we build', text: 'Web and mobile apps, AI agents and chatbots in Arabic and English, APIs and enterprise systems, data and cloud.' },
     otherTitle: 'Other ways in',
@@ -120,6 +120,8 @@ export const home = {
     allLabel: 'All guides',
     check: { title: 'Take the launch check', body: '10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive.', cta: 'Start the check' },
   },
+  // §2V1 section 3: the problem, as a two-tone statement (core idea, 03 §0).
+  problem: { label: 'Why DiscoverDev', bright: 'Most teams just build what you ask for.', dim: 'We help you build the right thing, then ship it fast, and you own all of it.' },
   faq: {
     title: 'Questions founders ask us',
     items: [

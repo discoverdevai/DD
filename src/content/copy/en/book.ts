@@ -5,6 +5,7 @@ export const book = {
     description: 'Book a 5-day Launch-Ready Review of your app, or a free 30-minute clarity call. No pitch. Pick a time that works for you in the US or the Gulf.',
   },
   h1: 'Book a review or a free clarity call',
+  h1Clarity: 'Book a free clarity call', // V1.0: the Review is offered from V1.2 (03 §2V1)
   options: {
     review: { tab: 'Launch-Ready Review', text: 'For an app that works in the demo but isn’t ready to launch. Start with a free 30-minute scoping call. You get a fixed fee before anything starts.' },
     clarity: { tab: 'Clarity call', text: 'For an idea, a new build, a growing product or anything else. 30 minutes, no pitch.' },

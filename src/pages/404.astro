@@ -24,8 +24,9 @@ const links = [
         {links.map((l) => <li><a href={l.path}>{l.label}</a></li>)}
       </ul>
       <div class="nf__cta">
-        <CtaLink href={bookHref('review')} ctaId="notfound_end_review" tier="primary" position="end" target="review" wide>{t('cta.review')}</CtaLink>
-        <CtaTerms kind="review" />
+        {isLive('review')
+          ? <><CtaLink href={bookHref('review')} ctaId="notfound_end_review" tier="primary" position="end" target="review" wide>{t('cta.review')}</CtaLink><CtaTerms kind="review" /></>
+          : <><CtaLink href={bookHref('clarity')} ctaId="notfound_end_clarity" tier="primary" position="end" target="clarity" wide>{t('cta.clarity')}</CtaLink><CtaTerms kind="clarity" /></>}
       </div>
       <p class="small muted">{c.help} <a href={`mailto:${t('contact.email')}`} dir="ltr">{t('contact.email')}</a>.</p>
     </div>

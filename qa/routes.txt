@@ -1,21 +1,9 @@
 # Launch routes (context/04 §1.1). One per line. Lines starting with ? are optional (warn if missing).
+# Release V1.0 (Oct 18, 03 §2V1): one-page site. Later routes are listed as comments and move back up per release.
 /
-/launch-ready
-/validate
-/build
-/scale
-/partners
-/work
-/work/edtech-ai-agents
-/insights
-/insights/ai-app-to-production
-/insights/ai-built-app-security-holes
-/insights/lovable-launch-checklist
-?/insights/fix-or-rebuild-ai-app
-/how-we-work
-/about
-/launch-check
 /book
 /book/confirmed
 /privacy
 /terms
+# V1.1: /validate /build /scale /work /work/edtech-ai-agents /how-we-work /about
+# V1.2: /launch-ready /partners /launch-check /insights /insights/ai-app-to-production /insights/ai-built-app-security-holes /insights/lovable-launch-checklist /insights/fix-or-rebuild-ai-app

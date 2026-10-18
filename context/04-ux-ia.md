@@ -14,6 +14,8 @@ Read with: `03-copy.md` (all words on the page), `05-seo-aeo.md` (titles, metas,
 
 ## 1. Sitemap (all routes)
 
+**Releases (Oct 18):** V1.0 ships only `/`, `/book`, `/book/confirmed`, `/privacy`, `/terms`, `/404` (one-page site, `03` §2V1). Other routes below are built but switched off (`live: false`) until V1.1 (services, work, case, how we work, about) and V1.2 (launch-ready, partners, launch-check, insights). Plan: `docs/plan/site-map-plan.md` §8.
+
 Legend: `idx` = indexable + in sitemap · `noidx` = `<meta name="robots" content="noindex, follow">`, excluded from sitemap · `gate` = ships only when the gate is met.
 
 ```

@@ -36,7 +36,8 @@ export const GET: APIRoute = async () => {
     '',
     `Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct): ${CLUTCH_URL}`,
     '',
-    ...(services.length ? ['## Services', ...services, ''] : []),
+    // V1.0 (03 §2V1): while the service pages are off, the three offers are listed as text and point to the home section.
+    ...(services.length ? ['## Services', ...services, ''] : ['## Services', ...SERVICES.slice(0, 3).map(([, n, d]) => `- ${n}: ${d}`), `- Details: ${SITE_URL}/#services`, '']),
     ...(work.length ? ['## Work', ...work, ''] : []),
     ...(guides.length ? ['## Guides', ...guides, ''] : []),
     '## Company',

@@ -6,7 +6,7 @@ import ProjectVisual from '../work/ProjectVisual.astro';
 import { projects, showcase as c } from '../../content/copy/en/projects';
 import { href, isLive } from '../../data/routes';
 const tile = c.ids.map((id) => projects.find((p) => p.id === id)).find((p): p is NonNullable<typeof p> => Boolean(p));
-const target = tile?.link && isLive(tile.link) ? href(tile.link) : href('work');
+const target = tile?.link && isLive(tile.link) ? href(tile.link) : isLive('work') ? href('work') : undefined;
 const stageName = (s: keyof typeof c.stages) => c.stages[s];
 ---
 {tile && (
@@ -20,10 +20,10 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
         <div class="sc__vis"><ProjectVisual project={tile} sizes="(min-width: 64rem) 45vw, 100vw" /></div>
         <div class="sc__body">
           <p class="sc__meta"><span class="sc__stage">{stageName(tile.stage)}</span>{tile.industry}{tile.where && ` · ${tile.where}`}</p>
-          <h3 class="sc__h"><a href={target}>{tile.title}</a></h3>
+          <h3 class="sc__h">{target ? <a href={target}>{tile.title}</a> : tile.title}</h3>
           {tile.metric && <p class="sc__metric"><b>{tile.metric.value}</b><span>{tile.metric.label}</span></p>}
           {tile.result && <p class="sc__txt">{tile.result}</p>}
-          {tile.link && <p class="sc__more" aria-hidden="true">{c.caseLink}<span class="icon--dir"> →</span></p>}
+          {tile.link && target && <p class="sc__more" aria-hidden="true">{c.caseLink}<span class="icon--dir"> →</span></p>}
         </div>
       </div>
     </div>

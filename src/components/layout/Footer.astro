@@ -16,6 +16,13 @@ const columns = [
   { title: t('footer.insights'), items: col([{ key: 'insights', label: t('footer.guides') }, { key: 'launchCheck', label: t('footer.launchCheck') }]) },
   { title: t('footer.company'), items: col([{ key: 'about', label: t('footer.about') }, ...(isLive('book') ? [{ href: bookHref('clarity'), label: t('footer.book') }] : []), { key: 'privacy', label: t('footer.privacy') }, { key: 'terms', label: t('footer.terms') }]) },
 ].filter((c) => c.items.length > 0);
+// V1.0 (one-page site, 03 §2V1): while the service pages are off, the footer links to the home sections instead.
+if (!['validate', 'build', 'scale'].some((k) => isLive(k as RouteKey))) {
+  columns.unshift({ title: t('footer.explore'), items: [
+    { href: '/#services', label: t('nav.services') }, { href: '/#how-we-work', label: t('nav.how') },
+    { href: '/#work', label: t('nav.work') }, { href: '/#reviews', label: t('nav.reviews') }, { href: '/#faq', label: t('nav.faq') },
+  ] });
+}
 // `proof`: the rating line; home shows it in the hero and above the reviews, so its footer hides it (Oct 18).
 interface Props { proof?: boolean }
 const { proof = true } = Astro.props;

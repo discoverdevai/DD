@@ -15,12 +15,14 @@ Data limits: keyword volumes are US monthly averages from seodata.dev (Google Ad
 
 ## 1. Keyword map per page
 
+**V1.0 (Oct 18, one-page site, 03 §2V1):** only `/` and `/book` are indexable at launch. The service keywords (MVP development, product discovery, dedicated team) are carried by the home H2s and the services section until V1.1 switches their owner pages on.
+
 Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = directories, big outsourcers. Volumes: seodata.dev, US.
 
 | Page | Primary kw | Secondaries | Intent | Diff |
 |---|---|---|---|---|
 | `/` | product development company for startups (est.) | DiscoverDev (brand); software development company for startups; AI-accelerated software development; AI development company Egypt; senior product team US GCC | Nav + commercial | Brand L / generic H |
-| `/how-we-work` | How We Work: The DiscoverDev Way \| DiscoverDev | How every DiscoverDev project runs: discover, plan, build, ship and stay. The frameworks we use and what you get, for new and existing products. | How we work |
+| `/how-we-work` | software development process (est.) | how we work agile AI; AI-accelerated development process; senior engineer sign-off | Info / commercial | L |
 | `/launch-ready` | vibe code audit (est.) | Lovable app security review; AI-built app production readiness; Bolt / Cursor app code review; Supabase security audit | Commercial / transactional | M |
 | `/validate` | product discovery services (est.) | product discovery phase (50, 2026-08); startup idea validation service; MVP scoping; clickable prototype fixed estimate | Commercial | M |
 | `/build` | MVP development company (590, 2026-07, CPC $23) | MVP development services (880); mvp software development company (210); fixed price MVP development; MVP development company in USA (70) | Commercial | H |
@@ -41,6 +43,7 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 | Page | Title | Meta description | H1 |
 |---|---|---|---|
 | `/` | Product & Engineering Partner for Founders \| DiscoverDev | Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all. | Turn your idea into a live product in weeks. |
+| `/how-we-work` | How We Work: The DiscoverDev Way \| DiscoverDev | How every DiscoverDev project runs: discover, plan, build, ship and stay. The frameworks we use and what you get, for new and existing products. | How we work |
 | `/launch-ready` | Vibe Code Audit for Lovable, Bolt & Cursor \| DiscoverDev | A 5-day Launch-Ready Review of your AI-built app: security, data rules, payments, scale. Fixed fee, credited toward the fix. No useful findings, no charge. | Launch-Ready Review |
 | `/validate` | Product Discovery Services for Startups \| DiscoverDev | Validate your idea in 1–2 weeks: market read, scope, clickable prototype and a fixed build estimate. The fee credits toward your build. | Validate: discovery before code |
 | `/build` | Fixed-Price MVP Development in 8–12 Weeks \| DiscoverDev | A senior team takes your MVP from scope to production in 8–12 weeks at a fixed price. Or we rebuild your AI prototype properly. You own all the code. | Build: an MVP in 8–12 weeks |

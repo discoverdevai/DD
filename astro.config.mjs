@@ -2,7 +2,30 @@
 import { defineConfig, fontProviders, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, rmSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { ROUTES } from './src/data/routes.ts';
+
+// Releases (Oct 18, 03 §2V1): routes with `live: false` are removed from the build output, the sitemap and their share
+// images, so a release ships only its own pages. Insights articles go with the hub. Flip `live` in routes.ts per release.
+/** @type {string[]} */
+const OFF = Object.values(ROUTES).filter((r) => !r.live).map((r) => r.path);
+const OFF_PREFIX = ROUTES.insights.live ? [] : ['/insights'];
+/** @param {string} p */
+const isOff = (p) => OFF.includes(p) || OFF_PREFIX.some((x) => p === x || p.startsWith(`${x}/`));
+/** @type {import('astro').AstroIntegration} */
+const release = {
+  name: 'release',
+  hooks: {
+    'astro:build:done': ({ dir, logger }) => {
+      const root = fileURLToPath(dir);
+      const gone = [];
+      for (const p of OFF) for (const f of [`${p}.html`, `og${p}.png`]) { const full = `${root}${f.slice(f.startsWith('/') ? 1 : 0)}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
+      for (const p of OFF_PREFIX) for (const d of [p.slice(1), `og${p}`]) { const full = `${root}${d}`; if (existsSync(full)) { rmSync(full, { recursive: true }); gone.push(`${d}/`); } }
+      logger.info(`switched-off pages removed: ${gone.length}`);
+    },
+  },
+};
 
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
 const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\//;
@@ -20,7 +43,8 @@ export default defineConfig({
   site: 'https://discoverdev.ai',
   output: 'static',
   trailingSlash: 'never',
-  build: { format: 'file' },
+  // Oct 18: inline stylesheets so the home page paints without extra render-blocking requests (LCP budget).
+  build: { format: 'file', inlineStylesheets: 'always' },
   // Scope component CSS with a class instead of a data attribute: same specificity, ~7 KB less HTML on the home page.
   scopedStyleStrategy: 'class',
   // Shiki writes inline styles, which the meta CSP blocks (docs/PLAN.md A6). Code blocks are decided in M5.
@@ -29,8 +53,9 @@ export default defineConfig({
   i18n: { locales: ['en'], defaultLocale: 'en', routing: { prefixDefaultLocale: false } },
   integrations: [
     mdx(),
+    release,
     sitemap({
-      filter: (page) => !NOT_IN_SITEMAP.test(new URL(page).pathname.replace(/\/$/, '')),
+      filter: (page) => { const p = new URL(page).pathname.replace(/\/$/, '') || '/'; return !NOT_IN_SITEMAP.test(p) && !isOff(p); },
       serialize: (item) => {
         const d = LASTMOD[new URL(item.url).pathname.replace(/\/$/, '')];
         return d ? { ...item, lastmod: new Date(d).toISOString() } : item;

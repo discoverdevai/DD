@@ -14,9 +14,16 @@ const { variant = 'default', current = Astro.url.pathname } = Astro.props;
 const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 'build', 'scale', 'review', 'partners'] as const)
   .filter(isLive)
   .map((key) => ({ key, label: t(`nav.${key}`), who: t(`nav.${key}.who`) }));
-// Strategy v2 (03 §1.1): "How we work" anchors to the DiscoverDev Way section on home.
-const HOW = { path: '/how-we-work', label: t('nav.how') }; // detailed page since Oct 16 (04)
-const TOP: { key: RouteKey; label: string }[] = (['work', 'insights', 'about'] as const).filter(isLive).map((key) => ({ key, label: t(`nav.${key}`) }));
+// Nav links. A section that has no live page falls back to its anchor on home, so V1.0 (one-page site, 03 §2V1) reads:
+// Services · How we work · Work · Reviews · FAQ, all jumping to home sections. Pages switch back in per release.
+type NavLink = { href: string; label: string };
+const LINKS: NavLink[] = [
+  ...(SERVICES.length === 0 ? [{ href: '/#services', label: t('nav.services') }] : []),
+  { href: isLive('howWeWork') ? ROUTES.howWeWork.path : '/#how-we-work', label: t('nav.how') },
+  { href: isLive('work') ? ROUTES.work.path : '/#work', label: t('nav.work') },
+  ...(isLive('insights') ? [{ href: ROUTES.insights.path, label: t('nav.insights') }] : [{ href: '/#reviews', label: t('nav.reviews') }]),
+  ...(isLive('about') ? [{ href: ROUTES.about.path, label: t('nav.about') }] : [{ href: '/#faq', label: t('nav.faq') }]),
+];
 const isCurrent = (path: string) => current.replace(/\.html$/, '').replace(/\/$/, '') === path.replace(/\/$/, '');
 const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
 ---
@@ -39,8 +46,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
               </ul>
             </li>
           )}
-          <li><a href={HOW.path}>{HOW.label}</a></li>
-          {TOP.map((i) => <li><a href={ROUTES[i.key].path} aria-current={isCurrent(ROUTES[i.key].path) ? 'page' : undefined}>{i.label}</a></li>)}
+          {LINKS.map((l) => <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a></li>)}
         </ul>
       </nav>
     )}
@@ -56,7 +62,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
       <a href="/" class="site-header__back" data-back><Icon name="arrow-left" size={16} directional />{t('back')}</a>
     )}
   </div>
-  {variant === 'default' && <MobileMenu services={SERVICES} top={TOP} how={HOW} />}
+  {variant === 'default' && <MobileMenu services={SERVICES} links={LINKS} />}
 </header>
 
 <style>

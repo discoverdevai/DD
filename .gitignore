@@ -38,3 +38,4 @@ assets/clients/mono/
 # Local preview server config
 .claude/launch.json
 .baseline/
+docs/review/v1/

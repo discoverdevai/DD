@@ -33,8 +33,8 @@ const dir = path.join(process.cwd(), 'assets/clients');
 const logos = showLogos
   ? await Promise.all(eligible.map(async (l) => {
       const buf = await sharp(path.join(dir, l.file))
-        .resize(96, 96, { fit: l.fit === 'contain' ? 'contain' : 'cover', background: '#ffffff' })
-        .webp({ quality: 75 })
+        .resize(88, 88, { fit: l.fit === 'contain' ? 'contain' : 'cover', background: '#ffffff' })
+        .webp({ quality: 55, effort: 6 })
         .toBuffer();
       return { ...l, src: `data:image/webp;base64,${buf.toString('base64')}` };
     }))
@@ -55,8 +55,8 @@ const logos = showLogos
   {showLogos ? (
     <div class="pband__strip">
       <div class="pband__track">
-        {[0, 1].map((copy) => (
-          <ul role="list" class="pband__clients" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {[0].map((copy) => (
+          <ul role="list" class="pband__clients">
             {logos.map((l) => (
               <li class="pband__client">
                 <img src={l.src} alt="" width="44" height="44" loading="lazy" decoding="async" class:list={{ 'is-contain': l.fit === 'contain' }} />
@@ -125,8 +125,9 @@ const logos = showLogos
   .pband__client strong { font-family: var(--ff-heading); font-size: var(--text-sm); color: var(--color-heading); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .pband__client span { font-size: var(--text-xs); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (prefers-reduced-motion: no-preference) {
-    .pband__track { animation: pband-scroll 90s linear infinite; }
-    :dir(rtl) .pband__track { animation-name: pband-scroll-rtl; }
+    /* The loop copy is added by the script (data-loop), so the inlined logos are in the HTML once (Oct 18, LCP budget). */
+    .pband[data-loop] .pband__track { animation: pband-scroll 90s linear infinite; }
+    :dir(rtl) .pband[data-loop] .pband__track { animation-name: pband-scroll-rtl; }
     .pband__strip:hover .pband__track, .pband[data-paused] .pband__track { animation-play-state: paused; }
     @keyframes pband-scroll { to { transform: translateX(-50%); } }
     @keyframes pband-scroll-rtl { to { transform: translateX(50%); } }
@@ -186,6 +187,15 @@ const logos = showLogos
 <script>
   // Pause for the moving client row (WCAG 2.2.2): keyboard = the focus-only button; touch = tap the row. Mouse hover
   // pauses in CSS. Without JS the row still pauses on hover, and reduced motion keeps it still.
+  document.querySelectorAll<HTMLElement>('.pband__track').forEach((track) => {
+    const first = track.querySelector('.pband__clients');
+    const band = track.closest<HTMLElement>('.pband');
+    if (!first || !band || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const copy = first.cloneNode(true) as HTMLElement;
+    copy.setAttribute('aria-hidden', 'true');
+    track.append(copy);
+    band.setAttribute('data-loop', '');
+  });
   document.querySelectorAll<HTMLButtonElement>('[data-pband-toggle]').forEach((btn) => {
     const band = btn.closest<HTMLElement>('.pband');
     if (!band) return;

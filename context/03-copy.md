@@ -296,6 +296,16 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 
 ---
 
+## 2V1. V1.0 release: one-page site (Oct 18, Mohamed; plan `docs/plan/site-map-plan.md` §8–9)
+- **Live pages:** `/` · `/book` · `/book/confirmed` (noindex) · `/privacy` · `/terms` · `/404`. Every other page is switched off (`live: false`), not built into the live site and not linked, until its release (V1.1 services and proof; V1.2 Review, Partners, launch check, Insights).
+- **Home order (9 sections):** 1 Hero (§2A.1) · 2 Client cards + map (§2A.3) · 3 Problem (below) · 4 Three ways to work (§2A.6) · 5 The DiscoverDev Way (§2A.4) · 6 Projects: chapter + showcase (§2A.8a, §2A.8b) · 7 Reviews (§2A.8c) · 8 FAQ (§2A.10) · 9 Closing band (§2A.11).
+- **Section 3 · Problem** (id `why`, two-tone statement): Label: Why DiscoverDev · Bright: Most teams just build what you ask for. · Dim: We help you build the right thing, then ship it fast, and you own all of it. (Core idea, §0.)
+- **Header (V1):** Services (→ #services) · How we work (→ #how-we-work) · Work (→ #work) · Reviews (→ #reviews) · FAQ (→ #faq) · CTA: Book a free clarity call.
+- **Offer cards (V1):** each card's link goes to the booking page instead of its service page: "Book a call about Validate" / "Book a call about Build" / "Book a call about Scale" (→ /book?type=clarity). The scope line stays. The "Other ways in" row (Review, Partners) is hidden until V1.2.
+- **Removed from home in V1:** Guides and tools (§2A.9b), the How-we-work page link under §2A.4, the FAQ link to the pillar guide (answer text stays), any link to a switched-off page.
+- **Booking and 404 (V1):** `/book` offers the clarity call only (H1: Book a free clarity call; the Review tab is hidden and `?type=review` falls back to the clarity call); the 404 end button is Book a free clarity call. Both return to the Review in V1.2.
+- **Footer (V1):** entity line, core idea, email, locations, languages, rating + Clutch link; links: Services · How we work · Work · Reviews · Book; legal: Privacy · Terms.
+
 ## 2A. Home v3 (/) · strategy v2, 2026-10-16
 
 Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 proof strip, §2.8 case highlight (anonymized per §0.7). The Review copy in §2.2a, §2.2b, §2.5 and §2.6 moves to /launch-ready and is not shown on home. Facts trace to `09` (Method, Offer, Services catalog, Differentiators).
