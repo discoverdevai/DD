@@ -114,7 +114,7 @@ export const privacy: LegalDoc = {
       id: 'transfers',
       heading: 'Where your data is processed',
       blocks: [
-        { p: ['Our providers are based in, or process data in, the United States and the European Union, and Cloudflare serves pages from data centres around the world. Our team works from Egypt and the United States. This means your data may be processed outside the country where you live, including in countries whose data protection laws differ from yours.'] },
+        { p: ['Our providers are based in, or process data in, the United States and the European Union, and Cloudflare serves pages from data centres around the world. Our team works from Egypt, and we have a presence in Texas, USA. This means your data may be processed outside the country where you live, including in countries whose data protection laws differ from yours.'] },
         { p: ['Where the law requires it, we rely on the transfer safeguards our providers offer, such as standard contractual clauses. We share only what each provider needs to do its job.'] },
       ],
     },

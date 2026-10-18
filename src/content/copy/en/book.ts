@@ -18,7 +18,7 @@ export const book = {
     loading: 'Loading available times…',
     failed: 'The calendar didn’t load. Refresh the page, or email hello@discoverdev.ai and we’ll send you times.',
     direct: 'Book on Cal.com',
-    cookies: 'Booking runs on Cal.com. We use your answers only to prepare for your call. Cal.com may set its own cookies when you book.',
+    cookies: 'Booking runs on Cal.com. We use your answers to prepare for your call and to see which pages lead to bookings. Cal.com may set its own cookies when you book.',
     privacyLink: 'Read our privacy policy',
   },
   call: {
@@ -26,12 +26,12 @@ export const book = {
     items: [
       'We ask what you built, or plan to build, and what worries you.',
       'We tell you plainly what we’d do, and what we wouldn’t.',
-      'You leave with a next step, and a fixed price if a Review or project fits.',
+      'You leave with a next step, and a fixed price if a project fits.',
     ],
     // V16 → §0.7 keep, no name or photo (D-16).
     who: 'Who you’ll meet: a senior member of our product team.',
   },
-  terms: { title: 'What you can count on', items: ['No pitch.', 'No useful findings, no charge (Launch-Ready Review).', 'NDA on request.'] },
+  terms: { title: 'What you can count on', items: ['No pitch.', 'NDA on request.'] },
   write: {
     title: 'Prefer to write?',
     // [WHATSAPP] and V7 reply-time promise omitted (D-09, D-10).

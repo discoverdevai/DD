@@ -10,7 +10,7 @@ export const home = {
     ogEyebrow: 'AI drafts. Seniors sign off.', // share image only; the on-page pill was removed Oct 18
     h1: 'Turn your idea into a live product in weeks.',
     h1Accent: 'a live product',
-    sub: 'DiscoverDev builds it with senior engineers and AI, in 8–12 weeks. You own everything.',
+    sub: 'DiscoverDev builds it with senior engineers and AI. Build takes 8–12 weeks, and you own everything.',
   },
   proofStrip: {
     // §2A.3 facts map (09 countries).
@@ -25,7 +25,7 @@ export const home = {
       legendHome: 'Where we are: Texas, USA and Alexandria, Egypt (engineering hub)',
     },
     title: 'What we’ve built',
-    logosTitle: 'Teams we’ve built for',
+    logosTitle: 'Teams we’ve worked with',
     // §2A.3 one line per client card (09).
     clientRoles: {
       'edulens': 'EdTech AI platform · Egypt',
@@ -54,7 +54,7 @@ export const home = {
     label: 'The DiscoverDev Way',
     bright: 'Discover first. Build with AI. Seniors sign off.',
     dim: '',
-    body: 'The DiscoverDev Way is how every project runs. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality.',
+    body: 'The DiscoverDev Way is how every project runs. AI drafts the work, so it moves fast. A senior engineer signs off every release, so speed never costs you quality.',
     line: 'AI drafts it. A senior engineer signs it.',
     // §2A.4 journey visual (Oct 16): Discover → AI drafts → A senior signs → Live.
     flow: {
@@ -62,11 +62,11 @@ export const home = {
       steps: [
         { title: 'Discover', line: 'The right thing, sketched first.' },
         { title: 'AI drafts', line: 'AI writes the first draft from the agreed spec.' },
-        { title: 'A senior signs', line: 'A senior engineer reviews it and signs it off.' },
+        { title: 'A senior signs', line: 'A senior engineer signs off the release.' },
         { title: 'Live', line: 'Your users get it, and we keep improving it.' },
       ],
       tag: 'AI draft',
-      checks: ['Review of every change', 'Security, data and payments', 'Sign-off on every release'],
+      checks: ['Decisions made by senior engineers', 'Sign-off on every release'],
       stamp: 'Signed off',
       live: 'Live',
     },
@@ -90,7 +90,7 @@ export const home = {
     cards: [
       { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate', bookLabel: 'Book a call about Validate' },
       { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build', bookLabel: 'Book a call about Build' },
-      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated development team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM who runs the roadmap with you. You keep control.', linkLabel: 'See Scale', bookLabel: 'Book a call about Scale' },
+      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated development team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated team of developers, testers and a project manager who runs the roadmap with you. You keep control.', linkLabel: 'See Scale', bookLabel: 'Book a call about Scale' },
     ],
     scope: { label: 'What we build', text: 'Web and mobile apps, AI agents and chatbots in Arabic and English, APIs and enterprise systems, data and cloud.' },
     otherTitle: 'Other ways in',
@@ -103,13 +103,13 @@ export const home = {
     title: 'What clients say about working with us',
     cta: false, // no button in the reviews section (03 §2A.8c, Oct 18)
     items: [
-      { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: "Youssef", role: "CEO, EduLens", service: "Build · AI agents · EdTech" },
+      { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: "Youssef", role: "CEO, EduLens", service: "Build" },
       { quote: "The quality of their work is top-notch.", name: "CEO", role: "Nile Support, USA", service: "Build · AI agents, website and staff augmentation" },
       { quote: "Professional work and great communication.", name: "Nojoud Alarfaj", role: "Athkado, Saudi Arabia", service: "Build · White-label and e-commerce" },
       { quote: "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!", name: "Michelle Boehm", role: "Academic researcher, Switzerland", service: "Research · ML algorithms and data analysis" },
       { quote: "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable.", name: "Roberto", role: "Fantacalcio", service: "Validate · Market research · Fantasy football" },
-      { quote: "Thank you for going above and beyond.", name: "Farah Alkhaldi", role: "Consulting firm, Kuwait", service: "Validate · Market research · Tourism and hospitality" },
-      { quote: "I will become a regular customer going forward now.", name: "Andrei Chejneanu", role: "Entrepreneur, UK", service: "Validate · Market research · Saudi Arabia expansion" },
+      { quote: "Thank you for going above and beyond.", name: "Farah Alkhaldi", role: "Consulting firm, Kuwait", service: "Market research · Tourism and hospitality" },
+      { quote: "I will become a regular customer going forward now.", name: "Andrei Chejneanu", role: "Entrepreneur, UK", service: "Market research · Auto spare parts and trucking in Saudi Arabia" },
       { quote: "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time.", name: "Lea Nechitailo", role: "Entrepreneur, Spain", service: "Validate · Market research · Brand expansion" },
     ],
   },
@@ -124,14 +124,14 @@ export const home = {
   faq: {
     title: 'Questions founders ask us',
     items: [
-      { id: 'ai', q: 'Is AI-written code safe to ship?', a: 'Yes. AI drafts code, tests and documentation. Senior engineers make the decisions, review every change and sign off each release.' },
+      { id: 'ai', q: 'Is AI-written code safe to ship?', a: 'Yes. AI drafts code, tests and documentation. Senior engineers make the decisions and sign off each release. A person is responsible for every line that reaches your users.' },
       { id: 'pricing', q: 'How does pricing work?', a: 'Validate is a fixed fee, credited toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer. You get a number after a free 30-minute clarity call, before you commit to anything.' },
       { id: 'timeline', q: 'How long does it take to build an MVP?', a: 'Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.' },
       { id: 'call', q: 'What happens on the clarity call?', a: 'You get 30 minutes to tell us what you’re building. No pitch. You leave with a next step, even if we’re not the right fit.' },
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.' },
       { id: 'take-over', q: 'We already built something with AI or a freelancer. Can you take it over?', a: 'Yes. A senior team can review what you have in about 5 working days and tell you what to keep, fix or replace, and why. Then we fix it or build it properly. Start with a free clarity call.', link: { label: 'Read the guide to taking an AI-built app to production', to: 'pillar' as const } }, // 03 §0.8
       { id: 'stacks', q: 'Which tools and stacks do you work with?', a: 'React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure. For AI: OpenAI, LangChain, RAG, computer vision and NLP.' },
-      { id: 'time-zones', q: 'Your team is in Egypt. Will time zones be a problem?', a: 'Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US mornings and Europe, and Gulf time is 0–2 hours ahead. We work in Arabic and English, and we have a presence in Texas, USA. Calls run in US and Gulf hours.' },
+      { id: 'time-zones', q: 'Your team is in Egypt. Will time zones be a problem?', a: 'Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US mornings and Europe. We work in Arabic and English, and we have a presence in Texas, USA. Calls run in US and Gulf hours.' },
     ],
   },
   band: {

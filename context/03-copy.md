@@ -305,7 +305,7 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
   - /book title (38): Book a Free Clarity Call | DiscoverDev · Meta (150): Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step. (clarity call only; the Review title and meta return in V1.2).
   - Defining sentence, first line of the Services section lead (§2A.6): DiscoverDev is a product and engineering company for startups and growing teams. Start where you are. Validate's fee credits toward Build.
   - Scale card Kind: Dedicated development team (was Dedicated product team; matches the keyword map and schema).
-  - Anonymized EdTech tile result, with a subject so it can be quoted alone: An EdTech platform cut its AI costs by 60–90%, depending on cache hit rate and caption availability, and cost now grows slower than the user base.
+  - Anonymized EdTech tile result, with a subject so it can be quoted alone: An EdTech platform cut its AI costs by 60–90%, depending on how often content is reused, and cost now grows slower than the user base.
   - Map (D-08, presence only): legend "Where we are: Texas, USA and Alexandria, Egypt (engineering hub)"; map label "...with a presence in Texas, USA and our engineering hub in Alexandria, Egypt."
 - **Header (V1):** Services (→ #services) · How we work (→ #how-we-work) · Work (→ #work) · Reviews (→ #reviews) · FAQ (→ #faq) · CTA: Book a free clarity call.
 - **Offer cards (V1):** each card's link goes to the booking page instead of its service page: "Book a call about Validate" / "Book a call about Build" / "Book a call about Scale" (→ /book?type=clarity&interest=validate|build|scale, so analytics and the booking prefill know which offer was picked). The scope line stays. The "Other ways in" row (Review, Partners) is hidden until V1.2.
@@ -347,12 +347,12 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - Payments tested end to end
 - Release card: Release 0.4 · Shipped to staging · Signed off by a senior engineer · Weekly demo with you
 - Footer line: A person is responsible for every line that reaches your users.
-- Caption (screen readers): Example of a sprint the DiscoverDev Way: AI drafts the work, then senior engineers review and approve it before release.
+- Caption (screen readers): Example of a sprint run the DiscoverDev Way: AI drafts the work, then a senior engineer signs off the release.
 
 ### 2A.3 Proof band ("What we've built"; logos or projects, never mixed; Oct 16)
 - Oct 16: Mohamed approved all ten logos (EduLens, Upscend, Arheb, Nile Support, BioBank, Jumlaty, Zest, Continuum Therapy Collective, Rushr, Yawmy Care), so the band shows the logo row.
 - Rule: when 4 or more clients have written consent recorded in `src/data/clients.ts` (D-05), the band shows a still row of their logos (no motion). Until then it shows the four project cards below. Logo candidates (09): Upscend, Zest, Arheb, BioBank, EduLens, Jumlaty, Nile Support, Continuum Therapy Collective (client + clinician consent), Yawmy Care (own product; name to confirm). Rushr: logo only, no descriptor line (Oct 18, decision A1; its case stays hidden, D-07). Continuum Therapy Collective: card hidden until the therapist consents (Oct 18, decision A2). Not candidates until named and added to 09: the "AD" and "F" marks, Darb, Beacon, the resort and Orange logos.
-- Label (logos): Teams we've built for
+- Label (logos): Teams we've worked with
 - Logo style (Mohamed, Oct 16; Oct 18 update): client cards (logo in its own colours + name + one line) in one still, wrapped row. No moving content and no Pause control anywhere on the site (Mohamed, Oct 18: remove components like Pause), so WCAG 2.2.2 does not apply. Card lines (09): edulens: EdTech AI platform · Egypt; upscend: B2B learning platform · UK; arheb: Ride-sharing ML · Saudi Arabia; nile-support: AI call operations · USA; biobank: HealthTech app; jumlaty: Restaurant procurement · Saudi Arabia; rushr: Home-services marketplace · USA; zest: Market study; ctc: Speech therapy practice · USA; yawmy-care: Childcare platform · our product · Label (projects): What we've built
 - Project cards (facts in 09; anonymized per §0.7; stage tag = service name, links to its page):
   1. Build · AI agents for an EdTech platform · Egypt · "Three AI agents in production. AI costs down 60–90%." (→ /work/edtech-ai-agents)
@@ -367,9 +367,9 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
 - Label: The DiscoverDev Way
 - H2: Discover first. Build with AI. Seniors sign off.
-- Body (Oct 18, shortened; "before any code" and the weekly demo now appear once each, in card 1 and in 2A.6): The DiscoverDev Way is how every project runs. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality.
+- Body (Oct 18, shortened; "before any code" and the weekly demo now appear once each, in card 1 and in 2A.6): The DiscoverDev Way is how every project runs. AI drafts the work, so it moves fast. A senior engineer signs off every release, so speed never costs you quality.
 - Link under the journey (Oct 18, moved from the lifecycle section): See how we work in detail → /how-we-work. No button in this section.
-- Was (Oct 16): The DiscoverDev Way is how every project runs. We agree on what is worth building before any code. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality. You see progress every week.
+- Was (Oct 16): The DiscoverDev Way is how every project runs. We agree on what is worth building before any code. AI drafts the work, so it moves fast. A senior engineer signs off every release, so speed never costs you quality. You see progress every week.
   - Oct 16 copy pass: each sentence pairs what we do with what the client gets (speed, quality, visibility).
   - Oct 16 section review (GEO/copy): one defining sentence instead of 60 words that repeated the hero.
 - Columns "What AI does" / "What senior engineers own": removed Oct 16 (batch 2; Mohamed: the hero board and the journey visual already say this). The journey visual (Discover → AI drafts → A senior signs → Live) sits between the body and the line.
@@ -377,7 +377,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - **Journey visual (Oct 16, Mohamed: "from discovery to be live … like visuals for section"):** four cards side by side between the body and the two columns, played once on scroll. Illustration, not a client product; no text inside images.
   - 1 · Discover · Line (Oct 18, takes the "we tell you what to cut" claim from the removed Why section; 02 gap 3): We test the idea, sketch the product and tell you what to cut, before any code.
   - 2 · AI drafts · Card tag (mono): AI draft · Line: AI writes the first draft from the agreed spec.
-  - 3 · A senior signs · Checklist: Review of every change · Security, data and payments · Sign-off on every release · Stamp: Signed off · Line: A senior engineer reviews it and signs it off.
+  - 3 · A senior signs · Checklist: Review of every change · Security, data and payments · Sign-off on every release · Stamp: Signed off · Line: A senior engineer signs off the release.
   - 4 · Live · Chip: Live · Line: Your users get it, and we keep improving it.
   - Visual redesign Oct 16 (Mohamed): one screen in four states on the dark theme; card 3 = the draft made solid with a dark review panel (checks, signature, green stamp), card 4 = the finished screen in brand colour with a rising usage line (no numbers).
   - Oct 16 copy pass: lines say what happens at each step, in the client's terms.
@@ -401,7 +401,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Lead (V1.0.1): DiscoverDev is a product and engineering company for startups and growing teams. Start where you are. Validate's fee credits toward Build.
 - Card · Validate · "I have an idea." · Kind: Product discovery · Meta: 1–2 weeks · Fixed fee · Body: Market and competitor read, product scope, a clickable prototype and a fixed build estimate. · Link: See Validate
 - Card · Build · "I'm ready to build." · Kind: MVP development · Meta: 8–12 weeks · Fixed price · Body: A live product with real users: design, build, QA and deployment, with a demo for you every week. · Link: See Build
-- Card · Scale · "It's working. Grow it." · Kind: Dedicated development team · Meta: Ongoing · Monthly retainer · Body: A dedicated squad of developers, QA and a PM who runs the roadmap with you. You keep control. · Link: See Scale
+- Card · Scale · "It's working. Grow it." · Kind: Dedicated development team · Meta: Ongoing · Monthly retainer · Body: A dedicated team of developers, testers and a project manager who runs the roadmap with you. You keep control. · Link: See Scale
 - Oct 16 section review (SEO/GEO/CRO): each card names its service in the words founders search for (Kind line, matches 05 keywords: product discovery, MVP development, dedicated team); Build body says what you get each week (09: live deployment, weekly demo).
 - Sub-heading: Other ways in
 - Row · Launch-Ready Review · "Already built something?" · Your AI-built or freelancer-built app, reviewed by a senior team in about 5 working days. A ranked fix list and a plain verdict. · Link: See the Review
@@ -425,7 +425,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - The five changes, each with one line (from the case study, /work/edtech-ai-agents): Captions first: Free captions first. Paid transcription only when a video has none. | Reuse across users: Each video is processed once and shared, so repeat views cost close to nothing. | The right model for each task: Lower-cost models by default, larger ones only where they pay off. | Shorter prompts: Each request carries only what the model needs, so fewer tokens are billed. | Faster transcription: Long audio is split into 2-minute chunks and transcribed in parallel.
 
 ### 2A.8b Selected work: bento showcase (Oct 16, Mohamed; replaces the case block §2A.8 and the six-card grid on home)
-- Oct 18: one case only. H2: Selected work (no label above it) · the EdTech tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · result (V1.0.1, names the subject so it can be quoted alone, still anonymous): An EdTech platform cut its AI costs by 60–90%, depending on cache hit rate and caption availability, and cost now grows slower than the user base (09 wording) · Read the case study) · Link: See all our work (→ /work). The other four tiles live on /work.
+- Oct 18: one case only. H2: Selected work (no label above it) · the EdTech tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · result (V1.0.1, names the subject so it can be quoted alone, still anonymous): An EdTech platform cut its AI costs by 60–90%, depending on how often content is reused, and cost now grows slower than the user base (09 wording) · Read the case study) · Link: See all our work (→ /work). The other four tiles live on /work.
 - Was (Oct 16): Label: Selected work · H2: Products we've helped build · Link: See all our work (→ /work)
 - One featured tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · Read the case study) and four tiles (AR furniture store, Embedded product team for a B2B learning platform, Health app that explains lab reports, Customer-support AI agent). Data from `src/content/copy/en/projects.ts` (all lines from 09).
 - Each tile shows a text-free drawing of the product type; a real product screen replaces it once the client approves screens (Mohamed suggested Figma screens, Oct 16; D-05).
@@ -433,7 +433,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 ### 2A.8a Project chapters (Oct 16, Mohamed: Fantasy-style, one product per full screen, in the site theme; above Selected work on home, top of /work)
 - Oct 18: home shows one chapter, NJWAR (it carries the live AR demo); /work shows all. Consent for the NJWAR name and the Saudi Arabia tag is still open (D-05).
 - Each chapter: tags · huge product name · one line · "View project" (→ /work#project-<id>) · real screens from our Figma on 3D devices. Facts from 09.
-- NJWAR · tags Build, E-commerce, AR · Line: An AR furniture store: place a piece in your room at real size, change its colour, rotate it and add more. (Oct 18: "Saudi Arabia" tag and "with AI recommendations" removed: 09 has neither for NJWAR, and the Athkado link is unconfirmed. The "NJWAR" name still waits on consent, D-05.) · Note under the button (Oct 18): The demo uses a sample brand. · Second action: Try our AR prototype ↗ (→ https://furniture-webar.pages.dev/, new tab) · Note: Web store on the laptop, AR on the phone. On a phone, the demo places a chair in your room. · Screens: web AR home (laptop), AR view (phone).
+- NJWAR · tags Build, E-commerce, AR · Line: An AR furniture store: place a piece in your room at real size, change its colour, rotate it and add more. (Oct 18: "Saudi Arabia" tag and "with AI recommendations" removed: 09 has neither for NJWAR, and the Athkado link is unconfirmed. The "NJWAR" name still waits on consent, D-05.) · Note under the button (Oct 18): The demo uses a sample brand. · Second action: Try our AR prototype ↗ (→ https://furniture-webar.pages.dev/, new tab) · Note: Web store on the laptop, AR on the phone. On a phone, the demo places a piece of furniture in your room. · Screens: web AR home (laptop), AR view (phone).
 - Yawmy Care · tags Build, Childcare, Our own product · Line: Our own nursery platform for management, teachers and parents, with billing and multiple locations. · Note: Admin dashboard on the web, parent app on the phone. · Screens: admin dashboard (laptop), parent home and daily logs (phones).
 - Rushr · tags Build, Marketplace, USA · Line: A home-services marketplace: post a job, get matched with the nearest verified pro, pay through escrow. · Screens: searching, matched pro, request in progress (three phones). Hidden on the live site until D-07 is lifted.
 - Selected work below them then shows the other projects (the EdTech case first).
@@ -444,7 +444,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - **Layout (option C, margin notes; Oct 18, updated the same day: no moving content, no Pause button, Mohamed):** desktop from 64rem: heading, then a featured card (5/12, stays in view while you read) beside the other 7 quotes as plain open notes in two columns (7/12); the rating line and Clutch link under the notes. Featured card: label (service line), the EduLens quote large, name and role; no result row (A3(a)) and no button. Phones: heading, featured card, then the notes in one column. Everything is still; nothing is hidden or moves. No background decoration.
 - Was (Oct 16): Label: What clients say · H2: Verified reviews from founders and teams · Rating line + Clutch link (§0.4) under the heading. Quotes verbatim from 09 (no edits, exclamation marks kept as written by the client). No star graphics, no AggregateRating.
 - "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable." Roberto, Fantacalcio · Market research · Fantasy football
-- "They focused on building solutions that were practical, scalable, and aligned with our users’ needs." Youssef, CEO, EduLens · AI agents · EdTech
+- "They focused on building solutions that were practical, scalable, and aligned with our users’ needs." Youssef, CEO, EduLens · Build (Oct 18: tag shortened so the card does not point at the anonymized EdTech tile)
 - "The quality of their work is top-notch." CEO, Nile Support, USA · AI agents, website and staff augmentation
 - "Thank you for going above and beyond." Farah Alkhaldi, Consulting firm, Kuwait · Market research · Tourism and hospitality
 - "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia · White-label and e-commerce
@@ -469,7 +469,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - H2: Questions founders ask us
 
 **Is AI-written code safe to ship?**
-Yes. AI drafts code, tests and documentation. Senior engineers make the decisions, review every change and sign off each release.
+Yes. AI drafts code, tests and documentation. Senior engineers make the decisions and sign off each release. A person is responsible for every line that reaches your users.
 
 **How does pricing work?**
 Validate is a fixed fee, credited toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer. You get a number after a free 30-minute clarity call, before you commit to anything.
@@ -663,7 +663,7 @@ Only if the evidence says so. The Review tells you what to keep, what to fix and
 We review apps built with Lovable, Bolt, v0, Cursor and other AI tools, and apps built by freelancers or agencies. Our team works with React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure. [VERIFY: V11 for Supabase and Firebase]
 
 **Your team is in Egypt. Will time zones be a problem?**
-Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US mornings and Europe, and Gulf time is 0–2 hours ahead. We work in Arabic and English, and we have a presence in Texas, USA. You choose a call time that suits you. [VERIFY: V8]
+Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US mornings and Europe. We work in Arabic and English, and we have a presence in Texas, USA. You choose a call time that suits you. [VERIFY: V8]
 
 ### 2.13 Final CTA
 - Purpose: the closer.
@@ -1295,7 +1295,7 @@ Order: Hero → Journey stepper → Squad and loop (signature) → Outcomes + Wh
 - Two ways in · Lead: Greenfield or brownfield, you join the same four steps. Only the start is different.
   - Greenfield · New product: Start with Validate: 1–2 weeks of discovery that ends with a tested prototype and a fixed build estimate. · Link: See Validate
   - Brownfield · Existing code: Start with a Launch-Ready Review: a senior team reviews your app in about 5 working days and gives you a ranked fix list and a plain verdict. · Link: See the Review
-- Who does what · H2: AI drafts it. A senior engineer signs it. · Body: In every step, AI does the routine work so it moves fast. Senior engineers make the decisions, review every change and sign off every release, so speed never costs you quality. · Visual: the §2A.4 journey (Discover → AI drafts → A senior signs → Live).
+- Who does what · H2: AI drafts it. A senior engineer signs it. · Body: In every step, AI does the routine work so it moves fast. Senior engineers make the decisions and sign off every release, so speed never costs you quality. · Visual: the §2A.4 journey (Discover → AI drafts → A senior signs → Live).
 - The four steps · H2: One team from idea to after launch · each step: time, body and "You get" from §2A.5, then "Frameworks we use": each framework with a text-free drawing of what it produces (E2 direction) and its one-line explanation (§2A.5).
 - FAQ · H2: Questions about how we work
   - How long does each step take? Discover takes 1–2 weeks. Build takes 8–12 weeks to a production-ready product. Plan happens before any code, and Ship & Stay continues after launch with the same team.
@@ -1614,7 +1614,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 ### 12.4 Where we are
 - Purpose: answer "can I reach you?" for US and Gulf visitors.
 - H2: Where we work
-- Body: Our engineering hub is in Alexandria, Egypt, and we have a presence in Texas, USA. Alexandria is on GMT+2. Our working day overlaps US mornings and Europe, and Gulf time is 0–2 hours ahead. We work in Arabic and English. [VERIFY: V8 call hours] [VERIFY: V9 Texas entity wording]
+- Body: Our engineering hub is in Alexandria, Egypt, and we have a presence in Texas, USA. Alexandria is on GMT+2. Our working day overlaps US mornings and Europe. We work in Arabic and English. [VERIFY: V8 call hours] [VERIFY: V9 Texas entity wording]
 - Visual: time-overlap strip: US East · UK · Alexandria · Riyadh · Dubai, with shared hours shaded and labeled in text.
 
 ### 12.5 Proof in numbers
@@ -1677,7 +1677,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - H2: What happens on the call
 - We ask what you built, or plan to build, and what worries you.
 - We tell you plainly what we'd do, and what we wouldn't.
-- You leave with a next step, and a fixed price if a Review or project fits.
+- You leave with a next step, and a fixed price if a project fits.
 - Who you'll meet: "A senior member of our product team." [TEAM: photo, name] [VERIFY: V16]
 
 ### 13.4 Terms and risk reversal
@@ -1698,7 +1698,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - "We work in Arabic and English."
 
 ### 13.7 Privacy line
-- "Booking runs on Cal.com. We use your answers only to prepare for your call. [VERIFY: V15] Cal.com may set its own cookies when you book. Read our privacy policy." [VERIFY: V15]
+- "Booking runs on Cal.com. We use your answers to prepare for your call and to see which pages lead to bookings. [VERIFY: V15] Cal.com may set its own cookies when you book. Read our privacy policy." [VERIFY: V15]
 
 ---
 
@@ -1821,3 +1821,8 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - Fixed in this pass: removed "most often stop" (Review scope), "most founders don't know", "usually fixable without a rebuild", "own every decision", "every engagement includes QA", "ships every sprint", "clean enough for any developer", "work with us today", "many scanners are free", "we'll say so" (not a stated policy), "pay safely". Validate proof H2 narrowed from "4 continents" to "Discovery work we've done". Tagged staff-aug NDA/IP and privacy promises.
 - Checked: 0 em-dashes, 0 exclamation marks, all titles ≤60 and metas ≤155 characters.
 - Still open: every [VERIFY], [PRICE], [CONSENT], [METRIC], [TEAM], [WHATSAPP] and [ASSET] tag in section 0.5. Nothing tagged should go live until resolved or cut.
+
+## Oct 18 copy audit (deep pass; `docs/review/home-v1-2/copy-audit.md`)
+Applied: "reviews every change" removed everywhere (09 confirms only "a senior engineer signs off every release" and "a person is responsible for every line"); "Security, data and payments" removed from the Way illustration; hero sub "DiscoverDev builds it with senior engineers and AI. Build takes 8–12 weeks, and you own everything."; hero board caption "Example of a sprint run the DiscoverDev Way: AI drafts the work, then a senior engineer signs off the release."; /book: Review guarantee and "a Review or" removed, privacy line "We use your answers to prepare for your call and to see which pages lead to bookings."; client row heading "Teams we've worked with"; EdTech result "depending on how often content is reused"; NJWAR note "a piece of furniture"; Scale card "A dedicated team of developers, testers and a project manager who runs the roadmap with you."; Andrei tag "Market research · Auto spare parts and trucking in Saudi Arabia", Farah tag "Market research · Tourism and hospitality"; time-zone answer without the Gulf offset; footer group "More"; nav label "Main navigation"; privacy "Our team works from Egypt, and we have a presence in Texas, USA".
+Open for Mohamed: (1) Yawmy Care card ("our product") stays because he approved all ten logos on Oct 16, but 03 V17 / D-32 say omit until 2027; (2) /privacy and /terms still mention the launch check and guides (V1.2); decide to trim or add "Some tools launch later"; (3) US or UK spelling (colour, unauthorised, centres); (4) straight vs curly apostrophes in 404, legal and footer lines.
+

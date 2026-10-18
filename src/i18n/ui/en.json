@@ -1,7 +1,7 @@
 {
   "skip": "Skip to content",
   "logo.home": "DiscoverDev home",
-  "nav.label": "Main",
+  "nav.label": "Main navigation",
   "nav.review": "Launch-Ready Review",
   "nav.services": "Services",
   "nav.work": "Work",
@@ -43,7 +43,7 @@
   "footer.explore": "Explore",
   "footer.work": "Work",
   "footer.insights": "Insights",
-  "footer.company": "Company",
+  "footer.company": "More",
   "footer.review": "Launch-Ready Review",
   "footer.allWork": "All work",
   "footer.case": "EdTech AI agents case study",

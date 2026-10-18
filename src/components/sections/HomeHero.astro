@@ -82,7 +82,7 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
     .hero { padding-block: clamp(1.5rem, 0.5rem + 2vw, 3.5rem) var(--space-16); text-align: start; }
     .hero__wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: clamp(2.5rem, 1rem + 3vw, 4.5rem); align-items: center; }
     .hero__copy { justify-items: start; gap: var(--space-5); }
-    .hero__h1 { font-size: clamp(2.75rem, 1rem + 3vw, 4rem); max-inline-size: 16ch; }
+    .hero__h1 { font-size: clamp(2.75rem, 1rem + 3vw, 3.5rem); max-inline-size: 16ch; } /* capped at 56px so the H1 stays on two lines from 1366 to 1920 (V1.0.1 hero measure) */
     .hero__sub { max-inline-size: 34rem; text-wrap: balance; }
     .hero__ctas { justify-content: flex-start; }
     .hero__copy :global(.hero__terms) { justify-content: flex-start; }
@@ -95,6 +95,8 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
   }
   /* Short laptop screens (720–800px tall): less top space so the whole board fits in the first screen. */
   @media (width >= 64rem) and (height <= 50rem) { .hero { padding-block-start: var(--space-4); } }
+  /* 720px-tall laptops (1280x720): the whole board must end above the fold (V1.0.1 hero measure: it ended 20px below). */
+  @media (width >= 64rem) and (height <= 46rem) { .hero { padding-block-start: var(--space-1); } .hero__stage { margin-block-start: calc(var(--space-3) * -1); } }
   @media (prefers-reduced-motion: no-preference) {
     .hero__h1 { animation: hero-h1 900ms var(--ease-enter) both; }
     .hero__sub { animation: dd-in 700ms 120ms var(--ease-enter) both; }

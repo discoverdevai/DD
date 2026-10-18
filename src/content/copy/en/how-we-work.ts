@@ -23,7 +23,7 @@ export const howWeWork = {
   roles: {
     label: 'Who does what',
     title: 'AI drafts it. A senior engineer signs it.',
-    body: 'In every step, AI does the routine work so it moves fast. Senior engineers make the decisions, review every change and sign off every release, so speed never costs you quality.',
+    body: 'In every step, AI does the routine work so it moves fast. Senior engineers make the decisions and sign off every release, so speed never costs you quality.',
   },
   steps: {
     label: 'The four steps',
