@@ -18,6 +18,12 @@ export const canonical = (path: string) => {
 
 export const orgStub = { '@type': 'Organization', '@id': ORG_ID, name: 'DiscoverDev', url: SITE_URL };
 
+const INLINE_OFFERS = {
+  validate: { name: 'Validate', serviceType: 'Product discovery', description: 'A 1–2 week product discovery for a fixed fee: market and competitor read, product scope, a clickable prototype and a fixed build estimate.' },
+  build: { name: 'Build', serviceType: 'MVP development', description: 'An MVP to production in 8–12 weeks at a fixed price: design, build, QA and deployment, with a demo every week.' },
+  scale: { name: 'Scale', serviceType: 'Dedicated development team', description: 'A dedicated squad of developers, QA and a PM on a monthly retainer. You keep control.' },
+};
+
 /** Full Organization, home and /about only. foundingDate omitted (D-21); address = Alexandria only (D-08); sameAs = Clutch (+ LinkedIn when its URL is confirmed, D-29). */
 export const orgFull = {
   '@type': 'Organization',
@@ -37,9 +43,13 @@ export const orgFull = {
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Services',
+    // A live service page is referenced by id; while it is off (V1.0) the offer is described inline from 09 (times and price models only).
     itemListElement: (['validate', 'build', 'scale', 'review', 'partners'] as RouteKey[])
-      .filter((k) => ROUTES[k].live)
-      .map((k) => ({ '@type': 'Offer', itemOffered: { '@id': `${SITE_URL}${ROUTES[k].path}#service` } })),
+      .filter((k) => ROUTES[k].live || k in INLINE_OFFERS)
+      .map((k) => ({
+        '@type': 'Offer',
+        itemOffered: ROUTES[k].live ? { '@id': `${SITE_URL}${ROUTES[k].path}#service` } : { '@type': 'Service', '@id': `${SITE_URL}/#service-${k}`, url: `${SITE_URL}/#services`, provider: { '@id': ORG_ID }, ...INLINE_OFFERS[k as keyof typeof INLINE_OFFERS] },
+      })),
   },
 };
 

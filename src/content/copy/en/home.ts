@@ -2,9 +2,9 @@
 // per §0.7) are reused from §2. The v1 Review copy lives on /launch-ready.
 export const home = {
   seo: {
-    title: 'Product & Engineering Partner for Founders | DiscoverDev',
+    title: 'Product Development Company for Startups | DiscoverDev',
     description:
-      'Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all.',
+      'Product development company for startups. Discover first, build with AI, senior engineers sign off. Fixed-price MVPs, and you own all of it.',
   },
   hero: {
     ogEyebrow: 'AI drafts. Seniors sign off.', // share image only; the on-page pill was removed Oct 18
@@ -15,14 +15,14 @@ export const home = {
   proofStrip: {
     // §2A.3 facts map (09 countries).
     map: {
-      label: 'Map of where we work: clients in North America, Europe, Africa and Asia, with teams in Texas, USA and Alexandria, Egypt.',
+      label: 'Map of where we work: clients in North America, Europe, Africa and Asia, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA.',
       legendWorked: 'Countries we’ve worked in',
       // One marker per client country (09); [name, lat, lon] at a main city.
       pins: [
         ['USA', 40.7, -74], ['United Kingdom', 51.5, -0.1], ['Spain', 40.4, -3.7],
         ['Switzerland', 47.4, 8.5], ['Italy', 41.9, 12.5], ['Saudi Arabia', 24.7, 46.7], ['Kuwait', 29.4, 48], ['Egypt', 30, 31.2],
       ] as ReadonlyArray<readonly [string, number, number]>,
-      legendHome: 'Our teams: Texas and Alexandria',
+      legendHome: 'Where our teams are: Alexandria, with a presence in Texas',
     },
     title: 'What we’ve built',
     logosTitle: 'Teams we’ve built for',
@@ -86,11 +86,11 @@ export const home = {
   },
   engagements: {
     title: 'Three ways to work with us',
-    lead: 'Start where you are. Validate’s fee credits toward Build.',
+    lead: 'DiscoverDev is a product and engineering company that helps founders and startup teams build the right product, then ship it fast. Start where you are. Validate’s fee credits toward Build.',
     cards: [
       { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate', bookLabel: 'Book a call about Validate' },
       { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build', bookLabel: 'Book a call about Build' },
-      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated product team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM who runs the roadmap with you. You keep control.', linkLabel: 'See Scale', bookLabel: 'Book a call about Scale' },
+      { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated development team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM who runs the roadmap with you. You keep control.', linkLabel: 'See Scale', bookLabel: 'Book a call about Scale' },
     ],
     scope: { label: 'What we build', text: 'Web and mobile apps, AI agents and chatbots in Arabic and English, APIs and enterprise systems, data and cloud.' },
     otherTitle: 'Other ways in',

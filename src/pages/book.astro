@@ -12,9 +12,10 @@ import { isLive } from '../data/routes';
 // V1.0 (03 §2V1): the Launch-Ready Review is not offered until V1.2, so /book offers the clarity call only.
 const reviewOn = isLive('review');
 import { graph, orgStub, webPage } from '../lib/seo';
-const jsonLd = graph(orgStub, webPage('/book', c.seo.title, c.seo.description));
+const seo = reviewOn ? c.seoReview : c.seo;
+const jsonLd = graph(orgStub, webPage('/book', seo.title, seo.description));
 ---
-<BaseLayout title={c.seo.title} description={c.seo.description} pageType="book" jsonLd={jsonLd} header="minimal" stickyBar={false}>
+<BaseLayout title={seo.title} description={seo.description} pageType="book" jsonLd={jsonLd} header="minimal" stickyBar={false}>
   <section class="section book" data-surface="paper" aria-labelledby="book-title">
     <div class="container book__grid">
       <div class="book__main">
