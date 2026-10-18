@@ -104,18 +104,9 @@ const check = 'M20 6 9 17l-5-5';
 </figure>
 
 <script>
+  import { playOnce } from '../../lib/play-once';
   // Once, at 35% visible. Without IntersectionObserver or with reduced motion nothing is armed: the finished state shows.
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll<HTMLElement>('[data-wf]').forEach((wf) => {
-    if (reduce || !('IntersectionObserver' in window)) return;
-    wf.setAttribute('data-armed', '');
-    const io = new IntersectionObserver((es) => {
-      if (!es.some((e) => e.isIntersecting)) return;
-      io.disconnect();
-      wf.setAttribute('data-play', '');
-    }, { threshold: 0.35 });
-    io.observe(wf);
-  });
+  playOnce('[data-wf]', 0.35, 'data-armed', (wf) => wf.setAttribute('data-play', ''));
 </script>
 
 <style>

@@ -63,18 +63,11 @@ const FULL_ONLY = new Set([1, 3, 5]); // compact variant (< 30rem container) sho
 </style>
 
 <script>
+  import { playOnce } from '../../lib/play-once';
   // Plays once when half visible: AI rows at 220ms steps, human rows at --dur-deliberate (480ms). Total ≤ 2.4s.
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll<HTMLElement>('[data-run]').forEach((run) => {
-    if (reduce || !('IntersectionObserver' in window)) return;
-    run.setAttribute('data-playing', '');
-    const io = new IntersectionObserver((entries) => {
-      if (!entries.some((e) => e.isIntersecting)) return;
-      io.disconnect();
-      const rows = [...run.querySelectorAll<HTMLElement>('.run__row')].filter((r) => getComputedStyle(r).display !== 'none');
-      let at = 100; // 6 AI rows x 220ms + 2 human rows x 480ms + 100ms = 2.38s (06 §9.6 cap: 2.4s)
-      rows.forEach((row) => { at += row.classList.contains('run__row--human') ? 480 : 220; setTimeout(() => row.setAttribute('data-done', ''), at); });
-    }, { threshold: 0.5 });
-    io.observe(run);
+  playOnce('[data-run]', 0.5, 'data-playing', (run) => {
+    const rows = [...run.querySelectorAll<HTMLElement>('.run__row')].filter((r) => getComputedStyle(r).display !== 'none');
+    let at = 100; // 6 AI rows x 220ms + 2 human rows x 480ms + 100ms = 2.38s (06 §9.6 cap: 2.4s)
+    rows.forEach((row) => { at += row.classList.contains('run__row--human') ? 480 : 220; setTimeout(() => row.setAttribute('data-done', ''), at); });
   });
 </script>

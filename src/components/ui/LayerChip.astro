@@ -1,6 +1,9 @@
 ---
 // LayerChip (06 §0.5): marks which layer does a step. machine = AI-accelerated, human = senior sign-off.
-interface Props { kind: 'ai' | 'human' }
+export type ChipKind = 'ai' | 'human';
+/** A step's layer label as copy files write it. */
+export interface Chip { kind: ChipKind; label: string }
+interface Props { kind: ChipKind }
 const { kind } = Astro.props;
 ---
 <span class:list={['chip', `chip--${kind}`]}><slot /></span>

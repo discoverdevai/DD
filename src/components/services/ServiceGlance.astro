@@ -2,8 +2,8 @@
 // Service hero aside (04 §4.3, 06 §0.4 v3): the engagement at a glance, in the home scene style. Uses only strings the
 // page already shows (process title, step titles/meta/chips, hero meta), so it adds no new claims. The step track
 // fills once on load (≈1s); reduced motion = final state.
-import LayerChip from '../ui/LayerChip.astro';
-interface Step { title: string; meta?: string; chip?: { kind: 'ai' | 'human'; label: string } }
+import LayerChip, { type Chip } from '../ui/LayerChip.astro';
+interface Step { title: string; meta?: string; chip?: Chip }
 interface Props { name: string; label: string; steps: readonly Step[]; meta?: readonly { label: string; value: string }[] }
 const { name, label, steps, meta } = Astro.props;
 ---
@@ -58,16 +58,9 @@ const { name, label, steps, meta } = Astro.props;
 </style>
 
 <script>
+  import { playOnce } from '../../lib/play-once';
   // Nodes fill in order, 220ms apart, once the panel is 40% visible (06 §9.6 cap 2.4s).
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll<HTMLElement>('[data-sg]').forEach((sg) => {
-    if (reduce || !('IntersectionObserver' in window)) return;
-    sg.setAttribute('data-playing', '');
-    const io = new IntersectionObserver((es) => {
-      if (!es.some((e) => e.isIntersecting)) return;
-      io.disconnect();
-      sg.querySelectorAll<HTMLElement>('[data-sg-step]').forEach((el, i) => setTimeout(() => el.setAttribute('data-done', ''), 500 + i * 220));
-    }, { threshold: 0.4 });
-    io.observe(sg);
+  playOnce('[data-sg]', 0.4, 'data-playing', (sg) => {
+    sg.querySelectorAll<HTMLElement>('[data-sg-step]').forEach((el, i) => setTimeout(() => el.setAttribute('data-done', ''), 500 + i * 220));
   });
 </script>

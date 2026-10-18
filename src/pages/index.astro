@@ -21,9 +21,9 @@ import Guides from '../components/home/Guides.astro';
 import { howWeWork } from '../content/copy/en/how-we-work';
 import { href } from '../data/routes';
 import { home as c } from '../content/copy/en/home';
-import { graph, orgFull, website, webPage, ORG_ID } from '../lib/seo';
+import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../lib/seo';
 
-const faqLd = { '@type': 'FAQPage', '@id': 'https://discoverdev.ai/#faq', mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
+const faqLd = faqPage('https://discoverdev.ai/#faq', c.faq.items);
 const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd}>

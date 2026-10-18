@@ -1,24 +1,16 @@
 ---
 // Plain content cards (problem cards, outcomes, pillars, review areas). Not links: one link per card max (06 §9.8).
-// cols = columns from 48rem; 1 column below. v3 (06 §0.4): `card` = home tile (radius-lg, ink→blue-800 gradient,
-// pointer spotlight, mono index); `rule` = hairline-topped column like the home pillars.
-import Icon from './Icon.astro';
-import LayerChip from './LayerChip.astro';
-type IconName = Parameters<typeof Icon>[0]['name'];
-interface Item { title: string; body: string; icon?: IconName; chip?: { kind: 'ai' | 'human'; label: string } }
-interface Props { items: readonly Item[]; cols?: 2 | 3 | 4; headingLevel?: 'h3' | 'h4'; variant?: 'card' | 'rule' | 'brand'; index?: boolean }
-const { items, cols = 3, headingLevel: H = 'h3', variant = 'card', index = false } = Astro.props;
+// One column on phones, three from 48rem. v3 (06 §0.4): `card` = home tile (radius-lg, ink→blue-800 gradient,
+// pointer spotlight); `rule` = hairline-topped column like the home pillars.
+import LayerChip, { type Chip } from './LayerChip.astro';
+interface Item { title: string; body: string; chip?: Chip }
+interface Props { items: readonly Item[]; variant?: 'card' | 'rule' | 'brand' }
+const { items, variant = 'card' } = Astro.props;
 ---
-<ul role="list" class:list={['grid', `grid--${cols}`, `grid--${variant}`, 'reveal-stagger']}>
-  {items.map((it, i) => (
+<ul role="list" class:list={['grid', `grid--${variant}`, 'reveal-stagger']}>
+  {items.map((it) => (
     <li class="item" data-spotlight={variant === 'card' ? '' : undefined}>
-      {(it.icon || index) && (
-        <span class="item__top" aria-hidden="true">
-          {index && <span class="item__n">{String(i + 1).padStart(2, '0')}</span>}
-          {it.icon && <span class="item__icon"><Icon name={it.icon} size={20} /></span>}
-        </span>
-      )}
-      <H class="h3 item__title">{it.title}</H>
+      <h3 class="h3 item__title">{it.title}</h3>
       <p class="item__body">{it.body}</p>
       {it.chip && <LayerChip kind={it.chip.kind}>{it.chip.label}</LayerChip>}
     </li>
@@ -27,21 +19,16 @@ const { items, cols = 3, headingLevel: H = 'h3', variant = 'card', index = false
 
 <style>
   .grid { display: grid; gap: var(--space-4); }
-  @media (width >= 48rem) { .grid--2 { grid-template-columns: repeat(2, 1fr); } .grid--3 { grid-template-columns: repeat(3, 1fr); } .grid--4 { grid-template-columns: repeat(2, 1fr); } }
-  @media (width >= 64rem) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+  @media (width >= 48rem) { .grid { grid-template-columns: repeat(3, 1fr); } }
   .grid--rule { gap: var(--space-8); }
   /* brand (guidelines: cards topped with a 4px blue rule) for white and light-blue sections. */
   .grid--brand .item { padding: var(--space-6) var(--space-6) var(--space-8); background: var(--neutral-0); border: 1px solid var(--blue-100); border-block-start: 4px solid var(--blue-700); border-radius: 4px 4px var(--radius-md) var(--radius-md); }
   .grid--brand .item__title { color: var(--neutral-950); font-weight: var(--weight-bold); }
-  .grid--brand .item__n { color: var(--blue-700); }
   .item { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; }
   .grid--card .item { padding: var(--space-6) var(--space-6) var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
   :global([data-surface='paper']) .grid--card .item, :global([data-surface='alt']) .grid--card .item { background: var(--color-surface); border-radius: var(--radius-md); }
   @media (hover: hover) { .grid--card .item:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
   .grid--rule .item { border-block-start: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); padding-block-start: var(--space-5); }
-  .item__top { display: flex; align-items: center; justify-content: space-between; margin-block-end: var(--space-3); }
-  .item__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .item__icon { inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-sm); display: grid; place-items: center; border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
   .item__title { font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; }
   .item__body { color: var(--color-text-muted); }
 </style>

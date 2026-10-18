@@ -14,19 +14,18 @@ import PartnerProof from '../components/partners/PartnerProof.astro';
 import { partners as c } from '../content/copy/en/partners';
 import { t } from '../i18n/t';
 import { bookHref } from '../data/routes';
-import { graph, orgStub, webPage, canonical, ORG_ID } from '../lib/seo';
+import { graph, orgStub, webPage, canonical, faqPage, service } from '../lib/seo';
 
 const url = canonical('/partners');
 const priceRow = c.models.rows.find((r) => r.label === 'Price');
 const offerTerms = priceRow ? c.models.columns.map((col, i) => `${col}: ${priceRow.cells[i]}.`).join(' ') : c.models.answer;
-const service = {
-  '@type': 'Service', '@id': `${url}#service`, name: 'Partner delivery', serviceType: 'White-label development and staff augmentation',
-  description: c.seo.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
-  audience: { '@type': 'BusinessAudience', audienceType: 'Software houses and agencies' },
-  offers: { '@type': 'Offer', url: `${url}#models`, description: offerTerms },
-};
-const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
-const jsonLd = graph(orgStub, service, webPage('/partners', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
+const serviceLd = service(url, {
+  name: 'Partner delivery', serviceType: 'White-label development and staff augmentation', description: c.seo.description,
+  audience: 'Software houses and agencies',
+  offers: { url: `${url}#models`, description: offerTerms },
+});
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
+const jsonLd = graph(orgStub, serviceLd, webPage('/partners', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="partners" jsonLd={jsonLd}>
   <PageHero page="partners" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="partner">
@@ -34,7 +33,7 @@ const jsonLd = graph(orgStub, service, webPage('/partners', c.seo.title, c.seo.d
   </PageHero>
 
   <Section id="why" surface="ink" title={c.why.title}>
-    <CardGrid items={c.why.cards} cols={3} />
+    <CardGrid items={c.why.cards} />
   </Section>
 
   <Section id="models" surface="raised" title={c.models.title} lead={c.models.answer}>

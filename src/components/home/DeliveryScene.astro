@@ -153,22 +153,15 @@ const check = 'M20 6 9 17l-5-5';
 </style>
 
 <script>
+  import { playOnce } from '../../lib/play-once';
   // Pipeline: each AI item completes (220ms apart), then its review is approved (and its arrow lights) 260ms later;
   // the release signs off last. ≈1.6s total (06 §9.6 cap 2.4s). Once, at 40% visible.
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll<HTMLElement>('[data-ds]').forEach((ds) => {
-    if (reduce || !('IntersectionObserver' in window)) return;
-    ds.setAttribute('data-playing', '');
-    const io = new IntersectionObserver((es) => {
-      if (!es.some((e) => e.isIntersecting)) return;
-      io.disconnect();
-      const ai = ds.querySelectorAll<HTMLElement>('[data-ds-ai]');
-      const human = ds.querySelectorAll<HTMLElement>('[data-ds-human]');
-      const done = (el: Element | undefined, at: number) => el && setTimeout(() => el.setAttribute('data-done', ''), at);
-      let t = 200;
-      ai.forEach((el, i) => { done(el, t); done(human[i], t + 260); t += 220; });
-      done(ds.querySelector('[data-ds-release]') ?? undefined, t + 300);
-    }, { threshold: 0.4 });
-    io.observe(ds);
+  playOnce('[data-ds]', 0.4, 'data-playing', (ds) => {
+    const ai = ds.querySelectorAll<HTMLElement>('[data-ds-ai]');
+    const human = ds.querySelectorAll<HTMLElement>('[data-ds-human]');
+    const done = (el: Element | undefined, at: number) => el && setTimeout(() => el.setAttribute('data-done', ''), at);
+    let t = 200;
+    ai.forEach((el, i) => { done(el, t); done(human[i], t + 260); t += 220; });
+    done(ds.querySelector('[data-ds-release]') ?? undefined, t + 300);
   });
 </script>

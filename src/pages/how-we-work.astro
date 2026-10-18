@@ -11,7 +11,7 @@ import Artifact from '../components/how/Artifact.astro';
 import { howWeWork as c } from '../content/copy/en/how-we-work';
 import { home } from '../content/copy/en/home';
 import { href } from '../data/routes';
-import { graph, orgStub, webPage, canonical } from '../lib/seo';
+import { graph, orgStub, webPage, canonical, faqPage } from '../lib/seo';
 
 const url = canonical('/how-we-work');
 // HowTo is banned (scripts/jsonld-check.mjs; Google retired HowTo results), so the steps are an ItemList.
@@ -19,7 +19,7 @@ const howTo = {
   '@type': 'ItemList', '@id': `${url}#steps`, name: c.steps.title,
   itemListElement: c.steps.items.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.title, description: `${s.body} ${c.steps.getsLabel}: ${s.gets}` })),
 };
-const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
 const jsonLd = graph(orgStub, webPage('/how-we-work', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#steps` } }), howTo, faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="about" jsonLd={jsonLd}>

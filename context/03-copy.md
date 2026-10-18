@@ -709,6 +709,7 @@ Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US
 
 ### 3.6 Timeline
 - Purpose: set expectations. [VERIFY: V3]
+- Eyebrow: day 0 to day 5
 - H2: How the 5 days work
 - Day 0 · Scoping call: Free, 30 minutes. We agree scope and a fixed fee. You share access. [VERIFY: V5]
 - Days 1–4 · Review: We go through your code and your live or preview app. We ask questions as we go.

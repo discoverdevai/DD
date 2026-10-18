@@ -4,8 +4,7 @@
 // dot under every week ("results every week"); a flag at the end for "Live with real users".
 // The chart is decorative (aria-hidden); the ordered phase list below carries the same content for everyone, and on
 // phones it is the only view, each phase with a small span bar.
-import LayerChip from '../ui/LayerChip.astro';
-type Chip = { kind: 'ai' | 'human'; label: string };
+import LayerChip, { type Chip } from '../ui/LayerChip.astro';
 interface Phase { title: string; body: string; chip?: Chip }
 interface Span { from: number; to: number; label: string; open?: boolean }
 interface Props { id?: string; title: string; example: string; weeks: number; weekLabel: string; demoLabel: string; liveLabel: string; phases: readonly Phase[]; spans: readonly Span[] }

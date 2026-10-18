@@ -52,3 +52,17 @@ export function webPage(path: string, name: string, description: string, type = 
 }
 
 export const graph = (...nodes: object[]) => ({ '@context': 'https://schema.org', '@graph': nodes });
+
+/** FAQPage node from the FAQ the page shows (`id` = `<page url>#faq`). */
+export const faqPage = (id: string, items: readonly { q: string; a: string }[]) => ({
+  '@type': 'FAQPage', '@id': id,
+  mainEntity: items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
+});
+
+/** Service node for a service page (`<page url>#service`), provided by the company, same served countries everywhere. */
+export const service = (url: string, s: { name: string; serviceType: string; description: string; audience: string; offers: Record<string, unknown> }) => ({
+  '@type': 'Service', '@id': `${url}#service`, name: s.name, serviceType: s.serviceType,
+  description: s.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
+  audience: { '@type': 'BusinessAudience', audienceType: s.audience },
+  offers: { '@type': 'Offer', ...s.offers },
+});

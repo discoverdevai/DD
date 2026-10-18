@@ -19,17 +19,16 @@ import Statement from '../components/home/Statement.astro';
 import { t } from '../i18n/t';
 import { build as c } from '../content/copy/en/build';
 import { href, isLive } from '../data/routes';
-import { graph, orgStub, webPage, canonical, ORG_ID } from '../lib/seo';
+import { graph, orgStub, webPage, canonical, faqPage, service } from '../lib/seo';
 
 const url = canonical('/build');
-const service = {
-  '@type': 'Service', '@id': `${url}#service`, name: 'Build', serviceType: 'MVP development',
-  description: c.seo.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
-  audience: { '@type': 'BusinessAudience', audienceType: 'Founders ready to build' },
-  offers: { '@type': 'Offer', url: `${url}#pricing`, description: c.pricing.answer },
-};
-const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
-const jsonLd = graph(orgStub, service, webPage('/build', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
+const serviceLd = service(url, {
+  name: 'Build', serviceType: 'MVP development', description: c.seo.description,
+  audience: 'Founders ready to build',
+  offers: { url: `${url}#pricing`, description: c.pricing.answer },
+});
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
+const jsonLd = graph(orgStub, serviceLd, webPage('/build', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
   <PageHero page="build" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
@@ -42,7 +41,7 @@ const jsonLd = graph(orgStub, service, webPage('/build', c.seo.title, c.seo.desc
   <WeekTrack title={c.track.title} example={c.track.example} weeks={c.track.weeks} weekLabel={c.track.weekLabel} demoLabel={c.track.demoLabel} liveLabel={c.track.liveLabel} phases={c.process.steps} spans={c.track.spans} />
 
   <Section id="outcomes" surface="alt" title={c.outcomes.title} class="bg-dots">
-    <CardGrid items={c.outcomes.items} cols={3} variant="brand" />
+    <CardGrid items={c.outcomes.items} variant="brand" />
     <div class="included">
       <h3 class="included__title">{c.included.title}</h3>
       <CheckList items={c.included.items} class="included__list" />

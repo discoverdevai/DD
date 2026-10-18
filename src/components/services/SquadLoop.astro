@@ -3,9 +3,9 @@
 // a sprint loop Plan → Build → Test → Release, a monthly review). The ring is decorative (aria-hidden); the three step
 // cards carry the same content as text. Ring stroke draws in on scroll (once, no loop); reduced motion = drawn.
 import Icon from '../ui/Icon.astro';
-import LayerChip from '../ui/LayerChip.astro';
+import LayerChip, { type Chip } from '../ui/LayerChip.astro';
 type IconName = Parameters<typeof Icon>[0]['name'];
-interface Step { meta?: string; title: string; body: string; chip?: { kind: 'ai' | 'human'; label: string } }
+interface Step { meta?: string; title: string; body: string; chip?: Chip }
 interface Props { id?: string; title: string; rosterLabel: string; roles: readonly { icon: string; title: string }[]; ring: readonly string[]; steps: readonly Step[] }
 const { id = 'process', title, rosterLabel, roles, ring, steps } = Astro.props;
 const [join, ship, review] = steps;

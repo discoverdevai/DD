@@ -47,6 +47,7 @@ export const launchReady = {
     ],
   },
   timeline: {
+    eyebrow: 'day 0 to day 5',
     title: 'How the 5 days work',
     steps: [
       { meta: 'Day 0', title: 'Scoping call', body: 'Free, 30 minutes. We agree scope and a fixed fee. You share access.' },

@@ -17,17 +17,16 @@ import Statement from '../components/home/Statement.astro';
 import DecisionBoard from '../components/services/DecisionBoard.astro';
 import { t } from '../i18n/t';
 import { validate as c } from '../content/copy/en/validate';
-import { graph, orgStub, webPage, canonical, ORG_ID } from '../lib/seo';
+import { graph, orgStub, webPage, canonical, faqPage, service } from '../lib/seo';
 
 const url = canonical('/validate');
-const service = {
-  '@type': 'Service', '@id': `${url}#service`, name: 'Validate', serviceType: 'Product discovery',
-  description: c.seo.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
-  audience: { '@type': 'BusinessAudience', audienceType: 'Founders with an idea' },
-  offers: { '@type': 'Offer', url: `${url}#pricing`, description: c.pricing.answer },
-};
-const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
-const jsonLd = graph(orgStub, service, webPage('/validate', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
+const serviceLd = service(url, {
+  name: 'Validate', serviceType: 'Product discovery', description: c.seo.description,
+  audience: 'Founders with an idea',
+  offers: { url: `${url}#pricing`, description: c.pricing.answer },
+});
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
+const jsonLd = graph(orgStub, serviceLd, webPage('/validate', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
   <PageHero page="validate" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
@@ -39,7 +38,7 @@ const jsonLd = graph(orgStub, service, webPage('/validate', c.seo.title, c.seo.d
   <DecisionBoard title={c.decision.title} lead={c.outcomes.items[0].body} steps={c.process.steps} deliverables={c.included.items} label={c.decision.label} options={c.decision.options} />
 
   <Section id="outcomes" surface="alt" title={c.outcomes.title} class="bg-dots">
-    <CardGrid items={c.outcomes.items} cols={3} variant="brand" />
+    <CardGrid items={c.outcomes.items} variant="brand" />
     <div class="included">
       <h3 class="included__title">{c.included.title}</h3>
       <CheckList items={c.included.items} class="included__list" />

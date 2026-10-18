@@ -15,17 +15,16 @@ import CtaTerms from '../components/ui/CtaTerms.astro';
 import { launchReady as c } from '../content/copy/en/launch-ready';
 import { t } from '../i18n/t';
 import { bookHref, href, isLive, ROUTES } from '../data/routes';
-import { graph, orgStub, webPage, canonical, ORG_ID } from '../lib/seo';
+import { graph, orgStub, webPage, canonical, faqPage, service } from '../lib/seo';
 
 const url = canonical('/launch-ready');
-const service = {
-  '@type': 'Service', '@id': `${url}#service`, name: 'Launch-Ready Review', serviceType: 'Production-readiness and code review for AI-built apps',
-  description: c.seo.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
-  audience: { '@type': 'BusinessAudience', audienceType: 'Founders with an AI-built or freelancer-built MVP' },
-  offers: { '@type': 'Offer', url: `${url}#pricing`, description: c.price.offerTerms, priceCurrency: 'USD', priceSpecification: { '@type': 'PriceSpecification', minPrice: c.price.minPrice, priceCurrency: 'USD' } },
-};
-const faqLd = { '@type': 'FAQPage', '@id': `${url}#faq`, mainEntity: c.faq.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })) };
-const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
+const serviceLd = service(url, {
+  name: 'Launch-Ready Review', serviceType: 'Production-readiness and code review for AI-built apps', description: c.seo.description,
+  audience: 'Founders with an AI-built or freelancer-built MVP',
+  offers: { url: `${url}#pricing`, description: c.price.offerTerms, priceCurrency: 'USD', priceSpecification: { '@type': 'PriceSpecification', minPrice: c.price.minPrice, priceCurrency: 'USD' } },
+});
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
+const jsonLd = graph(orgStub, serviceLd, webPage('/launch-ready', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="offer" jsonLd={jsonLd} stickyKind="review">
   <PageHero page="offer" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="review" ctaHref="#book">
@@ -39,7 +38,7 @@ const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.s
   </Section>
 
   <Section id="what-we-check" surface="raised" title={c.check.title} lead={c.check.answer}>
-    <CardGrid items={c.check.areas} cols={3} />
+    <CardGrid items={c.check.areas} />
   </Section>
 
   <Section id="what-you-get" surface="ink">
@@ -52,7 +51,7 @@ const jsonLd = graph(orgStub, service, webPage('/launch-ready', c.seo.title, c.s
     </div>
   </Section>
 
-  <Section id="timeline" surface="ink" eyebrow="day 0 to day 5" title={c.timeline.title}>
+  <Section id="timeline" surface="ink" eyebrow={c.timeline.eyebrow} title={c.timeline.title}>
     <Steps steps={c.timeline.steps} />
   </Section>
 

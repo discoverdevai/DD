@@ -1,45 +1,26 @@
 ---
-// Step timeline with a mini UI vignette per step. Home v3 uses it for the lifecycle (03 §2A.5): choose (fork),
-// plan (calendar), build (AI log), ship (rising bars + live dot). Vignettes are decorative (aria-hidden).
-import LayerChip from '../ui/LayerChip.astro';
+// Lifecycle on home (03 §2A.5, Oct 16): four step cards, one framework drawing each (components/how/Artifact),
+// a time pill, one line per step, then the closing line and a link to /how-we-work.
 import Artifact from '../how/Artifact.astro';
 import { t } from '../../i18n/t';
-type Chip = { kind: 'ai' | 'human'; label: string };
-type Vig = 'cal' | 'log' | 'sign' | 'fork' | 'ship';
-interface Tool { name: string; what: string }
-// `art`: name of the framework drawing (components/how/Artifact) shown on top of a step card (home, Oct 16).
-interface Step { title: string; body: string; chip?: Chip; chips?: readonly Chip[]; when?: string; art?: string; gets?: string; tools?: readonly Tool[] }
-// `track`: a progress line across the steps that fills as the section scrolls in, each step lighting up in turn
-// (replaces the vignettes; design review: grey placeholder thumbnails read as a fake dashboard).
-interface Props { eyebrow: string; title: string; lead?: string; more?: { label: string; href: string }; steps: readonly Step[]; vigs?: readonly Vig[]; line?: string; id?: string; track?: boolean; getsLabel?: string }
-const { eyebrow, title, lead, more, steps, vigs = ['cal', 'log', 'sign', 'fork'], line, id = 'how-it-works', track = false, getsLabel } = Astro.props;
+// `art`: name of the framework drawing shown on top of a step card.
+interface Step { title: string; body: string; when?: string; art?: string }
+interface Props { eyebrow: string; title: string; lead?: string; more?: { label: string; href: string }; steps: readonly Step[]; line?: string; id?: string }
+const { eyebrow, title, lead, more, steps, line, id = 'how-it-works' } = Astro.props;
 ---
 <section id={id} class="tl" data-surface="ink" aria-labelledby="tl-title">
   <div class="container">
     <p class="tl__eyebrow">{eyebrow}</p>
     <h2 id="tl-title" class="tl__title reveal">{title}</h2>
     {lead && <p class="tl__lead">{lead}</p>}
-    <ol role="list" class:list={['tl__steps', 'reveal-stagger', { 'tl__steps--track': track }]}>
+    <ol role="list" class="tl__steps reveal-stagger">
       {steps.map((s, i) => (
         <li class:list={['tl__step', { 'tl__step--card': s.art }]}>
-          {s.art ? <div class="tl__art"><Artifact name={s.art} /></div> : track ? <span class="tl__node" aria-hidden="true"></span> : <div class="tl__vig" aria-hidden="true">
-            {vigs[i] === 'cal' && <div class="v-cal">{Array.from({ length: 12 }, (_, k) => <span class:list={{ on: k === 6 }}></span>)}</div>}
-            {vigs[i] === 'log' && <div class="v-log">{[0, 1, 2, 3].map(() => <span><i></i><b></b></span>)}</div>}
-            {vigs[i] === 'sign' && <div class="v-sign"><span class="v-sign__check"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span class="v-sign__lines"><i></i><i></i></span></div>}
-            {vigs[i] === 'fork' && <div class="v-fork"><span></span><span></span><span></span></div>}
-            {vigs[i] === 'ship' && <div class="v-ship"><span></span><span></span><span></span><span></span><span></span><b></b></div>}
-          </div>}
+          {s.art && <div class="tl__art"><Artifact name={s.art} /></div>}
           <span class="tl__n">0{i + 1}</span>
           <h3 class="tl__h3"><span class="sr-only">{t('steps.label', 'en', { n: i + 1 })} </span>{s.title}</h3>
           {s.when && <p class="tl__when">{s.when}</p>}
           <p class="tl__body">{s.body}</p>
-          {s.gets && <p class="tl__gets"><span>{getsLabel}</span>{s.gets}</p>}
-          {s.tools && (
-            <dl class="tl__tools" aria-label={t('steps.tools')}>{s.tools.map((tool) => <div><dt>{tool.name}</dt><dd>{tool.what}</dd></div>)}</dl>
-          )}
-          {(s.chips ?? (s.chip ? [s.chip] : [])).length > 0 && (
-            <p class="tl__chips">{(s.chips ?? [s.chip!]).map((ch) => <LayerChip kind={ch.kind}>{ch.label}</LayerChip>)}</p>
-          )}
         </li>
       ))}
     </ol>
@@ -51,68 +32,17 @@ const { eyebrow, title, lead, more, steps, vigs = ['cal', 'log', 'sign', 'fork']
 <style>
   .tl { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   .tl__eyebrow { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); margin-block-end: var(--space-4); }
-  .tl__eyebrow span { color: var(--color-machine-text); }
   .tl__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; margin-block-end: var(--stack-lg); }
-  .tl__steps { display: grid; gap: var(--space-8); counter-reset: step; }
+  .tl__steps { display: grid; gap: var(--space-8); }
   @media (width >= 48rem) { .tl__steps { grid-template-columns: repeat(2, 1fr); } }
   @media (width >= 64rem) { .tl__steps { grid-template-columns: repeat(4, 1fr); gap: var(--space-6); } }
   .tl__step { display: grid; gap: var(--space-3); align-content: start; }
-  /* Progress track: each step has a 2px rail on top; the blue fill runs across the steps in order as the section
-     scrolls in, and each node lights up when its fill arrives. Finished state = all filled (reduced motion too). */
-  .tl__steps--track .tl__step { position: relative; padding-block-start: var(--space-8); }
-  .tl__steps--track .tl__step::before, .tl__steps--track .tl__step::after { content: ''; position: absolute; inset-block-start: 5px; inset-inline: 0; block-size: 2px; border-radius: 2px; }
-  .tl__steps--track .tl__step::before { background: var(--color-hairline); }
-  .tl__steps--track .tl__step::after { background: var(--blue-400); transform-origin: 0 50%; }
-  :dir(rtl) .tl__steps--track .tl__step::after { transform-origin: 100% 50%; }
-  .tl__node { position: absolute; inset-block-start: 0; inset-inline-start: 0; z-index: 1; inline-size: 12px; block-size: 12px; border-radius: 50%; background: var(--blue-400); }
-  .tl__steps--track .tl__step:last-child .tl__node { background: var(--color-human-mark); }
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      .tl__steps--track .tl__step::after { animation: tl-fill linear both; animation-timeline: view(); }
-      .tl__steps--track .tl__node { animation: tl-node linear both; animation-timeline: view(); }
-      .tl__steps--track .tl__step:nth-child(1)::after, .tl__steps--track .tl__step:nth-child(1) .tl__node { animation-range: entry 30% cover 30%; }
-      .tl__steps--track .tl__step:nth-child(2)::after, .tl__steps--track .tl__step:nth-child(2) .tl__node { animation-range: entry 45% cover 38%; }
-      .tl__steps--track .tl__step:nth-child(3)::after, .tl__steps--track .tl__step:nth-child(3) .tl__node { animation-range: entry 60% cover 46%; }
-      .tl__steps--track .tl__step:nth-child(4)::after, .tl__steps--track .tl__step:nth-child(4) .tl__node { animation-range: entry 75% cover 54%; }
-      @keyframes tl-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-      @keyframes tl-node { from { transform: scale(0.4); opacity: 0.3; } to { transform: scale(1); opacity: 1; } }
-    }
-  }
-  .tl__vig { block-size: 6.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 80%, var(--blue-800)), var(--color-surface)); display: grid; place-items: center; margin-block-end: var(--space-3); overflow: hidden; }
-  @media (width >= 48rem) { .tl__vig { block-size: 9rem; } } /* phones: shorter plates, the four stacked made the section ~1640px tall */
   .tl__n { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
   .tl__h3 { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
   .tl__body { color: var(--color-text-muted); }
-  .tl__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-  /* Stage detail (Oct 16): time pill, "You get" line, frameworks with one-line explanations (09). */
+  /* Time pill per step (Oct 16). */
   .tl__when { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); color: var(--color-machine-text); }
-  .tl__gets { display: grid; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-human-mark) 8%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 25%, transparent); font-size: var(--text-sm); line-height: 1.45; color: var(--color-text); }
-  .tl__gets span { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-human-text); }
-  .tl__tools { display: grid; gap: var(--space-3); margin-block-start: var(--space-2); padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); }
-  .tl__tools dt { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .tl__tools dd { font-size: var(--text-sm); line-height: 1.45; color: var(--color-text-muted); }
   .tl__line { margin-block-start: var(--space-12); padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-hairline); font-family: var(--ff-heading); font-weight: var(--weight-semibold); font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--color-heading); }
-  .v-ship { position: relative; display: flex; align-items: end; gap: 8px; inline-size: 70%; block-size: 60%; }
-  .v-ship span { flex: 1; border-radius: 3px 3px 0 0; background: color-mix(in oklab, var(--blue-300) 28%, transparent); }
-  .v-ship span:nth-child(1) { block-size: 25%; } .v-ship span:nth-child(2) { block-size: 40%; } .v-ship span:nth-child(3) { block-size: 52%; } .v-ship span:nth-child(4) { block-size: 70%; } .v-ship span:nth-child(5) { block-size: 92%; background: var(--blue-700); }
-  .v-ship b { position: absolute; inset-inline-end: -4px; inset-block-start: -10px; inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 22%, transparent); }
-  /* vignettes */
-  .v-cal { display: grid; grid-template-columns: repeat(4, 2rem); gap: 6px; }
-  .v-cal span { block-size: 1.25rem; border-radius: 4px; border: 1px solid color-mix(in oklab, var(--blue-300) 25%, transparent); }
-  .v-cal span.on { background: var(--blue-700); border-color: var(--blue-400); }
-  .v-log { display: grid; gap: 10px; inline-size: 70%; }
-  .v-log span { display: grid; grid-template-columns: 6px 1fr; gap: 8px; align-items: center; }
-  .v-log i { inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-machine-mark); }
-  .v-log b { block-size: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--color-machine-mark), color-mix(in oklab, var(--color-machine-mark) 20%, transparent)); }
-  .v-log span:nth-child(2) b { inline-size: 72%; } .v-log span:nth-child(3) b { inline-size: 86%; } .v-log span:nth-child(4) b { inline-size: 58%; }
-  .v-sign { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 10px; border: 1px solid color-mix(in oklab, var(--color-human-mark) 35%, transparent); background: color-mix(in oklab, var(--color-human-mark) 8%, transparent); }
-  .v-sign__check { inline-size: 1.75rem; block-size: 1.75rem; border-radius: 50%; display: grid; place-items: center; background: var(--color-human-mark); color: var(--blue-975); }
-  .v-sign__lines { display: grid; gap: 6px; } .v-sign__lines i { display: block; block-size: 4px; inline-size: 6rem; border-radius: 2px; background: color-mix(in oklab, var(--neutral-0) 40%, transparent); } .v-sign__lines i + i { inline-size: 4rem; opacity: 0.6; }
-  .v-fork { position: relative; inline-size: 70%; block-size: 60%; }
-  .v-fork span { position: absolute; border-radius: 6px; border: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); }
-  .v-fork span:nth-child(1) { inset-inline-start: 0; inset-block-start: 35%; inline-size: 30%; block-size: 30%; background: color-mix(in oklab, var(--blue-700) 40%, transparent); }
-  .v-fork span:nth-child(2) { inset-inline-end: 0; inset-block-start: 0; inline-size: 38%; block-size: 34%; }
-  .v-fork span:nth-child(3) { inset-inline-end: 0; inset-block-end: 0; inline-size: 38%; block-size: 34%; border-color: var(--color-human-mark); }
   .tl__title:has(+ .tl__lead) { margin-block-end: var(--space-4); }
   .tl__lead { max-inline-size: 46rem; margin-block-end: var(--stack-lg); font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); text-wrap: pretty; }
   .tl__more { margin-block-start: var(--space-6); }
