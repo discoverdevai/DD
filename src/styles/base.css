@@ -44,6 +44,10 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+/* The ONE anchor mechanism: html scroll-padding clears the sticky header. In-page jumps to a full-width ink band pull the
+   scroll target down by the band's own top padding, so the first line of content (label or heading) lands about one
+   space-4 under the header instead of a header plus a section-y gap. Components must not add scroll-margin. */
+main > :is(section[data-surface="ink"], div)[id] { scroll-margin-block-start: calc(var(--section-y) * -1); }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
   @view-transition { navigation: auto; }
@@ -182,7 +186,7 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: 0.9em; }
 
 /* Section backgrounds (Mohamed, Oct 16): dark sections after the hero alternate two shades of the same ink, so each
    section reads as its own band. Each opens with a brand-blue light (alternating sides) above a seam that fades out at
-   both ends. The light fades in as its section scrolls into view and then drifts very slowly; reduced motion = still.
+   both ends. The light fades in as its section scrolls into view and then holds still. Allowed by 06 §0.5 (glows).
    Closing bands (data-cta-band) keep their own horizon light. Colours stay the site's dark tokens. Decorative only. */
 main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]) {
   position: relative;
@@ -191,22 +195,19 @@ main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]) {
   border-block-start: 1px solid transparent;
   border-image: linear-gradient(90deg, transparent, rgb(108 154 255 / 0.45) 50%, transparent) 1;
 }
-main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(even) { background-color: var(--blue-925); }
+/* Explicit alternation (no nth-child: stray nodes in <main> used to shift the parity): sections that want the raised shade set data-raised. */
+main > section[data-surface="ink"][data-raised]:not([data-cta-band]) { background-color: var(--blue-925); }
 main > section[data-surface="ink"]:not(:first-child):not([data-cta-band])::before {
   content: ''; position: absolute; inset-inline: -10%; inset-block-start: 0; block-size: min(36rem, 85%); z-index: -1; pointer-events: none;
   background: radial-gradient(60% 100% at 25% 0%, rgb(18 64 190 / 0.36), rgb(18 64 190 / 0.08) 55%, transparent 78%);
 }
-main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(odd)::before {
+main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):not([data-raised])::before {
   background: radial-gradient(60% 100% at 75% 0%, rgb(18 64 190 / 0.36), rgb(18 64 190 / 0.08) 55%, transparent 78%);
 }
 @media (prefers-reduced-motion: no-preference) {
-  /* Slow ambient drift: translate only (compositor), 18s each way, opposite directions on alternate sections. */
-  main > section[data-surface="ink"]:not(:first-child):not([data-cta-band])::before { animation: dd-drift 18s ease-in-out infinite alternate; }
-  main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(odd)::before { animation-direction: alternate-reverse; }
-  @keyframes dd-drift { from { translate: -4% 0; } to { translate: 4% 0; } }
+  /* The light fades in once as its section scrolls into view and then holds still (no ambient loop: WCAG 2.2.2). */
   @supports (animation-timeline: view()) {
-    main > section[data-surface="ink"]:not(:first-child):not([data-cta-band])::before { animation: dd-glow linear both, dd-drift 18s ease-in-out infinite alternate; animation-timeline: view(), auto; animation-range: entry 0% cover 35%, normal; }
-    main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):nth-child(odd)::before { animation-direction: normal, alternate-reverse; }
+    main > section[data-surface="ink"]:not(:first-child):not([data-cta-band])::before { animation: dd-glow linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
     @keyframes dd-glow { from { opacity: 0; transform: scaleY(0.6); transform-origin: 50% 0; } to { opacity: 1; transform: none; } }
   }
 }

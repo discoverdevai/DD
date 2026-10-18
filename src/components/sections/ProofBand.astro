@@ -20,7 +20,7 @@ interface Props {
 }
 const { title, logosTitle, clientRoles, projects, items, map } = Astro.props;
 // Facts map (real land, Natural Earth, src/data/world-dots.ts): countries we have worked in lit blue, our two teams
-// pulsing green with an arc between them. Same projection as the generated dots.
+// marked in green with an arc between them. Same projection as the generated dots.
 const P = (lat: number, lon: number) => ({ x: +((lon - WORLD.lon0) * WORLD.k).toFixed(1), y: +((WORLD.lat0 - lat) * WORLD.k).toFixed(1) });
 const homes = [P(31, -99), P(31.2, 29.9)];
 const pins = map.pins.map(([name, lat, lon]) => ({ name, ...P(lat, lon) }));
@@ -40,7 +40,7 @@ const logos = showLogos
     }))
   : [];
 ---
-<section class="pband" data-surface="ink" aria-labelledby="pband-title">
+<section class="pband" data-surface="ink" data-raised aria-labelledby="pband-title">
   <div class="container pband__head">
     <h2 id="pband-title" class="pband__label">{showLogos ? logosTitle : title}</h2>
     {showLogos && (
@@ -105,20 +105,31 @@ const logos = showLogos
   .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
   /* WCAG 2.2.2: the row moves on its own, so it gets a pause control (shown only when it moves and JS runs). */
-  /* Pause control (WCAG 2.2.2) hidden until keyboard focus (Mohamed, Oct 16: no visible button). Mouse: hover pauses.
-     Touch: tapping the row toggles pause (script). Pressed = paused (aria-pressed). */
-  .pband__toggle { position: absolute; inset-inline-end: var(--gutter); display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 1.5rem; padding: 2px 8px; border: 0; border-radius: var(--radius-sm); background: var(--color-bg); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-heading); cursor: pointer; opacity: 0; pointer-events: none; }
-  .pband__toggle:focus-visible { opacity: 1; pointer-events: auto; }
+  /* Pause control (WCAG 2.2.2): small, quiet and always visible where the row moves (from 48rem; V1.0.1, replaces the
+     focus-only button). Mouse: hover also pauses. Phones show a still grid, so no control there. Pressed = paused. */
+  .pband__toggle { position: absolute; inset-inline-end: var(--gutter); display: none; align-items: center; gap: var(--space-2); min-block-size: 1.75rem; padding: 2px 10px; border: 1px solid var(--color-hairline); border-radius: var(--radius-sm); background: transparent; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); cursor: pointer; }
+  @media (width >= 48rem) { .pband__toggle { display: inline-flex; } }
+  @media (hover: hover) { .pband__toggle:hover { color: var(--color-heading); border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
   .pband__head { position: relative; }
   .pband__toggle[hidden] { display: none; }
   .pband__toggle .pband__i-play, .pband__toggle[aria-pressed='true'] .pband__i-pause { display: none; }
   .pband__toggle[aria-pressed='true'] .pband__i-play { display: block; }
 
   /* Client cards in one moving row; edges fade out. */
-  .pband__strip { overflow: hidden; mask-image: linear-gradient(90deg, transparent, var(--black) 6%, var(--black) 94%, transparent); }
-  .pband__track { display: flex; inline-size: max-content; }
-  .pband__clients { display: flex; gap: var(--space-3); padding-inline-end: var(--space-3); }
-  .pband__client { flex: none; display: flex; align-items: center; gap: var(--space-3); inline-size: 19.5rem; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
+  .pband__strip { overflow: hidden; }
+  .pband__track { display: block; }
+  .pband__clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); padding-inline: var(--gutter); }
+  .pband__clients[aria-hidden] { display: none; }
+  .pband__client span { display: none; }
+  @media (width >= 48rem) {
+    .pband__strip { mask-image: linear-gradient(90deg, transparent, var(--black) 6%, var(--black) 94%, transparent); }
+    .pband__track { display: flex; inline-size: max-content; }
+    .pband__clients { display: flex; padding-inline: 0; padding-inline-end: var(--space-3); }
+    .pband__clients[aria-hidden] { display: flex; }
+    .pband__client span { display: block; }
+    .pband__client { flex: none; inline-size: 19.5rem; }
+  }
+  .pband__client { display: flex; min-inline-size: 0; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
   .pband__client img { flex: none; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; object-fit: cover; background: var(--neutral-0); }
   .pband__client img.is-contain { object-fit: contain; padding: 3px; }
   .pband__client p { display: grid; min-inline-size: 0; }
@@ -126,18 +137,23 @@ const logos = showLogos
   .pband__client span { font-size: var(--text-xs); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (prefers-reduced-motion: no-preference) {
     /* The loop copy is added by the script (data-loop), so the inlined logos are in the HTML once (Oct 18, LCP budget). */
-    .pband[data-loop] .pband__track { animation: pband-scroll 90s linear infinite; }
-    :dir(rtl) .pband[data-loop] .pband__track { animation-name: pband-scroll-rtl; }
-    .pband__strip:hover .pband__track, .pband[data-paused] .pband__track { animation-play-state: paused; }
+    @media (width >= 48rem) {
+      .pband[data-loop] .pband__track { animation: pband-scroll 90s linear infinite; }
+      :dir(rtl) .pband[data-loop] .pband__track { animation-name: pband-scroll-rtl; }
+      .pband__strip:hover .pband__track, .pband[data-paused] .pband__track { animation-play-state: paused; }
+    }
     @keyframes pband-scroll { to { transform: translateX(-50%); } }
     @keyframes pband-scroll-rtl { to { transform: translateX(50%); } }
   }
+  /* Cascade order: this block must stay after the 48rem block above, whose rules it overrides. */
   @media (prefers-reduced-motion: reduce) {
     .pband__toggle { display: none !important; }
-    .pband__strip { mask-image: none; }
-    .pband__track { inline-size: auto; padding-inline: var(--gutter); }
-    .pband__clients { flex-wrap: wrap; justify-content: center; padding-inline-end: 0; }
     .pband__clients[aria-hidden] { display: none; }
+    @media (width >= 48rem) {
+      .pband__strip { mask-image: none; }
+      .pband__track { display: block; inline-size: auto; padding-inline: var(--gutter); }
+      .pband__clients { display: flex; flex-wrap: wrap; justify-content: center; padding-inline: 0; }
+    }
   }
 
   /* Projects (fallback): four equal cards; the title link covers the card (one link, one tab stop). */
@@ -175,7 +191,7 @@ const logos = showLogos
   .pband__home-dot { fill: var(--color-human-mark); stroke: var(--color-bg); stroke-width: 2; }
   .pband__home-ring { fill: none; stroke: var(--color-human-mark); stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
   @media (prefers-reduced-motion: no-preference) {
-    .pband__home-ring { animation: pband-ping 2.8s var(--ease-standard) infinite; }
+    .pband__home-ring { animation: pband-ping 2.8s var(--ease-standard) 3; }
     .pband__home:nth-of-type(2) .pband__home-ring { animation-delay: 1.4s; }
     @keyframes pband-ping { from { transform: scale(1); opacity: 0.8; } to { transform: scale(3.2); opacity: 0; } }
   }

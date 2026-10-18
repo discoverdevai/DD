@@ -18,7 +18,7 @@ const { services, links } = Astro.props;
       <Icon name="x" size={20} /><span class="sr-only">{t('menu.close')}</span>
     </button>
   </div>
-  <h2 id="menu-heading" class="sr-only">{t('menu.heading')}</h2>
+  <p id="menu-heading" class="sr-only">{t('menu.heading')}</p>
   <nav aria-label={t('nav.label')}>
     <ul role="list" class="menu-sheet__list">
       {services.length > 0 && (
