@@ -132,8 +132,9 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
     ok(`/book${q || ' (no type)'} preselects ${want}`, cur === want && panel && tabShown === partnerTab, `current=${cur} partnerTab=${tabShown}`);
   }
   await p.goto(`${base}/book?type=clarity`, { waitUntil: 'networkidle' }); await p.waitForTimeout(500);
-  const fallback = await p.evaluate(() => ({ failed: !document.querySelector('[data-cal-failed]')?.hidden, email: !!document.querySelector('main a[href^="mailto:"]') }));
-  ok('/book without a Cal account shows the fallback and email', fallback.failed && fallback.email, JSON.stringify(fallback));
+  const fallback = await p.evaluate(() => ({ failed: !document.querySelector('[data-cal-failed]')?.hidden, email: !!document.querySelector('main a[href^="mailto:"]'), direct: !!document.querySelector('main a[href*="cal.com/"]') }));
+  // With a Cal username set (default since Oct 18) the page links to the booking page; without one it shows the fallback and email.
+  ok('/book shows a booking link, or the fallback and email when no Cal account is set', fallback.direct || (fallback.failed && fallback.email), JSON.stringify(fallback));
   const res = await p.goto(`${base}/this-is-a-404`);
   ok('Unknown URL returns HTTP 404 with the 404 page', res.status() === 404 && (await p.locator('h1').innerText()).length > 0, String(res.status()));
   await p.close();

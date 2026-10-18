@@ -77,7 +77,8 @@ export default defineConfig({
       PUBLIC_POSTHOG_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_POSTHOG_HOST: envField.string({ context: 'client', access: 'public', default: 'https://eu.i.posthog.com' }),
       PUBLIC_CF_BEACON_TOKEN: envField.string({ context: 'client', access: 'public', optional: true }),
-      PUBLIC_CAL_USERNAME: envField.string({ context: 'client', access: 'public', optional: true }),
+      // Public booking-page username (not a secret). Default = the company Cal.com account (Oct 18); a build variable still overrides it.
+      PUBLIC_CAL_USERNAME: envField.string({ context: 'client', access: 'public', default: 'mohamed-ali-plfh5u' }),
       PUBLIC_WEB3FORMS_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
     },
   },
