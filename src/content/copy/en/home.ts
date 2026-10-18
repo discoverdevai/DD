@@ -10,7 +10,7 @@ export const home = {
     ogEyebrow: 'AI drafts. Seniors sign off.', // share image only; the on-page pill was removed Oct 18
     h1: 'Turn your idea into a live product in weeks.',
     h1Accent: 'a live product',
-    sub: 'DiscoverDev builds it with senior engineers and AI, in 8⁠–⁠12 weeks. You own everything.',
+    sub: 'DiscoverDev builds it with senior engineers and AI, in 8–12 weeks. You own everything.',
   },
   proofStrip: {
     // §2A.3 facts map (09 countries).

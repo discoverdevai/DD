@@ -39,3 +39,4 @@ assets/clients/mono/
 .claude/launch.json
 .baseline/
 docs/review/v1/
+docs/review/home-v1/*.png
