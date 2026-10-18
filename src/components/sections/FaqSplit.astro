@@ -29,5 +29,6 @@ import SectionHead from '../ui/SectionHead.astro';
   .fs--paper { border-block-start: 1px solid var(--color-border-subtle); }
   .fs--paper :global(.section-heading) { color: var(--neutral-950); font-weight: var(--weight-bold); letter-spacing: -0.03em; }
   .fs__help { color: var(--color-text-muted); }
+  .fs__help :global(a) { display: inline-block; padding-block: 0.65rem; margin-block: -0.65rem; } /* 44px hit area, same look */
   .fs__grid :global(.faq) { max-inline-size: none; }
 </style>

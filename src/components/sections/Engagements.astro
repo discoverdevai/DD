@@ -13,7 +13,7 @@ const cardLabel = (c: Card) => (isLive(c.key) ? c.linkLabel : c.bookLabel ?? c.l
 const liveOther = other.filter((o) => isLive(o.key));
 ---
 {live.length > 0 && (
-  <section id="services" class="en" data-surface="ink" aria-labelledby="en-title">
+  <section id="services" class="en" data-surface="ink" data-raised aria-labelledby="en-title">
     <div class="container">
       <div class="en__head">
         <SectionHead id="en-title" title={title} measure={18} reveal />
@@ -54,10 +54,10 @@ const liveOther = other.filter((o) => isLive(o.key));
 <style>
   /* Service name in search words (03 §2A.6 Kind), under the stage name, part of the heading. */
   .en__kind { display: block; margin-block-start: var(--space-1); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-machine-text); letter-spacing: 0; }
-  .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
+  .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   .en__head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
   @media (width >= 64rem) { .en__head { grid-template-columns: 1fr 1fr; align-items: end; } }
-  .en__lead { color: var(--color-text-muted); font-size: var(--text-lg); max-inline-size: 34rem; }
+  .en__lead { color: var(--color-text-muted); font-size: var(--text-lg); max-inline-size: 34rem; text-wrap: pretty; }
 
   .en__scope { margin-block-start: var(--space-6); max-inline-size: 52rem; color: var(--color-text-muted); }
   .en__scope b { color: var(--color-heading); font-weight: var(--weight-semibold); }

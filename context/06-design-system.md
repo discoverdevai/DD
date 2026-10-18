@@ -18,7 +18,7 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
 | Default surface | light | **Marketing heroes and process sections = `ink`. Reading content = `paper` (today's light).** | Brief concept: workshop and report |
 | Inverse limit | navy ≤ 2 sections per page | **Rewritten:** `ink` allowed on any section; `navy` chapter ≤ 1 + CTA band; `paper` required for FAQ, articles, legal, book, quiz | Keeps long reading light and keeps Cal.com on a light surface |
 | Mono font | system stack, no webfont | **JetBrains Mono** (latin subset, 400–500, no preload) | Brand deck uses it; 3 font files total stays inside 07 §13 (≤ 3 files, ≤ 120 KB) |
-| Glow, gradients | avoided | **Still avoided.** Only the blade's tonal fill and the 1px hero grid | Critique finding 4 |
+| Glow, gradients | avoided | **Amended Oct 18 2026 (decision A8): soft brand-blue glows and the dot map are allowed, within the limits in §0.9.** Mesh gradients, purple gradients and glassmorphism stay banned | Mohamed chose the dark v3 look on purpose (Oct 16) |
 | Sign-off colour | n/a | **`--green-300` on ink, `--green-700` on paper** (existing success tokens) | Critique finding 3: one token, one meaning |
 | Signature | ReviewSnapshot | **RunPanel (ink) + ReviewSnapshot (paper)** | The two layers of the brand idea |
 
@@ -191,6 +191,14 @@ Status: v1.1 spec (Signal), 2026-10-15. v1 spec, 2026-10-15. Inputs: source brie
 
 ---
 
+### 0.9 Glows and the facts map (amendment A8, approved by Mohamed 2026-10-18)
+The dark v3 look uses soft light and one map. They are allowed only here, and only as decoration.
+- **Allowed glows:** (a) the hero fields and the board light (`HomeHero`); (b) the brand-blue wash at the top of each dark section (`base.css`, section backgrounds); (c) the horizon light in the closing band (`CtaBand`, `--glow-1`, `--glow-2`); (d) the pointer spotlight on cards (`[data-spotlight]`). Colours come from the blue ramp only (blue-400 to blue-800 channels); no other hue, no blur filters, gradients only.
+- **Allowed map:** the facts map in `ProofBand` (real land as dots, client countries lit, two team pins joined by an arc). It is a fact, not a hero image. No second map elsewhere.
+- **Limits:** decorative only (`aria-hidden`, `pointer-events: none`). No text sits on a glow without the text itself meeting AA against the darkest and lightest part of the glow. Glows never carry meaning. Hidden in forced colours.
+- **Motion:** a glow may fade or drift in once (scroll-driven or on load) and then holds still. Nothing ambient loops. The map pings play 3 times, then rest. Under `prefers-reduced-motion: reduce` nothing animates.
+- **Client marquee:** the only looping element. From 48rem it scrolls slowly with a small, always-visible pause button (and pauses on hover). Below 48rem it is a still two-column grid. Reduced motion shows the still wrapped list.
+
 ## 1. Visual direction
 
 ### Concept: "the review on the desk"
@@ -209,10 +217,10 @@ Mood words: precise, candid, calm, bright, specific.
 **ReviewSnapshot**: a findings panel styled like a page of the Launch-Ready Review report (severity, finding, area, status, verdict). It appears in the home hero and on `/launch-ready`. Its one-time load sequence (statuses flip from open to planned to fixed) is the site's only orchestrated motion. Everything around it stays quiet. Spec in §9.6.
 
 ### Avoid
-- Purple or violet gradients, mesh gradients, glassmorphism, glows, 3D blobs, isometric scenes.
-- Stock photos: handshakes, over-the-shoulder laptops, dark rooms with green code, rockets (despite "launch"), robots, glowing brains, AI sparkle icons, world maps with dots.
+- Purple or violet gradients, mesh gradients, glassmorphism, 3D blobs, isometric scenes. Glows are banned except the allowed ones in §0.9.
+- Stock photos: handshakes, over-the-shoulder laptops, dark rooms with green code, rockets (despite "launch"), robots, glowing brains, AI sparkle icons. World maps with dots are banned except the facts map in §0.9.
 - AI-generated people. Never.
-- Stat-counter bars, animated number roll-ups, logo marquees, carousels.
+- Stat-counter bars, animated number roll-ups, logo marquees (except the client row in §0.9), carousels.
 - Cream backgrounds, tinted near-black stand-ins, all-caps tracked labels, a label above every heading, metadata strings joined with middle dots, arrows appended to link or button text.
 - Fade-and-slide on every section. Hover-lift on every card.
 - One accent word coloured inside a headline.
@@ -678,7 +686,7 @@ Rules:
 - Press: `:active` darkens (`--color-action-bg-active`). No transform.
 - Disclosure (FAQ, services panel, mobile menu): open and close at `--dur-base` with `--ease-enter` / `--ease-exit`. Chevrons rotate 180°.
 - Cross-document view transitions: root crossfade only, inside `prefers-reduced-motion: no-preference`.
-- Never: parallax, scroll-jacking, autoplay video, counters, marquees. Nothing loops (2.2.2).
+- Never: parallax, scroll-jacking, autoplay video, counters. Ambient decoration (glows, drift) never loops; it plays once and holds. The one allowed moving row is the client marquee in §0.9, which is still on phones and has a visible pause control (2.2.2).
 - Feedback within 100ms on every click. Embed loading shows a fallback immediately (§9.17).
 - Forced colours (Windows High Contrast): buttons keep `border: 1px solid transparent`, focus uses `outline`, icons use `currentColor`, and no meaning lives in a `background-image`.
 
@@ -756,7 +764,7 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
 - **RTL:** list aligned to start. The sheet doesn't slide sideways, so there is no direction issue.
 
 ### 9.3 Mobile bottom bar (sticky CTA)
-- **Anatomy:** `<div class="bottom-bar">` with one full-width primary button `Book a Review`. Padding `--space-3`, plus `env(safe-area-inset-bottom)`. `--shadow-up`, `--z-sticky`.
+- **Anatomy:** `<div class="bottom-bar">` with one full-width primary button (Oct 18: the clarity call on the home page). Padding `--space-2`, plus `env(safe-area-inset-bottom)`. Height under 68px on phones (V1.0.1: 64px; the reassurance line sits beside the button from 36rem and is screen-reader text below); the button keeps its 48px height. `--shadow-up`, `--z-sticky`.
 - **Show/hide:**
   - Shown below 64rem once the hero CTA leaves the viewport (IntersectionObserver).
   - Hidden on `/book*`, on `/launch-check`, while a text field has focus (keyboard open), and while the final CTA band is in view.
@@ -1072,6 +1080,7 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
 - **RTL:** progress fills from inline-start. Back and Next mirror. Chevrons are `.icon--dir`.
 
 ### 9.24 Logo (component)
+- **Ink variant (Oct 18):** on ink the logo uses `public/brand/logo-horizontal-for-ink.svg`, whose arrow and "Dev" are `#5A8BFF` to `#7BA5FF` (6.1:1 to 8.1:1 on `--blue-975`; the original `#1240BE` was 2.3:1). The light-background logo is unchanged. The original for-dark file stays in `assets/logo` for the OG image.
 - `Logo` props: `lockup` (`horizontal` | `stacked` | `mark`), `tone` (`color` | `reversed`). Inline SVG with `<title>DiscoverDev</title>` when standalone. Inside a link, the link carries the name and the SVG is `aria-hidden`.
 - Never mirrored, never recoloured outside §11.
 
@@ -1094,7 +1103,7 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
 ### 9.26 Card link (`.card-link`, `styles/patterns.css`) and Tag (`.tag`)
 - **Card link purpose:** make a whole card one link target without nesting links. Put `.card-link` on the card; the link inside its H2–H4 (or an anchor with `.card-link__target`) stretches over the card with `::after`. One link per card.
 - **States:** focus shows once, as a `--color-focus` ring on the card (`:has(a:focus-visible)`); the inner link has no outline of its own. Hover styling stays with the card.
-- **Tag purpose:** a short fact next to a title (time, place, kind). Mono, extra-small, outlined pill, `--blue-300` 30% border, machine text. Dark surfaces. Variants: none (the filled stage tag on /work and Chapters stays component-local until a third use).
+- **Tag purpose:** a short fact next to a title (time, place, kind). Mono, extra-small, outlined chip (`--radius-xs`), `--blue-300` 30% border, machine text. Dark surfaces. Variant `.tag--stage` (Oct 18): the same chip with a brighter outline (`--blue-300` 70%) and `--blue-200` text, for the engagement stage (Validate, Build, Scale); used on the work chapter, the showcase tile and the review cards, so the stage chip has one look.
 - **Rule:** a new card or tag starts from these classes; add a variant only after two uses.
 
 ### 9.27 Device and WindowBar (`ui/Device.astro`, `ui/WindowBar.astro`)

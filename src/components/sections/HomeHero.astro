@@ -37,7 +37,7 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
 <style>
   .hero { position: relative; overflow: clip; padding-block-start: clamp(3rem, 1.5rem + 6vw, 7rem); text-align: center; isolation: isolate; }
   .hero__grid { position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px); background-size: 4.5rem 4.5rem; background-position: center top; mask-image: radial-gradient(60% 55% at 50% 0%, var(--black) 0%, transparent 100%); opacity: 0.7; }
-  /* Ambient background (Oct 16): three soft brand-blue fields drift very slowly behind the grid, so the hero feels lit
+  /* Ambient background (Oct 16): three soft brand-blue fields drift once, slowly, behind the grid and then hold, so the hero feels lit
      and alive without competing with the words. Gradients only (no filters), transform-only motion, still under
      reduced motion, hidden in forced colours. */
   .hero__aurora { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
@@ -46,14 +46,14 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
   .hero__aurora i:nth-child(2) { inline-size: min(80vw, 64rem); aspect-ratio: 1; inset-block-start: 5%; inset-inline-end: -25%; background: radial-gradient(closest-side, rgb(var(--blue-800-rgb) / 0.6), rgb(var(--blue-800-rgb) / 0.18) 55%, transparent); }
   .hero__aurora i:nth-child(3) { inline-size: min(40vw, 30rem); aspect-ratio: 1; inset-block-end: -20%; inset-inline-start: 30%; background: radial-gradient(closest-side, rgb(var(--blue-400-rgb) / 0.16), transparent); }
   @media (prefers-reduced-motion: no-preference) {
-    .hero__aurora i:nth-child(1) { animation: hero-drift-a 26s ease-in-out infinite alternate; }
-    .hero__aurora i:nth-child(2) { animation: hero-drift-b 32s ease-in-out infinite alternate; }
-    .hero__aurora i:nth-child(3) { animation: hero-drift-c 22s ease-in-out infinite alternate; }
+    .hero__aurora i:nth-child(1) { animation: hero-drift-a 26s ease-in-out 1 forwards; }
+    .hero__aurora i:nth-child(2) { animation: hero-drift-b 32s ease-in-out 1 forwards; }
+    .hero__aurora i:nth-child(3) { animation: hero-drift-c 22s ease-in-out 1 forwards; }
     @keyframes hero-drift-a { from { transform: translate(0, 0) scale(1); } to { transform: translate(10%, 8%) scale(1.12); } }
     @keyframes hero-drift-b { from { transform: translate(0, 0) scale(1.05); } to { transform: translate(-8%, -6%) scale(0.95); } }
     @keyframes hero-drift-c { from { transform: translate(0, 0); opacity: 0.6; } to { transform: translate(-14%, -10%); opacity: 1; } }
-    /* The board's light breathes slowly once the scene has settled. */
-    .hero__light { animation: hero-breathe 9s 2s ease-in-out infinite alternate; }
+    /* The board's light brightens once as the scene settles, then holds (no loop: WCAG 2.2.2, 06 §Motion). */
+    .hero__light { animation: hero-breathe 9s 2s ease-in-out 1 forwards; }
     @keyframes hero-breathe { from { opacity: 0.75; } to { opacity: 1; } }
   }
   @media (forced-colors: active) { .hero__aurora, .hero__light { display: none; } }
@@ -69,7 +69,7 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
   @media (prefers-reduced-motion: no-preference) and (hover: hover) { .hero__arrow { transition: translate var(--dur-base) var(--ease-standard); } .hero__ctas :global(.hero__how:hover) .hero__arrow { translate: 4px 0; } :dir(rtl) .hero__ctas :global(.hero__how:hover) .hero__arrow { translate: -4px 0; } }
   .hero__copy :global(.hero__proof) { margin-block-start: calc(var(--space-2) * -1); color: var(--color-text-muted); text-wrap: balance; }
   /* The Clutch link takes its own line, so the rating never breaks mid-phrase. */
-  .hero__copy :global(.hero__proof.proof-chip a) { display: flex; align-items: center; min-block-size: 1.5rem; inline-size: fit-content; margin-inline: auto; } /* own line = no longer inline text, so 24px target (WCAG 2.5.8) */
+  .hero__copy :global(.hero__proof.proof-chip a) { display: flex; align-items: center; min-block-size: 2.75rem; margin-block: calc(var(--space-3) * -1); inline-size: fit-content; margin-inline: auto; } /* own line = no longer inline text, so a 44px target (WCAG 2.5.8) with the same visual spacing */
   /* Phones: equal full-width buttons instead of two ragged widths. */
   @media (width < 30rem) { .hero__ctas { inline-size: 100%; flex-direction: column; } .hero__ctas > :global(*) { inline-size: 100%; } }
   .hero__copy :global(.hero__terms) { justify-content: center; }

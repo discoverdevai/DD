@@ -12,7 +12,7 @@ const { label, title, items, cta = false } = Astro.props;
 const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
 import SectionHead from '../ui/SectionHead.astro';
 ---
-<section id="reviews" class="rv" data-surface="ink" aria-labelledby="rv-title">
+<section id="reviews" class="rv" data-surface="ink" data-raised aria-labelledby="rv-title">
   <div class="container">
     <SectionHead id="rv-title" label={label} title={title} measure={22} />
     <ProofChip class="rv__proof" />
@@ -25,7 +25,7 @@ import SectionHead from '../ui/SectionHead.astro';
               <span class="rv__avatar" aria-hidden="true">{initials(r.name)}</span>
               <span class="rv__who"><strong>{r.name}</strong><span>{r.role}</span></span>
             </figcaption>
-            <p class="rv__service">{r.service}</p>
+            <p class="rv__service tag tag--stage">{r.service}</p>
             {r.result && <p class="rv__result">{r.result}</p>}
           </figure>
         </li>
@@ -43,16 +43,17 @@ import SectionHead from '../ui/SectionHead.astro';
   .rv { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   .rv :global(.rv__proof) { margin-block: var(--space-4) var(--stack-lg); color: var(--color-text-muted); }
 
-  /* Phones: one swipeable row of cards (85% width so the next card peeks). From 48rem: masonry columns (interim until the slider, Oct 18). */
+  /* Phones and tablets: one swipeable row of cards (the next card peeks). From 64rem: three columns, with the non-featured quotes as an open quote wall (no box) so the page is not a stack of identical cards. */
   .rv__list { display: grid; grid-auto-flow: column; grid-auto-columns: 85%; gap: var(--space-4); overflow-x: auto; scroll-snap-type: x mandatory; padding-block-end: var(--space-3); overscroll-behavior-x: contain; }
   .rv__card { scroll-snap-align: start; }
   /* Keyboard: the row is focusable so arrow keys scroll it on phones (axe scrollable-region-focusable). */
   .rv__list:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); border-radius: var(--radius-lg); }
-  @media (width >= 48rem) {
-    .rv__list { display: block; columns: 2; column-gap: var(--space-5); overflow: visible; padding: 0; }
-    .rv__card { break-inside: avoid; margin-block-end: var(--space-5); }
+  @media (width >= 40rem) and (width < 64rem) { .rv__list { grid-auto-columns: 46%; } }
+  @media (width >= 64rem) {
+    .rv__list { display: block; columns: 3; column-gap: var(--space-8); overflow: visible; padding: 0; }
+    .rv__card { break-inside: avoid; margin-block-end: var(--space-8); }
+    .rv__card:not(.rv__card--featured) figure { padding: var(--space-5) 0 0; border: 0; border-block-start: 1px solid var(--color-hairline); border-radius: 0; background: none; }
   }
-  @media (width >= 72rem) { .rv__list { columns: 3; } }
   @media (width >= 90rem) { .rv__list { columns: 4; } }
 
   .rv__card figure { display: grid; gap: var(--space-4); block-size: 100%; padding: var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
@@ -64,9 +65,19 @@ import SectionHead from '../ui/SectionHead.astro';
   .rv__who strong { font-family: var(--ff-heading); color: var(--color-heading); }
   .rv__who span { font-size: var(--text-sm); color: var(--color-text-muted); }
   .rv__result { align-self: start; font-family: var(--ff-heading); font-weight: var(--weight-semibold); color: var(--color-human-text); }
-  .rv__service { justify-self: start; align-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); line-height: 1.5; padding: 2px 8px; border-radius: var(--radius-sm); border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
+  .rv__service { align-self: start; }
   /* Featured first quote (the build review behind the case study): larger text, accent edge. */
   .rv__card--featured figure { border-color: color-mix(in oklab, var(--blue-400) 45%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 30%, var(--color-surface)), var(--color-surface) 70%); }
   .rv__card--featured .rv__quote { font-size: var(--text-lg); line-height: 1.5; font-weight: var(--weight-medium); color: var(--color-heading); }
   .rv__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-block-start: var(--space-8); }
 </style>
+
+<script>
+  // The row is a keyboard stop only while it really scrolls (axe scrollable-region-focusable); in the column layout it is not.
+  const list = document.querySelector<HTMLElement>('.rv__list');
+  if (list) {
+    const sync = () => { if (list.scrollWidth > list.clientWidth + 1) list.setAttribute('tabindex', '0'); else list.removeAttribute('tabindex'); };
+    new ResizeObserver(sync).observe(list);
+    sync();
+  }
+</script>

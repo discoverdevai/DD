@@ -1,11 +1,11 @@
 ---
 // Official horizontal logo (assets/logo/svg, from the brand guidelines asset kit; D-33 resolved). Brand rules: whole
-// logo only, never recoloured; on dark ink use the "for dark" version (white "Discover", blue gradient mark and "Dev");
+// logo only, never recoloured; on dark ink use the "for ink" version (white "Discover", lighter blue mark and "Dev", at least 6:1 on ink; the original for-dark file stays for the OG image);
 // on white use the dark-text version; min 120 px wide. Decorative here: the link around it carries the name.
 // `lazy` for copies below the fold (footer, mobile menu); the header copy loads eagerly.
 interface Props { tone?: 'for-dark' | 'dark-text'; lazy?: boolean; class?: string }
 const { tone = 'for-dark', lazy = false, class: cls } = Astro.props;
-const src = tone === 'for-dark' ? '/brand/logo-horizontal-for-dark.svg' : '/brand/logo-horizontal-dark-text.svg';
+const src = tone === 'for-dark' ? '/brand/logo-horizontal-for-ink.svg' : '/brand/logo-horizontal-dark-text.svg';
 ---
 <img class:list={['logo', cls]} src={src} alt="" width="825" height="175" decoding="async" loading={lazy ? 'lazy' : 'eager'} />
 
