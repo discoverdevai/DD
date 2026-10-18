@@ -32,7 +32,7 @@ import SectionHead from '../components/ui/SectionHead.astro';
       <p class="hw__lead">{c.paths.lead}</p>
       <ul role="list" class="hw__paths">
         {c.paths.items.map((p) => (
-          <li class="hw__path">
+          <li class="hw__path card-link">
             <p class="hw__tag">{p.tag}</p>
             <h3 class="hw__h3"><a href={href(p.key)}>{p.title}</a></h3>
             <p class="hw__body">{p.body}</p>
@@ -99,9 +99,6 @@ import SectionHead from '../components/ui/SectionHead.astro';
   .hw__path:last-child { border-color: color-mix(in oklab, var(--color-human-mark) 30%, transparent); }
   .hw__tag { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
   .hw__path h3 a { color: inherit; text-decoration: none; }
-  .hw__path h3 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
-  .hw__path:has(a:focus-visible) { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
-  .hw__path a:focus-visible { outline: none; }
   .hw__more { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
   @media (hover: hover) { .hw__path:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
 

@@ -71,7 +71,7 @@ const logos = showLogos
     <div class="container">
       <ul role="list" class="pband__projects">
         {projects.map((p) => (
-          <li class="pband__card">
+          <li class="pband__card card-link">
             <p class="pband__stage">{p.stage}</p>
             <h3 class="pband__what"><a href={p.href}>{p.what}</a></h3>
             <p class="pband__proof">{p.proof}</p>
@@ -147,9 +147,6 @@ const logos = showLogos
   .pband__stage { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .pband__what { font-family: var(--ff-heading); font-size: var(--text-base); font-weight: var(--weight-bold); line-height: 1.35; color: var(--color-heading); text-wrap: balance; }
   .pband__what a { color: inherit; text-decoration: none; }
-  .pband__what a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
-  .pband__card:has(a:focus-visible) { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
-  .pband__what a:focus-visible { outline: none; }
   @media (hover: hover) { .pband__card:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); background: color-mix(in oklab, var(--blue-300) 8%, transparent); } }
   .pband__proof { font-size: var(--text-sm); line-height: 1.5; color: var(--color-text-muted); }
   .pband__where { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--text-xs); color: var(--color-text-muted); }

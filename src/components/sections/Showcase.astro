@@ -21,7 +21,7 @@ import SectionHead from '../ui/SectionHead.astro';
     </div>
     <ul role="list" class="sc__bento">
       {feat && (
-        <li class="sc__tile sc__tile--feat">
+        <li class="sc__tile sc__tile--feat card-link">
           <div class="sc__vis"><ProjectVisual project={feat} sizes="(min-width: 64rem) 45vw, 100vw" /></div>
           <div class="sc__body">
           <p class="sc__meta"><span class="sc__stage">{stageName(feat.stage)}</span>{feat.industry}{feat.where && ` · ${feat.where}`}</p>
@@ -33,7 +33,7 @@ import SectionHead from '../ui/SectionHead.astro';
         </li>
       )}
       {rest.map((p) => (
-        <li class="sc__tile">
+        <li class="sc__tile card-link">
           <div class="sc__vis"><ProjectVisual project={p} sizes="(min-width: 64rem) 25vw, 100vw" /></div>
           <p class="sc__meta"><span class="sc__stage">{stageName(p.stage)}</span>{p.industry}{p.where && ` · ${p.where}`}</p>
           <h3 class="sc__h"><a href={target(p)}>{p.title}</a></h3>
@@ -63,9 +63,6 @@ import SectionHead from '../ui/SectionHead.astro';
   .sc__h { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); line-height: 1.3; color: var(--color-heading); text-wrap: balance; }
   .sc__tile--feat .sc__h { font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem); }
   .sc__h a { color: inherit; text-decoration: none; }
-  .sc__h a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
-  .sc__tile:has(a:focus-visible) { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
-  .sc__h a:focus-visible { outline: none; }
   @media (hover: hover) { .sc__tile:hover { border-color: color-mix(in oklab, var(--blue-300) 45%, transparent); } }
   .sc__metric { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); margin-block: var(--space-2); }
   .sc__metric b { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: clamp(2.75rem, 2rem + 2.4vw, 4rem); line-height: 1; letter-spacing: -0.045em; color: var(--color-heading); }

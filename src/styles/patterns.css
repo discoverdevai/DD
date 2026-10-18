@@ -7,3 +7,10 @@
 .section-heading--18 { max-inline-size: 18ch; }
 .section-heading--22 { max-inline-size: 22ch; }
 .section-heading--24 { max-inline-size: 24ch; }
+
+/* Card link (06 §9.26): the whole card is one link target. Put .card-link on the card; the link inside its heading
+   (or an anchor with .card-link__target) stretches over it. Focus shows once, as a ring on the card. One link per card. */
+.card-link { position: relative; }
+.card-link :is(h2, h3, h4) a::after, .card-link .card-link__target::after { content: ''; position: absolute; inset: 0; z-index: var(--z-raised); border-radius: inherit; }
+.card-link :is(h2, h3, h4) a:focus-visible, .card-link .card-link__target:focus-visible { outline: none; }
+.card-link:has(a:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }

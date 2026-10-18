@@ -29,32 +29,3 @@ const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, '
 
   <CtaBand title={c.band.title} kind="clarity" page="work" link={{ label: c.band.link, to: 'review' }} />
 </BaseLayout>
-
-<style>
-  .case-card { position: relative; display: grid; gap: var(--space-6); padding: var(--space-10) var(--space-8); border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); border-radius: var(--radius-lg); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); }
-  @media (width >= 48rem) { .case-card { grid-template-columns: 4fr 8fr; align-items: center; } }
-  .case-card__metric { font-family: var(--ff-heading); font-weight: var(--weight-extrabold); font-size: clamp(3rem, 2rem + 4vw, 5.5rem); line-height: 1; letter-spacing: -0.05em; color: var(--color-heading); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .case-card__body { display: grid; gap: var(--space-3); }
-  .case-card__tags { display: flex; gap: var(--space-2); }
-  .case-card__tags span { font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 25%, transparent); color: var(--color-machine-text); }
-  .case-card h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); font-weight: var(--weight-bold); letter-spacing: -0.03em; }
-  .case-card h2 a { color: var(--color-heading); text-decoration: none; }
-  .case-card h2 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
-  .case-card h2 a:focus-visible { outline: none; }
-  .case-card:has(a:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
-  .case-card__more { color: var(--color-link); font-weight: var(--weight-medium); }
-  .case-card__more::after { content: ' →'; }
-  :dir(rtl) .case-card__more::after { content: ' ←'; }
-  @media (hover: hover) { .case-card:not(.case-card--static):hover { border-color: var(--color-border-interactive); } } /* the static card has no link, so no hover */
-  .case-card + .case-card { margin-block-start: var(--space-6); }
-  .case-card--static .case-card__metric { font-size: clamp(2.5rem, 1.8rem + 3vw, 4.5rem); }
-  .groups { display: grid; gap: var(--space-10); }
-  @media (width >= 64rem) { .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-8); } }
-  .group { display: grid; gap: var(--space-3); align-content: start; min-inline-size: 0; }
-  .group__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); padding-block-end: var(--space-3); border-block-end: 4px solid var(--blue-700); }
-  .group__title a { color: var(--color-heading); text-decoration: none; }
-  @media (hover: hover) { .group__title a:hover { text-decoration: underline; text-underline-offset: 0.2em; } }
-  .more { display: grid; gap: 0; }
-  .more li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-6); padding-block: var(--space-4); border-block-end: 1px solid var(--color-border-subtle); }
-  .more__where { color: var(--color-text-muted); font-size: var(--text-sm); }
-</style>
