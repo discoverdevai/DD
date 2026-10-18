@@ -21,13 +21,14 @@ const howTo = {
 };
 const faqLd = faqPage(`${url}#faq`, c.faq.items);
 const jsonLd = graph(orgStub, webPage('/how-we-work', c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#steps` } }), howTo, faqLd);
+import SectionHead from '../components/ui/SectionHead.astro';
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="about" jsonLd={jsonLd}>
   <PageHero page="how_we_work" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.lead} cta="clarity" />
 
   <section class="hw hw--paths" data-surface="ink" aria-labelledby="paths-title">
     <div class="container">
-      <h2 id="paths-title" class="hw__title">{c.paths.title}</h2>
+      <SectionHead id="paths-title" title={c.paths.title} measure={24} />
       <p class="hw__lead">{c.paths.lead}</p>
       <ul role="list" class="hw__paths">
         {c.paths.items.map((p) => (
@@ -44,8 +45,7 @@ const jsonLd = graph(orgStub, webPage('/how-we-work', c.seo.title, c.seo.descrip
 
   <section class="hw" data-surface="ink" aria-labelledby="roles-title">
     <div class="container">
-      <p class="hw__label">{c.roles.label}</p>
-      <h2 id="roles-title" class="hw__title">{c.roles.title}</h2>
+      <SectionHead id="roles-title" label={c.roles.label} title={c.roles.title} measure={24} />
       <p class="hw__lead">{c.roles.body}</p>
       <WayFlow {...home.agile.flow} />
     </div>
@@ -53,8 +53,7 @@ const jsonLd = graph(orgStub, webPage('/how-we-work', c.seo.title, c.seo.descrip
 
   <section class="hw" data-surface="ink" aria-labelledby="steps-title">
     <div class="container">
-      <p class="hw__label">{c.steps.label}</p>
-      <h2 id="steps-title" class="hw__title">{c.steps.title}</h2>
+      <SectionHead id="steps-title" label={c.steps.label} title={c.steps.title} measure={24} />
       <ol role="list" class="hw__steps">
         {c.steps.items.map((s, i) => (
           <li class="hw__step">
@@ -89,8 +88,6 @@ const jsonLd = graph(orgStub, webPage('/how-we-work', c.seo.title, c.seo.descrip
 
 <style>
   .hw { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
-  .hw__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
-  .hw__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; max-inline-size: 24ch; }
   .hw__lead { max-inline-size: 44rem; margin-block: var(--space-4) var(--stack-lg); font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); }
   .hw__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
   .hw__body { color: var(--color-text-muted); line-height: 1.55; }

@@ -1,0 +1,9 @@
+/* Shared patterns (design-system phase 4, spec in context/06 §9.25). One class per repeated look; components add only
+   what is specific to them. Tokens only (token-lint). */
+
+/* Section head: label above a title. Markup via components/ui/SectionHead.astro. */
+.section-label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
+.section-heading { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; }
+.section-heading--18 { max-inline-size: 18ch; }
+.section-heading--22 { max-inline-size: 22ch; }
+.section-heading--24 { max-inline-size: 24ch; }

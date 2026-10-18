@@ -9,13 +9,13 @@ const tiles = [...c.ids, ...fallback].map((id) => projects.find((p) => p.id === 
 const [feat, ...rest] = tiles;
 const target = (p: (typeof tiles)[number]) => (p.link && isLive(p.link) ? href(p.link) : href('work'));
 const stageName = (s: keyof typeof c.stages) => c.stages[s];
+import SectionHead from '../ui/SectionHead.astro';
 ---
 <section id="selected-work" class="sc" data-surface="ink" aria-labelledby="sc-title">
   <div class="container">
     <div class="sc__head">
       <div>
-        <p class="sc__label">{c.label}</p>
-        <h2 id="sc-title" class="sc__title">{c.moreTitle}</h2>
+        <SectionHead id="sc-title" label={c.label} title={c.moreTitle} />
       </div>
       {isLive('work') && <a class="sc__all" href={href('work')}>{c.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
     </div>
@@ -47,8 +47,6 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
 <style>
   .sc { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   .sc__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); margin-block-end: var(--stack-lg); }
-  .sc__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
-  .sc__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; }
   .sc__all { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
   /* Bento: phones 1 column; tablets 2; desktop featured tile spans two rows beside a 2×2 of smaller tiles. */
   .sc__bento { display: grid; gap: var(--space-4); }

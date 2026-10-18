@@ -12,7 +12,7 @@ const { id, bright, dim, label, surface = 'ink', ctaPage, display = false, split
 ---
 <section id={id} class:list={['stmt', { 'stmt--navy bg-mark': surface === 'navy' }]} data-surface={surface === 'navy' ? 'inverse' : 'ink'} aria-labelledby={`${id}-title`}>
   <div class:list={['container', { 'stmt__split': split }]}>
-    {label && <p class="stmt__label">{label}</p>}
+    {label && <p class="section-label stmt__label">{label}</p>}
     <h2 id={`${id}-title`} class:list={['stmt__text', 'reveal', { 'stmt__text--display': display }]}><span class="stmt__bright">{bright}</span> <span class="stmt__dim">{dim}</span></h2>
     <slot />
     {ctaPage && <p class="stmt__cta"><CtaLink href={bookHref('clarity')} ctaId={`${ctaPage}_mid_clarity`} tier="primary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink></p>}
@@ -22,7 +22,7 @@ const { id, bright, dim, label, surface = 'ink', ctaPage, display = false, split
 <style>
   .stmt { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
   /* Same section-label style as the timeline eyebrow: mono, muted text, signal-blue slashes (H4 consistency). */
-  .stmt__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-4); }
+  .stmt__label { margin-block-end: var(--space-4); }
   .stmt__label span { color: var(--color-machine-text); }
   .stmt__text { font-size: clamp(1.5rem, 1.05rem + 1.6vw, 2.25rem); font-weight: var(--weight-semibold); line-height: 1.12; letter-spacing: -0.035em; max-inline-size: 30ch; text-wrap: balance; } /* statement size (<= 36px): reads as a statement, not a headline (design review) */
   .stmt__text--display { font-size: clamp(1.75rem, 1.1rem + 2.7vw, 3.5rem); max-inline-size: 24ch; }

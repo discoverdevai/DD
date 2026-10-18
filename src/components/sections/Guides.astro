@@ -1,4 +1,5 @@
 ---
+import SectionHead from '../ui/SectionHead.astro';
 // Guides and tools (03 §2A.9b, Oct 16): the pillar guide plus two cluster guides (title and description from each
 // guide's front matter) and the launch check. Internal links for SEO and a next step for visitors not ready to book.
 import { publishedInsights, insightPath } from '../../lib/insights';
@@ -13,8 +14,7 @@ const pick = ['ai-app-to-production', 'ai-built-app-security-holes', 'fix-or-reb
 {(pick.length > 0 || isLive('launchCheck')) && (
   <section id="guides" class="gd" data-surface="ink" aria-labelledby="gd-title">
     <div class="container">
-      <p class="gd__label">{label}</p>
-      <h2 id="gd-title" class="gd__title">{title}</h2>
+      <SectionHead id="gd-title" label={label} title={title} />
       <ul role="list" class="gd__grid">
         {isLive('launchCheck') && (
           <li class="gd__card gd__card--check">
@@ -37,8 +37,7 @@ const pick = ['ai-app-to-production', 'ai-built-app-security-holes', 'fix-or-reb
 
 <style>
   .gd { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
-  .gd__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
-  .gd__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; margin-block-end: var(--stack-lg); }
+  .gd :global(.section-heading) { margin-block-end: var(--stack-lg); }
   .gd__grid { display: grid; gap: var(--space-4); }
   @media (width >= 40rem) { .gd__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (width >= 72rem) { .gd__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }

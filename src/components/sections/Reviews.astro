@@ -11,11 +11,11 @@ interface Review { quote: string; name: string; role: string; service: string }
 interface Props { label: string; title: string; items: readonly Review[]; cta?: boolean }
 const { label, title, items, cta = false } = Astro.props;
 const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+import SectionHead from '../ui/SectionHead.astro';
 ---
 <section id="reviews" class="rv" data-surface="ink" aria-labelledby="rv-title">
   <div class="container">
-    <p class="rv__label">{label}</p>
-    <h2 id="rv-title" class="rv__title">{title}</h2>
+    <SectionHead id="rv-title" label={label} title={title} measure={22} />
     <ProofChip class="rv__proof" />
     <ul role="list" class="rv__list" tabindex="0" aria-labelledby="rv-title">
       {items.map((r, i) => (
@@ -42,8 +42,6 @@ const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0
 
 <style>
   .rv { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
-  .rv__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
-  .rv__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; max-inline-size: 22ch; }
   .rv :global(.rv__proof) { margin-block: var(--space-4) var(--stack-lg); color: var(--color-text-muted); }
 
   /* Phones: one swipeable row of cards (85% width so the next card peeks). From 48rem: masonry columns. */

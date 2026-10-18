@@ -1,4 +1,5 @@
 ---
+import SectionHead from '../ui/SectionHead.astro';
 // Engagements (03 §2A.6): Validate · Build · Scale as three tall stage cards (stage nodes fill left to right), then "Other ways in" as two compact rows (Review, Partners). Each card is one stretched link.
 import { ROUTES, isLive, type RouteKey } from '../../data/routes';
 interface Card { key: RouteKey; who: string; title: string; kind?: string; meta: readonly string[]; body: string; linkLabel: string }
@@ -12,7 +13,7 @@ const liveOther = other.filter((o) => isLive(o.key));
   <section id="engagements" class="en" data-surface="ink" aria-labelledby="en-title">
     <div class="container">
       <div class="en__head">
-        <h2 id="en-title" class="en__title reveal">{title}</h2>
+        <SectionHead id="en-title" title={title} measure={18} reveal />
         <p class="en__lead">{lead}</p>
       </div>
       <ol role="list" class="en__grid reveal-stagger">
@@ -52,7 +53,6 @@ const liveOther = other.filter((o) => isLive(o.key));
   .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); scroll-margin-block-start: var(--header-h); }
   .en__head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
   @media (width >= 64rem) { .en__head { grid-template-columns: 1fr 1fr; align-items: end; } }
-  .en__title { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; max-inline-size: 18ch; }
   .en__lead { color: var(--color-text-muted); font-size: var(--text-lg); max-inline-size: 34rem; }
 
   .en__grid { position: relative; display: grid; gap: var(--space-4); }
