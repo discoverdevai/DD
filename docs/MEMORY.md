@@ -108,3 +108,5 @@ Last updated: Fri Oct 16, 2026, 17:30 Cairo · by Claude Code · site commit: se
 6. **If the two sessions disagree:** the newest dated row wins. Note the conflict in *Decisions* and ask Mohamed.
 7. **Commit** with `Docs: memory …`. Never put secrets or keys in this file.
 8. **Shortcut:** Mohamed can say "sync memory" in either chat to run steps 5 and 6.
+
+| Oct 18 | **Hosting: Cloudflare Workers (final, Mohamed)**, supersedes the Oct 16 Vercel row. Live: https://dd.mohamed-ali-aec.workers.dev/ (Worker `dd`). `vercel.json` stays as a fallback. Decision A7 closed. | Claude Code (Mohamed) |

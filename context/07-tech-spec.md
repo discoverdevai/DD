@@ -718,3 +718,6 @@ Owner: Mohamed (launch lead + operator). Claude Code: prep + QA. Dates: T-0 = Tu
 
 ## Oct 16 change: hosting on Vercel
 Mohamed chose Vercel over Cloudflare Workers. `vercel.json` mirrors `public/_headers` and `public/_redirects` (checked by `scripts/vercel-parity.mjs` in `test:gates`); Vercel serves `dist/404.html` with HTTP 404 for unknown URLs. `wrangler.jsonc` and the Cloudflare files stay for a later move. Commercial use needs the Vercel Pro plan.
+
+## Oct 18 change: hosting is Cloudflare Workers (final)
+Mohamed confirmed Cloudflare is the host; the live preview is https://dd.mohamed-ali-aec.workers.dev/ (Worker `dd`, built from `main` with `npm run build`, `wrangler.jsonc` + `public/_headers` + `public/_redirects`). This supersedes the Oct 16 Vercel note above. `vercel.json` and `scripts/vercel-parity.mjs` stay as a fallback and keep passing.
