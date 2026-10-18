@@ -27,10 +27,10 @@ import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../lib/seo';
 const faqLd = faqPage('https://discoverdev.ai/#faq', c.faq.items);
 const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
 ---
-<BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd} footerProof={false}>
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd} footerProof={false} footerCore={false}>
   <HomeHero />
   <ProofBand title={c.proofStrip.title} logosTitle={c.proofStrip.logosTitle} clientRoles={c.proofStrip.clientRoles} map={c.proofStrip.map} items={c.proofStrip.items} projects={c.proofStrip.projects} />
-  <Statement id="why" label={c.problem.label} bright={c.problem.bright} dim={c.problem.dim} />
+  <Statement id="why" label={c.problem.label} bright={c.problem.bright} dim={c.problem.dim}><p class="stmt__support">{c.problem.support}</p></Statement>
   <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} scope={c.engagements.scope} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
   <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} display split>
     <AgileSplit body={c.agile.body} more={isLive('howWeWork') ? { label: howWeWork.more, href: href('howWeWork') } : undefined}>

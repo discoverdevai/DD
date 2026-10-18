@@ -53,7 +53,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
 
     {variant === 'default' ? (
       <div class="site-header__actions">
-        <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" class="site-header__book">{t('cta.clarity.short')}</CtaLink>
+        <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" class="site-header__book"><span class="cta-long">{t('cta.clarity')}</span><span class="cta-short">{t('cta.clarity.short')}</span></CtaLink>
         <button type="button" class="site-header__menu" aria-haspopup="dialog" aria-controls="menu-sheet" commandfor="menu-sheet" command="show-modal" data-menu-open>
           <Icon name="menu" size={20} /><span class="sr-only">{t('menu.open')}</span>
         </button>
@@ -92,6 +92,9 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
   .site-header__menu { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle); background: transparent; color: var(--color-text); cursor: pointer; }
   .site-header__back { margin-inline-start: auto; display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; color: var(--color-link); font-weight: var(--weight-medium); }
   @media (width < 22.5rem) { .site-header__actions :global(.site-header__book) { display: none; } }
+  /* Desktop shows the full label from 80rem (03 §2V1, CRO review); narrower widths keep the short one. */
+  .cta-long { display: none; }
+  @media (width >= 80rem) { .cta-long { display: inline; } .cta-short { display: none; } }
   @media (width >= 64rem) { .site-nav { display: block; } .site-header__menu { display: none; } }
   @media (prefers-reduced-motion: reduce) { .site-header[data-hidden] { translate: none; } }
 </style>

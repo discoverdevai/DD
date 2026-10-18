@@ -8,7 +8,7 @@ interface Other { key: RouteKey; who: string; title: string; body: string; linkL
 interface Props { title: string; lead: string; cards: readonly Card[]; scope?: { label: string; text: string }; otherTitle: string; other: readonly Other[] }
 const { title, lead, cards, scope, otherTitle, other } = Astro.props;
 const live = cards;
-const cardHref = (c: Card) => (isLive(c.key) ? ROUTES[c.key].path : bookHref('clarity'));
+const cardHref = (c: Card) => (isLive(c.key) ? ROUTES[c.key].path : `${bookHref('clarity')}&interest=${c.key}`);
 const cardLabel = (c: Card) => (isLive(c.key) ? c.linkLabel : c.bookLabel ?? c.linkLabel);
 const liveOther = other.filter((o) => isLive(o.key));
 ---

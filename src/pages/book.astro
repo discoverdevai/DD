@@ -101,7 +101,7 @@ const jsonLd = graph(orgStub, webPage('/book', c.seo.title, c.seo.description));
   let started = false;
   const ok = renderCal({
     type, el,
-    metadata: { ...touch.utm, entry_cta: entryCta, quiz_segment: quizSegment, target_launch: quizTarget, page: 'book' },
+    metadata: { ...touch.utm, entry_cta: entryCta, quiz_segment: quizSegment, target_launch: quizTarget, interest: params.get('interest') ?? '', page: 'book' },
     prefill: prefillEmail ? { email: prefillEmail } : undefined,
     onReady: () => {
       root.setAttribute('data-ready', '');

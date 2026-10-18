@@ -26,8 +26,9 @@ interface Props {
   stickyBar?: boolean;
   stickyKind?: 'clarity' | 'review';
   footerProof?: boolean;
+  footerCore?: boolean;
 }
-const { title, description, pageType, jsonLd, noindex = false, ogImage: ogImageProp, ogType = 'website', header = 'default', stickyBar = header === 'default', stickyKind = 'clarity', footerProof = true } = Astro.props;
+const { title, description, pageType, jsonLd, noindex = false, ogImage: ogImageProp, ogType = 'website', header = 'default', stickyBar = header === 'default', stickyKind = 'clarity', footerProof = true, footerCore = true } = Astro.props;
 const locale = localeOf(Astro.currentLocale);
 const L = LOCALES[locale];
 const url = canonical(Astro.url.pathname);
@@ -73,7 +74,7 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <main id="main" tabindex="-1">
       <slot />
     </main>
-    <Footer proof={footerProof} />
+    <Footer proof={footerProof} core={footerCore} />
     {stickyBar && <StickyBookBar kind={stickyKind} />}
     <script>
       // Pointer-tracked light for [data-spotlight] cards on every page (fine pointers only; CSS vars via CSSOM, CSP-safe).

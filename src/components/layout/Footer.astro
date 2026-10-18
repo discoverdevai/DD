@@ -24,15 +24,16 @@ if (!['validate', 'build', 'scale'].some((k) => isLive(k as RouteKey))) {
   ] });
 }
 // `proof`: the rating line; home shows it in the hero and above the reviews, so its footer hides it (Oct 18).
-interface Props { proof?: boolean }
-const { proof = true } = Astro.props;
+// `core`: the large core-idea block; home hides it (the problem band already says it, Oct 18 CRO review).
+interface Props { proof?: boolean; core?: boolean }
+const { proof = true, core = true } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer" data-surface="ink">
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
       <a href="/" aria-label={t('logo.home')} class="site-footer__logo"><Logo lazy /></a>
-      <p class="site-footer__core">{t('footer.core')}</p>
+      {core && <p class="site-footer__core">{t('footer.core')}</p>}
       <p class="site-footer__entity">{t('footer.entity')}</p>
       <ul role="list" class="site-footer__contact">
         <li><a href={`mailto:${t('contact.email')}`} data-link-context="footer"><Icon name="mail" size={16} /><span dir="ltr">{t('contact.email')}</span></a></li>

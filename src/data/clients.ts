@@ -20,6 +20,6 @@ export const clientLogos: readonly ClientLogo[] = [
   { id: 'jumlaty', name: 'Jumlaty', file: 'jumlaty.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Restaurant procurement ML · Saudi Arabia' },
   { id: 'rushr', name: 'Rushr', file: 'rushr.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16' }, // logo only; case details stay hidden (D-07)
   { id: 'zest', name: 'Zest', file: 'zest.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16' },
-  { id: 'ctc', name: 'Continuum Therapy Collective', file: 'ctc.webp', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', fit: 'contain' }, // + clinician consent
+  { id: 'ctc', name: 'Continuum Therapy Collective', file: 'ctc.webp', consent: null /* hidden until the therapist consents (decision A2, Oct 18) */, fit: 'contain' }, // + clinician consent
   { id: 'yawmy-care', name: 'Yawmy Care', file: 'yawmy-care.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16' }, // own product; name to confirm
 ];

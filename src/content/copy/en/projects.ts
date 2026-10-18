@@ -57,9 +57,9 @@ export interface Chapter {
   tryIt?: { label: string; href: string }; hold?: string;
 }
 const allChapters: readonly Chapter[] = [
-  { id: 'njwar', project: 'ar-commerce', name: 'NJWAR', tags: ['Build', 'E-commerce', 'AR', 'Saudi Arabia'],
-    line: 'An AR furniture store with AI recommendations: place a piece in your room at real size, change its colour and add more.',
-    note: 'Web store on the laptop, AR on the phone. On a phone, the demo places a chair in your room.',
+  { id: 'njwar', project: 'ar-commerce', name: 'NJWAR', tags: ['Build', 'E-commerce', 'AR'],
+    line: 'An AR furniture store: place a piece in your room at real size, change its colour, rotate it and add more.',
+    note: 'Web store on the laptop, AR on the phone. On a phone, the demo places a chair in your room. The demo uses a sample brand.',
     web: { file: 'njwar-web.webp', alt: 'NJWAR web store home page in Arabic, inviting shoppers to try furniture in their home' },
     phones: [{ file: 'njwar-ar.webp', alt: 'NJWAR mobile AR view: an armchair placed in a room, with colour and rotate controls' }],
     tryIt: { label: 'Try our AR prototype', href: 'https://furniture-webar.pages.dev/' } },
