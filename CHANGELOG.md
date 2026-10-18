@@ -3,7 +3,7 @@
 Releases are git tags (`v1.x.0`) with a GitHub Release. Pages switch on per release in `src/data/routes.ts`; pages that are
 switched off are not built into the live site. Plan: `docs/plan/site-map-plan.md`.
 
-## V1.0: one-page launch (2026-10-18, pending approval)
+## V1.0: one-page launch (2026-10-18)
 **Live pages:** `/` (home), `/book`, `/book/confirmed` (noindex), `/privacy`, `/terms`, `/404`.
 
 **Home (9 sections):** hero, client cards and map, the problem, three ways to work (Validate, Build, Scale; each leads to
