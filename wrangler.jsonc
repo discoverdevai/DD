@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "discoverdev-site",
+  "name": "dd", // must equal the Worker name in Cloudflare (Workers Builds rejects a mismatch); the Worker is "dd"
   "compatibility_date": "2026-10-15",
   // Build the site before every deploy, so `wrangler deploy` works even when the CI build command is empty
   // (Workers Builds, Oct 18: the deploy ran with no dist/).

@@ -339,7 +339,7 @@ export default defineConfig({
 ```jsonc
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "discoverdev-site",
+  "name": "dd",
   "compatibility_date": "2026-10-15",
   "assets": {
     "directory": "./dist",
