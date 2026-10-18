@@ -3,6 +3,9 @@
 Releases are git tags (`v1.x.0`) with a GitHub Release. Pages switch on per release in `src/data/routes.ts`; pages that are
 switched off are not built into the live site. Plan: `docs/plan/site-map-plan.md`.
 
+## V1.0.1: review fixes (2026-10-18, not tagged yet)
+Content and consent (Rushr logo only, clinic card hidden, EduLens anonymous, NJWAR claims trimmed, Ireland off the map), clarity-call-only booking copy, SEO and GEO (home and /book titles, keyword, defining sentence, offer schema, llms.txt), frontend (Work section order, anchor offsets, slimmer mobile bar, lighter Dev in the dark logo, calmer motion, new EdTech drawing, 06 allows glows and the dot map).
+
 ## V1.0: one-page launch (2026-10-18)
 **Live pages:** `/` (home), `/book`, `/book/confirmed` (noindex), `/privacy`, `/terms`, `/404`.
 
