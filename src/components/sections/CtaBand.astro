@@ -1,8 +1,8 @@
 ---
 // Closing band (06 §9.16, §0.4 v3): the ink "horizon" (brand-blue light from below), large centred headline, the only
 // filled button in view. kind sets the button, terms and analytics target. data-cta-band hides the sticky bar in view.
-import CtaLink from './CtaLink.astro';
-import CtaTerms from './CtaTerms.astro';
+import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
 import { t } from '../../i18n/t';
 import { bookHref, href, isLive } from '../../data/routes';
 interface Props { id?: string; title: string; body?: string; kind?: 'review' | 'clarity' | 'partner'; page: string; link?: { label: string; to: 'launchCheck' | 'review' } }

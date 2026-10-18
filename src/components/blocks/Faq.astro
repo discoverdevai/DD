@@ -1,8 +1,8 @@
 ---
 // FAQ (06 §9.15): native <details>, answers stay in static HTML for crawlers; several can be open; deep links via #faq-*.
 // Returns FAQPage-ready data through the `items` prop so JSON-LD text equals the visible text (05 §4.8).
-import Icon from './Icon.astro';
-import InlineLink from './InlineLink.astro';
+import Icon from '../ui/Icon.astro';
+import InlineLink from '../ui/InlineLink.astro';
 import type { RouteKey } from '../../data/routes';
 // Optional `link` renders after the answer, outside the JSON-LD answer text (03 §0.8).
 interface Item { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }

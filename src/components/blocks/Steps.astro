@@ -1,7 +1,7 @@
 ---
 // ProcessSteps (06 §9.14) with layer chips (06 §0.5). A real sequence, so numbering is meaningful.
 // v3: a track of nodes joined by a hairline (the last node is the green "live" node); horizontal from 64rem, vertical below.
-import LayerChip, { type Chip } from './LayerChip.astro';
+import LayerChip, { type Chip } from '../ui/LayerChip.astro';
 import { t } from '../../i18n/t';
 interface Step { title: string; body: string; meta?: string; chip?: Chip }
 interface Props { steps: readonly Step[] }

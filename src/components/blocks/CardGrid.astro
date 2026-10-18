@@ -2,7 +2,7 @@
 // Plain content cards (problem cards, outcomes, pillars, review areas). Not links: one link per card max (06 §9.8).
 // One column on phones, three from 48rem. v3 (06 §0.4): `card` = home tile (radius-lg, ink→blue-800 gradient,
 // pointer spotlight); `rule` = hairline-topped column like the home pillars.
-import LayerChip, { type Chip } from './LayerChip.astro';
+import LayerChip, { type Chip } from '../ui/LayerChip.astro';
 interface Item { title: string; body: string; chip?: Chip }
 interface Props { items: readonly Item[]; variant?: 'card' | 'rule' | 'brand' }
 const { items, variant = 'card' } = Astro.props;

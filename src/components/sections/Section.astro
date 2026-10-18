@@ -2,7 +2,7 @@
 // Section wrapper (06 §5, §0.4 v3): owns vertical rhythm and the surface. v3 inner pages are all-ink: `ink` (workshop),
 // `raised` (ink with a faint gradient, for rhythm), `paper`/`alt` (reading templates, documents), `inverse` (navy).
 // Head: optional mono eyebrow, H2 (id for aria-labelledby), optional lead. Content goes in the default slot.
-import Eyebrow from './Eyebrow.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
 interface Props {
   id: string; title?: string; titleHidden?: boolean; lead?: string; eyebrow?: string;
   surface?: 'ink' | 'raised' | 'paper' | 'alt' | 'inverse'; size?: 'md' | 'sm'; width?: 'default' | 'narrow' | 'prose'; divider?: boolean; class?: string;

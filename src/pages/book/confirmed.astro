@@ -2,8 +2,8 @@
 // /book/confirmed (04 §4.11, 03 §14): noindex, no JSON-LD, minimal header. Time in the visitor's zone from
 // sessionStorage; direct visits get the generic line. Backup booking_completed fires only if the embed didn't (07 §9.3).
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CheckList from '../../components/ui/CheckList.astro';
-import Steps from '../../components/ui/Steps.astro';
+import CheckList from '../../components/blocks/CheckList.astro';
+import Steps from '../../components/blocks/Steps.astro';
 import { book } from '../../content/copy/en/book';
 import { t } from '../../i18n/t';
 import { isLive, href } from '../../data/routes';

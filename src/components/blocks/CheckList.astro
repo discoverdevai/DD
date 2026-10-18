@@ -1,6 +1,6 @@
 ---
 // Check-mark list (what you get, symptoms, deliverables). Item = plain text or { lead, text } for a bold lead-in.
-import Icon from './Icon.astro';
+import Icon from '../ui/Icon.astro';
 type Item = string | { lead: string; text: string };
 interface Props { items: readonly Item[]; tone?: 'human' | 'machine'; class?: string }
 const { items, tone = 'human', class: cls } = Astro.props;

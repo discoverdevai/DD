@@ -1,7 +1,7 @@
 ---
 // "Who it's for / not for" (04 §4.3 #2). Two columns from 48rem. Not-for items may link to the better path (live routes only).
-import Icon from './Icon.astro';
-import InlineLink from './InlineLink.astro';
+import Icon from '../ui/Icon.astro';
+import InlineLink from '../ui/InlineLink.astro';
 import type { RouteKey } from '../../data/routes';
 interface NotFor { text: string; link?: { label: string; to: RouteKey } }
 interface Props { forTitle: string; forItems: readonly string[]; notTitle: string; notItems: readonly NotFor[] }
