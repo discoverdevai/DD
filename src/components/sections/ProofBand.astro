@@ -45,7 +45,7 @@ const logos = showLogos
   </div>
 
   {showLogos ? (
-    <div class="pband__strip">
+    <div class="pband__strip container">
       <div class="pband__track">
         {[0].map((copy) => (
           <ul role="list" class="pband__clients">
@@ -97,10 +97,10 @@ const logos = showLogos
   .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
   /* Client cards: a still, wrapped row (no motion, no pause control). Phones: two columns, name only. */
-  .pband__clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); padding-inline: var(--gutter); }
+  .pband__clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
   .pband__client span { display: none; }
   @media (width >= 48rem) {
-    .pband__clients { display: flex; flex-wrap: wrap; justify-content: center; max-inline-size: 80rem; margin-inline: auto; }
+    .pband__clients { display: flex; flex-wrap: wrap; justify-content: flex-start; }
     .pband__client span { display: block; }
     .pband__client { flex: 0 1 19.5rem; }
   }
@@ -109,7 +109,7 @@ const logos = showLogos
   .pband__client img.is-contain { object-fit: contain; padding: 3px; }
   .pband__client p { display: grid; min-inline-size: 0; }
   .pband__client strong { font-family: var(--ff-heading); font-size: var(--text-sm); color: var(--color-heading); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pband__client span { font-size: var(--text-xs); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pband__client span { font-size: var(--text-xs); color: var(--color-text-muted); }
   /* Projects (fallback): four equal cards; the title link covers the card (one link, one tab stop). */
   .pband__projects { display: grid; gap: var(--space-4); }
   @media (width >= 40rem) { .pband__projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
