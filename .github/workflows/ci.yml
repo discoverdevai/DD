@@ -40,7 +40,7 @@ jobs:
           for i in $(seq 1 30); do curl -sf -o /dev/null http://localhost:4321/ && break; sleep 1; done
           node qa/browser-audit.mjs http://localhost:4321 --report browser-audit.md
       - if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: browser-audit
           path: browser-audit.md
