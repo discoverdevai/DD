@@ -18,7 +18,7 @@ import { t } from '../i18n/t';
 export type OgCard = { eyebrow: string; title: string }; // type alias (not interface) so it satisfies GetStaticPaths props
 
 export const OG_PAGES: Record<string, OgCard> = {
-  '/': { eyebrow: home.hero.pill, title: home.hero.h1 },
+  '/': { eyebrow: home.hero.ogEyebrow, title: home.hero.h1 },
   '/validate': { eyebrow: validate.hero.eyebrow, title: validate.hero.h1 },
   '/build': { eyebrow: build.hero.eyebrow, title: build.hero.h1 },
   '/scale': { eyebrow: scale.hero.eyebrow, title: scale.hero.h1 },

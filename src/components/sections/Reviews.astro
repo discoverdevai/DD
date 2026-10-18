@@ -1,14 +1,13 @@
 ---
 // Client reviews (03 §2A.8c, Oct 16): the 8 verified quotes from 09, approved by Mohamed with names and roles (D-05).
-// Quotes are shown verbatim. No star graphics and no AggregateRating (CLAUDE.md, 05). Desktop: masonry columns so long
-// and short quotes pack evenly; phones: a swipeable row (scroll-snap, no auto motion).
+// Quotes are shown verbatim. No star graphics and no AggregateRating (CLAUDE.md, 05). Desktop: an even three-card grid (Oct 18: three quotes);
+// phones: a swipeable row (scroll-snap, no auto motion).
 import ProofChip from '../ui/ProofChip.astro';
 import CtaLink from '../ui/CtaLink.astro';
-import CtaTerms from '../ui/CtaTerms.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
-interface Review { quote: string; name: string; role: string; service: string }
-interface Props { label: string; title: string; items: readonly Review[]; cta?: boolean }
+interface Review { quote: string; name: string; role: string; service: string; result?: string }
+interface Props { label?: string; title: string; items: readonly Review[]; cta?: boolean }
 const { label, title, items, cta = false } = Astro.props;
 const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
 import SectionHead from '../ui/SectionHead.astro';
@@ -27,6 +26,7 @@ import SectionHead from '../ui/SectionHead.astro';
               <span class="rv__who"><strong>{r.name}</strong><span>{r.role}</span></span>
             </figcaption>
             <p class="rv__service">{r.service}</p>
+            {r.result && <p class="rv__result">{r.result}</p>}
           </figure>
         </li>
       ))}
@@ -34,7 +34,6 @@ import SectionHead from '../ui/SectionHead.astro';
     {cta && (
       <div class="rv__cta">
         <CtaLink href={bookHref('clarity')} ctaId="home_reviews_clarity" tier="primary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
-        <CtaTerms kind="clarity" />
       </div>
     )}
   </div>
@@ -44,7 +43,7 @@ import SectionHead from '../ui/SectionHead.astro';
   .rv { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   .rv :global(.rv__proof) { margin-block: var(--space-4) var(--stack-lg); color: var(--color-text-muted); }
 
-  /* Phones: one swipeable row of cards (85% width so the next card peeks). From 48rem: masonry columns. */
+  /* Phones: one swipeable row of cards (85% width so the next card peeks). From 48rem: masonry columns (interim until the slider, Oct 18). */
   .rv__list { display: grid; grid-auto-flow: column; grid-auto-columns: 85%; gap: var(--space-4); overflow-x: auto; scroll-snap-type: x mandatory; padding-block-end: var(--space-3); overscroll-behavior-x: contain; }
   .rv__card { scroll-snap-align: start; }
   /* Keyboard: the row is focusable so arrow keys scroll it on phones (axe scrollable-region-focusable). */
@@ -64,7 +63,8 @@ import SectionHead from '../ui/SectionHead.astro';
   .rv__who { display: grid; }
   .rv__who strong { font-family: var(--ff-heading); color: var(--color-heading); }
   .rv__who span { font-size: var(--text-sm); color: var(--color-text-muted); }
-  .rv__service { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); line-height: 1.5; padding: 2px 8px; border-radius: var(--radius-sm); border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
+  .rv__result { align-self: start; font-family: var(--ff-heading); font-weight: var(--weight-semibold); color: var(--color-human-text); }
+  .rv__service { justify-self: start; align-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); line-height: 1.5; padding: 2px 8px; border-radius: var(--radius-sm); border: 1px solid var(--color-hairline); color: var(--color-machine-text); }
   /* Featured first quote (the build review behind the case study): larger text, accent edge. */
   .rv__card--featured figure { border-color: color-mix(in oklab, var(--blue-400) 45%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 30%, var(--color-surface)), var(--color-surface) 70%); }
   .rv__card--featured .rv__quote { font-size: var(--text-lg); line-height: 1.5; font-weight: var(--weight-medium); color: var(--color-heading); }

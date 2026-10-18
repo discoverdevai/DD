@@ -1,67 +1,46 @@
 ---
-// Selected work bento (03 §2A.8b, Oct 16): one featured case with its number, four smaller projects. Replaces the case
-// block and the six-card grid on home. Each tile is one stretched link (case page, or /work for the rest).
+// Selected work (03 §2A.8b, Oct 18): the one case with a number on home, next to its drawing. Every other project lives
+// on /work (ProjectRows). The tile is one stretched link (the case page).
+import SectionHead from '../ui/SectionHead.astro';
 import ProjectVisual from '../work/ProjectVisual.astro';
 import { projects, showcase as c } from '../../content/copy/en/projects';
 import { href, isLive } from '../../data/routes';
-const fallback = ['health-app', 'support-agent'];
-const tiles = [...c.ids, ...fallback].map((id) => projects.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p)).slice(0, 5);
-const [feat, ...rest] = tiles;
-const target = (p: (typeof tiles)[number]) => (p.link && isLive(p.link) ? href(p.link) : href('work'));
+const tile = c.ids.map((id) => projects.find((p) => p.id === id)).find((p): p is NonNullable<typeof p> => Boolean(p));
+const target = tile?.link && isLive(tile.link) ? href(tile.link) : href('work');
 const stageName = (s: keyof typeof c.stages) => c.stages[s];
-import SectionHead from '../ui/SectionHead.astro';
 ---
-<section id="selected-work" class="sc" data-surface="ink" aria-labelledby="sc-title">
-  <div class="container">
-    <div class="sc__head">
-      <div>
-        <SectionHead id="sc-title" label={c.label} title={c.moreTitle} />
+{tile && (
+  <section id="selected-work" class="sc" data-surface="ink" aria-labelledby="sc-title">
+    <div class="container">
+      <div class="sc__head">
+        <SectionHead id="sc-title" title={c.moreTitle} />
+        {isLive('work') && <a class="sc__all" href={href('work')}>{c.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
       </div>
-      {isLive('work') && <a class="sc__all" href={href('work')}>{c.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
+      <div class="sc__tile card-link">
+        <div class="sc__vis"><ProjectVisual project={tile} sizes="(min-width: 64rem) 45vw, 100vw" /></div>
+        <div class="sc__body">
+          <p class="sc__meta"><span class="sc__stage">{stageName(tile.stage)}</span>{tile.industry}{tile.where && ` · ${tile.where}`}</p>
+          <h3 class="sc__h"><a href={target}>{tile.title}</a></h3>
+          {tile.metric && <p class="sc__metric"><b>{tile.metric.value}</b><span>{tile.metric.label}</span></p>}
+          {tile.result && <p class="sc__txt">{tile.result}</p>}
+          {tile.link && <p class="sc__more" aria-hidden="true">{c.caseLink}<span class="icon--dir"> →</span></p>}
+        </div>
+      </div>
     </div>
-    <ul role="list" class="sc__bento">
-      {feat && (
-        <li class="sc__tile sc__tile--feat card-link">
-          <div class="sc__vis"><ProjectVisual project={feat} sizes="(min-width: 64rem) 45vw, 100vw" /></div>
-          <div class="sc__body">
-          <p class="sc__meta"><span class="sc__stage">{stageName(feat.stage)}</span>{feat.industry}{feat.where && ` · ${feat.where}`}</p>
-          <h3 class="sc__h"><a href={target(feat)}>{feat.title}</a></h3>
-          {feat.metric && <p class="sc__metric"><b>{feat.metric.value}</b><span>{feat.metric.label}</span></p>}
-          {feat.result && <p class="sc__txt">{feat.result}</p>}
-          {feat.link && <p class="sc__more" aria-hidden="true">{c.caseLink}<span class="icon--dir"> →</span></p>}
-          </div>
-        </li>
-      )}
-      {rest.map((p) => (
-        <li class="sc__tile card-link">
-          <div class="sc__vis"><ProjectVisual project={p} sizes="(min-width: 64rem) 25vw, 100vw" /></div>
-          <p class="sc__meta"><span class="sc__stage">{stageName(p.stage)}</span>{p.industry}{p.where && ` · ${p.where}`}</p>
-          <h3 class="sc__h"><a href={target(p)}>{p.title}</a></h3>
-          <p class="sc__txt">{p.result ?? p.did}</p>
-        </li>
-      ))}
-    </ul>
-  </div>
-</section>
+  </section>
+)}
 
 <style>
   .sc { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   .sc__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); margin-block-end: var(--stack-lg); }
   .sc__all { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
-  /* Bento: phones 1 column; tablets 2; desktop featured tile spans two rows beside a 2×2 of smaller tiles. */
-  .sc__bento { display: grid; gap: var(--space-4); }
-  @media (width >= 40rem) { .sc__bento { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sc__tile--feat { grid-column: 1 / -1; } }
-  @media (width >= 72rem) { .sc__bento { grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(0, 1fr)); gap: var(--space-5); } .sc__tile--feat { grid-column: 1; grid-row: span 2; } }
-  .sc__tile { position: relative; display: grid; gap: var(--space-2); align-content: start; padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); transition: border-color var(--dur-base); }
-  .sc__tile--feat { background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 28%, var(--color-surface)), var(--color-surface) 60%); border-color: color-mix(in oklab, var(--blue-400) 40%, transparent); }
-  .sc__vis { margin-block-end: var(--space-2); }
-  .sc__body { display: grid; gap: var(--space-2); }
-  /* Desktop: the featured drawing grows to fill the two-row height (no empty band). */
-  @media (width >= 72rem) { .sc__tile--feat { grid-template-rows: minmax(0, 1fr) auto; } .sc__tile--feat .sc__vis { display: grid; align-items: center; border-radius: var(--radius-md); background: var(--blue-925); } }
+  .sc__tile { display: grid; gap: var(--space-5); align-content: start; padding: var(--space-4); border-radius: var(--radius-lg); border: 1px solid color-mix(in oklab, var(--blue-400) 40%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 28%, var(--color-surface)), var(--color-surface) 60%); transition: border-color var(--dur-base); }
+  @media (width >= 48rem) { .sc__tile { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: var(--space-8); padding: var(--space-6); } }
+  .sc__vis { border-radius: var(--radius-md); background: var(--blue-925); }
+  .sc__body { display: grid; gap: var(--space-3); }
   .sc__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .sc__stage { padding: 1px 7px; border-radius: var(--radius-xs, 4px); color: var(--blue-975); background: var(--blue-300); }
-  .sc__h { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); line-height: 1.3; color: var(--color-heading); text-wrap: balance; }
-  .sc__tile--feat .sc__h { font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem); }
+  .sc__h { font-family: var(--ff-heading); font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem); font-weight: var(--weight-bold); line-height: 1.3; color: var(--color-heading); text-wrap: balance; }
   .sc__h a { color: inherit; text-decoration: none; }
   @media (hover: hover) { .sc__tile:hover { border-color: color-mix(in oklab, var(--blue-300) 45%, transparent); } }
   .sc__metric { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); margin-block: var(--space-2); }

@@ -39,6 +39,7 @@ const { id, bright, dim, label, surface = 'ink', ctaPage, display = false, split
     .stmt__split > :global(.ag) { display: contents; }
     .stmt__split :global(.ag__body) { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
     .stmt__split > .stmt__cta { grid-column: 2; grid-row: 3; margin-block-start: var(--space-6); }
+    .stmt__split :global(.ag__more) { grid-column: 1 / -1; grid-row: 5; margin-block-start: var(--space-6); }
     .stmt__split :global(.wf) { grid-column: 1 / -1; grid-row: 4; margin-block-start: var(--space-10); }
   }
 </style>

@@ -4,8 +4,8 @@ import SectionHead from '../ui/SectionHead.astro';
 import { ROUTES, isLive, type RouteKey } from '../../data/routes';
 interface Card { key: RouteKey; who: string; title: string; kind?: string; meta: readonly string[]; body: string; linkLabel: string }
 interface Other { key: RouteKey; who: string; title: string; body: string; linkLabel: string }
-interface Props { title: string; lead: string; cards: readonly Card[]; otherTitle: string; other: readonly Other[] }
-const { title, lead, cards, otherTitle, other } = Astro.props;
+interface Props { title: string; lead: string; cards: readonly Card[]; scope?: { label: string; text: string }; otherTitle: string; other: readonly Other[] }
+const { title, lead, cards, scope, otherTitle, other } = Astro.props;
 const live = cards.filter((c) => isLive(c.key));
 const liveOther = other.filter((o) => isLive(o.key));
 ---
@@ -28,6 +28,7 @@ const liveOther = other.filter((o) => isLive(o.key));
           </li>
         ))}
       </ol>
+      {scope && <p class="en__scope"><b>{scope.label}:</b> {scope.text}</p>}
       {liveOther.length > 0 && (
         <div class="en__other">
           <h3 class="en__other-title">{otherTitle}</h3>
@@ -55,6 +56,8 @@ const liveOther = other.filter((o) => isLive(o.key));
   @media (width >= 64rem) { .en__head { grid-template-columns: 1fr 1fr; align-items: end; } }
   .en__lead { color: var(--color-text-muted); font-size: var(--text-lg); max-inline-size: 34rem; }
 
+  .en__scope { margin-block-start: var(--space-6); max-inline-size: 52rem; color: var(--color-text-muted); }
+  .en__scope b { color: var(--color-heading); font-weight: var(--weight-semibold); }
   .en__grid { position: relative; display: grid; gap: var(--space-4); }
   @media (width >= 56rem) { .en__grid { grid-template-columns: repeat(3, 1fr); } }
   .en__card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: clamp(var(--space-6), 1rem + 2vw, var(--space-8)) var(--space-6) var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }

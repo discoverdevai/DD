@@ -15,7 +15,7 @@ export interface Project {
 }
 
 const all: readonly Project[] = [
-  { id: 'edtech-agents', stage: 'build', industry: 'EdTech', where: 'Egypt', title: 'AI agents for an EdTech platform', brief: 'Every request was processed from scratch, so AI costs rose with every new student.', did: 'Captions first, answers shared across users and the right model for each task.', result: 'AI costs down 60–90%, and cost now grows slower than the user base.', metric: { value: '60–90%', label: 'lower AI cost' }, art: 'edtech', quotes: ['Youssef'], link: 'workEdulens' },
+  { id: 'edtech-agents', stage: 'build', industry: 'EdTech', where: 'Egypt', title: 'AI agents for an EdTech platform', brief: 'Every request was processed from scratch, so AI costs rose with every new student.', did: 'Captions first, answers shared across users and the right model for each task.', result: 'AI costs down 60–90%, depending on cache hit rate and caption availability, and cost now grows slower than the user base.', metric: { value: '60–90%', label: 'lower AI cost' }, art: 'edtech', quotes: ['Youssef'], link: 'workEdulens' },
   { id: 'ar-commerce', stage: 'build', industry: 'E-commerce', where: 'Saudi Arabia', title: 'AR furniture store with AI recommendations', did: 'Market study, discovery, UX/UI, development, an AI recommendation engine and AR visualization.', art: 'ar', quotes: ['Nojoud Alarfaj'], screens: ['njwar-product.webp'], device: 'browser', screenAlt: 'Product page of the furniture store in Arabic, with photos, dimensions, colour options and an add-to-cart button' },
   { id: 'yawmy-care', stage: 'build', industry: 'Childcare · our own product', title: 'Yawmy Care, a nursery management platform', did: 'One platform for parents, teachers and management, with billing and multiple locations. Built as our own white-label product.', result: 'Launching in 2027.', art: 'lms', screens: ['yawmy-dashboard.webp'], device: 'browser', screenAlt: 'Yawmy Care dashboard for a nursery: totals for children, teachers and check-ins, and a daily attendance chart' },
   { id: 'home-services', stage: 'build', industry: 'Marketplace', where: 'USA', title: 'Home-services marketplace', brief: 'A greenfield product for booking verified home-service pros.', did: 'A full product team for 16 weeks: post a job, auto-match the nearest verified contractor, Stripe escrow, real-time messaging and admin tools.', art: 'devices', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'tablet', hold: 'D-07', screenAlt: 'Tablet app screens: a map with matched home-service pros, and the home screen with service categories' },
@@ -39,14 +39,12 @@ const MOCK = typeof process !== 'undefined' && process.env.SHOWCASE_MOCK === '1'
 export const projects: readonly Project[] = all.filter((p) => !p.hold || MOCK);
 
 export const showcase = {
-  label: 'Selected work',
-  title: 'Products we’ve helped build',
   caseLink: 'Read the case study',
   partnersLink: 'See Partners',
   allLink: 'See all our work',
-  // Below the chapters: the projects the chapters don't cover, the EdTech case first.
-  ids: ['edtech-agents', 'lms-team', 'health-app', 'support-agent', 'call-ops'],
-  moreTitle: 'More products we’ve helped build',
+  // Home shows one case, the one with a number (Oct 18); /work lists every project.
+  ids: ['edtech-agents'],
+  moreTitle: 'Selected work',
   labels: { brief: 'The brief', did: 'What we did', result: 'Result' },
   stages: { all: 'All', validate: 'Validate', build: 'Build', scale: 'Scale' } as Record<'all' | Stage, string>,
   filterLabel: 'Filter by stage',

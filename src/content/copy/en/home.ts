@@ -7,7 +7,7 @@ export const home = {
       'Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all.',
   },
   hero: {
-    pill: 'AI drafts. Seniors sign off.',
+    ogEyebrow: 'AI drafts. Seniors sign off.', // share image only; the on-page pill was removed Oct 18
     h1: 'Turn your idea into a live product in weeks.',
     h1Accent: 'a live product',
     sub: 'DiscoverDev builds it with senior engineers and AI, in 8⁠–⁠12 weeks. You own everything.',
@@ -48,22 +48,20 @@ export const home = {
     ],
     items: [
       { icon: 'globe', text: 'Clients on 4 continents' },
-      { icon: 'cpu', text: 'AI in production across multiple clients' },
-      { icon: 'languages', text: 'Arabic and English' },
-      { icon: 'map-pin', text: 'Texas, USA and Alexandria, Egypt' },
+      { icon: 'check', text: 'Four clients expanded scope with us' },
     ],
   },
   agile: {
     label: 'The DiscoverDev Way',
     bright: 'Discover first. Build with AI. Seniors sign off.',
     dim: '',
-    body: 'The DiscoverDev Way is how every project runs. We agree on what is worth building before any code. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality. You see progress every week.',
+    body: 'The DiscoverDev Way is how every project runs. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality.',
     line: 'AI drafts it. A senior engineer signs it.',
     // §2A.4 journey visual (Oct 16): Discover → AI drafts → A senior signs → Live.
     flow: {
       caption: 'An illustration of the DiscoverDev Way: a rough sketch, an AI draft, a senior engineer’s sign-off, then the live product.',
       steps: [
-        { title: 'Discover', line: 'We test the idea and sketch the product before any code.' },
+        { title: 'Discover', line: 'We test the idea, sketch the product and tell you what to cut, before any code.' },
         { title: 'AI drafts', line: 'AI writes the first draft from the agreed spec.' },
         { title: 'A senior signs', line: 'A senior engineer reviews it and signs it off.' },
         { title: 'Live', line: 'Your users get it, and we keep improving it.' },
@@ -95,72 +93,18 @@ export const home = {
       { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build' },
       { key: 'scale', who: 'It’s working. Grow it.', title: 'Scale', kind: 'Dedicated product team', meta: ['Ongoing', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a PM that owns the roadmap with you. You keep control.', linkLabel: 'See Scale' },
     ],
+    scope: { label: 'What we build', text: 'Web and mobile apps, AI agents and chatbots in Arabic and English, APIs and enterprise systems, data and cloud.' },
     otherTitle: 'Other ways in',
     other: [
       { key: 'review', who: 'Already built something?', title: 'Launch-Ready Review', body: 'Your AI-built or freelancer-built app, reviewed by a senior team in about 5 working days. A ranked fix list and a plain verdict.', linkLabel: 'See the Review' },
       { key: 'partners', who: 'I run a software house.', title: 'Partners', body: 'White-label delivery and staff augmentation under your brand.', linkLabel: 'See Partners' },
     ],
   },
-  capabilities: {
-    title: 'What we build',
-    lead: 'Product, engineering, AI and data in one senior team, so nothing gets lost in a handoff.',
-    groups: [
-      { title: 'Product', tagline: 'Decide what to build before any code.', items: ['Product strategy and discovery', 'Product design (UX/UI)', 'Market and competitor studies'] },
-      { title: 'Engineering', tagline: 'Tested, deployed and kept running.', items: ['Web and mobile apps', 'APIs and enterprise systems', 'E-commerce and marketplaces', 'Legacy modernization and cloud migration', 'Quality, DevOps and cloud'] },
-      { title: 'AI and data', tagline: 'AI in production, in Arabic and English.', items: ['AI agents and chatbots in Arabic and English', 'Computer vision and NLP', 'Recommendations and document processing', 'Data engineering and analytics'] },
-      { title: 'Teams and advice', tagline: 'Senior people on your team or a second opinion.', items: ['Architecture reviews and code audits', 'CTO advisory', 'Dedicated teams and staff augmentation'] },
-    ],
-  },
-  // V12 → §0.7 anonymize ("EdTech AI platform, Egypt"); quote omitted.
-  caseHighlight: {
-    eyebrow: 'Case study · EdTech · Egypt',
-    results: ['Three AI agents in production', 'Cached content served at close to zero cost'],
-    levers: [
-      { title: 'Captions first', line: 'Free captions first. Paid transcription only when a video has none.' },
-      { title: 'Reuse across users', line: 'Each video is processed once and shared, so repeat views cost close to nothing.' },
-      { title: 'The right model for each task', line: 'Lower-cost models by default, larger ones only where they pay off.' },
-      { title: 'Shorter prompts', line: 'Each request carries only what the model needs, so fewer tokens are billed.' },
-      { title: 'Faster transcription', line: 'Long audio is split into 2-minute chunks and transcribed in parallel.' },
-    ],
-    title: 'How an EdTech AI platform cut its AI costs by 60–90%',
-    body: 'An EdTech platform in Egypt runs three AI agents: a support chatbot, a video-to-lesson and quiz generator, and a student learning assistant. Every request was processed from scratch, so AI costs rose with every new student. We changed that, and now cost grows slower than the user base.',
-    metric: '60–90%',
-    metricLabel: 'lower AI cost',
-    stack: ['Python', 'OpenAI', 'LangChain', 'Whisper'],
-    link: 'Read the case study',
-    allLink: 'See all our work', // 03 §0.8
-  },
-  why: {
-    title: 'Why founders and teams choose DiscoverDev',
-    leadBright: 'Most teams just build what you ask for.',
-    leadDim: 'We help you build the right thing, then ship it fast, and you own all of it.',
-    pillars: [
-      { title: 'Product-first', body: 'The “Discover” in our name is the point. Before any code, we check it’s the right thing to build, and we tell you what to cut.' },
-      { title: 'Senior-led, AI-fast', body: 'Senior engineers lead every project and sign off every release. AI handles the routine work, so you get speed without the mess.' },
-      { title: 'We stay', body: 'One team from first call to launch and after, with no handoff gaps. Four clients expanded scope with us.' },
-      { title: 'You own it all', body: 'Full IP, no lock-in and a clear contract from day one.' },
-    ],
-  },
-  // §2A.8b–d (Oct 16): selected work, client reviews (quotes approved by Mohamed with names and roles, D-05), guides.
-  work: {
-    label: 'Selected work',
-    title: 'More products we’ve helped build',
-    allLink: 'See all our work',
-    items: [
-      { stage: 'Build', href: '/build', what: "Health app that explains lab reports in plain language", where: '', proof: "Recommendations, follow-up questions and medical safety guardrails." },
-      { stage: 'Build', href: '/build', what: "AR furniture store with AI recommendations", where: 'Saudi Arabia', proof: "Market study, design, build, AI and AR in one team." },
-      { stage: 'Build', href: '/build', what: "Customer-support AI agent", where: '', proof: "Identical questions answered once, so AI cost follows unique questions, not total requests." },
-      { stage: 'Scale', href: '/scale', what: "Embedded product team for a B2B learning platform", where: 'UK', proof: "12 months owning the roadmap, backlog and sprints." },
-      { stage: 'Scale', href: '/scale', what: "Data and ML for an EdTech platform with 20,000+ students", where: 'Egypt', proof: "Data engineering, ML and automations." },
-      { stage: 'Validate', href: '/validate', what: "Feasibility sprints across several startup ideas", where: 'Saudi Arabia', proof: "Each sprint ends in a build, pivot or shelve decision." },
-    ],
-  },
   reviews: {
-    label: 'What clients say',
     title: 'Verified reviews from founders and teams',
     cta: true,
     items: [
-      { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: "Youssef", role: "CEO, EduLens", service: "Build · AI agents · EdTech" },
+      { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: "Youssef", role: "CEO, EduLens", service: "Build · AI agents · EdTech", result: "Three AI agents in production. AI costs down 60–90%." },
       { quote: "The quality of their work is top-notch.", name: "CEO", role: "Nile Support, USA", service: "Build · AI agents, website and staff augmentation" },
       { quote: "Professional work and great communication.", name: "Nojoud Alarfaj", role: "Athkado, Saudi Arabia", service: "Build · White-label and e-commerce" },
       { quote: "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!", name: "Michelle Boehm", role: "Academic researcher, Switzerland", service: "Research · ML algorithms and data analysis" },
@@ -171,9 +115,9 @@ export const home = {
     ],
   },
   guides: {
-    label: 'Guides and tools',
     title: 'Free guides and a launch check',
     readLabel: 'Read the guide',
+    allLabel: 'All guides',
     check: { title: 'Take the launch check', body: '10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive.', cta: 'Start the check' },
   },
   faq: {
@@ -182,7 +126,7 @@ export const home = {
       { id: 'ai', q: 'How do you use AI? Is the code safe?', a: 'Yes. AI drafts code, tests and documentation. Senior engineers make the decisions, review every change and sign off each release. A person is responsible for every line that reaches your users.' },
       { id: 'pricing', q: 'How does pricing work?', a: 'Validate is a fixed fee, credited toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer. You get a number after a free 30-minute clarity call, before you commit to anything.' },
       { id: 'timeline', q: 'How long does it take to build an MVP?', a: 'Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.' },
-      { id: 'way', q: 'What is the DiscoverDev Way?', a: 'It is how every DiscoverDev project runs. We agree on the right product first, AI drafts the work, and a senior engineer reviews every change and signs off every release. You see progress every week.' },
+      { id: 'way', q: 'What is the DiscoverDev Way?', a: 'It is how every DiscoverDev project runs: we agree on the right product first, AI drafts the work, and a senior engineer signs off every release.' },
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.' },
       { id: 'take-over', q: 'We already built something with AI or a freelancer. Can you take it over?', a: 'Yes. Start with a Launch-Ready Review. A senior team reviews it in about 5 working days and tells you what to keep, fix or replace, and why. Then we fix it or build it properly.', link: { label: 'Read the guide to taking an AI-built app to production', to: 'pillar' as const } }, // 03 §0.8
       { id: 'stacks', q: 'Which tools and stacks do you work with?', a: 'React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure. For AI: OpenAI, LangChain, RAG, computer vision and NLP.' },

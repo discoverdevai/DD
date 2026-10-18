@@ -16,6 +16,9 @@ const columns = [
   { title: t('footer.insights'), items: col([{ key: 'insights', label: t('footer.guides') }, { key: 'launchCheck', label: t('footer.launchCheck') }]) },
   { title: t('footer.company'), items: col([{ key: 'about', label: t('footer.about') }, ...(isLive('book') ? [{ href: bookHref('clarity'), label: t('footer.book') }] : []), { key: 'privacy', label: t('footer.privacy') }, { key: 'terms', label: t('footer.terms') }]) },
 ].filter((c) => c.items.length > 0);
+// `proof`: the rating line; home shows it in the hero and above the reviews, so its footer hides it (Oct 18).
+interface Props { proof?: boolean }
+const { proof = true } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer" data-surface="ink">
@@ -43,7 +46,7 @@ const year = new Date().getFullYear();
     )}
   </div>
   <div class="container site-footer__base">
-    <p class="site-footer__proof"><Icon name="star" size={16} />{t('proof.rating')} <a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a></p>
+    {proof && <p class="site-footer__proof"><Icon name="star" size={16} />{t('proof.rating')} <a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a></p>}
     <p>{t('footer.analytics')}</p>
     <p>{t('footer.copyright', 'en', { year })}</p>
   </div>

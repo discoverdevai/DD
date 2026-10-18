@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reviews component, round 2 (mock)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/styles/tokens.css">
+<style>
+  /* MOCK ONLY. Real site tokens (src/styles/tokens.css); not site code. */
+  :root { --ff-heading: "Manrope", system-ui, sans-serif; --ff-body: "Rubik", system-ui, sans-serif; --ff-mono: "JetBrains Mono", ui-monospace, monospace; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-bg); color: var(--color-text); font-family: var(--ff-body); line-height: 1.55; }
+  ul { list-style: none; } a { color: var(--color-link); }
+  :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+  .wrap { max-inline-size: 76rem; margin-inline: auto; padding-inline: 1.5rem; }
+  .top { position: sticky; inset-block-start: 0; z-index: 30; background: color-mix(in oklab, var(--blue-975) 94%, transparent); backdrop-filter: blur(8px); border-block-end: 1px solid var(--color-hairline); }
+  .top .wrap { display: flex; gap: .6rem; align-items: center; padding-block: .6rem; font-family: var(--ff-mono); font-size: .8125rem; flex-wrap: wrap; }
+  .top a { color: var(--blue-200); text-decoration: none; padding: .25rem .6rem; border-radius: 999px; border: 1px solid var(--color-hairline); }
+  .top b { color: var(--neutral-0); font-weight: 500; margin-inline-end: auto; }
+  @media (width < 48rem) { .top { position: static; } }
+  .opt { padding-block: 4rem; border-block-end: 1px solid var(--color-hairline); scroll-margin-block-start: 3rem; }
+  .tag0 { display: inline-block; font-family: var(--ff-mono); font-size: .8125rem; padding: .15rem .6rem; border-radius: 999px; background: var(--blue-300); color: var(--blue-975); margin-block-end: .75rem; }
+  .note { max-inline-size: 48rem; color: var(--blue-200); margin-block: .75rem 2rem; }
+  .note b { color: var(--neutral-0); font-weight: 500; }
+  h2 { font-family: var(--ff-heading); font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; color: var(--neutral-0); max-inline-size: 22ch; text-wrap: balance; }
+  .rate { font-size: .875rem; margin-block-start: .75rem; } .rate .s { color: var(--green-300); margin-inline-end: .35rem; }
+  .cta { display: inline-flex; align-items: center; min-block-size: 3rem; padding-inline: 1.5rem; border-radius: 6px; background: var(--blue-700); color: var(--neutral-0); font-family: var(--ff-heading); font-weight: 700; text-decoration: none; }
+  .quiet { font-size: .875rem; color: var(--blue-200); }
+
+  /* cards */
+  .card { display: grid; gap: .9rem; align-content: space-between; block-size: 100%; padding: 1.1rem; border-radius: 16px; border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .q { position: relative; padding-block-start: 1.4rem; line-height: 1.6; font-size: .975rem; }
+  .q::before { content: '\201C'; position: absolute; inset-block-start: -.35em; inset-inline-start: 0; font-family: var(--ff-heading); font-size: 3rem; line-height: 1; color: var(--blue-400); }
+  .by { display: flex; align-items: center; gap: .7rem; }
+  .av { display: grid; place-items: center; flex: none; inline-size: 2.4rem; block-size: 2.4rem; border-radius: 50%; font-family: var(--ff-heading); font-weight: 700; font-size: .85rem; color: var(--blue-975); background: var(--blue-300); }
+  .who { display: grid; line-height: 1.3; } .who strong { font-family: var(--ff-heading); color: var(--neutral-0); } .who span { font-size: .85rem; color: var(--blue-200); }
+  .svc { justify-self: start; font-family: var(--ff-mono); font-size: .78rem; line-height: 1.5; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--color-hairline); color: var(--blue-300); }
+  .res { font-family: var(--ff-heading); font-weight: 600; color: var(--green-300); text-wrap: balance; }
+  .nb { white-space: nowrap; }
+
+  /* featured (anchored, never moves) */
+  .feat { display: grid; gap: 1.5rem; padding: 1.75rem; border-radius: 16px; border: 1px solid color-mix(in oklab, var(--blue-400) 45%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 30%, var(--color-surface)), var(--color-surface) 70%); }
+  .feat .q { font-family: var(--ff-heading); font-weight: 600; letter-spacing: -0.015em; font-size: clamp(1.3rem, 1.05rem + 1vw, 1.8rem); line-height: 1.35; color: var(--neutral-0); text-wrap: balance; padding-block-start: 2rem; }
+  .feat .q::before { font-size: 4rem; }
+  .feat__side { display: grid; gap: .9rem; align-content: start; }
+  .feat__cta { display: grid; gap: .5rem; justify-items: start; margin-block-start: .5rem; }
+
+  /* pause control: a real checkbox + label, so it works without script (WCAG 2.2.2); first tab stop in the component */
+  .pz { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+  .pz__l { display: inline-flex; align-items: center; gap: .5rem; min-block-size: 2.75rem; padding-inline: .9rem; border-radius: 999px; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--neutral-0); font-family: var(--ff-mono); font-size: .8125rem; cursor: pointer; }
+  .pz:focus-visible + .pz__l { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+  .pz__l .on { display: none; } .pz:checked + .pz__l .on { display: inline; } .pz:checked + .pz__l .off { display: none; }
+  .rv:has(.pz:checked) .drift { animation-play-state: paused !important; }
+  .drift:hover, .rv:focus-within .drift { animation-play-state: paused !important; }
+
+  /* ---------- D: anchor + wall (two vertical columns, opposite directions) ---------- */
+  .d { display: grid; gap: 2rem; align-items: start; }
+  @media (width >= 64rem) { .d { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem; } }
+  .wallwin { position: relative; block-size: 34rem; overflow: hidden; border-radius: 16px; mask-image: linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent); }
+  .wallcols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; block-size: 100%; }
+  .wallcols > ul { display: grid; gap: 1rem; align-content: start; }
+  .col-all { display: none; }
+  @media (width < 48rem) { .wallcols { grid-template-columns: 1fr; } .col-a, .col-b { display: none; } .col-all { display: grid; } .wallwin { block-size: 30rem; } }
+  .drift--up { animation: up 80s linear infinite; } .drift--down { animation: down 100s linear infinite; }
+  @keyframes up { to { transform: translateY(calc(-50% - .5rem)); } } @keyframes down { from { transform: translateY(calc(-50% - .5rem)); } to { transform: none; } }
+  .d__ctl { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-block-end: 1rem; }
+
+  /* ---------- E / F: anchor on top, one slow river below ---------- */
+  .river { position: relative; overflow: hidden; margin-inline: calc(50% - 50vw); margin-block-start: 1.75rem; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .river__track { display: flex; gap: 1rem; inline-size: max-content; padding-block: .4rem; animation: river 120s linear infinite; }
+  .river__track > li { flex: none; inline-size: 19rem; }
+  @keyframes river { to { transform: translateX(calc(-50% - .5rem)); } }
+  :dir(rtl) .river__track { animation-name: river-rtl; } @keyframes river-rtl { to { transform: translateX(calc(50% + .5rem)); } }
+  .river--still { overflow-x: auto; mask-image: none; margin-inline: 0; }
+  .river--still .river__track { animation: none; inline-size: auto; flex-wrap: wrap; }
+  .e__feat { grid-template-columns: 1fr; }
+  @media (width >= 56rem) { .e__feat { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); align-items: center; gap: 2.5rem; } }
+  .ctl { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; margin-block-start: 1.5rem; }
+  .chips { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .chip { min-block-size: 2.75rem; padding-inline: 1rem; border-radius: 999px; border: 1px solid var(--color-hairline); background: transparent; color: var(--blue-200); font-family: var(--ff-mono); font-size: .8125rem; cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--blue-300); color: var(--blue-975); border-color: var(--blue-300); }
+  .still-note { font-family: var(--ff-mono); font-size: .78rem; color: var(--blue-300); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drift { animation: none !important; }
+    .wallwin { block-size: auto; mask-image: none; } .wallcols { grid-template-columns: repeat(2, 1fr); } .col-dup { display: none; }
+    .river { mask-image: none; margin-inline: 0; overflow-x: auto; } .river__track { animation: none; } .river__track > li[aria-hidden] { display: none; }
+    .pz__l { display: none; }
+  }
+</style>
+</head>
+<body data-surface="ink">
+<div class="top"><div class="wrap"><b>Reviews component, round 2 (mock, not the site)</b><a href="#d">D. Anchor + wall</a><a href="#e">E. Anchor + river</a><a href="#f">F. River by stage</a></div></div>
+
+<!-- ============ D ============ -->
+<section class="opt" id="d"><div class="wrap">
+  <span class="tag0">Option D</span>
+  <h2>Verified reviews from founders and teams</h2>
+  <p class="rate"><span class="s">★</span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) <a href="#d">Read our reviews on Clutch</a></p>
+  <p class="note"><b>Anchor + wall.</b> The best quote (EduLens, with its number) stays still on the left with the button beside it. The other 7 drift upward and downward in two columns on the right, slowly enough to read, pausing on hover or focus, with a pause switch that works without script. Phones: one drifting column under the anchor. Reduced motion: a still two-column wall, nothing hidden.</p>
+  <div class="rv d" id="dRoot">
+    <div id="dFeat"></div>
+    <div>
+      <div class="d__ctl"><input class="pz" type="checkbox" id="dpz"><label class="pz__l" for="dpz"><span class="off">❚❚ Pause moving reviews</span><span class="on">▶ Play moving reviews</span></label><span class="quiet">All 8 reviews, hover to stop</span></div>
+      <div class="wallwin"><div class="wallcols" id="dCols"></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ E ============ -->
+<section class="opt" id="e"><div class="wrap">
+  <span class="tag0">Option E</span>
+  <h2>Verified reviews from founders and teams</h2>
+  <p class="rate"><span class="s">★</span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) <a href="#e">Read our reviews on Clutch</a></p>
+  <p class="note"><b>Anchor + river.</b> The best quote is large and fixed at the top with the button next to it; the other 7 reviews run in one slow row beneath (about 17 px a second). Same layout on a phone. Pause switch without script; hover or focus stops it. Reduced motion: the row becomes a still, scrollable row.</p>
+  <div class="rv" id="eRoot">
+    <div class="feat e__feat" id="eFeat"></div>
+    <div class="ctl"><input class="pz" type="checkbox" id="epz"><label class="pz__l" for="epz"><span class="off">❚❚ Pause moving reviews</span><span class="on">▶ Play moving reviews</span></label><span class="quiet">More reviews, hover to stop</span></div>
+    <div class="river" id="eRiver" tabindex="0" aria-label="More client reviews"><ul class="river__track drift" id="eTrack"></ul></div>
+  </div>
+</div></section>
+
+<!-- ============ F ============ -->
+<section class="opt" id="f"><div class="wrap">
+  <span class="tag0">Option F</span>
+  <h2>Verified reviews from founders and teams</h2>
+  <p class="rate"><span class="s">★</span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) <a href="#f">Read our reviews on Clutch</a></p>
+  <p class="note"><b>River by stage.</b> Option E plus two filters in the visitor's own words, matching the three paths in Engagements: "I have an idea" (Validate and research work) and "I'm ready to build". The row re-forms for the choice. If only a few reviews match, it stops moving and just shows them (motion with 2 cards would repeat itself).</p>
+  <div class="rv" id="fRoot">
+    <div class="feat e__feat" id="fFeat"></div>
+    <div class="ctl">
+      <input class="pz" type="checkbox" id="fpz"><label class="pz__l" for="fpz"><span class="off">❚❚ Pause moving reviews</span><span class="on">▶ Play moving reviews</span></label>
+      <div class="chips" role="group" aria-label="Show reviews for"><button class="chip" type="button" aria-pressed="true" data-f="all">All reviews</button><button class="chip" type="button" aria-pressed="false" data-f="idea">I have an idea</button><button class="chip" type="button" aria-pressed="false" data-f="build">I'm ready to build</button></div>
+      <span class="still-note" id="fNote" hidden>Few reviews here, so the row stays still.</span>
+    </div>
+    <div class="river" id="fRiver" tabindex="0" aria-label="More client reviews"><ul class="river__track drift" id="fTrack"></ul></div>
+  </div>
+</div></section>
+
+<script>
+const DATA = [{"quote": "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", "name": "Youssef", "role": "CEO, EduLens", "service": "Build · AI agents · EdTech", "result": "Three AI agents in production. AI costs down 60–90%."}, {"quote": "The quality of their work is top-notch.", "name": "CEO", "role": "Nile Support, USA", "service": "Build · AI agents, website and staff augmentation"}, {"quote": "Professional work and great communication.", "name": "Nojoud Alarfaj", "role": "Athkado, Saudi Arabia", "service": "Build · White-label and e-commerce"}, {"quote": "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!", "name": "Michelle Boehm", "role": "Academic researcher, Switzerland", "service": "Research · ML algorithms and data analysis"}, {"quote": "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable.", "name": "Roberto", "role": "Fantacalcio", "service": "Validate · Market research · Fantasy football"}, {"quote": "Thank you for going above and beyond.", "name": "Farah Alkhaldi", "role": "Consulting firm, Kuwait", "service": "Validate · Market research · Tourism and hospitality"}, {"quote": "I will become a regular customer going forward now.", "name": "Andrei Chejneanu", "role": "Entrepreneur, UK", "service": "Validate · Market research · Saudi Arabia expansion"}, {"quote": "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time.", "name": "Lea Nechitailo", "role": "Entrepreneur, Spain", "service": "Validate · Market research · Brand expansion"}];
+const feat = DATA[0], rest = DATA.slice(1);
+const initials = (n) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const card = (r) => `<figure class="card"><blockquote class="q"><p>${esc(r.quote)}</p></blockquote><figcaption class="by"><span class="av" aria-hidden="true">${initials(r.name)}</span><span class="who"><strong>${esc(r.name)}</strong><span>${esc(r.role)}</span></span></figcaption><p class="svc">${esc(r.service)}</p></figure>`;
+const li = (r, dup) => `<li ${dup ? 'aria-hidden="true" inert' : ''}>${card(r)}</li>`;
+const featHtml = () => `<blockquote class="q"><p>${esc(feat.quote)}</p></blockquote><div class="by"><span class="av" aria-hidden="true">${initials(feat.name)}</span><span class="who"><strong>${esc(feat.name)}</strong><span>${esc(feat.role)}</span></span></div><p class="svc">${esc(feat.service)}</p><p class="res">${esc(feat.result).replace('60–90%', '<span class="nb">60–90%</span>')}</p><div class="feat__cta"><a class="cta" href="#">Book a free clarity call</a><span class="quiet">30 minutes · No pitch · Leave with a next step</span></div>`;
+
+/* D */
+document.getElementById('dFeat').innerHTML = `<div class="feat">${featHtml()}</div>`;
+const half = (arr) => [arr.filter((_, i) => i % 2 === 0), arr.filter((_, i) => i % 2 === 1)];
+const [a, b] = half(rest);
+const col = (cls, drift, items) => `<ul class="${cls} ${drift}" role="list">${items.map((r) => li(r)).join('')}${items.map((r) => li(r, true)).join('')}</ul>`;
+document.getElementById('dCols').innerHTML = col('col-a drift', 'drift--up', a) + col('col-b drift', 'drift--down', b) + `<ul class="col-all drift drift--up" role="list">${rest.map((r) => li(r)).join('')}${rest.map((r) => li(r, true)).join('')}</ul>`;
+
+/* E */
+const sideHtml = `<div class="feat__side"><div class="by"><span class="av" aria-hidden="true">${initials(feat.name)}</span><span class="who"><strong>${esc(feat.name)}</strong><span>${esc(feat.role)}</span></span></div><p class="svc">${esc(feat.service)}</p><p class="res">${esc(feat.result).replace('60–90%', '<span class="nb">60–90%</span>')}</p><div class="feat__cta"><a class="cta" href="#">Book a free clarity call</a><span class="quiet">30 minutes · No pitch · Leave with a next step</span></div></div>`;
+const featE = `<div><blockquote class="q"><p>${esc(feat.quote)}</p></blockquote></div>${sideHtml}`;
+document.getElementById('eFeat').innerHTML = featE;
+document.getElementById('eTrack').innerHTML = rest.map((r) => li(r)).join('') + rest.map((r) => li(r, true)).join('');
+
+/* F */
+const group = (r) => /^Build/.test(r.service) ? 'build' : 'idea';
+function paintF(filter) {
+  const items = rest.filter((r) => filter === 'all' || group(r) === filter);
+  const still = items.length <= 3;
+  const tr = document.getElementById('fTrack'), rv = document.getElementById('fRiver');
+  tr.innerHTML = items.map((r) => li(r)).join('') + (still ? '' : items.map((r) => li(r, true)).join(''));
+  tr.classList.toggle('drift', !still); rv.classList.toggle('river--still', still);
+  tr.style.animation = 'none'; void tr.offsetWidth; tr.style.animation = '';
+  document.getElementById('fNote').hidden = !still;
+  document.querySelector('#fRoot .pz__l').style.display = still ? 'none' : '';
+}
+document.getElementById('fFeat').innerHTML = featE;
+paintF('all');
+document.querySelectorAll('[data-f]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('[data-f]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); paintF(b.dataset.f); }));
+
+/* APG: moving content stops when keyboard focus enters the moving region, and resumes only through the control.
+   Focus on the controls themselves (chips, pause switch, button) must not freeze it. */
+document.querySelectorAll('.rv').forEach((rv) => rv.addEventListener('focusin', (e) => { if (e.target.closest('.river, .wallwin')) { const pz = rv.querySelector('.pz'); if (pz) pz.checked = true; } }));
+</script>
+</body>
+</html>

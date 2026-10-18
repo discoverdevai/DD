@@ -16,7 +16,7 @@ interface Project { stage: string; href: string; what: string; where: string; pr
 interface Props {
   title: string; logosTitle: string; clientRoles: Record<string, string>; projects: readonly Project[];
   map: { label: string; legendWorked: string; legendHome: string; pins: ReadonlyArray<readonly [string, number, number]> };
-  items: readonly { icon: 'globe' | 'cpu' | 'languages' | 'map-pin'; text: string }[];
+  items: readonly { icon: 'globe' | 'check'; text: string }[];
 }
 const { title, logosTitle, clientRoles, projects, items, map } = Astro.props;
 // Facts map (real land, Natural Earth, src/data/world-dots.ts): countries we have worked in lit blue, our two teams

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reviews slider options (mock)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/styles/tokens.css">
+<style>
+  /* MOCK ONLY. Uses the real site tokens (src/styles/tokens.css); not site code. */
+  :root { --ff-heading: "Manrope", system-ui, sans-serif; --ff-body: "Rubik", system-ui, sans-serif; --ff-mono: "JetBrains Mono", ui-monospace, monospace; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--color-bg); color: var(--color-text); font-family: var(--ff-body); font-size: 1rem; line-height: 1.55; }
+  ul { list-style: none; }
+  a { color: var(--color-link); }
+  :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+  .wrap { max-inline-size: 76rem; margin-inline: auto; padding-inline: 1.5rem; }
+  .top { position: sticky; inset-block-start: 0; z-index: 20; background: color-mix(in oklab, var(--blue-975) 92%, transparent); backdrop-filter: blur(8px); border-block-end: 1px solid var(--color-hairline); }
+  .top .wrap { display: flex; gap: 1rem; align-items: center; padding-block: .6rem; font-family: var(--ff-mono); font-size: .8125rem; flex-wrap: wrap; }
+  .top a { color: var(--blue-200); text-decoration: none; padding: .25rem .6rem; border-radius: 999px; border: 1px solid var(--color-hairline); }
+  .top b { color: var(--neutral-0); font-weight: 500; margin-inline-end: auto; }
+  .opt { padding-block: 4rem; border-block-end: 1px solid var(--color-hairline); scroll-margin-block-start: 3rem; }
+  .opt__tag { display: inline-block; font-family: var(--ff-mono); font-size: .8125rem; padding: .15rem .6rem; border-radius: 999px; background: var(--blue-300); color: var(--blue-975); margin-block-end: .75rem; }
+  .opt__note { max-inline-size: 46rem; color: var(--blue-200); margin-block: .5rem 2rem; font-size: 1rem; }
+  .opt__note b { color: var(--neutral-0); font-weight: 500; }
+  h2 { font-family: var(--ff-heading); font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; color: var(--neutral-0); max-inline-size: 22ch; text-wrap: balance; }
+  .rate { font-size: .875rem; margin-block-start: .75rem; }
+  .rate .s { color: var(--green-300); margin-inline-end: .35rem; }
+  .cta { display: inline-flex; align-items: center; min-block-size: 3rem; padding-inline: 1.5rem; margin-block-start: 2rem; border-radius: 6px; background: var(--blue-700); color: var(--neutral-0); font-family: var(--ff-heading); font-weight: 700; text-decoration: none; }
+
+  /* shared card */
+  .card { display: grid; gap: 1rem; align-content: space-between; block-size: 100%; padding: 1.25rem; border-radius: 16px; border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .card--feat { border-color: color-mix(in oklab, var(--blue-400) 45%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 30%, var(--color-surface)), var(--color-surface) 70%); }
+  .q { position: relative; padding-block-start: 1.5rem; line-height: 1.6; }
+  .q::before { content: '\201C'; position: absolute; inset-block-start: -.35em; inset-inline-start: 0; font-family: var(--ff-heading); font-size: 3.5rem; line-height: 1; color: var(--blue-400); }
+  .card--feat .q { font-size: 1.2rem; font-weight: 500; color: var(--neutral-0); }
+  .by { display: flex; align-items: center; gap: .75rem; }
+  .av { display: grid; place-items: center; flex: none; inline-size: 2.5rem; block-size: 2.5rem; border-radius: 50%; font-family: var(--ff-heading); font-weight: 700; font-size: .875rem; color: var(--blue-975); background: var(--blue-300); }
+  .who { display: grid; line-height: 1.35; } .who strong { font-family: var(--ff-heading); color: var(--neutral-0); } .who span { font-size: .875rem; color: var(--blue-200); }
+  .svc { justify-self: start; font-family: var(--ff-mono); font-size: .8125rem; line-height: 1.5; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--color-hairline); color: var(--blue-300); }
+  .res { font-family: var(--ff-heading); font-weight: 600; color: var(--green-300); }
+
+  /* ---------- A: river (CSS only, like the logo row) ---------- */
+  .river { position: relative; overflow: hidden; margin-inline: calc(50% - 50vw); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .river__track { display: flex; gap: 1.25rem; inline-size: max-content; padding-block: .5rem; animation: river 150s linear infinite; }
+  .river__track > li { flex: none; inline-size: 22rem; }
+  .river:hover .river__track, .river:focus-within .river__track, .river[data-paused] .river__track { animation-play-state: paused; }
+  @keyframes river { to { transform: translateX(-50%); } }
+  :dir(rtl) .river__track { animation-name: river-rtl; } @keyframes river-rtl { to { transform: translateX(50%); } }
+  .pausebtn { font-family: var(--ff-mono); font-size: .8125rem; padding: .2rem .6rem; border-radius: 6px; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--neutral-0); cursor: pointer; }
+  .river__pause { position: absolute; inset-block-start: 0; inset-inline-end: 1.5rem; z-index: 3; opacity: 0; } .river__pause:focus-visible { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .river { mask-image: none; overflow-x: auto; margin-inline: 0; } .river__track { animation: none; } .river__track > li[aria-hidden] { display: none; } .river__pause { display: none; } }
+
+  /* ---------- B: stage (one big quote, auto-advance, progress, visible pause) ---------- */
+  .stage { display: grid; gap: 1.5rem; }
+  .stage__view { display: grid; }
+  .slide { grid-area: 1 / 1; display: grid; gap: 1.5rem; align-content: center; justify-items: center; text-align: center; padding: 2.5rem 1.5rem; border-radius: 16px; border: 1px solid color-mix(in oklab, var(--blue-400) 35%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 24%, var(--color-surface)), var(--color-surface) 70%); opacity: 0; visibility: hidden; transform: translateX(2rem); transition: opacity .6s, transform .6s, visibility 0s .6s; }
+  .slide.is-on { opacity: 1; visibility: visible; transform: none; transition: opacity .6s, transform .6s; }
+  .slide .big { font-family: var(--ff-heading); font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.1rem); color: var(--neutral-0); max-inline-size: 40ch; text-wrap: balance; }
+  .slide .big::before { content: '\201C'; display: block; font-size: 3.5rem; line-height: .7; color: var(--blue-400); margin-block-end: .5rem; }
+  .slide .by { justify-content: center; text-align: start; }
+  .slide .svc { justify-self: center; }
+  .stage__bar { block-size: 2px; background: var(--color-hairline); border-radius: 2px; overflow: hidden; }
+  .stage__bar i { display: block; block-size: 100%; inline-size: 100%; background: var(--blue-400); transform-origin: 0 50%; transform: scaleX(0); }
+  .stage.run .stage__bar i { animation: fill var(--dwell, 7s) linear forwards; }
+  .stage.paused .stage__bar i { animation-play-state: paused; }
+  @keyframes fill { to { transform: scaleX(1); } }
+  .stage__nav { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+  .arrow { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--neutral-0); cursor: pointer; font-size: 1.1rem; }
+  .tabs { display: flex; gap: .4rem; flex-wrap: wrap; justify-content: center; }
+  .tab { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid transparent; background: transparent; cursor: pointer; padding: 0; }
+  .tab .av { inline-size: 2rem; block-size: 2rem; font-size: .75rem; opacity: .45; transition: opacity .3s, transform .3s; }
+  .tab[aria-selected="true"] .av { opacity: 1; transform: scale(1.15); box-shadow: 0 0 0 3px color-mix(in oklab, var(--blue-300) 35%, transparent); }
+  @media (prefers-reduced-motion: reduce) { .slide { transition: none; transform: none; } .stage__bar, .stage .pausebtn { display: none; } }
+
+  /* ---------- C: track (native scroll-snap, auto-steps, arrows) ---------- */
+  .track-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-block-end: 1.75rem; }
+  .ctrls { display: flex; align-items: center; gap: .6rem; }
+  .track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2.5rem) / 3); gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-block: .5rem; overscroll-behavior-x: contain; }
+  .track::-webkit-scrollbar { display: none; }
+  .track > li { scroll-snap-align: start; }
+  @media (width < 64rem) { .track { grid-auto-columns: calc((100% - 1.25rem) / 1.6); } }
+  @media (width < 40rem) { .track { grid-auto-columns: 86%; } }
+  .dots { display: flex; gap: .5rem; justify-content: center; margin-block-start: 1.25rem; }
+  .dots i { inline-size: 1.5rem; block-size: 3px; border-radius: 3px; background: var(--color-hairline); transition: background .3s; } .dots i.on { background: var(--blue-300); }
+  .note { font-family: var(--ff-mono); font-size: .8125rem; color: var(--blue-300); margin-block-start: 1rem; }
+</style>
+</head>
+<body data-surface="ink">
+<div class="top"><div class="wrap"><b>Reviews slider: three options (mock, not the site)</b><a href="#a">A. Quote river</a><a href="#b">B. One at a time</a><a href="#c">C. Moving track</a></div></div>
+
+<!-- ============ A ============ -->
+<section class="opt" id="a"><div class="wrap">
+  <span class="opt__tag">Option A</span>
+  <h2>Verified reviews from founders and teams</h2>
+  <p class="rate"><span class="s">★</span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) <a href="#a">Read our reviews on Clutch</a></p>
+  <p class="opt__note"><b>Quote river.</b> One slow row, all 8 quotes, moving like the logo row above it. Pure CSS (no script for the motion), pauses on hover and keyboard focus, a pause button appears on focus, a tap pauses on a phone. Reduced motion: a still row you scroll yourself.</p>
+</div>
+<div class="river" id="river" tabindex="0" aria-label="Client reviews, moving row. Press Tab for the pause button.">
+  <button class="pausebtn river__pause" type="button" aria-pressed="false" data-river-pause>Pause</button>
+  <ul class="river__track" id="riverTrack"></ul>
+</div>
+<div class="wrap"><a class="cta" href="#a">Book a free clarity call</a></div>
+</section>
+
+<!-- ============ B ============ -->
+<section class="opt" id="b"><div class="wrap">
+  <span class="opt__tag">Option B</span>
+  <h2>Verified reviews from founders and teams</h2>
+  <p class="rate"><span class="s">★</span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) <a href="#b">Read our reviews on Clutch</a></p>
+  <p class="opt__note"><b>One at a time.</b> One large, readable quote that changes every 7 seconds, with a progress line, a visible pause button, arrows and the 8 reviewers as buttons. Needs a small script. Without script: all 8 quotes stacked. Reduced motion: no autoplay, you click through.</p>
+  <div class="stage" id="stage" role="group" aria-roledescription="carousel" aria-label="Client reviews">
+    <div class="stage__view" id="stageView" aria-live="off"></div>
+    <div class="stage__bar" aria-hidden="true"><i></i></div>
+    <div class="stage__nav">
+      <button class="arrow" type="button" data-prev aria-label="Previous review">←</button>
+      <div class="tabs" role="tablist" aria-label="Choose a review" id="stageTabs"></div>
+      <button class="arrow" type="button" data-next aria-label="Next review">→</button>
+      <button class="pausebtn" type="button" data-pause aria-pressed="false">Pause</button>
+    </div>
+  </div>
+  <a class="cta" href="#b">Book a free clarity call</a>
+</div></section>
+
+<!-- ============ C ============ -->
+<section class="opt" id="c"><div class="wrap">
+  <span class="opt__tag">Option C</span>
+  <div class="track-head">
+    <div>
+      <h2>Verified reviews from founders and teams</h2>
+      <p class="rate"><span class="s">★</span>5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) <a href="#c">Read our reviews on Clutch</a></p>
+    </div>
+    <div class="ctrls">
+      <button class="arrow" type="button" data-cprev aria-label="Previous reviews">←</button>
+      <button class="arrow" type="button" data-cnext aria-label="Next reviews">→</button>
+      <button class="pausebtn" type="button" data-cpause aria-pressed="false">Pause</button>
+    </div>
+  </div>
+  <p class="opt__note"><b>Moving track.</b> Three cards at a time (one and a half on a tablet, a peek on a phone); it steps one card every 5 seconds and loops back. Swipe or drag works natively, arrows and a visible pause button. Small script for the steps; without it, it is a normal scrolling row. Reduced motion: no steps.</p>
+  <ul class="track" id="track" tabindex="0" aria-label="Client reviews. Scroll sideways."></ul>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <a class="cta" href="#c">Book a free clarity call</a>
+</div></section>
+
+<script>
+const DATA = __DATA__;
+const initials = (n) => n.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const card = (r, i, extra = '') => `<figure class="card ${i === 0 ? 'card--feat' : ''}" ${extra}><blockquote class="q"><p>${esc(r.quote)}</p></blockquote><figcaption class="by"><span class="av" aria-hidden="true">${initials(r.name)}</span><span class="who"><strong>${esc(r.name)}</strong><span>${esc(r.role)}</span></span></figcaption><p class="svc">${esc(r.service)}</p>${r.result ? `<p class="res">${esc(r.result)}</p>` : ''}</figure>`;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* A: river (the second copy only makes the loop seamless; hidden from screen readers) */
+(() => {
+  const t = document.getElementById('riverTrack');
+  t.innerHTML = DATA.map((r, i) => `<li>${card(r, i)}</li>`).join('') + DATA.map((r, i) => `<li aria-hidden="true" inert>${card(r, i)}</li>`).join('');
+  const river = document.getElementById('river'), btn = document.querySelector('[data-river-pause]');
+  const set = (p) => { river.toggleAttribute('data-paused', p); btn.setAttribute('aria-pressed', String(p)); btn.textContent = p ? 'Play' : 'Pause'; };
+  btn.addEventListener('click', () => set(!river.hasAttribute('data-paused')));
+  river.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') set(!river.hasAttribute('data-paused')); });
+})();
+
+/* B: stage */
+(() => {
+  const view = document.getElementById('stageView'), tabs = document.getElementById('stageTabs'), stage = document.getElementById('stage');
+  view.innerHTML = DATA.map((r, i) => `<figure class="slide ${i === 0 ? 'is-on' : ''}" id="s${i}" role="tabpanel" aria-roledescription="slide" aria-label="${i + 1} of ${DATA.length}"><blockquote class="big"><p>${esc(r.quote)}</p></blockquote><figcaption class="by"><span class="av" aria-hidden="true">${initials(r.name)}</span><span class="who"><strong>${esc(r.name)}</strong><span>${esc(r.role)}</span></span></figcaption><p class="svc">${esc(r.service)}</p>${r.result ? `<p class="res">${esc(r.result)}</p>` : ''}</figure>`).join('');
+  tabs.innerHTML = DATA.map((r, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="s${i}" aria-label="${esc(r.name)}, ${esc(r.role)}" data-i="${i}"><span class="av" aria-hidden="true">${initials(r.name)}</span></button>`).join('');
+  const slides = [...view.children], tabEls = [...tabs.children];
+  let cur = 0, timer = 0, userPaused = false, hover = false, inView = false;
+  const dwell = 7000; stage.style.setProperty('--dwell', dwell + 'ms');
+  const run = () => { clearTimeout(timer); stage.classList.remove('run'); void stage.offsetWidth; if (reduce || userPaused || hover || !inView || document.hidden) { stage.classList.add('paused'); return; } stage.classList.remove('paused'); stage.classList.add('run'); timer = setTimeout(() => go(cur + 1), dwell); };
+  const go = (n) => { cur = (n + slides.length) % slides.length; slides.forEach((s, i) => s.classList.toggle('is-on', i === cur)); tabEls.forEach((t, i) => t.setAttribute('aria-selected', String(i === cur))); run(); };
+  stage.querySelector('[data-prev]').onclick = () => go(cur - 1); stage.querySelector('[data-next]').onclick = () => go(cur + 1);
+  tabs.onclick = (e) => { const b = e.target.closest('.tab'); if (b) go(+b.dataset.i); };
+  const pb = stage.querySelector('[data-pause]'); pb.onclick = () => { userPaused = !userPaused; pb.setAttribute('aria-pressed', String(userPaused)); pb.textContent = userPaused ? 'Play' : 'Pause'; run(); };
+  stage.addEventListener('mouseenter', () => { hover = true; run(); }); stage.addEventListener('mouseleave', () => { hover = false; run(); });
+  stage.addEventListener('focusin', () => { hover = true; run(); }); stage.addEventListener('focusout', () => { hover = false; run(); });
+  new IntersectionObserver(([e]) => { inView = e.isIntersecting; run(); }, { threshold: 0.4 }).observe(stage);
+  document.addEventListener('visibilitychange', run);
+  if (reduce) pb.hidden = true;
+})();
+
+/* C: track */
+(() => {
+  const track = document.getElementById('track'), dots = document.getElementById('dots');
+  track.innerHTML = DATA.map((r, i) => `<li>${card(r, i)}</li>`).join('');
+  dots.innerHTML = DATA.map(() => '<i></i>').join('');
+  const items = [...track.children], dEls = [...dots.children];
+  const pb = document.querySelector('[data-cpause]');
+  let timer = 0, userPaused = false, hover = false, inView = false;
+  const step = () => items[1].offsetLeft - items[0].offsetLeft;
+  const idx = () => Math.round(track.scrollLeft / step());
+  const paint = () => { const i = idx(); const vis = Math.max(1, Math.round(track.clientWidth / step())); dEls.forEach((d, k) => d.classList.toggle('on', k >= i && k < i + vis)); };
+  const next = () => { const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4; track.scrollTo({ left: end ? 0 : (idx() + 1) * step(), behavior: reduce ? 'auto' : 'smooth' }); };
+  const prev = () => { track.scrollTo({ left: Math.max(0, (idx() - 1) * step()), behavior: reduce ? 'auto' : 'smooth' }); };
+  const arm = () => { clearInterval(timer); if (reduce || userPaused || hover || !inView || document.hidden) return; timer = setInterval(next, 5000); };
+  document.querySelector('[data-cnext]').onclick = () => { next(); arm(); }; document.querySelector('[data-cprev]').onclick = () => { prev(); arm(); };
+  pb.onclick = () => { userPaused = !userPaused; pb.setAttribute('aria-pressed', String(userPaused)); pb.textContent = userPaused ? 'Play' : 'Pause'; arm(); };
+  ['mouseenter', 'focusin', 'pointerdown', 'touchstart'].forEach((ev) => track.addEventListener(ev, () => { hover = true; arm(); }, { passive: true }));
+  ['mouseleave', 'focusout'].forEach((ev) => track.addEventListener(ev, () => { hover = false; arm(); }));
+  track.addEventListener('scroll', paint, { passive: true });
+  new IntersectionObserver(([e]) => { inView = e.isIntersecting; arm(); }, { threshold: 0.4 }).observe(track);
+  document.addEventListener('visibilitychange', arm);
+  if (reduce) pb.hidden = true;
+  paint();
+})();
+</script>
+</body>
+</html>

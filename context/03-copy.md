@@ -305,8 +305,10 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - **H1:** Turn your idea into a live product in weeks.
 - **Primary CTA:** Book a free clarity call
 
+**Oct 18 message map (Mohamed approved; source `docs/review/home-review-oct18/duplication-and-cuts.md`):** one job per section: Promise (hero) · Proof (logos and map, one case with a number, three reviews) · How (one section) · Paths (engagements) · Reassure (FAQ) · Act (closing band). Home now runs: 2A.1 hero, 2A.3 proof band, 2A.4 The DiscoverDev Way, 2A.6 engagements, 2A.8a one chapter, 2A.8b one case, 2A.8c three reviews, 2A.9b guides, 2A.10 FAQ, 2A.11 closing band. **Removed from home Oct 18:** 2A.5 lifecycle (merged into 2A.4; the content stays the source for /how-we-work), 2A.7 What we build (now one scope line in 2A.6), 2A.9 Why (claims moved, see 2A.3 and 2A.4). No claim was deleted; each moved to the section named. The "Book a free clarity call" button now sits in the hero, after the reviews and in the closing band (the one after the FAQ heading and the one in 2A.4 were removed).
+
 ### 2A.1 Hero
-- Pill: AI drafts. Seniors sign off. (hero copy pass Oct 16, CRO/copy: replaces "The DiscoverDev Way · senior-signed"; plain words, mirrors the board)
+- Pill: removed Oct 18 (it said the same as the sprint board beside it and the Way H2 below; was: AI drafts. Seniors sign off.)
 - H1: Turn your idea into a live product in weeks. ("a live product" set in brand blue; Mohamed Oct 16, replaces "Build the right thing. Ship it fast.")
 - Sub: DiscoverDev builds it with senior engineers and AI, in 8–12 weeks. You own everything.
   - Oct 16 hero copy pass (CRO/GEO/copy, chosen by Mohamed): short; names the entity so the line can be quoted on its own (05 §5); 09: Build = live deployment in 8–12 weeks; full IP. Trimmed when the H1 took "in weeks" (no repeat). Replaces "A product and engineering company … without cutting corners. And you own everything."
@@ -343,16 +345,20 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Then the §2.3 facts beside a small map (Oct 16, Mohamed: make the facts visual and on-brand): a real dotted map (Natural Earth land, Oct 16, Mohamed: real map with countries), countries we've worked in lit blue (09: USA, UK, Ireland, Spain, Switzerland, Italy, Saudi Arabia, Kuwait, Egypt), our two teams pulsing green (Texas, USA · Alexandria, Egypt) joined by an arc, plus one marker per client country (USA, United Kingdom, Ireland, Spain, Switzerland, Italy, Saudi Arabia, Kuwait, Egypt; country name on hover). Legend: "Countries we've worked in" · "Our teams: Texas and Alexandria". Screen-reader label: "Map of where we work: clients in North America, Europe, Africa and Asia, with teams in Texas, USA and Alexandria, Egypt." Previously: The rating line and Clutch link (§0.4) sit in the hero (Oct 16).
 - Why (Oct 16 review): mixing logos and text in one moving strip read as noise; moving text can't be read and needs a pause control (WCAG 2.2.2). Each card names the product type, the work and the country, so search and AI answers can quote it.
 
+- **Oct 18 fact list:** two lines beside the map: Clients on 4 continents · Four clients expanded scope with us (moved from the Why pillar "We stay"; 09 Differentiators: Athkado, Upscend, Arheb and Pyramakerz expanded scope). Removed: "AI in production across multiple clients" (no specifics), "Arabic and English" and "Texas, USA and Alexandria, Egypt" (the map legend and the footer say it).
+
 ### 2A.4 The DiscoverDev Way (id `how-we-work`; renamed from "Agile v2" Oct 16, see `docs/brand/discoverdev-way.md`)
 - Label: The DiscoverDev Way
 - H2: Discover first. Build with AI. Seniors sign off.
-- Body: The DiscoverDev Way is how every project runs. We agree on what is worth building before any code. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality. You see progress every week.
+- Body (Oct 18, shortened; "before any code" and the weekly demo now appear once each, in card 1 and in 2A.6): The DiscoverDev Way is how every project runs. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality.
+- Link under the journey (Oct 18, moved from the lifecycle section): See how we work in detail → /how-we-work. No button in this section.
+- Was (Oct 16): The DiscoverDev Way is how every project runs. We agree on what is worth building before any code. AI drafts the work, so it moves fast. A senior engineer reviews every change and signs off every release, so speed never costs you quality. You see progress every week.
   - Oct 16 copy pass: each sentence pairs what we do with what the client gets (speed, quality, visibility).
   - Oct 16 section review (GEO/copy): one defining sentence instead of 60 words that repeated the hero.
 - Columns "What AI does" / "What senior engineers own": removed Oct 16 (batch 2; Mohamed: the hero board and the journey visual already say this). The journey visual (Discover → AI drafts → A senior signs → Live) sits between the body and the line.
 - Line: removed from the home section Oct 16 (section review: it repeated the hero pill "AI drafts. Seniors sign off."). "AI drafts it. A senior engineer signs it." stays the brand line in 09 and elsewhere.
 - **Journey visual (Oct 16, Mohamed: "from discovery to be live … like visuals for section"):** four cards side by side between the body and the two columns, played once on scroll. Illustration, not a client product; no text inside images.
-  - 1 · Discover · Line: We test the idea and sketch the product before any code.
+  - 1 · Discover · Line (Oct 18, takes the "we tell you what to cut" claim from the removed Why section; 02 gap 3): We test the idea, sketch the product and tell you what to cut, before any code.
   - 2 · AI drafts · Card tag (mono): AI draft · Line: AI writes the first draft from the agreed spec.
   - 3 · A senior signs · Checklist: Review of every change · Security, data and payments · Sign-off on every release · Stamp: Signed off · Line: A senior engineer reviews it and signs it off.
   - 4 · Live · Chip: Live · Line: Your users get it, and we keep improving it.
@@ -360,7 +366,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - Oct 16 copy pass: lines say what happens at each step, in the client's terms.
   - Caption (screen readers): An illustration of the DiscoverDev Way: a rough sketch, an AI draft, a senior engineer's sign-off, then the live product.
 
-### 2A.5 Lifecycle
+### 2A.5 Lifecycle (not shown on home since Oct 18: merged into 2A.4; this block is the source for /how-we-work)
 - Label: How a project runs (Oct 16: the old label repeated the H2)
 - H2: One team from idea to after launch
 - Lead (Oct 16, Mohamed): New product or existing code, greenfield or brownfield, the same four steps apply. With existing code, Discover starts with a review of what you have. (09: greenfield builds such as the marketplace; take-overs, legacy modernization and the Launch-Ready Review for existing code.)
@@ -383,8 +389,9 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - Sub-heading: Other ways in
 - Row · Launch-Ready Review · "Already built something?" · Your AI-built or freelancer-built app, reviewed by a senior team in about 5 working days. A ranked fix list and a plain verdict. · Link: See the Review
 - Row · Partners · "I run a software house." · White-label delivery and staff augmentation under your brand. · Link: See Partners
+- Scope line (Oct 18, replaces 2A.7 on home; items from 09 services, wording from the removed section), under the three cards: What we build: web and mobile apps, AI agents and chatbots in Arabic and English, APIs and enterprise systems, data and cloud.
 
-### 2A.7 What we build
+### 2A.7 What we build (removed from home Oct 18: one scope line under 2A.6; this block stays as source for the service pages)
 - H2: What we build
 - Lead: Product, engineering, AI and data in one senior team, so nothing gets lost in a handoff. (Oct 16 section review: "Nine service lines" sat over 15 items in 4 groups and read as a mismatch; 09: one team, no handoff gaps)
 - Group · Product · "Decide what to build before any code.": Product strategy and discovery · Product design (UX/UI) · Market and competitor studies
@@ -401,11 +408,13 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - The five changes, each with one line (from the case study, /work/edtech-ai-agents): Captions first: Free captions first. Paid transcription only when a video has none. | Reuse across users: Each video is processed once and shared, so repeat views cost close to nothing. | The right model for each task: Lower-cost models by default, larger ones only where they pay off. | Shorter prompts: Each request carries only what the model needs, so fewer tokens are billed. | Faster transcription: Long audio is split into 2-minute chunks and transcribed in parallel.
 
 ### 2A.8b Selected work: bento showcase (Oct 16, Mohamed; replaces the case block §2A.8 and the six-card grid on home)
-- Label: Selected work · H2: Products we've helped build · Link: See all our work (→ /work)
+- Oct 18: one case only. H2: Selected work (no label above it) · the EdTech tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · result: AI costs down 60–90%, depending on cache hit rate and caption availability, and cost now grows slower than the user base (09 wording restored) · Read the case study) · Link: See all our work (→ /work). The other four tiles live on /work.
+- Was (Oct 16): Label: Selected work · H2: Products we've helped build · Link: See all our work (→ /work)
 - One featured tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · Read the case study) and four tiles (AR furniture store, Embedded product team for a B2B learning platform, Health app that explains lab reports, Customer-support AI agent). Data from `src/content/copy/en/projects.ts` (all lines from 09).
 - Each tile shows a text-free drawing of the product type; a real product screen replaces it once the client approves screens (Mohamed suggested Figma screens, Oct 16; D-05).
 
 ### 2A.8a Project chapters (Oct 16, Mohamed: Fantasy-style, one product per full screen, in the site theme; above Selected work on home, top of /work)
+- Oct 18: home shows one chapter, NJWAR (it carries the live AR demo); /work shows all. Consent for the NJWAR name and the Saudi Arabia tag is still open (D-05).
 - Each chapter: tags · huge product name · one line · "View project" (→ /work#project-<id>) · real screens from our Figma on 3D devices. Facts from 09.
 - NJWAR · tags Build, E-commerce, AR, Saudi Arabia · Line: An AR furniture store with AI recommendations: place a piece in your room at real size, change its colour and add more. · Second action: Try our AR prototype ↗ (→ https://furniture-webar.pages.dev/, new tab) · Note: Web store on the laptop, AR on the phone. On a phone, the demo places a chair in your room. · Screens: web AR home (laptop), AR view (phone).
 - Yawmy Care · tags Build, Childcare, Our own product · Line: Our own nursery platform for management, teachers and parents, with billing and multiple locations. · Note: Admin dashboard on the web, parent app on the phone. · Screens: admin dashboard (laptop), parent home and daily logs (phones).
@@ -414,7 +423,8 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 
 ### 2A.8c Client reviews (Oct 16; Mohamed approved all 8 quotes from 09 with names and roles, D-05)
 - Order (Oct 16 psychology review: similarity and availability): product-build quotes first (EduLens CEO featured larger, beside the case it backs), then research, then Validate market research. Service tag starts with the stage (Build / Research / Validate). "Book a free clarity call" under the reviews (proof next to the CTA).
-- Label: What clients say · H2: Verified reviews from founders and teams · Rating line + Clutch link (§0.4) under the heading. Quotes verbatim from 09 (no edits, exclamation marks kept as written by the client). No star graphics, no AggregateRating.
+- Oct 18 (Mohamed, after the cut list): keep all 8 quotes; they become a slowly moving slider (format pending: options in `docs/review/home-review-oct18/reviews-slider-options.md`). The EduLens quote carries the result line "Three AI agents in production. AI costs down 60–90%." (09). No label above the heading; the button after the quotes has no "30 minutes · No pitch" line. H2 unchanged (wording open, see the review report). Rating line + Clutch link (§0.4) under the heading.
+- Was (Oct 16): Label: What clients say · H2: Verified reviews from founders and teams · Rating line + Clutch link (§0.4) under the heading. Quotes verbatim from 09 (no edits, exclamation marks kept as written by the client). No star graphics, no AggregateRating.
 - "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable." Roberto, Fantacalcio · Market research · Fantasy football
 - "They focused on building solutions that were practical, scalable, and aligned with our users’ needs." Youssef, CEO, EduLens · AI agents · EdTech
 - "The quality of their work is top-notch." CEO, Nile Support, USA · AI agents, website and staff augmentation
@@ -425,10 +435,10 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 - "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time." Lea Nechitailo, Entrepreneur, Spain · Market research · Brand expansion
 
 ### 2A.9b Guides and tools (Oct 16, before the FAQ)
-- Label: Guides and tools · H2: Free guides and a launch check (Oct 16: "free" up front, zero-price effect) · launch check card first (lowest effort first step), then three guide cards (pillar first, then the security and fix-or-rebuild guides; title and description from each guide) with "Read the guide"
+- Oct 18: no label above the heading; the launch check card plus two guides (the pillar "How to take an AI-built app to production" and "the security holes"); the fix-or-rebuild guide drops off home; link "All guides" → /insights. Was: Label: Guides and tools · H2: Free guides and a launch check (Oct 16: "free" up front, zero-price effect) · launch check card first (lowest effort first step), then three guide cards (pillar first, then the security and fix-or-rebuild guides; title and description from each guide) with "Read the guide"
 - Launch check card · Take the launch check · 10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive. · Start the check (→ /launch-check)
 
-### 2A.9 Why DiscoverDev
+### 2A.9 Why DiscoverDev (removed from home Oct 18: every pillar restated another section; "we tell you what to cut" moved to 2A.4 card 1, "Four clients expanded scope" to 2A.3; the core sentence stays in the footer)
 - Label: Why founders and teams choose DiscoverDev
 - Two-tone lead: core idea (bright: "Most teams just build what you ask for." dim: the rest)
 - Pillar 1 · Product-first: The "Discover" in our name is the point. Before any code, we check it's the right thing to build, and we tell you what to cut.
@@ -450,9 +460,9 @@ Validate is a fixed fee, credited toward Build. Build is a fixed price for an ag
 Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.
 
 **What is the DiscoverDev Way?**
-It is how every DiscoverDev project runs. We agree on the right product first, AI drafts the work, and a senior engineer reviews every change and signs off every release. You see progress every week.
+It is how every DiscoverDev project runs: we agree on the right product first, AI drafts the work, and a senior engineer signs off every release.
 
-(Oct 16 section review: timeline and method questions added (02 top questions; 05 §5 definitional answer for AI search); AI answer opens with "Yes."; a clarity-call button sits under the FAQ heading.)
+(Oct 18: no button under the FAQ heading (the email line stays); the Way answer shortened to one sentence. Oct 16 section review: timeline and method questions added (02 top questions; 05 §5 definitional answer for AI search); AI answer opens with "Yes."; a clarity-call button sits under the FAQ heading.)
 
 **Who owns the code?**
 You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.
@@ -467,6 +477,7 @@ React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL,
 §2.12 answer, verbatim.
 
 ### 2A.11 Final CTA
+- Oct 18: the footer rating line is not shown on home (it appears in the hero and above the reviews); other pages keep it.
 - H2: Tell us what you're building.
 - Body: Bring an idea, a prototype or a product that needs a team. We'll tell you where to start, even if we're not the right fit. (Oct 16 section review: the old body repeated the microcopy under the button; this names the three entry points: Validate, Review, Scale.)
 - Previous body (Proof check 2026-10-16: "with a senior person" removed; 09 does not say who takes the clarity call.)

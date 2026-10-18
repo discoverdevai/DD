@@ -10,14 +10,15 @@ import sharp from 'sharp';
 import { chapters, chapterCopy as c } from '../../content/copy/en/projects';
 import { href } from '../../data/routes';
 import Device from '../ui/Device.astro';
-interface Props { headingLevel?: 'h2' | 'h3' }
-const { headingLevel = 'h2' } = Astro.props;
+// `only`: chapter ids to show (home shows NJWAR; /work shows all).
+interface Props { headingLevel?: 'h2' | 'h3'; only?: readonly string[] }
+const { headingLevel = 'h2', only } = Astro.props;
 const H = headingLevel;
 const files = import.meta.glob<{ default: ImageMetadata }>('/assets/projects/*.{png,jpg,jpeg,webp}');
 const load = async (file: string, held: boolean, width: number) => held
   ? `data:image/webp;base64,${(await sharp(path.join(process.cwd(), 'assets/projects-held', file)).resize({ width }).webp({ quality: 78 }).toBuffer()).toString('base64')}`
   : (await files[`/assets/projects/${file}`]()).default;
-const rows = await Promise.all(chapters.map(async (ch) => ({
+const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch.id)).map(async (ch) => ({
   ...ch,
   layout: ch.web ? (ch.phones.length > 1 ? 'web2' : 'web1') : 'phones',
   webSrc: ch.web ? await load(ch.web.file, !!ch.hold, 1440) : undefined,

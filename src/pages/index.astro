@@ -3,16 +3,15 @@ import CtaBand from '../components/sections/CtaBand.astro';
 // Home v3 (03 §2A, 04 §4.1, docs/strategy-v2.md): DiscoverDev as a product and engineering company built on DiscoverDev Way.
 // All-ink "workshop": centred hero + delivery scene, proof band, DiscoverDev Way split, lifecycle timeline, engagements,
 // capabilities board, case metric, two-tone why + pillars, split FAQ, horizon closer.
+// Oct 18 cut (docs/review/home-review-oct18/duplication-and-cuts.md, 03 §2A): one job per section. Lifecycle merged into the
+// Way, What we build is one line in Engagements, Why removed, one chapter, one case, three reviews.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHero from '../components/sections/HomeHero.astro';
 import ProofBand from '../components/sections/ProofBand.astro';
 import Statement from '../components/sections/Statement.astro';
 import AgileSplit from '../components/blocks/AgileSplit.astro';
 import WayFlow from '../components/scenes/WayFlow.astro';
-import ProcessTimeline from '../components/sections/ProcessTimeline.astro';
 import Engagements from '../components/sections/Engagements.astro';
-import Capabilities from '../components/sections/Capabilities.astro';
-import Pillars from '../components/blocks/Pillars.astro';
 import FaqSplit from '../components/sections/FaqSplit.astro';
 
 import Showcase from '../components/sections/Showcase.astro';
@@ -27,24 +26,19 @@ import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../lib/seo';
 const faqLd = faqPage('https://discoverdev.ai/#faq', c.faq.items);
 const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
 ---
-<BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd}>
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd} footerProof={false}>
   <HomeHero />
   <ProofBand title={c.proofStrip.title} logosTitle={c.proofStrip.logosTitle} clientRoles={c.proofStrip.clientRoles} map={c.proofStrip.map} items={c.proofStrip.items} projects={c.proofStrip.projects} />
-  <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} ctaPage="home" display split>
-    <AgileSplit body={c.agile.body}>
+  <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} display split>
+    <AgileSplit body={c.agile.body} more={{ label: howWeWork.more, href: href('howWeWork') }}>
       <WayFlow {...c.agile.flow} />
     </AgileSplit>
   </Statement>
-  <ProcessTimeline id="lifecycle" eyebrow={c.lifecycle.eyebrow} title={c.lifecycle.title} lead={c.lifecycle.lead} steps={c.lifecycle.steps.map(({ title, when, body, tools }) => ({ title, when, body, art: tools[0].name === 'Jobs to be Done' ? 'Jobs to be Done' : tools.find((x) => ['Shape Up', 'Weekly sprints', 'DORA metrics'].includes(x.name))?.name }))} more={{ label: howWeWork.more, href: href('howWeWork') }} line={c.lifecycle.line} />
-  <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
-  <Capabilities title={c.capabilities.title} lead={c.capabilities.lead} groups={c.capabilities.groups} />
-  <Chapters />
+  <Engagements title={c.engagements.title} lead={c.engagements.lead} cards={c.engagements.cards} scope={c.engagements.scope} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
+  <Chapters only={['njwar']} />
   <Showcase />
   <Reviews {...c.reviews} />
-  <Statement id="why" surface="navy" label={c.why.title} bright={c.why.leadBright} dim={c.why.leadDim}>
-    <Pillars items={c.why.pillars} />
-  </Statement>
   <Guides {...c.guides} />
-  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="home" />
+  <FaqSplit title={c.faq.title} items={c.faq.items} />
   <CtaBand size="large" tier="primary" kind="clarity" page="home" title={c.band.title} body={c.band.body} />
 </BaseLayout>
