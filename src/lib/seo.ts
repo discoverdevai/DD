@@ -36,7 +36,7 @@ export const orgFull = {
   email: 'hello@discoverdev.ai',
   contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: 'hello@discoverdev.ai', availableLanguage: ['en', 'ar'] }],
   address: [{ '@type': 'PostalAddress', addressLocality: 'Alexandria', addressCountry: 'EG' }],
-  areaServed: ['United States', 'Saudi Arabia', 'United Arab Emirates', 'Kuwait', 'Egypt', 'United Kingdom'].map((name) => ({ '@type': 'Country', name })),
+  areaServed: ['United States', 'Saudi Arabia', 'Kuwait', 'Egypt', 'United Kingdom'].map((name) => ({ '@type': 'Country', name })),
   // Only topics the live pages show (05 §0); the Review topics return with the Review page (V1.2).
   knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots', ...(ROUTES.review.live ? ['AI app security review', 'Production readiness', 'LLM cost optimization'] : [])],
   knowsLanguage: ['en', 'ar'],
@@ -77,7 +77,7 @@ export const faqPage = (id: string, items: readonly { q: string; a: string }[]) 
 /** Service node for a service page (`<page url>#service`), provided by the company, same served countries everywhere. */
 export const service = (url: string, s: { name: string; serviceType: string; description: string; audience: string; offers: Record<string, unknown> }) => ({
   '@type': 'Service', '@id': `${url}#service`, name: s.name, serviceType: s.serviceType,
-  description: s.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'AE', 'KW', 'EG', 'GB'],
+  description: s.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'KW', 'EG', 'GB'],
   audience: { '@type': 'BusinessAudience', audienceType: s.audience },
   offers: { '@type': 'Offer', ...s.offers },
 });

@@ -53,7 +53,7 @@ Booking a Review starts with a free 30-minute scoping call; the paid Review star
 
 | Proof | Approved wording | Status | Use on |
 |---|---|---|---|
-| Rating | "5.0 across 11 reviews" + "(Clutch, Upwork, Fiverr and direct)" + link "Read our reviews on Clutch" → https://clutch.co/profile/discoverdev | Confirmed. Do not write "11 reviews on Clutch". No star markup. | Hero chips, footer, /book, /about |
+| Rating | "5.0 across 11 reviews" + "(Clutch, Upwork, Fiverr and direct)" + link "See our Clutch profile" → https://clutch.co/profile/discoverdev | Confirmed. Do not write "11 reviews on Clutch". No star markup. | Hero chips, footer, /book, /about |
 | Reach | "Clients on 4 continents" | Confirmed | Home, /about |
 | AI in production | "AI in production across multiple clients" | Confirmed | Home, /about |
 | EduLens | "60–90% lower AI cost across three AI agents" | Confirmed metric · baseline and period [VERIFY: V12] · name [CONSENT: EduLens] | Home, /launch-ready, /scale, /work |
@@ -217,7 +217,7 @@ The inbound-link gate (`07` §15: ≥ 3 links from the `<main>` of distinct page
   - "We reply within 1 business day." [VERIFY: V7]
   - "Texas, USA · Alexandria, Egypt (engineering hub)"
   - "We work in Arabic and English."
-- Proof line: "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)." Link: "Read our reviews on Clutch"
+- Proof line: "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)." Link: "See our Clutch profile"
 - Legal line: "© 2026 DiscoverDev [VERIFY: V9 legal entity name]"
 - Analytics line: "This site uses cookieless analytics. We don't use tracking cookies." [VERIFY: V15]
 - Language switcher: hidden until /ar ships. Then label "العربية" / "English", linking to the same page in the other language.
@@ -303,7 +303,7 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 - **SEO, V1.0 (Oct 18, SEO/GEO review, plan stream 2):**
   - Home title (54): Product Development Company for Startups | DiscoverDev · Meta (153): DiscoverDev is a product development company for startups: product discovery, fixed-price MVP development in 8–12 weeks, dedicated teams. You own it all. (primary keyword "product development company for startups"; replaces the §2A title while V1.0 is the only release).
   - /book title (38): Book a Free Clarity Call | DiscoverDev · Meta (150): Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step. (clarity call only; the Review title and meta return in V1.2).
-  - Defining sentence, first line of the Services section lead (§2A.6): DiscoverDev is a product and engineering company for startups and growing teams. Start where you are. Validate's fee credits toward Build.
+  - Defining sentence, first line of the Services section lead (§2A.6): DiscoverDev is a product and engineering company for startups and growing teams, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA. We validate the right product, build it with senior AI-accelerated teams in 8–12 weeks, and stay to scale it. You own all of it. Start where you are. Validate's fee credits toward Build.
   - Scale card Kind: Dedicated development team (was Dedicated product team; matches the keyword map and schema).
   - Anonymized EdTech tile result, with a subject so it can be quoted alone: An EdTech platform cut its AI costs by 60–90%, depending on how often content is reused, and cost now grows slower than the user base.
   - Map (D-08, presence only): legend "Where we are: Texas, USA and Alexandria, Egypt (engineering hub)"; map label "...with a presence in Texas, USA and our engineering hub in Alexandria, Egypt."
@@ -471,7 +471,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 **Is AI-written code safe to ship?**
 Yes. AI drafts code, tests and documentation. Senior engineers make the decisions and sign off each release. A person is responsible for every line that reaches your users.
 
-**How does pricing work?**
+**How much does an MVP cost?**
 Validate is a fixed fee, credited toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer. You get a number after a free 30-minute clarity call, before you commit to anything.
 
 **How long does it take to build an MVP?**
@@ -523,7 +523,7 @@ React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL,
 - CTA: Book a Launch-Ready Review
 - Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Text link: Not sure yet? Take the 3-minute launch check
-- Proof chip: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Read our reviews on Clutch
+- Proof chip: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
 - Visual: the RunPanel (Signal direction, `06-design-system.md` §0). Strings in 2.2a. HTML only, no image.
 - **v2 hero (visual rebuild, Oct 16, `docs/home-teardown.md`).** Supersedes Body and the stacked links above on the home hero only:
   - Sub-line: A senior team reviews your AI-built or freelancer-built app in about 5 working days. Then we fix it or build it properly, and you own all of it.
@@ -640,7 +640,7 @@ All wording comes from the proof bank (§0.4 Method) and the six Review areas (�
 - Quote 1: "The quality of their work is top-notch." CEO, Nile Support, USA [CONSENT: Nile Support]
 - Quote 2: "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia [CONSENT: Athkado]
 - Quote 3: "They focused on building solutions that were practical, scalable, and aligned with our users' needs." Youssef, CEO, EduLens [CONSENT: EduLens quote] (swap for Roberto if EduLens is already shown above)
-- Footer line: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct). Link: Read our reviews on Clutch
+- Footer line: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct). Link: See our Clutch profile
 - Visual: static list of 3, no carousel.
 
 ### 2.12 FAQ
@@ -699,7 +699,7 @@ Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US
 
 ### 3.2 Rating and proof chip
 - Purpose: trust next to the first CTA.
-- Copy: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Clients on 4 continents · Read our reviews on Clutch
+- Copy: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Clients on 4 continents · See our Clutch profile
 
 ### 3.3 Is this you?
 - Purpose: let visitors qualify themselves.
@@ -991,7 +991,7 @@ Restart link (all results): Retake the check
 - Body: In 1–2 weeks you learn if the idea is worth building, what to build first and what it will cost. You leave with a market read, a product scope, a clickable prototype and a fixed build estimate.
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
-- Proof chip: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Read our reviews on Clutch
+- Proof chip: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
 - Visual: a clickable-prototype screen next to a one-page scope sheet. [ASSET]
 
 ### 5.2 Who it's for, and not for
@@ -1419,7 +1419,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 
 ### 9.4 Reviews strip
 - Section removed Oct 16 (design review: one line under a section heading reads as a hole; the rating already sits in the footer and on service pages). Was: H2 How clients rate us (Phase 4, Oct 16: no quotes until consent, so the heading promises a rating, not quotes; switch back to "What clients say" when quotes ship)
-- Two quotes from the proof bank (not used elsewhere on the page) + "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + link "Read our reviews on Clutch".
+- Two quotes from the proof bank (not used elsewhere on the page) + "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + link "See our Clutch profile".
 
 ### 9.5 Final CTA
 - H2: Want results like these for your product?
@@ -1619,7 +1619,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 
 ### 12.5 Proof in numbers
 - H2: Track record
-- 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Read our reviews on Clutch
+- 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
 - Clients on 4 continents
 - AI in production across multiple clients
 - Clients who expanded scope with us: Athkado, Upscend, Arheb, Pyramakerz [CONSENT: all four]
@@ -1686,7 +1686,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - NDA on request. [VERIFY: V5]
 
 ### 13.5 Trust strip
-- 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Read our reviews on Clutch
+- 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
 - Quote: "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia [CONSENT: Athkado]
 - Quote: "I will become a regular customer going forward now." Andrei Chejneanu, entrepreneur, UK [CONSENT: Andrei]
 
@@ -1826,3 +1826,5 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 Applied: "reviews every change" removed everywhere (09 confirms only "a senior engineer signs off every release" and "a person is responsible for every line"); "Security, data and payments" removed from the Way illustration; hero sub "DiscoverDev builds it with senior engineers and AI. Build takes 8–12 weeks, and you own everything."; hero board caption "Example of a sprint run the DiscoverDev Way: AI drafts the work, then a senior engineer signs off the release."; /book: Review guarantee and "a Review or" removed, privacy line "We use your answers to prepare for your call and to see which pages lead to bookings."; client row heading "Teams we've worked with"; EdTech result "depending on how often content is reused"; NJWAR note "a piece of furniture"; Scale card "A dedicated team of developers, testers and a project manager who runs the roadmap with you."; Andrei tag "Market research · Auto spare parts and trucking in Saudi Arabia", Farah tag "Market research · Tourism and hospitality"; time-zone answer without the Gulf offset; footer group "More"; nav label "Main navigation"; privacy "Our team works from Egypt, and we have a presence in Texas, USA".
 Open for Mohamed: (1) Yawmy Care card ("our product") stays because he approved all ten logos on Oct 16, but 03 V17 / D-32 say omit until 2027; (2) /privacy and /terms still mention the launch check and guides (V1.2); decide to trim or add "Some tools launch later"; (3) US or UK spelling (colour, unauthorised, centres); (4) straight vs curly apostrophes in 404, legal and footer lines.
 
+
+Oct 18 SEO/GEO pass (`docs/review/home-v1-2/seo-geo-audit.md`): Services lead now opens with a quotable definition ("DiscoverDev is a product and engineering company for startups and growing teams, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA. We validate the right product, build it with senior AI-accelerated teams in 8–12 weeks, and stay to scale it. You own all of it. Start where you are."); FAQ: "How much does an MVP cost?" (fixed price, no price list, number after the free call; 58 words), "Is AI-written code safe to ship?" and "What happens on the clarity call?" expanded to self-contained answers, new FAQ "Do you work with startups in the US and Saudi Arabia?" (Yes. We have worked with clients in the US, Saudi Arabia, Kuwait, the UK and Egypt, across 4 continents. Our engineering hub is in Alexandria, Egypt, with a presence in Texas, USA. We work in Arabic and English, and calls run in US and Gulf hours.); rating link text "See our Clutch profile".

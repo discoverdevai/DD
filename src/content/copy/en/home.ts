@@ -86,7 +86,7 @@ export const home = {
   },
   engagements: {
     title: 'Three ways to work with us',
-    lead: 'DiscoverDev is a product and engineering company for startups and growing teams. Start where you are. Validate’s fee credits toward Build.',
+    lead: 'DiscoverDev is a product and engineering company for startups and growing teams, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA. We validate the right product, build it with senior AI-accelerated teams in 8–12 weeks, and stay to scale it. You own all of it. Start where you are. Validate’s fee credits toward Build.',
     cards: [
       { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate', bookLabel: 'Book a call about Validate' },
       { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build', bookLabel: 'Book a call about Build' },
@@ -124,10 +124,11 @@ export const home = {
   faq: {
     title: 'Questions founders ask us',
     items: [
-      { id: 'ai', q: 'Is AI-written code safe to ship?', a: 'Yes. AI drafts code, tests and documentation. Senior engineers make the decisions and sign off each release. A person is responsible for every line that reaches your users.' },
-      { id: 'pricing', q: 'How does pricing work?', a: 'Validate is a fixed fee, credited toward Build. Build is a fixed price for an agreed scope. Scale is a monthly retainer. You get a number after a free 30-minute clarity call, before you commit to anything.' },
+      { id: 'ai', q: 'Is AI-written code safe to ship?', a: 'Yes. At DiscoverDev, AI drafts code, tests and documentation, and senior engineers make the decisions and sign off each release. A person is responsible for every line that reaches your users, so speed never costs you quality.' },
+      { id: 'pricing', q: 'How much does an MVP cost?', a: 'DiscoverDev prices an MVP as a fixed price for an agreed scope. We don’t publish a price list: you get your number after a free 30-minute clarity call, before you commit to anything. Validate (1–2 weeks) is a fixed fee credited toward Build. Build (8–12 weeks) is a fixed price. Scale is a monthly retainer.' },
       { id: 'timeline', q: 'How long does it take to build an MVP?', a: 'Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.' },
-      { id: 'call', q: 'What happens on the clarity call?', a: 'You get 30 minutes to tell us what you’re building. No pitch. You leave with a next step, even if we’re not the right fit.' },
+      { id: 'call', q: 'What happens on the clarity call?', a: 'You get 30 minutes with a senior member of our product team to tell us what you’re building. We ask what you have and what worries you, and tell you plainly what we’d do. There is no pitch. You leave with a next step, even if we’re not the right fit.' },
+      { id: 'regions', q: 'Do you work with startups in the US and Saudi Arabia?', a: 'Yes. We have worked with clients in the US, Saudi Arabia, Kuwait, the UK and Egypt, across 4 continents. Our engineering hub is in Alexandria, Egypt, with a presence in Texas, USA. We work in Arabic and English, and calls run in US and Gulf hours.' },
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.' },
       { id: 'take-over', q: 'We already built something with AI or a freelancer. Can you take it over?', a: 'Yes. A senior team can review what you have in about 5 working days and tell you what to keep, fix or replace, and why. Then we fix it or build it properly. Start with a free clarity call.', link: { label: 'Read the guide to taking an AI-built app to production', to: 'pillar' as const } }, // 03 §0.8
       { id: 'stacks', q: 'Which tools and stacks do you work with?', a: 'React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure. For AI: OpenAI, LangChain, RAG, computer vision and NLP.' },
