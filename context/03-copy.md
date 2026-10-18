@@ -310,8 +310,8 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 
 Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 proof strip, §2.8 case highlight (anonymized per §0.7). The Review copy in §2.2a, §2.2b, §2.5 and §2.6 moves to /launch-ready and is not shown on home. Facts trace to `09` (Method, Offer, Services catalog, Differentiators).
 
-- **SEO title (56):** Product & Engineering Partner for Founders | DiscoverDev
-- **Meta (145):** Build the right thing, then ship it fast. The DiscoverDev Way: discover first, build with AI, seniors sign off. Senior teams, and you own it all.
+- **SEO title (54):** Product Development Company for Startups | DiscoverDev  (Oct 18, V1.0.1: carries the primary keyword "product development company for startups", 05 §1)
+- **Meta (156):** DiscoverDev is a product development company for startups: product discovery, fixed-price MVP development in 8–12 weeks, dedicated teams. You own it all.
 - **H1:** Turn your idea into a live product in weeks.
 - **Primary CTA:** Book a free clarity call
 
@@ -352,7 +352,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   2. Build · AR furniture store · "Market study, design, build, AI and AR in one team." (Oct 18: country tag and "with AI recommendations" removed from the NJWAR items; both come from the Athkado entry in 09, link unconfirmed)
   3. Scale · Embedded product team for a B2B learning platform · UK · "12 months owning the roadmap, backlog and sprints."
   4. Scale · Data and ML for an EdTech platform with 20,000+ students · Egypt · "Data engineering, ML and automations."
-- Then the §2.3 facts beside a small map (Oct 16, Mohamed: make the facts visual and on-brand): a real dotted map (Natural Earth land, Oct 16, Mohamed: real map with countries), countries we've worked in lit blue (09: USA, UK, Spain, Switzerland, Italy, Saudi Arabia, Kuwait, Egypt; Ireland removed Oct 18, its only source is the academic collaborations, 03 V17 omits them), our two teams pulsing green (Texas, USA · Alexandria, Egypt) joined by an arc, plus one marker per client country (USA, United Kingdom, Spain, Switzerland, Italy, Saudi Arabia, Kuwait, Egypt; country name on hover). Legend: "Countries we've worked in" · "Our teams: Texas and Alexandria". Screen-reader label: "Map of where we work: clients in North America, Europe, Africa and Asia, with teams in Texas, USA and Alexandria, Egypt." Previously: The rating line and Clutch link (§0.4) sit in the hero (Oct 16).
+- Then the §2.3 facts beside a small map (Oct 16, Mohamed: make the facts visual and on-brand): a real dotted map (Natural Earth land, Oct 16, Mohamed: real map with countries), countries we've worked in lit blue (09: USA, UK, Spain, Switzerland, Italy, Saudi Arabia, Kuwait, Egypt; Ireland removed Oct 18, its only source is the academic collaborations, 03 V17 omits them), our two teams pulsing green (Texas, USA · Alexandria, Egypt) joined by an arc, plus one marker per client country (USA, United Kingdom, Spain, Switzerland, Italy, Saudi Arabia, Kuwait, Egypt; country name on hover). Legend: "Countries we've worked in" · "Where we are: Texas, USA and Alexandria, Egypt (engineering hub)" (V1.0.1, D-08: Texas is presence only; was "Our teams: Texas and Alexandria"). Screen-reader label: "Map of where we work: clients in North America, Europe, Africa and Asia, with a presence in Texas, USA and our engineering hub in Alexandria, Egypt." (V1.0.1) Previously: The rating line and Clutch link (§0.4) sit in the hero (Oct 16).
 - Why (Oct 16 review): mixing logos and text in one moving strip read as noise; moving text can't be read and needs a pause control (WCAG 2.2.2). Each card names the product type, the work and the country, so search and AI answers can quote it.
 
 - **Oct 18 fact list:** two lines beside the map: Clients on 4 continents · Four clients expanded scope with us (moved from the Why pillar "We stay"; 09 Differentiators: Athkado, Upscend, Arheb and Pyramakerz expanded scope). Removed: "AI in production across multiple clients" (no specifics), "Arabic and English" and "Texas, USA and Alexandria, Egypt" (the map legend and the footer say it).
@@ -391,10 +391,10 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
 
 ### 2A.6 Engagements
 - H2: Three ways to work with us
-- Lead: Start where you are. Validate's fee credits toward Build.
+- Lead (V1.0.1): DiscoverDev is a product and engineering company for startups and growing teams. Start where you are. Validate's fee credits toward Build.
 - Card · Validate · "I have an idea." · Kind: Product discovery · Meta: 1–2 weeks · Fixed fee · Body: Market and competitor read, product scope, a clickable prototype and a fixed build estimate. · Link: See Validate
 - Card · Build · "I'm ready to build." · Kind: MVP development · Meta: 8–12 weeks · Fixed price · Body: A live product with real users: design, build, QA and deployment, with a demo for you every week. · Link: See Build
-- Card · Scale · "It's working. Grow it." · Kind: Dedicated product team · Meta: Ongoing · Monthly retainer · Body: A dedicated squad of developers, QA and a PM who runs the roadmap with you. You keep control. · Link: See Scale
+- Card · Scale · "It's working. Grow it." · Kind: Dedicated development team · Meta: Ongoing · Monthly retainer · Body: A dedicated squad of developers, QA and a PM who runs the roadmap with you. You keep control. · Link: See Scale
 - Oct 16 section review (SEO/GEO/CRO): each card names its service in the words founders search for (Kind line, matches 05 keywords: product discovery, MVP development, dedicated team); Build body says what you get each week (09: live deployment, weekly demo).
 - Sub-heading: Other ways in
 - Row · Launch-Ready Review · "Already built something?" · Your AI-built or freelancer-built app, reviewed by a senior team in about 5 working days. A ranked fix list and a plain verdict. · Link: See the Review
@@ -418,7 +418,7 @@ Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 p
   - The five changes, each with one line (from the case study, /work/edtech-ai-agents): Captions first: Free captions first. Paid transcription only when a video has none. | Reuse across users: Each video is processed once and shared, so repeat views cost close to nothing. | The right model for each task: Lower-cost models by default, larger ones only where they pay off. | Shorter prompts: Each request carries only what the model needs, so fewer tokens are billed. | Faster transcription: Long audio is split into 2-minute chunks and transcribed in parallel.
 
 ### 2A.8b Selected work: bento showcase (Oct 16, Mohamed; replaces the case block §2A.8 and the six-card grid on home)
-- Oct 18: one case only. H2: Selected work (no label above it) · the EdTech tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · result: AI costs down 60–90%, depending on cache hit rate and caption availability, and cost now grows slower than the user base (09 wording restored) · Read the case study) · Link: See all our work (→ /work). The other four tiles live on /work.
+- Oct 18: one case only. H2: Selected work (no label above it) · the EdTech tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · result (V1.0.1, names the subject so it can be quoted alone, still anonymous): An EdTech platform cut its AI costs by 60–90%, depending on cache hit rate and caption availability, and cost now grows slower than the user base (09 wording) · Read the case study) · Link: See all our work (→ /work). The other four tiles live on /work.
 - Was (Oct 16): Label: Selected work · H2: Products we've helped build · Link: See all our work (→ /work)
 - One featured tile (AI agents for an EdTech platform · EdTech · Egypt · 60–90% lower AI cost · Read the case study) and four tiles (AR furniture store, Embedded product team for a B2B learning platform, Health app that explains lab reports, Customer-support AI agent). Data from `src/content/copy/en/projects.ts` (all lines from 09).
 - Each tile shows a text-free drawing of the product type; a real product screen replaces it once the client approves screens (Mohamed suggested Figma screens, Oct 16; D-05).
@@ -1643,8 +1643,9 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 ## 13. Book (/book)
 
 - **Slug:** /book
-- **SEO title (56):** Book a Launch-Ready Review or Clarity Call | DiscoverDev
-- **Meta (143):** Book a 5-day Launch-Ready Review of your app, or a free 30-minute clarity call. No pitch. Pick a time that works for you in the US or the Gulf.
+- **SEO title (38), V1.0 (Oct 18, V1.0.1):** Book a Free Clarity Call | DiscoverDev
+- **Meta (144), V1.0:** Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step.
+- **From V1.2 (Review back on):** title "Book a Launch-Ready Review or Clarity Call | DiscoverDev" · meta "Book a 5-day Launch-Ready Review of your app, or a free 30-minute clarity call. No pitch. Pick a time that works for you in the US or the Gulf."
 - **H1:** Book a review or a free clarity call
 - Header: minimal (logo + "Back" link). No sticky bar.
 
