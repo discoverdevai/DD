@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Selected work, five projects (mock)</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/src/styles/tokens.css">
+<style>
+  /* MOCK ONLY. Real site tokens and real project screens from our Figma. Rushr screens are held (D-07): local preview only. */
+  :root { --ff-heading: "Manrope", system-ui, sans-serif; --ff-body: "Rubik", system-ui, sans-serif; --ff-mono: "JetBrains Mono", ui-monospace, monospace; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--blue-975); color: #fff; font-family: var(--ff-body); line-height: 1.55; }
+  ul { list-style: none; } a { color: var(--blue-300); }
+  :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .sw { max-inline-size: 76rem; margin-inline: auto; padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem; }
+  .hd { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-block-end: 2rem; }
+  h2 { font-family: var(--ff-heading); font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; }
+  .all { font-family: var(--ff-heading); font-weight: 700; text-decoration: none; }
+  .bd { display: grid; gap: 1.5rem; }
+  @media (width >= 64rem) { .bd { grid-template-columns: 5fr 7fr; gap: 3.5rem; align-items: start; } }
+  .rw { display: grid; grid-template-columns: 2.4rem 1fr; gap: .25rem .75rem; padding: 1.1rem .25rem; border-block-start: 1px solid var(--color-hairline); background: transparent; color: #fff; text-align: start; cursor: pointer; border: 0; border-block-start: 1px solid rgba(162,193,254,.25); border-radius: 0; width: 100%; font: inherit; align-items: baseline; min-block-size: 2.75rem; }
+  .ls li:last-child .rw { border-block-end: 1px solid rgba(162,193,254,.25); }
+  .n { font-family: var(--ff-mono); font-size: .8125rem; color: var(--blue-300); opacity: .7; }
+  .nm { font-family: var(--ff-heading); font-weight: 700; font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem); letter-spacing: -0.035em; line-height: 1.1; color: var(--blue-300); opacity: .75; transition: opacity .25s, color .25s; }
+  .tg, .ln { grid-column: 2; max-block-size: 0; overflow: hidden; opacity: 0; transition: max-block-size .3s, opacity .3s; }
+  .tg { font-family: var(--ff-mono); font-size: .8125rem; color: var(--blue-300); }
+  .ln { color: var(--blue-200); }
+  .rw.on .nm, .rw:hover .nm { color: #fff; opacity: 1; }
+  .rw.on .n { opacity: 1; }
+  .rw.on .tg, .rw.on .ln { max-block-size: 7rem; opacity: 1; }
+  .pv { background: var(--blue-925); border: 1px solid rgba(162,193,254,.22); border-radius: 16px; padding: 1.25rem; display: grid; gap: 1rem; align-content: start; }
+  @media (width >= 64rem) { .pv { position: sticky; inset-block-start: 1.5rem; padding: 1.75rem; } }
+  .stg { position: relative; display: flex; align-items: center; justify-content: center; min-block-size: 15rem; }
+  @media (width >= 64rem) { .stg { min-block-size: 24rem; } }
+  .lp { position: relative; inline-size: 82%; border-radius: 12px 12px 4px 4px; background: var(--device-body); padding: 2.2% 2.2% 1.8%; box-shadow: 0 0 0 1px var(--device-edge-light) inset, 0 30px 60px -30px #000; }
+  .lp img { display: block; inline-size: 100%; block-size: auto; border-radius: 3px; aspect-ratio: 16/10; object-fit: cover; object-position: top; background: #fff; }
+  .lp::after { content: ''; position: absolute; inset-inline: -4%; inset-block-end: -3%; block-size: 3%; border-radius: 0 0 14px 14px; background: var(--device-base); }
+  .ph { position: absolute; inset-inline-end: 3%; inset-block-end: -4%; inline-size: 20%; border-radius: 18px; background: var(--device-body); padding: 3.5%; box-shadow: 0 0 0 1.5px var(--device-edge) inset, 0 30px 50px -20px #000; }
+  .ph img { display: block; inline-size: 100%; block-size: auto; border-radius: 14px; aspect-ratio: 375/812; object-fit: cover; object-position: top; background: #fff; }
+  .phs { display: flex; gap: 4%; align-items: center; justify-content: center; inline-size: 100%; }
+  .phs .ph { position: static; inline-size: 26%; }
+  .phs .ph:nth-child(2) { translate: 0 -6%; }
+  .draw { inline-size: 80%; block-size: auto; }
+  .cap { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; font-size: .9375rem; color: var(--blue-200); }
+  .cap b { color: #fff; font-weight: 500; }
+  .met { color: var(--green-300); font-family: var(--ff-heading); font-weight: 600; }
+  .acts { display: flex; gap: 1.25rem; flex-wrap: wrap; font-family: var(--ff-heading); font-weight: 700; }
+  .acts a { text-decoration: none; min-block-size: 2.75rem; display: inline-flex; align-items: center; }
+  .need { font-family: var(--ff-mono); font-size: .8125rem; color: var(--amber-300); }
+
+  dialog.fs { border: 0; padding: 0; inline-size: 100vw; block-size: 100vh; max-inline-size: none; max-block-size: none; background: var(--blue-975); color: #fff; }
+  dialog.fs::backdrop { background: #000; }
+  .fs__bar { display: flex; align-items: center; gap: 1rem; padding: .75rem 1.25rem; border-block-end: 1px solid rgba(162,193,254,.22); }
+  .fs__bar strong { font-family: var(--ff-heading); font-size: 1.125rem; margin-inline-end: auto; }
+  .seg { display: inline-flex; border: 1px solid rgba(162,193,254,.35); border-radius: 999px; overflow: hidden; }
+  .seg button { min-block-size: 2.75rem; padding-inline: 1.25rem; background: transparent; color: var(--blue-200); border: 0; font: inherit; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--blue-300); color: var(--blue-975); }
+  .seg button:disabled { opacity: .35; cursor: not-allowed; }
+  .fs__x { inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; border: 1px solid rgba(162,193,254,.35); background: transparent; color: #fff; font-size: 1.25rem; cursor: pointer; }
+  .fs__stage { block-size: calc(100vh - 4.25rem); display: grid; place-items: center; padding: 1.25rem; overflow: auto; }
+  .fs__web { inline-size: min(100%, calc((100vh - 13rem) * 1.6)); border-radius: 12px; overflow: hidden; background: var(--device-body); box-shadow: 0 0 0 1px var(--device-edge-light) inset, 0 40px 80px -30px #000; }
+  .fs__web .tb { display: flex; gap: .4rem; padding: .6rem .9rem; background: #1a2033; } .fs__web .tb i { inline-size: .6rem; block-size: .6rem; border-radius: 50%; background: rgba(162,193,254,.35); }
+  .fs__web img { display: block; inline-size: 100%; block-size: auto; background: #fff; }
+  .fs__mob { display: flex; gap: clamp(.75rem, 2vw, 2rem); align-items: center; justify-content: center; }
+  .fs__mob .ph { position: static; inline-size: auto; block-size: min(calc(100vh - 9rem), 46rem); aspect-ratio: 375/812; padding: .7rem; border-radius: 2.2rem; max-inline-size: 30vw; }
+  .fs__mob .ph img { block-size: 100%; inline-size: 100%; border-radius: 1.6rem; }
+  .fs__nav { display: flex; gap: .75rem; justify-content: center; align-items: center; margin-block-start: .75rem; }
+  .fs__nav button { min-block-size: 2.75rem; padding-inline: 1rem; border-radius: 999px; border: 1px solid rgba(162,193,254,.35); background: transparent; color: #fff; cursor: pointer; font: inherit; }
+  .fsb { background: transparent; border: 0; color: var(--blue-300); font: inherit; font-family: var(--ff-heading); font-weight: 700; cursor: pointer; min-block-size: 2.75rem; padding: 0; }
+</style>
+</head>
+<body data-surface="ink">
+<section class="sw" aria-labelledby="t">
+  <div class="hd"><h2 id="t">Selected work</h2><a class="all" href="#">See all our work →</a></div>
+  <div class="bd">
+    <ul class="ls" id="ls"></ul>
+    <div class="pv" aria-live="polite" id="pv"></div>
+  </div>
+</section>
+<dialog class="fs" id="fs" aria-label="Project screens"><div class="fs__bar"><strong id="fsT"></strong><div class="seg" role="group" aria-label="Screen type"><button type="button" data-v="web" aria-pressed="true">Web</button><button type="button" data-v="mobile" aria-pressed="false">Mobile</button></div><button type="button" class="fs__x" id="fsX" aria-label="Close full screen">✕</button></div><div class="fs__stage" id="fsS"></div></dialog>
+<script>
+const P = [
+  { n: 'NJWAR', tg: 'Build · E-commerce · AR · Saudi Arabia', ln: 'An AR furniture store with AI recommendations: place a piece in your room at real size, change its colour and add more.',
+    laptop: ['/assets/projects/njwar-web.webp', 'NJWAR web store on a laptop'], phones: [['/assets/projects/njwar-ar.webp', 'NJWAR AR view on a phone']],
+    src: 'Real screens from our Figma', acts: [['View project →', '#'], ['Try our AR prototype ↗', 'https://furniture-webar.pages.dev/', true]] },
+  { n: 'Yawmy Care', tg: 'Build · Childcare · Our own product', ln: 'Our own nursery platform for management, teachers and parents, with billing and multiple locations.',
+    laptop: ['/assets/projects/yawmy-dashboard.webp', 'Yawmy Care admin dashboard'], phones: [['/assets/projects/yawmy-parent-home.webp', 'Yawmy Care parent app home']],
+    src: 'Real screens from our Figma', acts: [['View project →', '#']] },
+  { n: 'EduLens', tg: 'Build · EdTech · Egypt', ln: 'Three AI agents in production. AI costs down 60–90%, depending on cache hit rate and caption availability.',
+    draw: 'edtech', met: '60–90% lower AI cost', src: 'Drawing', need: 'Needs real screens: send the Figma link', acts: [['Read the case study →', '#']] },
+  { n: 'Rushr', tg: 'Build · Marketplace · USA', ln: 'A home-services marketplace: post a job, get matched with the nearest verified pro, pay through escrow.',
+    phones: [['/assets/projects-held/rushr-m-searching.webp', 'Rushr searching for a pro'], ['/assets/projects-held/rushr-m-dispatch.webp', 'Rushr matched pro'], ['/assets/projects-held/rushr-m-progress.webp', 'Rushr request in progress']],
+    src: 'Real screens from our Figma (held, D-07)', acts: [['View project →', '#']] },
+  { n: 'BioBank', tg: 'Build · HealthTech', ln: 'A health app that explains lab reports in plain language, with recommendations and medical safety guardrails.',
+    draw: 'health', src: 'Drawing', need: 'Needs real screens: send the Figma link', acts: [['View project →', '#']] }
+];
+const DR = {
+  edtech: '<svg class="draw" viewBox="0 0 400 230" role="img" aria-label="Drawing: a video turned into lessons by AI agents, with a falling cost curve"><rect x="24" y="30" width="130" height="86" rx="8" fill="#3A5BA9"/><path d="M76 56 L76 90 L106 73 Z" fill="#fff"/><g fill="#6B7FB0"><rect x="24" y="130" width="130" height="7" rx="3"/><rect x="24" y="146" width="96" height="7" rx="3"/></g><path d="M170 73 H198" stroke="#A2C1FE" stroke-width="2" stroke-dasharray="5 4"/><g stroke="#1B2C6B" fill="#02103E"><rect x="210" y="30" width="166" height="30" rx="6"/><rect x="210" y="68" width="166" height="30" rx="6"/><rect x="210" y="106" width="166" height="30" rx="6"/></g><path d="M210 200 C250 160 290 160 320 190 S370 205 380 200" fill="none" stroke="#7FD8A6" stroke-width="3" stroke-linecap="round"/></svg>',
+  health: '<svg class="draw" viewBox="0 0 400 230" role="img" aria-label="Drawing: a lab report explained in plain language with a safety shield"><rect x="40" y="24" width="120" height="170" rx="6" fill="#E5E7EE"/><g fill="#9AA3BD"><rect x="56" y="44" width="88" height="7" rx="3"/><rect x="56" y="62" width="70" height="7" rx="3"/><rect x="56" y="80" width="88" height="7" rx="3"/><rect x="56" y="98" width="60" height="7" rx="3"/></g><rect x="56" y="116" width="88" height="7" rx="3" fill="#D4584A"/><g fill="#3A5BA9"><rect x="190" y="40" width="170" height="38" rx="10"/><rect x="190" y="122" width="170" height="38" rx="10"/></g><rect x="190" y="86" width="120" height="28" rx="10" fill="#02103E" stroke="#1B2C6B"/><path d="M340 180 l20 8 v18 c0 12 -9 20 -20 24 c-11 -4 -20 -12 -20 -24 v-18 z" fill="#7FD8A6"/></svg>'
+};
+const ls = document.getElementById('ls'), pv = document.getElementById('pv');
+ls.innerHTML = P.map((p, i) => `<li><button class="rw${i === 0 ? ' on' : ''}" data-i="${i}"><span class="n">0${i + 1}</span><span class="nm">${p.n}</span><span class="tg">${p.tg}</span><span class="ln">${p.ln}</span></button></li>`).join('');
+function show(i) {
+  ls.querySelectorAll('.rw').forEach((r, k) => r.classList.toggle('on', k === i));
+  const p = P[i];
+  let stage;
+  if (p.laptop) stage = `<div class="stg"><div class="lp"><img src="${p.laptop[0]}" alt="${p.laptop[1]}"></div>${p.phones.map((s) => `<div class="ph"><img src="${s[0]}" alt="${s[1]}"></div>`).join('')}</div>`;
+  else if (p.phones) stage = `<div class="stg"><div class="phs">${p.phones.map((s) => `<div class="ph"><img src="${s[0]}" alt="${s[1]}"></div>`).join('')}</div></div>`;
+  else stage = `<div class="stg">${DR[p.draw]}</div>`;
+  pv.innerHTML = stage + `<div class="cap"><span><b>${p.n}</b> · ${p.src}</span>${p.met ? `<span class="met">${p.met}</span>` : ''}</div>` + (p.need ? `<div class="need">${p.need}</div>` : '') + `<div class="acts"><button type="button" class="fsb" data-fs="${i}">Open full screen ⤢</button>${p.acts.map((a) => `<a href="${a[1]}"${a[2] ? ' target="_blank" rel="noopener"' : ''}>${a[0]}</a>`).join('')}</div>`;
+  pv.querySelector('[data-fs]').addEventListener('click', () => openFs(i));
+}
+ls.querySelectorAll('.rw').forEach((r) => { const i = +r.dataset.i; ['mouseenter', 'focus', 'click'].forEach((e) => r.addEventListener(e, () => show(i))); });
+
+const FS = {
+  'NJWAR': { web: [['/assets/projects/njwar-web.webp', 'NJWAR web store home'], ['/assets/projects/njwar-product.webp', 'NJWAR product page']], mobile: [['/assets/projects/njwar-ar.webp', 'NJWAR AR view']] },
+  'Yawmy Care': { web: [['/assets/projects/yawmy-dashboard.webp', 'Yawmy Care admin dashboard']], mobile: [['/assets/projects/yawmy-parent-home.webp', 'Yawmy parent home'], ['/assets/projects/yawmy-parent-logs.webp', 'Yawmy parent daily logs']] },
+  'Rushr': { web: [], mobile: [['/assets/projects-held/rushr-m-searching.webp', 'Rushr searching'], ['/assets/projects-held/rushr-m-dispatch.webp', 'Rushr matched pro'], ['/assets/projects-held/rushr-m-progress.webp', 'Rushr in progress']] },
+  'EduLens': { web: [], mobile: [] }, 'BioBank': { web: [], mobile: [] }
+};
+const dlg = document.getElementById('fs'), fsS = document.getElementById('fsS'), fsT = document.getElementById('fsT');
+let cur = null, view = 'web', idx = 0;
+function paint() {
+  const d = FS[cur.n];
+  dlg.querySelectorAll('.seg button').forEach((b) => { b.disabled = !d[b.dataset.v].length; b.setAttribute('aria-pressed', String(b.dataset.v === view)); });
+  const list = d[view];
+  if (!list.length) { fsS.innerHTML = '<div class="need" style="font-size:1rem">Real screens not added yet. Send the Figma link.</div>'; return; }
+  if (view === 'web') fsS.innerHTML = '<div style="inline-size:100%;display:grid;justify-items:center"><div class="fs__web"><div class="tb"><i></i><i></i><i></i></div><img src="' + list[idx][0] + '" alt="' + list[idx][1] + '"></div>' + (list.length > 1 ? '<div class="fs__nav"><button type="button" data-n="-1">← Previous</button><span>' + (idx + 1) + ' of ' + list.length + '</span><button type="button" data-n="1">Next →</button></div>' : '') + '</div>';
+  else fsS.innerHTML = '<div class="fs__mob">' + list.map((s) => '<div class="ph"><img src="' + s[0] + '" alt="' + s[1] + '"></div>').join('') + '</div>';
+}
+function openFs(i) { cur = P[i]; fsT.textContent = cur.n; const d = FS[cur.n]; view = d.web.length ? 'web' : 'mobile'; idx = 0; paint(); dlg.showModal(); }
+dlg.querySelectorAll('.seg button').forEach((b) => b.addEventListener('click', () => { view = b.dataset.v; idx = 0; paint(); }));
+fsS.addEventListener('click', (e) => { const n = e.target.closest('[data-n]'); if (n) { const len = FS[cur.n][view].length; idx = (idx + Number(n.dataset.n) + len) % len; paint(); } });
+document.getElementById('fsX').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+document.addEventListener('keydown', (e) => { if (dlg.open && view === 'web' && FS[cur.n].web.length > 1 && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { const len = FS[cur.n].web.length; idx = (idx + (e.key === 'ArrowRight' ? 1 : -1) + len) % len; paint(); } });
+show(0);
+</script>
+</body>
+</html>

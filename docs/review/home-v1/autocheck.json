@@ -1,0 +1,140 @@
+{
+ "desktop": {
+  "height": 8522,
+  "words": 1028,
+  "sections": [
+   "hero:741",
+   "pband:514",
+   ":0",
+   "why:402",
+   "services:870",
+   "how-we-work:789",
+   "work:1667",
+   "reviews:1291",
+   "faq:851",
+   "cta:705"
+  ],
+  "headings": [
+   "H2 Menu",
+   "H1 Turn your idea into a live product in weeks.",
+   "H2 Teams we’ve built for",
+   "H2 Most teams just build what you ask for. We help you build the right th",
+   "H2 Three ways to work with us",
+   "H3 ValidateProduct discovery",
+   "H3 BuildMVP development",
+   "H3 ScaleDedicated product team",
+   "H2 Discover first. Build with AI. Seniors sign off.",
+   "H3 1Discover",
+   "H3 2AI drafts",
+   "H3 3A senior signs",
+   "H3 4Live",
+   "H2 NJWAR",
+   "H2 Selected work",
+   "H3 AI agents for an EdTech platform",
+   "H2 Verified reviews from founders and teams",
+   "H2 Questions founders ask us",
+   "H2 Tell us what you’re building.",
+   "H2 Explore",
+   "H2 Company"
+  ],
+  "anchorsMissing": [],
+  "overflow": [
+   "astro-63llj4z6",
+   "astro-63llj4z6",
+   "hero__light astro-63llj4z6",
+   "ch__laptop astro-bnd5y4vg",
+   "dev-lid astro-2mv73ptv",
+   "dev-screen astro-2mv73ptv",
+   "astro-bnd5y4vg",
+   "dev-base astro-2mv73ptv"
+  ],
+  "small": [
+   "Read our reviews on Clutch 196x18",
+   "hello@discoverdev.ai 174x22"
+  ],
+  "imgsNoAlt": 0,
+  "ctas": [
+   "Book a call",
+   "Book a call",
+   "Book a free clarity call",
+   "See how we work→",
+   "Validate",
+   "Build",
+   "Scale",
+   "Book a free clarity call",
+   "Book a free clarity call",
+   "Book a call"
+  ],
+  "ctaCount": 10,
+  "consoleErrors": []
+ },
+ "phone": {
+  "height": 9166,
+  "words": 1008,
+  "sections": [
+   "hero:1340",
+   "pband:512",
+   ":0",
+   "why:261",
+   "services:1480",
+   "how-we-work:1088",
+   "work:1437",
+   "reviews:745",
+   "faq:907",
+   "cta:498"
+  ],
+  "headings": [
+   "H2 Menu",
+   "H1 Turn your idea into a live product in weeks.",
+   "H2 Teams we’ve built for",
+   "H2 Most teams just build what you ask for. We help you build the right th",
+   "H2 Three ways to work with us",
+   "H3 ValidateProduct discovery",
+   "H3 BuildMVP development",
+   "H3 ScaleDedicated product team",
+   "H2 Discover first. Build with AI. Seniors sign off.",
+   "H3 1Discover",
+   "H3 2AI drafts",
+   "H3 3A senior signs",
+   "H3 4Live",
+   "H2 NJWAR",
+   "H2 Selected work",
+   "H3 AI agents for an EdTech platform",
+   "H2 Verified reviews from founders and teams",
+   "H2 Questions founders ask us",
+   "H2 Tell us what you’re building.",
+   "H2 Explore",
+   "H2 Company"
+  ],
+  "anchorsMissing": [],
+  "overflow": [
+   "astro-63llj4z6",
+   "astro-63llj4z6",
+   "ch__laptop astro-bnd5y4vg",
+   "dev-lid astro-2mv73ptv",
+   "dev-screen astro-2mv73ptv",
+   "astro-bnd5y4vg",
+   "dev-base astro-2mv73ptv",
+   "rv__card astro-67ep6ump"
+  ],
+  "small": [
+   "Read our reviews on Clutch 183x17",
+   "hello@discoverdev.ai 155x19"
+  ],
+  "imgsNoAlt": 0,
+  "ctas": [
+   "Book a call",
+   "Book a call",
+   "Book a free clarity call",
+   "See how we work→",
+   "Validate",
+   "Build",
+   "Scale",
+   "Book a free clarity call",
+   "Book a free clarity call",
+   "Book a call"
+  ],
+  "ctaCount": 10,
+  "consoleErrors": []
+ }
+}
