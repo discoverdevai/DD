@@ -37,3 +37,4 @@ assets/projects-held/
 assets/clients/mono/
 # Local preview server config
 .claude/launch.json
+.baseline/
