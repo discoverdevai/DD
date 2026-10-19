@@ -22,6 +22,8 @@ const release = {
       const gone = [];
       for (const p of OFF) for (const f of [`${p}.html`, `og${p}.png`]) { const full = `${root}${f.slice(f.startsWith('/') ? 1 : 0)}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
       for (const p of OFF_PREFIX) for (const d of [p.slice(1), `og${p}`]) { const full = `${root}${d}`; if (existsSync(full)) { rmSync(full, { recursive: true }); gone.push(`${d}/`); } }
+      // The private /design-system reference never ships to the live site (V1.0.1); KEEP_DESIGN_SYSTEM=1 keeps it for a local review build.
+      if (process.env.KEEP_DESIGN_SYSTEM !== '1') for (const f of ['design-system.html', 'og/design-system.png']) { const full = `${root}${f}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
       logger.info(`switched-off pages removed: ${gone.length}`);
     },
   },

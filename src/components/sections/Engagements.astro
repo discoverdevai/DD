@@ -24,7 +24,7 @@ const liveOther = other.filter((o) => isLive(o.key));
           <li class:list={['en__card', 'card-link', `en__card--${i}`]} data-spotlight>
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
             <p class="en__who">{c.who}</p>
-            <h3 class="en__h3"><a href={cardHref(c)} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={isLive(c.key) ? c.key : 'clarity'}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
+            <h3 class="en__h3"><a href={cardHref(c)} aria-label={cardLabel(c)} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={isLive(c.key) ? c.key : 'clarity'}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
             <ul role="list" class="en__meta">{c.meta.map((m) => <li class="tag">{m}</li>)}</ul>
             <p class="en__body">{c.body}</p>
             <p class="en__more" aria-hidden="true">{cardLabel(c)}<span class="en__arrow icon--dir">→</span></p>

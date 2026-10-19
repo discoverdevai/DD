@@ -82,6 +82,8 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
     background: radial-gradient(52% 64% at 74% 56%, rgb(var(--blue-700-rgb) / 0.5), rgb(var(--blue-800-rgb) / 0.16) 55%, transparent 75%), var(--color-bg); }
   @media (width >= 64rem) { .ch { grid-template-columns: minmax(0, 42fr) minmax(0, 58fr); gap: 0; padding-block: var(--section-y); padding-inline-start: max(var(--gutter), (100% - var(--container)) / 2); } }
   @media (width < 64rem) { .ch { padding-inline: var(--gutter); } }
+  /* Wide screens: the scene stops at the wide container instead of bleeding to the window edge. */
+  @media (width >= 90rem) { .ch__scene { max-inline-size: calc(var(--container-wide) * 0.58); } }
   .ch__copy { position: relative; z-index: 3; display: grid; gap: var(--space-5); align-content: center; }
   .ch__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .ch__name { font-family: var(--ff-heading); font-size: clamp(2rem, 1.3rem + 2vw, 2.75rem); font-weight: var(--weight-bold); line-height: 1.05; letter-spacing: -0.04em; color: var(--color-heading); text-wrap: balance; }
@@ -101,6 +103,8 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
   /* web + 1 phone (NJWAR, RTL web: phone on the start side so the Arabic headline shows) */
   .ch--web1 .ch__laptop { inset-inline-start: 26%; inset-block-start: 14%; inline-size: 90%; }
   .ch--web1 .ch__phone--1 { inset-inline-start: 4%; inset-block-start: 8%; inline-size: 30%; z-index: 2; }
+  /* Phones: pull the laptop in so the Arabic hero copy is not cut at the screen edge. */
+  @media (width < 64rem) { .ch--web1 .ch__laptop { inset-inline-start: 18%; inline-size: 80%; } }
   /* web + 2 phones (Yawmy) */
   .ch--web2 .ch__laptop { inset-inline-start: 2%; inset-block-start: 14%; inline-size: 90%; }
   .ch--web2 .ch__phone--1 { inset-inline-start: 54%; inset-block-start: 10%; inline-size: 29%; z-index: 3; }
@@ -115,5 +119,6 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
     .ch--web2 .ch__phone--1 { inset-block-start: 26%; } .ch--web2 .ch__phone--2 { inset-block-start: 18%; }
     .ch--phones .ch__phone--1 { inset-block-start: 20%; } .ch--phones .ch__phone--2 { inset-block-start: 10%; } .ch--phones .ch__phone--3 { inset-block-start: 22%; }
   }
+  @media (width >= 90rem) { .ch--web1 .ch__laptop { inline-size: 74%; } }
   :dir(rtl) .ch__laptop, :dir(rtl) .ch__phone { transform: rotateY(18deg) rotateX(8deg) rotateZ(-2deg); }
 </style>
