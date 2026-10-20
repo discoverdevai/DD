@@ -19,7 +19,7 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
   <div class="container hero__wrap">
   <div class="hero__copy">
     <h1 id="hero-title" class="hero__h1">{h1Before}<span class="hero__accent">{c.h1Accent}</span>{' '}<span class="hero__tail">{h1After.trim()}</span></h1>
-    <p class="hero__sub">{c.sub}</p>
+    <p class="hero__sub">{c.sub.split('8–12 weeks').flatMap((part, i) => i ? [<span class="nowrap">8–12 weeks</span>, part] : [part])}</p>
     <div class="hero__ctas">
       <CtaLink href={bookHref('clarity')} ctaId="home_hero_clarity" tier="primary" position="hero" target="clarity" data-hero-cta>{t('cta.clarity')}</CtaLink>
       <CtaLink href="#how-we-work" ctaId="home_hero_how_we_work" tier="low_commitment" position="hero" target="how_we_work" variant="text" class="hero__how">{t('cta.how')}<span class="hero__arrow icon--dir" aria-hidden="true">→</span></CtaLink>
@@ -61,6 +61,7 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
   .hero__h1 { font-size: clamp(2.5rem, 1.35rem + 4.9vw, 5.25rem); font-weight: var(--weight-bold); line-height: 1.02; letter-spacing: -0.045em; max-inline-size: 15ch; color: var(--color-heading); text-wrap: balance; }
   .hero__accent { color: var(--blue-300); white-space: nowrap; }
   .hero__tail { white-space: nowrap; } /* no orphaned last word */ /* the outcome phrase never splits across lines */
+  .nowrap { white-space: nowrap; }
   .hero__sub { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 38rem; text-wrap: balance; }
   .hero__ctas { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-3) var(--space-8); margin-block-start: var(--space-2); }
   /* Secondary = text link with an arrow, so the clarity call is the one clear action (Von Restorff). */
