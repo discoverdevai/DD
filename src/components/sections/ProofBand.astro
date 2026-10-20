@@ -96,14 +96,11 @@ const logos = showLogos
   .pband { border-block-start: 1px solid var(--color-hairline); /* bottom edge = next section's hairline */ padding-block: var(--space-12) var(--space-10); display: grid; gap: var(--space-6); }
   .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
-  /* Client cards: a still, wrapped row (no motion, no pause control). Phones: two columns, name only. */
-  .pband__clients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
-  .pband__client span { display: none; }
-  @media (width >= 48rem) {
-    .pband__clients { display: flex; flex-wrap: wrap; justify-content: flex-start; }
-    .pband__client span { display: block; }
-    .pband__client { flex: 0 1 19.5rem; }
-  }
+  /* Client cards: the same still, wrapped cards at every width (Mohamed, Oct 18: phones behave like desktop). Each card shows logo, name and
+     its one-line role; a card is at most 19.5rem wide, so phones get one card per row and tablets two or more. */
+  .pband__clients { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: var(--space-3); }
+  .pband__client { flex: 1 1 16rem; max-inline-size: 19.5rem; }
+  @media (width < 40rem) { .pband__client { max-inline-size: none; } }
   .pband__client { display: flex; min-inline-size: 0; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
   .pband__client img { flex: none; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; object-fit: cover; background: var(--neutral-0); }
   .pband__client img.is-contain { object-fit: contain; padding: 3px; }

@@ -1834,3 +1834,4 @@ Oct 18 SEO/GEO pass (`docs/review/home-v1-2/seo-geo-audit.md`): Services lead no
 - **Yawmy Care stays** in the client row as "Childcare platform · our product" (Mohamed: keep it as our product).
 - **Privacy and terms (V1.0):** every mention of the launch check, guides, articles, Web3Forms and the quiz cookies is removed until those ship (V1.2); the text returns with them (see git history of `src/content/copy/en/legal.ts`).
 - **Spelling:** US English everywhere (color, center, unauthorized, judgment, labeled, gray).
+- **Client cards on phones (Oct 18, Mohamed):** the same cards as on desktop (logo, name and the one-line role), one per row on phones, no name-only two-column grid.
