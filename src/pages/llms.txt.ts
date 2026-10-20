@@ -27,7 +27,7 @@ export const GET: APIRoute = async () => {
   // Case studies (05 §5.2 "## Work"): anonymized title from the case page (D-06), never a client name.
   const work = [line('workEdulens', caseStudy.h1)].filter(Boolean);
   // V1.0: the case lives on the home page; same anonymized fact as the tile (09), no client name.
-  const homeWork = [`- [AI agents for an EdTech platform, Egypt](${SITE_URL}/#work): AI costs down 60–90%, depending on how often content is reused.`, `- [Client reviews](${SITE_URL}/#reviews): eight client quotes and the 5.0 rating across 11 reviews.`, `- [FAQ](${SITE_URL}/#faq): pricing, timeline, code ownership, tools and stacks, time zones.`];
+  const homeWork = [`- [AI agents for EduLens, an EdTech platform in Egypt](${SITE_URL}/#work): AI costs down 60–90%, depending on how often content is reused.`, `- [Client reviews](${SITE_URL}/#reviews): eight client quotes and the 5.0 rating across 11 reviews.`, `- [FAQ](${SITE_URL}/#faq): pricing, timeline, code ownership, tools and stacks, time zones.`];
   const company = COMPANY.map(([k, n]) => line(k, n)).filter(Boolean);
   const body = [
     '# DiscoverDev',

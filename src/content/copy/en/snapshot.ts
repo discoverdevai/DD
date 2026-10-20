@@ -1,4 +1,4 @@
-// ReviewSnapshot strings (06 §9.6 example findings; generic, labelled as an example, no client data).
+// ReviewSnapshot strings (06 §9.6 example findings; generic, labeled as an example, no client data).
 export const snapshot = {
   title: 'Example findings',
   meta: 'Sample report, not a client',

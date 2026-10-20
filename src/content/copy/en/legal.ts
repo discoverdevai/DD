@@ -56,7 +56,7 @@ export const privacy: LegalDoc = {
         {
           ul: [
             ["We use cookieless analytics. We don't use tracking cookies, and we don't build profiles of individual visitors."],
-            ['We collect personal data only when you give it to us: when you book a call, ask for your launch check result by email, or email us.'],
+            ['We collect personal data only when you give it to us: when you book a call or email us.'],
             ["We don't sell personal data, and we don't use it for advertising."],
             ['Cal.com, which runs our booking calendar, may set its own cookies when you book.'],
           ],
@@ -68,14 +68,12 @@ export const privacy: LegalDoc = {
       heading: 'What we collect and why',
       blocks: [
         { h3: 'When you visit this website' },
-        { p: ['We measure how the site is used: which pages are viewed, which buttons are clicked, how people move through booking and the launch check, and where visits come from, such as the referring website or the campaign tags in a link. We use this to improve the site and to learn which pages help people.'] },
+        { p: ['We measure how the site is used: which pages are viewed, which buttons are clicked, how people move through booking, and where visits come from, such as the referring website or the campaign tags in a link. We use this to improve the site and to learn which pages help people.'] },
         { p: ["Our analytics are cookieless. They don't store tracking identifiers on your device, and we have set them up not to create profiles of individual people. We never send names, email addresses or anything you type into our analytics. We look at the results in aggregate, such as page views per day."] },
         { p: ['Like any website, our hosting provider processes your IP address and basic browser details to deliver pages and to protect the site from abuse.'] },
         { h3: 'When you book a call' },
-        { p: ['Bookings run on Cal.com. When you book, you give us your name, your email address and your answers to the booking questions, such as what you are building and how you heard about us. The booking also records a few details about how you reached it: the campaign tags in your link (for example utm_source), the button you clicked, the page you booked from, and, if you took the launch check, your result and planned launch timing.'] },
+        { p: ['Bookings run on Cal.com. When you book, you give us your name, your email address and your answers to the booking questions, such as what you are building and how you heard about us. The booking also records a few details about how you reached it: the campaign tags in your link (for example utm_source), the button you clicked, and the page you booked from.'] },
         { p: ['We use this to schedule and prepare for the call, to stay in touch about it, and to understand which pages lead to bookings.'] },
-        { h3: 'When you ask for your launch check result by email' },
-        { p: ['The launch check works without an email address, and you see your result on screen. If you choose to have it sent to you, we collect your email address, your result and your consent. Web3Forms passes your request to our inbox, and we send your result from there. We use your email address for this and for any conversation that follows.'] },
         { h3: 'When you email us' },
         { p: ['If you email us, we receive your email address, your name if you include it, and whatever you write. We use it to reply and to keep a record of the conversation.'] },
       ],
@@ -88,7 +86,6 @@ export const privacy: LegalDoc = {
           ul: [
             ['Analytics and site security: our legitimate interest in running, protecting and improving this website. You can object at any time.'],
             ['Bookings and emails: to respond to your request and to take steps you ask for before any agreement with us.'],
-            ['Launch check email: your consent, which you give with the checkbox. You can withdraw it at any time by emailing us.'],
           ],
         },
         { p: ['Where a law that applies to you requires your consent for something, we ask for it first.'] },
@@ -104,7 +101,6 @@ export const privacy: LegalDoc = {
             ['Cloudflare hosts this website, protects it from attacks, and provides Cloudflare Web Analytics, which counts visits without cookies. Read the ', { text: 'Cloudflare privacy policy', href: PRIVACY_LINKS.cloudflare }, '.'],
             ['PostHog provides our cookieless product analytics, such as which buttons are clicked and where people leave the booking flow. We use PostHog Cloud EU, so this data is hosted in the European Union. Read the ', { text: 'PostHog privacy policy', href: PRIVACY_LINKS.posthog }, '.'],
             ['Cal.com runs our booking calendar. It stores your booking details and sends confirmations and reminders. Cal.com may set its own cookies inside the booking calendar when you book. Read the ', { text: 'Cal.com privacy policy', href: PRIVACY_LINKS.cal }, '.'],
-            ['Web3Forms delivers launch check result requests to our inbox. Read the ', { text: 'Web3Forms privacy policy', href: PRIVACY_LINKS.web3forms }, '.'],
           ],
         },
         { p: ['Emails you send us, and the requests Web3Forms delivers, are stored with the provider that hosts our email inbox.'] },
@@ -114,7 +110,7 @@ export const privacy: LegalDoc = {
       id: 'transfers',
       heading: 'Where your data is processed',
       blocks: [
-        { p: ['Our providers are based in, or process data in, the United States and the European Union, and Cloudflare serves pages from data centres around the world. Our team works from Egypt, and we have a presence in Texas, USA. This means your data may be processed outside the country where you live, including in countries whose data protection laws differ from yours.'] },
+        { p: ['Our providers are based in, or process data in, the United States and the European Union, and Cloudflare serves pages from data centers around the world. Our team works from Egypt, and we have a presence in Texas, USA. This means your data may be processed outside the country where you live, including in countries whose data protection laws differ from yours.'] },
         { p: ['Where the law requires it, we rely on the transfer safeguards our providers offer, such as standard contractual clauses. We share only what each provider needs to do its job.'] },
       ],
     },
@@ -128,9 +124,7 @@ export const privacy: LegalDoc = {
           ul: [
             [{ code: 'dd_utm' }, ': the campaign tags and referring site from your first page view, so a booking can be credited to the right source.'],
             [{ code: 'entry_cta' }, ': the button you clicked on your way to booking, so we know which pages lead to calls.'],
-            [{ code: 'dd_quiz_v1' }, ': your launch check answers while you take it, so you can continue where you left off.'],
             [{ code: 'dd_booking' }, ': the type and time of the call you just booked, so the confirmation page can show it and the booking is counted once.'],
-            [{ code: 'dd_prefill' }, ": your email address, only if you entered it in the launch check, so you don't have to type it again when you book."],
           ],
         },
         { p: ["Cal.com may set its own cookies inside the booking calendar when you book. Those cookies are covered by ", { text: "Cal.com's privacy policy", href: PRIVACY_LINKS.cal }, '.'] },
@@ -143,7 +137,7 @@ export const privacy: LegalDoc = {
         {
           ul: [
             ["Analytics: kept only as long as it helps us understand how the site is used, within our analytics providers' retention limits. It isn't linked to your name or email address."],
-            ['Bookings, launch check requests and emails: kept as long as we need them for the reason you gave them to us, such as preparing for a call or continuing a conversation, then deleted. If you become a client, we keep what our agreement and our legal obligations require.'],
+            ['Bookings and emails: kept as long as we need them for the reason you gave them to us, such as preparing for a call or continuing a conversation, then deleted. If you become a client, we keep what our agreement and our legal obligations require.'],
             ['Session storage: cleared when you close the tab.'],
           ],
         },
@@ -213,7 +207,7 @@ export const terms: LegalDoc = {
       id: 'using-the-site',
       heading: 'Using this website',
       blocks: [
-        { p: ["You can browse the site, read our guides, take the launch check and book a call for free. You don't need an account."] },
+        { p: ["You can browse the site and book a call for free. You don't need an account."] },
         { p: ["We may change, pause or remove any part of the site at any time. We work to keep it available, but we can't promise it will always be online or free of errors."] },
       ],
     },
@@ -242,7 +236,7 @@ export const terms: LegalDoc = {
         {
           ul: [
             ['Break the law, or help anyone else break it'],
-            ['Try to get unauthorised access to the site, its hosting or the services behind it, or interfere with how they work'],
+            ['Try to get unauthorized access to the site, its hosting or the services behind it, or interfere with how they work'],
             ['Overload the site, for example with automated requests at a rate that slows it down for others'],
             ['Send spam, malicious code or false information through our booking calendar, forms or email'],
             ["Book calls you don't intend to attend, or pretend to be someone else"],
@@ -264,8 +258,7 @@ export const terms: LegalDoc = {
       id: 'no-advice',
       heading: 'No professional advice',
       blocks: [
-        { p: ['Our guides, articles, examples and launch check results share general information based on our experience. They are not a review of your specific product, and they are not legal, security, financial or other professional advice. Before you make decisions about your product, get advice that fits your situation.'] },
-        { p: ['Launch check results are based only on your answers. They are a starting point, not an assessment of your app.'] },
+        { p: ['The information on this site, including our examples, shares general information based on our experience. They are not a review of your specific product, and they are not legal, security, financial or other professional advice. Before you make decisions about your product, get advice that fits your situation.'] },
       ],
     },
     {

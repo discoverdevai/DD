@@ -124,3 +124,5 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 | G-06 | Article author schema defaults to Person | D-16 | Use Organization until D-16 closes |
 | G-07 | `/work` meta mentions the home-services marketplace (Rushr) | D-07 | Remove until Rushr is published |
 | G-08 | Pillar, C1, C2 are briefs only | D-36 | Claude drafts by Nov 6; Mohamed reviews technically |
+
+| Oct 18 | **D-06 resolved:** EduLens is named on home with the 60–90% result (Mohamed, Oct 18). Yawmy Care stays as "our product". Privacy and terms trimmed to what is live. US spelling. | Mohamed |

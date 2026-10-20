@@ -79,7 +79,7 @@ export const launchReady = {
   notFor: {
     title: 'When the Review isn’t the right fit',
     items: [
-      { lead: 'You only want an automated scan.', text: 'Run one first. Some are free. Come back when you need judgement and a fix plan.' },
+      { lead: 'You only want an automated scan.', text: 'Run one first. Some are free. Come back when you need judgment and a fix plan.' },
       { lead: 'You only have an idea.', text: 'Start with Validate: 1–2 weeks to test it before you build.', link: { label: 'See Validate', to: 'validate' } },
       { lead: 'Your product is live and growing, and you need a team.', text: 'See Scale: a dedicated squad on a monthly retainer.', link: { label: 'See Scale', to: 'scale' } },
     ],
@@ -87,7 +87,7 @@ export const launchReady = {
   faq: {
     title: 'Questions about the Review',
     items: [
-      { id: 'free-scan', q: 'Lovable or Claude can scan my app for free. Why pay for a Review?', a: 'Run the free scan first. It catches common patterns. It can’t tell you whether a signed-in user can read another customer’s data, whether payments fail quietly, or whether to fix or rebuild. That judgement is what you pay for. If we find nothing useful, you pay nothing.', link: { label: 'Read: the security holes AI-built apps ship with', to: 'guideSecurity' as const } },
+      { id: 'free-scan', q: 'Lovable or Claude can scan my app for free. Why pay for a Review?', a: 'Run the free scan first. It catches common patterns. It can’t tell you whether a signed-in user can read another customer’s data, whether payments fail quietly, or whether to fix or rebuild. That judgment is what you pay for. If we find nothing useful, you pay nothing.', link: { label: 'Read: the security holes AI-built apps ship with', to: 'guideSecurity' as const } },
       { id: 'access', q: 'What access do you need?', a: 'Usually read-only access to your code repository, plus a walkthrough of your live or preview app. We don’t change anything during the Review. If you want an NDA first, we sign it before we see your code.' },
       { id: 'non-technical', q: 'I’m not technical. Will I understand the report?', a: 'Yes. Each finding says in plain words what can go wrong, who it affects and how to fix it. On the findings call we go through it together, and you can bring your developer or co-founder.' },
       { id: 'after', q: 'What happens after the Review?', a: 'You get a fixed quote for the fixes. You can hire us to do them, with the Review fee credited, or give the report to your own developer. If the code needs replacing, we scope it as a fixed-price Build. The report is yours either way.' },

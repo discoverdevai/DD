@@ -15,8 +15,8 @@ export interface Project {
 }
 
 const all: readonly Project[] = [
-  { id: 'edtech-agents', stage: 'build', industry: 'EdTech', where: 'Egypt', title: 'AI agents for an EdTech platform', brief: 'Every request was processed from scratch, so AI costs rose with every new student.', did: 'Captions first, answers shared across users and the right model for each task.', result: 'An EdTech platform cut its AI costs by 60–90%, depending on how often content is reused, and cost now grows slower than the user base.', metric: { value: '60–90%', label: 'lower AI cost' }, art: 'edtech', quotes: ['Youssef'], link: 'workEdulens' },
-  { id: 'ar-commerce', stage: 'build', industry: 'E-commerce', where: 'Saudi Arabia', title: 'AR furniture store with AI recommendations', did: 'Market study, discovery, UX/UI, development, an AI recommendation engine and AR visualization.', art: 'ar', quotes: ['Nojoud Alarfaj'], screens: ['njwar-product.webp'], device: 'browser', screenAlt: 'Product page of the furniture store in Arabic, with photos, dimensions, colour options and an add-to-cart button' },
+  { id: 'edtech-agents', stage: 'build', industry: 'EdTech', where: 'Egypt', title: 'AI agents for EduLens, an EdTech platform', brief: 'Every request was processed from scratch, so AI costs rose with every new student.', did: 'Captions first, answers shared across users and the right model for each task.', result: 'EduLens cut its AI costs by 60–90%, depending on how often content is reused, and cost now grows slower than the user base.', metric: { value: '60–90%', label: 'lower AI cost' }, art: 'edtech', quotes: ['Youssef'], link: 'workEdulens' },
+  { id: 'ar-commerce', stage: 'build', industry: 'E-commerce', where: 'Saudi Arabia', title: 'AR furniture store with AI recommendations', did: 'Market study, discovery, UX/UI, development, an AI recommendation engine and AR visualization.', art: 'ar', quotes: ['Nojoud Alarfaj'], screens: ['njwar-product.webp'], device: 'browser', screenAlt: 'Product page of the furniture store in Arabic, with photos, dimensions, color options and an add-to-cart button' },
   { id: 'yawmy-care', stage: 'build', industry: 'Childcare · our own product', title: 'Yawmy Care, a nursery management platform', did: 'One platform for parents, teachers and management, with billing and multiple locations. Built as our own white-label product.', result: 'Launching in 2027.', art: 'lms', screens: ['yawmy-dashboard.webp'], device: 'browser', screenAlt: 'Yawmy Care dashboard for a nursery: totals for children, teachers and check-ins, and a daily attendance chart' },
   { id: 'home-services', stage: 'build', industry: 'Marketplace', where: 'USA', title: 'Home-services marketplace', brief: 'A greenfield product for booking verified home-service pros.', did: 'A full product team for 16 weeks: post a job, auto-match the nearest verified contractor, Stripe escrow, real-time messaging and admin tools.', art: 'devices', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'tablet', hold: 'D-07', screenAlt: 'Tablet app screens: a map with matched home-service pros, and the home screen with service categories' },
   { id: 'health-app', stage: 'build', industry: 'HealthTech', title: 'Health app that explains lab reports', did: 'Plain-language explanations of lab reports, recommendations, conversational follow-up and medical safety guardrails.', art: 'health' },
@@ -58,10 +58,10 @@ export interface Chapter {
 }
 const allChapters: readonly Chapter[] = [
   { id: 'njwar', project: 'ar-commerce', name: 'NJWAR', tags: ['Build', 'E-commerce', 'AR'],
-    line: 'An AR furniture store: place a piece in your room at real size, change its colour, rotate it and add more.',
+    line: 'An AR furniture store: place a piece in your room at real size, change its color, rotate it and add more.',
     note: 'Web store on the laptop, AR on the phone. On a phone, the demo places a piece of furniture in your room. The demo uses a sample brand.',
     web: { file: 'njwar-web.webp', alt: 'NJWAR web store home page in Arabic, inviting shoppers to try furniture in their home' },
-    phones: [{ file: 'njwar-ar.webp', alt: 'NJWAR mobile AR view: an armchair placed in a room, with colour and rotate controls' }],
+    phones: [{ file: 'njwar-ar.webp', alt: 'NJWAR mobile AR view: an armchair placed in a room, with color and rotate controls' }],
     tryIt: { label: 'Try our AR prototype', href: 'https://furniture-webar.pages.dev/' } },
   { id: 'yawmy', project: 'yawmy-care', name: 'Yawmy Care', tags: ['Build', 'Childcare', 'Our own product'],
     line: 'Our own nursery platform for management, teachers and parents, with billing and multiple locations.',
