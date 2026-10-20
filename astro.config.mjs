@@ -22,8 +22,8 @@ const release = {
       const gone = [];
       for (const p of OFF) for (const f of [`${p}.html`, `og${p}.png`]) { const full = `${root}${f.slice(f.startsWith('/') ? 1 : 0)}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
       for (const p of OFF_PREFIX) for (const d of [p.slice(1), `og${p}`]) { const full = `${root}${d}`; if (existsSync(full)) { rmSync(full, { recursive: true }); gone.push(`${d}/`); } }
-      // The private design-system reference does not ship in a release (V1.0.1 review); empty folders left by removed pages go too.
-      if (existsSync(`${root}design-system.html`) && process.env.KEEP_DESIGN_SYSTEM !== '1') { rmSync(`${root}design-system.html`); gone.push('design-system.html'); }
+      // The private /design-system reference never ships to the live site (V1.0.1); KEEP_DESIGN_SYSTEM=1 keeps it for a local review build. Empty folders left by removed pages go too.
+      if (process.env.KEEP_DESIGN_SYSTEM !== '1') for (const f of ['design-system.html', 'og/design-system.png']) { const full = `${root}${f}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
       for (const d of ['work', 'og/work']) { const full = `${root}${d}`; if (existsSync(full) && readdirSync(full).length === 0) rmSync(full, { recursive: true }); }
       logger.info(`switched-off pages removed: ${gone.length}`);
     },
