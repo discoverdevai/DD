@@ -86,7 +86,7 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
   @media (width >= 90rem) { .ch__scene { max-inline-size: calc(var(--container-wide) * 0.58); } }
   .ch__copy { position: relative; z-index: 3; display: grid; gap: var(--space-5); align-content: center; }
   .ch__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-  .ch__name { font-family: var(--ff-heading); font-size: clamp(2rem, 1.3rem + 2vw, 2.75rem); font-weight: var(--weight-bold); line-height: 1.05; letter-spacing: -0.04em; color: var(--color-heading); text-wrap: balance; }
+  .ch__name { font-family: var(--ff-heading); font-size: clamp(1.75rem, 1.2rem + 1.4vw, 2.25rem); /* project title: below the 48px section H2 (layout audit) */ font-weight: var(--weight-bold); line-height: 1.05; letter-spacing: -0.04em; color: var(--color-heading); text-wrap: balance; }
   .ch__line { max-inline-size: 31ch; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem); line-height: 1.5; color: var(--blue-200); }
   .ch__acts { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); margin-block-start: var(--space-1); }
   .ch__view, .ch__try { display: inline-flex; align-items: center; min-block-size: 3rem; padding-inline: var(--space-6); border-radius: var(--radius-sm); font-family: var(--ff-heading); font-weight: var(--weight-bold); text-decoration: none; }
