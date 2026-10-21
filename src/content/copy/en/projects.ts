@@ -74,6 +74,11 @@ const allChapters: readonly Chapter[] = [
     line: 'A home-services marketplace: post a job, get matched with the nearest verified pro, pay through escrow.',
     phones: [{ file: 'rushr-m-searching.webp', alt: 'Rushr app searching for a technician nearby' }, { file: 'rushr-m-dispatch.webp', alt: 'Rushr app showing a matched plumber with accept and decline' }, { file: 'rushr-m-progress.webp', alt: 'Rushr request in progress with live cost' }],
     hold: 'D-07' },
+  // Preview only (Oct 21, Mohamed asked for a mockup): Upscend's own public marketing screen of the learner view. Held until Upscend approves screens (D-05).
+  { id: 'upscend', project: 'lms-team', name: 'Upscend', tags: ['Scale', 'B2B learning', 'UK'],
+    line: 'A B2B learning platform: our dedicated PM and engineering team owned the roadmap, backlog and sprints for 12 months.',
+    web: { file: 'upscend-learner.webp', alt: 'Upscend learner view: my current courses, hours spent, certificates and skills' },
+    phones: [], hold: 'D-05 screens' },
 ];
 export const chapters: readonly Chapter[] = allChapters.filter((c) => !c.hold || MOCK);
 export const chapterCopy = { label: 'Featured work', view: 'View project' } as const;

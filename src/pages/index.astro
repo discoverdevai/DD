@@ -38,7 +38,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
     </AgileSplit>
   </Statement>
   <div id="work">
-    <Chapters only={['njwar']} />
+    <Chapters only={process.env.SHOWCASE_MOCK === '1' ? ['njwar', 'yawmy', 'rushr', 'upscend'] : ['njwar']} />
     <Showcase />
   </div>
   <Reviews {...c.reviews} />

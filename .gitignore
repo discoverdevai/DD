@@ -40,3 +40,4 @@ assets/clients/mono/
 .baseline/
 docs/review/v1/
 docs/review/home-v1/*.png
+dist-mock/
