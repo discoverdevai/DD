@@ -80,7 +80,8 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
   .hero__scene { max-inline-size: 72rem; margin-inline: auto; perspective: 1600px; }
   /* Split: copy left (start-aligned), board right; both in the first screen at 1366–1440 laptops. */
   @media (width >= 64rem) {
-    .hero { padding-block: clamp(1.5rem, 0.5rem + 2vw, 3.5rem) var(--space-16); text-align: start; }
+    /* Full screen on desktop (Oct 21, Mohamed): the hero fills the space under the sticky header, content centered in it. */
+    .hero { padding-block: clamp(1.5rem, 0.5rem + 2vw, 3.5rem); text-align: start; min-block-size: calc(100svh - var(--header-h) - 1px); display: grid; align-content: center; }
     .hero__wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: clamp(2.5rem, 1rem + 3vw, 4.5rem); align-items: center; }
     .hero__copy { justify-items: start; gap: var(--space-5); }
     .hero__h1 { font-size: clamp(2.75rem, 1rem + 3vw, 3.5rem); max-inline-size: 16ch; } /* capped at 56px so the H1 stays on two lines from 1366 to 1920 (V1.0.1 hero measure) */
