@@ -36,7 +36,7 @@
     "knip": "^6.42.1",
     "lighthouse": "13.5.0",
     "playwright": "1.64.1",
-    "satori": "0.57.2",
+    "satori": "0.62.0",
     "sharp": "0.35.5",
     "typescript": "6.0.3",
     "wrangler": "4.151.0"
