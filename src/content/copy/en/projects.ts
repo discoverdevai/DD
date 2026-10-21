@@ -1,8 +1,9 @@
 // 03 §9.3 / §2A.8b (Oct 16): one list of projects for the home bento and the /work story rows. Every brief, "what we
 // did" and result comes from 09 (Portfolio, Case studies); a result appears only where 09 states one. Titles are
 // anonymized (case names need consent); client quotes (approved with names and roles, D-05) are paired by reviewer.
+import { SHOWCASE_PREVIEW } from '../../../lib/preview';
 export type Stage = 'validate' | 'build' | 'scale';
-export type Art = 'edtech' | 'ar' | 'lms' | 'health' | 'ride' | 'agent' | 'research' | 'sprint' | 'devices' | 'data';
+type Art = 'edtech' | 'ar' | 'lms' | 'health' | 'ride' | 'agent' | 'research' | 'sprint' | 'devices' | 'data';
 export interface Project {
   id: string; stage: Stage; industry: string; where?: string; title: string;
   brief?: string; did: string; result?: string; metric?: { value: string; label: string };
@@ -35,7 +36,7 @@ const all: readonly Project[] = [
 ];
 
 // Held projects (hold set) appear only in a local preview build (SHOWCASE_MOCK=1), never on the live site.
-const MOCK = typeof process !== 'undefined' && process.env.SHOWCASE_MOCK === '1';
+const MOCK = SHOWCASE_PREVIEW;
 export const projects: readonly Project[] = all.filter((p) => !p.hold || MOCK);
 
 export const showcase = {

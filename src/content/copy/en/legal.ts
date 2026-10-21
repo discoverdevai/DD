@@ -3,9 +3,9 @@
 
 /** Inline run: plain text, a link, or a code-formatted name (e.g. a sessionStorage key). Strings carry their own spacing. */
 export type Inline = string | { text: string; href: string } | { code: string };
-export type Rich = readonly Inline[];
-export type LegalBlock = { p: Rich } | { h3: string } | { ul: readonly Rich[] };
-export interface LegalSection { id: string; heading: string; blocks: readonly LegalBlock[] }
+type Rich = readonly Inline[];
+type LegalBlock = { p: Rich } | { h3: string } | { ul: readonly Rich[] };
+interface LegalSection { id: string; heading: string; blocks: readonly LegalBlock[] }
 export interface LegalDoc {
   seo: { title: string; description: string };
   h1: string;

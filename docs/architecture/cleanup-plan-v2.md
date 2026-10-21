@@ -76,3 +76,12 @@ Phase 0 → 1 → 2 → 3 → 4 → 5 → 6. About 2 working days in total. Phas
 - Deleting code used only by a later release: mitigated by the release map and by never deleting a component with an importer without checking `routes.ts`.
 - Text drift while merging copy constants: mitigated by `dist-diff` (text, JSON-LD, outline, CTA ids) which must report no difference.
 - Visual regressions in CSS clean-up: mitigated by screenshots at 390 and 1440 before and after.
+
+## Progress (Oct 21, branch `cleanup-r2`)
+Decisions (Mohamed): 1 drop `vercel.json`; 2 keep the ProofBand fallback; 3 keep skill data in the repo; 4 add knip; 5 archive `docs/review` images.
+- **Phase 0 done:** baseline build kept outside the repo (`Desktop/Discoverdev-archive/dist-baseline`); every phase is checked with `node scripts/dist-diff.mjs <baseline> dist` (result after each step: 6 pages identical).
+- **Phase 1 done:** `vercel.json`, `scripts/vercel-parity.mjs` (and its test gate), `scripts/move-components.mjs`, raw layout-audit JSON removed; `dist-wip`, `dist-mock` deleted; 364 review images (97 MB) archived to `Desktop/Discoverdev-archive/docs-review-images-2026-10-21.zip` (note in `docs/review/ARCHIVE.md`); the 73 `astro check` hints are gone (they came from preview builds inside the repo folder; the 2 real ones in `ProofBand` are fixed: unused import and a leftover loop wrapper). `astro check`: 0 errors, 0 warnings, 0 hints.
+- **Phase 2 partly done:** preview switches (`SHOWCASE_MOCK`, `LOGO_MOCK`) now live in one file, `src/lib/preview.ts` (also holds the home chapter list). The ProofBand fallback stays (decision 2). Not done yet: merging `Showcase` and `ProjectRows` tile markup into one `ProjectCard` (the work page is off in V1.0, so it needs a V1.1 preview build to check).
+- **Phase 6 started:** `knip` added (`npm run knip`, report only, config in `knip.json`). First run found one unused file (`Guides.astro`, kept on purpose: it returns on home in V1.2, so it is listed in `knip.json`), 4 unused exports and 9 unused exported types; the exports were made private. Knip is clean now.
+- **Left for later:** Phase 3 (shared copy constants, QA script merge, i18n unused-key pass), Phase 4 (release map, `src/dev/`), Phase 5 (fold the appended decision sections in `03-copy.md`, trim PLAN/MEMORY repeats).
+

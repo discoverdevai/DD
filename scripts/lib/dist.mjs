@@ -47,7 +47,7 @@ export function redirectSources() {
 }
 
 export const mainOf = (html) => html.match(/<main\b[\s\S]*?<\/main>/)?.[0] ?? '';
-export const stripScripts = (html) => html.replace(/<script\b[\s\S]*?<\/script>/g, '').replace(/<style\b[\s\S]*?<\/style>/g, '');
+const stripScripts = (html) => html.replace(/<script\b[\s\S]*?<\/script>/g, '').replace(/<style\b[\s\S]*?<\/style>/g, '');
 export const visibleText = (html) => stripScripts(html).replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&rsquo;/g, '’').replace(/\s+/g, ' ');
 
 /** Internal hrefs in a fragment, normalised to clean routes (no query/hash/trailing slash). */
@@ -66,4 +66,4 @@ export function report(name, problems) {
   console.log(`${name}: OK`);
 }
 
-export function fail(msg) { console.error(msg); process.exit(2); }
+function fail(msg) { console.error(msg); process.exit(2); }

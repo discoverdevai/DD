@@ -8,8 +8,8 @@
 import path from 'node:path';
 import sharp from 'sharp';
 import Icon from '../ui/Icon.astro';
-import { t } from '../../i18n/t';
 import { clientLogos } from '../../data/clients';
+import { LOGO_PREVIEW } from '../../lib/preview';
 import { WORLD, LAND_DOTS, CLIENT_DOTS } from '../../data/world-dots';
 interface Project { stage: string; href: string; what: string; where: string; proof: string }
 interface Props {
@@ -24,7 +24,7 @@ const P = (lat: number, lon: number) => ({ x: +((lon - WORLD.lon0) * WORLD.k).to
 const homes = [P(31, -99), P(31.2, 29.9)];
 const pins = map.pins.map(([name, lat, lon]) => ({ name, ...P(lat, lon) }));
 
-const MOCK = process.env.LOGO_MOCK === '1';
+const MOCK = LOGO_PREVIEW;
 const MIN_LOGOS = 4;
 const eligible = clientLogos.filter((l) => l.consent || MOCK);
 const showLogos = eligible.length >= MIN_LOGOS;
@@ -46,18 +46,14 @@ const logos = showLogos
 
   {showLogos ? (
     <div class="pband__strip container">
-      <div class="pband__track">
-        {[0].map((copy) => (
-          <ul role="list" class="pband__clients">
-            {logos.map((l) => (
-              <li class="pband__client">
-                <img src={l.src} alt="" width="44" height="44" loading="lazy" decoding="async" class:list={{ 'is-contain': l.fit === 'contain' }} />
-                <p><strong>{l.name}</strong><span>{clientRoles[l.id]}</span></p>
-              </li>
-            ))}
-          </ul>
+      <ul role="list" class="pband__clients">
+        {logos.map((l) => (
+          <li class="pband__client">
+            <img src={l.src} alt="" width="44" height="44" loading="lazy" decoding="async" class:list={{ 'is-contain': l.fit === 'contain' }} />
+            <p><strong>{l.name}</strong><span>{clientRoles[l.id]}</span></p>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   ) : (
     <div class="container">

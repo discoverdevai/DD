@@ -1,7 +1,7 @@
 // 03-copy.md §4 (/launch-check). Questions, points and flags are the scoring config (§4.2); ids fixed by 04 §8.2.
 // Option values are o1…oN in listed order (never sent as text to analytics).
-export type Flag = 'CRIT' | 'REBUILD';
-export interface Option { value: string; label: string; pts: number; flag?: Flag }
+type Flag = 'CRIT' | 'REBUILD';
+interface Option { value: string; label: string; pts: number; flag?: Flag }
 export interface Question { id: QuestionId; title: string; helper?: string; options: Option[] }
 export type QuestionId = 'built_with' | 'real_users' | 'launch_when' | 'data_rules' | 'keys_browser' | 'signup' | 'payments' | 'code_access' | 'handover' | 'operations';
 

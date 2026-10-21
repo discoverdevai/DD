@@ -2,7 +2,7 @@
 import { ROUTES, type RouteKey } from '../data/routes';
 export const SITE_URL = 'https://discoverdev.ai';
 export const ORG_ID = `${SITE_URL}/#org`;
-export const WEBSITE_ID = `${SITE_URL}/#website`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
 export const CLUTCH_URL = 'https://clutch.co/profile/discoverdev';
 
 /** Entity line, D-43 option (c): footer line + location sentence (05 §4). */
