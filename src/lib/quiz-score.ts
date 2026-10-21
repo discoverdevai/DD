@@ -1,7 +1,7 @@
 // Pure quiz scoring (03 §4.3, 04 §8). Unit-tested in tests/unit/quiz-score.test.ts. No DOM, no copy.
-export type Segment = 'rebuild_candidate' | 'high_risk' | 'fix_first' | 'ready_polish';
+type Segment = 'rebuild_candidate' | 'high_risk' | 'fix_first' | 'ready_polish';
 export type Level = 'low' | 'some' | 'high';
-export interface ScoreOption { value: string; pts: number; flag?: 'CRIT' | 'REBUILD' }
+interface ScoreOption { value: string; pts: number; flag?: 'CRIT' | 'REBUILD' }
 export interface ScoreQuestion { id: string; options: readonly ScoreOption[] }
 export type Answers = Record<string, string>; // questionId -> option value
 

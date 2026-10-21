@@ -23,6 +23,7 @@ import { howWeWork } from '../content/copy/en/how-we-work';
 import { href, isLive } from '../data/routes';
 import { home as c } from '../content/copy/en/home';
 import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../lib/seo';
+import { HOME_CHAPTERS } from '../lib/preview';
 
 const faqLd = faqPage('https://discoverdev.ai/#faq', c.faq.items);
 const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
@@ -38,7 +39,7 @@ const jsonLd = graph(orgFull, website, webPage('/', c.seo.title, c.seo.descripti
     </AgileSplit>
   </Statement>
   <div id="work">
-    <Chapters only={process.env.SHOWCASE_MOCK === '1' ? ['njwar', 'yawmy', 'rushr', 'upscend'] : ['njwar', 'yawmy', 'rushr']} />
+    <Chapters only={HOME_CHAPTERS} />
     <Showcase />
   </div>
   <Reviews {...c.reviews} />
