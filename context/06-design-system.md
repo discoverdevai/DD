@@ -778,7 +778,7 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
   1. Reversed logo, a one-line positioning statement (`--color-text-muted`), then contact: Email, WhatsApp.
   2. Link columns per `03-copy.md` §1.2: Services, Work, Insights, Company (About, Book a call, Privacy, Terms). Each has an `h2` styled `--text-sm` 600 in `--color-text-muted`, sentence case.
   3. Locations: "Texas, USA" and "Alexandria, Egypt (engineering hub)", plus the overlap line.
-  4. Proof: "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" and a link "Read our reviews on Clutch" (`03-copy.md` §0.4).
+  4. Proof: "5.0 across 11 reviews" and a link "Read our reviews on Clutch" (`03-copy.md` §0.4).
   5. Bottom row: ©, then the language switcher (hidden until `/ar` is live; endonyms "English" and "العربية", each with its `lang`).
 - **Layout:**
   - Below 40rem: 1 column.
@@ -908,7 +908,7 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
 
 ### 9.12 ProofBar
 - **Anatomy:**
-  - Star icon (`aria-hidden`), then "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)", then the link "Read our reviews on Clutch" (https://clutch.co/profile/discoverdev). Wording per `03-copy.md` §0.4.
+  - Star icon (`aria-hidden`), then "5.0 across 11 reviews", then the link "Read our reviews on Clutch" (https://clutch.co/profile/discoverdev). Wording per `03-copy.md` §0.4.
   - Optional items: "Clients on 4 continents", "Arabic and English team".
   - Items separated by `border-inline-start: 1px solid var(--color-border-subtle)` plus padding, not by dots.
 - **Variants:**

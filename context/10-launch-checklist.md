@@ -107,7 +107,7 @@ Read with: `04-ux-ia.md`, `05-seo-aeo.md`, `07-tech-spec.md` (§ refs = 07 unles
 | 10:30 | 10 | CSP: DevTools console on `/`, `/book`, `/launch-check`, pillar → 0 violations | 0 | `wrangler rollback` if `/book` blocked |
 | 10:40 | 11 | GSC: submit sitemap; URL Inspection → request indexing (`05-seo-aeo.md` §8). Bing: submit sitemap; IndexNow on | Submitted | — |
 | 10:50 | 12 | Cloudflare AI Crawl Control: Search/Agent/Training allowed; no managed robots.txt override; `curl -A "OAI-SearchBot" -I https://discoverdev.ai/` → 200 | OK | Fix setting |
-| 11:00 | 13 | Update external links to new URLs: Clutch profile website + service lines, LinkedIn company, Upwork agency, email signature | Done | — |
+| 11:00 | 13 | Update external links to new URLs: Clutch profile website + service lines, LinkedIn company, email signature | Done | — |
 | 11:15 | 14 | Declare launch (internal note). Old GitHub Pages: keep deployed, unlinked | — | — |
 | 12:00 | 15 | T+3 h check (§5) | Green | — |
 | 17:00 | 16 | T+8 h check (§5) | Green | — |
@@ -134,7 +134,7 @@ Rollback triggers (07 §18.6): automatic → any nav page non-200, `/book` canno
 
 ### 4.2 Content
 - [ ] All copy matches `03-copy.md`; spelling; no exclamation marks; no em-dashes in short copy; "DiscoverDev" spelled correctly everywhere.
-- [ ] Rating text "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + "Read our reviews on Clutch"; never "11 reviews on Clutch".
+- [ ] Rating text "5.0 across 11 reviews" + "Read our reviews on Clutch"; never "11 reviews on Clutch".
 - [ ] No unconsented client names, logos, quotes, photos (consent-gate green + manual scan of home, `/work`, `/about`, `/build`, `/scale`, `/partners`).
 - [ ] Metrics only `verified: true`; EduLens 60–90% stated with context; Rushr "16 weeks" only on Rushr page.
 - [ ] No claims needing verification without D-xx resolved: "founded 2024", "10+ countries", "~60% cost savings", co-authored papers, GCC offices, Texas address, reply-time promise.

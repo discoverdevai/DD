@@ -25,7 +25,7 @@ const OFFERS = [
   { key: 'scale', name: 'Scale', serviceType: 'Dedicated development team', description: 'A dedicated development team of developers, QA and a PM on a monthly retainer. The PM runs the roadmap with you and you keep control.' },
 ] as const;
 
-/** Full Organization, home and /about only. foundingDate omitted (D-21); address = Alexandria only (D-08); sameAs = Clutch (+ LinkedIn when its URL is confirmed, D-29). */
+/** Full Organization, home and /about only. foundingDate omitted (D-21); address = Alexandria only (D-08); sameAs = Clutch + LinkedIn (Mohamed, Oct 21). */
 export const orgFull = {
   '@type': 'Organization',
   '@id': ORG_ID,
@@ -40,7 +40,7 @@ export const orgFull = {
   // Only topics the live pages show (05 §0); the Review topics return with the Review page (V1.2).
   knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots', ...(ROUTES.review.live ? ['AI app security review', 'Production readiness', 'LLM cost optimization'] : [])],
   knowsLanguage: ['en', 'ar'],
-  sameAs: [CLUTCH_URL],
+  sameAs: [CLUTCH_URL, 'https://www.linkedin.com/company/disoverdev'],
   // Ties each live service page's Service node (`<page>#service`) to the company for knowledge graphs.
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

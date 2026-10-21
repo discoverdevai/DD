@@ -53,7 +53,7 @@ Booking a Review starts with a free 30-minute scoping call; the paid Review star
 
 | Proof | Approved wording | Status | Use on |
 |---|---|---|---|
-| Rating | "5.0 across 11 reviews" + "(Clutch, Upwork, Fiverr and direct)" + link "See our Clutch profile" → https://clutch.co/profile/discoverdev | Confirmed. Do not write "11 reviews on Clutch". No star markup. | Hero chips, footer, /book, /about |
+| Rating | "5.0 across 11 reviews" + link "See our Clutch profile" → https://clutch.co/profile/discoverdev | Confirmed. Do not write "11 reviews on Clutch". No star markup. | Hero chips, footer, /book, /about |
 | Reach | "Clients on 4 continents" | Confirmed | Home, /about |
 | AI in production | "AI in production across multiple clients" | Confirmed | Home, /about |
 | EduLens | "60–90% lower AI cost across three AI agents" | Confirmed metric · baseline and period [VERIFY: V12] · name [CONSENT: EduLens] | Home, /launch-ready, /scale, /work |
@@ -205,7 +205,7 @@ The inbound-link gate (`07` §15: ≥ 3 links from the `<main>` of distinct page
 ### 1.2 Footer
 
 - Core idea (large text): "Most teams just build what you ask for. We help you build the right thing, then ship it fast, and you own all of it."
-- Entity line (same wording on Clutch, LinkedIn, Upwork): "DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything."
+- Entity line (same wording on Clutch and LinkedIn): "DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything."
 - Columns:
   - **Services:** Validate · Build · Scale · Launch-Ready Review · Partners
   - **Work:** EdTech AI agents case study (anonymized, /work/edtech-ai-agents) · All work (add Rushr when live). Oct 16: link columns no longer wrap on desktop.
@@ -217,7 +217,7 @@ The inbound-link gate (`07` §15: ≥ 3 links from the `<main>` of distinct page
   - "We reply within 1 business day." [VERIFY: V7]
   - "Texas, USA · Alexandria, Egypt (engineering hub)"
   - "We work in Arabic and English."
-- Proof line: "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)." Link: "See our Clutch profile"
+- Proof line: "5.0 across 11 reviews." Link: "See our Clutch profile"
 - Legal line: "© 2026 DiscoverDev [VERIFY: V9 legal entity name]"
 - Analytics line: "This site uses cookieless analytics. We don't use tracking cookies." [VERIFY: V15]
 - Language switcher: hidden until /ar ships. Then label "العربية" / "English", linking to the same page in the other language.
@@ -314,6 +314,8 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 - **Footer (V1):** entity line, core idea, email, locations, languages, rating + Clutch link; links: Services · How we work · Work · Reviews · Book; legal: Privacy · Terms.
 
 ## 2V1.1 Decision log (latest wins; Oct 18 to Oct 21)
+
+- **Oct 21 (Mohamed): Upwork, Fiverr and GitHub are not named on the site or in the schema.** The rating line is "5.0 across 11 reviews" with the link "See our Clutch profile" (the 11 count is unchanged, see 09). The only profile besides Clutch in `sameAs` is LinkedIn: https://www.linkedin.com/company/disoverdev (spelled as Mohamed gave it; confirm the handle).
 
 Dated decisions made after the §2A and section texts below were written. **Where an entry here conflicts with a line in §2V1, §2A or any other section, this log wins** until that line is rewritten. The code (`src/content/copy/en/*`) already follows this log. Entries are in the order they were made.
 
@@ -584,7 +586,7 @@ React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL,
 - CTA: Book a Launch-Ready Review
 - Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
 - Text link: Not sure yet? Take the 3-minute launch check
-- Proof chip: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
+- Proof chip: 5.0 across 11 reviews · See our Clutch profile
 - Visual: the RunPanel (Signal direction, `06-design-system.md` §0). Strings in 2.2a. HTML only, no image.
 - **v2 hero (visual rebuild, Oct 16, `docs/home-teardown.md`).** Supersedes Body and the stacked links above on the home hero only:
   - Sub-line: A senior team reviews your AI-built or freelancer-built app in about 5 working days. Then we fix it or build it properly, and you own all of it.
@@ -701,7 +703,7 @@ All wording comes from the proof bank (§0.4 Method) and the six Review areas (�
 - Quote 1: "The quality of their work is top-notch." CEO, Nile Support, USA [CONSENT: Nile Support]
 - Quote 2: "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia [CONSENT: Athkado]
 - Quote 3: "They focused on building solutions that were practical, scalable, and aligned with our users' needs." Youssef, CEO, EduLens [CONSENT: EduLens quote] (swap for Roberto if EduLens is already shown above)
-- Footer line: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct). Link: See our Clutch profile
+- Footer line: 5.0 across 11 reviews. Link: See our Clutch profile
 - Visual: static list of 3, no carousel.
 
 ### 2.12 FAQ
@@ -760,7 +762,7 @@ Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US
 
 ### 3.2 Rating and proof chip
 - Purpose: trust next to the first CTA.
-- Copy: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · Clients on 4 continents · See our Clutch profile
+- Copy: 5.0 across 11 reviews · Clients on 4 continents · See our Clutch profile
 
 ### 3.3 Is this you?
 - Purpose: let visitors qualify themselves.
@@ -1052,7 +1054,7 @@ Restart link (all results): Retake the check
 - Body: In 1–2 weeks you learn if the idea is worth building, what to build first and what it will cost. You leave with a market read, a product scope, a clickable prototype and a fixed build estimate.
 - CTA: Book a free clarity call
 - Microcopy: 30 minutes · No pitch · Leave with a next step
-- Proof chip: 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
+- Proof chip: 5.0 across 11 reviews · See our Clutch profile
 - Visual: a clickable-prototype screen next to a one-page scope sheet. [ASSET]
 
 ### 5.2 Who it's for, and not for
@@ -1480,7 +1482,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 
 ### 9.4 Reviews strip
 - Section removed Oct 16 (design review: one line under a section heading reads as a hole; the rating already sits in the footer and on service pages). Was: H2 How clients rate us (Phase 4, Oct 16: no quotes until consent, so the heading promises a rating, not quotes; switch back to "What clients say" when quotes ship)
-- Two quotes from the proof bank (not used elsewhere on the page) + "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + link "See our Clutch profile".
+- Two quotes from the proof bank (not used elsewhere on the page) + "5.0 across 11 reviews" + link "See our Clutch profile".
 
 ### 9.5 Final CTA
 - H2: Want results like these for your product?
@@ -1680,7 +1682,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 
 ### 12.5 Proof in numbers
 - H2: Track record
-- 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
+- 5.0 across 11 reviews · See our Clutch profile
 - Clients on 4 continents
 - AI in production across multiple clients
 - Clients who expanded scope with us: Athkado, Upscend, Arheb, Pyramakerz [CONSENT: all four]
@@ -1747,7 +1749,7 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - NDA on request. [VERIFY: V5]
 
 ### 13.5 Trust strip
-- 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct) · See our Clutch profile
+- 5.0 across 11 reviews · See our Clutch profile
 - Quote: "Professional work and great communication." Nojoud Alarfaj, Athkado, Saudi Arabia [CONSENT: Athkado]
 - Quote: "I will become a regular customer going forward now." Andrei Chejneanu, entrepreneur, UK [CONSENT: Andrei]
 

@@ -222,7 +222,7 @@ Rules:
       ],
       "knowsAbout": ["MVP development", "AI app security review", "Production readiness", "LLM cost optimization", "Product discovery", "Dedicated development teams"],
       "knowsLanguage": ["en", "ar"],
-      "sameAs": ["https://clutch.co/profile/discoverdev", "{{LINKEDIN_COMPANY_URL}}", "{{UPWORK_AGENCY_URL}}", "{{GITHUB_ORG_URL}}"]
+      "sameAs": ["https://clutch.co/profile/discoverdev", "https://www.linkedin.com/company/disoverdev"]
     },
     {
       "@type": "WebSite",
@@ -475,7 +475,7 @@ On-page format
 - [ ] Semantic HTML: `main`, `article`, `nav`, `section`, ordered headings. Content server-rendered.
 
 Entity consistency
-- [ ] Name: "DiscoverDev" (never "Discover Dev"). Same logo, URL, founding year, service names (Launch-Ready Review, Validate, Build, Scale) on site, Clutch, LinkedIn, Upwork, GoodFirms, DesignRush, Crunchbase.
+- [ ] Name: "DiscoverDev" (never "Discover Dev"). Same logo, URL, founding year, service names (Launch-Ready Review, Validate, Build, Scale) on site, Clutch, LinkedIn, GoodFirms, DesignRush, Crunchbase.
 - [ ] Entity line (§4) verbatim on `/about`, Organization `description`, every external profile.
 - [ ] `sameAs` lists every live profile. Wikidata only if notability sources exist.
 
@@ -519,7 +519,7 @@ Status: optional, unproven; Google says no effect on Search; Ahrefs log data (20
 
 > DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf.
 
-Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct): https://clutch.co/profile/discoverdev
+Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews: https://clutch.co/profile/discoverdev
 
 ## Services
 - [Launch-Ready Review](https://discoverdev.ai/launch-ready): A review of an AI-built or freelancer-built app (security, data rules, payments, code quality, scale, ownership) in about 5 working days. Fixed fee quoted per client, credited toward the fix or Build. No useful findings, no charge.

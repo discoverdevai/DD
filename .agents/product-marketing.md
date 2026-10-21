@@ -88,7 +88,7 @@ Read by the `mkt-*` skills. Detail lives in `context/01`, `02`, `08` and `09`, a
 - **Personality:** partner, curious, product-minded, honest, calm.
 
 ## 11. Proof Points
-- 5.0 across 11 reviews (Clutch, Upwork, Fiverr, direct).
+- 5.0 across 11 reviews (public copy no longer names the platforms).
 - Clients on 4 continents.
 - EduLens: AI costs down 60–90%.
 - Rushr: US home-services marketplace built from zero in 16 weeks (metrics + consent pending, D-07).

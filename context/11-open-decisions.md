@@ -28,7 +28,7 @@ Full site map v1 · English live, Arabic-ready, `/ar` Q1 2027 · fresh copy (no 
 | D-26 | Sample report image from a demo app, labelled "Sample from a demo app", or omit |
 | D-28 | FAQ omitted |
 | D-29 | sameAs: Clutch + LinkedIn company only |
-| D-34 | "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" |
+| D-34 | "5.0 across 11 reviews" |
 | D-36 | Claude drafts pillar, C1, C2 Fri; Mohamed reviews by 18:00 |
 | D-37 | "Arabic-speaking team" line, no GCC logos |
 | D-39 | Quiz scoring v1 as in `03` |
@@ -70,13 +70,13 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 | D-24 | Analytics consent posture | (a) cookieless always, no banner (b) `on_reject` + 2-button banner | (a). Revisit if EU traffic grows or counsel advises (EDPB 2/2023 risk noted in `07-tech-spec.md` §9.6). Not legal advice | Privacy notice, analytics init · M4 | Mohamed | |
 | D-25 | Privacy notice + website terms text | Owner-written / generator + edits / lawyer | Owner-supplied text covering items in `07-tech-spec.md` §9.6 (processors, transfers, sessionStorage keys, rights, contact). Lawyer review if budget allows. Launch blocker | `/privacy`, `/terms` · M4 | Mohamed | |
 | D-28 | Data residency / PDPL FAQ answer | State actual practice | Only state what is true, e.g. "Your data stays in your cloud accounts and region." Confirm | `/launch-ready` FAQ, GCC journey · M4 | Mohamed | |
-| D-34 | Clutch-only review count | How many of the 11 reviews are on Clutch | Use the approved wording in `03-copy.md` §0.4 everywhere: "5.0 across 11 reviews (Clutch, Upwork, Fiverr and direct)" + "Read our reviews on Clutch" | Hero proof chip, `/about`, `llms.txt` · M4 | Mohamed | |
+| D-34 | Clutch-only review count | How many of the 11 reviews are on Clutch | Use the approved wording in `03-copy.md` §0.4 everywhere: "5.0 across 11 reviews" + "Read our reviews on Clutch" | Hero proof chip, `/about`, `llms.txt` · M4 | Mohamed | |
 | D-36 | Article drafts: owner + dates | Pillar, C1, C2 drafts; C3 by Nov 30 | Drafts (Claude) + technical review (Mohamed) for pillar, C1, C2 by **Fri Nov 6**; C3 by Nov 27 | `/insights`, pillar, C1, C2 · M5 | Mohamed | |
 | D-37 | GCC trust line before `/ar` | "Arabic-speaking team" line in hero proof area + GCC proof strip (consent) | Yes. Add line to hero proof area and `/book`. GCC logos only with consent | Home hero, `/book` · M4 | Mohamed | |
 | D-39 | Quiz scoring v1 sign-off | Approve `03-copy.md` §4.2–4.3 (points, flags, thresholds) or edit | Approve v1; retune after the first 50 completions | `/launch-check` · M4 | Mohamed | |
 | D-40 | "Quote within 24 hours" after the call | Keep / change to 2 business days / omit | Keep only if sustainable | `/book/confirmed` "What happens next" · M4 | Mohamed | |
 | D-41 | HSTS `includeSubDomains` | Keep / drop | Keep if every subdomain in the zone export serves HTTPS; else drop `includeSubDomains` | `_headers` · M6 | Mohamed | |
-| D-43 | Entity line (one sentence set used verbatim on site, schema, `llms.txt`, Clutch, LinkedIn, Upwork) | (a) `03-copy.md` §1.2 footer line (b) research line "…helps founders build the right product, ship it fast, and own all of it. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf." (c) (a) + location sentence | (c), as written in `05-seo-aeo.md` §4. Location helps AI engines place the entity | Footer, `/about`, Organization `description`, `llms.txt`, external profiles · M5 | Mohamed | |
+| D-43 | Entity line (one sentence set used verbatim on site, schema, `llms.txt`, Clutch and LinkedIn) | (a) `03-copy.md` §1.2 footer line (b) research line "…helps founders build the right product, ship it fast, and own all of it. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf." (c) (a) + location sentence | (c), as written in `05-seo-aeo.md` §4. Location helps AI engines place the entity | Footer, `/about`, Organization `description`, `llms.txt`, external profiles · M5 | Mohamed | |
 | D-42 | Cal availability windows | Hours + days | Proposal (GMT+2): Mon–Thu 12:00–20:00 (covers Gulf afternoons + US East mornings 09:00–13:00 EST) and Sun 12:00–17:00 (Gulf workweek). Owner sets final | Cal setup, `/book` · M4 | Mohamed | |
 
 ## 3. Batch C — due Fri Nov 13
@@ -86,7 +86,7 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 | D-05 (answers) | Consent answers received | — | Publish only approved items; record `consentRecordedAt` | Proof sections · M7 | Mohamed | |
 | D-06 | EduLens case study at launch | (a) named, with quote + metric (b) anonymized "EdTech AI platform, Egypt" (c) hold to Dec (master doc plan) | (a) if consent by Nov 13; else (b). Do not hold: it is the only metric-led proof at launch | `/work/edulens`, home case highlight, `/scale` proof, C9 · M5 | Mohamed | |
 | D-26 | Sample report image for `/launch-ready` | (a) redacted real report (client permission) (b) review of a demo app, labeled "Sample from a demo app" (c) none | (b) honest and fast; (a) if permission exists | `/launch-ready` §What you get · M5 | Mohamed | |
-| D-29 | `sameAs` profiles | Which are live: LinkedIn company, Upwork agency, GitHub org, GoodFirms, DesignRush, Crunchbase | List live URLs; include only those; create GoodFirms/DesignRush in Dec | Organization schema, footer LinkedIn link · M5 | Mohamed | |
+| D-29 | `sameAs` profiles | RESOLVED Oct 21 (Mohamed): Clutch and LinkedIn (https://www.linkedin.com/company/disoverdev) only; no Upwork, GitHub or Fiverr. Was: which are live | List live URLs; include only those; create GoodFirms/DesignRush in Dec | Organization schema, footer LinkedIn link · M5 | Mohamed | |
 
 ## 4. After launch (not blocking Nov 24)
 
