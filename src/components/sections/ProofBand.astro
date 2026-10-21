@@ -48,7 +48,7 @@ const logos = showLogos
   </div>
 
   {showLogos ? (
-    <div class="pband__strip" data-marquee data-speed="40" data-pause-label={t('marquee.pause')} data-play-label={t('marquee.play')}>
+    <div class="pband__strip" data-marquee data-speed="26" data-pause-label={t('marquee.pause')} data-play-label={t('marquee.play')}>
       <div class="pband__track" data-marquee-track>
         <ul role="list" class="pband__clients">
           {logos.map((l) => (
@@ -175,7 +175,7 @@ const logos = showLogos
 <script>
   // Marquee (Oct 21, Mohamed): clone the row once, set the speed in pixels per second, and wire the pause rules.
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((strip) => {
+  const startMarquee = (strip: HTMLElement) => {
     const track = strip.querySelector<HTMLElement>('[data-marquee-track]');
     const first = track?.querySelector<HTMLElement>('ul');
     if (!track || !first || reduced.matches) return;
@@ -198,5 +198,10 @@ const logos = showLogos
     strip.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && !(e.target as HTMLElement).closest('button')) toggle(); });
     // Off screen or in a background tab: no point animating.
     new IntersectionObserver(([en]) => { strip.style.animationPlayState = ''; track.style.animationPlayState = en.isIntersecting ? '' : 'paused'; }).observe(strip);
+  };
+  // Set the loop up the first time the row is near the screen, not at load: the extra copy costs layout time that a phone does not need for the first screen.
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((strip) => {
+    const once = new IntersectionObserver(([en]) => { if (en.isIntersecting) { once.disconnect(); startMarquee(strip); } }, { rootMargin: '200px' });
+    once.observe(strip);
   });
 </script>

@@ -353,6 +353,12 @@ Supersedes the "still client cards" and "no autoplay" entries above. **Client ca
 ### Oct 21 decision (Mohamed, evening): the project chapters sit in one sideways row
 NJWAR, Yawmy Care and Rushr are one chapter per page in a sideways scroll row (swipe, trackpad, keyboard, Previous/Next buttons, counter "1 of 3" next to the "Selected work" heading), instead of three tall stacked screens. No autoplay: each page is read, not watched (the guidance found: user-initiated movement for text-heavy slides; auto-drift only for light, repeated content like logos and project cards). The drifting project row below it stays. The /work page (V1.1) keeps chapters stacked.
 
+### Oct 21 decision (Mohamed, night): less motion, and the project chapters turn by themselves
+Mohamed found three moving things too much. Speeds now: client cards about 26px/s; project row about 18px/s; chapters turn one page every 10 seconds (smooth, 5 s hold after any manual move). All pause on hover, keyboard focus and tap, stop off screen, keyboard-only Pause button, none move under reduced motion. Supersedes the 40 / 34 px/s and "no autoplay for chapters" lines above. Rule going forward: at most one thing moves in view at a time; any new moving element needs Mohamed's OK.
+
+### Oct 21 decision (Mohamed, last): chapters row without the counter and the Pause button
+The project chapters keep turning by themselves (every 10 s) and keep the two arrows; the "1 of 3" counter and the keyboard-only Pause button are removed. The row still holds on mouse hover, keyboard focus (on the row or its arrows), a tap, and for 5 s after any swipe or arrow press, and it stops off screen and under reduced motion. The client cards and the project row keep their keyboard-only Pause button.
+
 ## 2A. Home v3 (/) · strategy v2, 2026-10-16
 
 Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 proof strip, §2.8 case highlight (anonymized per §0.7). The Review copy in §2.2a, §2.2b, §2.5 and §2.6 moves to /launch-ready and is not shown on home. Facts trace to `09` (Method, Offer, Services catalog, Differentiators).

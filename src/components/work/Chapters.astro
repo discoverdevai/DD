@@ -3,7 +3,8 @@
 // Manrope), huge product name, real screens from our Figma on 3D devices. Layouts by screen mix: web + 1 phone,
 // web + 2 phones, 3 phones. Held chapters (e.g. Rushr, D-07) render only in a preview build, from assets/projects-held
 // as inline data so their files never reach the live build. On home (`only` given) the chapters sit in ONE sideways row, one chapter per page
-// (scroll-snap, swipe, arrows, counter; Mohamed, Oct 21: gentler and easier than a tall stack; no autoplay, text-heavy slides are read, not watched). Devices are decorative frames; each screen has alt text.
+// (scroll-snap, swipe, two arrows, no counter; Mohamed, Oct 21: gentler and easier than a tall stack). It turns a page by itself every 10 seconds; hover, keyboard
+// focus, a tap, or any swipe or arrow press holds it (5 s after manual moves); keyboard focus on the row or its arrows also holds it (no Pause button here: Mohamed, Oct 21); off screen or reduced motion = it stays put. Devices are decorative frames; each screen has alt text.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import path from 'node:path';
@@ -36,8 +37,7 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
       <SectionHead id="work-title" title={sc.moreTitle} />
       {isLive('work') && <a class="wh__all" href={href('work')}>{sc.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
       {rows.length > 1 && (
-        <div class="wh__ctrl" data-ch-ctrl data-of={t('chapters.of')} hidden>
-          <span class="wh__count" data-ch-count aria-hidden="true">1 {t('chapters.of')} {rows.length}</span>
+        <div class="wh__ctrl" data-ch-ctrl hidden>
           <button type="button" class="wh__btn" data-ch-prev aria-label={t('chapters.prev')} aria-controls="ch-rail">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </button>
@@ -90,16 +90,17 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
   .wh__in { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); }
   .wh__ctrl { display: flex; align-items: center; gap: var(--space-2); }
   .wh__ctrl[hidden] { display: none; }
-  .wh__count { margin-inline-end: var(--space-2); font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); }
   .wh__btn { display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--color-heading); cursor: pointer; }
   .wh__btn:disabled { opacity: 0.35; cursor: default; }
   @media (hover: hover) { .wh__btn:not(:disabled):hover { border-color: var(--blue-400); } }
   .wh__btn:focus-visible, .chs--rail:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
   :dir(rtl) .wh__btn svg { transform: scaleX(-1); }
-  /* One chapter per page in a sideways row: snap, swipe, arrows, counter. The scrollbar is hidden (the counter and arrows show the position). */
+  /* One chapter per page in a sideways row: snap, swipe, arrows. The scrollbar is hidden. */
   .chs--rail { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
   .chs--rail::-webkit-scrollbar { display: none; }
   .chs--rail > .ch { flex: 0 0 100%; min-inline-size: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+  /* Pages of different content heights must line up: titles share one top edge and the devices share one bottom edge (design review, Oct 21). */
+  @media (width < 64rem) { .chs--rail > .ch { grid-template-rows: auto 1fr; align-content: stretch; align-items: start; } .chs--rail .ch__copy { align-content: start; } .chs--rail .ch__scene { align-self: end; inline-size: 100%; } }
   @media (prefers-reduced-motion: no-preference) { .chs--rail { scroll-behavior: smooth; } }
   .wh__all { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
   .chs--headed .ch { border-block-start: 0; padding-block-start: var(--space-8); }
@@ -150,19 +151,17 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
 </style>
 
 <script>
-  // Sideways chapters: the arrows turn one page, the counter follows the scroll position. Hidden until the script runs (no script = a plain swipe row).
+  // Sideways chapters: the arrows turn one page and grey out at the ends. Hidden until the script runs (no script = a plain swipe row).
   const rail = document.querySelector<HTMLElement>('[data-ch-rail]');
   const ctrl = document.querySelector<HTMLElement>('[data-ch-ctrl]');
   const prev = document.querySelector<HTMLButtonElement>('[data-ch-prev]');
   const next = document.querySelector<HTMLButtonElement>('[data-ch-next]');
-  const count = document.querySelector<HTMLElement>('[data-ch-count]');
-  if (rail && ctrl && prev && next && count) {
+  if (rail && ctrl && prev && next) {
     const total = rail.children.length;
     const rtl = () => getComputedStyle(rail).direction === 'rtl';
     const index = () => Math.min(total - 1, Math.max(0, Math.round(Math.abs(rail.scrollLeft) / rail.clientWidth)));
     const sync = () => {
       const i = index();
-      count.textContent = `${i + 1} ${ctrl.dataset.of} ${total}`;
       prev.disabled = i === 0;
       next.disabled = i === total - 1;
     };
@@ -173,5 +172,34 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
     new ResizeObserver(sync).observe(rail);
     ctrl.hidden = false;
     sync();
+
+    // Auto turn (Mohamed, Oct 21): one page every 7 seconds, only while the row is on screen and nobody is using it.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const EVERY = 10000; // ms per page (Mohamed, Oct 21: less motion on the page; was 7 s)
+      const HOLD = 5000;
+      let paused = false;
+      let hovering = false;
+      let inView = false;
+      let holdUntil = performance.now() + EVERY;
+      const hold = () => { holdUntil = performance.now() + HOLD; };
+      prev.addEventListener('click', hold);
+      next.addEventListener('click', hold);
+      rail.addEventListener('wheel', hold, { passive: true });
+      rail.addEventListener('touchstart', hold, { passive: true });
+      rail.addEventListener('keydown', hold);
+      rail.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
+      rail.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovering = false; });
+      const toggle = () => { paused = !paused; };
+      let downX = 0;
+      rail.addEventListener('pointerdown', (e) => { downX = e.clientX; });
+      rail.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && Math.abs(e.clientX - downX) < 6 && !(e.target as HTMLElement).closest('a,button')) toggle(); });
+      new IntersectionObserver(([en]) => { inView = en.isIntersecting; if (inView) holdUntil = Math.max(holdUntil, performance.now() + 2500); }, { threshold: 0.5 }).observe(rail);
+      setInterval(() => {
+        if (!inView || paused || hovering || document.hidden || rail.matches(':focus-visible') || rail.querySelector(':focus-visible') || performance.now() < holdUntil) return;
+        const i = index();
+        holdUntil = performance.now() + EVERY;
+        rail.scrollTo({ left: i >= total - 1 ? 0 : (i + 1) * rail.clientWidth * (rtl() ? -1 : 1) });
+      }, 500);
+    }
   }
 </script>

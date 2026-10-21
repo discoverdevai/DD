@@ -1,5 +1,5 @@
 ---
-// Selected work rail (03 §2A.8b, Oct 21, Mohamed): more projects on every screen in ONE row that drifts slowly (about 34px a second) and
+// Selected work rail (03 §2A.8b, Oct 21, Mohamed): more projects on every screen in ONE row that drifts very slowly (about 18px a second) and
 // loops. It is still a normal scroll row: swipe, trackpad, arrow buttons and keyboard all work, and any of them holds the drift for 5 seconds.
 // Hover, keyboard focus and a tap on touch also pause it; a Pause button appears for keyboard users only; reduced motion = no drift,
 // manual scroll with scroll-snap. The loop copy is made by the script (aria-hidden, inert). Titles link to /work only when it is live (V1.1).
@@ -94,7 +94,7 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
   const track = rail?.querySelector<HTMLElement>('.sc__track');
   if (rail && ctrl && prev && next && track) {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const SPEED = 34; // pixels per second
+    const SPEED = 18; // pixels per second (Mohamed, Oct 21: less motion on the page; was 34)
     const HOLD = 5000; // ms the drift waits after a swipe, scroll or arrow
     const step = () => (rail.querySelector<HTMLElement>('.sc__card')?.getBoundingClientRect().width ?? rail.clientWidth) + 16;
     const rtl = () => getComputedStyle(rail).direction === 'rtl';
@@ -108,17 +108,6 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
     let last = 0;
     let lastSet = 0;
 
-    if (!reduced) {
-      const first = track.querySelector<HTMLElement>('.sc__card');
-      [...track.children].forEach((c) => {
-        const copy = c.cloneNode(true) as HTMLElement;
-        copy.setAttribute('aria-hidden', 'true');
-        copy.setAttribute('inert', '');
-        track.append(copy);
-      });
-      auto = !!first;
-      if (auto) rail.setAttribute('data-auto', '');
-    }
     const measure = () => { half = auto ? track.scrollWidth / 2 : 0; };
     const sync = () => {
       measure();
@@ -147,7 +136,21 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
     new ResizeObserver(sync).observe(rail);
     sync();
 
-    if (auto) {
+    // The loop copy and the drift are set up the first time the row is near the screen, not at load: 12 extra cards of drawings
+    // cost layout time on a phone (home TBT audit, Oct 21).
+    const begin = () => {
+      const first = track.querySelector<HTMLElement>('.sc__card');
+      if (!first) return;
+      [...track.children].forEach((c) => {
+        const copy = c.cloneNode(true) as HTMLElement;
+        copy.setAttribute('aria-hidden', 'true');
+        copy.setAttribute('inert', '');
+        track.append(copy);
+      });
+      auto = true;
+      rail.setAttribute('data-auto', '');
+      sync();
+    {
       rail.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
       rail.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovering = false; });
       rail.addEventListener('wheel', hold, { passive: true });
@@ -165,7 +168,7 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
       const tick = (now: number) => {
         const dt = Math.min(now - (last || now), 250); // capped so a tab coming back from the background does not jump
         last = now;
-        const focused = rail.matches(':focus-within');
+        const focused = rail.matches(':focus-visible') || !!rail.querySelector(':focus-visible'); // keyboard focus only: a mouse click on the row must not stop it for good
         if (inView && !paused && !hovering && !focused && now > holdUntil && !document.hidden && half) {
           pos += (SPEED * dt) / 1000;
           if (pos >= half) pos -= half;
@@ -177,6 +180,11 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
+    }
+    };
+    if (!reduced) {
+      const once = new IntersectionObserver(([en]) => { if (en.isIntersecting) { once.disconnect(); begin(); } }, { rootMargin: '400px' });
+      once.observe(rail);
     }
   }
 </script>
