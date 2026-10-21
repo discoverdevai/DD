@@ -212,3 +212,10 @@ main > section[data-surface="ink"]:not(:first-child):not([data-cta-band]):not([d
   }
 }
 @media (forced-colors: active) { main > section[data-surface="ink"]::before { display: none; } }
+
+/* Below-the-fold work (home performance audit, Oct 21): sections after the first two skip layout and paint until they are near the
+   screen, which cuts the style and layout time of the first load. `auto` in the size keeps the last real height once rendered, so
+   scrolling back does not jump. Jumps to an anchor still land right because skipped sections keep their estimated height. */
+main > section:not(.hero):not(.pband):not(:first-child),
+main > #work > .chs,
+main > #work > #selected-work { content-visibility: auto; contain-intrinsic-size: auto 700px; }
