@@ -3,8 +3,8 @@
 // Manrope), huge product name, real screens from our Figma on 3D devices. Layouts by screen mix: web + 1 phone,
 // web + 2 phones, 3 phones. Held chapters (e.g. Rushr, D-07) render only in a preview build, from assets/projects-held
 // as inline data so their files never reach the live build. On home (`only` given) the chapters sit in ONE sideways row, one chapter per page
-// (scroll-snap, swipe, two arrows, no counter; Mohamed, Oct 21: gentler and easier than a tall stack). It turns a page by itself every 10 seconds; hover, keyboard
-// focus, a tap, or any swipe or arrow press holds it (5 s after manual moves); keyboard focus on the row or its arrows also holds it (no Pause button here: Mohamed, Oct 21); off screen or reduced motion = it stays put. Devices are decorative frames; each screen has alt text.
+// (scroll-snap, swipe, two arrows, no counter; Mohamed, Oct 21: gentler and easier than a tall stack). It turns a page by itself every 10 seconds and never pauses
+// (Mohamed, Oct 21: it keeps sliding); a swipe or arrow press only restarts the timer; off screen or reduced motion = it stays put. Devices are decorative frames; each screen has alt text.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import path from 'node:path';
@@ -173,31 +173,22 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
     ctrl.hidden = false;
     sync();
 
-    // Auto turn (Mohamed, Oct 21): one page every 7 seconds, only while the row is on screen and nobody is using it.
+    // Auto turn (Mohamed, Oct 21: it keeps sliding and never pauses): one page every 10 seconds while the row is on screen. Hover, focus and
+    // taps do not stop it. A swipe, arrow or key press only restarts the 10-second timer, so it does not flip right after you moved it.
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const EVERY = 10000; // ms per page (Mohamed, Oct 21: less motion on the page; was 7 s)
-      const HOLD = 5000;
-      let paused = false;
-      let hovering = false;
+      const EVERY = 10000;
       let inView = false;
-      let holdUntil = performance.now() + EVERY;
-      const hold = () => { holdUntil = performance.now() + HOLD; };
-      prev.addEventListener('click', hold);
-      next.addEventListener('click', hold);
-      rail.addEventListener('wheel', hold, { passive: true });
-      rail.addEventListener('touchstart', hold, { passive: true });
-      rail.addEventListener('keydown', hold);
-      rail.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
-      rail.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovering = false; });
-      const toggle = () => { paused = !paused; };
-      let downX = 0;
-      rail.addEventListener('pointerdown', (e) => { downX = e.clientX; });
-      rail.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && Math.abs(e.clientX - downX) < 6 && !(e.target as HTMLElement).closest('a,button')) toggle(); });
-      new IntersectionObserver(([en]) => { inView = en.isIntersecting; if (inView) holdUntil = Math.max(holdUntil, performance.now() + 2500); }, { threshold: 0.5 }).observe(rail);
+      let nextAt = performance.now() + EVERY;
+      const restart = () => { nextAt = performance.now() + EVERY; };
+      for (const el of [prev, next]) el.addEventListener('click', restart);
+      rail.addEventListener('wheel', restart, { passive: true });
+      rail.addEventListener('touchstart', restart, { passive: true });
+      rail.addEventListener('keydown', restart);
+      new IntersectionObserver(([en]) => { inView = en.isIntersecting; if (inView) nextAt = Math.max(nextAt, performance.now() + 2500); }, { threshold: 0.5 }).observe(rail);
       setInterval(() => {
-        if (!inView || paused || hovering || document.hidden || rail.matches(':focus-visible') || rail.querySelector(':focus-visible') || performance.now() < holdUntil) return;
+        if (!inView || document.hidden || performance.now() < nextAt) return;
         const i = index();
-        holdUntil = performance.now() + EVERY;
+        restart();
         rail.scrollTo({ left: i >= total - 1 ? 0 : (i + 1) * rail.clientWidth * (rtl() ? -1 : 1) });
       }, 500);
     }

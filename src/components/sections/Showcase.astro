@@ -1,8 +1,8 @@
 ---
 // Selected work rail (03 §2A.8b, Oct 21, Mohamed): more projects on every screen in ONE row that drifts very slowly (about 18px a second) and
-// loops. It is still a normal scroll row: swipe, trackpad, arrow buttons and keyboard all work, and any of them holds the drift for 5 seconds.
-// Hover, keyboard focus and a tap on touch also pause it; a Pause button appears for keyboard users only; reduced motion = no drift,
-// manual scroll with scroll-snap. The loop copy is made by the script (aria-hidden, inert). Titles link to /work only when it is live (V1.1).
+// loops. It never pauses (Mohamed, Oct 21: keep the slider moving); it is still a normal scroll row, so a swipe, trackpad, the arrow buttons or the
+// keyboard move it by hand and the drift only steps aside while that is happening. Reduced motion = no drift, manual scroll with scroll-snap.
+// The loop copy is made by the script when the row nears the screen (aria-hidden, inert). Titles link to /work only when it is live (V1.1).
 import ProjectVisual from '../work/ProjectVisual.astro';
 import { projects, showcase as c } from '../../content/copy/en/projects';
 import { href, isLive } from '../../data/routes';
@@ -19,7 +19,6 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
         <p class="sc__hint">{c.hint}</p>
       </div>
       <div class="sc__ctrl" data-sc-ctrl hidden>
-        <button type="button" class="sc__pause" aria-pressed="false" data-sc-pause data-pause-label={t('marquee.pause')} data-play-label={t('marquee.play')}>{t('marquee.pause')}</button>
         <button type="button" class="sc__btn" data-sc-prev aria-label={t('rail.prev')} aria-controls="sc-rail">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
         </button>
@@ -79,8 +78,6 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
   /* Drift mode (set by the script): no snapping while it moves; the arrows still step one card. */
   .sc__rail[data-auto] { scroll-snap-type: none; scroll-behavior: auto; scrollbar-width: none; }
   .sc__rail[data-auto]::-webkit-scrollbar { display: none; }
-  .sc__pause { position: relative; clip-path: inset(50%); inline-size: 1px; block-size: 1px; overflow: hidden; padding: 0; border: 0; background: var(--color-surface); color: var(--color-heading); font-size: var(--text-sm); border-radius: 999px; cursor: pointer; }
-  .sc__pause:focus-visible { clip-path: none; inline-size: auto; block-size: 2.75rem; padding-inline: var(--space-4); border: 1px solid var(--color-hairline); outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
   @media (prefers-reduced-motion: no-preference) { .sc__rail:not([data-auto]) { scroll-behavior: smooth; } }
 </style>
 
@@ -90,20 +87,18 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
   const ctrl = document.querySelector<HTMLElement>('[data-sc-ctrl]');
   const prev = document.querySelector<HTMLButtonElement>('[data-sc-prev]');
   const next = document.querySelector<HTMLButtonElement>('[data-sc-next]');
-  const pauseBtn = document.querySelector<HTMLButtonElement>('[data-sc-pause]');
   const track = rail?.querySelector<HTMLElement>('.sc__track');
   if (rail && ctrl && prev && next && track) {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const SPEED = 18; // pixels per second (Mohamed, Oct 21: less motion on the page; was 34)
-    const HOLD = 5000; // ms the drift waits after a swipe, scroll or arrow
+    const HOLD = 900; // ms the drift steps aside while a swipe, scroll or arrow is moving the row (it never pauses otherwise)
     const step = () => (rail.querySelector<HTMLElement>('.sc__card')?.getBoundingClientRect().width ?? rail.clientWidth) + 16;
     const rtl = () => getComputedStyle(rail).direction === 'rtl';
     let auto = false;
     let half = 0;
     let pos = 0;
     let holdUntil = 0;
-    let paused = false; // the Pause button or a tap
-    let hovering = false;
+    let touching = false; // a finger or mouse button is on the row
     let inView = true;
     let last = 0;
     let lastSet = 0;
@@ -151,30 +146,20 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
       rail.setAttribute('data-auto', '');
       sync();
     {
-      rail.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
-      rail.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovering = false; });
+      // The drift never pauses (Mohamed, Oct 21: it keeps sliding). It only steps aside while a finger, wheel or arrow is moving the row.
       rail.addEventListener('wheel', hold, { passive: true });
-      rail.addEventListener('touchstart', hold, { passive: true });
-      const toggle = () => {
-        paused = !paused;
-        if (pauseBtn) { pauseBtn.setAttribute('aria-pressed', String(paused)); pauseBtn.textContent = (paused ? pauseBtn.dataset.playLabel : pauseBtn.dataset.pauseLabel) ?? ''; }
-      };
-      pauseBtn?.addEventListener('click', toggle);
-      // A tap on touch holds the row (and a second tap lets it go); a swipe is a scroll, so it is not a tap.
-      let downX = 0;
-      rail.addEventListener('pointerdown', (e) => { downX = e.clientX; });
-      rail.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && Math.abs(e.clientX - downX) < 6 && !(e.target as HTMLElement).closest('a,button')) toggle(); });
+      rail.addEventListener('pointerdown', () => { touching = true; });
+      for (const ev of ['pointerup', 'pointercancel'] as const) addEventListener(ev, () => { if (touching) { touching = false; hold(); } });
       new IntersectionObserver(([en]) => { inView = en.isIntersecting; }).observe(rail);
       const tick = (now: number) => {
         const dt = Math.min(now - (last || now), 250); // capped so a tab coming back from the background does not jump
         last = now;
-        const focused = rail.matches(':focus-visible') || !!rail.querySelector(':focus-visible'); // keyboard focus only: a mouse click on the row must not stop it for good
-        if (inView && !paused && !hovering && !focused && now > holdUntil && !document.hidden && half) {
+        if (inView && !touching && now > holdUntil && !document.hidden && half) {
           pos += (SPEED * dt) / 1000;
           if (pos >= half) pos -= half;
           lastSet = pos;
           rail.scrollLeft = pos;
-        } else if (now <= holdUntil) {
+        } else {
           pos = rail.scrollLeft;
         }
         requestAnimationFrame(tick);

@@ -359,6 +359,9 @@ Mohamed found three moving things too much. Speeds now: client cards about 26px/
 ### Oct 21 decision (Mohamed, last): chapters row without the counter and the Pause button
 The project chapters keep turning by themselves (every 10 s) and keep the two arrows; the "1 of 3" counter and the keyboard-only Pause button are removed. The row still holds on mouse hover, keyboard focus (on the row or its arrows), a tap, and for 5 s after any swipe or arrow press, and it stops off screen and under reduced motion. The client cards and the project row keep their keyboard-only Pause button.
 
+### Oct 21 decision (Mohamed, final): the Selected work sliders never pause
+Both Selected work rows (the chapters and the project row) keep sliding. Hover, keyboard focus and taps no longer stop them, and the keyboard-only Pause buttons on those two rows are removed. They only step aside while a finger, wheel or arrow is moving the row by hand (the chapters restart their 10-second timer after a swipe or arrow press; the project row waits about one second). They still stop when off screen, in a background tab, and under "reduce motion". Known trade-off: WCAG 2.2.2 asks for a way to pause moving content that runs over 5 seconds; this choice drops it for these two rows (the arrows and swipe give manual control, and reduced motion is respected). The client card row keeps its pause rules.
+
 ## 2A. Home v3 (/) · strategy v2, 2026-10-16
 
 Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 proof strip, §2.8 case highlight (anonymized per §0.7). The Review copy in §2.2a, §2.2b, §2.5 and §2.6 moves to /launch-ready and is not shown on home. Facts trace to `09` (Method, Offer, Services catalog, Differentiators).
