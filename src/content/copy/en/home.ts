@@ -1,5 +1,6 @@
 // 03-copy.md §2A (Home v3, strategy v2, 2026-10-16). Verbatim. §2.3 proof strip and §2.8 case highlight (anonymized
 // per §0.7) are reused from §2. The v1 Review copy lives on /launch-ready.
+import { shared } from './shared';
 export const home = {
   seo: {
     title: 'Product Development Company for Startups | DiscoverDev',
@@ -127,7 +128,7 @@ export const home = {
     items: [
       { id: 'ai', q: 'Is AI-written code safe to ship?', a: 'Yes. At DiscoverDev, AI drafts code, tests and documentation, and senior engineers make the decisions and sign off each release. A person is responsible for every line that reaches your users, so speed never costs you quality.' },
       { id: 'pricing', q: 'How much does an MVP cost?', a: 'DiscoverDev prices an MVP as a fixed price for an agreed scope. We don’t publish a price list: you get your number after a free 30-minute clarity call, before you commit to anything. Validate (1–2 weeks) is a fixed fee credited toward Build. Build (8–12 weeks) is a fixed price. Scale is a monthly retainer.' },
-      { id: 'timeline', q: 'How long does it take to build an MVP?', a: 'Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.' },
+      { id: 'timeline', q: shared.mvpTimeQ, a: 'Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.' },
       { id: 'call', q: 'What happens on the clarity call?', a: 'You get 30 minutes with a senior member of our product team to tell us what you’re building. We ask what you have and what worries you, and tell you plainly what we’d do. There is no pitch. You leave with a next step, even if we’re not the right fit.' },
       { id: 'regions', q: 'Do you work with startups in the US and Saudi Arabia?', a: 'Yes. We have worked with clients in the US, Saudi Arabia, Kuwait, the UK and Egypt, across 4 continents. Our engineering hub is in Alexandria, Egypt, with a presence in Texas, USA. We work in Arabic and English, and calls run in US and Gulf hours.' },
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.' },

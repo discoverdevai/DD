@@ -28,4 +28,25 @@ for (const [loc, dict] of Object.entries(dicts)) {
   }
 }
 
+// Unused-key pass (clean-up round 2): every EN key must be used in src/, either as a quoted literal or through a template
+// such as `terms.${kind}.${n}` (any key that starts with the template's fixed prefix counts as used).
+if (en) {
+  const files = [];
+  (function walk(d) {
+    for (const n of fs.readdirSync(d)) {
+      if (n === 'node_modules' || n === '.astro') continue;
+      const f = path.join(d, n);
+      if (fs.statSync(f).isDirectory()) walk(f);
+      else if (/\.(astro|ts|js|mjs)$/.test(n)) files.push(f);
+    }
+  })(path.resolve('src'));
+  const source = files.map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+  const prefixes = [...source.matchAll(/[`'"]([a-zA-Z0-9_.]+\.)\$\{/g)].map((m) => m[1]);
+  const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  for (const k of Object.keys(en)) {
+    const quoted = new RegExp('[`\'"]' + escape(k) + '[`\'"]');
+    if (!quoted.test(source) && !prefixes.some((p) => k.startsWith(p))) problems.push(`en: "${k}" is not used anywhere in src/`);
+  }
+}
+
 report('i18n-gate', problems);

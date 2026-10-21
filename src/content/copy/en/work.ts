@@ -1,4 +1,5 @@
 // 03-copy.md §9 (/work) and §10 (case study), anonymized per §0.7 (V12, [CONSENT], G-07). No client names or quotes.
+import { shared } from './shared';
 export const work = {
   seo: {
     title: 'Case Studies: MVPs, Marketplaces & AI Apps | DiscoverDev',
@@ -17,24 +18,24 @@ export const work = {
         { text: 'Market research and a go-to-market plan for a sports company entering Egypt', where: 'Italy' },
         { text: 'Demand testing and sentiment analysis before building', where: '' },
         { text: 'Feasibility sprints across several startup ideas, ending in build, pivot or shelve decisions', where: 'Saudi Arabia' },
-        { text: 'Market research, go-to-market and discovery for individual founders', where: 'Kuwait, Switzerland, UK, Spain' },
+        { text: 'Market research, go-to-market and discovery for individual founders', where: shared.foundersWhere },
         { text: 'Tourism and hospitality market research for a consulting firm', where: 'Kuwait' },
       ] },
       { key: 'build' as const, title: 'Build', items: [
-        { text: 'AR furniture e-commerce with AI recommendations', where: 'Saudi Arabia' },
+        { text: shared.projectArFurniture, where: 'Saudi Arabia' },
         { text: 'Health app that explains lab reports in plain language, with medical safety guardrails', where: '' },
         { text: 'AI agents for call operations, a landing page and staff augmentation', where: 'USA' },
-        { text: 'White-label websites and mobile apps for a software house', where: 'UK', link: { label: 'White-label websites and mobile apps', to: 'partners' as const } },
+        { text: shared.projectWhiteLabelLong, where: 'UK', link: { label: 'White-label websites and mobile apps', to: 'partners' as const } },
       ] },
       { key: 'scale' as const, title: 'Scale', items: [
-        { text: '12-month embedded product team for a B2B learning platform', where: 'UK' },
-        { text: 'Data, ML and automation for an EdTech platform with 20,000+ students', where: 'Egypt' },
-        { text: 'Embedded data and ML team for a smart ride-sharing platform', where: 'Saudi Arabia' },
-        { text: 'An ML engineer placed for 3 months on restaurant procurement', where: 'Saudi Arabia' },
+        { text: shared.projectLmsTeam, where: 'UK' },
+        { text: shared.projectEdtechData, where: 'Egypt' },
+        { text: shared.projectRideMl, where: 'Saudi Arabia' },
+        { text: shared.projectProcurementMl, where: 'Saudi Arabia' },
       ] },
     ],
   },
-  band: { title: 'Want results like these for your product?', link: 'Have a prototype? Start with a Launch-Ready Review' },
+  band: { title: 'Want results like these for your product?', link: shared.reviewStartLink },
 };
 
 export const caseStudy = {

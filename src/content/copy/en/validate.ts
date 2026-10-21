@@ -1,4 +1,5 @@
 // 03-copy.md §5 (/validate). Verbatim, with §0.7 launch resolutions applied (noted inline).
+import { shared } from './shared';
 export const validate = {
   seo: {
     title: 'Product Discovery Services for Startups | DiscoverDev',
@@ -80,15 +81,15 @@ export const validate = {
     title: 'Who works on it',
     // [VERIFY: V16 Validate team shape] → §0.7 V16 keep (tag removed).
     body: 'A product lead and a designer, with an engineer who checks that the scope can be built in time and on budget. The same team can carry on into Build. No handoff gaps.',
-    link: { label: 'About DiscoverDev and where we work', to: 'about' as const }, // 03 §0.8
+    link: { label: shared.aboutLink, to: 'about' as const }, // 03 §0.8
   },
   proof: {
     title: 'Discovery work we’ve done',
     // [CONSENT] → §0.7: no names, no quotes. Athkado item uses its §9.3 anonymized description as the title.
     // Fantacalcio item omitted (no §9.3 description; name-dependent). Roberto and Andrei quotes omitted.
     items: [
-      { title: 'AR furniture e-commerce with AI recommendations', where: 'Saudi Arabia', body: 'Rapid market studies and feasibility sprints that led to build, pivot or shelve decisions.' },
-      { title: 'Entrepreneurs in Kuwait, Switzerland, the UK and Spain', body: 'Market research, go-to-market and discovery.' },
+      { title: shared.projectArFurniture, where: 'Saudi Arabia', body: 'Rapid market studies and feasibility sprints that led to build, pivot or shelve decisions.' },
+      { title: 'Entrepreneurs in Kuwait, Switzerland, the UK and Spain', body: shared.projectFoundersDid },
     ],
   },
   ownership: {

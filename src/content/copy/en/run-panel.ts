@@ -1,4 +1,5 @@
 // 03-copy.md §2.2a (Signal run panel). Verbatim. Proof-bank wording only.
+import { shared } from './shared';
 export const runPanel = {
   title: 'Launch-Ready Review',
   meta: 'Example, not a client',
@@ -23,7 +24,7 @@ export const runPanel = {
       { who: 'Product lead', what: 'Verdict: keep, fix or replace' },
     ],
   },
-  footer: 'A person is responsible for every line that reaches your users.',
+  footer: shared.personResponsible,
   caption: 'Example of how a Launch-Ready Review runs: AI checks six areas, then people sign off',
   chips: { ai: 'AI-accelerated', human: 'Senior sign-off' },
 } as const;
