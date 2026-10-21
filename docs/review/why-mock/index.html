@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockups: Why DiscoverDev and Three ways to work</title>
+<style>
+@font-face{font-family:Manrope;src:url("/_astro/fonts/0601f74383b27b92.woff2") format("woff2");font-weight:200 800;font-display:swap}
+@font-face{font-family:Rubik;src:url("/_astro/fonts/02501823fb8f8d36.woff2") format("woff2");font-weight:300 900;font-display:swap}
+:root{--ink:#01082D;--raised:#02103E;--blue:#1240BE;--navy:#032993;--white:#FEFEFE;--muted:#A2C1FE;--hair:rgba(254,254,254,.14);--green:#6FE3A5;--r:6px;--rm:10px;--rl:16px}
+*{box-sizing:border-box;margin:0}
+body{background:#000514;color:var(--white);font:400 16px/1.6 Rubik,system-ui,sans-serif}
+h1,h2,h3,h4,.h{font-family:Manrope,system-ui,sans-serif;letter-spacing:-.03em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.intro{padding:56px 0 24px}
+.intro h1{font-size:40px;line-height:1.1}
+.intro p{color:var(--muted);max-width:70ch;margin-top:12px}
+.notes{display:grid;gap:12px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.note{border:1px solid var(--hair);border-radius:var(--rm);padding:16px;background:rgba(2,16,62,.6)}
+.note b{display:block;font-family:Manrope;margin-bottom:4px}
+.note span{color:var(--muted);font-size:14px}
+.group{margin:56px 0 16px;padding-top:24px;border-top:1px solid var(--hair)}
+.group h2{font-size:28px}
+.tag{font:500 13px/1 ui-monospace,Menlo,monospace;color:var(--muted)}
+.opt{margin:28px 0;border:1px solid var(--hair);border-radius:var(--rl);overflow:hidden;background:var(--ink)}
+.optbar{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:12px 20px;background:#000a26;border-bottom:1px solid var(--hair)}
+.optbar b{font-family:Manrope}
+.optbar span{font-size:13px;color:var(--muted)}
+.sec{padding:80px 0;background:radial-gradient(60% 100% at 25% 0%,rgba(18,64,190,.3),transparent 70%),var(--ink)}
+.label{font:500 13px/1 ui-monospace,Menlo,monospace;color:var(--muted);letter-spacing:.02em;margin-bottom:16px}
+.dim{color:#7f87a1}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:var(--r);background:var(--blue);color:#fff;font:600 16px Manrope;text-decoration:none}
+.card{border:1px solid var(--hair);border-radius:var(--rl);background:rgba(2,16,62,.55)}
+.num{font:700 clamp(40px,5vw,64px)/1 Manrope;letter-spacing:-.045em}
+.mono{font:500 14px/1.4 ui-monospace,Menlo,monospace;color:var(--muted)}
+.pill{display:inline-block;padding:3px 9px;border:1px solid var(--hair);border-radius:6px;font:500 13px ui-monospace,Menlo,monospace;color:var(--white)}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid #6c9aff;display:inline-block}
+.dot.fill{background:#6c9aff}.dot.g{background:var(--green);border-color:var(--green);box-shadow:0 0 0 4px rgba(111,227,165,.2)}
+.circle{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(162,193,254,.5);font:500 14px ui-monospace,monospace;color:#c8dbff;flex:none}
+
+/* Why A: contrast table */
+.wa h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1;max-width:20ch}
+.wa .grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:40px;border:1px solid var(--hair);border-radius:var(--rl);overflow:hidden}
+.wa .colh{padding:18px 28px;font:600 15px Manrope}
+.wa .c1{background:rgba(255,255,255,.03);color:#9aa3bf}
+.wa .c2{background:linear-gradient(160deg,rgba(18,64,190,.45),rgba(2,16,62,.7));color:#fff}
+.wa .cell{padding:22px 28px;border-top:1px solid var(--hair);font-size:18px}
+.wa .c1.cell{color:#8b93ad}.wa .c2.cell{font-weight:600;font-family:Manrope}
+@media(max-width:720px){.wa .grid{grid-template-columns:1fr}}
+
+/* Why B: numerals */
+.wb h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1;max-width:22ch}
+.wb .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border-top:1px solid var(--hair)}
+.wb .st{padding:28px 24px 0 0;border-inline-end:1px solid var(--hair);margin-inline-end:24px}
+.wb .st:last-child{border:0;margin:0}
+.wb .st p{color:var(--muted);margin-top:10px;font-size:15px;max-width:22ch}
+@media(max-width:900px){.wb .stats{grid-template-columns:1fr 1fr;gap:28px 0}.wb .st:nth-child(2n){border:0}}
+
+/* Why C: three promises */
+.wc .head{max-width:24ch}
+.wc h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1}
+.wc .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.wc .col{padding:32px;display:grid;gap:14px;align-content:start}
+.wc .col h3{font-size:24px;line-height:1.2}
+.wc .col p{color:var(--muted)}
+.wc .big{font:700 56px/1 Manrope;color:rgba(111,150,255,.55);letter-spacing:-.05em}
+@media(max-width:900px){.wc .cols{grid-template-columns:1fr}}
+
+/* Why D: split with steps card */
+.wd .g{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center}
+.wd h2{font-size:clamp(30px,3.2vw,46px);line-height:1.1;max-width:20ch}
+.wd .steps{padding:32px;border:1px solid var(--hair);border-radius:var(--rl);background:linear-gradient(160deg,rgba(18,64,190,.3),rgba(2,16,62,.8) 70%)}
+.wd .step{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--hair);font:600 18px Manrope}
+.wd .proof{display:flex;gap:28px;flex-wrap:wrap;margin-top:36px;color:var(--muted);font-size:15px}
+.wd .proof b{color:#fff;font-family:Manrope}
+@media(max-width:900px){.wd .g{grid-template-columns:1fr;gap:32px}}
+
+/* Three ways: shared head */
+.th h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1}
+.th .lead{color:var(--muted);max-width:60ch;margin-top:14px}
+.th .lead b{display:block;color:#fff;font-weight:500;font-size:18px;margin-bottom:6px}
+
+/* T-A path */
+.ta .path{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.ta .path::before{content:"";position:absolute;inset-inline:6%;top:7px;height:2px;background:linear-gradient(90deg,#6c9aff,#6c9aff 50%,var(--green));opacity:.7}
+.ta .stop{position:relative;padding-top:34px}
+.ta .stop .dot{position:absolute;top:0;left:0;background:var(--ink)}
+.ta .c{padding:28px;display:grid;gap:12px;min-height:300px;align-content:start}
+.ta .c h3{font-size:30px}.ta .c .k{color:var(--muted);font-size:14px}
+.ta .c p{color:var(--muted)}.ta .c a{margin-top:auto;color:#8fb4ff;font-weight:600;text-decoration:none}
+@media(max-width:900px){.ta .path{grid-template-columns:1fr}.ta .path::before{display:none}}
+
+/* T-B rows */
+.tb .rows{margin-top:44px;border-top:1px solid var(--hair)}
+.tb .row{display:grid;grid-template-columns:160px minmax(0,1.2fr) minmax(0,1.6fr) auto;gap:28px;align-items:center;padding:30px 0;border-bottom:1px solid var(--hair)}
+.tb .row h3{font-size:34px;line-height:1.05}
+.tb .row .who{font:500 14px ui-monospace,monospace;color:var(--muted)}
+.tb .row p{color:var(--muted)}
+.tb .row .go{width:52px;height:52px;border-radius:50%;border:1px solid var(--hair);display:grid;place-items:center;color:#fff;font-size:20px}
+.tb .row:hover .go{background:var(--blue);border-color:var(--blue)}
+@media(max-width:900px){.tb .row{grid-template-columns:1fr;gap:10px}}
+
+/* T-C selector */
+.tc input{position:absolute;opacity:0;pointer-events:none}
+.tc .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+.tc .tabs label{cursor:pointer;padding:14px 20px;border:1px solid var(--hair);border-radius:var(--r);font:600 16px Manrope;color:var(--muted)}
+.tc #t1:checked~.tabs label[for=t1],.tc #t2:checked~.tabs label[for=t2],.tc #t3:checked~.tabs label[for=t3]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tc .panel{display:none;margin-top:20px;padding:36px;grid-template-columns:1.1fr 1fr;gap:40px}
+.tc #t1:checked~.p1,.tc #t2:checked~.p2,.tc #t3:checked~.p3{display:grid}
+.tc .panel h3{font-size:36px;line-height:1.1}
+.tc .panel p{color:var(--muted);margin-top:10px}
+.tc dl{display:grid;gap:14px}.tc dt{font:500 13px ui-monospace,monospace;color:var(--muted)}.tc dd{font:600 22px Manrope;margin:0}
+@media(max-width:900px){.tc .panel{grid-template-columns:1fr}}
+
+/* T-D table */
+.td table{width:100%;border-collapse:collapse;margin-top:44px}
+.td th,.td td{padding:20px 22px;text-align:left;border-bottom:1px solid var(--hair);vertical-align:top}
+.td thead th{font:700 26px Manrope;letter-spacing:-.03em;border-bottom:2px solid rgba(111,150,255,.5)}
+.td thead th small{display:block;font:500 13px ui-monospace,monospace;color:var(--muted);margin-bottom:6px}
+.td tbody th{font:500 13px ui-monospace,monospace;color:var(--muted);width:150px}
+.td td{font-size:17px}
+.td tfoot td{border:0;padding-top:24px}
+.td .hi{background:linear-gradient(180deg,rgba(18,64,190,.3),transparent)}
+@media(max-width:900px){.td table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="intro">
+    <p class="tag">Mockups · Oct 21, 2026 · dark theme, brand colors, the site's fonts</p>
+    <h1>Why DiscoverDev, and Three ways to work with us</h1>
+    <p>Four options for each section, built from what top sites do and only from facts in our proof file. Pick one per section (or mix). Nothing is built into the site yet.</p>
+    <div class="notes">
+      <div class="note"><b>thoughtbot</b><span>Short declarative headline, then proof (numbers, quote, logo wall). Services grouped "for every stage of your business".</span></div>
+      <div class="note"><b>Netguru</b><span>A row of four large numerals with small captions as the main proof. Pillars as a plain vertical stack of heading plus summary.</span></div>
+      <div class="note"><b>Toptal</b><span>Three numbered steps with big numerals, claim-style subheads, four-up benefit blocks.</span></div>
+      <div class="note"><b>What we take</b><span>Numerals and numbered steps (easy to scan), a comparison to say what is different, stage-based paths for the offers. No stock icons, no extra claims.</span></div>
+    </div>
+  </header>
+
+  <div class="group"><p class="tag">SECTION 1</p><h2>Why DiscoverDev</h2></div>
+
+  <article class="opt">
+    <div class="optbar"><b>Why A · "Most teams / DiscoverDev" comparison</b><span>Says the difference outright. Reads in 5 seconds.</span></div>
+    <section class="sec wa"><div class="wrap">
+      <p class="label">Why DiscoverDev</p>
+      <h2>Most teams just build what you ask for. <span class="dim">We help you build the right thing.</span></h2>
+      <div class="grid">
+        <div class="colh c1">Most teams</div><div class="colh c2">DiscoverDev</div>
+        <div class="cell c1">Build what you ask for</div><div class="cell c2">Test the idea first</div>
+        <div class="cell c1">Start coding on day one</div><div class="cell c2">Sketch the product, decide what to cut, then build</div>
+        <div class="cell c1">Speed that costs quality</div><div class="cell c2">AI drafts it. A senior engineer signs off every release</div>
+        <div class="cell c1">You rent the result</div><div class="cell c2">You own all of it: full IP, your repository, no lock-in</div>
+      </div>
+    </div></section>
+  </article>
+
+  <article class="opt">
+    <div class="optbar"><b>Why B · Four big numbers</b><span>The Netguru / Toptal pattern: facts first, then the statement.</span></div>
+    <section class="sec wb"><div class="wrap">
+      <p class="label">Why DiscoverDev</p>
+      <h2>Build the right thing, then ship it fast, and own all of it.</h2>
+      <div class="stats">
+        <div class="st"><div class="num">1–2<span style="font-size:.5em"> wks</span></div><p>Validate: a clickable prototype and a fixed build estimate</p></div>
+        <div class="st"><div class="num">8–12<span style="font-size:.5em"> wks</span></div><p>Build: a live product with real users, at a fixed price</p></div>
+        <div class="st"><div class="num">4</div><p>continents where we have worked with clients</p></div>
+        <div class="st"><div class="num">5.0</div><p>across 11 reviews (Clutch, Upwork, Fiverr and direct)</p></div>
+      </div>
+    </div></section>
+  </article>
+
+  <article class="opt">
+    <div class="optbar"><b>Why C · Three promises, numbered</b><span>The Toptal steps pattern: one idea per column, big quiet numerals.</span></div>
+    <section class="sec wc"><div class="wrap">
+      <p class="label">Why DiscoverDev</p>
+      <div class="head"><h2>Most teams just build what you ask for. <span class="dim">We do three things differently.</span></h2></div>
+      <div class="cols">
+        <div class="col card"><span class="big">01</span><h3>The right thing, first</h3><p>We test the idea, sketch the product and tell you what to cut, before any code.</p></div>
+        <div class="col card"><span class="big">02</span><h3>Fast, and signed off</h3><p>AI drafts the work so it moves fast. A senior engineer signs off every release.</p></div>
+        <div class="col card"><span class="big">03</span><h3>All of it is yours</h3><p>Full IP, in your own repository, with no lock-in.</p></div>
+      </div>
+    </div></section>
+  </article>
+
+  <article class="opt">
+    <div class="optbar"><b>Why D · Statement + "Before any code" steps + proof line</b><span>Today's redesign, with a proof line added underneath.</span></div>
+    <section class="sec wd"><div class="wrap">
+      <div class="g">
+        <div>
+          <p class="label">Why DiscoverDev</p>
+          <h2>Most teams just build what you ask for. <span class="dim">We help you build the right thing, then ship it fast, and you own all of it.</span></h2>
+          <div class="proof"><span><b>8–12 weeks</b> to a live product</span><span><b>Senior sign-off</b> on every release</span><span><b>5.0</b> across 11 reviews</span></div>
+        </div>
+        <div class="steps"><p class="mono" style="margin-bottom:12px">Before any code</p>
+          <div class="step"><span class="circle">1</span>Test the idea</div>
+          <div class="step"><span class="circle">2</span>Sketch the product</div>
+          <div class="step"><span class="circle">3</span>Decide what to cut</div>
+        </div>
+      </div>
+    </div></section>
+  </article>
+
+  <div class="group"><p class="tag">SECTION 2</p><h2>Three ways to work with us</h2></div>
+
+  <article class="opt">
+    <div class="optbar"><b>Ways A · A path: idea → build → grow</b><span>Cards on a line with three stops, like the journey they describe.</span></div>
+    <section class="sec th ta"><div class="wrap">
+      <h2>Three ways to work with us</h2>
+      <p class="lead"><b>DiscoverDev is a product and engineering company for startups and growing teams, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA.</b>We validate the right product, build it with senior AI-accelerated teams in 8–12 weeks, and stay to scale it. You own all of it.</p>
+      <div class="path">
+        <div class="stop"><span class="dot"></span><div class="c card"><span class="mono">I have an idea.</span><h3>Validate</h3><span class="k">Product discovery</span><div><span class="pill">1–2 weeks</span> <span class="pill">Fixed fee</span></div><p>Market and competitor read, product scope, a clickable prototype and a fixed build estimate.</p><a href="#">Book a call about Validate →</a></div></div>
+        <div class="stop"><span class="dot fill"></span><div class="c card"><span class="mono">I’m ready to build.</span><h3>Build</h3><span class="k">MVP development</span><div><span class="pill">8–12 weeks</span> <span class="pill">Fixed price</span></div><p>A live product with real users: design, build, QA and deployment, with a demo for you every week.</p><a href="#">Book a call about Build →</a></div></div>
+        <div class="stop"><span class="dot g"></span><div class="c card"><span class="mono">It’s working. Grow it.</span><h3>Scale</h3><span class="k">Dedicated development team</span><div><span class="pill">Ongoing</span> <span class="pill">Monthly retainer</span></div><p>A dedicated team of developers, testers and a project manager who runs the roadmap with you. You keep control.</p><a href="#">Book a call about Scale →</a></div></div>
+      </div>
+    </div></section>
+  </article>
+
+  <article class="opt">
+    <div class="optbar"><b>Ways B · Three wide rows</b><span>The Netguru pillar stack: nothing to decode, the whole row is the link, fewer boxes.</span></div>
+    <section class="sec th tb"><div class="wrap">
+      <h2>Three ways to work with us</h2>
+      <p class="lead"><b>DiscoverDev is a product and engineering company for startups and growing teams.</b>Start where you are. Validate’s fee credits toward Build.</p>
+      <div class="rows">
+        <a class="row" href="#" style="color:inherit;text-decoration:none"><span class="who">I have an idea.</span><div><h3>Validate</h3><span class="mono">Product discovery</span></div><div><p>Market and competitor read, product scope, a clickable prototype and a fixed build estimate.</p><p style="margin-top:8px"><span class="pill">1–2 weeks</span> <span class="pill">Fixed fee</span></p></div><span class="go">→</span></a>
+        <a class="row" href="#" style="color:inherit;text-decoration:none"><span class="who">I’m ready to build.</span><div><h3>Build</h3><span class="mono">MVP development</span></div><div><p>A live product with real users: design, build, QA and deployment, with a demo for you every week.</p><p style="margin-top:8px"><span class="pill">8–12 weeks</span> <span class="pill">Fixed price</span></p></div><span class="go">→</span></a>
+        <a class="row" href="#" style="color:inherit;text-decoration:none"><span class="who">It’s working. Grow it.</span><div><h3>Scale</h3><span class="mono">Dedicated development team</span></div><div><p>A dedicated team of developers, testers and a project manager who runs the roadmap with you. You keep control.</p><p style="margin-top:8px"><span class="pill">Ongoing</span> <span class="pill">Monthly retainer</span></p></div><span class="go">→</span></a>
+      </div>
+    </div></section>
+  </article>
+
+  <article class="opt">
+    <div class="optbar"><b>Ways C · "Where are you now?" selector</b><span>The thoughtbot "for every stage" idea made interactive (click the three buttons).</span></div>
+    <section class="sec th tc"><div class="wrap">
+      <h2>Where are you now?</h2>
+      <p class="lead"><b>Three ways to work with us.</b>Start where you are. Validate’s fee credits toward Build.</p>
+      <input type="radio" name="t" id="t1" checked><input type="radio" name="t" id="t2"><input type="radio" name="t" id="t3">
+      <div class="tabs"><label for="t1">I have an idea.</label><label for="t2">I’m ready to build.</label><label for="t3">It’s working. Grow it.</label></div>
+      <div class="panel p1 card"><div><span class="mono">Product discovery</span><h3>Validate</h3><p>Market and competitor read, product scope, a clickable prototype and a fixed build estimate.</p><p style="margin-top:22px"><a class="btn" href="#">Book a call about Validate</a></p></div><dl><div><dt>Time</dt><dd>1–2 weeks</dd></div><div><dt>Price</dt><dd>Fixed fee, credits toward Build</dd></div><div><dt>You get</dt><dd>A clickable prototype and a fixed build estimate</dd></div></dl></div>
+      <div class="panel p2 card"><div><span class="mono">MVP development</span><h3>Build</h3><p>A live product with real users: design, build, QA and deployment, with a demo for you every week.</p><p style="margin-top:22px"><a class="btn" href="#">Book a call about Build</a></p></div><dl><div><dt>Time</dt><dd>8–12 weeks</dd></div><div><dt>Price</dt><dd>Fixed price for an agreed scope</dd></div><div><dt>You get</dt><dd>A live product with real users</dd></div></dl></div>
+      <div class="panel p3 card"><div><span class="mono">Dedicated development team</span><h3>Scale</h3><p>A dedicated team of developers, testers and a project manager who runs the roadmap with you. You keep control.</p><p style="margin-top:22px"><a class="btn" href="#">Book a call about Scale</a></p></div><dl><div><dt>Time</dt><dd>Ongoing</dd></div><div><dt>Price</dt><dd>Monthly retainer</dd></div><div><dt>You get</dt><dd>A team that stays with your product</dd></div></dl></div>
+    </div></section>
+  </article>
+
+  <article class="opt">
+    <div class="optbar"><b>Ways D · Side-by-side table</b><span>For visitors who compare: time, price and result in one glance.</span></div>
+    <section class="sec th td"><div class="wrap">
+      <h2>Three ways to work with us</h2>
+      <p class="lead"><b>DiscoverDev is a product and engineering company for startups and growing teams.</b>Start where you are. Validate’s fee credits toward Build.</p>
+      <table>
+        <thead><tr><th></th><th><small>I have an idea.</small>Validate</th><th class="hi"><small>I’m ready to build.</small>Build</th><th><small>It’s working. Grow it.</small>Scale</th></tr></thead>
+        <tbody>
+          <tr><th>What</th><td>Product discovery</td><td class="hi">MVP development</td><td>Dedicated development team</td></tr>
+          <tr><th>Time</th><td>1–2 weeks</td><td class="hi">8–12 weeks</td><td>Ongoing</td></tr>
+          <tr><th>Price</th><td>Fixed fee</td><td class="hi">Fixed price</td><td>Monthly retainer</td></tr>
+          <tr><th>You get</th><td>A clickable prototype and a fixed build estimate</td><td class="hi">A live product with real users, and a demo every week</td><td>A team that runs the roadmap with you</td></tr>
+        </tbody>
+        <tfoot><tr><td></td><td><a class="btn" href="#">Book a call</a></td><td class="hi"><a class="btn" href="#">Book a call</a></td><td><a class="btn" href="#">Book a call</a></td></tr></tfoot>
+      </table>
+    </div></section>
+  </article>
+  <p class="tag" style="padding:24px 0 64px">All text comes from the site copy and context/09-proof.md. Numbers shown: 1–2 and 8–12 weeks, 4 continents, 5.0 across 11 reviews.</p>
+</div>
+</body>
+</html>

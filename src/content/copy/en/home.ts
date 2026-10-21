@@ -122,7 +122,7 @@ export const home = {
     check: { title: 'Take the launch check', body: '10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive.', cta: 'Start the check' },
   },
   // §2V1 section 3: the problem, as a two-tone statement (core idea, 03 §0).
-  problem: { label: 'Why DiscoverDev', bright: 'Most teams just build what you ask for.', dim: 'We help you build the right thing, then ship it fast, and you own all of it.', support: 'We test the idea, sketch the product and tell you what to cut, before any code.' },
+  problem: { label: 'Why DiscoverDev', bright: 'Most teams just build what you ask for.', dim: 'We help you build the right thing, then ship it fast, and you own all of it.', stepsLabel: 'Before any code', steps: ['Test the idea', 'Sketch the product', 'Decide what to cut'] },
   faq: {
     title: 'Questions founders ask us',
     items: [

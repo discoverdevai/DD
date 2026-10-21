@@ -11,13 +11,15 @@ const live = cards;
 const cardHref = (c: Card) => (isLive(c.key) ? ROUTES[c.key].path : `${bookHref('clarity')}&interest=${c.key}`);
 const cardLabel = (c: Card) => (isLive(c.key) ? c.linkLabel : c.bookLabel ?? c.linkLabel);
 const liveOther = other.filter((o) => isLive(o.key));
+// The first sentence of the lead is the quotable definition; it is set brighter than the rest (same words, Oct 21 redesign).
+const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
 ---
 {live.length > 0 && (
   <section id="services" class="en" data-surface="ink" data-raised aria-labelledby="en-title">
     <div class="container">
       <div class="en__head">
         <SectionHead id="en-title" title={title} measure={18} reveal />
-        <p class="en__lead">{lead}</p>
+        <p class="en__lead"><span class="en__def">{leadFirst}</span>{leadRest.length > 0 && <> {leadRest.join(' ')}</>}</p>
       </div>
       <ol role="list" class="en__grid reveal-stagger">
         {live.map((c, i) => (
@@ -55,17 +57,20 @@ const liveOther = other.filter((o) => isLive(o.key));
   /* Service name in search words (03 §2A.6 Kind), under the stage name, part of the heading. */
   .en__kind { display: block; margin-block-start: var(--space-1); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-machine-text); letter-spacing: 0; }
   .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
-  .en__head { display: grid; gap: var(--space-4); margin-block-end: var(--stack-lg); }
-  @media (width >= 64rem) { .en__head { grid-template-columns: 1fr 1fr; align-items: end; } }
-  .en__lead { color: var(--color-text-muted); font-size: var(--text-lg); max-inline-size: 34rem; text-wrap: pretty; }
+  .en__head { display: grid; gap: var(--space-5); margin-block-end: var(--space-10); }
+  @media (width >= 64rem) { .en__head { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); align-items: end; margin-block-end: var(--space-12); } }
+  .en__lead { color: var(--color-text-muted); font-size: var(--text-base); line-height: 1.65; max-inline-size: 46rem; text-wrap: pretty; }
+  .en__def { display: block; margin-block-end: var(--space-3); color: var(--color-heading); font-size: var(--text-lg); font-weight: var(--weight-medium); line-height: 1.5; }
 
-  .en__scope { margin-block-start: var(--space-6); max-inline-size: 42rem; text-wrap: pretty; color: var(--color-text-muted); }
+  .en__scope { display: grid; gap: var(--space-2) var(--space-8); margin-block-start: var(--space-8); padding-block-start: var(--space-5); border-block-start: 1px solid var(--color-hairline); max-inline-size: none; text-wrap: pretty; color: var(--color-text-muted); }
+  @media (width >= 48rem) { .en__scope { grid-template-columns: 9rem minmax(0, 46rem); } }
   .en__scope b { color: var(--color-heading); font-weight: var(--weight-semibold); }
   .en__grid { position: relative; display: grid; gap: var(--space-4); }
+  @media (width >= 56rem) { .en__grid { gap: var(--space-5); } }
   @media (width >= 56rem) { .en__grid { grid-template-columns: repeat(3, 1fr); } }
-  .en__card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: clamp(var(--space-6), 1rem + 2vw, var(--space-8)) var(--space-6) var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
+  .en__card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: linear-gradient(180deg, color-mix(in oklab, var(--color-surface) 90%, var(--blue-800)), color-mix(in oklab, var(--color-surface) 40%, transparent)); transition: border-color var(--dur-color); }
   /* Equal tall cards only when they sit side by side; stacked cards size to content (no empty bands at 768px). */
-  @media (width >= 56rem) { .en__card { min-block-size: 22rem; } }
+  @media (width >= 56rem) { .en__card { min-block-size: 20rem; } }
   .en__card--1 { background: linear-gradient(180deg, color-mix(in oklab, var(--blue-800) 55%, var(--color-surface)), color-mix(in oklab, var(--color-surface) 40%, transparent)); border-color: color-mix(in oklab, var(--blue-300) 30%, transparent); }
   .en__stage { display: flex; align-items: center; gap: var(--space-3); margin-block-end: var(--space-4); }
   .en__node { inline-size: 12px; block-size: 12px; border-radius: 50%; border: 2px solid var(--blue-400); background: var(--color-bg); position: relative; }

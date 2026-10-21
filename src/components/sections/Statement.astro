@@ -29,11 +29,10 @@ const { id, bright, dim, label, surface = 'ink', ctaPage, display = false, split
   .stmt__bright { color: var(--color-heading); }
   .stmt__dim { color: color-mix(in oklab, var(--neutral-0) 50%, var(--color-bg)); }
   /* Navy band (brand guidelines: navy for openers and statements) for pages that alternate white and navy. */
-  .stmt :global(.stmt__support) { margin-block-start: var(--space-5); max-inline-size: 40rem; font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); }
   .stmt__cta { margin-block-start: var(--space-8); }
   /* A plain statement (the "why" band) is centred, so a wide screen is not left half empty. */
   .stmt--center .container { text-align: center; }
-  .stmt--center .stmt__text, .stmt--center :global(.stmt__support) { margin-inline: auto; }
+  .stmt--center .stmt__text { margin-inline: auto; }
   .stmt--navy { background: var(--blue-800); border-block-start: 0; }
   .stmt--navy .stmt__dim { color: var(--blue-200); }
   @media (width >= 64rem) {
