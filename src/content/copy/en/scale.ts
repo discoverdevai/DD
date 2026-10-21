@@ -1,4 +1,5 @@
 // 03-copy.md §7 (/scale). Verbatim, with §0.7 launch resolutions applied (noted inline).
+import { shared } from './shared';
 export const scale = {
   seo: {
     title: 'Dedicated Development Team on Retainer | DiscoverDev',
@@ -85,16 +86,16 @@ export const scale = {
   team: {
     title: 'Who’s on the squad',
     body: 'From one specialist to a full squad: a lead, developers, QA, a PM and a designer. Skills cover full-stack, mobile, AI and ML, computer vision, data and QA. Senior engineers own the quality.',
-    link: { label: 'About DiscoverDev and where we work', to: 'about' as const }, // 03 §0.8
+    link: { label: shared.aboutLink, to: 'about' as const }, // 03 §0.8
   },
   proof: {
     title: 'Teams that stayed',
     // [CONSENT] → §0.7: titles are the §9.3 anonymized descriptions. Upscend keeps its §7.8 body (no name in it).
     // Pyramakerz body dropped (repeats the title). Arheb body dropped ("the first Saudi smart ride-sharing platform" identifies the client).
     items: [
-      { title: '12-month embedded product team for a B2B learning platform', where: 'UK', body: 'A 12-month embedded partnership. A dedicated PM and engineering team owning roadmap, backlog and sprints, supporting growth with US and UK enterprise clients.' },
-      { title: 'Data, ML and automation for an EdTech platform with 20,000+ students', where: 'Egypt' },
-      { title: 'Embedded data and ML team for a smart ride-sharing platform', where: 'Saudi Arabia' },
+      { title: shared.projectLmsTeam, where: 'UK', body: 'A 12-month embedded partnership. A dedicated PM and engineering team owning roadmap, backlog and sprints, supporting growth with US and UK enterprise clients.' },
+      { title: shared.projectEdtechData, where: 'Egypt' },
+      { title: shared.projectRideMl, where: 'Saudi Arabia' },
     ],
     // [CONSENT: all four] → §0.7 replacement line.
     retention: 'Four clients expanded scope with us.',

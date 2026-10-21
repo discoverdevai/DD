@@ -41,3 +41,4 @@ assets/clients/mono/
 docs/review/v1/
 docs/review/home-v1/*.png
 dist-mock/
+dist-all/

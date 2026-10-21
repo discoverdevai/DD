@@ -1,4 +1,5 @@
 // 03-copy.md §2A.2: delivery scene strings (home hero visual, labelled as an example).
+import { shared } from './shared';
 export const delivery = {
   path: 'your-product / sprint-board',
   badge: 'Example',
@@ -22,6 +23,6 @@ export const delivery = {
     by: 'Signed off by a senior engineer',
     demo: 'Weekly demo with you',
   },
-  footer: 'A person is responsible for every line that reaches your users.',
+  footer: shared.personResponsible,
   caption: 'Example of a sprint run the DiscoverDev Way: AI drafts the work, then a senior engineer signs off the release.',
 } as const;

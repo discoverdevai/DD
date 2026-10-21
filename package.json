@@ -20,7 +20,9 @@
     "test:redirects": "node scripts/redirects-test.mjs --base http://localhost:8787",
     "qa:events": "node qa/events.mjs http://127.0.0.1:4400",
     "qa:functional": "node qa/functional.mjs http://localhost:4321",
-    "knip": "knip --no-exit-code"
+    "knip": "knip --no-exit-code",
+    "build:all": "RELEASE_ALL=1 astro build --outDir dist-all",
+    "release-map": "node scripts/release-map.mjs --write"
   },
   "dependencies": {
     "@astrojs/mdx": "8.0.3",

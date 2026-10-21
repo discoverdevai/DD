@@ -2,6 +2,7 @@
 // V5 keep · V13 keep: white-label "your brand only", "Per project", staff aug 3 months, NDA and IP to you;
 // V13 omit: replacement terms, client-contact and non-solicit lines, start time (V22) · P5 model only, no numbers (D-18)
 // [CONSENT] names and quote omitted (D-05): anonymized descriptions from §9.3.
+import { shared } from './shared';
 export const partners = {
   seo: {
     title: 'White-Label Development Partner for Agencies | DiscoverDev',
@@ -64,10 +65,10 @@ export const partners = {
     title: 'Partners we work with',
     // [CONSENT] → §0.7: anonymized descriptions from §9.3; Nile Support quote omitted.
     items: [
-      { text: 'White-label websites and mobile apps for a software house', where: 'UK' },
+      { text: shared.projectWhiteLabelLong, where: 'UK' },
       { text: 'AI agents for call operations and staff augmentation', where: 'USA' },
       // Not in §9.3: §8.6 Jumlaty line with the name removed.
-      { text: 'An ML engineer placed for 3 months on restaurant procurement', where: 'Saudi Arabia' },
+      { text: shared.projectProcurementMl, where: 'Saudi Arabia' },
     ],
   },
   faq: {

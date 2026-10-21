@@ -1,6 +1,7 @@
 // 03 §9.3 / §2A.8b (Oct 16): one list of projects for the home bento and the /work story rows. Every brief, "what we
 // did" and result comes from 09 (Portfolio, Case studies); a result appears only where 09 states one. Titles are
 // anonymized (case names need consent); client quotes (approved with names and roles, D-05) are paired by reviewer.
+import { shared } from './shared';
 import { SHOWCASE_PREVIEW } from '../../../lib/preview';
 export type Stage = 'validate' | 'build' | 'scale';
 type Art = 'edtech' | 'ar' | 'lms' | 'health' | 'ride' | 'agent' | 'research' | 'sprint' | 'devices' | 'data';
@@ -31,7 +32,7 @@ const all: readonly Project[] = [
   { id: 'feasibility', stage: 'validate', industry: 'Product discovery', where: 'Saudi Arabia', title: 'Feasibility sprints across several startup ideas', did: 'Rapid market studies and feasibility sprints.', result: 'A build, pivot or shelve decision for each idea.', art: 'sprint' },
   { id: 'sports-gtm', stage: 'validate', industry: 'Sports', where: 'Italy to Egypt', title: 'Market entry plan for a sports company', brief: 'Enter the Egyptian market.', did: 'Market research and a go-to-market plan.', art: 'research', quotes: ['Roberto'] },
   { id: 'demand-test', stage: 'validate', industry: 'Market study', title: 'Demand testing before building', did: 'A market study and sentiment analysis.', art: 'research' },
-  { id: 'founders', stage: 'validate', industry: 'Founders', where: 'Kuwait, Switzerland, UK, Spain', title: 'Discovery for individual founders', did: 'Market research, go-to-market and discovery.', art: 'research', quotes: ['Andrei Chejneanu', 'Lea Nechitailo'] },
+  { id: 'founders', stage: 'validate', industry: 'Founders', where: shared.foundersWhere, title: 'Discovery for individual founders', did: shared.projectFoundersDid, art: 'research', quotes: ['Andrei Chejneanu', 'Lea Nechitailo'] },
   { id: 'tourism', stage: 'validate', industry: 'Tourism and hospitality', where: 'Kuwait', title: 'Market research for a consulting firm', did: 'Tourism and hospitality market research.', art: 'research', quotes: ['Farah Alkhaldi'] },
 ];
 

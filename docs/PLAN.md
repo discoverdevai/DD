@@ -6,14 +6,15 @@ Updated after every step (Mohamed's instruction, Oct 15). Strategy and dates: `c
 **Design:** Signal, approved Oct 15 (`context/06-design-system.md` §0, `context/01-brand.md`, `context/03-copy.md` §2.2a), then home v3 (all-ink, Oct 16), then the v4 service-page pattern (brand guidelines: white ~60%, navy openers, blue to point).
 
 ## Where we are now (keep this block current)
-_Last updated: Sun Oct 18, 2026. Latest commit: see `git log` (main, pushed; tags v1.0.0, v1.0.1)._
+_Last updated: Wed Oct 21, 2026. Latest commit: see `git log` (main, pushed; tags v1.0.0, v1.0.1)._
 
-- **Live:** V1.0 one-page site (home, /book, privacy, terms, 404) plus the V1.0.1 review fixes, on Cloudflare Workers (Worker `dd`): https://dd.mohamed-ali-aec.workers.dev/ (noindex until the custom domain is attached). Hosting is final (A7 closed); `vercel.json` stays as a fallback.
-- **V1.0.1 done (Oct 18):** content and consent fixes (A1-A5), CRO copy, SEO and GEO (titles, keyword, offer schema, llms.txt), frontend and brand fixes (Work section, anchors, mobile bar, logo contrast, calmer motion, EdTech drawing, `06` allows glows and dot map), Reviews rebuilt as option C (featured card + moving margin notes, no button).
-- **Last gate:** `npm run qa` 0 findings, functional 32/32, events 21/21. Axe and Lighthouse were not rerun after the Reviews rebuild (earlier V1.0.1 run: LCP 1.55 s, CLS 0).
-- **Built but off (release flags in `src/data/routes.ts`):** /how-we-work and its journey visual (V1.1), services and proof pages (V1.1), the Review, Partners, launch check and Insights incl. the C3 guide (V1.2). Plan: `docs/plan/site-map-plan.md`.
-- **Waiting on Mohamed before go-live:** Cal.com username (`PUBLIC_CAL_USERNAME`, until set /book shows only the email); attach discoverdev.ai to the Worker and remove the preview noindex; EduLens naming (A3 alt (b)); NJWAR-Athkado link; Yawmy label; Continuum Therapy Collective consent; five technical claims in the C3 guide before V1.2.
-- **After launch:** real product screens from Figma per client approval (D-05; EduLens screens need the team's files); rest of the art direction (`docs/review/design-review.html`); architecture clean-up (`docs/architecture/cleanup-plan.md`); Dependabot branches on origin to review.
+- **Live:** V1.0 one-page site (home, /book with the Cal.com `discoverycall` calendar, privacy, terms, 404) plus the V1.0.1 fixes and later changes, on Cloudflare Workers (Worker `dd`): https://dd.mohamed-ali-aec.workers.dev/ (noindex until the custom domain is attached). Hosting is final; the Vercel config is removed.
+- **Home now:** 9 sections; Selected work = three chapters (NJWAR, Yawmy Care, Rushr; D-07 lifted) plus a user-driven horizontal rail of 12 projects (no autoplay, no Pause control); reviews = featured card + still notes; client row = still cards; EduLens named with its 60-90% result; US spelling.
+- **Held (preview only):** Upscend chapter (screen from upscend.com; needs Upscend's OK, D-05). Preview: `SHOWCASE_MOCK=1 npx astro build --outDir <dir>`.
+- **Clean-up round 2** (`docs/architecture/cleanup-plan-v2.md`): phases 0-5 done on branches, every step checked with `scripts/dist-diff.mjs` (live pages and an all-pages build `npm run build:all` identical to the baseline). New tools: `npm run knip`, `npm run release-map`, i18n unused-key gate.
+- **Last gate:** `npm run qa` 0 findings, functional 32/32, events 21/21.
+- **Waiting on Mohamed before go-live:** attach discoverdev.ai to the Worker and remove the preview noindex; the Cal.com event content (rename to "Clarity call", questions, hours, emails: `docs/setup/cal-com-clarity-call.md`); NJWAR-Athkado link; Continuum Therapy Collective consent; five technical claims in the C3 guide before V1.2.
+- **After launch:** real EduLens, Upscend and BioBank screens with client OK; rest of the art direction (`docs/review/design-review.html`); Dependabot branches on origin.
 
 ## Keeping this file in step with the chat
 The steps live in `docs/MEMORY.md` ("How to keep this in step with the chats"), shared by Claude Code and the project chat. In short: decisions and blockers go in `docs/MEMORY.md`; progress goes in the log below and in "Where we are now"; refresh both at the end of each session or milestone.

@@ -1,4 +1,5 @@
 // 03-copy.md §13 (/book) and §14 (/book/confirmed). Verbatim with §0.7 applied.
+import { shared } from './shared';
 export const book = {
   seo: {
     title: 'Book a Free Clarity Call | DiscoverDev', // V1.0; the Review title returns in V1.2 (03 §13),
@@ -65,7 +66,7 @@ export const book = {
         { title: 'Your next step', body: 'A written summary and, if it fits, a fixed quote.' },
       ],
     },
-    wait: { title: 'While you wait', caseLink: 'Read the case study: how three AI agents got 60–90% cheaper to run', pillarLink: 'Read the guide: How to take an AI-built app to production' },
+    wait: { title: 'While you wait', caseLink: 'Read the case study: how three AI agents got 60–90% cheaper to run', pillarLink: shared.pillarGuideLink },
     change: ['Need a different time? Use the reschedule link in your email.', 'Questions before the call? Email'],
   },
 } as const;
