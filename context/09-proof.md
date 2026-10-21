@@ -56,7 +56,7 @@ BUILD
 - Rushr is a mobile app (Mohamed, Oct 16 2026): post a job, get matched with the nearest verified pro, track the request, pay through Stripe escrow.
 - Yawmy Care apps (Figma, Mohamed Oct 16 2026): admin web dashboard, admin mobile app, teacher app and parent app (check-in and attendance, daily schedule, daily logs, chat, announcements, media).
 SCALE
-- Upscend · UK B2B LMS · 12-month embedded partnership; dedicated PM + engineering team owning roadmap, backlog, sprints; supports US & UK enterprise growth.
+- Upscend · UK B2B LMS (an AI-powered enterprise LMS; public site upscend.com, read by Claude Oct 21 2026: AI tutor and HR-policy assistant, AI quiz generator, video checkpoints, AI flip cards, course creator, learner view / admin dashboard / course builder; Mohamed asked to show these AI features) · 12-month embedded partnership; dedicated PM + engineering team owning roadmap, backlog, sprints; supports US & UK enterprise growth.
 - Pyramakerz · Egypt EdTech · 20,000+ students · data analysis, ML, automations, data engineering.
 - Arheb · KSA · embedded Data & ML team; first Saudi smart ride-sharing platform.
 - Jumlaty · KSA · ML engineer placed 3 months; restaurant procurement (NOMU group).

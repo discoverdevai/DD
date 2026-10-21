@@ -76,8 +76,8 @@ const allChapters: readonly Chapter[] = [
     },
   // Preview only (Oct 21, Mohamed asked for a mockup): Upscend's own public marketing screen of the learner view. Held until Upscend approves screens (D-05).
   { id: 'upscend', project: 'lms-team', name: 'Upscend', tags: ['Scale', 'B2B learning', 'UK'],
-    line: 'A B2B learning platform: our dedicated PM and engineering team owned the roadmap, backlog and sprints for 12 months.',
-    web: { file: 'upscend-learner.webp', alt: 'Upscend learner view: my current courses, hours spent, certificates and skills' },
+    line: 'An AI-powered learning platform with an AI tutor, an AI quiz generator and video checkpoints. Our dedicated PM and engineering team owned its roadmap, backlog and sprints for 12 months.',
+    web: { file: 'upscend-Matar.webp', alt: 'Upscend AI tutor: a learner chatting with the assistant about a course' },
     phones: [], hold: 'D-05 screens' },
 ];
 export const chapters: readonly Chapter[] = allChapters.filter((c) => !c.hold || MOCK);

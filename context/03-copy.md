@@ -1845,3 +1845,6 @@ Oct 18 SEO/GEO pass (`docs/review/home-v1-2/seo-geo-audit.md`): Services lead no
 ## Oct 21 decision (Mohamed): chapters on home, D-07 lifted for Rushr
 - Home shows three chapters under the "Selected work" H2: NJWAR, Yawmy Care, Rushr (Build · Marketplace · USA: "A home-services marketplace: post a job, get matched with the nearest verified pro, pay through escrow."), each with its real screens. Rushr's client card gets its one-line role back: "Home-services marketplace · USA". The home-services project joins the rail ("Home-services marketplace", result and facts from 09). Upscend stays a held preview chapter until Upscend approves screens (D-05).
 - Mohamed lifted D-07 for Rushr on Oct 21: the Rushr chapter, client line and rail card ship now (no metrics are claimed beyond 09).
+
+## Oct 21: Upscend chapter (held preview until Upscend approves screens, D-05)
+Name Upscend · tags Scale, B2B learning, UK · Line: "An AI-powered learning platform with an AI tutor, an AI quiz generator and video checkpoints. Our dedicated PM and engineering team owned its roadmap, backlog and sprints for 12 months." The AI features are Upscend's product features (public site, in 09); the line does not say we built each one, only that our team owned the roadmap. Screen: the AI tutor chat from upscend.com (their own marketing image).
