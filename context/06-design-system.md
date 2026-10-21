@@ -1080,7 +1080,7 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
 - **RTL:** progress fills from inline-start. Back and Next mirror. Chevrons are `.icon--dir`.
 
 ### 9.24 Logo (component)
-- **Ink variant (Oct 18):** on ink the logo uses `public/brand/logo-horizontal-for-ink.svg`, whose arrow and "Dev" are `#5A8BFF` to `#7BA5FF` (6.1:1 to 8.1:1 on `--blue-975`; the original `#1240BE` was 2.3:1). The light-background logo is unchanged. The original for-dark file stays in `assets/logo` for the OG image.
+- **Logo on ink (Oct 21, Mohamed: use the original logo):** the site uses the brand kit's own `logo-horizontal-for-dark.svg` (white "Discover", blue gradient mark and "Dev", `#1240BE` to `#2C59C1`) in the header, footer, mobile menu and share images, byte for byte. The lighter "for ink" variant made on Oct 18 was removed. A logotype is exempt from the text contrast rule (WCAG 1.4.3); no recolouring, no extra variants.
 - `Logo` props: `lockup` (`horizontal` | `stacked` | `mark`), `tone` (`color` | `reversed`). Inline SVG with `<title>DiscoverDev</title>` when standalone. Inside a link, the link carries the name and the SVG is `aria-hidden`.
 - Never mirrored, never recoloured outside §11.
 

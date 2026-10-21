@@ -35,7 +35,7 @@ async function assets() {
     { name: 'JetBrains Mono', data: font('jetbrains-mono-latin-500-normal.woff'), weight: 500, style: 'normal' },
   ];
   if (!logo) {
-    const png = await sharp(path.join(root, 'public/brand/logo-horizontal-for-ink.svg'), { density: 300 }).resize({ height: 46 * 2 }).png().toBuffer();
+    const png = await sharp(path.join(root, 'public/brand/logo-horizontal-for-dark.svg'), { density: 300 }).resize({ height: 46 * 2 }).png().toBuffer();
     const { width = 0 } = await sharp(png).metadata();
     logo = { uri: `data:image/png;base64,${png.toString('base64')}`, width: Math.round(width / 2) };
   }
