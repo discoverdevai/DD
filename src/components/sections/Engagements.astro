@@ -59,11 +59,11 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   .en__kind { display: block; margin-block-start: var(--space-1); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-machine-text); letter-spacing: 0; }
   .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   /* Head stacked (Oct 21, UX review): heading first, then the definition under it on the same left edge, so the eye reads one line down instead of jumping across columns. */
-  .en__head { display: grid; gap: var(--space-4); margin-block-end: var(--space-10); }
-  @media (width >= 64rem) { .en__head { margin-block-end: var(--space-12); } }
-  .en__lead { display: grid; gap: var(--space-3); max-inline-size: 40rem; text-wrap: pretty; }
+  .en__head { display: grid; gap: var(--space-6); margin-block-end: var(--space-10); }
+  @media (width >= 64rem) { .en__head { gap: var(--space-8); margin-block-end: var(--space-12); } }
+  .en__lead { display: grid; gap: var(--space-5); max-inline-size: 38rem; text-wrap: pretty; }
   .en__start { display: block; font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
-  .en__def { color: var(--color-text); font-size: var(--text-lg); line-height: 1.5; }
+  .en__def { color: var(--color-text); font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem); line-height: 1.6; }
 
   .en__scope { display: grid; gap: var(--space-2) var(--space-8); margin-block-start: var(--space-8); padding-block-start: var(--space-5); border-block-start: 1px solid var(--color-hairline); max-inline-size: none; text-wrap: pretty; color: var(--color-text-muted); }
   @media (width >= 48rem) { .en__scope { grid-template-columns: 9rem minmax(0, 46rem); } }
