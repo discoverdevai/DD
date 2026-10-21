@@ -2,7 +2,8 @@
 // Project chapters (03 §2A.8a, Oct 16): one product per full screen in the site theme (ink, brand-blue light,
 // Manrope), huge product name, real screens from our Figma on 3D devices. Layouts by screen mix: web + 1 phone,
 // web + 2 phones, 3 phones. Held chapters (e.g. Rushr, D-07) render only in a preview build, from assets/projects-held
-// as inline data so their files never reach the live build. Devices are decorative frames; each screen has alt text.
+// as inline data so their files never reach the live build. On home (`only` given) the chapters sit in ONE sideways row, one chapter per page
+// (scroll-snap, swipe, arrows, counter; Mohamed, Oct 21: gentler and easier than a tall stack; no autoplay, text-heavy slides are read, not watched). Devices are decorative frames; each screen has alt text.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import path from 'node:path';
@@ -11,6 +12,7 @@ import { chapters, chapterCopy as c, showcase as sc } from '../../content/copy/e
 import { href, isLive } from '../../data/routes';
 import Device from '../ui/Device.astro';
 import SectionHead from '../ui/SectionHead.astro';
+import { t } from '../../i18n/t';
 // `only`: chapter ids to show (home shows NJWAR; /work shows all).
 interface Props { headingLevel?: 'h2' | 'h3'; only?: readonly string[] }
 const { headingLevel = 'h2', only } = Astro.props;
@@ -33,11 +35,22 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
     <div class="container wh__in">
       <SectionHead id="work-title" title={sc.moreTitle} />
       {isLive('work') && <a class="wh__all" href={href('work')}>{sc.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
+      {rows.length > 1 && (
+        <div class="wh__ctrl" data-ch-ctrl data-of={t('chapters.of')} hidden>
+          <span class="wh__count" data-ch-count aria-hidden="true">1 {t('chapters.of')} {rows.length}</span>
+          <button type="button" class="wh__btn" data-ch-prev aria-label={t('chapters.prev')} aria-controls="ch-rail">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+          <button type="button" class="wh__btn" data-ch-next aria-label={t('chapters.next')} aria-controls="ch-rail">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+        </div>
+      )}
     </div>
   </div>
 )}
 {rows.length > 0 && (
-  <div class:list={['chs', { 'chs--headed': head }]}>
+  <div class:list={['chs', { 'chs--headed': head, 'chs--rail': head && rows.length > 1 }]} id={head && rows.length > 1 ? 'ch-rail' : undefined} role={head && rows.length > 1 ? 'region' : undefined} aria-label={head && rows.length > 1 ? t('chapters.region') : undefined} tabindex={head && rows.length > 1 ? 0 : undefined} data-ch-rail={head && rows.length > 1 ? '' : undefined}>
     {rows.map((ch) => (
       <section class:list={['ch', `ch--${ch.layout}`]} data-surface="ink" aria-labelledby={`ch-${ch.id}`} id={`chapter-${ch.id}`}>
         <div class="ch__copy">
@@ -75,6 +88,19 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
   /* Section title (home): the h2 comes first, then the chapter. The chapter drops its own seam and top gap under it. */
   .wh { padding-block: var(--section-y) 0; border-block-start: 1px solid var(--color-hairline); }
   .wh__in { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); }
+  .wh__ctrl { display: flex; align-items: center; gap: var(--space-2); }
+  .wh__ctrl[hidden] { display: none; }
+  .wh__count { margin-inline-end: var(--space-2); font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .wh__btn { display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--color-heading); cursor: pointer; }
+  .wh__btn:disabled { opacity: 0.35; cursor: default; }
+  @media (hover: hover) { .wh__btn:not(:disabled):hover { border-color: var(--blue-400); } }
+  .wh__btn:focus-visible, .chs--rail:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
+  :dir(rtl) .wh__btn svg { transform: scaleX(-1); }
+  /* One chapter per page in a sideways row: snap, swipe, arrows, counter. The scrollbar is hidden (the counter and arrows show the position). */
+  .chs--rail { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+  .chs--rail::-webkit-scrollbar { display: none; }
+  .chs--rail > .ch { flex: 0 0 100%; min-inline-size: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+  @media (prefers-reduced-motion: no-preference) { .chs--rail { scroll-behavior: smooth; } }
   .wh__all { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
   .chs--headed .ch { border-block-start: 0; padding-block-start: var(--space-8); }
   @media (width >= 64rem) { .chs--headed .ch { padding-block-start: var(--space-4); align-items: start; } .chs--headed .ch__copy { padding-block-start: var(--space-10); } .chs--headed .ch__scene { min-block-size: 30rem; } }
@@ -122,3 +148,30 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
   @media (width >= 90rem) { .ch--web1 .ch__laptop { inline-size: 74%; } }
   :dir(rtl) .ch__laptop, :dir(rtl) .ch__phone { transform: rotateY(18deg) rotateX(8deg) rotateZ(-2deg); }
 </style>
+
+<script>
+  // Sideways chapters: the arrows turn one page, the counter follows the scroll position. Hidden until the script runs (no script = a plain swipe row).
+  const rail = document.querySelector<HTMLElement>('[data-ch-rail]');
+  const ctrl = document.querySelector<HTMLElement>('[data-ch-ctrl]');
+  const prev = document.querySelector<HTMLButtonElement>('[data-ch-prev]');
+  const next = document.querySelector<HTMLButtonElement>('[data-ch-next]');
+  const count = document.querySelector<HTMLElement>('[data-ch-count]');
+  if (rail && ctrl && prev && next && count) {
+    const total = rail.children.length;
+    const rtl = () => getComputedStyle(rail).direction === 'rtl';
+    const index = () => Math.min(total - 1, Math.max(0, Math.round(Math.abs(rail.scrollLeft) / rail.clientWidth)));
+    const sync = () => {
+      const i = index();
+      count.textContent = `${i + 1} ${ctrl.dataset.of} ${total}`;
+      prev.disabled = i === 0;
+      next.disabled = i === total - 1;
+    };
+    const go = (dir: 1 | -1) => rail.scrollBy({ left: dir * (rtl() ? -1 : 1) * rail.clientWidth });
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    rail.addEventListener('scroll', sync, { passive: true });
+    new ResizeObserver(sync).observe(rail);
+    ctrl.hidden = false;
+    sync();
+  }
+</script>
