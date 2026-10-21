@@ -222,7 +222,7 @@ Rules:
       ],
       "knowsAbout": ["MVP development", "AI app security review", "Production readiness", "LLM cost optimization", "Product discovery", "Dedicated development teams"],
       "knowsLanguage": ["en", "ar"],
-      "sameAs": ["https://clutch.co/profile/discoverdev", "https://www.linkedin.com/company/disoverdev"]
+      "sameAs": ["https://clutch.co/profile/discoverdev", "https://www.linkedin.com/company/discoverdev"]
     },
     {
       "@type": "WebSite",

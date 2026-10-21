@@ -3,6 +3,7 @@ import { ROUTES, type RouteKey } from '../data/routes';
 export const SITE_URL = 'https://discoverdev.ai';
 export const ORG_ID = `${SITE_URL}/#org`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
+export const LINKEDIN_URL = 'https://www.linkedin.com/company/discoverdev';
 export const CLUTCH_URL = 'https://clutch.co/profile/discoverdev';
 
 /** Entity line, D-43 option (c): footer line + location sentence (05 §4). */
@@ -40,7 +41,7 @@ export const orgFull = {
   // Only topics the live pages show (05 §0); the Review topics return with the Review page (V1.2).
   knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots', ...(ROUTES.review.live ? ['AI app security review', 'Production readiness', 'LLM cost optimization'] : [])],
   knowsLanguage: ['en', 'ar'],
-  sameAs: [CLUTCH_URL, 'https://www.linkedin.com/company/disoverdev'],
+  sameAs: [CLUTCH_URL, LINKEDIN_URL],
   // Ties each live service page's Service node (`<page>#service`) to the company for knowledge graphs.
   hasOfferCatalog: {
     '@type': 'OfferCatalog',

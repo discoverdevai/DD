@@ -86,7 +86,7 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 | D-05 (answers) | Consent answers received | — | Publish only approved items; record `consentRecordedAt` | Proof sections · M7 | Mohamed | |
 | D-06 | EduLens case study at launch | (a) named, with quote + metric (b) anonymized "EdTech AI platform, Egypt" (c) hold to Dec (master doc plan) | (a) if consent by Nov 13; else (b). Do not hold: it is the only metric-led proof at launch | `/work/edulens`, home case highlight, `/scale` proof, C9 · M5 | Mohamed | |
 | D-26 | Sample report image for `/launch-ready` | (a) redacted real report (client permission) (b) review of a demo app, labeled "Sample from a demo app" (c) none | (b) honest and fast; (a) if permission exists | `/launch-ready` §What you get · M5 | Mohamed | |
-| D-29 | `sameAs` profiles | RESOLVED Oct 21 (Mohamed): Clutch and LinkedIn (https://www.linkedin.com/company/disoverdev) only; no Upwork, GitHub or Fiverr. Was: which are live | List live URLs; include only those; create GoodFirms/DesignRush in Dec | Organization schema, footer LinkedIn link · M5 | Mohamed | |
+| D-29 | `sameAs` profiles | RESOLVED Oct 21 (Mohamed): Clutch and LinkedIn (https://www.linkedin.com/company/discoverdev) only; no Upwork, GitHub or Fiverr. Was: which are live | List live URLs; include only those; create GoodFirms/DesignRush in Dec | Organization schema, footer LinkedIn link · M5 | Mohamed | |
 
 ## 4. After launch (not blocking Nov 24)
 

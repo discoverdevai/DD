@@ -5,7 +5,7 @@ import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
 import { t } from '../../i18n/t';
 import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
-import { CLUTCH_URL } from '../../lib/seo';
+import { CLUTCH_URL, LINKEDIN_URL } from '../../lib/seo';
 
 type Item = { key?: RouteKey; href?: string; label: string };
 const col = (items: Item[]) =>
@@ -37,6 +37,7 @@ const year = new Date().getFullYear();
       <p class="site-footer__entity">{t('footer.entity')}</p>
       <ul role="list" class="site-footer__contact">
         <li><a href={`mailto:${t('contact.email')}`} data-link-context="footer"><Icon name="mail" size={16} /><span dir="ltr">{t('contact.email')}</span></a></li>
+        <li><a href={LINKEDIN_URL} target="_blank" rel="noopener" data-link-context="footer">{t('footer.linkedin')}<span class="sr-only"> {t('link.newtab')}</span></a></li>
         <li>{t('footer.location.us')}</li>
         <li>{t('footer.location.eg')}</li>
         <li>{t('footer.languages')}</li>
