@@ -1,8 +1,8 @@
 ---
-// Selected work rail (03 §2A.8b, Oct 21, Mohamed): more projects on every screen in one horizontal rail the visitor moves
-// (swipe, scroll, arrow buttons or keyboard). Nothing moves by itself, so there is no autoplay and no pause control.
-// CSS scroll-snap settles one card at a time and the next card peeks in; the buttons are the only script.
-// Titles link to /work only when that page is live (V1.1), otherwise they are plain text.
+// Selected work rail (03 §2A.8b, Oct 21, Mohamed): more projects on every screen in ONE row that drifts slowly (about 34px a second) and
+// loops. It is still a normal scroll row: swipe, trackpad, arrow buttons and keyboard all work, and any of them holds the drift for 5 seconds.
+// Hover, keyboard focus and a tap on touch also pause it; a Pause button appears for keyboard users only; reduced motion = no drift,
+// manual scroll with scroll-snap. The loop copy is made by the script (aria-hidden, inert). Titles link to /work only when it is live (V1.1).
 import ProjectVisual from '../work/ProjectVisual.astro';
 import { projects, showcase as c } from '../../content/copy/en/projects';
 import { href, isLive } from '../../data/routes';
@@ -19,6 +19,7 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
         <p class="sc__hint">{c.hint}</p>
       </div>
       <div class="sc__ctrl" data-sc-ctrl hidden>
+        <button type="button" class="sc__pause" aria-pressed="false" data-sc-pause data-pause-label={t('marquee.pause')} data-play-label={t('marquee.play')}>{t('marquee.pause')}</button>
         <button type="button" class="sc__btn" data-sc-prev aria-label={t('rail.prev')} aria-controls="sc-rail">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
         </button>
@@ -75,32 +76,107 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
   .sc__metric span { color: var(--color-machine-text); }
   .sc__txt { font-size: var(--text-base); line-height: 1.55; color: var(--color-text-muted); }
   .sc__more { margin-block-start: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
-  @media (prefers-reduced-motion: no-preference) { .sc__rail { scroll-behavior: smooth; } }
+  /* Drift mode (set by the script): no snapping while it moves; the arrows still step one card. */
+  .sc__rail[data-auto] { scroll-snap-type: none; scroll-behavior: auto; scrollbar-width: none; }
+  .sc__rail[data-auto]::-webkit-scrollbar { display: none; }
+  .sc__pause { position: relative; clip-path: inset(50%); inline-size: 1px; block-size: 1px; overflow: hidden; padding: 0; border: 0; background: var(--color-surface); color: var(--color-heading); font-size: var(--text-sm); border-radius: 999px; cursor: pointer; }
+  .sc__pause:focus-visible { clip-path: none; inline-size: auto; block-size: 2.75rem; padding-inline: var(--space-4); border: 1px solid var(--color-hairline); outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
+  @media (prefers-reduced-motion: no-preference) { .sc__rail:not([data-auto]) { scroll-behavior: smooth; } }
 </style>
 
 <script>
-  // Arrow buttons: scroll one card at a time; disabled at the ends; hidden when everything already fits (no overflow).
+  // Drift + arrows. Positions are kept as a float because scrollLeft is rounded to whole pixels when read back.
   const rail = document.querySelector<HTMLElement>('[data-sc-rail]');
   const ctrl = document.querySelector<HTMLElement>('[data-sc-ctrl]');
   const prev = document.querySelector<HTMLButtonElement>('[data-sc-prev]');
   const next = document.querySelector<HTMLButtonElement>('[data-sc-next]');
-  if (rail && ctrl && prev && next) {
-    const rtl = () => getComputedStyle(rail).direction === 'rtl';
+  const pauseBtn = document.querySelector<HTMLButtonElement>('[data-sc-pause]');
+  const track = rail?.querySelector<HTMLElement>('.sc__track');
+  if (rail && ctrl && prev && next && track) {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SPEED = 34; // pixels per second
+    const HOLD = 5000; // ms the drift waits after a swipe, scroll or arrow
     const step = () => (rail.querySelector<HTMLElement>('.sc__card')?.getBoundingClientRect().width ?? rail.clientWidth) + 16;
+    const rtl = () => getComputedStyle(rail).direction === 'rtl';
+    let auto = false;
+    let half = 0;
+    let pos = 0;
+    let holdUntil = 0;
+    let paused = false; // the Pause button or a tap
+    let hovering = false;
+    let inView = true;
+    let last = 0;
+    let lastSet = 0;
+
+    if (!reduced) {
+      const first = track.querySelector<HTMLElement>('.sc__card');
+      [...track.children].forEach((c) => {
+        const copy = c.cloneNode(true) as HTMLElement;
+        copy.setAttribute('aria-hidden', 'true');
+        copy.setAttribute('inert', '');
+        track.append(copy);
+      });
+      auto = !!first;
+      if (auto) rail.setAttribute('data-auto', '');
+    }
+    const measure = () => { half = auto ? track.scrollWidth / 2 : 0; };
     const sync = () => {
-      const max = rail.scrollWidth - rail.clientWidth;
-      const pos = Math.abs(rail.scrollLeft);
-      const overflows = max > 2;
+      measure();
+      const overflows = rail.scrollWidth - rail.clientWidth > 2;
       ctrl.hidden = !overflows;
       if (overflows) rail.setAttribute('tabindex', '0'); else rail.removeAttribute('tabindex');
-      prev.disabled = pos <= 2;
-      next.disabled = pos >= max - 2;
+      if (auto) { prev.disabled = false; next.disabled = false; return; }
+      const max = rail.scrollWidth - rail.clientWidth;
+      const p = Math.abs(rail.scrollLeft);
+      prev.disabled = p <= 2;
+      next.disabled = p >= max - 2;
     };
-    const go = (dir: 1 | -1) => rail.scrollBy({ left: dir * (rtl() ? -1 : 1) * step() });
+    const hold = () => { holdUntil = performance.now() + HOLD; };
+    const go = (dir: 1 | -1) => {
+      hold();
+      if (auto && dir === -1 && rail.scrollLeft < step()) { rail.scrollLeft += half; pos = rail.scrollLeft; }
+      rail.scrollBy({ left: dir * (rtl() ? -1 : 1) * step(), behavior: reduced ? 'auto' : 'smooth' });
+    };
     prev.addEventListener('click', () => go(-1));
     next.addEventListener('click', () => go(1));
-    rail.addEventListener('scroll', sync, { passive: true });
+    rail.addEventListener('scroll', () => {
+      if (auto && Math.abs(rail.scrollLeft - lastSet) > 2) { pos = rail.scrollLeft; hold(); } // a person moved it
+      if (auto && half && rail.scrollLeft >= half) { rail.scrollLeft -= half; pos = rail.scrollLeft; lastSet = pos; }
+      sync();
+    }, { passive: true });
     new ResizeObserver(sync).observe(rail);
     sync();
+
+    if (auto) {
+      rail.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
+      rail.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovering = false; });
+      rail.addEventListener('wheel', hold, { passive: true });
+      rail.addEventListener('touchstart', hold, { passive: true });
+      const toggle = () => {
+        paused = !paused;
+        if (pauseBtn) { pauseBtn.setAttribute('aria-pressed', String(paused)); pauseBtn.textContent = (paused ? pauseBtn.dataset.playLabel : pauseBtn.dataset.pauseLabel) ?? ''; }
+      };
+      pauseBtn?.addEventListener('click', toggle);
+      // A tap on touch holds the row (and a second tap lets it go); a swipe is a scroll, so it is not a tap.
+      let downX = 0;
+      rail.addEventListener('pointerdown', (e) => { downX = e.clientX; });
+      rail.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && Math.abs(e.clientX - downX) < 6 && !(e.target as HTMLElement).closest('a,button')) toggle(); });
+      new IntersectionObserver(([en]) => { inView = en.isIntersecting; }).observe(rail);
+      const tick = (now: number) => {
+        const dt = Math.min(now - (last || now), 250); // capped so a tab coming back from the background does not jump
+        last = now;
+        const focused = rail.matches(':focus-within');
+        if (inView && !paused && !hovering && !focused && now > holdUntil && !document.hidden && half) {
+          pos += (SPEED * dt) / 1000;
+          if (pos >= half) pos -= half;
+          lastSet = pos;
+          rail.scrollLeft = pos;
+        } else if (now <= holdUntil) {
+          pos = rail.scrollLeft;
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
   }
 </script>

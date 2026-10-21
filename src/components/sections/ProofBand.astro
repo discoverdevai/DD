@@ -1,7 +1,9 @@
 ---
 // Proof band under the hero (03 §2A.3): client cards OR project cards, never mixed.
 // - 4+ clients with recorded consent (D-05, src/data/clients.ts) → client cards (logo in its own colours + name + one
-//   line) in one still, wrapped row (Mohamed, Oct 18: no moving content and no pause control, so WCAG 2.2.2 does not apply).
+//   line) in ONE row that drifts slowly and loops (Mohamed, Oct 21: single row, moving at a sensible speed). Pauses on hover, on keyboard
+//   focus and on a tap (touch); a Pause button appears for keyboard users only; reduced motion = still, wrapped row. The loop copy is made
+//   by the script (so the inlined logos are in the HTML once), aria-hidden and inert.
 // - Otherwise → four anonymized project cards (facts in 09).
 // Then the §2.3 facts as a quiet row. Logos are read from assets/clients at build time and inlined as small WebP data
 // URIs, only for consented entries, so an unconsented file never reaches dist. LOGO_MOCK=1 = local preview with all.
@@ -10,6 +12,7 @@ import sharp from 'sharp';
 import Icon from '../ui/Icon.astro';
 import { clientLogos } from '../../data/clients';
 import { LOGO_PREVIEW } from '../../lib/preview';
+import { t } from '../../i18n/t';
 import { WORLD, LAND_DOTS, CLIENT_DOTS } from '../../data/world-dots';
 interface Project { stage: string; href: string; what: string; where: string; proof: string }
 interface Props {
@@ -45,15 +48,18 @@ const logos = showLogos
   </div>
 
   {showLogos ? (
-    <div class="pband__strip container">
-      <ul role="list" class="pband__clients">
-        {logos.map((l) => (
-          <li class="pband__client">
-            <img src={l.src} alt="" width="44" height="44" loading="lazy" decoding="async" class:list={{ 'is-contain': l.fit === 'contain' }} />
-            <p><strong>{l.name}</strong><span>{clientRoles[l.id]}</span></p>
-          </li>
-        ))}
-      </ul>
+    <div class="pband__strip" data-marquee data-speed="40" data-pause-label={t('marquee.pause')} data-play-label={t('marquee.play')}>
+      <div class="pband__track" data-marquee-track>
+        <ul role="list" class="pband__clients">
+          {logos.map((l) => (
+            <li class="pband__client">
+              <img src={l.src} alt="" width="44" height="44" loading="lazy" decoding="async" class:list={{ 'is-contain': l.fit === 'contain' }} />
+              <p><strong>{l.name}</strong><span>{clientRoles[l.id]}</span></p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <button type="button" class="pband__pause" aria-pressed="false" data-marquee-pause>{t('marquee.pause')}</button>
     </div>
   ) : (
     <div class="container">
@@ -92,11 +98,30 @@ const logos = showLogos
   .pband { border-block-start: 1px solid var(--color-hairline); /* bottom edge = next section's hairline */ padding-block: var(--space-12) var(--space-10); display: grid; gap: var(--space-6); }
   .pband__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
-  /* Client cards: the same still, wrapped cards at every width (Mohamed, Oct 18: phones behave like desktop). Each card shows logo, name and
-     its one-line role; a card is at most 19.5rem wide, so phones get one card per row and tablets two or more. */
-  .pband__clients { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: var(--space-3); }
-  .pband__client { flex: 1 1 16rem; max-inline-size: 19.5rem; }
-  @media (width < 40rem) { .pband__client { max-inline-size: none; } }
+  /* Client cards: ONE row. Without script it is a swipeable row; with script (and no reduced-motion setting) it loops slowly at
+     about 40px a second and pauses on hover, keyboard focus and a tap. Cards are fixed width so the speed reads the same everywhere. */
+  .pband__strip { position: relative; overflow-x: auto; scrollbar-width: none; }
+  .pband__strip::-webkit-scrollbar { display: none; }
+  .pband__track { display: flex; inline-size: max-content; margin-inline-start: var(--gutter); }
+  .pband__clients { display: flex; flex: none; gap: var(--space-3); padding-inline-end: var(--space-3); margin: 0; list-style: none; }
+  .pband__client { flex: none; inline-size: 16.5rem; }
+  @media (width >= 48rem) { .pband__client { inline-size: 19.5rem; } }
+  .pband__strip[data-loop] { overflow: hidden; mask-image: linear-gradient(to right, transparent, var(--black) 4%, var(--black) 96%, transparent); }
+  .pband__strip[data-loop] .pband__track { animation: pband-run var(--dur, 60s) linear infinite; }
+  :dir(rtl) .pband__strip[data-loop] .pband__track { animation-name: pband-run-rtl; }
+  .pband__strip[data-loop]:hover .pband__track, .pband__strip[data-loop]:focus-within .pband__track, .pband__strip[data-paused] .pband__track { animation-play-state: paused; }
+  @keyframes pband-run { to { transform: translateX(-50%); } }
+  @keyframes pband-run-rtl { to { transform: translateX(50%); } }
+  /* Keyboard users get a Pause button the moment it takes focus; nobody else sees it (Mohamed, Oct 18: no visible Pause button). */
+  .pband__pause { position: absolute; inset-block-start: var(--space-1); inset-inline-end: var(--gutter); z-index: 1; min-block-size: 2.75rem; padding-inline: var(--space-4); border-radius: 999px; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--color-heading); font-size: var(--text-sm); cursor: pointer; clip-path: inset(50%); inline-size: 1px; overflow: hidden; padding: 0; border-width: 0; }
+  .pband__pause:focus-visible { clip-path: none; inline-size: auto; padding-inline: var(--space-4); border-width: 1px; outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
+  .pband__strip:not([data-loop]) .pband__pause { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .pband__strip { overflow: visible; mask-image: none; }
+    .pband__track { inline-size: auto; margin-inline: var(--gutter); }
+    .pband__clients { flex-wrap: wrap; padding-inline-end: 0; }
+    .pband__pause { display: none; }
+  }
   .pband__client { display: flex; min-inline-size: 0; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
   .pband__client img { flex: none; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; object-fit: cover; background: var(--neutral-0); }
   .pband__client img.is-contain { object-fit: contain; padding: 3px; }
@@ -146,3 +171,32 @@ const logos = showLogos
   .pband__facts li { display: flex; align-items: center; gap: var(--space-3); padding-inline-start: var(--space-5); border-inline-start: 1px solid var(--color-hairline); color: var(--color-text-muted); font-size: var(--text-sm); font-weight: var(--weight-medium); }
   .pband__facts :global(.icon) { color: var(--color-machine-text); flex: none; }
 </style>
+
+<script>
+  // Marquee (Oct 21, Mohamed): clone the row once, set the speed in pixels per second, and wire the pause rules.
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((strip) => {
+    const track = strip.querySelector<HTMLElement>('[data-marquee-track]');
+    const first = track?.querySelector<HTMLElement>('ul');
+    if (!track || !first || reduced.matches) return;
+    const copy = first.cloneNode(true) as HTMLElement;
+    copy.setAttribute('aria-hidden', 'true');
+    copy.setAttribute('inert', '');
+    track.append(copy);
+    const speed = Number(strip.dataset.speed) || 40;
+    const setDuration = () => strip.style.setProperty('--dur', `${Math.round(first.getBoundingClientRect().width / speed)}s`);
+    setDuration();
+    new ResizeObserver(setDuration).observe(first);
+    strip.setAttribute('data-loop', '');
+    const btn = strip.querySelector<HTMLButtonElement>('[data-marquee-pause]');
+    const toggle = () => {
+      const paused = strip.toggleAttribute('data-paused');
+      if (btn) { btn.setAttribute('aria-pressed', String(paused)); btn.textContent = paused ? strip.dataset.playLabel ?? 'Play' : strip.dataset.pauseLabel ?? 'Pause'; }
+    };
+    btn?.addEventListener('click', toggle);
+    // Touch and pen: a tap holds the row, another tap lets it go. A mouse pauses on hover (CSS), so it is ignored here.
+    strip.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && !(e.target as HTMLElement).closest('button')) toggle(); });
+    // Off screen or in a background tab: no point animating.
+    new IntersectionObserver(([en]) => { strip.style.animationPlayState = ''; track.style.animationPlayState = en.isIntersecting ? '' : 'paused'; }).observe(strip);
+  });
+</script>
