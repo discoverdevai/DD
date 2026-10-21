@@ -33,7 +33,7 @@ const { items } = Astro.props;
     .faq__item[open]::details-content { block-size: auto; }
   }
   .faq__item[open] .faq__q :global(.icon) { rotate: 180deg; }
-  .faq__a { padding-block-end: var(--space-5); max-inline-size: var(--measure-prose); }
+  .faq__a { padding-block-end: var(--space-5); max-inline-size: min(68ch, var(--measure-prose)); }
   .faq__more { margin-block-start: var(--space-3); font-weight: var(--weight-medium); }
 </style>
 

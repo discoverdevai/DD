@@ -365,6 +365,9 @@ Both Selected work rows (the chapters and the project row) keep sliding. Hover, 
 ### Oct 21 decision (Mohamed): new arrow component for the sliders
 The Previous/Next buttons of both Selected work sliders are one joined pair in the site's button style (see 06 §0.9 `SliderArrows`) instead of two round chevron buttons. Labels unchanged: "Previous project" / "Next project" (chapters), "Previous projects" / "Next projects" (project row).
 
+### Oct 21 decision (final audit): booking pages carry only the clarity call
+`/book` renders no Review or Partner tab, panel or Cal link while the Review is off (V1.0), so no Review wording (price, guarantee) ships in the HTML. `/book/confirmed` shows only the clarity-call "What happens next" and a clarity "Before the call" list: "Have a link ready if you have something built, or tell us it isn't live yet." · "Write down the 3 things that worry you most about your product." · "Bring your co-founder or developer if you like."; its own meta description: "Your call with DiscoverDev is booked. Check your email for the invite." Privacy: the Web3Forms mention is removed (no form on the live site) and "Last updated" is October 21, 2026; terms: "The information on this site, including our examples, is general information based on our experience. It is not a review of your specific product…". The CSP no longer allows api.web3forms.com (the quiz returns in V1.2 with it).
+
 ## 2A. Home v3 (/) · strategy v2, 2026-10-16
 
 Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 proof strip, §2.8 case highlight (anonymized per §0.7). The Review copy in §2.2a, §2.2b, §2.5 and §2.6 moves to /launch-ready and is not shown on home. Facts trace to `09` (Method, Offer, Services catalog, Differentiators).

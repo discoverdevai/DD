@@ -2,6 +2,7 @@
 // page's own eyebrow and H1, so the image never says anything the page does not. Articles are added from the insights
 // collection in src/pages/og/[...slug].png.ts. Used by that endpoint and by BaseLayout to pick each page's og:image.
 import { home } from '../content/copy/en/home';
+import { isLive } from './routes';
 import { validate } from '../content/copy/en/validate';
 import { build } from '../content/copy/en/build';
 import { scale } from '../content/copy/en/scale';
@@ -30,7 +31,7 @@ export const OG_PAGES: Record<string, OgCard> = {
   '/work/edtech-ai-agents': { eyebrow: t('nav.work'), title: caseStudy.h1 },
   '/insights': { eyebrow: t('nav.insights'), title: insights.h1 },
   '/launch-check': { eyebrow: t('cta.launchCheck'), title: quizCopy.h1 },
-  '/book': { eyebrow: t('footer.book'), title: book.h1 },
+  '/book': { eyebrow: t('footer.book'), title: isLive('review') ? book.h1 : book.h1Clarity }, // V1.0: the clarity call only (03 §2V1)
 };
 
 /** Published path of a route's share image: / → /og/home.png, /work/x → /og/work/x.png. */

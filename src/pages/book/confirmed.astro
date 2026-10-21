@@ -8,8 +8,9 @@ import { book } from '../../content/copy/en/book';
 import { t } from '../../i18n/t';
 import { isLive, href } from '../../data/routes';
 const c = book.confirmed;
+const reviewOn = isLive('review'); // V1.0: only the clarity-call version of the page is built (03 §2V1)
 ---
-<BaseLayout title={c.title} description={book.seo.description} pageType="book_confirmed" noindex header="minimal" stickyBar={false}>
+<BaseLayout title={c.title} description={c.description} pageType="book_confirmed" noindex header="minimal" stickyBar={false}>
   <section class="section conf" data-surface="ink" aria-labelledby="conf-title">
     <div class="container--narrow conf__inner">
       <p role="status" class="conf__status">{c.status}</p>
@@ -17,11 +18,11 @@ const c = book.confirmed;
       <p class="lead" data-when data-with={c.withTime}>{c.noTime}</p>
 
       <h2 class="h3">{c.before.title}</h2>
-      <CheckList items={c.before.items} />
+      <CheckList items={reviewOn ? c.before.items : c.before.itemsClarity} />
 
       <h2 class="h3">{c.next.title}</h2>
-      <div data-next="review"><Steps steps={c.next.review} /></div>
-      <div data-next="clarity" hidden><Steps steps={c.next.clarity} /></div>
+      {reviewOn && <div data-next="review" hidden><Steps steps={c.next.review} /></div>}
+      <div data-next="clarity"><Steps steps={c.next.clarity} /></div>
 
       {(isLive('workEdulens') || isLive('pillar')) && (
         <>
@@ -53,7 +54,7 @@ const c = book.confirmed;
 
 <script>
   import { track } from '../../lib/analytics';
-  const type = new URLSearchParams(location.search).get('type') === 'clarity' ? 'clarity' : 'review';
+  const type = document.querySelector('[data-next="review"]') && new URLSearchParams(location.search).get('type') === 'review' ? 'review' : 'clarity';
   document.querySelectorAll<HTMLElement>('[data-next]').forEach((el) => (el.hidden = el.dataset.next !== type));
   let booking: { event_type?: string; start_time?: string; quiz_segment?: string; tracked?: boolean } | null = null;
   try { booking = JSON.parse(sessionStorage.getItem('dd_booking') ?? 'null'); } catch { booking = null; }

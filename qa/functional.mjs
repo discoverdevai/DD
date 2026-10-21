@@ -126,10 +126,12 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
   // V1.0 (03 §2V1): Review and Partners are off, so ?type=review and ?type=partner fall back to the clarity call.
   for (const [q, want, partnerTab] of [['?type=review', 'clarity', false], ['?type=clarity', 'clarity', false], ['?type=partner', 'clarity', false], ['?type=bogus', 'clarity', false], ['', 'clarity', false]]) {
     await p.goto(`${base}/book${q}`, { waitUntil: 'networkidle' });
-    const cur = await p.locator('[data-opt][aria-current="true"]').getAttribute('data-opt');
-    const tabShown = await p.locator('[data-opt="partner"]').isVisible();
-    const panel = await p.locator(`[data-panel="${want}"]`).isVisible();
-    ok(`/book${q || ' (no type)'} preselects ${want}`, cur === want && panel && tabShown === partnerTab, `current=${cur} partnerTab=${tabShown}`);
+    // V1.0 (final audit, Oct 21): no Review or Partner tab, panel or link is rendered; only the clarity call exists on the page.
+    const tabs = await p.locator('[data-opt]').count();
+    const panels = await p.locator('[data-panel]').count();
+    const panel = await p.locator('[data-panel="clarity"]').isVisible();
+    const reviewWording = await p.evaluate(() => /Launch-Ready|No useful findings|review-intro|partner-call/.test(document.body.innerHTML));
+    ok(`/book${q || ' (no type)'} shows only the clarity call`, want === 'clarity' && tabs === 0 && panels === 1 && panel && !reviewWording, `tabs=${tabs} panels=${panels} reviewWording=${reviewWording}`);
   }
   await p.goto(`${base}/book?type=clarity`, { waitUntil: 'networkidle' }); await p.waitForTimeout(500);
   const fallback = await p.evaluate(() => ({ failed: !document.querySelector('[data-cal-failed]')?.hidden, email: !!document.querySelector('main a[href^="mailto:"]'), direct: !!document.querySelector('main a[href*="cal.com/"]') }));

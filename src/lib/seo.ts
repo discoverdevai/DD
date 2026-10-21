@@ -66,7 +66,11 @@ export function webPage(path: string, name: string, description: string, type = 
   return { '@type': type, '@id': path === '/' ? `${SITE_URL}/#webpage` : `${url}#webpage`, url, name, description, isPartOf: { '@id': WEBSITE_ID }, inLanguage: 'en', ...extra };
 }
 
-export const graph = (...nodes: object[]) => ({ '@context': 'https://schema.org', '@graph': nodes });
+export const graph = (...nodes: object[]) => ({
+  '@context': 'https://schema.org',
+  // Every page's WebPage points at #website, so that node travels with each graph (final audit: unresolved @id on /book, /privacy, /terms).
+  '@graph': nodes.some((n) => (n as { '@id'?: string })['@id'] === WEBSITE_ID) ? nodes : [...nodes, website],
+});
 
 /** FAQPage node from the FAQ the page shows (`id` = `<page url>#faq`). */
 export const faqPage = (id: string, items: readonly { q: string; a: string }[]) => ({

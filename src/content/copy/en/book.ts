@@ -39,7 +39,8 @@ export const book = {
     languages: 'We work in Arabic and English.',
   },
   confirmed: {
-    title: "You're Booked | DiscoverDev",
+    title: 'You’re Booked | DiscoverDev',
+    description: 'Your call with DiscoverDev is booked. Check your email for the invite.',
     h1: 'You’re booked',
     status: 'Booking confirmed.',
     withTime: 'Your call is on {when}. We’ve emailed you the invite.',
@@ -50,6 +51,12 @@ export const book = {
         'Have your app link ready, or “not live yet”.',
         'If you can, prepare read-only access to your code. Optional.',
         'Write down the 3 things that worry you most about launch.',
+        'Bring your co-founder or developer if you like.',
+      ],
+      // V1.0 clarity call (03 §2V1.1, Oct 21 final audit): the lines above are written for the Review and return in V1.2.
+      itemsClarity: [
+        'Have a link ready if you have something built, or tell us it isn’t live yet.',
+        'Write down the 3 things that worry you most about your product.',
         'Bring your co-founder or developer if you like.',
       ],
     },

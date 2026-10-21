@@ -97,7 +97,7 @@ const [h1Before, h1After] = c.h1.split(c.h1Accent);
   /* Short laptop screens (720–800px tall): less top space so the whole board fits in the first screen. */
   @media (width >= 64rem) and (height <= 50rem) { .hero { padding-block-start: var(--space-4); } }
   /* 720px-tall laptops (1280x720): the whole board must end above the fold (V1.0.1 hero measure: it ended 20px below). */
-  @media (width >= 64rem) and (height <= 46rem) { .hero { padding-block-start: var(--space-1); } .hero__stage { margin-block-start: calc(var(--space-3) * -1); } }
+  @media (width >= 64rem) and (height <= 46rem) { .hero { padding-block-start: var(--space-1); } .hero__stage { margin-block-start: 0; } }
   @media (prefers-reduced-motion: no-preference) {
     .hero__h1 { animation: hero-h1 900ms var(--ease-enter) both; }
     .hero__sub { animation: dd-in 700ms 120ms var(--ease-enter) both; }

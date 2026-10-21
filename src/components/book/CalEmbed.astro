@@ -5,7 +5,7 @@ import { book as c } from '../../content/copy/en/book';
 import { t } from '../../i18n/t';
 import { directLink, calUsername, type BookType } from '../../lib/cal';
 import { isLive, href } from '../../data/routes';
-const types: BookType[] = ['review', 'clarity', 'partner'];
+const types: BookType[] = isLive('review') ? ['review', 'clarity', 'partner'] : ['clarity']; // V1.0: the clarity call only (03 §2V1)
 ---
 <div class="cal" data-cal data-cal-configured={calUsername ? 'true' : 'false'} data-iframe-title={c.calendar.title}>
   <p class="cal__tz">{c.calendar.timezone}</p>
@@ -31,17 +31,17 @@ const types: BookType[] = ['review', 'clarity', 'partner'];
 <style>
   .cal { display: grid; gap: var(--space-3); }
   .cal__tz { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .cal__frame { position: relative; min-block-size: 45rem; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-2); overflow: hidden; }
-  @media (width >= 48rem) { .cal__frame { min-block-size: 40rem; } }
+  .cal__frame { position: relative; min-block-size: 62rem; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-2); overflow: hidden; }
+  @media (width >= 48rem) { .cal__frame { min-block-size: 46rem; } } /* the real booker is 980-1230px tall on phones: reserve it so the page below does not jump (final audit) */
   /* No calendar (not configured, or the embed failed): drop the reserved height so the direct links and the
      "what happens on the call" copy aren't pushed below an empty box. */
   .cal[data-cal-configured="false"] .cal__frame, .cal__frame:has([data-cal-failed]:not([hidden])) { min-block-size: 0; }
   .cal__inline { inline-size: 100%; min-block-size: inherit; }
   .cal__inline:empty { display: none; }
-  .cal__fallback { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); }
+  .cal__fallback { position: absolute; inset-inline: 0; inset-block-start: 0; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); } /* out of flow: removing it moves nothing */
   .cal[data-ready] .cal__fallback { display: none; }
   .cal__loading { color: var(--color-text-muted); }
   .cal__links { display: grid; gap: var(--space-1); }
   .cal__links a { display: inline-flex; align-items: center; min-block-size: 2.75rem; font-weight: var(--weight-medium); }
-  .cal__cookies { color: var(--color-text-muted); }
+  .cal__cookies { color: var(--color-text-muted); max-inline-size: 68ch; }
 </style>

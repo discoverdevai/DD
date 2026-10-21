@@ -20,14 +20,16 @@ const jsonLd = graph(orgStub, webPage('/book', seo.title, seo.description));
     <div class="container book__grid">
       <div class="book__main">
         <h1 id="book-title" class="h1" data-book-h1>{reviewOn ? c.h1 : c.h1Clarity}</h1>
-        <nav class="opts" hidden={!reviewOn} data-review-on={String(reviewOn)} aria-label={c.optionsLabel}>
-          <a href="/book?type=clarity" class="opt" aria-current="true" data-opt="clarity">{c.options.clarity.tab}</a>
-          <a href="/book?type=review" class="opt" data-opt="review">{c.options.review.tab}</a>
-          <a href="/book?type=partner" class="opt" data-opt="partner" hidden>{c.options.partner.tab}</a>
-        </nav>
+        {reviewOn && (
+          <nav class="opts" data-review-on="true" aria-label={c.optionsLabel}>
+            <a href="/book?type=clarity" class="opt" aria-current="true" data-opt="clarity">{c.options.clarity.tab}</a>
+            <a href="/book?type=review" class="opt" data-opt="review">{c.options.review.tab}</a>
+            <a href="/book?type=partner" class="opt" data-opt="partner" hidden>{c.options.partner.tab}</a>
+          </nav>
+        )}
         <div class="opt-panel" data-panel="clarity"><p>{c.options.clarity.text}</p><CtaTerms kind="clarity" /></div>
-        <div class="opt-panel" data-panel="review" hidden><p>{c.options.review.text}</p><CtaTerms kind="review" /></div>
-        <div class="opt-panel" data-panel="partner" hidden><p>{c.options.partner.text}</p><CtaTerms kind="partner" /></div>
+        {reviewOn && <div class="opt-panel" data-panel="review" hidden><p>{c.options.review.text}</p><CtaTerms kind="review" /></div>}
+        {reviewOn && <div class="opt-panel" data-panel="partner" hidden><p>{c.options.partner.text}</p><CtaTerms kind="partner" /></div>}
         <CalEmbed />
       </div>
       <aside class="book__side" aria-label={c.call.title}>
@@ -78,7 +80,7 @@ const jsonLd = graph(orgStub, webPage('/book', seo.title, seo.description));
   const read = (k: string) => { try { return sessionStorage.getItem(k); } catch { return null; } };
 
   // Option switch: current link, matching text; the partner tab exists only when asked for (04 §4.10).
-  if (type === 'partner') document.querySelector<HTMLElement>('[data-opt="partner"]')!.hidden = false;
+  if (type === 'partner') { const tab = document.querySelector<HTMLElement>('[data-opt="partner"]'); if (tab) tab.hidden = false; }
   document.querySelectorAll<HTMLAnchorElement>('[data-opt]').forEach((a) => {
     if (a.dataset.opt === type) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
   });

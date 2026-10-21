@@ -92,7 +92,7 @@ export default defineConfig({
         "default-src 'self'",
         "img-src 'self' data: https://*.posthog.com",
         "font-src 'self'",
-        "connect-src 'self' https://*.posthog.com https://cloudflareinsights.com https://app.cal.com https://api.web3forms.com",
+        "connect-src 'self' https://*.posthog.com https://cloudflareinsights.com https://app.cal.com",
         "frame-src https://app.cal.com https://cal.com",
       ],
       scriptDirective: { resources: ["'self'", 'https://app.cal.com', 'https://static.cloudflareinsights.com', 'https://*.posthog.com'] },
