@@ -22,10 +22,10 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
         <p class="en__lead"><span class="en__def">{leadFirst}</span>{leadRest.length > 0 && <span class="en__start">{leadRest.join(' ')}</span>}</p>
       </div>
       <ol role="list" class="en__grid reveal-stagger">
-        {credit && live.length > 1 && <li class="en__credit">{credit}</li>}
         {live.map((c, i) => (
           <li class:list={['en__card', 'card-link', `en__card--${i}`]} data-spotlight>
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
+            {i === 0 && credit && live.length > 1 && <span class="en__credit">{credit}</span>}
             <p class="en__who">{c.who}</p>
             <h3 class="en__h3"><a href={cardHref(c)} aria-label={cardLabel(c)} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={isLive(c.key) ? c.key : 'clarity'}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
             <ul role="list" class="en__meta">{c.meta.map((m) => <li class="tag">{m}</li>)}</ul>
@@ -81,8 +81,7 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   @media (width >= 56rem) {
     .en__stage::after { content: ''; flex: 1; border-block-start: 2px dashed color-mix(in oklab, var(--blue-300) 45%, transparent); margin-inline-end: calc(var(--space-6) * -1); }
     .en__card:last-child .en__stage::after { display: none; }
-    .en__credit { position: absolute; z-index: 1; display: block; inset-block-start: calc(var(--space-6) + 6px); inset-inline-start: calc(100% / 3 - var(--space-5) * 2 / 3); translate: -100% -50%; padding: var(--space-1) var(--space-3); border-radius: 999px; background: var(--color-bg); border: 1px solid color-mix(in oklab, var(--color-human-mark) 55%, transparent); color: var(--color-human-mark); font-family: var(--ff-mono); font-size: var(--text-xs); white-space: nowrap; }
-    :dir(rtl) .en__credit { translate: 100% -50%; }
+    .en__credit { position: absolute; z-index: 1; display: block; inset-block-start: calc(var(--space-6) + 6px); inset-inline-end: 0; translate: 0 -50%; padding: var(--space-1) var(--space-3); border-radius: 999px; background: var(--color-bg); border: 1px solid color-mix(in oklab, var(--color-human-mark) 55%, transparent); color: var(--color-human-mark); font-family: var(--ff-mono); font-size: var(--text-xs); white-space: nowrap; }
   }
   .en__node { inline-size: 12px; block-size: 12px; border-radius: 50%; border: 2px solid var(--blue-400); background: var(--color-bg); position: relative; }
   .en__card--1 .en__node { background: var(--blue-400); }

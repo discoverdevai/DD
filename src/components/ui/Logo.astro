@@ -8,7 +8,10 @@ interface Props { tone?: 'for-dark' | 'dark-text'; lazy?: boolean; class?: strin
 const { tone = 'for-dark', lazy = false, class: cls } = Astro.props;
 const src = tone === 'for-dark' ? '/brand/logo-horizontal-for-dark.svg' : '/brand/logo-horizontal-dark-text.svg';
 ---
-<img class:list={['logo', cls]} src={src} alt="" width="825" height="175" decoding="async" loading={lazy ? 'lazy' : 'eager'} />
+<picture>
+  <source media="(forced-colors: active) and (prefers-color-scheme: light)" srcset="/brand/logo-horizontal-dark-text.svg" />
+  <img class:list={['logo', cls]} src={src} alt="" width="825" height="175" decoding="async" loading={lazy ? 'lazy' : 'eager'} />
+</picture>
 
 <style>
   /* viewBox 825×175 → height drives width; 30px tall = 141px wide (above the 120px minimum). */

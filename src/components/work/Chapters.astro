@@ -148,14 +148,16 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
     const total = rail.children.length;
     const rtl = () => getComputedStyle(rail).direction === 'rtl';
     const index = () => Math.min(total - 1, Math.max(0, Math.round(Math.abs(rail.scrollLeft) / rail.clientWidth)));
+    const off = (b: HTMLElement) => b.getAttribute('aria-disabled') === 'true';
+    const setOff = (b: HTMLElement, v: boolean) => b.setAttribute('aria-disabled', String(v));
     const sync = () => {
       const i = index();
-      prev.disabled = i === 0;
-      next.disabled = i === total - 1;
+      setOff(prev, i === 0);
+      setOff(next, i === total - 1);
     };
     const go = (dir: 1 | -1) => rail.scrollBy({ left: dir * (rtl() ? -1 : 1) * rail.clientWidth });
-    prev.addEventListener('click', () => go(-1));
-    next.addEventListener('click', () => go(1));
+    prev.addEventListener('click', () => { if (!off(prev)) go(-1); });
+    next.addEventListener('click', () => { if (!off(next)) go(1); });
     rail.addEventListener('scroll', sync, { passive: true });
     new ResizeObserver(sync).observe(rail);
     ctrl.hidden = false;

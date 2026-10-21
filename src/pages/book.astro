@@ -30,10 +30,15 @@ const jsonLd = graph(orgStub, webPage('/book', seo.title, seo.description));
         <div class="opt-panel" data-panel="clarity"><p>{c.options.clarity.text}</p><CtaTerms kind="clarity" /></div>
         {reviewOn && <div class="opt-panel" data-panel="review" hidden><p>{c.options.review.text}</p><CtaTerms kind="review" /></div>}
         {reviewOn && <div class="opt-panel" data-panel="partner" hidden><p>{c.options.partner.text}</p><CtaTerms kind="partner" /></div>}
+        <div class="side-block book__brief">
+          <h2 class="h3">{c.call.title}</h2>
+          <CheckList items={c.call.items} />
+          <p class="muted">{c.call.who}</p>
+        </div>
         <CalEmbed />
       </div>
       <aside class="book__side" aria-label={c.call.title}>
-        <div class="side-block">
+        <div class="side-block book__call">
           <h2 class="h3">{c.call.title}</h2>
           <CheckList items={c.call.items} />
           <p class="muted">{c.call.who}</p>
@@ -57,6 +62,9 @@ const jsonLd = graph(orgStub, webPage('/book', seo.title, seo.description));
   .book__grid { display: grid; gap: var(--space-12); }
   @media (width >= 64rem) { .book__grid { grid-template-columns: 8fr 4fr; gap: var(--space-16); align-items: start; } }
   .book__main { display: grid; gap: var(--space-6); min-inline-size: 0; }
+  /* Phones: what happens on the call comes before the calendar; the sidebar copy of it is hidden there so nothing repeats (UX audit P1-1c). */
+  @media (width >= 64rem) { .book__brief { display: none; } }
+  @media (width < 64rem) { .book__call { display: none; } }
   .opts { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .opt { display: inline-flex; align-items: center; min-block-size: 2.75rem; padding-inline: var(--space-4); border: 1px solid var(--color-border-control); border-radius: var(--radius-sm); color: var(--color-text); text-decoration: none; font-weight: var(--weight-medium); }
   /* Selected option: filled, not just a thicker border, so the choice reads at a glance (CRO review). */

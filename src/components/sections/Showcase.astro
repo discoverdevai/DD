@@ -92,16 +92,18 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
     let lastSet = 0;
 
     const measure = () => { half = auto ? track.scrollWidth / 2 : 0; };
+    const off = (b: HTMLElement) => b.getAttribute('aria-disabled') === 'true';
+    const setOff = (b: HTMLElement, v: boolean) => b.setAttribute('aria-disabled', String(v));
     const sync = () => {
       measure();
       const overflows = rail.scrollWidth - rail.clientWidth > 2;
       ctrl.hidden = !overflows;
       if (overflows) rail.setAttribute('tabindex', '0'); else rail.removeAttribute('tabindex');
-      if (auto) { prev.disabled = false; next.disabled = false; return; }
+      if (auto) { setOff(prev, false); setOff(next, false); return; }
       const max = rail.scrollWidth - rail.clientWidth;
       const p = Math.abs(rail.scrollLeft);
-      prev.disabled = p <= 2;
-      next.disabled = p >= max - 2;
+      setOff(prev, p <= 2);
+      setOff(next, p >= max - 2);
     };
     const hold = () => { holdUntil = performance.now() + HOLD; };
     const go = (dir: 1 | -1) => {
@@ -109,8 +111,8 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
       if (auto && dir === -1 && rail.scrollLeft < step()) { rail.scrollLeft += half; pos = rail.scrollLeft; }
       rail.scrollBy({ left: dir * (rtl() ? -1 : 1) * step(), behavior: reduced ? 'auto' : 'smooth' });
     };
-    prev.addEventListener('click', () => go(-1));
-    next.addEventListener('click', () => go(1));
+    prev.addEventListener('click', () => { if (!off(prev)) go(-1); });
+    next.addEventListener('click', () => { if (!off(next)) go(1); });
     rail.addEventListener('scroll', () => {
       if (auto && Math.abs(rail.scrollLeft - lastSet) > 2) { pos = rail.scrollLeft; hold(); } // a person moved it
       if (auto && half && rail.scrollLeft >= half) { rail.scrollLeft -= half; pos = rail.scrollLeft; lastSet = pos; }

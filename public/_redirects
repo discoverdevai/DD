@@ -1,6 +1,7 @@
 # Old SPA -> new site. Always write the status code (default is 302). 05 §7; verify against real routes (D-15).
 # Exact paths first, splats last: Workers matches top to bottom, and wrangler flags exact rules below splats as slower.
 # V1.0 (Oct 18, 03 §2V1): targets point to home sections while their pages are off; restore per release (V1.1/V1.2).
+/sitemap.xml      /sitemap-index.xml  301
 /home             /            301
 /staff            /#services       301
 /services         /#services       301

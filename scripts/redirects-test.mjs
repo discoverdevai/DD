@@ -15,7 +15,8 @@ if (process.argv.includes('--static')) {
   for (const [from, to, code] of rows) {
     if (code !== '301') problems.push(`${from}: status ${code ?? '(none, defaults to 302)'}; write 301`);
     // A target may carry a #section (V1.0 one-page site, 03 §2V1): the page part must be built.
-    if (!live.has(to.split('#')[0] || '/')) problems.push(`${from}: target ${to} is not a built page`);
+    // The sitemap index is a built file, not a page (robots.txt declares it).
+    if (to !== '/sitemap-index.xml' && !live.has(to.split('#')[0] || '/')) problems.push(`${from}: target ${to} is not a built page`);
     if (live.has(from)) problems.push(`${from}: source is a live page and would be shadowed`);
     if (sources.has(from)) problems.push(`${from}: duplicate source`);
     sources.add(from);
