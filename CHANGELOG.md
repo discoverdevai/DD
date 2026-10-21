@@ -3,6 +3,9 @@
 Releases are git tags (`v1.x.0`) with a GitHub Release. Pages switch on per release in `src/data/routes.ts`; pages that are
 switched off are not built into the live site. Plan: `docs/plan/site-map-plan.md`.
 
+## Unreleased (Oct 21): since v1.0.1
+Home: Yawmy Care and Rushr chapters (D-07 lifted), a horizontal rail of 12 projects (no autoplay), EduLens named with its result, still client cards on every screen, US spelling. /book and /book/confirmed in the site's dark theme; Cal.com calendar (account mohamed-ali-plfh5u, event discoverycall) starts on first intent. Clean-up round 2: Vercel config removed, shared copy strings, knip, release map, i18n unused-key gate, `npm run build:all`. Privacy and terms trimmed to what is live.
+
 ## V1.0.1: review fixes (2026-10-18, tagged v1.0.1; later changes on main)
 Later on Oct 18: Cal.com booking wired (account mohamed-ali-plfh5u, event discoverycall); no moving content and no Pause controls (client row and reviews are still); 44px footer links; the private design-system page no longer ships in a release.
 
