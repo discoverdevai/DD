@@ -18,7 +18,7 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   <section id="services" class="en" data-surface="ink" data-raised aria-labelledby="en-title">
     <div class="container">
       <div class="en__head">
-        <SectionHead id="en-title" title={title} measure={24} reveal />
+        <SectionHead id="en-title" title={title} measure={18} reveal />
         <p class="en__lead"><span class="en__def">{leadFirst}</span>{leadRest.length > 0 && <span class="en__start">{leadRest.join(' ')}</span>}</p>
       </div>
       <ol role="list" class="en__grid reveal-stagger">
@@ -58,10 +58,10 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   /* Service name in search words (03 §2A.6 Kind), under the stage name, part of the heading. */
   .en__kind { display: block; margin-block-start: var(--space-1); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-machine-text); letter-spacing: 0; }
   .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
-  /* Head stacked (Oct 21, UX review): heading first, then the definition under it on the same left edge, so the eye reads one line down instead of jumping across columns. */
+  /* Head (Oct 21, UX review): stacked on small screens; on desktop two columns whose first lines share a baseline, so heading and definition start together and the width is used. */
   .en__head { display: grid; gap: var(--space-6); margin-block-end: var(--space-10); }
-  @media (width >= 64rem) { .en__head { gap: var(--space-8); margin-block-end: var(--space-12); } }
-  .en__lead { display: grid; gap: var(--space-5); max-inline-size: 38rem; text-wrap: pretty; }
+  @media (width >= 64rem) { .en__head { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-16); align-items: first baseline; margin-block-end: var(--space-12); } }
+  .en__lead { display: grid; gap: var(--space-5); max-inline-size: 36rem; text-wrap: pretty; }
   .en__start { display: block; font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
   .en__def { color: var(--color-text); font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem); line-height: 1.6; }
 
