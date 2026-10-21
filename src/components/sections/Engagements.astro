@@ -18,7 +18,7 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   <section id="services" class="en" data-surface="ink" data-raised aria-labelledby="en-title">
     <div class="container">
       <div class="en__head">
-        <SectionHead id="en-title" title={title} measure={18} reveal />
+        <SectionHead id="en-title" title={title} measure={24} reveal />
         <p class="en__lead"><span class="en__def">{leadFirst}</span>{leadRest.length > 0 && <span class="en__start">{leadRest.join(' ')}</span>}</p>
       </div>
       <ol role="list" class="en__grid reveal-stagger">
@@ -58,11 +58,12 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   /* Service name in search words (03 §2A.6 Kind), under the stage name, part of the heading. */
   .en__kind { display: block; margin-block-start: var(--space-1); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-machine-text); letter-spacing: 0; }
   .en { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
-  .en__head { display: grid; gap: var(--space-5); margin-block-end: var(--space-10); }
-  @media (width >= 64rem) { .en__head { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); align-items: end; margin-block-end: var(--space-12); } }
-  .en__lead { color: var(--color-text-muted); font-size: var(--text-base); line-height: 1.65; max-inline-size: 46rem; text-wrap: pretty; }
+  /* Head stacked (Oct 21, UX review): heading first, then the definition under it on the same left edge, so the eye reads one line down instead of jumping across columns. */
+  .en__head { display: grid; gap: var(--space-4); margin-block-end: var(--space-10); }
+  @media (width >= 64rem) { .en__head { margin-block-end: var(--space-12); } }
+  .en__lead { display: grid; gap: var(--space-3); max-inline-size: 40rem; text-wrap: pretty; }
   .en__start { display: block; font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
-  .en__def { display: block; margin-block-end: var(--space-4); color: var(--color-heading); font-size: var(--text-lg); font-weight: var(--weight-medium); line-height: 1.5; }
+  .en__def { color: var(--color-text); font-size: var(--text-lg); line-height: 1.5; }
 
   .en__scope { display: grid; gap: var(--space-2) var(--space-8); margin-block-start: var(--space-8); padding-block-start: var(--space-5); border-block-start: 1px solid var(--color-hairline); max-inline-size: none; text-wrap: pretty; color: var(--color-text-muted); }
   @media (width >= 48rem) { .en__scope { grid-template-columns: 9rem minmax(0, 46rem); } }
