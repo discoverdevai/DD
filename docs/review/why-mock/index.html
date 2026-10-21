@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mockups v2: Why DiscoverDev and Three ways to work</title>
+<title>Mockups v3: Why DiscoverDev and Three ways to work</title>
 <style>
 @font-face{font-family:Manrope;src:url("/_astro/fonts/0601f74383b27b92.woff2") format("woff2");font-weight:200 800;font-display:swap}
 @font-face{font-family:Rubik;src:url("/_astro/fonts/02501823fb8f8d36.woff2") format("woff2");font-weight:300 900;font-display:swap}
@@ -149,157 +149,244 @@ h2.big{font-size:clamp(30px,3.4vw,48px);line-height:1.08;max-width:20ch}
 .mini .b{height:7px;border-radius:4px;background:rgba(255,255,255,.28);margin:6px 0}.mini .bl{height:32px;border-radius:6px;background:rgba(108,154,255,.35);margin-top:8px}
 .mini.live .bl{background:rgba(111,227,165,.35)}
 @media(max-width:900px){.t4 .posters{grid-template-columns:1fr}}
+
+/* ===== round 3 ===== */
+.sc3 .g{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.sc3 .feat{padding:22px;display:grid;gap:10px}
+.sc3 .cap{display:flex;justify-content:space-between;color:var(--muted);font:500 12px ui-monospace,monospace;margin-bottom:6px}
+.sc3 .grp{font:500 12px ui-monospace,monospace;color:var(--muted);margin:8px 0 2px;display:flex;align-items:center;gap:8px}
+.sc3 .grp::after{content:"";flex:1;height:1px;background:var(--hair)}
+.sc3 .frow{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--rm);border:1px solid var(--hair);background:rgba(255,255,255,.03);font-weight:500}
+.sc3 .ck{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:12px}
+.sc3 .in .ck{background:var(--green);color:#012}.sc3 .in{border-color:rgba(111,227,165,.35);background:rgba(111,227,165,.07)}
+.sc3 .nx{color:#b9c6ea}.sc3 .nx .ck{border:1px solid #8fb4ff;color:#8fb4ff}
+.sc3 .lt{color:#7f87a1}.sc3 .lt .ck{border:1px dashed #6e7692;color:#6e7692}
+.sc3 .frow em{margin-inline-start:auto;font:500 12px ui-monospace,monospace;font-style:normal;color:var(--muted)}
+.sc3 .in em{color:var(--green)}
+.sc3 .out{display:grid;gap:14px;margin-top:24px}
+.sc3 .out div{display:flex;gap:14px;align-items:flex-start}.sc3 .out .c{width:34px;height:34px;border-radius:50%;border:1px solid rgba(162,193,254,.5);display:grid;place-items:center;font:500 14px ui-monospace,monospace;color:#c8dbff;flex:none}
+.sc3 .out b{font-family:Manrope;display:block}.sc3 .out span{color:var(--muted);font-size:15px}
+.sc3 .meter{height:8px;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:6px}.sc3 .meter i{display:block;height:100%;width:38%;background:linear-gradient(90deg,var(--sig),var(--green))}
+@media(max-width:900px){.sc3 .g{grid-template-columns:1fr;gap:32px}}
+
+/* ways 1 family */
+.jm .map{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:70px}
+.jm .road{position:absolute;left:5%;right:5%;top:-34px;height:60px;pointer-events:none}
+.jm .here{position:absolute;top:-62px;left:calc(16% - 38px);padding:4px 10px;border-radius:99px;background:#fff;color:#01082D;font:700 12px Manrope}
+.jm .here::after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-top-color:#fff;border-bottom:0}
+.jm .st{padding:26px;display:grid;gap:12px;align-content:start;position:relative}
+.jm .art{height:140px;border-radius:var(--rm);position:relative;overflow:hidden;border:1px solid var(--hair);background:rgba(255,255,255,.03)}
+.jm .st h3{font-size:30px}.jm .st .k{color:var(--muted);font-size:14px}
+.jm .get{display:grid;gap:6px;padding-top:8px;border-top:1px solid var(--hair)}
+.jm .get div{display:flex;gap:8px;font-size:15px}.jm .get i{color:var(--green);font-style:normal}
+.jm a.go{color:#8fb4ff;font-weight:600;text-decoration:none;margin-top:6px}
+.jm .credit{position:absolute;top:-52px;left:calc(33.3% - 10px);padding:5px 12px;border-radius:99px;border:1px solid rgba(111,227,165,.6);background:rgba(111,227,165,.12);color:var(--green);font:500 12px ui-monospace,monospace;white-space:nowrap;z-index:2}
+.jm .best{font:500 13px ui-monospace,monospace;color:var(--muted)}
+@media(max-width:900px){.jm .map{grid-template-columns:1fr}.jm .road,.jm .here,.jm .credit{display:none}}
+.pr{padding:10px}.pr .b{height:8px;border-radius:4px;background:rgba(255,255,255,.3);margin:6px 0}.pr .bl{height:34px;border-radius:6px;border:1px dashed var(--sig);margin-top:8px}
+.mini{width:70%;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(1,8,45,.8);padding:10px}
+.mini .dots{display:flex;gap:4px;margin-bottom:8px}.mini .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3)}
+.mini .b{height:7px;border-radius:4px;background:rgba(255,255,255,.28);margin:6px 0}.mini .bl{height:30px;border-radius:6px;background:rgba(111,227,165,.35);margin-top:8px}
+.wk{display:flex;gap:4px;margin-top:10px}.wk i{height:6px;flex:1;border-radius:3px;background:rgba(255,255,255,.2)}.wk i.on{background:var(--sig)}.wk i.now{background:var(--green)}
+.sq{display:flex;padding:18px;align-items:center}.sq i{width:38px;height:38px;border-radius:50%;border:2px solid var(--ink);margin-inline-end:-10px;display:block}
+
+/* gantt */
+.gt .bars{margin-top:44px;display:grid;gap:16px}
+.gt .lane{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:center}
+.gt .lane h3{font-size:24px}.gt .lane .mono{display:block}
+.gt .track{position:relative;height:56px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--hair)}
+.gt .bar{position:absolute;top:6px;bottom:6px;border-radius:9px;display:flex;align-items:center;padding:0 14px;font:600 14px Manrope;white-space:nowrap}
+.gt .b1{left:0;width:16%;background:linear-gradient(90deg,#3b63d6,#6c9aff)}
+.gt .b2{left:16%;width:52%;background:linear-gradient(90deg,#1240be,#3b63d6)}
+.gt .b3{left:68%;right:0;background:linear-gradient(90deg,rgba(111,227,165,.55),rgba(111,227,165,.2));color:#e9fff3;border-radius:9px}
+.gt .axis{display:grid;grid-template-columns:170px 1fr;gap:20px;margin-top:6px}.gt .axis div{display:flex;justify-content:space-between;color:var(--muted);font:500 12px ui-monospace,monospace}
+.gt .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.gt .cc{padding:22px;display:grid;gap:8px;align-content:start}.gt .cc b{font:700 22px Manrope}.gt .cc p{color:var(--muted);font-size:15px}.gt .cc a{color:#8fb4ff;font-weight:600;text-decoration:none;margin-top:4px}
+@media(max-width:900px){.gt .lane,.gt .axis{grid-template-columns:1fr}.gt .cards{grid-template-columns:1fr}}
+
+/* picker */
+.pk .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.pk input{position:absolute;opacity:0;pointer-events:none}
+.pk .chips label{cursor:pointer;padding:14px 20px;border:1px solid var(--hair);border-radius:var(--r);font:600 16px Manrope;color:var(--muted)}
+.pk #p1:checked~.chips label[for=p1],.pk #p2:checked~.chips label[for=p2],.pk #p3:checked~.chips label[for=p3]{background:var(--blue);border-color:var(--blue);color:#fff}
+.pk .map2{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.pk .st{padding:26px;display:grid;gap:10px;align-content:start;opacity:.38;transform:scale(.97);transition:.25s}
+.pk #p1:checked~.map2 .a,.pk #p2:checked~.map2 .b,.pk #p3:checked~.map2 .c{opacity:1;transform:none;border-color:rgba(108,154,255,.8);background:linear-gradient(160deg,rgba(18,64,190,.4),rgba(2,16,62,.75))}
+.pk .st h3{font-size:30px}.pk .st p{color:var(--muted)}.pk .st a{color:#8fb4ff;font-weight:600;text-decoration:none;margin-top:auto}
+.pk .st .go{display:none}.pk #p1:checked~.map2 .a .go,.pk #p2:checked~.map2 .b .go,.pk #p3:checked~.map2 .c .go{display:inline-flex}
+.pk .st .arr{color:var(--sig);font-size:12px;font:500 12px ui-monospace,monospace}
+@media(max-width:900px){.pk .map2{grid-template-columns:1fr}.pk .st{opacity:1;transform:none}}
+
+/* rhythm */
+.rh .map{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.rh .st{padding:26px;display:grid;gap:12px;align-content:start}
+.rh .st h3{font-size:30px}.rh .st .k{color:var(--muted);font-size:14px}
+.rh .rhy{margin-top:6px;padding:14px;border-radius:var(--rm);background:rgba(255,255,255,.04);border:1px solid var(--hair)}
+.rh .rhy small{display:block;font:500 12px ui-monospace,monospace;color:var(--muted);margin-bottom:10px}
+.rh .days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.rh .days i{height:30px;border-radius:6px;background:rgba(255,255,255,.12);display:grid;place-items:center;font:500 11px ui-monospace,monospace;font-style:normal;color:#b9c6ea}
+.rh .days i.d{background:rgba(111,227,165,.45);color:#012}
+.rh .rhy p{font-size:14px;color:var(--muted);margin-top:8px}
+.rh a{color:#8fb4ff;font-weight:600;text-decoration:none;margin-top:4px}
+@media(max-width:900px){.rh .map{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="intro">
-  <p class="tag">Mockups v2 · Oct 21, 2026 · dark theme, brand colors, the site's fonts</p>
-  <h1>Why DiscoverDev, and Three ways to work with us</h1>
-  <p>This round adds visuals and real value to each option: each one teaches the visitor something (what we do differently, what to cut, what they get, how long it takes) instead of only restating the statement. All numbers and claims come from our proof file. Nothing is built into the site yet. The first round is kept at <a style="color:#8fb4ff" href="index-v1.html">index-v1.html</a>.</p>
-  <p class="note"><b>What the leading sites do (reviewed Oct 21):</b> thoughtbot leads with one proof (a number, a quote) and groups services "for every stage of your business"; Netguru uses a row of big numerals; Toptal uses three numbered steps and a comparison of options. <b>What we add:</b> a visual that shows our difference (the plan that cuts scope before code, the senior sign-off, the weekly demo) rather than claiming it.</p>
+  <p class="tag">Mockups v3 · Oct 21, 2026 · dark theme, brand colors, the site's fonts</p>
+  <h1>Why DiscoverDev (scope card, new wording) and Three ways (more journey ideas)</h1>
+  <p>Round 3. <b>Why:</b> the scope card you picked, with three new ways to say it, none using "cut". <b>Three ways:</b> the journey map, with four ideas on top of it: a fee-credit link, a shared timeline, a "where are you" picker, and a rhythm strip. Rounds 1 and 2 are kept: <a style="color:#8fb4ff" href="index-v1.html">v1</a>, <a style="color:#8fb4ff" href="index-v2.html">v2</a>.</p>
+  <p class="note"><b>Why the wording changed:</b> "what to cut" sounds like loss. The card now shows what <b>goes in</b> the first version, what comes <b>next</b> and what waits <b>later</b>: the same value (we agree the scope before code, at a fixed price), said as a plan instead of a deletion.</p>
 </header>
 
-<div class="group"><p class="tag">SECTION 1</p><h2>Why DiscoverDev</h2></div>
+<div class="group"><p class="tag">SECTION 1</p><h2>Why DiscoverDev: the scope card, three wordings</h2></div>
 
 <article class="opt">
-  <div class="optbar"><b>Why 1 · Two tracks: where the decisions happen</b><span>Shows the difference as a picture: most teams jump to code, we decide first.</span></div>
-  <section class="sec w1"><div class="wrap">
-    <p class="label">Why DiscoverDev</p>
-    <h2 class="big">Most teams just build what you ask for. <span class="dim">We help you build the right thing.</span></h2>
-    <div class="tracks">
-      <div class="tr"><h3 style="color:#9aa3bf">Most teams</h3>
-        <div class="line"><div class="st skip">Test the idea</div><div class="st skip">Sketch the product</div><div class="st skip">Cut scope</div><div class="st">Build what you asked</div><div class="st">Hand over</div><div class="st">Hope it fits</div></div></div>
-      <div class="tr me"><h3>DiscoverDev <span class="pill">Discover first</span></h3>
-        <div class="line"><div class="st">Test the idea<br><span class="gate">decision</span></div><div class="st">Sketch the product<br><span class="gate">decision</span></div><div class="st">Decide what to cut<br><span class="gate">decision</span></div><div class="st">AI drafts the build</div><div class="st g">Senior signs off every release</div><div class="st">Yours, all of it</div></div></div>
-    </div>
-    <div class="vals">
-      <div class="val card"><b>You see the product before it exists</b><span>A clickable prototype and a fixed build estimate come first (Validate, 1–2 weeks).</span></div>
-      <div class="val card"><b>Speed without the risk</b><span>AI drafts the work so it moves fast. A senior engineer signs off every release.</span></div>
-      <div class="val card"><b>No surprises on ownership</b><span>Full IP, your own repository, no lock-in, a clear contract from day one.</span></div>
-    </div>
-  </div></section>
-</article>
-
-<article class="opt">
-  <div class="optbar"><b>Why 2 · "What to cut": the scope card</b><span>The most concrete proof of "build the right thing": a feature list where we cut before coding.</span></div>
-  <section class="sec w2"><div class="wrap"><div class="g">
+  <div class="optbar"><b>Why 2a · "Version one, agreed before any code"</b><span>Plan language: in version one / next / later.</span></div>
+  <section class="sec sc3"><div class="wrap"><div class="g">
     <div>
       <p class="label">Why DiscoverDev</p>
-      <h2 class="big">Most teams just build what you ask for. <span class="dim">We tell you what to cut.</span></h2>
+      <h2 class="big">Most teams just build what you ask for. <span class="dim">We agree version one before any code.</span></h2>
       <div class="out">
         <div><span class="c">1</span><p><b>Test the idea</b><span>Check the market and the competitors before you spend on code.</span></p></div>
         <div><span class="c">2</span><p><b>Sketch the product</b><span>See it as a clickable prototype, not a document.</span></p></div>
-        <div><span class="c">3</span><p><b>Decide what to cut</b><span>Ship the smallest version that proves it, at a fixed price.</span></p></div>
+        <div><span class="c">3</span><p><b>Agree version one</b><span>One clear first release, with a fixed build estimate.</span></p></div>
+      </div>
+    </div>
+    <div class="card feat">
+      <div class="cap"><span>your-product / plan</span><span>Example</span></div>
+      <div class="grp">In version one</div>
+      <div class="frow in"><span class="ck">✓</span>Sign up and log in<em>v1</em></div>
+      <div class="frow in"><span class="ck">✓</span>The one thing users came for<em>v1</em></div>
+      <div class="frow in"><span class="ck">✓</span>Payments<em>v1</em></div>
+      <div class="grp">Next</div>
+      <div class="frow nx"><span class="ck">→</span>In-app chat<em>v2</em></div>
+      <div class="grp">Later</div>
+      <div class="frow lt"><span class="ck">·</span>Admin analytics suite<em>later</em></div>
+    </div>
+  </div></div></section>
+</article>
+
+<article class="opt">
+  <div class="optbar"><b>Why 2b · "Start with what proves the idea"</b><span>Outcome language: first release, after launch, not needed.</span></div>
+  <section class="sec sc3"><div class="wrap"><div class="g">
+    <div>
+      <p class="label">Why DiscoverDev</p>
+      <h2 class="big">Most teams just build what you ask for. <span class="dim">We start with what proves the idea.</span></h2>
+      <div class="out">
+        <div><span class="c">1</span><p><b>Test the idea</b><span>Check the market and the competitors before you spend on code.</span></p></div>
+        <div><span class="c">2</span><p><b>Sketch the product</b><span>See it as a clickable prototype, not a document.</span></p></div>
+        <div><span class="c">3</span><p><b>Pick the first release</b><span>The smallest product that shows it works, at a fixed price.</span></p></div>
       </div>
     </div>
     <div class="card feat">
       <div class="cap"><span>your-product / scope</span><span>Example</span></div>
-      <div class="frow keep"><span class="ck">✓</span>Sign up and log in<em>v1</em></div>
-      <div class="frow keep"><span class="ck">✓</span>The one thing users came for<em>v1</em></div>
-      <div class="frow keep"><span class="ck">✓</span>Payments<em>v1</em></div>
-      <div class="frow cut"><span class="ck">–</span>Admin analytics suite<em>later</em></div>
-      <div class="frow cut"><span class="ck">–</span>In-app chat<em>later</em></div>
-      <div class="frow cut"><span class="ck">–</span>Custom theme builder<em>cut</em></div>
+      <div class="grp">First release</div>
+      <div class="frow in"><span class="ck">✓</span>Sign up and log in<em>proves it</em></div>
+      <div class="frow in"><span class="ck">✓</span>The one thing users came for<em>proves it</em></div>
+      <div class="grp">After launch</div>
+      <div class="frow nx"><span class="ck">→</span>Payments<em>when users ask</em></div>
+      <div class="frow nx"><span class="ck">→</span>In-app chat<em>when users ask</em></div>
+      <div class="grp">Not needed yet</div>
+      <div class="frow lt"><span class="ck">·</span>Custom theme builder<em>not yet</em></div>
     </div>
   </div></div></section>
 </article>
 
 <article class="opt">
-  <div class="optbar"><b>Why 3 · Three rings: product, pace, proof</b><span>One memorable diagram, three promises with plain value under each.</span></div>
-  <section class="sec w3"><div class="wrap"><div class="g">
-    <div class="rings"><div class="ring r1"><span>The right<br>product</span></div><div class="ring r2"><span>Fast, with<br>AI</span></div><div class="ring r3"><span>Senior<br>sign-off</span></div><div class="core">You own it all</div></div>
+  <div class="optbar"><b>Why 2c · "Focus on what matters first"</b><span>Priority language: must have / nice to have / not now, with a scope meter.</span></div>
+  <section class="sec sc3"><div class="wrap"><div class="g">
     <div>
       <p class="label">Why DiscoverDev</p>
-      <h2 class="big">Right product. Fast. Signed off.</h2>
-      <ul>
-        <li><i style="background:rgba(18,64,190,.6)">1</i><p><b>The right product</b><span>We test the idea, sketch the product and tell you what to cut, before any code.</span></p></li>
-        <li><i style="background:rgba(80,200,230,.35)">2</i><p><b>Fast, with AI</b><span>AI does the heavy lifting: first drafts of code, tests and documentation. You see a demo every week.</span></p></li>
-        <li><i style="background:rgba(111,227,165,.35)">3</i><p><b>Senior sign-off</b><span>Senior engineers own the quality, and a senior engineer signs off every release.</span></p></li>
-      </ul>
+      <h2 class="big">Most teams just build what you ask for. <span class="dim">We help you focus on what matters first.</span></h2>
+      <div class="out">
+        <div><span class="c">1</span><p><b>Test the idea</b><span>Check the market and the competitors before you spend on code.</span></p></div>
+        <div><span class="c">2</span><p><b>Sketch the product</b><span>See it as a clickable prototype, not a document.</span></p></div>
+        <div><span class="c">3</span><p><b>Set the priorities</b><span>Must have, nice to have, not now: agreed with you, with a fixed build estimate.</span></p></div>
+      </div>
+    </div>
+    <div class="card feat">
+      <div class="cap"><span>your-product / priorities</span><span>Example</span></div>
+      <div class="grp">Must have</div>
+      <div class="frow in"><span class="ck">✓</span>Sign up and log in<em>first</em></div>
+      <div class="frow in"><span class="ck">✓</span>The one thing users came for<em>first</em></div>
+      <div class="grp">Nice to have</div>
+      <div class="frow nx"><span class="ck">→</span>Payments<em>next</em></div>
+      <div class="grp">Not now</div>
+      <div class="frow lt"><span class="ck">·</span>Admin analytics suite<em>later</em></div>
+      <div class="grp">Scope agreed</div><div class="meter"><i></i></div>
     </div>
   </div></div></section>
 </article>
 
-<article class="opt">
-  <div class="optbar"><b>Why 4 · Sketch to ship: a four-frame story</b><span>Your idea becomes a product in four frames. Shows the whole method in one glance.</span></div>
-  <section class="sec w4"><div class="wrap">
-    <p class="label">Why DiscoverDev</p>
-    <h2 class="big">Most teams skip to the last frame. <span class="dim">We start at the first.</span></h2>
-    <div class="film">
-      <div class="fr card"><div class="scr s1"><span class="q">?</span><div class="bar s"></div><div class="bar m"></div><div class="bar l"></div></div><span class="where">Discover</span><h3>Test the idea</h3><p>Market and competitor read.</p></div>
-      <div class="fr card"><div class="scr s2"><div class="bar m"></div><div class="blk"></div><div class="blk"></div></div><span class="where">Plan</span><h3>Sketch the product</h3><p>A clickable prototype and what to cut.</p></div>
-      <div class="fr card"><div class="scr s3"><div class="bar m"></div><div class="blk b"></div><div class="blk b"></div></div><span class="where">Build</span><h3>AI drafts, seniors decide</h3><p>A demo for you every week.</p></div>
-      <div class="fr card"><div class="scr s4"><div class="bar m"></div><div class="blk g"></div><div class="blk g"></div><span class="stamp">Signed off</span></div><span class="where">Ship and stay</span><h3>Live, and we stay</h3><p>A senior engineer signs off every release.</p></div>
-    </div>
-    <p class="skipcap">Four steps, one team, from the first test to after launch. <b style="color:#fff">8–12 weeks</b> for the build.</p>
-  </div></section>
-</article>
-
-<div class="group"><p class="tag">SECTION 2</p><h2>Three ways to work with us</h2></div>
+<div class="group"><p class="tag">SECTION 2</p><h2>Three ways to work: the journey map, four ideas</h2></div>
 
 <article class="opt">
-  <div class="optbar"><b>Ways 1 · Journey map with what you get</b><span>Three stops with a drawing of the deliverable, time, price model and three bullets of value.</span></div>
-  <section class="sec t1"><div class="wrap">
+  <div class="optbar"><b>Ways 1a · Journey map + "fee credits toward Build" link</b><span>A road between the stops; a green tag shows the money is not lost when you move on.</span></div>
+  <section class="sec jm"><div class="wrap">
     <h2 class="big">Three ways to work with us</h2>
-    <p class="lead"><b>Start where you are.</b>Validate’s fee credits toward Build, so the first step is never wasted.</p>
+    <p class="lead"><b>Start where you are.</b>Each step builds on the one before.</p>
     <div class="map">
-      <svg class="road" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 160 5, 300 70, 500 35 S 840 5, 1000 38" fill="none" stroke="url(#g)" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/><defs><linearGradient id="g"><stop offset="0" stop-color="#6c9aff"/><stop offset="1" stop-color="#6FE3A5"/></linearGradient></defs></svg>
-      <div class="st card"><div class="art"><div class="pr"><div class="b" style="width:50%"></div><div class="bl"></div><div class="bl"></div><div class="b" style="width:70%"></div></div></div><span class="mono">I have an idea.</span><h3>Validate</h3><span class="k">Product discovery · <span class="pill">1–2 weeks</span> <span class="pill">Fixed fee</span></span>
-        <div class="get"><div><i>✓</i>Market and competitor read</div><div><i>✓</i>Product scope</div><div><i>✓</i>A clickable prototype and a fixed build estimate</div></div><a class="go" href="#">Book a call about Validate →</a></div>
-      <div class="st card"><div class="art"><div class="mini live" style="margin:18px auto"><div class="dots"><i></i><i></i><i></i></div><div class="b" style="width:60%"></div><div class="bl"></div><div class="wk"><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i></i><i></i><i></i><i></i></div></div></div><span class="mono">I’m ready to build.</span><h3>Build</h3><span class="k">MVP development · <span class="pill">8–12 weeks</span> <span class="pill">Fixed price</span></span>
-        <div class="get"><div><i>✓</i>Design, build, QA and deployment</div><div><i>✓</i>A demo for you every week</div><div><i>✓</i>A live product with real users</div></div><a class="go" href="#">Book a call about Build →</a></div>
-      <div class="st card"><div class="art"><div class="sq"><i style="background:#6c9aff"></i><i style="background:#8fd0ff"></i><i style="background:#6FE3A5"></i><i style="background:#c8dbff"></i><span class="mono" style="margin-inline-start:22px">roadmap, with you</span></div></div><span class="mono">It’s working. Grow it.</span><h3>Scale</h3><span class="k">Dedicated development team · <span class="pill">Ongoing</span> <span class="pill">Monthly retainer</span></span>
-        <div class="get"><div><i>✓</i>Developers, testers and a project manager</div><div><i>✓</i>The PM runs the roadmap with you</div><div><i>✓</i>You keep control</div></div><a class="go" href="#">Book a call about Scale →</a></div>
+      <svg class="road" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 160 5, 300 70, 500 35 S 840 5, 1000 38" fill="none" stroke="url(#g1)" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/><defs><linearGradient id="g1"><stop offset="0" stop-color="#6c9aff"/><stop offset="1" stop-color="#6FE3A5"/></linearGradient></defs></svg>
+      <span class="credit">Validate’s fee credits toward Build</span>
+      <div class="st card"><div class="art"><div class="pr"><div class="b" style="width:50%"></div><div class="bl"></div><div class="bl"></div><div class="b" style="width:70%"></div></div></div><span class="best">I have an idea.</span><h3>Validate</h3><span class="k">Product discovery · <span class="pill">1–2 weeks</span> <span class="pill">Fixed fee</span></span><div class="get"><div><i>✓</i>Market and competitor read</div><div><i>✓</i>Product scope</div><div><i>✓</i>A clickable prototype and a fixed build estimate</div></div><a class="go" href="#">Book a call about Validate →</a></div>
+      <div class="st card"><div class="art"><div class="mini" style="margin:16px auto"><div class="dots"><i></i><i></i><i></i></div><div class="b" style="width:60%"></div><div class="bl"></div><div class="wk"><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i></i><i></i><i></i><i></i></div></div></div><span class="best">I’m ready to build.</span><h3>Build</h3><span class="k">MVP development · <span class="pill">8–12 weeks</span> <span class="pill">Fixed price</span></span><div class="get"><div><i>✓</i>Design, build, QA and deployment</div><div><i>✓</i>A demo for you every week</div><div><i>✓</i>A live product with real users</div></div><a class="go" href="#">Book a call about Build →</a></div>
+      <div class="st card"><div class="art"><div class="sq"><i style="background:#6c9aff"></i><i style="background:#8fd0ff"></i><i style="background:#6FE3A5"></i><i style="background:#c8dbff"></i><span class="mono" style="margin-inline-start:22px">roadmap, with you</span></div></div><span class="best">It’s working. Grow it.</span><h3>Scale</h3><span class="k">Dedicated development team · <span class="pill">Ongoing</span> <span class="pill">Monthly retainer</span></span><div class="get"><div><i>✓</i>Developers, testers and a project manager</div><div><i>✓</i>The PM runs the roadmap with you</div><div><i>✓</i>You keep control</div></div><a class="go" href="#">Book a call about Scale →</a></div>
     </div>
   </div></section>
 </article>
 
 <article class="opt">
-  <div class="optbar"><b>Ways 2 · "Where are you?" decision flow</b><span>Helps the visitor choose in 5 seconds: one question per column, an arrow, then the answer.</span></div>
-  <section class="sec t2"><div class="wrap">
-    <p class="label">Not sure where to start?</p>
-    <h2 class="big">Three ways to work with us</h2>
-    <p class="lead"><b>Pick the line that sounds like you.</b>You can switch later: Validate’s fee credits toward Build.</p>
-    <div class="flow">
-      <div class="col"><div class="q"><small>If</small>I have an idea.</div><div class="arr">↓</div>
-        <div class="res card"><h3>Validate</h3><span class="mono">Product discovery</span><p>Market and competitor read, product scope, a clickable prototype and a fixed build estimate.</p><dl><dt>Time</dt><dd>1–2 weeks</dd><dt>Price</dt><dd>Fixed fee</dd></dl><a class="btn" href="#">Book a call</a></div></div>
-      <div class="col"><div class="q"><small>If</small>I’m ready to build.</div><div class="arr">↓</div>
-        <div class="res card"><h3>Build</h3><span class="mono">MVP development</span><p>A live product with real users: design, build, QA and deployment, with a demo for you every week.</p><dl><dt>Time</dt><dd>8–12 weeks</dd><dt>Price</dt><dd>Fixed price</dd></dl><a class="btn" href="#">Book a call</a></div></div>
-      <div class="col"><div class="q"><small>If</small>It’s working. Grow it.</div><div class="arr">↓</div>
-        <div class="res card"><h3>Scale</h3><span class="mono">Dedicated development team</span><p>A dedicated team of developers, testers and a project manager who runs the roadmap with you.</p><dl><dt>Time</dt><dd>Ongoing</dd><dt>Price</dt><dd>Monthly retainer</dd></dl><a class="btn" href="#">Book a call</a></div></div>
-    </div>
-  </div></section>
-</article>
-
-<article class="opt">
-  <div class="optbar"><b>Ways 3 · Stairs: the product grows, so does the team</b><span>Three steps that rise left to right, with one big number each.</span></div>
-  <section class="sec t3"><div class="wrap">
-    <h2 class="big">Three ways to work with us</h2>
-    <p class="lead"><b>Start where you are.</b>Each step builds on the one before. Validate’s fee credits toward Build.</p>
-    <div class="stairs">
-      <div class="step card s1"><span class="mono">I have an idea.</span><span class="big">1–2<small style="font-size:.4em"> weeks</small></span><h3>Validate</h3><p>Product discovery for a fixed fee.</p><ul><li><i>✓</i>Market and competitor read</li><li><i>✓</i>Clickable prototype</li><li><i>✓</i>Fixed build estimate</li></ul><a href="#">Book a call about Validate →</a></div>
-      <div class="step card s2"><span class="mono">I’m ready to build.</span><span class="big">8–12<small style="font-size:.4em"> weeks</small></span><h3>Build</h3><p>An MVP at a fixed price.</p><ul><li><i>✓</i>Design, build, QA, deployment</li><li><i>✓</i>A demo every week</li><li><i>✓</i>A live product with real users</li></ul><a href="#">Book a call about Build →</a></div>
-      <div class="step card s3"><span class="mono">It’s working. Grow it.</span><span class="big">Ongoing</span><h3>Scale</h3><p>A dedicated development team on a monthly retainer.</p><ul><li><i>✓</i>Developers, testers and a PM</li><li><i>✓</i>The PM runs the roadmap with you</li><li><i>✓</i>You keep control</li></ul><a href="#">Book a call about Scale →</a></div>
-    </div>
-    <div class="up"><span>Idea</span><span>→ Product →</span><span>Growth</span></div>
-  </div></section>
-</article>
-
-<article class="opt">
-  <div class="optbar"><b>Ways 4 · Deliverable posters</b><span>Each way shows what you walk away with, as a picture on top and facts below.</span></div>
-  <section class="sec t4"><div class="wrap">
+  <div class="optbar"><b>Ways 1b · One timeline: how long each way takes</b><span>Three bars on a shared line show the length of each step at a glance, then the cards.</span></div>
+  <section class="sec gt"><div class="wrap">
     <h2 class="big">Three ways to work with us</h2>
     <p class="lead"><b>Start where you are.</b>Validate’s fee credits toward Build.</p>
-    <div class="posters">
-      <div class="po card"><div class="pic pa"><div class="mini"><div class="dots"><i></i><i></i><i></i></div><div class="b" style="width:55%"></div><div class="bl"></div><div class="b" style="width:80%"></div></div></div><div class="body"><span class="who">I have an idea.</span><h3>Validate</h3><p>You walk away with a clickable prototype, a product scope and a fixed build estimate.</p><div class="facts"><span class="pill">1–2 weeks</span><span class="pill">Fixed fee</span></div><a href="#">Book a call about Validate →</a></div></div>
-      <div class="po card"><div class="pic pb"><div class="mini live"><div class="dots"><i></i><i></i><i></i></div><div class="b" style="width:55%"></div><div class="bl"></div><div class="wk"><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i></i><i></i><i></i><i></i></div></div></div><div class="body"><span class="who">I’m ready to build.</span><h3>Build</h3><p>You walk away with a live product and real users, after design, build, QA and deployment, with a demo every week.</p><div class="facts"><span class="pill">8–12 weeks</span><span class="pill">Fixed price</span></div><a href="#">Book a call about Build →</a></div></div>
-      <div class="po card"><div class="pic pc"><div class="sq" style="padding:0"><i style="background:#6c9aff"></i><i style="background:#8fd0ff"></i><i style="background:#6FE3A5"></i><i style="background:#c8dbff"></i></div></div><div class="body"><span class="who">It’s working. Grow it.</span><h3>Scale</h3><p>You get a dedicated team of developers, testers and a project manager who runs the roadmap with you. You keep control.</p><div class="facts"><span class="pill">Ongoing</span><span class="pill">Monthly retainer</span></div><a href="#">Book a call about Scale →</a></div></div>
+    <div class="bars">
+      <div class="lane"><div><h3>Validate</h3><span class="mono">I have an idea.</span></div><div class="track"><div class="bar b1">1–2 weeks</div></div></div>
+      <div class="lane"><div><h3>Build</h3><span class="mono">I’m ready to build.</span></div><div class="track"><div class="bar b2">8–12 weeks · a demo every week</div></div></div>
+      <div class="lane"><div><h3>Scale</h3><span class="mono">It’s working. Grow it.</span></div><div class="track"><div class="bar b3">Ongoing, monthly</div></div></div>
+      <div class="axis"><span></span><div><span>Day one</span><span>Idea</span><span>Live product</span><span>Growth →</span></div></div>
+    </div>
+    <div class="cards">
+      <div class="cc card"><b>Validate</b><span class="pill" style="justify-self:start">Fixed fee</span><p>Market and competitor read, product scope, a clickable prototype and a fixed build estimate.</p><a href="#">Book a call about Validate →</a></div>
+      <div class="cc card"><b>Build</b><span class="pill" style="justify-self:start">Fixed price</span><p>A live product with real users: design, build, QA and deployment.</p><a href="#">Book a call about Build →</a></div>
+      <div class="cc card"><b>Scale</b><span class="pill" style="justify-self:start">Monthly retainer</span><p>Developers, testers and a project manager who runs the roadmap with you.</p><a href="#">Book a call about Scale →</a></div>
     </div>
   </div></section>
 </article>
 
-<p class="note" style="margin-bottom:64px"><b>Fact check:</b> 1–2 and 8–12 weeks, fixed fee / fixed price / monthly retainer, the fee credit, weekly demo, senior sign-off on every release, full IP / own repository / no lock-in, and the four method stages (Discover, Plan, Build, Ship and stay) are all in the proof file. Feature names in "Why 2" are an example, labeled as one, like the hero board. Nothing here is a client claim.</p>
+<article class="opt">
+  <div class="optbar"><b>Ways 1c · "Where are you?" picker over the map</b><span>Click a line (it is CSS only): the right step lights up and the others step back.</span></div>
+  <section class="sec pk"><div class="wrap">
+    <p class="label">Pick the line that sounds like you</p>
+    <h2 class="big">Three ways to work with us</h2>
+    <input type="radio" name="p" id="p1" checked><input type="radio" name="p" id="p2"><input type="radio" name="p" id="p3">
+    <div class="chips"><label for="p1">I have an idea.</label><label for="p2">I’m ready to build.</label><label for="p3">It’s working. Grow it.</label></div>
+    <div class="map2">
+      <div class="st card a"><span class="arr">STEP 1 · 1–2 weeks · fixed fee</span><h3>Validate</h3><span class="mono">Product discovery</span><p>Market and competitor read, product scope, a clickable prototype and a fixed build estimate. The fee credits toward Build.</p><a class="btn go" href="#">Book a call about Validate</a></div>
+      <div class="st card b"><span class="arr">STEP 2 · 8–12 weeks · fixed price</span><h3>Build</h3><span class="mono">MVP development</span><p>A live product with real users: design, build, QA and deployment, with a demo for you every week.</p><a class="btn go" href="#">Book a call about Build</a></div>
+      <div class="st card c"><span class="arr">STEP 3 · ongoing · monthly retainer</span><h3>Scale</h3><span class="mono">Dedicated development team</span><p>Developers, testers and a project manager who runs the roadmap with you. You keep control.</p><a class="btn go" href="#">Book a call about Scale</a></div>
+    </div>
+  </div></section>
+</article>
+
+<article class="opt">
+  <div class="optbar"><b>Ways 1d · How we work with you, week by week</b><span>Each card adds a small strip that shows the rhythm: what you see and when.</span></div>
+  <section class="sec rh"><div class="wrap">
+    <h2 class="big">Three ways to work with us</h2>
+    <p class="lead"><b>Start where you are.</b>Validate’s fee credits toward Build.</p>
+    <div class="map">
+      <div class="st card"><span class="mono">I have an idea.</span><h3>Validate</h3><span class="k">Product discovery · <span class="pill">1–2 weeks</span> <span class="pill">Fixed fee</span></span><p style="color:var(--muted)">Market and competitor read, product scope, a clickable prototype and a fixed build estimate.</p>
+        <div class="rhy"><small>EXAMPLE WEEK</small><div class="days"><i>Mon</i><i>Tue</i><i>Wed</i><i class="d">Proto</i><i class="d">Review</i></div><p>You see a clickable prototype and review it with us.</p></div><a href="#">Book a call about Validate →</a></div>
+      <div class="st card"><span class="mono">I’m ready to build.</span><h3>Build</h3><span class="k">MVP development · <span class="pill">8–12 weeks</span> <span class="pill">Fixed price</span></span><p style="color:var(--muted)">A live product with real users: design, build, QA and deployment.</p>
+        <div class="rhy"><small>EXAMPLE WEEK</small><div class="days"><i>Mon</i><i>Tue</i><i>Wed</i><i>Thu</i><i class="d">Demo</i></div><p>A demo for you every week, and a senior engineer signs off every release.</p></div><a href="#">Book a call about Build →</a></div>
+      <div class="st card"><span class="mono">It’s working. Grow it.</span><h3>Scale</h3><span class="k">Dedicated development team · <span class="pill">Ongoing</span> <span class="pill">Monthly retainer</span></span><p style="color:var(--muted)">Developers, testers and a project manager who runs the roadmap with you. You keep control.</p>
+        <div class="rhy"><small>EXAMPLE MONTH</small><div class="days"><i>Wk 1</i><i>Wk 2</i><i>Wk 3</i><i>Wk 4</i><i class="d">Review</i></div><p>We review the team size with you every month.</p></div><a href="#">Book a call about Scale →</a></div>
+    </div>
+  </div></section>
+</article>
+
+<p class="note" style="margin-bottom:64px"><b>Fact check:</b> every number and claim is from the proof file and site copy (1–2 and 8–12 weeks, fixed fee / fixed price / monthly retainer, the fee credit, weekly demo, senior sign-off on every release, monthly team review). Feature names in the scope cards and the day labels in the rhythm strips are examples and are labeled "Example", like the hero board.</p>
 </div>
 </body>
 </html>
