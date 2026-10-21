@@ -43,7 +43,8 @@ export const showcase = {
   partnersLink: 'See Partners',
   allLink: 'See all our work',
   // Home shows the bento again (Oct 21, Mohamed): the case with a number first, four more under it; /work lists every project.
-  ids: ['edtech-agents', 'lms-team', 'health-app', 'support-agent', 'call-ops'],
+  ids: ['edtech-agents', 'lms-team', 'health-app', 'support-agent', 'ride-ml', 'feasibility', 'call-ops', 'edtech-data', 'sports-gtm', 'white-label', 'founders'],
+  hint: 'Swipe or use the arrows',
   moreTitle: 'Selected work', // H2 above the chapter
   othersTitle: 'More products we’ve helped build', // h3 above the bento
   labels: { brief: 'The brief', did: 'What we did', result: 'Result' },
