@@ -5,8 +5,8 @@ import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
 // V1.0 (03 §2V1): while a service page is off, its card links to booking with "Book a call about …".
 interface Card { key: RouteKey; who: string; title: string; kind?: string; meta: readonly string[]; body: string; linkLabel: string; bookLabel?: string }
 interface Other { key: RouteKey; who: string; title: string; body: string; linkLabel: string }
-interface Props { title: string; lead: string; cards: readonly Card[]; scope?: { label: string; text: string }; otherTitle: string; other: readonly Other[] }
-const { title, lead, cards, scope, otherTitle, other } = Astro.props;
+interface Props { title: string; lead: string; credit?: string; cards: readonly Card[]; scope?: { label: string; text: string }; otherTitle: string; other: readonly Other[] }
+const { title, lead, credit, cards, scope, otherTitle, other } = Astro.props;
 const live = cards;
 const cardHref = (c: Card) => (isLive(c.key) ? ROUTES[c.key].path : `${bookHref('clarity')}&interest=${c.key}`);
 const cardLabel = (c: Card) => (isLive(c.key) ? c.linkLabel : c.bookLabel ?? c.linkLabel);
@@ -22,6 +22,7 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
         <p class="en__lead"><span class="en__def">{leadFirst}</span>{leadRest.length > 0 && <> {leadRest.join(' ')}</>}</p>
       </div>
       <ol role="list" class="en__grid reveal-stagger">
+        {credit && live.length > 1 && <li class="en__credit" aria-hidden="true">{credit}</li>}
         {live.map((c, i) => (
           <li class:list={['en__card', 'card-link', `en__card--${i}`]} data-spotlight>
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
@@ -73,6 +74,14 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   @media (width >= 56rem) { .en__card { min-block-size: 20rem; } }
   .en__card--1 { background: linear-gradient(180deg, color-mix(in oklab, var(--blue-800) 55%, var(--color-surface)), color-mix(in oklab, var(--color-surface) 40%, transparent)); border-color: color-mix(in oklab, var(--blue-300) 30%, transparent); }
   .en__stage { display: flex; align-items: center; gap: var(--space-3); margin-block-end: var(--space-4); }
+  /* Journey route (Oct 21, Ways 1a): a dashed line runs from each stage node to the card edge, and a tag in the Validate/Build gap says the fee carries over. Desktop only. */
+  .en__credit { display: none; }
+  @media (width >= 56rem) {
+    .en__stage::after { content: ''; flex: 1; border-block-start: 2px dashed color-mix(in oklab, var(--blue-300) 45%, transparent); margin-inline-end: calc(var(--space-6) * -1); }
+    .en__card:last-child .en__stage::after { display: none; }
+    .en__credit { position: absolute; z-index: 1; display: block; inset-block-start: calc(var(--space-6) + 6px); inset-inline-start: calc(100% / 3 - var(--space-5) / 3); translate: -100% -50%; padding: var(--space-1) var(--space-3); border-radius: 999px; background: var(--color-bg); border: 1px solid color-mix(in oklab, var(--color-human-mark) 55%, transparent); color: var(--color-human-mark); font-family: var(--ff-mono); font-size: var(--text-xs); white-space: nowrap; }
+    :dir(rtl) .en__credit { translate: 100% -50%; }
+  }
   .en__node { inline-size: 12px; block-size: 12px; border-radius: 50%; border: 2px solid var(--blue-400); background: var(--color-bg); position: relative; }
   .en__card--1 .en__node { background: var(--blue-400); }
   .en__card--2 .en__node { border-color: var(--color-human-mark); background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }

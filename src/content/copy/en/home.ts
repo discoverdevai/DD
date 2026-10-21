@@ -88,6 +88,7 @@ export const home = {
   },
   engagements: {
     title: 'Three ways to work with us',
+    credit: 'Validate’s fee credits toward Build',
     lead: 'DiscoverDev is a product and engineering company for startups and growing teams, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA. We validate the right product, build it with senior AI-accelerated teams in 8–12 weeks, and stay to scale it. You own all of it. Start where you are. Validate’s fee credits toward Build.',
     cards: [
       { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate', bookLabel: 'Book a call about Validate' },
@@ -122,7 +123,25 @@ export const home = {
     check: { title: 'Take the launch check', body: '10 questions about your AI-built or freelancer-built app. See what to fix before real users arrive.', cta: 'Start the check' },
   },
   // §2V1 section 3: the problem, as a two-tone statement (core idea, 03 §0).
-  problem: { label: 'Why DiscoverDev', bright: 'Most teams just build what you ask for.', dim: 'We help you build the right thing, then ship it fast, and you own all of it.', stepsLabel: 'Before any code', steps: ['Test the idea', 'Sketch the product', 'Decide what to cut'] },
+  problem: {
+    label: 'Why DiscoverDev',
+    headline: 'Most teams just build what you ask for. We start with what proves the idea.',
+    stepsLabel: 'Before any code',
+    steps: [
+      { title: 'Test the idea', body: 'Check the market and the competitors before you spend on code.' },
+      { title: 'Sketch the product', body: 'See it as a clickable prototype, not a document.' },
+      { title: 'Pick the first release', body: 'The smallest product that shows it works, at a fixed price.' },
+    ],
+    card: {
+      name: 'your-product / scope',
+      tag: 'Example',
+      groups: [
+        { label: 'First release', mark: 'in', items: [{ name: 'Sign up and log in', note: 'proves it' }, { name: 'The one thing users came for', note: 'proves it' }] },
+        { label: 'After launch', mark: 'next', items: [{ name: 'Payments', note: 'when users ask' }, { name: 'In-app chat', note: 'when users ask' }] },
+        { label: 'Not needed yet', mark: 'later', items: [{ name: 'Custom theme builder', note: 'not yet' }] },
+      ],
+    },
+  },
   faq: {
     title: 'Questions founders ask us',
     items: [
