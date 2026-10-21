@@ -1,0 +1,32 @@
+---
+// Previous / Next control for the sideways sliders (Oct 21, Mohamed: a better-fitting component). One joined pair in the site's own button
+// shape (6px radius, 3rem tall like the CTA buttons, hairline border, brand blue on hover and press), long arrows that point the way they
+// move, 44px+ targets, disabled at the ends, flips in RTL. Research: arrows grouped as a pair, prominent, pointing in the movement
+// direction; position is shown by the peeking next slide. The script that scrolls the row reads `data-<ns>-ctrl`, `-prev` and `-next`.
+interface Props { ns: string; controls: string; prevLabel: string; nextLabel: string }
+const { ns, controls, prevLabel, nextLabel } = Astro.props;
+const ctrl = { [`data-${ns}-ctrl`]: '' };
+const prev = { [`data-${ns}-prev`]: '' };
+const next = { [`data-${ns}-next`]: '' };
+---
+<div class="sarrows" {...ctrl} hidden>
+  <button type="button" class="sarrows__btn" {...prev} aria-label={prevLabel} aria-controls={controls}>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+  </button>
+  <button type="button" class="sarrows__btn" {...next} aria-label={nextLabel} aria-controls={controls}>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+  </button>
+</div>
+
+<style>
+  .sarrows { display: inline-flex; border: 1px solid var(--color-border-subtle, var(--color-hairline)); border-radius: var(--radius-sm); overflow: hidden; background: var(--color-surface); }
+  .sarrows[hidden] { display: none; }
+  .sarrows__btn { display: grid; place-items: center; inline-size: 3.25rem; block-size: 3rem; border: 0; background: transparent; color: var(--color-heading); cursor: pointer; transition: background-color var(--dur-base, 160ms) var(--ease-standard, ease), color var(--dur-base, 160ms) var(--ease-standard, ease); }
+  .sarrows__btn + .sarrows__btn { border-inline-start: 1px solid var(--color-hairline); }
+  @media (hover: hover) { .sarrows__btn:not(:disabled):hover { background: var(--blue-700); color: var(--neutral-0); } }
+  .sarrows__btn:not(:disabled):active { background: var(--blue-800); color: var(--neutral-0); }
+  .sarrows__btn:disabled { opacity: 0.35; cursor: default; }
+  .sarrows__btn:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: calc(var(--focus-offset) * -1); }
+  :dir(rtl) .sarrows__btn svg { transform: scaleX(-1); }
+  @media (forced-colors: active) { .sarrows { border-color: ButtonText; } .sarrows__btn:disabled { opacity: 1; color: GrayText; } }
+</style>

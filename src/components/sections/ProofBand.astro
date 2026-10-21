@@ -100,8 +100,9 @@ const logos = showLogos
   .pband__label { font-family: var(--ff-heading); font-size: var(--text-sm); font-weight: var(--weight-bold); letter-spacing: 0.02em; color: var(--color-machine-text); }
   /* Client cards: ONE row. Without script it is a swipeable row; with script (and no reduced-motion setting) it loops slowly at
      about 40px a second and pauses on hover, keyboard focus and a tap. Cards are fixed width so the speed reads the same everywhere. */
-  .pband__strip { position: relative; overflow-x: auto; scrollbar-width: none; }
-  .pband__strip::-webkit-scrollbar { display: none; }
+  .pband__strip { position: relative; overflow: hidden; }
+  /* No script: nothing can loop, so the cards wrap and show in full (and no scroll region without keyboard access, axe). */
+  @media (scripting: none) { .pband__strip { overflow: visible; } .pband__track { inline-size: auto; margin-inline: var(--gutter); } .pband__clients { flex-wrap: wrap; padding-inline-end: 0; } }
   .pband__track { display: flex; inline-size: max-content; margin-inline-start: var(--gutter); }
   .pband__clients { display: flex; flex: none; gap: var(--space-3); padding-inline-end: var(--space-3); margin: 0; list-style: none; }
   .pband__client { flex: none; inline-size: 16.5rem; }

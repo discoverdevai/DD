@@ -7,6 +7,7 @@ import ProjectVisual from '../work/ProjectVisual.astro';
 import { projects, showcase as c } from '../../content/copy/en/projects';
 import { href, isLive } from '../../data/routes';
 import { t } from '../../i18n/t';
+import SliderArrows from '../ui/SliderArrows.astro';
 const tiles = c.ids.map((id) => projects.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p));
 const target = (p: (typeof tiles)[number]) => (p.link && isLive(p.link) ? href(p.link) : isLive('work') ? href('work') : undefined);
 const stageName = (s: keyof typeof c.stages) => c.stages[s];
@@ -18,14 +19,7 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
         <h3 id="sc-title" class="sc__title">{c.othersTitle}</h3>
         <p class="sc__hint">{c.hint}</p>
       </div>
-      <div class="sc__ctrl" data-sc-ctrl hidden>
-        <button type="button" class="sc__btn" data-sc-prev aria-label={t('rail.prev')} aria-controls="sc-rail">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
-        </button>
-        <button type="button" class="sc__btn" data-sc-next aria-label={t('rail.next')} aria-controls="sc-rail">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
-        </button>
-      </div>
+      <SliderArrows ns="sc" controls="sc-rail" prevLabel={t('rail.prev')} nextLabel={t('rail.next')} />
     </div>
     <div class="sc__rail" id="sc-rail" role="region" aria-label={t('rail.region')} tabindex="0" data-sc-rail>
       <ul role="list" class="sc__track">
@@ -49,13 +43,7 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
   .sc__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); margin-block-end: var(--space-6); }
   .sc__title { font-family: var(--ff-heading); font-size: var(--text-2xl, 1.5rem); font-weight: var(--weight-bold); color: var(--color-heading); }
   .sc__hint { margin-block-start: var(--space-1); font-size: var(--text-sm); color: var(--color-text-muted); }
-  .sc__ctrl { display: flex; gap: var(--space-2); }
-  .sc__ctrl[hidden] { display: none; }
-  .sc__btn { display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--color-heading); cursor: pointer; }
-  .sc__btn:disabled { opacity: 0.35; cursor: default; }
-  @media (hover: hover) { .sc__btn:not(:disabled):hover { border-color: var(--blue-400); } }
-  .sc__btn:focus-visible, .sc__rail:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
-  :dir(rtl) .sc__btn svg { transform: scaleX(-1); }
+  .sc__rail:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
 
   /* The rail: one row, scroll-snap, the next card peeks in. Phones 1 card + peek, tablets 2, desktop 3. */
   .sc__rail { overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; padding-block-end: var(--space-3); border-radius: var(--radius-lg); }

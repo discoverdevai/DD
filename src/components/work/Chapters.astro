@@ -14,6 +14,7 @@ import { href, isLive } from '../../data/routes';
 import Device from '../ui/Device.astro';
 import SectionHead from '../ui/SectionHead.astro';
 import { t } from '../../i18n/t';
+import SliderArrows from '../ui/SliderArrows.astro';
 // `only`: chapter ids to show (home shows NJWAR; /work shows all).
 interface Props { headingLevel?: 'h2' | 'h3'; only?: readonly string[] }
 const { headingLevel = 'h2', only } = Astro.props;
@@ -37,14 +38,7 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
       <SectionHead id="work-title" title={sc.moreTitle} />
       {isLive('work') && <a class="wh__all" href={href('work')}>{sc.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
       {rows.length > 1 && (
-        <div class="wh__ctrl" data-ch-ctrl hidden>
-          <button type="button" class="wh__btn" data-ch-prev aria-label={t('chapters.prev')} aria-controls="ch-rail">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
-          </button>
-          <button type="button" class="wh__btn" data-ch-next aria-label={t('chapters.next')} aria-controls="ch-rail">
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
-          </button>
-        </div>
+        <SliderArrows ns="ch" controls="ch-rail" prevLabel={t('chapters.prev')} nextLabel={t('chapters.next')} />
       )}
     </div>
   </div>
@@ -88,13 +82,7 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
   /* Section title (home): the h2 comes first, then the chapter. The chapter drops its own seam and top gap under it. */
   .wh { padding-block: var(--section-y) 0; border-block-start: 1px solid var(--color-hairline); }
   .wh__in { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); }
-  .wh__ctrl { display: flex; align-items: center; gap: var(--space-2); }
-  .wh__ctrl[hidden] { display: none; }
-  .wh__btn { display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; border: 1px solid var(--color-hairline); background: var(--color-surface); color: var(--color-heading); cursor: pointer; }
-  .wh__btn:disabled { opacity: 0.35; cursor: default; }
-  @media (hover: hover) { .wh__btn:not(:disabled):hover { border-color: var(--blue-400); } }
-  .wh__btn:focus-visible, .chs--rail:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
-  :dir(rtl) .wh__btn svg { transform: scaleX(-1); }
+  .chs--rail:focus-visible { outline: var(--focus-width) solid var(--blue-300); outline-offset: var(--focus-offset); }
   /* One chapter per page in a sideways row: snap, swipe, arrows. The scrollbar is hidden. */
   .chs--rail { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
   .chs--rail::-webkit-scrollbar { display: none; }
