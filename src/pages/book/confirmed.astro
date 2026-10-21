@@ -10,7 +10,7 @@ import { isLive, href } from '../../data/routes';
 const c = book.confirmed;
 ---
 <BaseLayout title={c.title} description={book.seo.description} pageType="book_confirmed" noindex header="minimal" stickyBar={false}>
-  <section class="section conf" data-surface="paper" aria-labelledby="conf-title">
+  <section class="section conf" data-surface="ink" aria-labelledby="conf-title">
     <div class="container--narrow conf__inner">
       <p role="status" class="conf__status">{c.status}</p>
       <h1 id="conf-title" class="h1">{c.h1}</h1>

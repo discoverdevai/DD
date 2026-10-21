@@ -50,12 +50,12 @@ export function renderCal(o: RenderOpts): boolean {
   const ns = o.type;
   Cal('init', ns, { origin: 'https://app.cal.com' });
   const api = Cal.ns[ns];
-  const config: Record<string, string> = { layout: matchMedia('(width >= 48rem)').matches ? 'month_view' : 'column_view', theme: 'light' };
+  const config: Record<string, string> = { layout: matchMedia('(width >= 48rem)').matches ? 'month_view' : 'column_view', theme: 'dark' };
   if (o.prefill?.name) config.name = o.prefill.name;
   if (o.prefill?.email) config.email = o.prefill.email;
   for (const [k, v] of Object.entries(o.metadata)) config[`metadata[${k}]`] = v;
   api('inline', { elementOrSelector: o.el, calLink: `${calUsername}/${SLUG[o.type]}`, config });
-  api('ui', { theme: 'light', cssVarsPerTheme: { light: { 'cal-brand': '#1240BE' } }, hideEventTypeDetails: false });
+  api('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#1240BE' }, light: { 'cal-brand': '#1240BE' } }, hideEventTypeDetails: false });
   api('on', { action: 'linkReady', callback: o.onReady });
   api('on', { action: 'linkFailed', callback: o.onFailed });
   api('on', { action: 'bookerViewed', callback: (e: CustomEvent<{ data?: { slotsLoaded?: boolean } }>) => o.onViewed(Boolean(e.detail?.data?.slotsLoaded)) });

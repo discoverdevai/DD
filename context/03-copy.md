@@ -344,6 +344,9 @@ Oct 18 SEO/GEO pass (`docs/review/home-v1-2/seo-geo-audit.md`): Services lead no
 ### Oct 21: Upscend chapter (held preview until Upscend approves screens, D-05)
 Name Upscend · tags Scale, B2B learning, UK · Line: "An AI-powered learning platform with an AI tutor, an AI quiz generator and video checkpoints. Our dedicated PM and engineering team owned its roadmap, backlog and sprints for 12 months." The AI features are Upscend's product features (public site, in 09); the line does not say we built each one, only that our team owned the roadmap. Screen: the AI tutor chat from upscend.com (their own marketing image).
 
+### Oct 21 decision (Mohamed): /book and /book/confirmed use the site theme
+The booking pages use the same dark ink surface, colors and official logo (the "for ink" horizontal logo in the minimal header) as the rest of the site, instead of the earlier paper (white) surface. The Cal.com calendar is requested in its dark theme with the brand blue (#1240BE). The calendar starts on the first sign of intent (pointer, key, touch, scroll) or 3 seconds after load, so the page stays fast; until then the "Loading available times…" line shows.
+
 ## 2A. Home v3 (/) · strategy v2, 2026-10-16
 
 Supersedes §2.2 and §2.4–2.13 on the home page. Still used from §2: §2.3 proof strip, §2.8 case highlight (anonymized per §0.7). The Review copy in §2.2a, §2.2b, §2.5 and §2.6 moves to /launch-ready and is not shown on home. Facts trace to `09` (Method, Offer, Services catalog, Differentiators).
