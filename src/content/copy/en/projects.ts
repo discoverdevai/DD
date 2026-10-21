@@ -42,9 +42,10 @@ export const showcase = {
   caseLink: 'Read the case study',
   partnersLink: 'See Partners',
   allLink: 'See all our work',
-  // Home shows one case, the one with a number (Oct 18); /work lists every project.
-  ids: ['edtech-agents'],
-  moreTitle: 'Selected work',
+  // Home shows the bento again (Oct 21, Mohamed): the case with a number first, four more under it; /work lists every project.
+  ids: ['edtech-agents', 'lms-team', 'health-app', 'support-agent', 'call-ops'],
+  moreTitle: 'Selected work', // H2 above the chapter
+  othersTitle: 'More products we’ve helped build', // h3 above the bento
   labels: { brief: 'The brief', did: 'What we did', result: 'Result' },
   stages: { all: 'All', validate: 'Validate', build: 'Build', scale: 'Scale' } as Record<'all' | Stage, string>,
   filterLabel: 'Filter by stage',

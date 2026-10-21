@@ -1835,3 +1835,7 @@ Oct 18 SEO/GEO pass (`docs/review/home-v1-2/seo-geo-audit.md`): Services lead no
 - **Privacy and terms (V1.0):** every mention of the launch check, guides, articles, Web3Forms and the quiz cookies is removed until those ship (V1.2); the text returns with them (see git history of `src/content/copy/en/legal.ts`).
 - **Spelling:** US English everywhere (color, center, unauthorized, judgment, labeled, gray).
 - **Client cards on phones (Oct 18, Mohamed):** the same cards as on desktop (logo, name and the one-line role), one per row on phones, no name-only two-column grid.
+
+## Oct 21 decision (Mohamed): more selected work on home
+§2A.8b is a bento again, under the NJWAR chapter and the "Selected work" H2: sub-heading (h3) "More products we've helped build"; one featured tile (AI agents for EduLens, an EdTech platform · 60–90% lower AI cost · Read the case study) and four tiles in this order: Embedded product team for a B2B learning platform (Scale, UK, 12 months), Health app that explains lab reports (Build), Customer-support AI agent (Build), AI agents for call operations (Build, USA). Text per tile = the project's result, or "what we did" (09 only). Tiles link to /work only when that page is live (V1.1); until then the titles are plain text. The AR furniture store is the NJWAR chapter above, so it is not repeated. "See all our work" appears only when /work is live.
+
