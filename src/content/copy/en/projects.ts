@@ -18,7 +18,7 @@ const all: readonly Project[] = [
   { id: 'edtech-agents', stage: 'build', industry: 'EdTech', where: 'Egypt', title: 'AI agents for EduLens, an EdTech platform', brief: 'Every request was processed from scratch, so AI costs rose with every new student.', did: 'Captions first, answers shared across users and the right model for each task.', result: 'EduLens cut its AI costs by 60–90%, depending on how often content is reused, and cost now grows slower than the user base.', metric: { value: '60–90%', label: 'lower AI cost' }, art: 'edtech', quotes: ['Youssef'], link: 'workEdulens' },
   { id: 'ar-commerce', stage: 'build', industry: 'E-commerce', where: 'Saudi Arabia', title: 'AR furniture store with AI recommendations', did: 'Market study, discovery, UX/UI, development, an AI recommendation engine and AR visualization.', art: 'ar', quotes: ['Nojoud Alarfaj'], screens: ['njwar-product.webp'], device: 'browser', screenAlt: 'Product page of the furniture store in Arabic, with photos, dimensions, color options and an add-to-cart button' },
   { id: 'yawmy-care', stage: 'build', industry: 'Childcare · our own product', title: 'Yawmy Care, a nursery management platform', did: 'One platform for parents, teachers and management, with billing and multiple locations. Built as our own white-label product.', result: 'Launching in 2027.', art: 'lms', screens: ['yawmy-dashboard.webp'], device: 'browser', screenAlt: 'Yawmy Care dashboard for a nursery: totals for children, teachers and check-ins, and a daily attendance chart' },
-  { id: 'home-services', stage: 'build', industry: 'Marketplace', where: 'USA', title: 'Home-services marketplace', brief: 'A greenfield product for booking verified home-service pros.', did: 'A full product team for 16 weeks: post a job, auto-match the nearest verified contractor, Stripe escrow, real-time messaging and admin tools.', art: 'devices', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'tablet', hold: 'D-07', screenAlt: 'Tablet app screens: a map with matched home-service pros, and the home screen with service categories' },
+  { id: 'home-services', stage: 'build', industry: 'Marketplace', where: 'USA', title: 'Home-services marketplace', brief: 'A greenfield product for booking verified home-service pros.', did: 'A full product team for 16 weeks: post a job, auto-match the nearest verified contractor, Stripe escrow, real-time messaging and admin tools.', art: 'devices' },
   { id: 'health-app', stage: 'build', industry: 'HealthTech', title: 'Health app that explains lab reports', did: 'Plain-language explanations of lab reports, recommendations, conversational follow-up and medical safety guardrails.', art: 'health' },
   { id: 'call-ops', stage: 'build', industry: 'AI agents', where: 'USA', title: 'AI agents for call operations', did: 'AI agents for call operations, a landing page and staff augmentation.', art: 'agent', quotes: ['CEO'] },
   { id: 'support-agent', stage: 'build', industry: 'Support automation', title: 'Customer-support AI agent', brief: 'Many users asked the same question at once, and each request paid for its own AI call.', did: 'A runtime cache answers identical questions once and shares the result.', result: 'AI cost follows unique questions, not total requests.', art: 'agent' },
@@ -43,7 +43,7 @@ export const showcase = {
   partnersLink: 'See Partners',
   allLink: 'See all our work',
   // Home shows the bento again (Oct 21, Mohamed): the case with a number first, four more under it; /work lists every project.
-  ids: ['edtech-agents', 'lms-team', 'health-app', 'support-agent', 'ride-ml', 'feasibility', 'call-ops', 'edtech-data', 'sports-gtm', 'white-label', 'founders'],
+  ids: ['edtech-agents', 'lms-team', 'health-app', 'support-agent', 'home-services', 'ride-ml', 'feasibility', 'call-ops', 'edtech-data', 'sports-gtm', 'white-label', 'founders'],
   hint: 'Swipe or use the arrows',
   moreTitle: 'Selected work', // H2 above the chapter
   othersTitle: 'More products we’ve helped build', // h3 above the bento
@@ -73,7 +73,7 @@ const allChapters: readonly Chapter[] = [
   { id: 'rushr', project: 'home-services', name: 'Rushr', tags: ['Build', 'Marketplace', 'USA'],
     line: 'A home-services marketplace: post a job, get matched with the nearest verified pro, pay through escrow.',
     phones: [{ file: 'rushr-m-searching.webp', alt: 'Rushr app searching for a technician nearby' }, { file: 'rushr-m-dispatch.webp', alt: 'Rushr app showing a matched plumber with accept and decline' }, { file: 'rushr-m-progress.webp', alt: 'Rushr request in progress with live cost' }],
-    hold: 'D-07' },
+    },
   // Preview only (Oct 21, Mohamed asked for a mockup): Upscend's own public marketing screen of the learner view. Held until Upscend approves screens (D-05).
   { id: 'upscend', project: 'lms-team', name: 'Upscend', tags: ['Scale', 'B2B learning', 'UK'],
     line: 'A B2B learning platform: our dedicated PM and engineering team owned the roadmap, backlog and sprints for 12 months.',

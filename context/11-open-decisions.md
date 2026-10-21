@@ -126,3 +126,5 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 | G-08 | Pillar, C1, C2 are briefs only | D-36 | Claude drafts by Nov 6; Mohamed reviews technically |
 
 | Oct 18 | **D-06 resolved:** EduLens is named on home with the 60–90% result (Mohamed, Oct 18). Yawmy Care stays as "our product". Privacy and terms trimmed to what is live. US spelling. | Mohamed |
+
+| Oct 21 | **D-07 lifted for Rushr (Mohamed):** the Rushr chapter (3 phone screens), the client-row role line and the rail card are live on home. Upscend screens stay held (needs Upscend's OK, D-05). | Mohamed |

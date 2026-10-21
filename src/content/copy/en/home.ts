@@ -36,6 +36,7 @@ export const home = {
       'jumlaty': 'Restaurant procurement · Saudi Arabia',
       'zest': 'Market study',
       'ctc': 'Speech therapy practice · USA',
+      'rushr': 'Home-services marketplace · USA',
       'yawmy-care': 'Childcare platform · our product',
     } as Record<string, string>,
     // §2A.3 project cards (anonymized, facts in 09). Shown until 4+ client logos have written consent.
