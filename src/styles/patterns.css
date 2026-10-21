@@ -6,6 +6,7 @@
 .section-heading { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; }
 .section-heading--18 { max-inline-size: 18ch; }
 .section-heading--22 { max-inline-size: 22ch; }
+.section-heading--sub { font-size: clamp(1.375rem, 1.1rem + 1.1vw, 2rem); }
 .section-heading--24 { max-inline-size: 24ch; }
 
 /* Card link (06 §9.26): the whole card is one link target. Put .card-link on the card; the link inside its heading

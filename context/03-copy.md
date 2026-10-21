@@ -1716,14 +1716,14 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 - **Meta (144), V1.0:** Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step.
 - **From V1.2 (Review back on):** title "Book a Launch-Ready Review or Clarity Call | DiscoverDev" · meta "Book a 5-day Launch-Ready Review of your app, or a free 30-minute clarity call. No pitch. Pick a time that works for you in the US or the Gulf."
 - **H1:** Book a review or a free clarity call
-- Header: minimal (logo + "Back" link). No sticky bar.
+- Header: minimal (logo + "Back to home" link; Oct 21 UX audit P3-8: the label says where it goes). No sticky bar.
 
 ### 13.1 Choice
 - Purpose: pick the right call in one tap.
 - H1: Book a review or a free clarity call
 - Tab 1 (default) · Launch-Ready Review: "For an app that works in the demo but isn't ready to launch. Start with a free 30-minute scoping call. You get a fixed fee before anything starts." [VERIFY: V19]
   - Microcopy: About 5 working days · From $1,490, credited to your fix · No useful findings, no charge
-- Tab 2 · Clarity call: "For an idea, a new build, a growing product or anything else. 30 minutes, no pitch."
+- Tab 2 · Clarity call: "For an idea, a new build, a growing product or anything else." (Oct 21 UX audit P2-7: "30 minutes, no pitch" is already in the ticks and the terms line, so it is not repeated here.)
   - Microcopy: 30 minutes · No pitch · Leave with a next step
 - Partner variant (?type=partner): heading "Book a partner call" · "For software houses and agencies looking at white-label delivery or staff augmentation." · Microcopy: 30 minutes · NDA on request [VERIFY: V5]
 

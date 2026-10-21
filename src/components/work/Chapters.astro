@@ -35,7 +35,7 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
 {rows.length > 0 && head && (
   <div class="wh" data-surface="ink">
     <div class="container wh__in">
-      <SectionHead id="work-title" title={sc.moreTitle} />
+      <SectionHead id="work-title" title={sc.moreTitle} sub />
       {isLive('work') && <a class="wh__all" href={href('work')}>{sc.allLink}<span class="icon--dir" aria-hidden="true"> →</span></a>}
       {rows.length > 1 && (
         <SliderArrows ns="ch" controls="ch-rail" prevLabel={t('chapters.prev')} nextLabel={t('chapters.next')} />

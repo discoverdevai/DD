@@ -1,8 +1,8 @@
 ---
 // SectionHead (06 §9.25): the label + title pair that opens a section. Renders a fragment, so the caller's wrapper
 // (flex row with an action link, split grid, plain div) stays in the section. `id` is the title id for aria-labelledby.
-interface Props { id: string; title: string; label?: string; measure?: 18 | 22 | 24; reveal?: boolean }
-const { id, title, label, measure, reveal = false } = Astro.props;
+interface Props { id: string; title: string; label?: string; measure?: 18 | 22 | 24; reveal?: boolean; sub?: boolean }
+const { id, title, label, measure, reveal = false, sub = false } = Astro.props;
 ---
 {label && <p class="section-label">{label}</p>}
-<h2 id={id} class:list={['section-heading', { [`section-heading--${measure}`]: measure, reveal }]}>{title}</h2>
+<h2 id={id} class:list={['section-heading', { [`section-heading--${measure}`]: measure, reveal, 'section-heading--sub': sub }]}>{title}</h2>

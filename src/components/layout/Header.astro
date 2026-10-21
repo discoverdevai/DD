@@ -93,6 +93,8 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
   .site-header__back { margin-inline-start: auto; display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; color: var(--color-link); font-weight: var(--weight-medium); }
   @media (width < 22.5rem) { .site-header__actions :global(.site-header__book) { display: none; } }
   /* Desktop shows the full label from 80rem (03 §2V1, CRO review); narrower widths keep the short one. */
+  /* One booking button at a time on phones: the sticky bar replaces the header button while it shows (UX audit P1-2). */
+  @media (width < 64rem) { :global(:root[data-sticky-on]) .site-header__book { display: none; } }
   .cta-long { display: none; }
   @media (width >= 80rem) { .cta-long { display: inline; } .cta-short { display: none; } }
   @media (width >= 64rem) { .site-nav { display: block; } .site-header__menu { display: none; } }

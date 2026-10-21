@@ -14,20 +14,20 @@ const links = [
   { label: c.links.insights, path: href('insights'), live: isLive('insights') },
 ].filter((l) => l.live);
 ---
-<BaseLayout title={c.title} pageType="404" noindex stickyBar={false}>
+<BaseLayout title={c.title} pageType="404" noindex stickyBar={false} footerCore={false}>
   <section class="section nf" data-surface="ink" aria-labelledby="nf-title">
     <div class="container--narrow nf__inner">
       <p class="nf__cmd" aria-hidden="true"><span>$</span> cd /page-not-found</p>
       <h1 id="nf-title" class="h1">{c.h1}</h1>
       <p class="lead">{c.body}</p>
-      <ul role="list" class="nf__links">
-        {links.map((l) => <li><a href={l.path}>{l.label}</a></li>)}
-      </ul>
       <div class="nf__cta">
         {isLive('review')
           ? <><CtaLink href={bookHref('review')} ctaId="notfound_end_review" tier="primary" position="end" target="review" wide>{t('cta.review')}</CtaLink><CtaTerms kind="review" /></>
           : <><CtaLink href={bookHref('clarity')} ctaId="notfound_end_clarity" tier="primary" position="end" target="clarity" wide>{t('cta.clarity')}</CtaLink><CtaTerms kind="clarity" /></>}
       </div>
+      <ul role="list" class="nf__links">
+        {links.map((l) => <li><a href={l.path}>{l.label}</a></li>)}
+      </ul>
       <p class="small muted">{c.help} <a href={`mailto:${t('contact.email')}`} dir="ltr">{t('contact.email')}</a>.</p>
     </div>
   </section>

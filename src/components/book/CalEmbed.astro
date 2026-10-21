@@ -41,6 +41,12 @@ const types: BookType[] = isLive('review') ? ['review', 'clarity', 'partner'] : 
   .cal__fallback { position: absolute; inset-inline: 0; inset-block-start: 0; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); } /* out of flow: removing it moves nothing */
   .cal[data-ready] .cal__fallback { display: none; }
   .cal__loading { color: var(--color-text-muted); }
+  /* Loading state (UX audit P1-1): a skeleton of the booker holds the space; the direct links appear after 4 seconds so loading and failure look different. */
+  .cal__loading::after { content: ''; display: block; margin-block-start: var(--space-5); block-size: 14rem; border-radius: var(--radius-md); background: linear-gradient(var(--color-border-subtle), var(--color-border-subtle)) 0 0 / 100% 2.25rem no-repeat, repeating-linear-gradient(90deg, color-mix(in oklab, var(--blue-300) 12%, transparent) 0 3.25rem, transparent 3.25rem 3.75rem) 0 3.5rem / 100% 7rem no-repeat; opacity: 0.5; }
+  @media (prefers-reduced-motion: no-preference) { .cal__loading::after { animation: cal-pulse 1.6s ease-in-out infinite; } @keyframes cal-pulse { 50% { opacity: 0.25; } } }
+  .cal__links, .cal__fallback > p:last-child { animation: cal-late 0s 4s backwards; }
+  @keyframes cal-late { from { visibility: hidden; opacity: 0; } to { visibility: visible; opacity: 1; } }
+  .cal__frame:has([data-cal-failed]:not([hidden])) .cal__links, .cal__frame:has([data-cal-failed]:not([hidden])) .cal__fallback > p:last-child, .cal[data-cal-configured="false"] .cal__links, .cal[data-cal-configured="false"] .cal__fallback > p:last-child { animation: none; }
   .cal__links { display: grid; gap: var(--space-1); }
   .cal__links a { display: inline-flex; align-items: center; min-block-size: 2.75rem; font-weight: var(--weight-medium); }
   .cal__cookies { color: var(--color-text-muted); max-inline-size: 68ch; }

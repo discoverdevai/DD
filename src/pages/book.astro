@@ -42,7 +42,7 @@ const jsonLd = graph(orgStub, webPage('/book', seo.title, seo.description));
           <h2 class="h3">{c.terms.title}</h2>
           <CheckList items={c.terms.items} />
         </div>
-        <ProofChip />
+        <ProofChip quiet />
         <div class="side-block" id="contact">
           <h2 class="h3">{c.write.title}</h2>
           <p><a href={`mailto:${t('contact.email')}`} data-link-context="contact" dir="ltr">{t('contact.email')}</a></p>

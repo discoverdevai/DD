@@ -41,7 +41,7 @@ const { kind = 'clarity' } = Astro.props;
   if (bar && heroCta) {
     const mq = matchMedia('(width < 64rem)');
     let heroGone = false, bandIn = false, typing = false;
-    const sync = () => { bar.hidden = !(mq.matches && heroGone && !bandIn && !typing); };
+    const sync = () => { bar.hidden = !(mq.matches && heroGone && !bandIn && !typing); document.documentElement.toggleAttribute('data-sticky-on', !bar.hidden); };
     // The bar's height reaches --bottom-bar-h through a ResizeObserver (0 while hidden), so showing it never forces a
     // synchronous layout inside a scroll frame, and <html> is only restyled when the value really changes.
     let barH = 0;

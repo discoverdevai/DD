@@ -9,7 +9,7 @@ export const book = {
   h1Clarity: 'Book a free clarity call', // V1.0: the Review is offered from V1.2 (03 §2V1)
   options: {
     review: { tab: 'Launch-Ready Review', text: 'For an app that works in the demo but isn’t ready to launch. Start with a free 30-minute scoping call. You get a fixed fee before anything starts.' },
-    clarity: { tab: 'Clarity call', text: 'For an idea, a new build, a growing product or anything else. 30 minutes, no pitch.' },
+    clarity: { tab: 'Clarity call', text: 'For an idea, a new build, a growing product or anything else.' },
     partner: { tab: 'Partner call', heading: 'Book a partner call', text: 'For software houses and agencies looking at white-label delivery or staff augmentation.' },
   },
   optionsLabel: 'Choose a call',
