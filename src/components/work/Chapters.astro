@@ -116,14 +116,14 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
   .ch__laptop, .ch__phone { position: absolute; transform: rotateY(-18deg) rotateX(8deg) rotateZ(2deg); }
 
   /* web + 1 phone (NJWAR, RTL web: phone on the start side so the Arabic headline shows) */
-  .ch--web1 .ch__laptop { inset-inline-start: 26%; inset-block-start: 14%; inline-size: 90%; }
+  .ch--web1 .ch__laptop { inset-inline-start: 26%; inset-block-start: 14%; inline-size: 66%; }
   .ch--web1 .ch__phone--1 { inset-inline-start: 4%; inset-block-start: 8%; inline-size: 30%; z-index: 2; }
   /* Phones: pull the laptop in so the Arabic hero copy is not cut at the screen edge. */
   @media (width < 64rem) { .ch--web1 .ch__laptop { inset-inline-start: 18%; inline-size: 80%; } }
   /* web + 2 phones (Yawmy) */
   .ch--web2 .ch__laptop { inset-inline-start: 2%; inset-block-start: 14%; inline-size: 90%; }
   .ch--web2 .ch__phone--1 { inset-inline-start: 54%; inset-block-start: 10%; inline-size: 29%; z-index: 3; }
-  .ch--web2 .ch__phone--2 { inset-inline-start: 76%; inset-block-start: 4%; inline-size: 26%; z-index: 2; opacity: 0.92; }
+  .ch--web2 .ch__phone--2 { inset-inline-start: 72%; inset-block-start: 4%; inline-size: 26%; z-index: 2; opacity: 0.92; }
   /* 3 phones (Rushr) */
   .ch--phones .ch__phone--1 { inset-inline-start: 4%; inset-block-start: 10%; inline-size: 28%; z-index: 1; }
   .ch--phones .ch__phone--2 { inset-inline-start: 31%; inset-block-start: 2%; inline-size: 34%; z-index: 3; }
