@@ -61,7 +61,7 @@ export default defineConfig({
       filter: (page) => { const p = new URL(page).pathname.replace(/\/$/, '') || '/'; return !NOT_IN_SITEMAP.test(p) && !isOff(p); },
       serialize: (item) => {
         const d = LASTMOD[new URL(item.url).pathname.replace(/\/$/, '')];
-        return d ? { ...item, lastmod: new Date(d).toISOString() } : item;
+        return { ...item, lastmod: new Date(d ?? Date.now()).toISOString() }; // pages without their own date carry the build date
       },
     }),
   ],

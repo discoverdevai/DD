@@ -41,7 +41,6 @@ const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
   .td__cols { display: grid; gap: var(--space-8); }
   @media (width >= 56rem) { .td__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); } .td__col + .td__col { padding-inline-start: var(--space-10); border-inline-start: 1px solid var(--neutral-200); } }
   .td__col { display: grid; gap: var(--space-3); align-content: start; }
-  .td__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-700); }
   .td__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.015em; color: var(--neutral-950); }
   .td__body { color: var(--neutral-600); line-height: 1.6; }
   .td__more { font-weight: var(--weight-medium); }

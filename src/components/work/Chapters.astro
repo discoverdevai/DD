@@ -53,7 +53,7 @@ const rows = await Promise.all(chapters.filter((ch) => !only || only.includes(ch
           <p class="ch__line">{ch.line}</p>
           <div class="ch__acts">
             {isLive('work') && <a class="ch__view" href={`${href('work')}#project-${ch.project}`}>{c.view}<span class="icon--dir" aria-hidden="true">&nbsp;→</span></a>}
-            {ch.tryIt && <a class="ch__try" href={ch.tryIt.href} target="_blank" rel="noopener" data-link-context="ar_demo">{ch.tryIt.label}<span aria-hidden="true">&nbsp;↗</span></a>}
+            {ch.tryIt && <a class="ch__try" href={ch.tryIt.href} target="_blank" rel="noopener" data-link-context="ar_demo">{ch.tryIt.label}<span aria-hidden="true">&nbsp;↗</span><span class="sr-only"> {t('link.newtab')}</span></a>}
           </div>
           {ch.note && <p class="ch__note">{ch.note}</p>}
         </div>

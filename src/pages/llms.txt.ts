@@ -48,7 +48,7 @@ export const GET: APIRoute = async () => {
     '- Languages: English and Arabic',
     '',
     // V1.0 (03 §2V1): while the service pages are off, the three offers are listed as text and point to the home section.
-    ...(services.length ? ['## Services', ...services, ''] : ['## Services', ...SERVICES.slice(0, 3).map(([, n, d]) => `- [${n}](${SITE_URL}/#services): ${d}`), `- Details: ${SITE_URL}/#services`, '']),
+    ...(services.length ? ['## Services', ...services, ''] : ['## Services', ...SERVICES.slice(0, 3).map(([, n, d]) => `- ${n}: ${d}`), `- Details: ${SITE_URL}/#services`, '']),
     ...(work.length ? ['## Work', ...work, ''] : ['## Work', ...homeWork, '']),
     ...(guides.length ? ['## Guides', ...guides, ''] : []),
     '## Company',

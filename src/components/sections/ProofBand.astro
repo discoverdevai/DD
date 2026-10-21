@@ -59,7 +59,7 @@ const logos = showLogos
           ))}
         </ul>
       </div>
-      <button type="button" class="pband__pause" aria-pressed="false" data-marquee-pause>{t('marquee.pause')}</button>
+      <button type="button" class="pband__pause" data-marquee-pause>{t('marquee.pause')}</button>
     </div>
   ) : (
     <div class="container">
@@ -192,9 +192,11 @@ const logos = showLogos
     const btn = strip.querySelector<HTMLButtonElement>('[data-marquee-pause]');
     const toggle = () => {
       const paused = strip.toggleAttribute('data-paused');
-      if (btn) { btn.setAttribute('aria-pressed', String(paused)); btn.textContent = paused ? strip.dataset.playLabel ?? 'Play' : strip.dataset.pauseLabel ?? 'Pause'; }
+      if (btn) { btn.textContent = paused ? strip.dataset.playLabel ?? 'Play' : strip.dataset.pauseLabel ?? 'Pause'; }
     };
     btn?.addEventListener('click', toggle);
+    // Reduced motion switched on after load: hold the row.
+    reduced.addEventListener('change', () => { if (reduced.matches) { strip.setAttribute('data-paused', ''); if (btn) btn.textContent = strip.dataset.playLabel ?? 'Play'; } });
     // Touch and pen: a tap holds the row, another tap lets it go. A mouse pauses on hover (CSS), so it is ignored here.
     strip.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse' && !(e.target as HTMLElement).closest('button')) toggle(); });
     // Off screen or in a background tab: no point animating.
