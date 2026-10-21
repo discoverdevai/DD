@@ -19,7 +19,7 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
     <div class="container">
       <div class="en__head">
         <SectionHead id="en-title" title={title} measure={18} reveal />
-        <p class="en__lead"><span class="en__def">{leadFirst}</span>{leadRest.length > 0 && <> {leadRest.join(' ')}</>}</p>
+        <p class="en__lead"><span class="en__def">{leadFirst}</span>{leadRest.length > 0 && <span class="en__start">{leadRest.join(' ')}</span>}</p>
       </div>
       <ol role="list" class="en__grid reveal-stagger">
         {credit && live.length > 1 && <li class="en__credit" aria-hidden="true">{credit}</li>}
@@ -61,7 +61,8 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
   .en__head { display: grid; gap: var(--space-5); margin-block-end: var(--space-10); }
   @media (width >= 64rem) { .en__head { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); align-items: end; margin-block-end: var(--space-12); } }
   .en__lead { color: var(--color-text-muted); font-size: var(--text-base); line-height: 1.65; max-inline-size: 46rem; text-wrap: pretty; }
-  .en__def { display: block; margin-block-end: var(--space-3); color: var(--color-heading); font-size: var(--text-lg); font-weight: var(--weight-medium); line-height: 1.5; }
+  .en__start { display: block; font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); }
+  .en__def { display: block; margin-block-end: var(--space-4); color: var(--color-heading); font-size: var(--text-lg); font-weight: var(--weight-medium); line-height: 1.5; }
 
   .en__scope { display: grid; gap: var(--space-2) var(--space-8); margin-block-start: var(--space-8); padding-block-start: var(--space-5); border-block-start: 1px solid var(--color-hairline); max-inline-size: none; text-wrap: pretty; color: var(--color-text-muted); }
   @media (width >= 48rem) { .en__scope { grid-template-columns: 9rem minmax(0, 46rem); } }

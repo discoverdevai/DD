@@ -89,7 +89,7 @@ export const home = {
   engagements: {
     title: 'Three ways to work with us',
     credit: 'Validate’s fee credits toward Build',
-    lead: 'DiscoverDev is a product and engineering company for startups and growing teams, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA. We validate the right product, build it with senior AI-accelerated teams in 8–12 weeks, and stay to scale it. You own all of it. Start where you are. Validate’s fee credits toward Build.',
+    lead: 'DiscoverDev is a product and engineering company for startups and growing teams, with an engineering hub in Alexandria, Egypt and a presence in Texas, USA. Start where you are.',
     cards: [
       { key: 'validate', who: 'I have an idea.', title: 'Validate', kind: 'Product discovery', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate.', linkLabel: 'See Validate', bookLabel: 'Book a call about Validate' },
       { key: 'build', who: 'I’m ready to build.', title: 'Build', kind: 'MVP development', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', linkLabel: 'See Build', bookLabel: 'Book a call about Build' },
