@@ -1,10 +1,10 @@
 // Arabic home (context/03-copy-ar.md §2). Transcreated from en/home.ts with the Oct 23 text fixes; facts unchanged (09).
-// DRAFT until the native reviewer signs off. Reviews are shown in Arabic only (Mohamed, Oct 23): our translation of each
-// client's words, disclosed once under the list (`reviewsNote`). Meaning stays exact; no added praise.
+// DRAFT until the native reviewer signs off. Reviews are shown in Arabic, as Arabic text with no translation note (Mohamed,
+// Oct 23). Each one is a faithful rendering of the client's words in 09: same meaning, no added praise.
 import type { home as en } from '../en/home';
 import type { Widen } from '../types';
 import { shared } from './shared';
-export const home: Widen<typeof en> & { reviewsNote: string } = {
+export const home: Widen<typeof en> = {
   seo: {
     title: 'شركة برمجة تطبيقات للشركات الناشئة | DiscoverDev',
     description:
@@ -116,7 +116,6 @@ export const home: Widen<typeof en> & { reviewsNote: string } = {
       { quote: 'عمل رائع، وأقدّره كثيرًا. شكرًا لإنجاز هذا العمل في وقت قصير جدًا.', name: 'Lea Nechitailo', role: 'رائدة أعمال، إسبانيا', service: 'التحقق · بحث سوق · توسيع علامة تجارية' },
     ],
   },
-  reviewsNote: 'التقييمات مترجمة من الإنجليزية.',
   guides: {
     title: 'أدلة مجانية وفحص للإطلاق',
     readLabel: 'اقرأ الدليل',

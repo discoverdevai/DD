@@ -8,9 +8,8 @@ import SectionHead from '../ui/SectionHead.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
 interface Review { quote: string; name: string; role: string; service: string; result?: string }
-// `note` (Arabic page, Oct 23 Mohamed): the quotes are our translation, so one line under the list says so.
-interface Props { label?: string; title: string; items: readonly Review[]; cta?: boolean; note?: string }
-const { label, title, items, cta = false, note } = Astro.props;
+interface Props { label?: string; title: string; items: readonly Review[]; cta?: boolean }
+const { label, title, items, cta = false } = Astro.props;
 const [featured, ...notes] = items;
 ---
 <section id="reviews" class="rv" data-surface="ink" data-raised aria-labelledby="rv-title">
@@ -35,7 +34,6 @@ const [featured, ...notes] = items;
             </li>
           ))}
         </ul>
-        {note && <p class="rv__note-line">{note}</p>}
         <ProofChip class="rv__proof" />
       </div>
     </div>
@@ -72,7 +70,6 @@ const [featured, ...notes] = items;
   .rv__note figcaption { display: grid; margin-block-start: var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
   .rv__note figcaption strong { font-family: var(--ff-heading); color: var(--color-heading); }
   .rv__svc { font-size: var(--text-xs); }
-  .rv__note-line { font-size: var(--text-sm); color: var(--color-text-muted); }
   .rv :global(.rv__proof) { color: var(--color-text-muted); }
   .rv__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-block-start: var(--space-8); }
 </style>
