@@ -4,9 +4,12 @@
 // client's own review where one exists (approved quotes, D-05), and a link where a page exists. Without JS every row
 // shows and the filter stays hidden.
 import ProjectVisual from './ProjectVisual.astro';
-import { projects, showcase as c, type Stage } from '../../content/copy/en/projects';
-import { home } from '../../content/copy/en/home';
+import { copy } from '../../content/copy';
+import type { Stage } from '../../content/copy/en/projects';
+
 import { href, isLive } from '../../data/routes';
+const { projects, showcase: c } = copy().projects;
+const { home } = copy();
 const quoteBy = (name: string) => home.reviews.items.find((r) => r.name === name);
 const stages: readonly ('all' | Stage)[] = ['all', 'validate', 'build', 'scale'];
 const order: Stage[] = ['build', 'scale', 'validate'];

@@ -31,6 +31,8 @@ interface Props {
 const { title, description, pageType, jsonLd, noindex = false, ogImage: ogImageProp, ogType = 'website', header = 'default', stickyBar = header === 'default', stickyKind = 'clarity', footerProof = true, footerCore = true } = Astro.props;
 const locale = localeOf(Astro.currentLocale);
 const L = LOCALES[locale];
+// A locale that is not live yet (Arabic until reviewed) is never indexed.
+const hidden = L.status !== 'live';
 const url = canonical(Astro.url.pathname);
 // Each page's own build-time card (src/data/og.ts); articles pass theirs; anything else uses the default card.
 const route = Astro.url.pathname.replace(/\.html$/, '').replace(/\/(index)?$/, '') || '/';
@@ -44,16 +46,18 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={url} />}
+    {noindex || hidden ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={url} />}
     <meta name="theme-color" content="#01082D" /> {/* token-lint-ignore: a meta attribute cannot use CSS variables; equals --blue-975 */}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <Font cssVariable="--font-heading" preload />
+    {/* Preload only the face the H1 uses: Manrope on English pages, Plex Arabic 700 on Arabic pages. */}
+    <Font cssVariable="--font-heading" preload={locale !== 'ar'} />
     <Font cssVariable="--font-body" />
     <Font cssVariable="--font-mono" />
+    {locale === 'ar' && <Font cssVariable="--font-arabic" preload={[{ weight: '700' }]} />}
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="DiscoverDev" />
     <meta property="og:locale" content={L.ogLocale} />

@@ -5,7 +5,7 @@ export const about = {
   seo: {
     title: 'About DiscoverDev: Senior Product Team, Egypt & US',
     description:
-      'A product and engineering company with a US presence and an engineering hub in Alexandria, Egypt. Senior teams that stay. 5.0 across 11 reviews.',
+      'A product and engineering company with a US presence and an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch.',
   },
   hero: {
     h1: 'About DiscoverDev',

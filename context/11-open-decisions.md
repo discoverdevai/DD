@@ -28,7 +28,7 @@ Full site map v1 · English live, Arabic-ready, `/ar` Q1 2027 · fresh copy (no 
 | D-26 | Sample report image from a demo app, labelled "Sample from a demo app", or omit |
 | D-28 | FAQ omitted |
 | D-29 | sameAs: Clutch + LinkedIn company only |
-| D-34 | "5.0 across 11 reviews" |
+| D-34 | "Rated 5.0 on Clutch" |
 | D-36 | Claude drafts pillar, C1, C2 Fri; Mohamed reviews by 18:00 |
 | D-37 | "Arabic-speaking team" line, no GCC logos |
 | D-39 | Quiz scoring v1 as in `03` |
@@ -70,14 +70,14 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 | D-24 | Analytics consent posture | (a) cookieless always, no banner (b) `on_reject` + 2-button banner | (a). Revisit if EU traffic grows or counsel advises (EDPB 2/2023 risk noted in `07-tech-spec.md` §9.6). Not legal advice | Privacy notice, analytics init · M4 | Mohamed | |
 | D-25 | Privacy notice + website terms text | Owner-written / generator + edits / lawyer | Owner-supplied text covering items in `07-tech-spec.md` §9.6 (processors, transfers, sessionStorage keys, rights, contact). Lawyer review if budget allows. Launch blocker | `/privacy`, `/terms` · M4 | Mohamed | |
 | D-28 | Data residency / PDPL FAQ answer | State actual practice | Only state what is true, e.g. "Your data stays in your cloud accounts and region." Confirm | `/launch-ready` FAQ, GCC journey · M4 | Mohamed | |
-| D-34 | Clutch-only review count | How many of the 11 reviews are on Clutch | Use the approved wording in `03-copy.md` §0.4 everywhere: "5.0 across 11 reviews" + "Read our reviews on Clutch" | Hero proof chip, `/about`, `llms.txt` · M4 | Mohamed | |
+| D-34 | Clutch-only review count | How many of the 11 reviews are on Clutch | Use the approved wording in `03-copy.md` §0.4 everywhere: "Rated 5.0 on Clutch" + "Read our reviews on Clutch" | Hero proof chip, `/about`, `llms.txt` · M4 | Mohamed | |
 | D-36 | Article drafts: owner + dates | Pillar, C1, C2 drafts; C3 by Nov 30 | Drafts (Claude) + technical review (Mohamed) for pillar, C1, C2 by **Fri Nov 6**; C3 by Nov 27 | `/insights`, pillar, C1, C2 · M5 | Mohamed | |
 | D-37 | GCC trust line before `/ar` | "Arabic-speaking team" line in hero proof area + GCC proof strip (consent) | Yes. Add line to hero proof area and `/book`. GCC logos only with consent | Home hero, `/book` · M4 | Mohamed | |
 | D-39 | Quiz scoring v1 sign-off | Approve `03-copy.md` §4.2–4.3 (points, flags, thresholds) or edit | Approve v1; retune after the first 50 completions | `/launch-check` · M4 | Mohamed | |
 | D-40 | "Quote within 24 hours" after the call | Keep / change to 2 business days / omit | Keep only if sustainable | `/book/confirmed` "What happens next" · M4 | Mohamed | |
 | D-41 | HSTS `includeSubDomains` | Keep / drop | Keep if every subdomain in the zone export serves HTTPS; else drop `includeSubDomains` | `_headers` · M6 | Mohamed | |
 | D-43 | Entity line (one sentence set used verbatim on site, schema, `llms.txt`, Clutch and LinkedIn) | (a) `03-copy.md` §1.2 footer line (b) research line "…helps founders build the right product, ship it fast, and own all of it. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf." (c) (a) + location sentence | (c), as written in `05-seo-aeo.md` §4. Location helps AI engines place the entity | Footer, `/about`, Organization `description`, `llms.txt`, external profiles · M5 | Mohamed | |
-| D-44 | Local contracting partners (Gulf) | Name on site as declared partner / do not name | Saudi Arabia: أذكي التطويرية (Azki), Dammam; UAE: to be named. Declared partnership only, written consent, Saudi lawyer reviews the agreement; never use the partner's CR or address as ours | /ar, home FAQ, 09 | Mohamed | Oct 23: Mohamed sending Azki's full details |
+| D-44 | Local contracting partners (Gulf) | Name on site as declared partner / do not name | Saudi Arabia: أذكي التطويرية (Azki), Dammam; UAE: to be named. Declared partnership only, written consent, Saudi lawyer reviews the agreement; never use the partner's CR or address as ours | /ar, home FAQ, 09 | Mohamed | Oct 23: Mohamed sending Azki's full details. Office (Azki's, for the agreement only, never shown as ours): شارع الخليج، الزهور، الدمام، المملكة العربية السعودية. Still needed: legal name (AR/EN as on the CR), agreement type, written consent to be named, lawyer check |
 | D-42 | Cal availability windows | Hours + days | Proposal (GMT+2): Mon–Thu 12:00–20:00 (covers Gulf afternoons + US East mornings 09:00–13:00 EST) and Sun 12:00–17:00 (Gulf workweek). Owner sets final | Cal setup, `/book` · M4 | Mohamed | |
 
 ## 3. Batch C — due Fri Nov 13

@@ -6,7 +6,8 @@ import path from 'node:path';
 import { report } from './lib/dist.mjs';
 
 const DIR = path.resolve('src/i18n/ui');
-const DNT = ['DiscoverDev', 'Launch-Ready Review', 'Lovable', 'Bolt', 'v0', 'Cursor', 'Supabase', 'Stripe', 'Clutch', 'hello@discoverdev.ai'];
+// LinkedIn and the copyright line (© {year} DiscoverDev) are the same in every language.
+const DNT = ['DiscoverDev', 'LinkedIn', '© {year} DiscoverDev', 'Launch-Ready Review', 'Lovable', 'Bolt', 'v0', 'Cursor', 'Supabase', 'Stripe', 'Clutch', 'hello@discoverdev.ai'];
 const placeholders = (v) => [...v.matchAll(/\{([a-zA-Z0-9_]+)\}/g)].map((m) => m[1]).sort().join(',');
 const problems = [];
 

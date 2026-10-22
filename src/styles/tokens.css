@@ -224,7 +224,12 @@
   --leading-body:    1.8;
   --tracking-display: 0; --tracking-tight: 0; --tracking-snug: 0; --tracking-body: 0;
   --measure-display: 22ch; --measure-heading: 28ch;  /* Arabic runs ~20–30% longer */
+  /* The mono "machine voice" has no Arabic letters; a generic monospace fallback would space Arabic out letter by letter,
+     so Arabic pages use the Arabic face for it (Latin code strings render in its Latin glyphs). */
+  --ff-mono: var(--font-arabic, "IBM Plex Sans Arabic", system-ui, sans-serif);
 }
+/* Arabic has no letter-spacing or capitals: undo tracked, uppercase labels set by components. */
+:root:lang(ar) body * { letter-spacing: 0; text-transform: none; }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {

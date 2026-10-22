@@ -6,9 +6,10 @@ import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import ProofChip from '../ui/ProofChip.astro';
 import DeliveryScene from '../scenes/DeliveryScene.astro';
-import { home } from '../../content/copy/en/home';
+import { copy } from '../../content/copy';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
+const { home } = copy();
 const c = home.hero;
 // Two-tone H1: the accent phrase ("a live product") in brand blue carries the outcome.
 const [h1Before, h1After] = c.h1.split(c.h1Accent);

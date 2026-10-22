@@ -1,0 +1,53 @@
+---
+import CtaBand from '../../components/sections/CtaBand.astro';
+// Home v3 (03 §2A, 04 §4.1, docs/strategy-v2.md): DiscoverDev as a product and engineering company built on DiscoverDev Way.
+// All-ink "workshop": centred hero + delivery scene, proof band, DiscoverDev Way split, lifecycle timeline, engagements,
+// capabilities board, case metric, two-tone why + pillars, split FAQ, horizon closer.
+// Oct 18 cut (docs/review/home-review-oct18/duplication-and-cuts.md, 03 §2A): one job per section. Lifecycle merged into the
+// Way, What we build is one line in Engagements, Why removed, one chapter, one case, three reviews.
+// V1.0 (03 §2V1, Oct 18): one-page site in 9 sections: hero, clients, problem, services, the Way, work, reviews, FAQ,
+// closing band. Guides moved to V1.2; links to switched-off pages are dropped.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeHero from '../../components/sections/HomeHero.astro';
+import ProofBand from '../../components/sections/ProofBand.astro';
+import Statement from '../../components/sections/Statement.astro';
+import WhyBand from '../../components/sections/WhyBand.astro';
+import AgileSplit from '../../components/blocks/AgileSplit.astro';
+import WayFlow from '../../components/scenes/WayFlow.astro';
+import Engagements from '../../components/sections/Engagements.astro';
+import FaqSplit from '../../components/sections/FaqSplit.astro';
+
+import Showcase from '../../components/sections/Showcase.astro';
+import Chapters from '../../components/work/Chapters.astro';
+import Reviews from '../../components/sections/Reviews.astro';
+import { howWeWork } from '../../content/copy/en/how-we-work';
+import { href, isLive } from '../../data/routes';
+import { copy } from '../../content/copy';
+import { getLocale } from '../../i18n/t';
+import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../../lib/seo';
+import { HOME_CHAPTERS } from '../../lib/preview';
+
+const { home: c } = copy();
+// One home page, rendered at / and at /ar (Arabic, hidden until reviewed): same sections, same behaviour.
+const base = getLocale() === 'ar' ? '/ar' : '/';
+const faqLd = faqPage(`https://discoverdev.ai${base === '/' ? '/' : base}#faq`, c.faq.items);
+const jsonLd = graph(orgFull, website, webPage(base, c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd} footerProof={false} footerCore={false}>
+  <HomeHero />
+  <ProofBand title={c.proofStrip.title} logosTitle={c.proofStrip.logosTitle} clientRoles={c.proofStrip.clientRoles} map={c.proofStrip.map} items={c.proofStrip.items} projects={c.proofStrip.projects} />
+  <WhyBand id="why" label={c.problem.label} headline={c.problem.headline} stepsLabel={c.problem.stepsLabel} steps={c.problem.steps} card={c.problem.card} />
+  <Engagements title={c.engagements.title} lead={c.engagements.lead} credit={c.engagements.credit} cards={c.engagements.cards} scope={c.engagements.scope} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
+  <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} display split>
+    <AgileSplit body={c.agile.body} more={isLive('howWeWork') ? { label: howWeWork.more, href: href('howWeWork') } : undefined}>
+      <WayFlow {...c.agile.flow} />
+    </AgileSplit>
+  </Statement>
+  <div id="work">
+    <Chapters only={HOME_CHAPTERS} />
+    <Showcase />
+  </div>
+  <Reviews {...c.reviews} />
+  <FaqSplit title={c.faq.title} items={c.faq.items} />
+  <CtaBand size="large" tier="primary" kind="clarity" page="home" title={c.band.title} body={c.band.body} />
+</BaseLayout>

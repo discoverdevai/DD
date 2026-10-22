@@ -4,10 +4,11 @@ import WindowBar from '../ui/WindowBar.astro';
 // the senior lane (green) reviews and approves each item; a senior signs off the release. Lanes share rows via subgrid
 // so each AI item sits beside the review it feeds. Final state is always in the DOM; the one-time sequence is an
 // overlay (≈1.6s, plays once at 40% visible, reduced motion = final state).
-import { delivery as c } from '../../content/copy/en/delivery';
+import { copy } from '../../content/copy';
 // `compact`: first two rows per lane at every width (hero split, where the board sits in a half-width column).
 interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
+const { delivery: c } = copy();
 const check = 'M20 6 9 17l-5-5';
 ---
 <figure class:list={['ds', { 'ds--compact': compact }]} data-ds>
