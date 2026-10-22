@@ -5,5 +5,7 @@
 /book/confirmed
 /privacy
 /terms
+# Arabic home: built but hidden (noindex) until native review.
+/ar
 # V1.1: /validate /build /scale /work /work/edtech-ai-agents /how-we-work /about
 # V1.2: /launch-ready /partners /launch-check /insights /insights/ai-app-to-production /insights/ai-built-app-security-holes /insights/lovable-launch-checklist /insights/fix-or-rebuild-ai-app

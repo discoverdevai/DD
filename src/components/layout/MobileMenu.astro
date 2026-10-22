@@ -3,6 +3,7 @@
 // Order: 5 items (Services expanded inline), primary button + terms, then Email (same order as footer, WCAG 3.2.6).
 import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
+import LangSwitch from './LangSwitch.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import { t, localPath } from '../../i18n/t';
@@ -36,6 +37,7 @@ const { services, links } = Astro.props;
     <CtaLink href={bookHref('clarity')} ctaId="navm_book_clarity" tier="primary" position="nav" target="clarity" wide>{t('cta.clarity.short')}</CtaLink>
     <CtaTerms kind="clarity" />
   </div>
+  <LangSwitch class="menu-sheet__lang" />
   <ul role="list" class="menu-sheet__contact">
     <li><a href={`mailto:${t('contact.email')}`} data-link-context="contact"><Icon name="mail" size={20} />{t('contact.email.label')}<span dir="ltr">{t('contact.email')}</span></a></li>
   </ul>

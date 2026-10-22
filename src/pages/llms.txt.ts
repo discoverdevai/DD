@@ -27,7 +27,7 @@ export const GET: APIRoute = async () => {
   // Case studies (05 §5.2 "## Work"): anonymized title from the case page (D-06), never a client name.
   const work = [line('workEdulens', caseStudy.h1)].filter(Boolean);
   // V1.0: the case lives on the home page; same anonymized fact as the tile (09), no client name.
-  const homeWork = [`- [AI agents for EduLens, an EdTech platform in Egypt](${SITE_URL}/#work): AI costs down 60–90%, depending on how often content is reused.`, `- [Client reviews](${SITE_URL}/#reviews): eight client quotes and the 5.0 rating across 11 reviews.`, `- [FAQ](${SITE_URL}/#faq): pricing, timeline, code ownership, tools and stacks, time zones.`];
+  const homeWork = [`- [AI agents for EduLens, an EdTech platform in Egypt](${SITE_URL}/#work): AI costs down 60–90%, depending on how often content is reused.`, `- [Client reviews](${SITE_URL}/#reviews): ten client quotes and a 5.0 rating on Clutch.`, `- [FAQ](${SITE_URL}/#faq): pricing, timeline, code ownership, tools and stacks, time zones.`];
   const company = COMPANY.map(([k, n]) => line(k, n)).filter(Boolean);
   const body = [
     '# DiscoverDev',
@@ -36,7 +36,7 @@ export const GET: APIRoute = async () => {
     '',
     'How we work: The DiscoverDev Way. Discover first. Build with AI. Seniors sign off. We find the right thing to build first, AI does the heavy lifting, and a senior engineer signs off every release. One team from discovery to after launch.',
     '',
-    `Reviews: 5.0 across 11 reviews: ${CLUTCH_URL}`,
+    `Reviews: rated 5.0 on Clutch: ${CLUTCH_URL}`,
     '',
     'Book: a free 30-minute clarity call, no pitch, at ' + SITE_URL + '/book',
     '',

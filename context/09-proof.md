@@ -7,7 +7,7 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 - Product and engineering company. Helps founders and teams build the right product, then ship it fast.
 - Tagline: "Senior teams that ship faster, without cutting corners."
 - Founded 2024 (verify). Locations: Texas, USA · Alexandria, Egypt (engineering hub). Web discoverdev.ai.
-- Track record: 11 verified 5.0/5.0 reviews (confirmed Oct 2026) · clients on 4 continents (confirmed) · AI in production across multiple clients.
+- Track record: 11 verified 5.0/5.0 reviews in total (confirmed Oct 2026); Clutch shows 4 (Oct 23 2026), so public copy states no count: "Rated 5.0 on Clutch" · clients on 4 continents (confirmed) · AI in production across multiple clients.
 - Hub: Egypt. Full-stack, AI/ML, computer vision, data, mobile, QA. Arabic + English. GMT+2, overlaps US and Europe.
 
 ## Messaging guardrails

@@ -147,7 +147,7 @@ Format: `#. Section (component) → purpose`. Copy lives in `03-copy.md` under t
 
 v1 blueprint (superseded on home, kept for reference):
 1. Header (`Header`) → fast wayfinding.
-2. Hero (`Hero`) → founder problem + outcome; primary CTA "Book a Launch-Ready Review" + risk microcopy; text link "Take the 3-minute launch check"; proof chip "5.0 across 11 reviews" + link "Read our reviews on Clutch" (rules §11). Must pass a 5-second test.
+2. Hero (`Hero`) → founder problem + outcome; primary CTA "Book a Launch-Ready Review" + risk microcopy; text link "Take the 3-minute launch check"; proof chip "Rated 5.0 on Clutch" + link "Read our reviews on Clutch" (rules §11). Must pass a 5-second test.
 3. Proof strip (`ProofStrip`, `ClientLogos`) → "Clients on 4 continents" + consented logos only. 0 consented logos → text only.
 4. Problem (3 cards) → security holes · payments and data · code that won't scale, in founder words.
 5. Offer spotlight (`OfferCard`) → what you get, about 5 working days, price cue (D-01), credit toward the fix, guarantee, CTA.
@@ -246,7 +246,7 @@ v1 blueprint (superseded on home, kept for reference):
 2. What we believe → 3 pillars + "build the right thing", one example each.
 3. Team (`TeamGrid`) → real photos, names, roles, LinkedIn (D-17). No photos → omit section.
 4. Where we are (`TimeOverlap`) → Texas presence + Alexandria hub; overlap graphic (US mornings, Gulf afternoons) with text equivalent.
-5. Proof numbers → 5.0 across 11 reviews, 4 continents, consented client list. True numbers only.
+5. Proof numbers → Rated 5.0 on Clutch, 4 continents, consented client list. True numbers only.
 6. How we work → cadence, tools, ownership.
 7. Final CTA → clarity call.
 
@@ -469,7 +469,7 @@ Implementation ids (fixed; used in analytics and sessionStorage):
 - [ ] Cal.com: verify RTL/locale support before `/ar`; fallback = EN widget with Arabic surrounding copy.
 
 ## 11. Proof display rules
-- [ ] Rating text (approved, `03-copy.md` §0.4): "5.0 across 11 reviews" + link "Read our reviews on Clutch" → `https://clutch.co/profile/discoverdev`. Never write "11 reviews on Clutch" (D-34).
+- [ ] Rating text (approved, `03-copy.md` §0.4): "Rated 5.0 on Clutch" + link "Read our reviews on Clutch" → `https://clutch.co/profile/discoverdev`. Never write "11 reviews on Clutch" (D-34).
 - [ ] No star widgets, no `AggregateRating`/`Review` markup (`05-seo-aeo.md` §4).
 - [ ] Testimonials render only when `consentToPublish: true`. Attribution: name, role, company or country. Photo only with consent.
 - [ ] Logos render only when `consentToShowLogo: true`.

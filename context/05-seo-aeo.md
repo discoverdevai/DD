@@ -54,7 +54,7 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 | `/work/edulens` | EduLens: Cutting AI Costs 60–90% Across 3 Agents | Caption-first ingestion, cross-user caching, model routing and token trimming cut EduLens' AI costs by 60–90%. What we changed and why it worked. | EduLens: three AI agents, 60–90% lower AI cost |
 | `/insights` | Guides for Shipping AI-Built Apps \| DiscoverDev | Plain guides for founders with an AI-built app: taking it to production, the security holes to close, a Lovable launch checklist, fix or rebuild. | Guides for shipping AI-built apps |
 | pillar | AI-Built App to Production: The Founder's Guide | Built with Lovable, Bolt, v0 or Cursor and stuck before launch? What breaks, what to check, fix or rebuild, real costs and timelines, in one guide. | How to take an AI-built app to production |
-| `/about` | About DiscoverDev: Senior Product Team, Egypt & US | A product and engineering company with a US presence and an engineering hub in Alexandria, Egypt. Senior teams that stay. 5.0 across 11 reviews. | About DiscoverDev |
+| `/about` | About DiscoverDev: Senior Product Team, Egypt & US | A product and engineering company with a US presence and an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch. | About DiscoverDev |
 | `/launch-check` | Is My AI-Built App Ready to Launch? Free Check \| DiscoverDev | Answer 10 quick questions about your Lovable, Bolt, v0 or Cursor app. See your launch risks in security, payments, code and operations in 3 minutes. | Is your AI-built app launch-ready? |
 | `/book` | Book a Free Clarity Call \| DiscoverDev (V1.0; the Review title returns in V1.2) | Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step. | Book a free clarity call |
 | `/book/confirmed` | You're Booked \| DiscoverDev | (noindex; reuse `/book` meta) | You're booked |
@@ -519,7 +519,7 @@ Status: optional, unproven; Google says no effect on Search; Ahrefs log data (20
 
 > DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf.
 
-Clients keep full IP, with no lock-in. English and Arabic. 5.0 across 11 reviews: https://clutch.co/profile/discoverdev
+Clients keep full IP, with no lock-in. English and Arabic. Rated 5.0 on Clutch: https://clutch.co/profile/discoverdev
 
 ## Services
 - [Launch-Ready Review](https://discoverdev.ai/launch-ready): A review of an AI-built or freelancer-built app (security, data rules, payments, code quality, scale, ownership) in about 5 working days. Fixed fee quoted per client, credited toward the fix or Build. No useful findings, no charge.

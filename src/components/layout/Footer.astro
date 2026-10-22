@@ -3,6 +3,7 @@
 // Contact block order is identical on every page (WCAG 3.2.6). Columns list live routes only.
 import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
+import LangSwitch from './LangSwitch.astro';
 import { t, localPath } from '../../i18n/t';
 import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
 import { CLUTCH_URL, LINKEDIN_URL } from '../../lib/seo';
@@ -58,6 +59,7 @@ const year = new Date().getFullYear();
     {proof && <p class="site-footer__proof"><Icon name="star" size={16} />{t('proof.rating')} <a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a></p>}
     <p>{t('footer.analytics')}</p>
     <p>{t('footer.copyright', 'en', { year })}</p>
+    <LangSwitch />
   </div>
 </footer>
 

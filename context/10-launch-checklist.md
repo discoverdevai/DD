@@ -134,7 +134,7 @@ Rollback triggers (07 §18.6): automatic → any nav page non-200, `/book` canno
 
 ### 4.2 Content
 - [ ] All copy matches `03-copy.md`; spelling; no exclamation marks; no em-dashes in short copy; "DiscoverDev" spelled correctly everywhere.
-- [ ] Rating text "5.0 across 11 reviews" + "Read our reviews on Clutch"; never "11 reviews on Clutch".
+- [ ] Rating text "Rated 5.0 on Clutch" + "Read our reviews on Clutch"; never "11 reviews on Clutch".
 - [ ] No unconsented client names, logos, quotes, photos (consent-gate green + manual scan of home, `/work`, `/about`, `/build`, `/scale`, `/partners`).
 - [ ] Metrics only `verified: true`; EduLens 60–90% stated with context; Rushr "16 weeks" only on Rushr page.
 - [ ] No claims needing verification without D-xx resolved: "founded 2024", "10+ countries", "~60% cost savings", co-authored papers, GCC offices, Texas address, reply-time promise.

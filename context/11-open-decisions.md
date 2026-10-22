@@ -28,7 +28,7 @@ Full site map v1 · English live, Arabic-ready, `/ar` Q1 2027 · fresh copy (no 
 | D-26 | Sample report image from a demo app, labelled "Sample from a demo app", or omit |
 | D-28 | FAQ omitted |
 | D-29 | sameAs: Clutch + LinkedIn company only |
-| D-34 | "5.0 across 11 reviews" |
+| D-34 | "Rated 5.0 on Clutch" |
 | D-36 | Claude drafts pillar, C1, C2 Fri; Mohamed reviews by 18:00 |
 | D-37 | "Arabic-speaking team" line, no GCC logos |
 | D-39 | Quiz scoring v1 as in `03` |
@@ -70,7 +70,7 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 | D-24 | Analytics consent posture | (a) cookieless always, no banner (b) `on_reject` + 2-button banner | (a). Revisit if EU traffic grows or counsel advises (EDPB 2/2023 risk noted in `07-tech-spec.md` §9.6). Not legal advice | Privacy notice, analytics init · M4 | Mohamed | |
 | D-25 | Privacy notice + website terms text | Owner-written / generator + edits / lawyer | Owner-supplied text covering items in `07-tech-spec.md` §9.6 (processors, transfers, sessionStorage keys, rights, contact). Lawyer review if budget allows. Launch blocker | `/privacy`, `/terms` · M4 | Mohamed | |
 | D-28 | Data residency / PDPL FAQ answer | State actual practice | Only state what is true, e.g. "Your data stays in your cloud accounts and region." Confirm | `/launch-ready` FAQ, GCC journey · M4 | Mohamed | |
-| D-34 | Clutch-only review count | How many of the 11 reviews are on Clutch | Use the approved wording in `03-copy.md` §0.4 everywhere: "5.0 across 11 reviews" + "Read our reviews on Clutch" | Hero proof chip, `/about`, `llms.txt` · M4 | Mohamed | |
+| D-34 | Clutch-only review count | How many of the 11 reviews are on Clutch | Use the approved wording in `03-copy.md` §0.4 everywhere: "Rated 5.0 on Clutch" + "Read our reviews on Clutch" | Hero proof chip, `/about`, `llms.txt` · M4 | Mohamed | |
 | D-36 | Article drafts: owner + dates | Pillar, C1, C2 drafts; C3 by Nov 30 | Drafts (Claude) + technical review (Mohamed) for pillar, C1, C2 by **Fri Nov 6**; C3 by Nov 27 | `/insights`, pillar, C1, C2 · M5 | Mohamed | |
 | D-37 | GCC trust line before `/ar` | "Arabic-speaking team" line in hero proof area + GCC proof strip (consent) | Yes. Add line to hero proof area and `/book`. GCC logos only with consent | Home hero, `/book` · M4 | Mohamed | |
 | D-39 | Quiz scoring v1 sign-off | Approve `03-copy.md` §4.2–4.3 (points, flags, thresholds) or edit | Approve v1; retune after the first 50 completions | `/launch-check` · M4 | Mohamed | |

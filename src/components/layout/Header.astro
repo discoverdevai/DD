@@ -4,6 +4,7 @@
 import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
 import CtaLink from '../ui/CtaLink.astro';
+import LangSwitch from './LangSwitch.astro';
 import MobileMenu from './MobileMenu.astro';
 import { t, localPath } from '../../i18n/t';
 import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
@@ -53,6 +54,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
 
     {variant === 'default' ? (
       <div class="site-header__actions">
+        <LangSwitch class="site-header__lang" />
         <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" class="site-header__book"><span class="cta-long">{t('cta.clarity')}</span><span class="cta-short">{t('cta.clarity.short')}</span></CtaLink>
         <button type="button" class="site-header__menu" aria-haspopup="dialog" aria-controls="menu-sheet" commandfor="menu-sheet" command="show-modal" data-menu-open>
           <Icon name="menu" size={20} /><span class="sr-only">{t('menu.open')}</span>
@@ -89,6 +91,8 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
   .services-panel__label { font-weight: var(--weight-medium); }
   .services-panel__who { font-size: var(--text-sm); color: var(--color-text-muted); }
   .site-header__actions { margin-inline-start: auto; display: flex; align-items: center; gap: var(--space-2); }
+  /* Phones: the language link lives in the menu sheet; the bar keeps the button and the menu. */
+  @media (width < 48rem) { .site-header__actions :global(.site-header__lang) { display: none; } }
   .site-header__menu { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle); background: transparent; color: var(--color-text); cursor: pointer; }
   .site-header__back { margin-inline-start: auto; display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; color: var(--color-link); font-weight: var(--weight-medium); }
   @media (width < 22.5rem) { .site-header__actions :global(.site-header__book) { display: none; } }
