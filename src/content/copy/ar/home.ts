@@ -1,10 +1,10 @@
 // Arabic home (context/03-copy-ar.md §2). Transcreated from en/home.ts with the Oct 23 text fixes; facts unchanged (09).
-// DRAFT until the native reviewer signs off. Client quotes stay in the client's own words (English) with a marked
-// Arabic translation (`gloss`); never present our translation as their words.
+// DRAFT until the native reviewer signs off. Reviews are shown in Arabic only (Mohamed, Oct 23): our translation of each
+// client's words, disclosed once under the list (`reviewsNote`). Meaning stays exact; no added praise.
 import type { home as en } from '../en/home';
 import type { Widen } from '../types';
 import { shared } from './shared';
-export const home: Widen<typeof en> & { reviewsGloss: readonly string[]; glossLabel: string } = {
+export const home: Widen<typeof en> & { reviewsNote: string } = {
   seo: {
     title: 'شركة برمجة تطبيقات للشركات الناشئة | DiscoverDev',
     description:
@@ -104,28 +104,19 @@ export const home: Widen<typeof en> & { reviewsGloss: readonly string[]; glossLa
     title: 'ماذا يقول عملاؤنا عن العمل معنا',
     cta: false,
     items: [
-      { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: 'يوسف', role: 'الرئيس التنفيذي، EduLens', service: 'البناء', result: 'ثلاثة وكلاء ذكاء اصطناعي في الإنتاج. تكلفة الذكاء الاصطناعي أقل بنسبة 60 إلى 90%.' },
-      { quote: "Professional work and great communication.", name: 'نجود العرفج', role: 'أثكادو، السعودية', service: 'البناء · علامة تجارية بيضاء وتجارة إلكترونية' },
-      { quote: "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!", name: 'Michelle Boehm', role: 'باحثة أكاديمية، سويسرا', service: 'بحث · خوارزميات تعلم آلي وتحليل بيانات' },
-      { quote: "The quality of their work is top-notch.", name: 'الرئيس التنفيذي', role: 'Nile Support، الولايات المتحدة', service: 'البناء · وكلاء ذكاء اصطناعي وموقع وتعزيز فريق' },
-      { quote: "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable.", name: 'Roberto', role: 'Fantacalcio', service: 'التحقق · بحث سوق · الرياضات الخيالية' },
-      { quote: "Thank you for going above and beyond.", name: 'فرح الخالدي', role: 'شركة استشارية، الكويت', service: 'بحث سوق · السياحة والضيافة' },
-      { quote: "I will become a regular customer going forward now.", name: 'Andrei Chejneanu', role: 'رائد أعمال، المملكة المتحدة', service: 'بحث سوق · قطع غيار السيارات والنقل في السعودية' },
-      { quote: "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time.", name: 'Lea Nechitailo', role: 'رائدة أعمال، إسبانيا', service: 'التحقق · بحث سوق · توسيع علامة تجارية' },
+      { quote: 'ركّزوا على بناء حلول عملية وقابلة للتوسع ومتوافقة مع احتياجات مستخدمينا.', name: 'يوسف', role: 'الرئيس التنفيذي، EduLens', service: 'البناء', result: 'ثلاثة وكلاء ذكاء اصطناعي في الإنتاج. تكلفة الذكاء الاصطناعي أقل بنسبة 60 إلى 90%.' },
+      { quote: 'عمل احترافي وتواصل رائع.', name: 'نجود العرفج', role: 'أثكادو، السعودية', service: 'البناء · علامة تجارية بيضاء وتجارة إلكترونية' },
+      { quote: 'مذهل حقًا. أنا سعيدة جدًا بمستوى التفاصيل الذي قُدّم.', name: 'Michelle Boehm', role: 'باحثة أكاديمية، سويسرا', service: 'بحث · خوارزميات تعلم آلي وتحليل بيانات' },
+      { quote: 'جودة عملهم ممتازة.', name: 'الرئيس التنفيذي', role: 'Nile Support، الولايات المتحدة', service: 'البناء · وكلاء ذكاء اصطناعي وموقع وتعزيز فريق' },
+      { quote: 'أداؤهم ممتاز، وهم شريك قوي في العمل.', name: 'المؤسس', role: 'Amstadd، المملكة المتحدة', service: 'الشركاء · تطوير برمجيات خاصة ومواقع' },
+      { quote: 'يجمعون بين تنفيذ تقني قوي وأسلوب عملي جدًا وسلس، وهذا ليس سهل الإيجاد دائمًا.', name: 'قائد الفريق', role: 'Amstadd، المملكة المتحدة', service: 'الشركاء · تطوير مواقع' },
+      { quote: 'توقيت مثالي، ومتاحون دائمًا لأي سؤال أو قلق، واحترافية عالية. أُنجز العمل على أكمل وجه وكان دقيقًا، وأعطانا المعلومات التي احتجناها. أوصي بهم تمامًا.', name: 'Roberto', role: 'Fantacalcio', service: 'التحقق · بحث سوق · الرياضات الخيالية' },
+      { quote: 'شكرًا لأنكم قدّمتم أكثر من المطلوب.', name: 'فرح الخالدي', role: 'شركة استشارية، الكويت', service: 'بحث سوق · السياحة والضيافة' },
+      { quote: 'سأصبح عميلًا دائمًا من الآن.', name: 'Andrei Chejneanu', role: 'رائد أعمال، المملكة المتحدة', service: 'بحث سوق · قطع غيار السيارات والنقل في السعودية' },
+      { quote: 'عمل رائع، وأقدّره كثيرًا. شكرًا لإنجاز هذا العمل في وقت قصير جدًا.', name: 'Lea Nechitailo', role: 'رائدة أعمال، إسبانيا', service: 'التحقق · بحث سوق · توسيع علامة تجارية' },
     ],
   },
-  // Our Arabic translation of each quote, in the same order; shown under the original and labelled as a translation.
-  glossLabel: 'الترجمة:',
-  reviewsGloss: [
-    'ركّزوا على بناء حلول عملية وقابلة للتوسع ومتوافقة مع احتياجات مستخدمينا.',
-    'عمل احترافي وتواصل رائع.',
-    'مذهل حقًا. أنا سعيدة جدًا بمستوى التفاصيل الذي قُدّم.',
-    'جودة عملهم ممتازة.',
-    'توقيت مثالي، ومتاحون دائمًا لأي سؤال أو قلق، واحترافية عالية. أُنجز العمل على أكمل وجه وكان دقيقًا، وأعطانا المعلومات التي احتجناها. أوصي بهم تمامًا.',
-    'شكرًا لأنكم قدّمتم أكثر من المطلوب.',
-    'سأصبح عميلًا دائمًا من الآن.',
-    'عمل رائع، وأقدّره كثيرًا. شكرًا لإنجاز هذا العمل في وقت قصير جدًا.',
-  ],
+  reviewsNote: 'التقييمات مترجمة من الإنجليزية.',
   guides: {
     title: 'أدلة مجانية وفحص للإطلاق',
     readLabel: 'اقرأ الدليل',

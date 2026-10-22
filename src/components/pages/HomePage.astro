@@ -27,7 +27,7 @@ import { getLocale } from '../../i18n/t';
 import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../../lib/seo';
 import { HOME_CHAPTERS } from '../../lib/preview';
 
-const { home: c, gloss } = copy();
+const { home: c, reviewsNote } = copy();
 // One home page, rendered at / and at /ar (Arabic, hidden until reviewed): same sections, same behaviour.
 const base = getLocale() === 'ar' ? '/ar' : '/';
 const faqLd = faqPage(`https://discoverdev.ai${base === '/' ? '/' : base}#faq`, c.faq.items);
@@ -47,7 +47,7 @@ const jsonLd = graph(orgFull, website, webPage(base, c.seo.title, c.seo.descript
     <Chapters only={HOME_CHAPTERS} />
     <Showcase />
   </div>
-  <Reviews {...c.reviews} gloss={gloss} />
+  <Reviews {...c.reviews} note={reviewsNote} />
   <FaqSplit title={c.faq.title} items={c.faq.items} />
   <CtaBand size="large" tier="primary" kind="clarity" page="home" title={c.band.title} body={c.band.body} />
 </BaseLayout>

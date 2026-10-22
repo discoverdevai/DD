@@ -315,6 +315,8 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 
 ## 2V1.1 Decision log (latest wins; Oct 18 to Oct 21)
 
+- **Oct 23 (Mohamed): reviews.** Add the two Clutch reviews from Amstadd (09) to the home reviews, after Nile Support: "They perform very well and are a strong partner to work with." Founder · Amstadd, UK · Partners · Custom software and web development; "They combine strong technical delivery with a very practical, low-friction approach, which isn't always easy to find." Team Lead · Amstadd, UK · Partners · Web development. The Arabic page shows every review in Arabic only, with one line saying they are translated from English (`context/03-copy-ar.md`).
+
 - **Oct 21 (Mohamed): Upwork, Fiverr and GitHub are not named on the site or in the schema.** The rating line is "5.0 across 11 reviews" with the link "See our Clutch profile" (the 11 count is unchanged, see 09). The only profile besides Clutch in `sameAs` is LinkedIn: https://www.linkedin.com/company/discoverdev (Oct 21: Mohamed confirmed the handle `discoverdev`). It is also linked in the footer contact list as "LinkedIn" (opens in a new tab)..
 
 Dated decisions made after the §2A and section texts below were written. **Where an entry here conflicts with a line in §2V1, §2A or any other section, this log wins** until that line is rewritten. The code (`src/content/copy/en/*`) already follows this log. Entries are in the order they were made.

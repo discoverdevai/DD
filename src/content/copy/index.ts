@@ -9,13 +9,13 @@ import { home as arHome } from './ar/home';
 import { delivery as arDelivery } from './ar/delivery';
 import * as arProjects from './ar/projects';
 
-const en = { home: enHome, delivery: enDelivery, projects: enProjects, gloss: undefined as undefined | { label: string; items: readonly string[] } };
+const en = { home: enHome, delivery: enDelivery, projects: enProjects, reviewsNote: undefined as string | undefined };
 type Copy = typeof en;
 const ar: Copy = {
   home: arHome as unknown as typeof enHome,
   delivery: arDelivery as unknown as typeof enDelivery,
   projects: arProjects as unknown as typeof enProjects,
-  gloss: { label: arHome.glossLabel, items: arHome.reviewsGloss },
+  reviewsNote: arHome.reviewsNote,
 };
 
 export const copy = (): Copy => (getLocale() === 'ar' ? ar : en);

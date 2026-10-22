@@ -15,6 +15,8 @@ const NAMES = [
 // D-05: logos approved by Mohamed in chat, 2026-10-16 (names appear as logo alt text on home); the 8 review quotes in 09
 // approved the same day with names and roles (home reviews section), which adds the reviewers and their companies.
 const CONSENTED = new Set(['EduLens', 'Upscend', 'Arheb', 'Nile Support', 'BioBank', 'Jumlaty', 'Zest', 'Continuum Therapy Collective', 'Rushr',
+  // Amstadd: Mohamed asked in chat on 2026-10-23 to add its two public, verified Clutch reviews (09).
+  'Amstadd',
   'Fantacalcio', 'Athkado', 'Roberto', 'Youssef', 'Nojoud', 'Alarfaj', 'Michelle Boehm', 'Boehm', 'Andrei', 'Chejneanu', 'Lea Nechitailo', 'Nechitailo', 'Farah Alkhaldi', 'Alkhaldi']);
 const blocked = NAMES.filter((n) => !CONSENTED.has(n));
 const re = new RegExp(`\\b(${blocked.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`, 'g');

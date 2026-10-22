@@ -13,7 +13,7 @@ Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **
 - Kept in Latin: DiscoverDev, Clutch, LinkedIn, tool names, email, code strings (board paths).
 - Service names: Arabic first, English in brackets in the card's service line: التحقق (Validate), البناء (Build · MVP), التوسع (Scale).
 - Senior = "كبار المهندسين" (plural) / "مهندس أول" (one person). Never "مهندسين كبار" (reads as "old engineers").
-- Client quotes stay in the client's own words (English, `lang="en"`), with our translation under each one, labelled "الترجمة:". Never present a translation as the client's words.
+- Reviews (Mohamed, Oct 23): shown in Arabic only, as our faithful translation of each client's words, with one line under the list: "التقييمات مترجمة من الإنجليزية." Meaning stays exact; no added praise. The English page keeps the originals.
 - Facts only from 09 and the live English page. No WhatsApp, no local-contracting section, no Riyadh office: those wait for D-09 and D-44.
 
 ## Text decisions (Oct 23, from the mockup review)
@@ -28,7 +28,7 @@ Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **
 | كتابة اختبارات لكل نقطة اتصال | اختبارات لكل واجهة برمجية | "Endpoint" mistranslated |
 | بلا ارتباط إلزامي بنا | ولا تبقى مرتبطًا بنا | "No lock-in", plainer |
 | ومهندس كبير يعتمد. | ومهندس أول يعتمد كل إصدار. | Complete sentence, consistent term |
-| بالعربية: (under quotes) | الترجمة: | Says plainly it is our translation |
+| English quote + "بالعربية:" line | Arabic quote only + one note "التقييمات مترجمة من الإنجليزية." | Mohamed, Oct 23: no English on the Arabic page |
 | توقيتنا قريب من توقيت الخليج | فارق التوقيت مع السعودية والكويت ساعة واحدة أو أقل | Specific, checkable |
 
 ## Open for the reviewer
