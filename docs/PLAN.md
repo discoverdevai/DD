@@ -15,6 +15,7 @@ _Last updated: Wed Oct 21, 2026. Latest commit: see `git log` (main, pushed; tag
 - **Last gate (Oct 21):** `npm run qa` 0 findings, unit 23/23, functional 32/32, events 21/21, axe 0 blockers on every live page (the Cal iframe is excluded), Lighthouse mobile home perf 98 / LCP 1.96 s / CLS 0, /book perf 100.
 - **Final audit (Oct 21):** `docs/review/final-audit/` (copy-facts.md, technical.md with the Cloudflare launch-day checklist). Before deploy set the Cloudflare build variables `PUBLIC_POSTHOG_KEY` and `PUBLIC_CF_BEACON_TOKEN` (or the privacy page names analytics that are not running), and turn off Rocket Loader, Email Obfuscation, Bot Fight Mode and Web Analytics auto-setup in the dashboard.
 - **Waiting on Mohamed before go-live:** attach discoverdev.ai to the Worker and remove the preview noindex; the Cal.com event content (rename to "Clarity call", questions, hours, emails: `docs/setup/cal-com-clarity-call.md`); NJWAR-Athkado link; Continuum Therapy Collective consent; five technical claims in the C3 guide before V1.2.
+- **Arabic version (planned Oct 22):** `docs/plan/arabic-version.md`, waiting on Mohamed's decisions (section 11).
 - **After launch:** real EduLens, Upscend and BioBank screens with client OK; rest of the art direction (`docs/review/design-review.html`); Dependabot branches on origin.
 
 ## Keeping this file in step with the chat
