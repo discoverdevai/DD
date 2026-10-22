@@ -31,7 +31,7 @@ const release = {
 };
 
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
-const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\//;
+const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\/|^\/ar(\/|$)/;
 
 // Article lastmod for the sitemap (05 §6, 07 §7.1): each insight's `updatedAt` from its frontmatter, keyed by URL path.
 // Only articles get lastmod; it must stay accurate (Google ignores lastmod it can't trust).
@@ -52,8 +52,8 @@ export default defineConfig({
   scopedStyleStrategy: 'class',
   // Shiki writes inline styles, which the meta CSP blocks (docs/PLAN.md A6). Code blocks are decided in M5.
   markdown: { syntaxHighlight: false },
-  // Add 'ar' only when the first native-reviewed Arabic page ships (Q1 2027).
-  i18n: { locales: ['en'], defaultLocale: 'en', routing: { prefixDefaultLocale: false } },
+  // 'ar' is built but hidden (noindex, out of the sitemap, no switcher) until the native reviewer signs off (locales.ts).
+  i18n: { locales: ['en', 'ar'], defaultLocale: 'en', routing: { prefixDefaultLocale: false } },
   integrations: [
     mdx(),
     release,
@@ -74,6 +74,9 @@ export default defineConfig({
     // Signal machine voice (06 §0.3). Not preloaded.
     { provider: fontProviders.fontsource(), name: 'JetBrains Mono', cssVariable: '--font-mono',
       weights: ['400 500'], styles: ['normal'], subsets: ['latin'], fallbacks: ['monospace'] },
+    // Arabic (D-12 default, 06 Arabic type): loaded only on /ar pages; 700 (the H1) preloaded there.
+    { provider: fontProviders.fontsource(), name: 'IBM Plex Sans Arabic', cssVariable: '--font-arabic',
+      weights: ['400', '600', '700'], styles: ['normal'], subsets: ['arabic'], fallbacks: ['system-ui', 'sans-serif'] },
   ],
   env: {
     schema: {

@@ -103,7 +103,11 @@ for (const { route: page, html } of allPages) {
   }
   if (page === '/book/confirmed' && !noindex) add('MAJOR', page, 'robots', '/book/confirmed must be noindex');
   if (page === '/design-system' && !noindex) add('BLOCKER', page, 'robots', '/design-system must be noindex (private reference)');
-  if (/noindex/.test(robots) && !is404 && !/\/(book\/confirmed|design-system)$/.test(page)) add('BLOCKER', page, 'robots', 'page is noindex (preview leak?)');
+  // Arabic pages are noindex on purpose until the native reviewer signs off (LOCALES.ar.status 'hidden'); the reverse leak,
+  // an /ar page that is indexable before review, is the blocker there.
+  const hiddenLocale = /^\/ar(\/|$)/.test(page);
+  if (hiddenLocale && !/noindex/.test(robots)) add('BLOCKER', page, 'robots', 'Arabic page is indexable before native review');
+  if (/noindex/.test(robots) && !is404 && !hiddenLocale && !/\/(book\/confirmed|design-system)$/.test(page)) add('BLOCKER', page, 'robots', 'page is noindex (preview leak?)');
 
   // JSON-LD
   for (const m of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {

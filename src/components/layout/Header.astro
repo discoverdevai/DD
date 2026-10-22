@@ -5,7 +5,7 @@ import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import MobileMenu from './MobileMenu.astro';
-import { t } from '../../i18n/t';
+import { t, localPath } from '../../i18n/t';
 import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
 
 interface Props { variant?: 'default' | 'minimal'; current?: string }
@@ -18,18 +18,18 @@ const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 
 // Services · How we work · Work · Reviews · FAQ, all jumping to home sections. Pages switch back in per release.
 type NavLink = { href: string; label: string };
 const LINKS: NavLink[] = [
-  ...(SERVICES.length === 0 ? [{ href: '/#services', label: t('nav.services') }] : []),
-  { href: isLive('howWeWork') ? ROUTES.howWeWork.path : '/#how-we-work', label: t('nav.how') },
-  { href: isLive('work') ? ROUTES.work.path : '/#work', label: t('nav.work') },
-  ...(isLive('insights') ? [{ href: ROUTES.insights.path, label: t('nav.insights') }] : [{ href: '/#reviews', label: t('nav.reviews') }]),
-  ...(isLive('about') ? [{ href: ROUTES.about.path, label: t('nav.about') }] : [{ href: '/#faq', label: t('nav.faq') }]),
+  ...(SERVICES.length === 0 ? [{ href: localPath('/#services'), label: t('nav.services') }] : []),
+  { href: isLive('howWeWork') ? ROUTES.howWeWork.path : localPath('/#how-we-work'), label: t('nav.how') },
+  { href: isLive('work') ? ROUTES.work.path : localPath('/#work'), label: t('nav.work') },
+  ...(isLive('insights') ? [{ href: ROUTES.insights.path, label: t('nav.insights') }] : [{ href: localPath('/#reviews'), label: t('nav.reviews') }]),
+  ...(isLive('about') ? [{ href: ROUTES.about.path, label: t('nav.about') }] : [{ href: localPath('/#faq'), label: t('nav.faq') }]),
 ];
 const isCurrent = (path: string) => current.replace(/\.html$/, '').replace(/\/$/, '') === path.replace(/\/$/, '');
 const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
 ---
 <header class="site-header" data-surface="ink" data-header>
   <div class="container site-header__bar">
-    <a href="/" class="site-header__home" aria-label={t('logo.home')}><Logo /></a>
+    <a href={localPath('/')} class="site-header__home" aria-label={t('logo.home')}><Logo /></a>
 
     {variant === 'default' && (
       <nav class="site-nav" aria-label={t('nav.label')}>
@@ -59,7 +59,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
         </button>
       </div>
     ) : (
-      <a href="/" class="site-header__back" data-back><Icon name="arrow-left" size={16} directional />{t('back')}</a>
+      <a href={localPath('/')} class="site-header__back" data-back><Icon name="arrow-left" size={16} directional />{t('back')}</a>
     )}
   </div>
   {variant === 'default' && <MobileMenu services={SERVICES} links={LINKS} />}

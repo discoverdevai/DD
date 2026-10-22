@@ -62,9 +62,10 @@ export const orgFull = {
 export const website = { '@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: 'DiscoverDev', inLanguage: 'en', publisher: { '@id': ORG_ID } };
 
 export function webPage(path: string, name: string, description: string, type = 'WebPage', extra: Record<string, unknown> = {}) {
+  const inLanguage = path === '/ar' || path.startsWith('/ar/') ? 'ar' : 'en';
   const url = canonical(path);
   // Home uses `/#webpage` (05 §4.1); canonical('/') has no trailing slash.
-  return { '@type': type, '@id': path === '/' ? `${SITE_URL}/#webpage` : `${url}#webpage`, url, name, description, isPartOf: { '@id': WEBSITE_ID }, inLanguage: 'en', ...extra };
+  return { '@type': type, '@id': path === '/' ? `${SITE_URL}/#webpage` : `${url}#webpage`, url, name, description, isPartOf: { '@id': WEBSITE_ID }, inLanguage, ...extra };
 }
 
 export const graph = (...nodes: object[]) => ({

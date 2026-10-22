@@ -8,8 +8,10 @@ import SectionHead from '../ui/SectionHead.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
 interface Review { quote: string; name: string; role: string; service: string; result?: string }
-interface Props { label?: string; title: string; items: readonly Review[]; cta?: boolean }
-const { label, title, items, cta = false } = Astro.props;
+// `gloss` (Arabic page): our translation of each quote, in order, shown under the client's own words and labelled as ours.
+interface Props { label?: string; title: string; items: readonly Review[]; cta?: boolean; gloss?: { label: string; items: readonly string[] } }
+const { label, title, items, cta = false, gloss } = Astro.props;
+const qLang = gloss ? { lang: 'en', dir: 'ltr' } : {};
 const [featured, ...notes] = items;
 ---
 <section id="reviews" class="rv" data-surface="ink" data-raised aria-labelledby="rv-title">
@@ -18,17 +20,19 @@ const [featured, ...notes] = items;
     <div class="rv__grid">
       <figure class="rv__featured">
         <p class="rv__label">{t('reviews.featured')} · {featured.service}</p>
-        <blockquote class="rv__big"><p>{featured.quote}</p></blockquote>
+        <blockquote class="rv__big" {...qLang}><p>{featured.quote}</p></blockquote>
+        {gloss && <p class="rv__gloss"><span>{gloss.label}</span> {gloss.items[0]}</p>}
         <figcaption class="rv__by"><strong>{featured.name}</strong><span>{featured.role}</span></figcaption>
         {featured.result && <p class="rv__result">{featured.result}</p>}
       </figure>
 
       <div class="rv__side">
         <ul role="list" class="rv__notes">
-          {notes.map((r) => (
+          {notes.map((r, i) => (
             <li class="rv__note">
               <figure>
-                <blockquote><p>{r.quote}</p></blockquote>
+                <blockquote {...qLang}><p>{r.quote}</p></blockquote>
+                {gloss && <p class="rv__gloss"><span>{gloss.label}</span> {gloss.items[i + 1]}</p>}
                 <figcaption><strong>{r.name}</strong><span>{r.role}</span><span class="rv__svc">{r.service}</span></figcaption>
               </figure>
             </li>
@@ -70,6 +74,9 @@ const [featured, ...notes] = items;
   .rv__note figcaption { display: grid; margin-block-start: var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
   .rv__note figcaption strong { font-family: var(--ff-heading); color: var(--color-heading); }
   .rv__svc { font-size: var(--text-xs); }
+  .rv__gloss { margin-block-start: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .rv__gloss span { color: var(--color-machine-text); }
+  .rv blockquote[dir="ltr"] { text-align: start; }
   .rv :global(.rv__proof) { color: var(--color-text-muted); }
   .rv__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-block-start: var(--space-8); }
 </style>

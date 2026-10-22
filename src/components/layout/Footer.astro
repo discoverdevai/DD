@@ -3,7 +3,7 @@
 // Contact block order is identical on every page (WCAG 3.2.6). Columns list live routes only.
 import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
-import { t } from '../../i18n/t';
+import { t, localPath } from '../../i18n/t';
 import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
 import { CLUTCH_URL, LINKEDIN_URL } from '../../lib/seo';
 
@@ -19,8 +19,8 @@ const columns = [
 // V1.0 (one-page site, 03 §2V1): while the service pages are off, the footer links to the home sections instead.
 if (!['validate', 'build', 'scale'].some((k) => isLive(k as RouteKey))) {
   columns.unshift({ title: t('footer.explore'), items: [
-    { href: '/#services', label: t('nav.services') }, { href: '/#how-we-work', label: t('nav.how') },
-    { href: '/#work', label: t('nav.work') }, { href: '/#reviews', label: t('nav.reviews') }, { href: '/#faq', label: t('nav.faq') },
+    { href: localPath('/#services'), label: t('nav.services') }, { href: localPath('/#how-we-work'), label: t('nav.how') },
+    { href: localPath('/#work'), label: t('nav.work') }, { href: localPath('/#reviews'), label: t('nav.reviews') }, { href: localPath('/#faq'), label: t('nav.faq') },
   ] });
 }
 // `proof`: the rating line; home shows it in the hero and above the reviews, so its footer hides it (Oct 18).
@@ -32,7 +32,7 @@ const year = new Date().getFullYear();
 <footer class="site-footer" data-surface="ink">
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
-      <a href="/" aria-label={t('logo.home')} class="site-footer__logo"><Logo lazy /></a>
+      <a href={localPath('/')} aria-label={t('logo.home')} class="site-footer__logo"><Logo lazy /></a>
       {core && <p class="site-footer__core">{t('footer.core')}</p>}
       <p class="site-footer__entity">{t('footer.entity')}</p>
       <ul role="list" class="site-footer__contact">

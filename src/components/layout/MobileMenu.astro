@@ -5,7 +5,7 @@ import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
-import { t } from '../../i18n/t';
+import { t, localPath } from '../../i18n/t';
 import { ROUTES, bookHref, type RouteKey } from '../../data/routes';
 
 interface Props { services: { key: RouteKey; label: string; who: string }[]; links: { href: string; label: string }[] }
@@ -13,7 +13,7 @@ const { services, links } = Astro.props;
 ---
 <dialog id="menu-sheet" class="menu-sheet" data-surface="ink" aria-labelledby="menu-heading" data-menu>
   <div class="menu-sheet__top">
-    <a href="/" aria-label={t('logo.home')}><Logo lazy /></a>
+    <a href={localPath('/')} aria-label={t('logo.home')}><Logo lazy /></a>
     <button type="button" class="menu-sheet__close" commandfor="menu-sheet" command="close" data-menu-close autofocus>
       <Icon name="x" size={20} /><span class="sr-only">{t('menu.close')}</span>
     </button>

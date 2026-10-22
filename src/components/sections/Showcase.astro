@@ -4,10 +4,11 @@
 // keyboard move it by hand and the drift only steps aside while that is happening. Reduced motion = no drift, manual scroll with scroll-snap.
 // The loop copy is made by the script when the row nears the screen (aria-hidden, inert). Titles link to /work only when it is live (V1.1).
 import ProjectVisual from '../work/ProjectVisual.astro';
-import { projects, showcase as c } from '../../content/copy/en/projects';
+import { copy } from '../../content/copy';
 import { href, isLive } from '../../data/routes';
 import { t } from '../../i18n/t';
 import SliderArrows from '../ui/SliderArrows.astro';
+const { projects, showcase: c } = copy().projects;
 const tiles = c.ids.map((id) => projects.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p));
 const target = (p: (typeof tiles)[number]) => (p.link && isLive(p.link) ? href(p.link) : isLive('work') ? href('work') : undefined);
 const stageName = (s: keyof typeof c.stages) => c.stages[s];
@@ -82,6 +83,10 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
     const HOLD = 900; // ms the drift steps aside while a swipe, scroll or arrow is moving the row (it never pauses otherwise)
     const step = () => (rail.querySelector<HTMLElement>('.sc__card')?.getBoundingClientRect().width ?? rail.clientWidth) + 16;
     const rtl = () => getComputedStyle(rail).direction === 'rtl';
+    // Right-to-left rows scroll with negative scrollLeft (0 to -max). The drift works in distance from the start (`at()`),
+    // and writes it back with the row's sign (`put()`), so it runs the same way in Arabic.
+    const at = () => Math.abs(rail.scrollLeft);
+    const put = (d: number) => { rail.scrollLeft = rtl() ? -d : d; };
     let auto = false;
     let half = 0;
     let pos = 0;
@@ -108,14 +113,14 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
     const hold = () => { holdUntil = performance.now() + HOLD; };
     const go = (dir: 1 | -1) => {
       hold();
-      if (auto && dir === -1 && rail.scrollLeft < step()) { rail.scrollLeft += half; pos = rail.scrollLeft; }
+      if (auto && dir === -1 && at() < step()) { put(at() + half); pos = at(); }
       rail.scrollBy({ left: dir * (rtl() ? -1 : 1) * step(), behavior: reduced ? 'auto' : 'smooth' });
     };
     prev.addEventListener('click', () => { if (!off(prev)) go(-1); });
     next.addEventListener('click', () => { if (!off(next)) go(1); });
     rail.addEventListener('scroll', () => {
-      if (auto && Math.abs(rail.scrollLeft - lastSet) > 2) { pos = rail.scrollLeft; hold(); } // a person moved it
-      if (auto && half && rail.scrollLeft >= half) { rail.scrollLeft -= half; pos = rail.scrollLeft; lastSet = pos; }
+      if (auto && Math.abs(at() - lastSet) > 2) { pos = at(); hold(); } // a person moved it
+      if (auto && half && at() >= half) { put(at() - half); pos = at(); lastSet = pos; }
       sync();
     }, { passive: true });
     new ResizeObserver(sync).observe(rail);
@@ -148,9 +153,9 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
           pos += (SPEED * dt) / 1000;
           if (pos >= half) pos -= half;
           lastSet = pos;
-          rail.scrollLeft = pos;
+          put(pos);
         } else {
-          pos = rail.scrollLeft;
+          pos = at();
         }
         requestAnimationFrame(tick);
       };
