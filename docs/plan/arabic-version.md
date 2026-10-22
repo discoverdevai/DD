@@ -80,7 +80,7 @@ Effort: about 1 day, no visual change to English.
 | Phase | What | Who | Effort |
 |---|---|---|---|
 | P0 Decisions | Answer section 11 | Mohamed | 1 meeting |
-| P1 Research | Arabic keyword research (SA, AE, KW), 3 Arabic competitor pages, voice samples | Claude (research), Mohamed (approve) | 2 days |
+| P1 Research | Arabic keyword research (SA, AE, KW), 3 Arabic competitor pages, voice samples. First pass done Oct 22: `research/arabic-keywords-p1.md`; needs search volumes | Claude (research), Mohamed (approve) | 2 days |
 | P2 Engineering | Copy loader refactor, `ar` routing behind `status: hidden`, Arabic font, hreflang and sitemap code, `LangSwitcher`, RTL e2e test, Arabic OG test | Claude | 3 to 4 days |
 | P3 Copy | `03-copy-ar.md` for home, /book, privacy, terms, 404 and `ui/ar.json` (79 strings); native review; proof check against `09` | Native writer + reviewer, Claude drafts and checks | 1 to 2 weeks (reviewer time) |
 | P4 SEO and GEO | Arabic titles and metas, schema, `llms.txt`, FAQ answers, OG images | Claude, reviewer checks | 2 days |
