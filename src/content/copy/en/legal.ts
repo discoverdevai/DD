@@ -31,7 +31,7 @@ export const legalUi = {
 
 export const privacy: LegalDoc = {
   seo: {
-    title: 'Privacy Notice | DiscoverDev',
+    title: 'Privacy | DiscoverDev',
     description: 'How DiscoverDev collects, uses and protects personal data from this website, our booking calendar and analytics, plus your rights and how to reach us.',
   },
   h1: 'Privacy notice',
@@ -197,7 +197,7 @@ export const privacy: LegalDoc = {
 
 export const terms: LegalDoc = {
   seo: {
-    title: 'Website Terms of Use | DiscoverDev',
+    title: 'Terms | DiscoverDev',
     description: 'The terms that apply when you use discoverdev.ai: content ownership, acceptable use, third-party links and limits of liability, in plain language.',
   },
   h1: 'Website terms of use',

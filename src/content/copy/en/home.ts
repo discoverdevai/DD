@@ -3,7 +3,7 @@
 import { shared } from './shared';
 export const home = {
   seo: {
-    title: 'Product Development Company for Gulf Startups | DiscoverDev',
+    title: 'DiscoverDev | Product Development for Gulf Startups',
     description:
       'DiscoverDev builds products for startups in Saudi Arabia, Kuwait and the Gulf: discovery, fixed-price MVPs in 8–12 weeks, dedicated teams. You own it.',
   },

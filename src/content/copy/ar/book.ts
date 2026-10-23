@@ -6,7 +6,7 @@ import { shared } from './shared';
 
 export const book: Widen<typeof en> = {
   seo: {
-    title: 'DiscoverDev | احجز مكالمة توضيحية مجانية',
+    title: 'احجز مكالمة | DiscoverDev',
     description: 'احجز مكالمة توضيحية مجانية مع DiscoverDev مدتها 30 دقيقة، دون محاولة بيع. اختر وقتًا في أوقات الخليج أو الولايات المتحدة، وتخرج بخطوة واضحة.',
   },
   h1: 'احجز مراجعة أو مكالمة توضيحية مجانية',
@@ -41,7 +41,7 @@ export const book: Widen<typeof en> = {
     languages: 'نعمل بالعربية والإنجليزية.',
   },
   confirmed: {
-    title: 'DiscoverDev | تم حجزك',
+    title: 'تم حجزك | DiscoverDev',
     description: 'تم حجز مكالمتك مع DiscoverDev. تحقق من بريدك الإلكتروني للاطلاع على الدعوة.',
     h1: 'تم حجزك',
     status: 'تم تأكيد الحجز.',
