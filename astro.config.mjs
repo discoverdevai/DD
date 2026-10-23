@@ -31,7 +31,9 @@ const release = {
 };
 
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
-const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\/|^\/ar(\/|$)/;
+const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\//;
+// Pages that exist in English and Arabic: /x <-> /ar/x, / <-> /ar (src/i18n/t.ts AR_PAGES).
+const PAIRED = ['/', '/book', '/privacy', '/terms'];
 
 // Article lastmod for the sitemap (05 §6, 07 §7.1): each insight's `updatedAt` from its frontmatter, keyed by URL path.
 // Only articles get lastmod; it must stay accurate (Google ignores lastmod it can't trust).
@@ -61,7 +63,12 @@ export default defineConfig({
       filter: (page) => { const p = new URL(page).pathname.replace(/\/$/, '') || '/'; return !NOT_IN_SITEMAP.test(p) && !isOff(p); },
       serialize: (item) => {
         const d = LASTMOD[new URL(item.url).pathname.replace(/\/$/, '')];
-        return { ...item, lastmod: new Date(d ?? Date.now()).toISOString() }; // pages without their own date carry the build date
+        const path = new URL(item.url).pathname.replace(/\/$/, '') || '/';
+        const en = path === '/ar' ? '/' : path.replace(/^\/ar(?=\/)/, '');
+        const links = PAIRED.includes(en)
+          ? [{ url: `https://discoverdev.ai${en === '/' ? '/' : en}`, lang: 'en' }, { url: `https://discoverdev.ai${en === '/' ? '/ar' : `/ar${en}`}`, lang: 'ar' }, { url: `https://discoverdev.ai${en === '/' ? '/' : en}`, lang: 'x-default' }]
+          : undefined;
+        return { ...item, ...(links ? { links } : {}), lastmod: new Date(d ?? Date.now()).toISOString() }; // pages without their own date carry the build date
       },
     }),
   ],

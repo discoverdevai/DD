@@ -105,8 +105,9 @@ for (const { route: page, html } of allPages) {
   if (page === '/design-system' && !noindex) add('BLOCKER', page, 'robots', '/design-system must be noindex (private reference)');
   // Arabic pages are noindex on purpose until the native reviewer signs off (LOCALES.ar.status 'hidden'); the reverse leak,
   // an /ar page that is indexable before review, is the blocker there.
-  const hiddenLocale = /^\/ar(\/|$)/.test(page);
-  if (hiddenLocale && !/noindex/.test(robots)) add('BLOCKER', page, 'robots', 'Arabic page is indexable before native review');
+  const arLive = /ar:\s*\{[^}]*status:\s*'live'/.test(fs.readFileSync(new URL('../src/i18n/locales.ts', import.meta.url), 'utf8'));
+  const hiddenLocale = /^\/ar(\/|$)/.test(page) && !arLive;
+  if (hiddenLocale && !/noindex/.test(robots)) add('BLOCKER', page, 'robots', 'Arabic page is indexable while the locale is hidden');
   if (/noindex/.test(robots) && !is404 && !hiddenLocale && !/\/(book\/confirmed|design-system)$/.test(page)) add('BLOCKER', page, 'robots', 'page is noindex (preview leak?)');
 
   // JSON-LD

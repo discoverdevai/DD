@@ -56,6 +56,10 @@ export const GET: APIRoute = async () => {
     ...company,
     '- Contact: hello@discoverdev.ai',
     '',
+    '## Arabic (العربية)',
+    `- [الصفحة الرئيسية](${SITE_URL}/ar): شركة لتطوير المنتجات الرقمية وهندستها للشركات الناشئة في السعودية والكويت والخليج. نختبر الفكرة ونبني النسخة الأولى (MVP) بسعر ثابت خلال 8 إلى 12 أسبوعًا، والكود ملكك.`,
+    `- [احجز مكالمة توضيحية مجانية](${SITE_URL}/ar/book): 30 دقيقة، دون محاولة بيع.`,
+    '',
   ].join('\n');
   return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };
