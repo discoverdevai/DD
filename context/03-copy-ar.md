@@ -2,8 +2,11 @@
 
 Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **draft for the native reviewer**. Nothing here is live: `/ar` is built but hidden (noindex, out of the sitemap, no language switcher) until `LOCALES.ar` has `status: 'live'` and a named `review`.
 
+## Pages built (Oct 23, all hidden: noindex, out of the sitemap)
+`/ar` (home), `/ar/book`, `/ar/book/confirmed`, `/ar/privacy`, `/ar/terms`, `/ar/404` (Cloudflare serves the nearest `404.html`, so unknown `/ar/...` URLs get the Arabic one). Each is the same component as its English twin, so design and behaviour match. The Cal.com booking widget itself is Cal's and shows English until Cal's Arabic/RTL support is checked (plan §8). Legal pages (`ar/legal.ts`): faithful draft of the English; needs the native reviewer and a qualified read for Saudi Arabia (PDPL) before going live; English prevails if they differ.
+
 ## Where the Arabic lives
-- Page copy: `src/content/copy/ar/` (`home.ts`, `delivery.ts`, `projects.ts`, `shared.ts`), typed against the English modules so nothing can be missing.
+- Page copy: `src/content/copy/ar/` (`home.ts`, `delivery.ts`, `projects.ts`, `shared.ts`, `book.ts`, `legal.ts`, `not-found.ts`), typed against the English modules so nothing can be missing.
 - UI strings: `src/i18n/ui/ar.json` (all keys of `en.json`; `i18n-gate` checks parity).
 - Rule from today: an Arabic change is made here first (a line in the log below), then in the module. After review, this file becomes the full line-by-line source like `03-copy.md`.
 

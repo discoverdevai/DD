@@ -10,7 +10,7 @@ import { CLUTCH_URL, LINKEDIN_URL } from '../../lib/seo';
 
 type Item = { key?: RouteKey; href?: string; label: string };
 const col = (items: Item[]) =>
-  items.filter((i) => (i.key ? isLive(i.key) : true)).map((i) => ({ href: i.href ?? ROUTES[i.key!].path, label: i.label }));
+  items.filter((i) => (i.key ? isLive(i.key) : true)).map((i) => ({ href: localPath(i.href ?? ROUTES[i.key!].path), label: i.label }));
 const columns = [
   { title: t('footer.services'), items: col([{ key: 'validate', label: t('nav.validate') }, { key: 'build', label: t('nav.build') }, { key: 'scale', label: t('nav.scale') }, { key: 'review', label: t('footer.review') }, { key: 'partners', label: t('nav.partners') }]) },
   { title: t('footer.work'), items: col([{ key: 'workEdulens', label: t('footer.case') }, { key: 'work', label: t('footer.allWork') }]) },

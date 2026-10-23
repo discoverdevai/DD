@@ -1,10 +1,11 @@
 ---
 // Booking embed container (06 §9.17, 07 §10.2). Reserved height stops CLS. Fallback links show until Cal's
 // `linkReady`, and come back on `linkFailed` or after 10s. No JS → <noscript> links. Cal script loads from lib/cal.ts.
-import { book as c } from '../../content/copy/en/book';
+import { copy } from '../../content/copy';
 import { t } from '../../i18n/t';
 import { directLink, calUsername, type BookType } from '../../lib/cal';
 import { isLive, href } from '../../data/routes';
+const c = copy().book;
 const types: BookType[] = isLive('review') ? ['review', 'clarity', 'partner'] : ['clarity']; // V1.0: the clarity call only (03 §2V1)
 ---
 <div class="cal" data-cal data-cal-configured={calUsername ? 'true' : 'false'} data-iframe-title={c.calendar.title}>

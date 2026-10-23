@@ -1,0 +1,15 @@
+---
+// Privacy notice (04 §4.13, 05 §1.1). Draft per D-25; text in content/copy/en/legal.ts.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalPage from '../../components/legal/LegalPage.astro';
+import { copy } from '../../content/copy';
+import { getLocale } from '../../i18n/t';
+import { graph, orgStub, webPage } from '../../lib/seo';
+
+const c = copy().legal.privacy;
+const base = getLocale() === 'ar' ? '/ar' : '';
+const jsonLd = graph(orgStub, webPage(base + '/privacy', c.seo.title, c.seo.description));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="legal" stickyBar={false} jsonLd={jsonLd}>
+  <LegalPage doc={c} />
+</BaseLayout>

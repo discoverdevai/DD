@@ -1,0 +1,75 @@
+---
+// /book/confirmed (04 §4.11, 03 §14): noindex, no JSON-LD, minimal header. Time in the visitor's zone from
+// sessionStorage; direct visits get the generic line. Backup booking_completed fires only if the embed didn't (07 §9.3).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CheckList from '../../components/blocks/CheckList.astro';
+import Steps from '../../components/blocks/Steps.astro';
+import { copy } from '../../content/copy';
+import { t } from '../../i18n/t';
+import { isLive, href } from '../../data/routes';
+const c = copy().book.confirmed;
+const reviewOn = isLive('review'); // V1.0: only the clarity-call version of the page is built (03 §2V1)
+---
+<BaseLayout title={c.title} description={c.description} pageType="book_confirmed" noindex header="minimal" stickyBar={false}>
+  <section class="section conf" data-surface="ink" aria-labelledby="conf-title">
+    <div class="container--narrow conf__inner">
+      <p role="status" class="conf__status">{c.status}</p>
+      <h1 id="conf-title" class="h1">{c.h1}</h1>
+      <p class="lead" data-when data-with={c.withTime}>{c.noTime}</p>
+
+      <h2 class="h3">{c.before.title}</h2>
+      <CheckList items={reviewOn ? c.before.items : c.before.itemsClarity} />
+
+      <h2 class="h3">{c.next.title}</h2>
+      {reviewOn && <div data-next="review" hidden><Steps steps={c.next.review} /></div>}
+      <div data-next="clarity"><Steps steps={c.next.clarity} /></div>
+
+      {(isLive('workEdulens') || isLive('pillar')) && (
+        <>
+          <h2 class="h3">{c.wait.title}</h2>
+          <ul role="list" class="conf__links">
+            {isLive('workEdulens') && <li><a href={href('workEdulens')}>{c.wait.caseLink}</a></li>}
+            {isLive('pillar') && <li><a href={href('pillar')}>{c.wait.pillarLink}</a></li>}
+          </ul>
+        </>
+      )}
+
+      <div class="conf__change">
+        <p>{c.change[0]}</p>
+        <p>{c.change[1]} <a href={`mailto:${t('contact.email')}`} dir="ltr" data-link-context="contact">{t('contact.email')}</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .conf__inner { display: grid; gap: var(--space-6); text-align: start; }
+  .conf__inner > .h1 { text-align: center; justify-self: center; }
+  .conf__status { justify-self: center; font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-human-text); }
+  .conf__inner > .lead { text-align: center; justify-self: center; }
+  .conf__links { display: grid; gap: var(--space-2); }
+  .conf__links a { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+  .conf__change { display: grid; gap: var(--space-2); color: var(--color-text-muted); border-block-start: 1px solid var(--color-border-subtle); padding-block-start: var(--space-6); }
+</style>
+
+<script>
+  import { track } from '../../lib/analytics';
+  const type = document.querySelector('[data-next="review"]') && new URLSearchParams(location.search).get('type') === 'review' ? 'review' : 'clarity';
+  document.querySelectorAll<HTMLElement>('[data-next]').forEach((el) => (el.hidden = el.dataset.next !== type));
+  let booking: { event_type?: string; start_time?: string; quiz_segment?: string; tracked?: boolean } | null = null;
+  try { booking = JSON.parse(sessionStorage.getItem('dd_booking') ?? 'null'); } catch { booking = null; }
+  const when = document.querySelector<HTMLElement>('[data-when]');
+  if (booking?.start_time && when) {
+    const d = new Date(booking.start_time);
+    if (!Number.isNaN(d.getTime())) {
+      const fmt = new Intl.DateTimeFormat(document.documentElement.lang || 'en', { dateStyle: 'full', timeStyle: 'short' }).format(d);
+      when.textContent = (when.dataset.with ?? '').replace('{when}', fmt);
+    }
+  }
+  if (booking && booking.tracked !== true) {
+    let entry = 'none';
+    try { entry = sessionStorage.getItem('entry_cta') ?? 'none'; } catch { /* ignore */ }
+    track('booking_completed', { event_type: booking.event_type, entry_cta: entry, embed_page: 'book', quiz_segment: booking.quiz_segment || undefined, backup: true }, true);
+    try { sessionStorage.setItem('dd_booking', JSON.stringify({ ...booking, tracked: true })); } catch { /* ignore */ }
+  }
+</script>

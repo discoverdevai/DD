@@ -1,8 +1,10 @@
 ---
 // Legal template (04 §4.13): paper surface, prose width, H1, "Last updated", contents list, plain sections. No CTA band.
-import { legalUi, type LegalDoc, type Inline } from '../../content/copy/en/legal';
+import type { LegalDoc, Inline } from '../../content/copy/en/legal';
+import { copy } from '../../content/copy';
 interface Props { doc: LegalDoc }
 const { doc } = Astro.props;
+const { legalUi } = copy().legal;
 
 const isLink = (r: Inline): r is { text: string; href: string } => typeof r !== 'string' && 'href' in r;
 const isCode = (r: Inline): r is { code: string } => typeof r !== 'string' && 'code' in r;

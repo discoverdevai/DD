@@ -5,15 +5,16 @@
 // (today: / and /ar). English pages show it only once Arabic is live (LOCALES.ar.status 'live' after native review);
 // the Arabic page always shows the way back to English.
 import { LOCALES } from '../../i18n/locales';
-import { getLocale } from '../../i18n/t';
+import { getLocale, AR_PAGES } from '../../i18n/t';
 
 interface Props { class?: string }
-const PAIRS: Record<string, string> = { '/': '/ar' };
+// Every page in AR_PAGES exists in both languages: /x <-> /ar/x, / <-> /ar.
+const toAr = (p: string) => (p === '/' ? '/ar' : `/ar${p}`);
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/(index)?$/, '') || '/';
 const onArabic = getLocale() === 'ar';
-const enPath = onArabic ? Object.keys(PAIRS).find((k) => PAIRS[k] === path) : path;
-const arPath = enPath ? PAIRS[enPath] : undefined;
-const href = onArabic ? enPath : arPath;
+const enPath = onArabic ? (path === '/ar' ? '/' : path.replace(/^\/ar/, '')) : path;
+const hasPair = (AR_PAGES as readonly string[]).includes(enPath);
+const href = hasPair ? (onArabic ? enPath : toAr(enPath)) : undefined;
 const target = onArabic ? LOCALES.en : LOCALES.ar;
 // AR_PREVIEW=1 (local review build only) shows the English-side link before Arabic is live, so it can be tried both ways.
 const show = Boolean(href) && (onArabic || (LOCALES.ar.status as string) === 'live' || process.env.AR_PREVIEW === '1');

@@ -1,0 +1,151 @@
+---
+// /book (04 §4.10, 03 §13): minimal header with the official logo, no sticky bar, the same dark ink surface as the rest of the site (Mohamed, Oct 21). ?type=review|clarity|partner (unknown → review).
+// Option switch = links (works without JS, 06 §9.17); JS swaps the text and re-renders the Cal namespace.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaTerms from '../../components/ui/CtaTerms.astro';
+import CheckList from '../../components/blocks/CheckList.astro';
+import ProofChip from '../../components/ui/ProofChip.astro';
+import CalEmbed from '../../components/book/CalEmbed.astro';
+import { copy } from '../../content/copy';
+import { t } from '../../i18n/t';
+import { isLive } from '../../data/routes';
+import { getLocale, localPath } from '../../i18n/t';
+// V1.0 (03 §2V1): the Launch-Ready Review is not offered until V1.2, so /book offers the clarity call only.
+const c = copy().book;
+const reviewOn = isLive('review');
+import { graph, orgStub, webPage } from '../../lib/seo';
+const seo = c.seo; // V1.0 clarity-call title; the Review title returns in V1.2 (03 §13)
+const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book', seo.title, seo.description));
+---
+<BaseLayout title={seo.title} description={seo.description} pageType="book" jsonLd={jsonLd} header="minimal" stickyBar={false}>
+  <section class="section book" data-surface="ink" aria-labelledby="book-title">
+    <div class="container book__grid">
+      <div class="book__main">
+        <h1 id="book-title" class="h1" data-book-h1>{reviewOn ? c.h1 : c.h1Clarity}</h1>
+        {reviewOn && (
+          <nav class="opts" data-review-on="true" aria-label={c.optionsLabel}>
+            <a href={localPath('/book?type=clarity')} class="opt" aria-current="true" data-opt="clarity">{c.options.clarity.tab}</a>
+            <a href={localPath('/book?type=review')} class="opt" data-opt="review">{c.options.review.tab}</a>
+            <a href={localPath('/book?type=partner')} class="opt" data-opt="partner" hidden>{c.options.partner.tab}</a>
+          </nav>
+        )}
+        <div class="opt-panel" data-panel="clarity"><p>{c.options.clarity.text}</p><CtaTerms kind="clarity" /></div>
+        {reviewOn && <div class="opt-panel" data-panel="review" hidden><p>{c.options.review.text}</p><CtaTerms kind="review" /></div>}
+        {reviewOn && <div class="opt-panel" data-panel="partner" hidden><p>{c.options.partner.text}</p><CtaTerms kind="partner" /></div>}
+        <div class="side-block book__brief">
+          <h2 class="h3">{c.call.title}</h2>
+          <CheckList items={c.call.items} />
+          <p class="muted">{c.call.who}</p>
+        </div>
+        <CalEmbed />
+      </div>
+      <aside class="book__side" aria-label={c.call.title}>
+        <div class="side-block book__call">
+          <h2 class="h3">{c.call.title}</h2>
+          <CheckList items={c.call.items} />
+          <p class="muted">{c.call.who}</p>
+        </div>
+        <div class="side-block">
+          <h2 class="h3">{c.terms.title}</h2>
+          <CheckList items={c.terms.items} />
+        </div>
+        <ProofChip quiet />
+        <div class="side-block" id="contact">
+          <h2 class="h3">{c.write.title}</h2>
+          <p><a href={`mailto:${t('contact.email')}`} data-link-context="contact" dir="ltr">{t('contact.email')}</a></p>
+          <p class="muted">{c.write.languages}</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .book__grid { display: grid; gap: var(--space-12); }
+  @media (width >= 64rem) { .book__grid { grid-template-columns: 8fr 4fr; gap: var(--space-16); align-items: start; } }
+  .book__main { display: grid; gap: var(--space-6); min-inline-size: 0; }
+  /* Phones: what happens on the call comes before the calendar; the sidebar copy of it is hidden there so nothing repeats (UX audit P1-1c). */
+  @media (width >= 64rem) { .book__brief { display: none; } }
+  @media (width < 64rem) { .book__call { display: none; } }
+  .opts { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .opt { display: inline-flex; align-items: center; min-block-size: 2.75rem; padding-inline: var(--space-4); border: 1px solid var(--color-border-control); border-radius: var(--radius-sm); color: var(--color-text); text-decoration: none; font-weight: var(--weight-medium); }
+  /* Selected option: filled, not just a thicker border, so the choice reads at a glance (CRO review). */
+  .opt[aria-current='true'] { border-color: var(--blue-700); background: var(--blue-700); color: var(--neutral-0); }
+  .opt[hidden] { display: none; }
+  .opt-panel { display: grid; gap: var(--space-3); max-inline-size: var(--measure-prose); }
+  .book__side { display: grid; gap: var(--space-8); align-content: start; }
+  .side-block { display: grid; gap: var(--space-3); }
+</style>
+
+<script>
+  import { renderCal, calUsername, EVENT, type BookType } from '../../lib/cal';
+  import { track } from '../../lib/analytics';
+  import { firstTouch } from '../../lib/utm';
+
+  const params = new URLSearchParams(location.search);
+  const raw = params.get('type');
+  // Default = clarity call, the primary CTA (strategy v2, 04 §7.1).
+  const reviewOn = document.querySelector('.opts')?.getAttribute('data-review-on') === 'true';
+  const type: BookType = reviewOn && (raw === 'review' || raw === 'partner') ? (raw as BookType) : 'clarity';
+  const read = (k: string) => { try { return sessionStorage.getItem(k); } catch { return null; } };
+
+  // Option switch: current link, matching text; the partner tab exists only when asked for (04 §4.10).
+  if (type === 'partner') { const tab = document.querySelector<HTMLElement>('[data-opt="partner"]'); if (tab) tab.hidden = false; }
+  document.querySelectorAll<HTMLAnchorElement>('[data-opt]').forEach((a) => {
+    if (a.dataset.opt === type) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+  });
+  document.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => (p.hidden = p.dataset.panel !== type));
+  document.querySelectorAll<HTMLElement>('[data-cal-link]').forEach((li) => (li.hidden = li.dataset.calLink !== type));
+
+  const root = document.querySelector<HTMLElement>('[data-cal]')!;
+  const el = document.querySelector<HTMLElement>('[data-cal-inline]')!;
+  const failed = document.querySelector<HTMLElement>('[data-cal-failed]')!;
+  const loading = document.querySelector<HTMLElement>('[data-cal-loading]')!;
+  const showFallback = () => { root.removeAttribute('data-ready'); loading.hidden = true; failed.hidden = false; };
+
+  const touch = firstTouch();
+  const entryCta = params.get('entry_cta') ?? read('entry_cta') ?? 'none';
+  const quizSegment = params.get('quiz_segment') ?? '';
+  let quizTarget = '';
+  try { quizTarget = JSON.parse(read('dd_quiz_v1') ?? '{}').answers?.launch_when ?? ''; } catch { /* ignore */ }
+  let prefillEmail = '';
+  try { prefillEmail = read('dd_prefill') ?? ''; } catch { /* ignore */ }
+
+  let started = false;
+  // The booking calendar is third-party and heavy (about 4 s of main-thread work in the lab), so it starts on the first sign of
+  // intent (pointer, key, touch, scroll) or 3 s after load, whichever comes first (V1.0.2 audit: /book TBT 4.8 s, CLS 0.147).
+  const start = () => {
+  const ok = renderCal({
+    type, el,
+    metadata: { ...touch.utm, entry_cta: entryCta, quiz_segment: quizSegment, target_launch: quizTarget, interest: params.get('interest') ?? '', page: 'book' },
+    prefill: prefillEmail ? { email: prefillEmail } : undefined,
+    onReady: () => {
+      root.setAttribute('data-ready', '');
+      const iframe = el.querySelector('iframe');
+      if (iframe && !iframe.title) iframe.title = root.dataset.iframeTitle ?? '';
+    },
+    onFailed: showFallback,
+    onViewed: (slotsLoaded) => {
+      if (started || !slotsLoaded) return;
+      started = true;
+      track('booking_started', { event_type: EVENT[type], entry_cta: entryCta, embed_page: 'book' });
+    },
+    onBooked: (data) => {
+      const start = typeof data.startTime === 'string' ? data.startTime : typeof data.date === 'string' ? data.date : '';
+      try { sessionStorage.setItem('dd_booking', JSON.stringify({ event_type: EVENT[type], start_time: start, quiz_segment: quizSegment, tracked: true })); } catch { /* ignore */ }
+      track('booking_completed', { event_type: EVENT[type], entry_cta: entryCta, embed_page: 'book', quiz_segment: quizSegment || undefined }, true);
+      setTimeout(() => location.assign((document.documentElement.lang === 'ar' ? '/ar' : '') + '/book/confirmed?type=' + type), 300);
+    },
+  });
+  if (!ok) showFallback();
+  else setTimeout(() => { if (!root.hasAttribute('data-ready')) showFallback(); }, 10000);
+  };
+  if (!calUsername) showFallback();
+  else {
+    let began = false;
+    const go = () => { if (began) return; began = true; start(); };
+    for (const ev of ['pointerdown', 'keydown', 'touchstart', 'scroll']) addEventListener(ev, go, { once: true, passive: true });
+    addEventListener('load', () => setTimeout(go, 3000), { once: true });
+    if (document.readyState === 'complete') setTimeout(go, 3000);
+  }
+</script>

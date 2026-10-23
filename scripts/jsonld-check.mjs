@@ -19,7 +19,7 @@ const REQUIRED = {
   ItemList: ['itemListElement'],
 };
 const FULL_ORG = ['logo', 'sameAs', 'address', 'description'];
-const NO_LD = new Set(['/404', '/book/confirmed', '/design-system']);
+const NO_LD = new Set(['/404', '/book/confirmed', '/design-system', '/ar/404', '/ar/book/confirmed']);
 const problems = [];
 
 function walk(node, route, visit) {

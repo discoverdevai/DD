@@ -6,7 +6,7 @@ import { pages, mainOf, report } from './lib/dist.mjs';
 const SURFACES = new Set(['ink', 'paper', 'alt', 'inverse']);
 const problems = [];
 for (const { route, html } of pages()) {
-  if (route === '/404' || route === '/privacy' || route === '/terms') continue; // legal documents: clauses are sections of one document
+  if (['/404', '/privacy', '/terms', '/ar/404', '/ar/privacy', '/ar/terms'].includes(route)) continue; // legal documents: clauses are sections of one document
   const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
   let depth = 0;
   for (const m of mainOf(html).matchAll(/<(\/?)section\b([^>]*)>/g)) {

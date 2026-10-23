@@ -1,3 +1,4 @@
+import { localPath } from '../i18n/t';
 // Release V1.0 (Oct 18, 03 §2V1): only home, book, privacy and terms are live; every other route is switched off and
 // removed from the build output by the `release` integration in astro.config.mjs. Flip `live` per release.
 // Route registry. `live: live(false)` routes are not linked from nav, footer or CTAs, so no build ever ships a broken link.
@@ -31,8 +32,8 @@ export const ROUTES = {
 
 export type RouteKey = keyof typeof ROUTES;
 export const isLive = (k: RouteKey) => ROUTES[k].live;
-export const href = (k: RouteKey) => ROUTES[k].path;
+export const href = (k: RouteKey) => localPath(ROUTES[k].path);
 
 /** Booking links carry state via ?type= only (04 §2, §6.2). Falls back to email while /book is not live. */
 export const bookHref = (type: 'review' | 'clarity' | 'partner') =>
-  ROUTES.book.live ? `/book?type=${type}` : 'mailto:hello@discoverdev.ai';
+  ROUTES.book.live ? localPath(`/book?type=${type}`) : 'mailto:hello@discoverdev.ai';

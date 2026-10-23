@@ -10,9 +10,15 @@ const DICTS: Partial<Record<Locale, Dict>> = { en, ar };
 let current: Locale = DEFAULT_LOCALE;
 export const setLocale = (locale: Locale) => { current = locale; };
 export const getLocale = (): Locale => current;
-/** Home and home-section links in the current language: '/' -> '/ar', '/#faq' -> '/ar#faq'. Other paths are unchanged. */
-export const localPath = (href: string): string =>
-  current === 'ar' && (href === '/' || href.startsWith('/#')) ? `/ar${href.slice(1)}` : href;
+/** Links to pages that exist in Arabic, in the current language: '/' -> '/ar', '/#faq' -> '/ar#faq', '/book?type=clarity' -> '/ar/book?type=clarity'. Other paths are unchanged. */
+export const AR_PAGES = ['/', '/book', '/book/confirmed', '/privacy', '/terms'] as const;
+export const localPath = (href: string): string => {
+  if (current !== 'ar') return href;
+  const path = href.split(/[?#]/)[0] || '/';
+  if (!(AR_PAGES as readonly string[]).includes(path)) return href;
+  const rest = href.slice(path.length);
+  return (path === '/' ? '/ar' : `/ar${path}`) + rest;
+};
 
 /**
  * Look up a whole-sentence UI string. Named args fill {name} placeholders; no concatenation (07 §8).
