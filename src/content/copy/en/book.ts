@@ -3,7 +3,7 @@ import { shared } from './shared';
 export const book = {
   seo: {
     title: 'Book a Free Clarity Call | DiscoverDev', // V1.0; the Review title returns in V1.2 (03 §13),
-    description: 'Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step.',
+    description: 'Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time in Gulf or US hours, and leave with a next step.',
   },
   h1: 'Book a review or a free clarity call',
   h1Clarity: 'Book a free clarity call', // V1.0: the Review is offered from V1.2 (03 §2V1)

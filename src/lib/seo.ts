@@ -8,7 +8,7 @@ export const CLUTCH_URL = 'https://clutch.co/profile/discoverdev';
 
 /** Entity line, D-43 option (c): footer line + location sentence (05 §4). */
 export const ENTITY_LINE =
-  'DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf.';
+  'DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the Gulf and the US.';
 
 /** Absolute canonical: no trailing slash, no query (04 §2). */
 export const canonical = (path: string) => {
@@ -37,7 +37,7 @@ export const orgFull = {
   email: 'hello@discoverdev.ai',
   contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: 'hello@discoverdev.ai', availableLanguage: ['en', 'ar'] }],
   address: [{ '@type': 'PostalAddress', addressLocality: 'Alexandria', addressCountry: 'EG' }],
-  areaServed: ['United States', 'Saudi Arabia', 'Kuwait', 'Egypt', 'United Kingdom'].map((name) => ({ '@type': 'Country', name })),
+  areaServed: ['Saudi Arabia', 'Kuwait', 'United Arab Emirates', 'Egypt', 'United States', 'United Kingdom'].map((name) => ({ '@type': 'Country', name })),
   // Only topics the live pages show (05 §0); the Review topics return with the Review page (V1.2).
   knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots', ...(ROUTES.review.live ? ['AI app security review', 'Production readiness', 'LLM cost optimization'] : [])],
   knowsLanguage: ['en', 'ar'],
@@ -83,7 +83,7 @@ export const faqPage = (id: string, items: readonly { q: string; a: string }[]) 
 /** Service node for a service page (`<page url>#service`), provided by the company, same served countries everywhere. */
 export const service = (url: string, s: { name: string; serviceType: string; description: string; audience: string; offers: Record<string, unknown> }) => ({
   '@type': 'Service', '@id': `${url}#service`, name: s.name, serviceType: s.serviceType,
-  description: s.description, url, provider: { '@id': ORG_ID }, areaServed: ['US', 'SA', 'KW', 'EG', 'GB'],
+  description: s.description, url, provider: { '@id': ORG_ID }, areaServed: ['SA', 'KW', 'AE', 'EG', 'US', 'GB'],
   audience: { '@type': 'BusinessAudience', audienceType: s.audience },
   offers: { '@type': 'Offer', ...s.offers },
 });

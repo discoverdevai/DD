@@ -42,7 +42,7 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 ### 1.1 Titles, metas, H1s (lengths checked: titles ≤ 60, metas ≤ 155; synced with `03-copy.md` on 2026-10-15; `03-copy.md` wins on conflict)
 | Page | Title | Meta description | H1 |
 |---|---|---|---|
-| `/` | Product Development Company for Startups \| DiscoverDev | DiscoverDev is a product development company for startups: product discovery, fixed-price MVP development in 8–12 weeks, dedicated teams. You own it all. | Turn your idea into a live product in weeks. |
+| `/` | Product Development Company for Gulf Startups \| DiscoverDev | DiscoverDev builds products for startups in Saudi Arabia, Kuwait and the Gulf: discovery, fixed-price MVPs in 8–12 weeks, dedicated teams. You own it. | Turn your idea into a live product in weeks. |
 | `/how-we-work` | How We Work: The DiscoverDev Way \| DiscoverDev | How every DiscoverDev project runs: discover, plan, build, ship and stay. The frameworks we use and what you get, for new and existing products. | How we work |
 | `/launch-ready` | Vibe Code Audit for Lovable, Bolt & Cursor \| DiscoverDev | A 5-day Launch-Ready Review of your AI-built app: security, data rules, payments, scale. Fixed fee, credited toward the fix. No useful findings, no charge. | Launch-Ready Review |
 | `/validate` | Product Discovery Services for Startups \| DiscoverDev | Validate your idea in 1–2 weeks: market read, scope, clickable prototype and a fixed build estimate. The fee credits toward your build. | Validate: discovery before code |
@@ -54,9 +54,9 @@ Diff: L = small blogs/agencies rank · M = mid agencies + listicles · H = direc
 | `/work/edulens` | EduLens: Cutting AI Costs 60–90% Across 3 Agents | Caption-first ingestion, cross-user caching, model routing and token trimming cut EduLens' AI costs by 60–90%. What we changed and why it worked. | EduLens: three AI agents, 60–90% lower AI cost |
 | `/insights` | Guides for Shipping AI-Built Apps \| DiscoverDev | Plain guides for founders with an AI-built app: taking it to production, the security holes to close, a Lovable launch checklist, fix or rebuild. | Guides for shipping AI-built apps |
 | pillar | AI-Built App to Production: The Founder's Guide | Built with Lovable, Bolt, v0 or Cursor and stuck before launch? What breaks, what to check, fix or rebuild, real costs and timelines, in one guide. | How to take an AI-built app to production |
-| `/about` | About DiscoverDev: Senior Product Team, Egypt & US | A product and engineering company with a US presence and an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch. | About DiscoverDev |
+| `/about` | About DiscoverDev: Senior Product Team, Egypt & US | A product and engineering company for Gulf startups, with an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch. | About DiscoverDev |
 | `/launch-check` | Is My AI-Built App Ready to Launch? Free Check \| DiscoverDev | Answer 10 quick questions about your Lovable, Bolt, v0 or Cursor app. See your launch risks in security, payments, code and operations in 3 minutes. | Is your AI-built app launch-ready? |
-| `/book` | Book a Free Clarity Call \| DiscoverDev (V1.0; the Review title returns in V1.2) | Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time that works for you in the US or the Gulf, and leave with a next step. | Book a free clarity call |
+| `/book` | Book a Free Clarity Call \| DiscoverDev (V1.0; the Review title returns in V1.2) | Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time in Gulf or US hours, and leave with a next step. | Book a free clarity call |
 | `/book/confirmed` | You're Booked \| DiscoverDev | (noindex; reuse `/book` meta) | You're booked |
 | `/privacy` | Privacy Notice \| DiscoverDev | How DiscoverDev collects, uses and protects personal data from this website, our booking calendar and analytics, plus your rights and how to reach us. | Privacy notice |
 | `/terms` | Website Terms of Use \| DiscoverDev | The terms that apply when you use discoverdev.ai: content ownership, acceptable use, third-party links and limits of liability, in plain language. | Website terms of use |
@@ -194,7 +194,7 @@ Rules:
 - [ ] No `AggregateRating`, `Review`, `ReserveAction`, `HowTo`. FAQ rich results were removed for all sites on May 7, 2026 (https://www.techwyse.com/news/ai-search/google-faq-rich-results-deprecated-2026). `FAQPage` is optional, only for real visible Q&A, low priority.
 - [ ] Self-serving review rule: an entity's own pages are ineligible for review stars (https://developers.google.com/search/docs/appearance/structured-data/review-snippet). Rating stays visible text + Clutch link.
 - [ ] Validate: Rich Results Test + https://validator.schema.org before every deploy that changes templates. Re-check GSC Enhancements at 2–4 weeks.
-- Entity line (verbatim everywhere, `{{ENTITY_LINE}}`; final wording = D-43): "DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf." (= `03-copy.md` §1.2 footer line + a location sentence for entity clarity.)
+- Entity line (verbatim everywhere, `{{ENTITY_LINE}}`; final wording = D-43): "DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the Gulf and the US." (= `03-copy.md` §1.2 footer line + a location sentence for entity clarity.)
 
 ### 4.1 Home `/`
 ```json
@@ -517,7 +517,7 @@ Status: optional, unproven; Google says no effect on Search; Ahrefs log data (20
 ```markdown
 # DiscoverDev
 
-> DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the US and the Gulf.
+> DiscoverDev is a product and engineering company that helps founders and teams build the right product, then ship it fast. Senior teams, AI-accelerated, and you own everything. Engineering hub in Alexandria, Egypt; clients in the Gulf and the US.
 
 Clients keep full IP, with no lock-in. English and Arabic. Rated 5.0 on Clutch: https://clutch.co/profile/discoverdev
 

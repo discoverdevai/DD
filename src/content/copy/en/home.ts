@@ -3,9 +3,9 @@
 import { shared } from './shared';
 export const home = {
   seo: {
-    title: 'Product Development Company for Startups | DiscoverDev',
+    title: 'Product Development Company for Gulf Startups | DiscoverDev',
     description:
-      'DiscoverDev is a product development company for startups: product discovery, fixed-price MVP development in 8–12 weeks, dedicated teams. You own it all.',
+      'DiscoverDev builds products for startups in Saudi Arabia, Kuwait and the Gulf: discovery, fixed-price MVPs in 8–12 weeks, dedicated teams. You own it.',
   },
   hero: {
     ogEyebrow: 'AI drafts. Seniors sign off.', // share image only; the on-page pill was removed Oct 18
@@ -108,12 +108,12 @@ export const home = {
     items: [
       { quote: "They focused on building solutions that were practical, scalable, and aligned with our users’ needs.", name: "Youssef", role: "CEO, EduLens", service: "Build", result: "Three AI agents in production. AI costs down 60–90%." },
       { quote: "Professional work and great communication.", name: "Nojoud Alarfaj", role: "Athkado, Saudi Arabia", service: "Build · White-label and e-commerce" },
+      { quote: "Thank you for going above and beyond.", name: "Farah Alkhaldi", role: "Consulting firm, Kuwait", service: "Market research · Tourism and hospitality" },
       { quote: "Absolutely amazing! I am very, very pleased with the level of detail that was delivered!", name: "Michelle Boehm", role: "Academic researcher, Switzerland", service: "Research · ML algorithms and data analysis" },
       { quote: "The quality of their work is top-notch.", name: "CEO", role: "Nile Support, USA", service: "Build · AI agents, website and staff augmentation" },
       { quote: "They perform very well and are a strong partner to work with.", name: "Founder", role: "Amstadd, UK", service: "Partners · Custom software and web development" },
       { quote: "They combine strong technical delivery with a very practical, low-friction approach, which isn’t always easy to find.", name: "Team Lead", role: "Amstadd, UK", service: "Partners · Web development" },
       { quote: "Perfect timing, always available for any questions or concerns, great professionalism. The job was done perfectly, and it was on point, giving us the info we needed. 100% recommendable.", name: "Roberto", role: "Fantacalcio", service: "Validate · Market research · Fantasy football" },
-      { quote: "Thank you for going above and beyond.", name: "Farah Alkhaldi", role: "Consulting firm, Kuwait", service: "Market research · Tourism and hospitality" },
       { quote: "I will become a regular customer going forward now.", name: "Andrei Chejneanu", role: "Entrepreneur, UK", service: "Market research · Auto spare parts and trucking in Saudi Arabia" },
       { quote: "You are doing great, I highly appreciate it! Thankful for completing such work in such a short period of time.", name: "Lea Nechitailo", role: "Entrepreneur, Spain", service: "Validate · Market research · Brand expansion" },
     ],
@@ -151,11 +151,11 @@ export const home = {
       { id: 'pricing', q: 'How much does an MVP cost?', a: 'DiscoverDev prices an MVP as a fixed price for an agreed scope. We don’t publish a price list: you get your number after a free 30-minute clarity call, before you commit to anything. Validate (1–2 weeks) is a fixed fee credited toward Build. Build (8–12 weeks) is a fixed price. Scale is a monthly retainer.' },
       { id: 'timeline', q: shared.mvpTimeQ, a: 'Validate takes 1–2 weeks and ends with a clickable prototype and a fixed build estimate. Build takes 8–12 weeks to a production-ready product with real users, with a demo for you every week.' },
       { id: 'call', q: 'What happens on the clarity call?', a: 'You get 30 minutes with a senior member of our product team to tell us what you’re building. We ask what you have and what worries you, and tell you plainly what we’d do. There is no pitch. You leave with a next step, even if we’re not the right fit.' },
-      { id: 'regions', q: 'Do you work with startups in the US and Saudi Arabia?', a: 'Yes. We have worked with clients in the US, Saudi Arabia, Kuwait, the UK and Egypt, across 4 continents. Our engineering hub is in Alexandria, Egypt, with a presence in Texas, USA. We work in Arabic and English, and calls run in US and Gulf hours.' },
+      { id: 'regions', q: 'Do you work with startups in Saudi Arabia and the Gulf?', a: 'Yes. We have worked with clients in Saudi Arabia, Kuwait, the US, the UK and Egypt, across 4 continents. Our engineering hub is in Alexandria, Egypt, 0–1 hours behind Saudi and Kuwait time, with a presence in Texas, USA. We work in Arabic and English, and calls run in Gulf and US hours.' },
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.' },
       { id: 'take-over', q: 'We already built something with AI or a freelancer. Can you take it over?', a: 'Yes. A senior team can review what you have in about 5 working days and tell you what to keep, fix or replace, and why. Then we fix it or build it properly. Start with a free clarity call.', link: { label: 'Read the guide to taking an AI-built app to production', to: 'pillar' as const } }, // 03 §0.8
       { id: 'stacks', q: 'Which tools and stacks do you work with?', a: 'React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure. For AI: OpenAI, LangChain, RAG, computer vision and NLP.' },
-      { id: 'time-zones', q: 'Your team is in Egypt. Will time zones be a problem?', a: 'Our engineering hub is in Alexandria, Egypt (GMT+2). Our working day overlaps US mornings and Europe. We work in Arabic and English, and we have a presence in Texas, USA. Calls run in US and Gulf hours.' },
+      { id: 'time-zones', q: 'Your team is in Egypt. Will time zones be a problem?', a: 'Our engineering hub is in Alexandria, Egypt (GMT+2), 0–1 hours behind Saudi Arabia and Kuwait. Our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English, and we have a presence in Texas, USA. Calls run in Gulf and US hours.' },
     ],
   },
   band: {

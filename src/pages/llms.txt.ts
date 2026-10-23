@@ -42,7 +42,7 @@ export const GET: APIRoute = async () => {
     '',
     '## Facts',
     '- Engineering hub in Alexandria, Egypt (GMT+2); presence in Texas, USA',
-    '- Working day overlaps US mornings and Europe; calls run in US and Gulf hours',
+    '- Working day overlaps the Gulf, Europe and US mornings; calls run in Gulf and US hours',
     '- Clients on 4 continents; four clients expanded scope with us',
     '- Full IP, in your own repository, no lock-in',
     '- Languages: English and Arabic',

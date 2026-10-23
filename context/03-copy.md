@@ -315,6 +315,14 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 
 ## 2V1.1 Decision log (latest wins; Oct 18 to Oct 21)
 
+- **Oct 23 (Mohamed): Gulf-first wording.** The target market is Gulf companies (Saudi Arabia first, then Kuwait and the UAE), so wording leads with the Gulf and keeps the US as a second market. No new claims: no UAE clients, no Gulf office.
+  - Home title: "Product Development Company for Gulf Startups | DiscoverDev"; meta: "DiscoverDev builds products for startups in Saudi Arabia, Kuwait and the Gulf: discovery, fixed-price MVPs in 8–12 weeks, dedicated teams. You own it."
+  - /book meta: "Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time in Gulf or US hours, and leave with a next step."; /about meta: "A product and engineering company for Gulf startups, with an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch."
+  - FAQ regions: Q "Do you work with startups in Saudi Arabia and the Gulf?" A "Yes. We have worked with clients in Saudi Arabia, Kuwait, the US, the UK and Egypt, across 4 continents. Our engineering hub is in Alexandria, Egypt, 0–1 hours behind Saudi and Kuwait time, with a presence in Texas, USA. We work in Arabic and English, and calls run in Gulf and US hours."
+  - FAQ time zones: A "Our engineering hub is in Alexandria, Egypt (GMT+2), 0–1 hours behind Saudi Arabia and Kuwait. Our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English, and we have a presence in Texas, USA. Calls run in Gulf and US hours."
+  - Hours lines (About, Scale, Partners, llms.txt): "Our working day overlaps the Gulf, Europe and US mornings; Gulf time is 0–2 hours ahead." Calls: "Gulf and US hours".
+  - Entity line: "...Engineering hub in Alexandria, Egypt; clients in the Gulf and the US." Schema areaServed: Saudi Arabia, Kuwait, United Arab Emirates, Egypt, United States, United Kingdom.
+  - Reviews order: Gulf reviewers (Athkado, Kuwait consulting firm) come first after the featured one.
 - **Oct 23 (Mohamed): no review count.** Clutch shows 4 reviews, so the site states no number. Rating line: "Rated 5.0 on Clutch" with the link "Read the reviews" (Arabic: "تقييمنا 5.0 على Clutch" · "اقرأ التقييمات"). Replaces "Rated 5.0 on Clutch" everywhere below.
 - **Oct 23 (Mohamed): reviews.** Add the two Clutch reviews from Amstadd (09) to the home reviews, after Nile Support: "They perform very well and are a strong partner to work with." Founder · Amstadd, UK · Partners · Custom software and web development; "They combine strong technical delivery with a very practical, low-friction approach, which isn't always easy to find." Team Lead · Amstadd, UK · Partners · Web development. The Arabic page shows every review as Arabic text, with no translation note (`context/03-copy-ar.md`).
 

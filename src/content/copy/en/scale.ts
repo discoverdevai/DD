@@ -116,7 +116,7 @@ export const scale = {
       // [VERIFY: V22 notice period] → §0.7 omit the notice clause (tag removed).
       { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month. A squad can start with one specialist and grow to developers, QA, a product manager and a designer as your roadmap needs it. The minimum commitment is six months, which gives the squad time to learn your product and deliver steadily.' },
       // "How quickly can a squad start?" omitted (§0.7 V22: answer is the tag only).
-      { id: 'hours', q: 'What hours and languages do you work in?', a: 'Our hub is in Alexandria, Egypt (GMT+2). Our day overlaps US mornings and Europe, and Gulf time is 0–2 hours ahead. We work in Arabic and English.' },
+      { id: 'hours', q: 'What hours and languages do you work in?', a: 'Our hub is in Alexandria, Egypt (GMT+2). Gulf time is 0–2 hours ahead, and our day overlaps the Gulf, Europe and US mornings. We work in Arabic and English.' },
     ],
   },
   band: {

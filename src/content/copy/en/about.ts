@@ -5,7 +5,7 @@ export const about = {
   seo: {
     title: 'About DiscoverDev: Senior Product Team, Egypt & US',
     description:
-      'A product and engineering company with a US presence and an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch.',
+      'A product and engineering company for Gulf startups, with an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch.',
   },
   hero: {
     h1: 'About DiscoverDev',
@@ -27,7 +27,7 @@ export const about = {
   where: {
     title: 'Where we work',
     // Tags "[VERIFY: V8 call hours]" (keep) and "[VERIFY: V9 Texas entity wording]" (D-08: "Texas, USA" only) dropped.
-    body: 'Our engineering hub is in Alexandria, Egypt, and we have a presence in Texas, USA. Alexandria is on GMT+2. Our working day overlaps US mornings and Europe, and Gulf time is 0–2 hours ahead. We work in Arabic and English.',
+    body: 'Our engineering hub is in Alexandria, Egypt, and we have a presence in Texas, USA. Alexandria is on GMT+2. Gulf time is 0–2 hours ahead, and our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English.',
     // §12.4 visual: time-overlap strip. No hour ranges or seasonal claims (11 §5).
     strip: {
       label: 'West to east',
