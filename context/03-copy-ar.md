@@ -31,6 +31,9 @@ Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **
 | English quote + "بالعربية:" line | Arabic quote only, no translation note | Mohamed, Oct 23: the Arabic page reads fully in Arabic |
 | توقيتنا قريب من توقيت الخليج | فارق التوقيت مع السعودية والكويت ساعة واحدة أو أقل | Specific, checkable |
 
+## Language switcher (Oct 23)
+Two-option pill "English | العربية" (current option highlighted, other is the link), each label in its own script with its own lang/dir, no flags, accessible name "Language" / "اللغة". Header from 36rem, menu sheet, footer. Hidden on English pages until Arabic is live; always visible on /ar.
+
 ## Open for the reviewer
 1. Clarity call name: "مكالمة توضيحية" (used) or "مكالمة استكشافية".
 2. Keep English service names in brackets, or drop them.

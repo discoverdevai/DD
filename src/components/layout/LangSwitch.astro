@@ -1,11 +1,12 @@
 ---
-// Language switcher (06 §9.4, 03 §1.2 "العربية" / "English"): links to the same page in the other language, never to a
-// home page that is not the pair. The label is the target language's own name, in its own lang and direction.
+// Language switcher (06 §9.4, 03 §1.2): a two-option segmented pill, "English | العربية". Both languages are always shown in
+// their own script (no flags), the current one is highlighted and not a link, the other one links to the same page in that
+// language (never to a home page that is not the pair). Research Oct 23 (docs/plan/arabic-version.md): for two languages a
+// one-click toggle beats a dropdown, native names beat codes and flags, and each label carries its own lang and dir.
 // Shown only where a pair exists (today: / and /ar). English pages show it only once Arabic is live
 // (LOCALES.ar.status 'live' after native review); the Arabic page always shows the way back to English.
-import Icon from '../ui/Icon.astro';
 import { LOCALES } from '../../i18n/locales';
-import { getLocale } from '../../i18n/t';
+import { getLocale, t } from '../../i18n/t';
 
 interface Props { class?: string }
 const PAIRS: Record<string, string> = { '/': '/ar' };
@@ -13,20 +14,25 @@ const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/(index)?$/, ''
 const onArabic = getLocale() === 'ar';
 const enPath = onArabic ? Object.keys(PAIRS).find((k) => PAIRS[k] === path) : path;
 const arPath = enPath ? PAIRS[enPath] : undefined;
-const target = onArabic ? LOCALES.en : LOCALES.ar;
 const href = onArabic ? enPath : arPath;
-// AR_PREVIEW=1 (local review build only) shows the English-side link before Arabic is live, so the switch can be tried both ways.
+// AR_PREVIEW=1 (local review build only) shows the English-side switch before Arabic is live, so it can be tried both ways.
 const show = Boolean(href) && (onArabic || (LOCALES.ar.status as string) === 'live' || process.env.AR_PREVIEW === '1');
+const options = [LOCALES.en, LOCALES.ar];
+const current = onArabic ? 'ar' : 'en';
 ---
 {show && (
-  <a class:list={['lang-switch', Astro.props.class]} href={href} hreflang={target.code} lang={target.code} dir={target.dir} data-link-context="lang">
-    <Icon name="globe" size={16} />{target.endonym}
-  </a>
+  <div class:list={['lang-switch', Astro.props.class]} role="group" aria-label={t('lang.label')} data-lang-switch>
+    {options.map((o) => o.code === current
+      ? <span class="lang-switch__opt lang-switch__opt--on" lang={o.code} dir={o.dir} aria-current="true">{o.endonym}</span>
+      : <a class="lang-switch__opt" href={href} hreflang={o.code} lang={o.code} dir={o.dir} data-link-context="lang">{o.endonym}</a>)}
+  </div>
 )}
 
 <style>
-  /* A clear button, not a text link (Mohamed, Oct 23): outlined pill with the globe and the language's own name. */
-  .lang-switch { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; padding-inline: var(--space-4); color: var(--color-heading); font-weight: var(--weight-semibold); font-size: var(--text-sm); text-decoration: none; white-space: nowrap; border: 1px solid color-mix(in oklab, var(--blue-300) 55%, transparent); border-radius: 999px; background: color-mix(in oklab, var(--blue-300) 8%, transparent); transition: background-color var(--dur-color), border-color var(--dur-color); }
-  .lang-switch:lang(ar) { font-family: var(--font-arabic, "IBM Plex Sans Arabic"), system-ui, sans-serif; font-size: var(--text-base); }
-  @media (hover: hover) { .lang-switch:hover { background: color-mix(in oklab, var(--blue-300) 18%, transparent); border-color: var(--blue-300); } }
+  .lang-switch { display: inline-flex; align-items: stretch; padding: 3px; gap: 2px; border: 1px solid color-mix(in oklab, var(--blue-300) 40%, transparent); border-radius: 999px; background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); }
+  .lang-switch__opt { display: inline-flex; align-items: center; justify-content: center; min-block-size: 2.5rem; min-inline-size: 3.25rem; padding-inline: var(--space-3); border-radius: 999px; font-weight: var(--weight-semibold); text-decoration: none; white-space: nowrap; color: var(--color-text-muted); transition: background-color var(--dur-color), color var(--dur-color); }
+  .lang-switch__opt:lang(ar) { font-family: var(--font-arabic, "IBM Plex Sans Arabic"), system-ui, sans-serif; font-size: var(--text-base); }
+  .lang-switch__opt--on { background: var(--blue-700); color: var(--neutral-0); }
+  @media (hover: hover) { a.lang-switch__opt:hover { color: var(--color-heading); background: color-mix(in oklab, var(--blue-300) 16%, transparent); } }
+  @media (forced-colors: active) { .lang-switch { border-color: ButtonText; } .lang-switch__opt--on { outline: 2px solid Highlight; } }
 </style>
