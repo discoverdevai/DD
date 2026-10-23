@@ -315,6 +315,7 @@ Hidden metadata: utm_source, utm_medium, utm_campaign, page, quiz_segment, targe
 
 ## 2V1.1 Decision log (latest wins; Oct 18 to Oct 21)
 
+- **Oct 23 (Mohamed): prices stay in USD,** on the English and the Arabic pages (Arabic: "1,490 دولارًا" style, Western digits, never riyals). Any price cue still waits for D-01.
 - **Oct 23 (Mohamed): Gulf-first wording.** The target market is Gulf companies (Saudi Arabia first, then Kuwait and the UAE), so wording leads with the Gulf and keeps the US as a second market. No new claims: no UAE clients, no Gulf office.
   - Home title: "Product Development Company for Gulf Startups | DiscoverDev"; meta: "DiscoverDev builds products for startups in Saudi Arabia, Kuwait and the Gulf: discovery, fixed-price MVPs in 8–12 weeks, dedicated teams. You own it."
   - /book meta: "Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time in Gulf or US hours, and leave with a next step."; /about meta: "A product and engineering company for Gulf startups, with an engineering hub in Alexandria, Egypt. Senior teams that stay. Rated 5.0 on Clutch."

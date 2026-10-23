@@ -17,6 +17,7 @@ Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **
 - Service names: Arabic first, English in brackets in the card's service line: التحقق (Validate), البناء (Build · MVP), التوسع (Scale).
 - Senior = "كبار المهندسين" (plural) / "مهندس أول" (one person). Never "مهندسين كبار" (reads as "old engineers").
 - Reviews (Mohamed, Oct 23): shown as Arabic text, with no translation note. Each one keeps the exact meaning of the client's words in 09, with no added praise. The English page and Clutch keep the originals.
+- Prices: always US dollars ("دولارًا"), never riyals (Mohamed, Oct 23). No price is shown on the home page (D-01).
 - Facts only from 09 and the live English page. No WhatsApp, no local-contracting section, no Riyadh office: those wait for D-09 and D-44.
 
 ## Text decisions (Oct 23, from the mockup review)

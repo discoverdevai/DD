@@ -18,7 +18,7 @@ Logged in `context/03-copy.md` (decision log, Oct 23), then applied:
 | WhatsApp in hero and closing band | D-09 decision |
 | Hosting and data (PDPL, hosting in Saudi Arabia on request) FAQ | a true answer from Mohamed; competitors answer this |
 | Saudi systems (Nafath, ZATCA e-invoicing, Mada) FAQ | a real past project, otherwise skip |
-| Price cue in SAR ("MVP from ..."), as the strongest local competitor does | Mohamed's number (D-01) |
+| Price cue, in USD (Mohamed, Oct 23: prices stay in US dollars, also on the Arabic pages): "MVP from $X" | Mohamed's number (D-01) |
 
 ## 3. SEO (Gulf, English and Arabic)
 - Keyword map and voice samples: `research/arabic-keywords-p1.md` (25 phrases; volumes pending from Keyword Planner).
