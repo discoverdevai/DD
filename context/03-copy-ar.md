@@ -37,6 +37,9 @@ Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **
 ## Language switcher (Oct 23)
 One plain text link in the nav style showing the other language in its own script ("العربية" on English pages, "English" on Arabic pages), with its own lang/dir; no pill, flag or icon (Mohamed, Oct 23: simpler). Header from 36rem, menu sheet, footer. Hidden on English pages until Arabic is live; always visible on /ar.
 
+## Self-review (Oct 23, Claude)
+Checked: all internal links on the six Arabic pages resolve; structure matches English (same sections, headings, FAQ count, images, CTA ids); no English sentences left on the Arabic pages except the Cloudflare/Cal.com product names; facts match English. Fixed: "مراجعة مختارة" -> "تقييم مختار" (one word for ratings), "تعرف رقمك" -> "ستعرف السعر". Cal.com: the booking widget takes its language from the visitor's browser (tested: an Arabic browser gets lang=ar, dir=rtl); the event title and description are English text set in Cal. Option: a second Arabic event type in Cal later.
+
 ## Open for the reviewer
 1. Clarity call name: "مكالمة توضيحية" (used) or "مكالمة استكشافية".
 2. Keep English service names in brackets, or drop them.
