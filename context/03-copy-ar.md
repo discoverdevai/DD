@@ -35,6 +35,9 @@ Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **
 | English quote + "بالعربية:" line | Arabic quote only, no translation note | Mohamed, Oct 23: the Arabic page reads fully in Arabic |
 | توقيتنا قريب من توقيت الخليج | فارق التوقيت مع السعودية والكويت ساعة واحدة أو أقل | Specific, checkable |
 
+## Browser tab titles (Oct 23, Mohamed)
+Arabic titles put the brand first: "DiscoverDev | شركة برمجة تطبيقات للشركات الناشئة". A browser tab shows only the first ~20 characters, and an Arabic-first title hid the brand name; now the tab starts with DiscoverDev and the page's role follows. Same for /ar/book, privacy, terms, confirmation and the 404. English titles are unchanged ("... | DiscoverDev").
+
 ## Language switcher (Oct 23)
 One plain text link in the nav style showing the other language in its own script ("العربية" on English pages, "English" on Arabic pages), with its own lang/dir; no pill, flag or icon (Mohamed, Oct 23: simpler). Header from 36rem, menu sheet, footer. Hidden on English pages until Arabic is live; always visible on /ar.
 

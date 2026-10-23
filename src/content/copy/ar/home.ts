@@ -6,7 +6,7 @@ import type { Widen } from '../types';
 import { shared } from './shared';
 export const home: Widen<typeof en> = {
   seo: {
-    title: 'شركة برمجة تطبيقات للشركات الناشئة | DiscoverDev',
+    title: 'DiscoverDev | شركة برمجة تطبيقات للشركات الناشئة',
     description:
       'DiscoverDev لتطوير المنتجات الرقمية للشركات الناشئة: نختبر الفكرة، ونبني النسخة الأولى (MVP) بسعر ثابت خلال 8 إلى 12 أسبوعًا، وفرق مخصصة. وكل شيء ملكك.',
   },

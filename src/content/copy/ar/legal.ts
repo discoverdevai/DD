@@ -20,7 +20,7 @@ export const legalUi = {
 
 export const privacy: LegalDoc = {
   seo: {
-    title: 'إشعار الخصوصية | DiscoverDev',
+    title: 'DiscoverDev | إشعار الخصوصية',
     description: 'كيف تجمع DiscoverDev البيانات الشخصية من هذا الموقع وتقويم الحجز والتحليلات وتستخدمها وتحميها، وحقوقك وكيف تتواصل معنا.',
   },
   h1: 'إشعار الخصوصية',
@@ -186,7 +186,7 @@ export const privacy: LegalDoc = {
 
 export const terms: LegalDoc = {
   seo: {
-    title: 'شروط استخدام الموقع | DiscoverDev',
+    title: 'DiscoverDev | شروط استخدام الموقع',
     description: 'الشروط التي تنطبق عند استخدامك discoverdev.ai: ملكية المحتوى، والاستخدام المقبول، وروابط الأطراف الثالثة، وحدود المسؤولية، بلغة واضحة.',
   },
   h1: 'شروط استخدام الموقع',
