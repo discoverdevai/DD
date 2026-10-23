@@ -43,6 +43,23 @@ export interface RenderOpts {
   onReady: () => void; onFailed: () => void; onViewed: (slotsLoaded: boolean) => void; onBooked: (detail: Record<string, unknown>) => void;
 }
 
+/**
+ * Cal draws its own placeholder markup (loading skeleton, a hidden "Something went wrong." message) in a shadow root on our page and
+ * styles it with inline <style> tags. Our meta CSP blocks those tags (no 'unsafe-inline' for styles, 07 §6), so the unstyled
+ * placeholder shows: every visitor saw "Something went wrong." above a working calendar. A constructed stylesheet is not a style
+ * tag, so the CSP allows it: it hides that placeholder block. The calendar itself lives in the iframe, in the light DOM slot.
+ */
+function quietPlaceholder(el: HTMLElement) {
+  const sheet = new CSSStyleSheet();
+  sheet.replaceSync('.dark { display: none !important; }');
+  let tries = 0;
+  const id = setInterval(() => {
+    const root = (el.querySelector('cal-inline') as HTMLElement | null)?.shadowRoot;
+    if (root && !root.adoptedStyleSheets.includes(sheet)) { root.adoptedStyleSheets = [...root.adoptedStyleSheets, sheet]; clearInterval(id); }
+    else if (++tries > 100) clearInterval(id);
+  }, 150);
+}
+
 /** Render the inline booker for one event type. Returns false when Cal is not configured (fallback links stay). */
 export function renderCal(o: RenderOpts): boolean {
   if (!calUsername) return false;
@@ -55,6 +72,7 @@ export function renderCal(o: RenderOpts): boolean {
   if (o.prefill?.email) config.email = o.prefill.email;
   for (const [k, v] of Object.entries(o.metadata)) config[`metadata[${k}]`] = v;
   api('inline', { elementOrSelector: o.el, calLink: `${calUsername}/${SLUG[o.type]}`, config });
+  quietPlaceholder(o.el);
   api('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#1240BE' }, light: { 'cal-brand': '#1240BE' } }, hideEventTypeDetails: false });
   api('on', { action: 'linkReady', callback: o.onReady });
   api('on', { action: 'linkFailed', callback: o.onFailed });
