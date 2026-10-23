@@ -32,7 +32,7 @@ Started Oct 23, 2026 on branch `ar-v1` (docs/plan/arabic-version.md). Status: **
 | توقيتنا قريب من توقيت الخليج | فارق التوقيت مع السعودية والكويت ساعة واحدة أو أقل | Specific, checkable |
 
 ## Language switcher (Oct 23)
-Two-option pill "English | العربية" (current option highlighted, other is the link), each label in its own script with its own lang/dir, no flags, accessible name "Language" / "اللغة". Header from 36rem, menu sheet, footer. Hidden on English pages until Arabic is live; always visible on /ar.
+One plain text link in the nav style showing the other language in its own script ("العربية" on English pages, "English" on Arabic pages), with its own lang/dir; no pill, flag or icon (Mohamed, Oct 23: simpler). Header from 36rem, menu sheet, footer. Hidden on English pages until Arabic is live; always visible on /ar.
 
 ## Open for the reviewer
 1. Clarity call name: "مكالمة توضيحية" (used) or "مكالمة استكشافية".
