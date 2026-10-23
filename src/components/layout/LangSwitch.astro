@@ -25,7 +25,8 @@ const show = Boolean(href) && (onArabic || (LOCALES.ar.status as string) === 'li
 )}
 
 <style>
-  .lang-switch { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; padding-inline: var(--space-2); color: var(--color-text-muted); font-weight: var(--weight-medium); text-decoration: none; white-space: nowrap; border-radius: var(--radius-sm); transition: color var(--dur-color); }
-  .lang-switch:lang(ar) { font-family: var(--font-arabic, "IBM Plex Sans Arabic"), system-ui, sans-serif; }
-  @media (hover: hover) { .lang-switch:hover { color: var(--color-heading); } }
+  /* A clear button, not a text link (Mohamed, Oct 23): outlined pill with the globe and the language's own name. */
+  .lang-switch { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; padding-inline: var(--space-4); color: var(--color-heading); font-weight: var(--weight-semibold); font-size: var(--text-sm); text-decoration: none; white-space: nowrap; border: 1px solid color-mix(in oklab, var(--blue-300) 55%, transparent); border-radius: 999px; background: color-mix(in oklab, var(--blue-300) 8%, transparent); transition: background-color var(--dur-color), border-color var(--dur-color); }
+  .lang-switch:lang(ar) { font-family: var(--font-arabic, "IBM Plex Sans Arabic"), system-ui, sans-serif; font-size: var(--text-base); }
+  @media (hover: hover) { .lang-switch:hover { background: color-mix(in oklab, var(--blue-300) 18%, transparent); border-color: var(--blue-300); } }
 </style>
