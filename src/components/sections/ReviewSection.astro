@@ -67,7 +67,8 @@ const SEV = { critical: 'rv__sev--crit', high: 'rv__sev--high', medium: 'rv__sev
 
   /* Row 1: the question and what we check, beside one finding being fixed. */
   .rv__top { display: grid; gap: var(--space-8); align-items: start; }
-  @media (width >= 64rem) { .rv__top { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-12); } }
+  /* Wide: the finding sits level with the copy's middle, and the intro stands a step further from the days than the days from the offer. */
+  @media (width >= 64rem) { .rv__top { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-12); align-items: center; } .rv__steps { margin-block-start: var(--space-4); } }
   .rv__copy { display: grid; gap: var(--space-4); }
   .rv__body { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
   .rv__h3 { margin-block-start: var(--space-2); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); }

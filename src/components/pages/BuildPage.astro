@@ -100,7 +100,9 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   @media (width >= 100rem) {
     .stop span { display: block; position: absolute; inset-inline-end: calc(100% - var(--line-x) + 1.25rem); inset-block-start: calc(var(--section-y) + 0.35rem); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); white-space: nowrap; }
   }
-  .voice { padding-block: 0 var(--space-12); }
+  /* One gap between stops: each section brings only its top spacing, so two sections never stack both (was 174px, now 88px at 1440). */
+  .journey > :global(section:not(:last-child)) { padding-block-end: 0; }
+  .voice { padding-block: 0; }
   /* A section followed by its client quote ends shorter, so the quote reads as part of it, not as a section of its own. */
   .journey > :global(section:has(+ .voice)) { padding-block-end: var(--space-12); }
 
