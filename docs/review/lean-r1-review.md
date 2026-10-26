@@ -33,3 +33,10 @@ Measured every section at 1440, 1024, 768 and 390 px, in English and Arabic, the
 - EduLens chart: fixed label and value columns, so bars and numbers line up.
 - Phones (under 640px): the journey line and its dots touched the headings, so they are hidden there; the deepening background carries the flow.
 - Checked: no horizontal overflow, axe clean at all widths, text 12px or larger, inline links are the only targets under 24px (allowed for links inside text).
+
+## Build page audit (Oct 26, UX, UI, design, content)
+Looked at desktop, phone and Arabic, section by section.
+- Works: one call to action everywhere with its terms; the two ways in under the hero button; the timeline puts the decision and every senior sign-off where they happen; the code finding is row 2 of the sample report, so the two visuals tell one story; client words sit at the stop they belong to; Arabic mirrors correctly (chart, arrows, timeline).
+- Fixed: proof heading said "from idea to launch" but one card was market research, so that card moved off this page; "5 days / About, in working days" read oddly, now "About 5 / Working days"; sections followed by a quote end shorter, so the quote reads as part of its section (about 200px less empty space twice); the EduLens chart sits at the top of its box instead of floating in the middle.
+- Kept on purpose: the plan shows timing in the chart and the words in the four cards (on phones the cards are the only view); four identical "Book a free clarity call" buttons (same action, same label, 04 §6).
+- Open for Mohamed: quotes on service pages (consent scope, D-05); a Review booking type in Cal.com; native review of the Arabic.

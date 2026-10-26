@@ -65,7 +65,7 @@ export const build = {
     body: 'Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote.', // §3.1
     facts: [
       { value: '$1,490', label: 'Reviews start from' },
-      { value: '5 days', label: 'About, in working days' },
+      { value: 'About 5', label: 'Working days' },
     ],
     guarantee: 'No useful findings, no charge.', // §3.8
     credit: 'The full fee is credited toward the fix or a Build with us.', // §3.7
@@ -139,7 +139,6 @@ export const build = {
     quote: { text: 'Professional work and great communication.', name: 'Nojoud Alarfaj', role: 'Athkado, Saudi Arabia' },
     items: [
       { title: shared.projectArFurniture, where: 'Saudi Arabia', body: 'Feasibility sprints, then the build: discovery, UX and UI, development, an AI recommendation engine and AR to see furniture at home.' },
-      { title: 'Entrepreneurs in Kuwait, Switzerland, the UK and Spain', body: shared.projectFoundersDid },
     ],
   },
   // Buyer order (research: Halo Lab, Stormotion, Wavect FAQs): cost and time first.

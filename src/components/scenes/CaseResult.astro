@@ -69,7 +69,7 @@ const { c, low, high, quote, big } = Astro.props;
   .case__result { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-human-mark); }
   .case__body { color: var(--color-text-muted); line-height: 1.55; }
 
-  .case__chart { display: grid; gap: var(--space-4); align-content: center; padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-bg); }
+  .case__chart { display: grid; gap: var(--space-4); align-content: start; align-self: start; padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-bg); }
   .case__charttitle { font-weight: var(--weight-medium); color: var(--color-heading); }
   .case__row { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) 5.5rem; align-items: center; gap: var(--space-3); } /* the bar takes the free width, also on phones */
   .case__label { font-size: var(--text-sm); color: var(--color-text-muted); }

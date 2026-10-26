@@ -1948,6 +1948,8 @@ Mohamed rejected the minimal taste-skill mockup ("worse than ever"); this versio
 - Headings in the founder's words: "You have an idea. Here's how it becomes a product." · "Built it with AI? We check it first." · "What you get, and what you can count on." · "Teams we've taken from idea to launch." · "What founders ask us first" · "Your launch starts with one call."
 - Client voice at its stop: Roberto, Fantacalcio (first sentence of the §2A quote) under the plan; Nojoud Alarfaj, Athkado, under the deal; Youssef, EduLens, in the proof.
 
+- Audit (Oct 26): Review facts read "About 5 · Working days"; the entrepreneurs card leaves the Build proof (it is Validate research, not a launch).
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 
