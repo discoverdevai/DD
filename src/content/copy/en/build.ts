@@ -29,9 +29,13 @@ export const build = {
       facts: ['Fixed price', 'Your repo, your cloud', 'Arabic and English'],
     },
   },
+  // Journey direction (Oct 26): the page is one line from idea to launch; each section is a stop on it, titled with the
+  // founder's own question, with the client voice that belongs to that stop.
+  stages: { plan: 'Idea', review: 'Your app', terms: 'The deal', proof: 'Proof', faq: 'Questions', close: 'Launch' },
   // One timeline (research: Halo Lab's track; merge of the decision board and the week track).
   plan: {
-    title: 'One plan, from idea to real users.',
+    title: 'You have an idea. Here’s how it becomes a product.',
+    quote: { text: 'Perfect timing, always available for any questions or concerns, great professionalism.', name: 'Roberto', role: 'Fantacalcio' },
     example: 'Example: 2 weeks of Validate and a 10-week Build. Your exact plan is set before we start.',
     weeks: 12,
     weekLabel: 'Week',
@@ -57,7 +61,7 @@ export const build = {
     },
   },
   review: {
-    title: 'Built it with Lovable, Bolt or Cursor? Review it first.',
+    title: 'Already built it with AI? We check it before your users do.',
     body: 'Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote.', // §3.1
     facts: [
       { value: '$1,490', label: 'Reviews start from' },
@@ -83,7 +87,7 @@ export const build = {
     },
   },
   // One statement of work (research: Ramotion's deliverables beside the investment).
-  terms: { title: 'What you get, and on what terms', docTitle: 'Build', docMeta: 'Agreed before we start' },
+  terms: { title: 'What you get, and what you can count on.', docTitle: 'Build', docMeta: 'Agreed before we start' },
   gets: {
     title: 'You get',
     body: 'A live product with real users: product design (UX and UI), web, mobile and APIs, QA and testing, deployment to your cloud, and weekly results you can see and use.',
@@ -107,7 +111,7 @@ export const build = {
     body: 'Full IP, no lock-in and a clear contract from day one. Your code lives in your repository and your cloud accounts. When we hand over, another developer can pick it up.',
   },
   proof: {
-    title: 'Work from idea to launch',
+    title: 'Teams we’ve taken from idea to launch.',
     // EduLens (09, D-06): one sourced number as the headline (research: Netguru's case card).
     case: {
       label: 'Case',
@@ -140,7 +144,7 @@ export const build = {
   },
   // Buyer order (research: Halo Lab, Stormotion, Wavect FAQs): cost and time first.
   faq: {
-    title: 'Questions about Build',
+    title: 'What founders ask us first',
     items: [
       { id: 'pricing', q: 'How much does an MVP cost?', a: 'DiscoverDev prices an MVP as a fixed price for an agreed scope. We don’t publish a price list: you get your number after a free 30-minute clarity call, before you commit to anything. Validate (1–2 weeks) is a fixed fee credited toward Build. Build (8–12 weeks) is a fixed price. Scale is a monthly retainer.' },
       { id: 'timeline', q: shared.mvpTimeQ, a: 'A Build takes 8–12 weeks from agreed scope to a live, production-ready product with real users. The exact timeline depends on the scope and is fixed in your plan before we start. You see working results every week, not only at the end.' },
@@ -153,7 +157,7 @@ export const build = {
   },
   // Research: thoughtbot ends on a question.
   band: {
-    title: 'What must your first version do?',
+    title: 'Your launch starts with one call.',
     body: 'Tell us on a free 30-minute call. You leave with a clear next step, and a fixed price if it is a fit.',
   },
 } as const;

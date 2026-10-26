@@ -42,49 +42,58 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
     <BuildPath slot="aside" c={c.hero.path} />
   </PageHero>
 
-  <WeekTrack title={c.plan.title} example={c.plan.example} weeks={c.plan.weeks} weekLabel={c.plan.weekLabel} demoLabel={c.plan.demoLabel} liveLabel={c.plan.liveLabel} phases={c.plan.phases} spans={c.plan.spans} fork={c.plan.fork} signLabel={c.plan.signLabel} />
+  <!-- Journey (03 §16b.7): one line from idea to launch. Each stop marks the section after it; the background deepens
+       slowly down the page instead of alternating bands. The line and stops are decorative; headings carry the meaning. -->
+  <div class="journey" data-surface="ink">
+    <div class="stop" aria-hidden="true"><span>{c.stages.plan}</span></div>
+    <WeekTrack title={c.plan.title} example={c.plan.example} weeks={c.plan.weeks} weekLabel={c.plan.weekLabel} demoLabel={c.plan.demoLabel} liveLabel={c.plan.liveLabel} phases={c.plan.phases} spans={c.plan.spans} fork={c.plan.fork} signLabel={c.plan.signLabel} />
+    <div class="container voice"><Quote text={c.plan.quote.text} name={c.plan.quote.name} role={c.plan.quote.role} /></div>
 
-  <section id="review" class="review" data-surface="ink" data-raised aria-labelledby="review-title">
-    <div class="container review__grid">
-      <div class="review__copy">
-        <SectionHead id="review-title" title={c.review.title} measure={22} />
-        <p class="review__body">{c.review.body}</p>
-        <dl class="review__facts">{c.review.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
-        <p class="review__guarantee">{c.review.guarantee}</p>
-        <p class="review__credit">{c.review.credit}</p>
-        <div class="review__cta">
-          <CtaLink href={bookHref('clarity')} ctaId="build_mid_clarity" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
-          <CtaTerms kind="clarity" />
+    <div class="stop" aria-hidden="true"><span>{c.stages.review}</span></div>
+    <section id="review" class="review" data-surface="ink" aria-labelledby="review-title">
+      <div class="container review__grid">
+        <div class="review__copy">
+          <SectionHead id="review-title" title={c.review.title} measure={22} />
+          <p class="review__body">{c.review.body}</p>
+          <dl class="review__facts">{c.review.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+          <p class="review__guarantee">{c.review.guarantee}</p>
+          <p class="review__credit">{c.review.credit}</p>
+          <div class="review__cta">
+            <CtaLink href={bookHref('clarity')} ctaId="build_mid_clarity" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
+            <CtaTerms kind="clarity" />
+          </div>
+        </div>
+        <div class="review__visuals">
+          <CodeFinding c={c.review.finding} />
+          <div class="review__report" data-surface="paper"><ReviewSnapshot /></div>
         </div>
       </div>
-      <div class="review__visuals">
-        <CodeFinding c={c.review.finding} />
-        <div class="review__report" data-surface="paper"><ReviewSnapshot /></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} layout="rows" cols={[
-    { title: c.gets.title, body: c.gets.body },
-    { title: c.timeline.title, body: c.timeline.body },
-    { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
-    { title: c.team.title, body: c.team.body, link: c.team.link },
-    { title: c.ownership.title, body: c.ownership.body },
-  ]} />
+    <div class="stop" aria-hidden="true"><span>{c.stages.terms}</span></div>
+    <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} layout="rows" cols={[
+      { title: c.gets.title, body: c.gets.body },
+      { title: c.timeline.title, body: c.timeline.body },
+      { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
+      { title: c.team.title, body: c.team.body, link: c.team.link },
+      { title: c.ownership.title, body: c.ownership.body },
+    ]} />
+    <div class="container voice"><Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} /></div>
 
-  <Section id="proof" surface="raised" title={c.proof.title}>
-    <div class="proof">
-      <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} big={c.proof.case.big} />
-      <div class="proof__more">
+    <div class="stop" aria-hidden="true"><span>{c.stages.proof}</span></div>
+    <Section id="proof" surface="ink" title={c.proof.title}>
+      <div class="proof">
+        <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} big={c.proof.case.big} />
         <ProofList items={c.proof.items} />
-        <Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} />
       </div>
-    </div>
-  </Section>
+    </Section>
 
-  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="build" />
+    <div class="stop" aria-hidden="true"><span>{c.stages.faq}</span></div>
+    <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="build" />
 
-  <CtaBand title={c.band.title} body={c.band.body} kind="clarity" page="build" />
+    <div class="stop stop--end" aria-hidden="true"><span>{c.stages.close}</span></div>
+    <CtaBand title={c.band.title} body={c.band.body} kind="clarity" page="build" />
+  </div>
 </BaseLayout>
 
 <style>
@@ -92,6 +101,32 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   .ways a { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
   .ways a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
   .ways .icon--dir { margin-inline-start: var(--space-1); }
+
+  /* Journey (03 §16b.7). One background for the whole run, deepening toward the close; sections inside are transparent,
+     so there are no hard bands. --line-x puts the line just outside the content edge (inside the gutter on phones). */
+  .journey { --line-x: calc((100% - min(100% - 2 * var(--gutter), var(--container))) / 2 - var(--gutter) * 0.6); position: relative; isolation: isolate;
+    background:
+      radial-gradient(70% 40% at 50% 100%, color-mix(in oklab, var(--blue-600) 35%, transparent), transparent 70%),
+      linear-gradient(180deg, var(--blue-975) 0%, var(--blue-950) 55%, var(--blue-900) 100%); }
+  .journey > :global(section) { background: transparent; border: 0; }
+  .journey::before, .journey::after { content: ''; position: absolute; inset-block: 0 12rem; inset-inline-start: var(--line-x); inline-size: 2px; border-radius: 2px; z-index: 1; pointer-events: none; }
+  .journey::before { background: color-mix(in oklab, var(--blue-300) 18%, transparent); }
+  .journey::after { background: linear-gradient(180deg, var(--blue-400), var(--color-human-mark)); transform-origin: 50% 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .journey::after { animation: journey-fill linear both; animation-timeline: view(); animation-range: entry 20% exit 60%; }
+      @keyframes journey-fill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    }
+  }
+  .stop { position: relative; block-size: 0; z-index: 2; }
+  .stop::before { content: ''; position: absolute; inset-inline-start: calc(var(--line-x) - 6px); inset-block-start: calc(var(--section-y) + 0.6rem); inline-size: 14px; block-size: 14px; border-radius: 50%; background: var(--blue-975); border: 2px solid var(--blue-400); }
+  .stop--end::before { background: var(--color-human-mark); border-color: var(--color-human-mark); box-shadow: 0 0 0 6px color-mix(in oklab, var(--color-human-mark) 22%, transparent); }
+  .stop span { display: none; }
+  /* Very wide screens only: the stop's name sits in the margin, beside its dot (below 100rem the margin is too narrow). */
+  @media (width >= 100rem) {
+    .stop span { display: block; position: absolute; inset-inline-end: calc(100% - var(--line-x) + 1.25rem); inset-block-start: calc(var(--section-y) + 0.35rem); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); white-space: nowrap; }
+  }
+  .voice { padding-block: 0 var(--space-12); }
 
   .review { padding-block: var(--section-y); }
   .review__grid { display: grid; gap: var(--space-10); align-items: start; }
@@ -110,5 +145,4 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   @media (width >= 64rem) { .review__report { inline-size: 88%; justify-self: end; } }
 
   .proof { display: grid; gap: var(--space-10); }
-  .proof__more { display: grid; gap: var(--space-8); }
 </style>
