@@ -8,6 +8,10 @@ import Section from '../../components/sections/Section.astro';
 import CtaBand from '../../components/sections/CtaBand.astro';
 import ProjectRows from '../../components/work/ProjectRows.astro';
 import Chapters from '../../components/work/Chapters.astro';
+import CaseResult from '../../components/scenes/CaseResult.astro';
+import Reviews from '../../components/sections/Reviews.astro';
+import { build } from '../../content/copy/en/build';
+import { home } from '../../content/copy/en/home';
 import { work as c } from '../../content/copy/en/work';
 import { graph, orgStub, webPage, canonical, ORG_ID } from '../../lib/seo';
 import { href } from '../../data/routes';
@@ -21,11 +25,18 @@ const jsonLd = graph(orgStub, webPage('/work', c.seo.title, c.seo.description, '
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="work_index" jsonLd={jsonLd}>
   <PageHero page="work" h1={c.h1} lead={c.intro} cta="none" proof={false} />
 
+  <!-- Lean R2 mockup (Oct 26): the EduLens case lives on /work instead of its own page. -->
+  <Section id="case" surface="raised" title={build.proof.case.result} titleHidden>
+    <CaseResult c={build.proof.case} low={10} high={40} quote={build.proof.case.quote} />
+  </Section>
+
   <Chapters />
 
   <Section id="projects" surface="ink" title={c.more.title} titleHidden>
     <ProjectRows />
   </Section>
+
+  <Reviews {...home.reviews} />
 
   <CtaBand title={c.band.title} kind="clarity" page="work" link={{ label: c.band.link, to: 'review' }} />
 </BaseLayout>

@@ -1,0 +1,77 @@
+---
+// /pricing MOCKUP (lean R2, docs/plan/website-plan-lean.md). Switched off (routes.ts); only built in RELEASE_ALL review
+// builds. Bracketed numbers are placeholders for Mohamed's ranges (D-01): no price is invented. The Review price is real
+// (from $1,490, D-01 resolved Oct 16). Copy goes into 03-copy.md once the mockup is approved.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../sections/PageHero.astro';
+import Section from '../sections/Section.astro';
+import CheckList from '../blocks/CheckList.astro';
+import FaqSplit from '../sections/FaqSplit.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import ComparisonTable from '../partners/ComparisonTable.astro';
+import TermsDoc from '../sections/TermsDoc.astro';
+import Quote from '../blocks/Quote.astro';
+
+const c = {
+  seo: { title: 'MVP Development Cost and Pricing | DiscoverDev', description: 'What an MVP costs with DiscoverDev, in US dollars: how we price Validate, Build, Scale and the Launch-Ready Review, what moves the price, and what is always included.' },
+  hero: { eyebrow: 'Mockup · numbers to confirm', h1: 'What it costs to build with us', lead: 'An MVP with us costs [$X to $Y], at a fixed price agreed before we start. The price depends on what the first version must do. Every number below is in US dollars, and you own everything we build.' },
+  table: {
+    title: 'How each way of working is priced',
+    answer: 'Two things set the price: how much the first version must do, and how long you want a team. You get the exact number on a free 30-minute call, before you commit.',
+    caption: 'Price model, timeline and starting price for each way of working',
+    columns: ['Validate', 'Build', 'Scale', 'Launch-Ready Review'],
+    rows: [
+      { label: 'What you get', cells: ['Market read, scope, clickable prototype, fixed build estimate', 'A live MVP with real users', 'A dedicated squad that stays', 'Ranked fix list, verdict, fixed quote'] },
+      { label: 'Timeline', cells: ['1–2 weeks', '8–12 weeks', 'Monthly, 6-month minimum', 'About 5 working days'] },
+      { label: 'Price model', cells: ['Fixed fee', 'Fixed price', 'Monthly retainer', 'Fixed fee'] },
+      { label: 'Starts from', cells: ['[$X]', '[$X]', '[$X per month]', '$1,490'] },
+      { label: 'Credited toward', cells: ['Your Build', '—', '—', 'The fix or a Build'] },
+    ],
+  },
+  drivers: {
+    title: 'What moves the price',
+    items: ['How many screens and user roles the first version needs', 'Web only, or web and mobile', 'Payments, maps, chat and other integrations', 'AI features: agents, chatbots, document processing', 'Arabic and English, right-to-left layouts', 'Data rules you must meet, such as PDPL in Saudi Arabia'],
+  },
+  example: { title: 'A worked example', docTitle: 'Example scope', docMeta: 'Illustration, not a quote', cols: [
+    { title: 'The product', body: '[A two-sided marketplace MVP: web for buyers, an admin dashboard, card payments, Arabic and English.]' },
+    { title: 'Time and team', body: '[10 weeks. A tech lead, two developers, QA, a product manager and a designer.]' },
+    { title: 'Price', body: '[$X fixed, Validate fee credited. Monthly Scale after launch is optional.]' },
+  ] },
+  included: { title: 'Always included, at no extra cost', items: ['Your code in your repository and your cloud accounts', 'Full IP, no lock-in and a clear contract from day one', 'A weekly demo, and a senior engineer signs off every release', 'Handover so another developer can pick it up'] },
+  quote: { text: 'Professional work and great communication.', name: 'Nojoud Alarfaj', role: 'Athkado, Saudi Arabia' },
+  faq: { title: 'Questions about pricing', items: [
+    { id: 'currency', q: 'Which currency do you price in?', a: 'US dollars, for every client, including clients in Saudi Arabia, Kuwait and the UAE.' },
+    { id: 'payment', q: 'How do I pay?', a: '[Payment terms to confirm: for example, a share at the start and the rest per milestone.]' },
+    { id: 'invoice-saudi', q: 'Can you invoice a Saudi company?', a: '[To confirm after D-44: contracting and invoicing through our Saudi partner.]' },
+    { id: 'why-fixed', q: 'Why a fixed price and not hourly?', a: 'You know the cost before we start. We agree a clear scope first, then price that scope, and you see results every week.' },
+  ] },
+  band: { title: 'Get your number on a free call' },
+};
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" noindex>
+  <PageHero page="pricing" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.lead} cta="clarity" />
+
+  <Section id="models" surface="ink" title={c.table.title} lead={c.table.answer}>
+    <ComparisonTable id="pricing-table" caption={c.table.caption} columns={c.table.columns} rows={c.table.rows} />
+  </Section>
+
+  <Section id="drivers" surface="raised" title={c.drivers.title}>
+    <CheckList items={c.drivers.items} class="drivers" />
+  </Section>
+
+  <TermsDoc id="example" title={c.example.title} docTitle={c.example.docTitle} docMeta={c.example.docMeta} cols={c.example.cols} />
+
+  <Section id="included" surface="raised" title={c.included.title}>
+    <CheckList items={c.included.items} tone="human" class="drivers" />
+    <div class="pq"><Quote text={c.quote.text} name={c.quote.name} role={c.quote.role} /></div>
+  </Section>
+
+  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="pricing" />
+  <CtaBand title={c.band.title} kind="clarity" page="pricing" />
+</BaseLayout>
+
+<style>
+  .drivers { display: grid; gap: var(--space-3) var(--space-8); font-size: var(--text-lg); }
+  @media (width >= 48rem) { :global(.drivers) { grid-template-columns: 1fr 1fr; } }
+  .pq { margin-block-start: var(--space-10); }
+</style>

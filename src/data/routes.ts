@@ -7,6 +7,8 @@ import { localPath } from '../i18n/t';
 // releases and by the clean-up gate); a normal build ships only the pages flagged live below.
 const ALL = typeof process !== 'undefined' && process.env.RELEASE_ALL === '1';
 const live = (flag: boolean) => ALL || flag;
+// `LEAN_R2=1` previews the next lean release locally (Pricing and Work mockups, Oct 26) without switching anything else on.
+const R2 = typeof process !== 'undefined' && process.env.LEAN_R2 === '1';
 export const ROUTES = {
   home: { path: '/', live: live(true) },
   review: { path: '/launch-ready', live: live(false) },
@@ -14,7 +16,7 @@ export const ROUTES = {
   build: { path: '/build', live: live(true) }, // lean R1 (03 §16b): Validate and the Review live inside /build
   scale: { path: '/scale', live: live(true) }, // lean R1: Partners lives inside /scale
   partners: { path: '/partners', live: live(false) },
-  work: { path: '/work', live: live(false) },
+  work: { path: '/work', live: live(R2) },
   workEdulens: { path: '/work/edtech-ai-agents', live: live(false) }, // anonymized EduLens case (D-06, 03 §0.7)
   insights: { path: '/insights', live: live(false) },
   pillar: { path: '/insights/ai-app-to-production', live: live(false) },
@@ -25,6 +27,7 @@ export const ROUTES = {
   howWeWork: { path: '/how-we-work', live: live(true) }, // 03 §7.13 (Oct 16); lean R1: About lives inside it
   about: { path: '/about', live: live(false) },
   launchCheck: { path: '/launch-check', live: live(false) },
+  pricing: { path: '/pricing', live: live(R2) }, // lean R2 MOCKUP (Oct 26): numbers are placeholders until D-01
   book: { path: '/book', live: live(true) },
   privacy: { path: '/privacy', live: live(true) },
   terms: { path: '/terms', live: live(true) },

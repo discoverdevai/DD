@@ -13,7 +13,7 @@ interface Props { variant?: 'default' | 'minimal'; current?: string }
 const { variant = 'default', current = Astro.url.pathname } = Astro.props;
 
 // Lean R1 (03 §16b.4): Build and Scale are top-level links; the Services menu only holds pages beyond them.
-const SERVICE_LINKS = (['build', 'scale'] as const).filter(isLive).map((k) => ({ href: href(k), label: t(`nav.${k}`) }));
+const SERVICE_LINKS = (['build', 'scale', 'pricing'] as const).filter(isLive).map((k) => ({ href: href(k), label: t(`nav.${k}`) }));
 const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 'review', 'partners'] as const)
   .filter(isLive)
   .map((key) => ({ key, label: t(`nav.${key}`), who: t(`nav.${key}.who`) }));
