@@ -18,6 +18,7 @@ _Last updated: Mon Oct 26, 2026. Latest commit: see `git log` (main, pushed; tag
 - **Arabic version: LIVE in the code (Oct 23).** /ar, /ar/book, /ar/book/confirmed, /ar/privacy, /ar/terms, /ar/404; hreflang en/ar/x-default, sitemap alternates, language link, native review confirmed by Mohamed (`docs/plan/arabic-version.md`, `context/03-copy-ar.md`).
 - **Gulf-first (Oct 23):** target is Gulf companies, Saudi Arabia first (`docs/plan/gulf-first.md`); prices stay in USD; LinkedIn added; Upwork, Fiverr, GitHub and the review count removed.
 - **Tab titles (Oct 23, commit `921099f`):** home brand-first in both languages, inner pages `Page | DiscoverDev`. **On `main` and GitHub, but the live site still showed the older titles on Oct 26: run Deploy/rebuild of Worker `dd` in Cloudflare.**
+- **Site map and additions (Oct 26):** `docs/plan/sitemap-additions.md` (lens findings, the map, 11 ranked additions, what we do not add, page blueprint).
 - **Next releases (Oct 26 plan):** `docs/plan/next-releases.md` (R0 ops, R1 services + how we work, R2 proof, R3 other doors and guides, R4 Gulf growth; each with its Arabic twin).
 - **Where the project lives (Oct 26):** `C:\Users\Mohamed Ali\Desktop\New folder\Discoverdev Landing Page` (moved from the Desktop root); `main` equals `origin/main` (github.com/discoverdevai/DD), working tree clean; archive and baselines in `Discoverdev-archive` next to it.
 - **After launch:** real EduLens, Upscend and BioBank screens with client OK; rest of the art direction (`docs/review/design-review.html`); Dependabot branches on origin.

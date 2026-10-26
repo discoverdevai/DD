@@ -33,9 +33,10 @@ Every page: EN at /x, Arabic at /ar/x, hreflang pair, one sitemap entry with alt
 |---|---|---|---|
 | **R0 now** | none (ops) | The live site still shows old tab titles | Deploy Worker `dd`; resubmit sitemap in Search Console; rename the Cal event to "Clarity call"; add `PUBLIC_POSTHOG_KEY` and `PUBLIC_CF_BEACON_TOKEN` build variables |
 | **R1 services** | `/validate` `/build` `/scale` `/how-we-work` + Arabic | These carry the search intent ("MVP development", "dedicated team") and give the home cards a real page to link to. No client consent needed. Titles follow the Gulf pattern: `X for Gulf Startups \| DiscoverDev` | Validate "from" price in USD (D-01), or keep "no price number" |
+| **R1b Gulf page** | `/software-development-saudi-arabia` + Arabic | Moved up from R4 (Oct 26, `sitemap-additions.md`): the target market gets its own page right after the services | Athkado link consent; hosting and PDPL answer; local contracting block only after D-44 |
 | **R2 proof** | `/work` `/work/edtech-ai-agents` `/about` + Arabic | Strongest trust pages, but gated by consent | Client consents (D-05), Upscend OK, NJWAR-Athkado link; Azki wording only after D-44 |
 | **R3 doors and guides** | `/launch-ready` `/partners` `/launch-check` `/insights` + guides + Arabic | Second offer and content; guides need five technical claims checked first | Check the five claims in the C3 guide; decide if Launch-Ready Review goes live now |
-| **R4 Gulf growth** | Saudi Arabia page, Gulf guides (cost of an app like Haraj or Mrsool, what is an MVP, freelancer vs company), local-contracting section | Needs facts we do not have yet | D-44 (Azki), hosting and PDPL answer, cost ranges |
+| **R4 Gulf growth** | Gulf guides (cost of an app like Haraj or Mrsool, what is an MVP, freelancer vs company), local-contracting section | Needs facts we do not have yet | D-44 (Azki), hosting and PDPL answer, cost ranges |
 
 ## 4. How every release runs (same routine each time)
 1. **Copy first:** English in `context/03-copy.md`, Arabic in `context/03-copy-ar.md`, title and meta in `context/05-seo-aeo.md` (titles within 60 characters in English, about 45-50 in Arabic).
