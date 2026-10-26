@@ -1,5 +1,6 @@
-// 03-copy.md §16b.1 (/build, lean R1, Oct 26): Build absorbs Validate (§5) and the Launch-Ready Review (§3).
-// Verbatim lines keep their source section; §0.7 launch resolutions still apply (no Rushr, anonymized proof, no quotes).
+// 03-copy.md §16b.1 + §16b.6 (/build, lean R1; home-style redesign Oct 26 from docs/research-sitemap/build-page-inspiration.md).
+// Build absorbs Validate (§5) and the Launch-Ready Review (§3). Seven sections: hero (with the two ways in) → the plan
+// (Validate and Build on one timeline) → AI-built prototype (Review) → what you get and terms → proof → FAQ → close.
 import { shared } from './shared';
 export const build = {
   seo: {
@@ -11,112 +12,109 @@ export const build = {
     eyebrow: 'I have an idea, or a prototype.',
     h1: 'Build: from idea to a live MVP',
     body: 'Start with 1–2 weeks of Validate. Then a senior team designs, builds, tests and deploys your MVP in 8–12 weeks, at a fixed price. You launch with real users, and you own all of it.',
-    meta: [
-      { label: 'Validate', value: '1–2 weeks' },
-      { label: 'Build', value: '8–12 weeks' },
-      { label: 'Model', value: 'Fixed price' },
+    // The two ways in (research: Designli, MetaCTO route by situation in the hero).
+    ways: [
+      { anchor: 'process', label: 'New idea? Validate first' },
+      { anchor: 'review', label: 'Built it with AI? Review it first' },
     ],
+    // Hero window (research: Halo Lab's week ranges). Every string is already on the page.
+    path: {
+      name: 'your-product / plan',
+      title: 'Your path',
+      validate: { title: 'Validate', meta: '1–2 weeks' },
+      build: { title: 'Build', meta: '8–12 weeks' },
+      live: { title: 'Live', meta: 'Real users' },
+      ai: 'AI drafts the work',
+      senior: 'A senior engineer signs off every release',
+      facts: ['Fixed price', 'Your repo, your cloud', 'Arabic and English'],
+    },
   },
-  start: {
-    title: 'Start where you are',
-    lead: 'Two ways in. Both end with a fixed price and a date for your build.',
-    items: [
-      { anchor: 'validate', tag: 'New idea', title: 'Validate first', body: '1–2 weeks: a market read, a product scope, a clickable prototype and a fixed build estimate. The fee credits toward your Build.', link: 'How Validate works' },
-      { anchor: 'review', tag: 'Existing prototype', title: 'Review it first', body: 'Built with Lovable, Bolt, v0, Cursor or a freelancer? A senior team checks it in about 5 working days. From $1,490, credited toward the fix.', link: 'How the Review works' },
-    ],
-  },
-  validate: {
-    title: 'Validate: 1–2 weeks to a clear decision.',
-    lead: 'Build, change direction or stop, based on a market read, not a guess.', // §5.3
-    // §5.5 steps, §5.4 deliverables (one per step).
-    steps: [
-      { title: 'Discover', body: 'We learn your idea, your users and your market. We read the competition.' },
-      { title: 'Plan', body: 'We agree what the first version must do, and what can wait.' },
-      { title: 'Prototype', body: 'We design a clickable prototype you can show to users and investors.' },
-      { title: 'Estimate', body: 'We give you a fixed price and timeline for the Build.' },
-    ],
-    deliverables: ['Market and competitor read', 'Product scope', 'Clickable prototype', 'Fixed build estimate'],
-    label: 'Your decision',
-    options: [
-      { key: 'build', title: 'Build' },
-      { key: 'change', title: 'Change direction' },
-      { key: 'stop', title: 'Stop' },
-    ],
-  },
-  process: {
-    title: 'How a Build runs',
-    // Chip labels from 03 §2.2a. Steps take one chip each; the Build step gets "AI-accelerated".
-    steps: [
-      { title: 'Discover', body: 'Confirm the product is the right one. If you did Validate, this is already done.' },
+  // One timeline (research: Halo Lab's track; merge of the decision board and the week track).
+  plan: {
+    title: 'One plan, from idea to real users.',
+    example: 'Example: 2 weeks of Validate and a 10-week Build. Your exact plan is set before we start.',
+    weeks: 12,
+    weekLabel: 'Week',
+    demoLabel: 'Weekly demo with you',
+    signLabel: 'Signed off by a senior engineer',
+    liveLabel: 'Live with real users',
+    phases: [
+      { title: 'Validate', body: 'A market read, a product scope, a clickable prototype and a fixed build estimate. Then you decide.' },
       { title: 'Plan', body: 'Roadmap, tech choices and team agreed before any code.' },
       { title: 'Build', body: 'Sprints with results every week. AI does the heavy lifting. Senior engineers own the quality.', chip: { kind: 'ai', label: 'AI-accelerated' } },
       { title: 'Ship and stay', body: 'Deploy, monitor and keep improving. The same team stays after launch if you want it to.' },
     ],
-  },
-  // §6.12 signature week-by-week track.
-  track: {
-    title: '8–12 weeks. Results every week.',
-    example: 'Example: a 10-week Build. Your exact timeline is set in your plan before we start.',
-    weeks: 10,
-    weekLabel: 'Week',
-    demoLabel: 'Weekly demo with you',
-    liveLabel: 'Live with real users',
     spans: [
-      { from: 1, to: 1, label: 'Week 1' },
-      { from: 2, to: 2, label: 'Week 2' },
-      { from: 3, to: 9, label: 'Weeks 3–9' },
-      { from: 10, to: 10, label: 'Week 10 and after', open: true },
+      { from: 1, to: 2, label: 'Weeks 1–2' },
+      { from: 3, to: 3, label: 'Week 3' },
+      { from: 4, to: 11, label: 'Weeks 4–11' },
+      { from: 12, to: 12, label: 'Week 12 and after', open: true },
     ],
+    fork: {
+      label: 'After Validate, you decide',
+      options: ['Build', 'Change direction', 'Stop'],
+      note: 'The Validate fee credits toward the Build.',
+    },
   },
   review: {
-    title: 'Have an AI-built prototype? Review it first.',
-    body: 'A vibe code audit before you go live. Your app works in the demo. Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote.', // §3.1
-    checkTitle: 'What we check',
-    areas: ['Access and security', 'Data', 'Payments', 'Code quality', 'Scale and running costs', 'Ownership and handover'], // §3.4
-    price: 'Reviews start from $1,490. The full fee is credited toward the fix or a Build with us.', // §3.7
+    title: 'Built it with Lovable, Bolt or Cursor? Review it first.',
+    body: 'Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote.', // §3.1
+    facts: [
+      { value: '$1,490', label: 'Reviews start from' },
+      { value: '5 days', label: 'About, in working days' },
+    ],
     guarantee: 'No useful findings, no charge.', // §3.8
+    credit: 'The full fee is credited toward the fix or a Build with us.', // §3.7
+    // Research: Red Leg's code diff, MetaCTO's code card. An example, not a client.
+    finding: {
+      label: 'Example finding, not a client',
+      severity: 'Critical',
+      area: 'Access and security',
+      lines: [
+        { kind: 'del', text: 'const key = "sk_live_…"     // in browser code' },
+        { kind: 'add', text: 'const key = env.PAYMENTS_KEY // server only' },
+        { kind: 'ctx', text: 'return db.from("orders")' },
+        { kind: 'del', text: '  .select("*")                 // every user’s orders' },
+        { kind: 'add', text: '  .select("*").eq("user_id", user.id)' },
+      ],
+      caption: 'Example of a Review finding: a secret key moved to the server, and orders filtered to the signed-in user',
+      verdictLabel: 'Verdict',
+      verdict: 'Fix, don’t rebuild',
+    },
   },
-  outcomes: {
-    title: 'What you get from a Build',
-    items: [
-      { title: 'A live product with real users', body: 'Not a demo. Deployed, tested and ready for real data and payments.' },
-      { title: 'A fixed price and a date', body: 'You know the cost and the timeline before we start.' },
-      { title: 'Code you own and can grow', body: 'Handed over so another developer can pick it up. Full IP, no lock-in.' },
-    ],
+  // One statement of work (research: Ramotion's deliverables beside the investment).
+  terms: { title: 'What you get, and on what terms', docTitle: 'Build', docMeta: 'Agreed before we start' },
+  gets: {
+    title: 'You get',
+    body: 'A live product with real users: product design (UX and UI), web, mobile and APIs, QA and testing, deployment to your cloud, and weekly results you can see and use.',
   },
-  included: {
-    title: 'What’s included',
-    items: [
-      'Product design (UX and UI)',
-      'Development: web, mobile and APIs',
-      'QA and testing',
-      'Deployment to your cloud',
-      'Weekly results you can see and use',
-    ],
+  timeline: {
+    title: 'Timeline',
+    body: '8–12 weeks from agreed scope to real users, fixed in your plan before we start. Validate, if you need it, takes 1–2 weeks first.',
   },
-  terms: { title: 'Price, team and ownership', docTitle: 'Build', docMeta: 'Agreed before we start' },
   pricing: {
-    title: 'How is a Build priced?',
+    title: 'Price',
     answer:
       'Validate is a fixed fee, agreed before we start. Every Build has a fixed price, set from a clear scope that comes from Validate, a Launch-Ready Review or our own scoping. Validate and Review fees credit toward the Build.',
   },
   team: {
-    title: 'Who builds it',
-    body: 'A full squad: a tech lead, developers, QA, a product manager and a designer. Senior engineers own the quality, and a person is responsible for every line that reaches your users. The team that scopes your product builds it. No handoff gaps.',
+    title: 'Team',
+    body: 'A full squad: a tech lead, developers, QA, a product manager and a designer. Senior engineers own the quality, and a person is responsible for every line that reaches your users. The team that scopes your product builds it.',
     link: { label: shared.howLink, to: 'howWeWork' as const },
   },
   ownership: {
-    title: 'You own all of it',
+    title: 'Ownership',
     body: 'Full IP, no lock-in and a clear contract from day one. Your code lives in your repository and your cloud accounts. When we hand over, another developer can pick it up.',
   },
   proof: {
     title: 'Work from idea to launch',
-    // Oct 26 review (docs/review/lean-r1-review.md #2): one real result as a chart, from 09 (EduLens, D-06), with the CEO's quote (D-05).
+    // EduLens (09, D-06): one sourced number as the headline (research: Netguru's case card).
     case: {
       label: 'Case',
       name: 'EduLens',
       where: 'EdTech platform, Egypt',
       result: '60–90% lower AI cost',
+      big: { value: '60–90%', label: 'lower AI cost at EduLens' },
       body: 'Three AI agents in production: a support chatbot, video-to-lesson and quiz generation, and a student assistant. Cost used to grow with every user. Now each video is processed once.',
       chartTitle: 'AI cost, before and after (before = 100)',
       before: 'Before',
@@ -140,20 +138,22 @@ export const build = {
       { title: 'Entrepreneurs in Kuwait, Switzerland, the UK and Spain', body: shared.projectFoundersDid },
     ],
   },
+  // Buyer order (research: Halo Lab, Stormotion, Wavect FAQs): cost and time first.
   faq: {
     title: 'Questions about Build',
     items: [
+      { id: 'pricing', q: 'How much does an MVP cost?', a: 'DiscoverDev prices an MVP as a fixed price for an agreed scope. We don’t publish a price list: you get your number after a free 30-minute clarity call, before you commit to anything. Validate (1–2 weeks) is a fixed fee credited toward Build. Build (8–12 weeks) is a fixed price. Scale is a monthly retainer.' },
       { id: 'timeline', q: shared.mvpTimeQ, a: 'A Build takes 8–12 weeks from agreed scope to a live, production-ready product with real users. The exact timeline depends on the scope and is fixed in your plan before we start. You see working results every week, not only at the end.' },
-      { id: 'what-is-mvp', q: 'What is an MVP?', a: 'An MVP (minimum viable product) is the smallest version of your product that real users can use. It does the one job your users need, does it well, and leaves the rest for later. We build it in 8–12 weeks, at a fixed price.' },
-      { id: 'deliverables', q: 'What do I get at the end of Validate?', a: 'Four things: a market and competitor read, a product scope, a clickable prototype and a fixed build estimate. Together they tell you what to build first, what to leave out and what it will cost. If you build with us, the Validate fee credits toward your Build.' },
       { id: 'fixed-price', q: 'How do you keep the price fixed?', a: 'We agree a clear scope before we start, then price that scope. Discover and Plan come first: we define the product, the roadmap, the tech and the team before any code, so the price rests on a scope we both understand. You see results every week, so progress against that scope is never a surprise.' },
-      { id: 'dont-build', q: 'What if the answer is “don’t build it”?', a: 'Then Validate did its job. Sometimes the right decision is to change direction or stop. It’s much cheaper to learn that in 1–2 weeks than after months of building.' },
-      { id: 'take-over', q: 'Can you take over my AI-built or freelancer-built prototype?', a: 'Yes. Start with a Launch-Ready Review. It tells you what to keep and what to replace. If a rebuild is the right call, we scope it as a fixed-price Build and credit the Review fee.' },
-      { id: 'after-launch', q: 'What happens after launch?', a: 'We deploy, monitor and keep improving. If you want a team to stay, Scale gives you a dedicated squad on a monthly retainer. If you’d rather take it in-house, we hand over.', link: { label: 'See Scale', to: 'scale' as const } },
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. Full IP, no lock-in and a clear contract from day one. Everything we build for you is yours, so you can keep working with us, bring in another team or take it in-house whenever you choose. We stay as long as you want us to, not because you’re locked in.' },
+      { id: 'take-over', q: 'Can you take over my AI-built or freelancer-built prototype?', a: 'Yes. Start with a Launch-Ready Review. It tells you what to keep and what to replace. If a rebuild is the right call, we scope it as a fixed-price Build and credit the Review fee.' },
+      { id: 'what-is-mvp', q: 'What is an MVP?', a: 'An MVP (minimum viable product) is the smallest version of your product that real users can use. It does the one job your users need, does it well, and leaves the rest for later. We build it in 8–12 weeks, at a fixed price.' },
+      { id: 'after-launch', q: 'What happens after launch?', a: 'We deploy, monitor and keep improving. If you want a team to stay, Scale gives you a dedicated squad on a monthly retainer. If you’d rather take it in-house, we hand over.', link: { label: 'See Scale', to: 'scale' as const } },
     ],
   },
+  // Research: thoughtbot ends on a question.
   band: {
-    title: 'Get a fixed price and a date for your product',
+    title: 'What must your first version do?',
+    body: 'Tell us on a free 30-minute call. You leave with a clear next step, and a fixed price if it is a fit.',
   },
 } as const;

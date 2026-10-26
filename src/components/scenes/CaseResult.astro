@@ -11,14 +11,25 @@ interface Props {
   };
   low: number; high: number;
   quote?: { text: string; name: string; role: string };
+  // `big` (Oct 26, 03 §16b.6): the one sourced number as the headline (research: Netguru's case card), without the list.
+  big?: { value: string; label: string };
 }
-const { c, low, high, quote } = Astro.props;
+const { c, low, high, quote, big } = Astro.props;
 ---
 <article class="case">
   <header class="case__head">
     <p class="tag">{c.label} · {c.where}</p>
-    <h3 class="case__name">{c.name}</h3>
-    <p class="case__result">{c.result}</p>
+    {big ? (
+      <>
+        <p class="case__big">{big.value}</p>
+        <h3 class="case__name case__name--big">{big.label}</h3>
+      </>
+    ) : (
+      <>
+        <h3 class="case__name">{c.name}</h3>
+        <p class="case__result">{c.result}</p>
+      </>
+    )}
     <p class="case__body">{c.body}</p>
   </header>
 
@@ -40,10 +51,10 @@ const { c, low, high, quote } = Astro.props;
     <p class="case__note">{c.note}</p>
   </figure>
 
-  <div class="case__changes">
+  {!big && <div class="case__changes">
     <h4 class="case__h4">{c.changesTitle}</h4>
     <ul role="list" class="case__list">{c.changes.map((x) => <li>{x}</li>)}</ul>
-  </div>
+  </div>}
 
   {quote && <Blockquote text={quote.text} name={quote.name} role={quote.role} />}
 </article>
@@ -53,6 +64,8 @@ const { c, low, high, quote } = Astro.props;
   @media (width >= 64rem) { .case { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-12); } .case__changes, .case :global(.quote) { grid-column: 1 / -1; } }
   .case__head { display: grid; gap: var(--space-3); align-content: start; }
   .case__name { font-family: var(--ff-heading); font-size: var(--text-2xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .case__big { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(3.5rem, 2rem + 6vw, 6.5rem); line-height: 1; letter-spacing: -0.04em; color: var(--color-human-mark); font-variant-numeric: tabular-nums; }
+  .case__name--big { font-size: var(--text-xl); }
   .case__result { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-human-mark); }
   .case__body { color: var(--color-text-muted); line-height: 1.55; }
 

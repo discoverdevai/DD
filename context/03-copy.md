@@ -1933,6 +1933,16 @@ Three pages absorb the others: Build takes Validate and the Launch-Ready Review,
 - How we work lead opens "Our software development process is the same for every project, whether you start from an idea or from code you already have." · the story paragraph is dropped (the entity line says it) · track record items without full stops.
 - Open: the 8 quotes were approved for the home page (D-05); confirm they may also appear on service pages.
 
+### 16b.6 Build, home-style redesign (Oct 26; research `docs/research-sitemap/build-page-inspiration.md`)
+Mohamed rejected the minimal taste-skill mockup ("worse than ever"); this version keeps the home look. Seven sections, the full text is in `src/content/copy/en/build.ts` (EN) and `ar/build.ts` (AR), with these new lines:
+- Hero: two links under the button, "New idea? Validate first" (#process) and "Built it with AI? Review it first" (#review); path window "Your path": Validate 1–2 weeks · Build 8–12 weeks · Live, real users · "AI drafts the work" · "A senior engineer signs off every release" · Fixed price · Your repo, your cloud · Arabic and English.
+- The plan: "One plan, from idea to real users." Example 2 weeks of Validate and a 10-week Build; rows Validate, Plan, Build, Ship and stay; row "Signed off by a senior engineer"; under the chart "After Validate, you decide: Build · Change direction · Stop. The Validate fee credits toward the Build."
+- Review: title "Built it with Lovable, Bolt or Cursor? Review it first."; facts "$1,490 · Reviews start from" and "5 days · About, in working days"; the example finding card (a key moved to the server, orders filtered by user; "Example finding, not a client"; verdict "Fix, don't rebuild"); the sample report.
+- What you get and terms (one document): You get · Timeline ("8–12 weeks from agreed scope to real users, fixed in your plan before we start. Validate, if you need it, takes 1–2 weeks first.") · Price · Team · Ownership.
+- Proof: EduLens "60–90% · lower AI cost at EduLens" as the headline number, chart and quote; the two projects and Nojoud's quote.
+- FAQ order: cost (home §2A answer), time, fixed price, ownership, AI-built prototype, what is an MVP, after launch.
+- Close: "What must your first version do?" · "Tell us on a free 30-minute call. You leave with a clear next step, and a fixed price if it is a fit."
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

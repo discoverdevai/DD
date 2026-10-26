@@ -7,8 +7,11 @@
 import LayerChip, { type Chip } from '../ui/LayerChip.astro';
 interface Phase { title: string; body: string; chip?: Chip }
 interface Span { from: number; to: number; label: string; open?: boolean }
-interface Props { id?: string; title: string; example: string; weeks: number; weekLabel: string; demoLabel: string; liveLabel: string; phases: readonly Phase[]; spans: readonly Span[] }
-const { id = 'process', title, example, weeks, weekLabel, demoLabel, liveLabel, phases, spans } = Astro.props;
+// Oct 26 (03 §16b.6): `fork` draws the Validate decision under the chart; `signLabel` adds a row with a green mark on
+// every week of the main phase (a senior engineer signs off each release).
+interface Fork { label: string; options: readonly string[]; note: string }
+interface Props { id?: string; title: string; example: string; weeks: number; weekLabel: string; demoLabel: string; liveLabel: string; phases: readonly Phase[]; spans: readonly Span[]; fork?: Fork; signLabel?: string }
+const { id = 'process', title, example, weeks, weekLabel, demoLabel, liveLabel, phases, spans, fork, signLabel } = Astro.props;
 const W = Array.from({ length: weeks }, (_, i) => i + 1);
 const main = spans.reduce((m, s, i) => (s.to - s.from > spans[m].to - spans[m].from ? i : m), 0);
 // Placement by class (the CSP blocks inline style): s = start column, n = span length (1–12 supported).
@@ -35,9 +38,19 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
         ))}
         <span class:list={['wt__rowlabel', 'wt__rowlabel--demo', `r${phases.length + 2}`]}>{demoLabel}</span>
         {W.map((w) => <span class:list={['wt__demo', `r${phases.length + 2}`, `s${w + 1}`, 'n1']}><i></i></span>)}
+        {signLabel && <span class:list={['wt__rowlabel', 'wt__rowlabel--demo', `r${phases.length + 3}`]}>{signLabel}</span>}
+        {signLabel && W.filter((w) => w >= spans[main].from && w <= spans[main].to).map((w) => <span class:list={['wt__demo', 'wt__demo--sign', `r${phases.length + 3}`, `s${w + 1}`, 'n1']}><i></i></span>)}
       </div>
       <p class="wt__live"><span class="wt__flag"></span>{liveLabel}</p>
     </div>
+
+    {fork && (
+      <div class="wt__fork reveal">
+        <span class="wt__forklabel">{fork.label}</span>
+        <ul role="list" class="wt__options">{fork.options.map((o, i) => <li class:list={['wt__option', { 'wt__option--go': i === 0 }]}>{o}</li>)}</ul>
+        <span class="wt__forknote">{fork.note}</span>
+      </div>
+    )}
 
     <ol role="list" class="wt__phases reveal-stagger">
       {phases.map((p, i) => (
@@ -77,6 +90,14 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
   .wt__bar--open .wt__bar-fill { border-color: var(--color-human-mark); background: color-mix(in oklab, var(--green-300) 12%, transparent); border-inline-end-style: dashed; }
   .wt__demo { display: grid; place-items: center; }
   .wt__demo i { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--blue-300); box-shadow: 0 0 0 3px color-mix(in oklab, var(--blue-300) 22%, transparent); }
+  .wt__demo--sign i { background: var(--color-human-mark); box-shadow: 0 0 0 3px color-mix(in oklab, var(--green-300) 22%, transparent); }
+  .wt__fork { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); margin-block: calc(var(--space-6) * -1) var(--space-10); padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  .wt__forklabel { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .wt__options { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .wt__option { font-size: var(--text-sm); padding: 4px 12px; border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); color: var(--color-text); }
+  .wt__option--go { background: var(--color-human-mark); border-color: var(--color-human-mark); color: var(--blue-975); font-weight: var(--weight-semibold); }
+  .wt__forknote { font-size: var(--text-sm); color: var(--color-text-muted); }
+  @media (width < 64rem) { .wt__fork { margin-block: 0 var(--space-8); } }
   .wt__live { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-human-mark); }
   .wt__flag { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--green-300) 18%, transparent); }
 

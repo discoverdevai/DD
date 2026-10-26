@@ -1,26 +1,25 @@
 ---
-// /build and /ar/build (03 §16b.1, lean R1): one page from idea to a live MVP. Two ways in (Validate or a Review), then
-// Validate's decision board, the Build week track, the Review, what you get, terms, proof, FAQ. All on the ink theme
-// like home (Oct 26); the signature sections (DecisionBoard, WeekTrack, TermsDoc) were moved to ink for this.
+// /build and /ar/build (03 §16b.1 + §16b.6, lean R1; home-style redesign Oct 26 from
+// docs/research-sitemap/build-page-inspiration.md). Seven sections, all on the ink theme like home:
+// hero (the path window and the two ways in) → the plan (Validate and Build on one timeline, the decision and every
+// senior sign-off on it) → AI-built prototype (a finding being fixed, the sample report) → what you get and terms (one
+// statement of work) → proof (one big number, client words) → FAQ (buyer order) → close (a question).
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
 import Section from '../sections/Section.astro';
 import SectionHead from '../ui/SectionHead.astro';
-import PathCards from '../blocks/PathCards.astro';
-import CardGrid from '../blocks/CardGrid.astro';
-import CheckList from '../blocks/CheckList.astro';
 import ProofList from '../blocks/ProofList.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
-import ServiceGlance from '../scenes/ServiceGlance.astro';
-import DecisionBoard from '../sections/DecisionBoard.astro';
-import WeekTrack from '../sections/WeekTrack.astro';
-import TermsDoc from '../sections/TermsDoc.astro';
+import BuildPath from '../scenes/BuildPath.astro';
+import CodeFinding from '../scenes/CodeFinding.astro';
 import ReviewSnapshot from '../scenes/ReviewSnapshot.astro';
 import CaseResult from '../scenes/CaseResult.astro';
 import Quote from '../blocks/Quote.astro';
+import WeekTrack from '../sections/WeekTrack.astro';
+import TermsDoc from '../sections/TermsDoc.astro';
 import { copy } from '../../content/copy';
 import { t, getLocale } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
@@ -36,48 +35,38 @@ const serviceLd = service(url, {
 });
 const faqLd = faqPage(`${url}#faq`, c.faq.items);
 const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
-const paths = c.start.items.map((p) => ({ ...p, href: `#${p.anchor}` }));
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
   <PageHero page="build" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
-    <ServiceGlance slot="aside" name={t('nav.build')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
+    <p slot="link" class="ways">{c.hero.ways.map((w) => <a href={`#${w.anchor}`}>{w.label}<span class="icon--dir" aria-hidden="true">→</span></a>)}</p>
+    <BuildPath slot="aside" c={c.hero.path} />
   </PageHero>
 
-  <Section id="start" surface="ink" title={c.start.title} lead={c.start.lead}>
-    <PathCards items={paths} />
-  </Section>
-
-  <DecisionBoard id="validate" title={c.validate.title} lead={c.validate.lead} steps={c.validate.steps} deliverables={c.validate.deliverables} label={c.validate.label} options={c.validate.options} />
-
-  <WeekTrack title={c.track.title} example={c.track.example} weeks={c.track.weeks} weekLabel={c.track.weekLabel} demoLabel={c.track.demoLabel} liveLabel={c.track.liveLabel} phases={c.process.steps} spans={c.track.spans} />
+  <WeekTrack title={c.plan.title} example={c.plan.example} weeks={c.plan.weeks} weekLabel={c.plan.weekLabel} demoLabel={c.plan.demoLabel} liveLabel={c.plan.liveLabel} phases={c.plan.phases} spans={c.plan.spans} fork={c.plan.fork} signLabel={c.plan.signLabel} />
 
   <section id="review" class="review" data-surface="ink" data-raised aria-labelledby="review-title">
     <div class="container review__grid">
       <div class="review__copy">
         <SectionHead id="review-title" title={c.review.title} measure={22} />
         <p class="review__body">{c.review.body}</p>
-        <h3 class="review__h3">{c.review.checkTitle}</h3>
-        <CheckList items={c.review.areas} tone="human" class="review__areas" />
-        <p class="review__price">{c.review.price}</p>
+        <dl class="review__facts">{c.review.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
         <p class="review__guarantee">{c.review.guarantee}</p>
+        <p class="review__credit">{c.review.credit}</p>
         <div class="review__cta">
           <CtaLink href={bookHref('clarity')} ctaId="build_mid_clarity" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
           <CtaTerms kind="clarity" />
         </div>
       </div>
-      <div class="review__report" data-surface="paper"><ReviewSnapshot /></div>
+      <div class="review__visuals">
+        <CodeFinding c={c.review.finding} />
+        <div class="review__report" data-surface="paper"><ReviewSnapshot /></div>
+      </div>
     </div>
   </section>
 
-  <Section id="outcomes" surface="ink" title={c.outcomes.title}>
-    <CardGrid items={c.outcomes.items} />
-    <div class="included">
-      <h3 class="included__title">{c.included.title}</h3>
-      <CheckList items={c.included.items} class="included__list" />
-    </div>
-  </Section>
-
-  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
+  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} layout="rows" cols={[
+    { title: c.gets.title, body: c.gets.body },
+    { title: c.timeline.title, body: c.timeline.body },
     { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
     { title: c.team.title, body: c.team.body, link: c.team.link },
     { title: c.ownership.title, body: c.ownership.body },
@@ -85,37 +74,41 @@ const paths = c.start.items.map((p) => ({ ...p, href: `#${p.anchor}` }));
 
   <Section id="proof" surface="raised" title={c.proof.title}>
     <div class="proof">
-      <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} />
-      <ProofList items={c.proof.items} />
-      <Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} />
+      <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} big={c.proof.case.big} />
+      <div class="proof__more">
+        <ProofList items={c.proof.items} />
+        <Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} />
+      </div>
     </div>
   </Section>
 
   <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="build" />
 
-  <CtaBand title={c.band.title} kind="clarity" page="build" />
+  <CtaBand title={c.band.title} body={c.band.body} kind="clarity" page="build" />
 </BaseLayout>
 
 <style>
+  .ways { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin-block-start: var(--space-2); }
+  .ways a { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
+  .ways a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .ways .icon--dir { margin-inline-start: var(--space-1); }
+
   .review { padding-block: var(--section-y); }
   .review__grid { display: grid; gap: var(--space-10); align-items: start; }
-  @media (width >= 64rem) { .review__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-16); } }
+  @media (width >= 64rem) { .review__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); } }
   .review__copy { display: grid; gap: var(--space-4); }
   .review__body { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
-  .review__price { font-weight: var(--weight-medium); color: var(--color-text); max-inline-size: var(--measure-lead); }
+  .review__facts { display: flex; flex-wrap: wrap; gap: var(--space-8); margin: var(--space-2) 0 0; }
+  .review__facts div { display: grid; gap: var(--space-1); }
+  .review__facts dt { order: 2; font-size: var(--text-sm); color: var(--color-text-muted); }
+  .review__facts dd { order: 1; margin: 0; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-3xl); line-height: 1; letter-spacing: -0.03em; color: var(--color-heading); }
   .review__guarantee { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-human-mark); }
-  .review__cta { display: grid; gap: var(--space-3); justify-items: start; margin-block-start: var(--space-4); }
-  .review__h3 { margin-block-start: var(--space-2); font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
-  .review__copy :global(.review__areas) { display: grid; gap: var(--space-2) var(--space-6); }
-  @media (width >= 40rem) { .review__copy :global(.review__areas) { grid-template-columns: 1fr 1fr; } }
-  /* The sample report sits on paper, like a document handed over (06 §9.6). */
+  .review__credit { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .review__cta { display: grid; gap: var(--space-3); justify-items: start; margin-block-start: var(--space-2); }
+  .review__visuals { display: grid; gap: var(--space-6); min-inline-size: 0; }
   .review__report { border-radius: var(--radius-lg); }
-  @media (width >= 64rem) { .review__report { position: sticky; inset-block-start: calc(var(--header-h) + var(--space-6)); } }
-  .proof { display: grid; gap: var(--space-10); }
+  @media (width >= 64rem) { .review__report { inline-size: 88%; justify-self: end; } }
 
-  .included { display: grid; gap: var(--space-4); margin-block-start: var(--space-10); padding-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
-  @media (width >= 56rem) { .included { grid-template-columns: 1fr 2fr; align-items: start; } }
-  .included__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
-  .included :global(.included__list) { display: grid; gap: var(--space-3) var(--space-8); }
-  @media (width >= 40rem) { .included :global(.included__list) { grid-template-columns: 1fr 1fr; } }
+  .proof { display: grid; gap: var(--space-10); }
+  .proof__more { display: grid; gap: var(--space-8); }
 </style>

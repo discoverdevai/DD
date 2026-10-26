@@ -1,0 +1,33 @@
+---
+// One example Review finding being fixed (03 §16b.6; research: Red Leg's code diff, MetaCTO's code card). A product
+// window with a removed and an added line, labelled as an example, not a client. Code stays left to right in Arabic.
+import WindowBar from '../ui/WindowBar.astro';
+interface Line { kind: 'del' | 'add' | 'ctx'; text: string }
+interface Props { c: { label: string; severity: string; area: string; lines: readonly Line[]; caption: string; verdictLabel: string; verdict: string } }
+const { c } = Astro.props;
+const mark = { del: '-', add: '+', ctx: ' ' } as const;
+---
+<figure class="cf">
+  <WindowBar><span class="cf__label">{c.label}</span></WindowBar>
+  <div class="cf__head"><span class="cf__sev">{c.severity}</span><span class="cf__area">{c.area}</span></div>
+  <pre class="cf__code" dir="ltr" tabindex="0" aria-label={c.caption}><code>{c.lines.map((l) => <span class:list={['cf__line', `cf__line--${l.kind}`]}><span class="cf__mark" aria-hidden="true">{mark[l.kind]}</span>{l.text}</span>)}</code></pre>
+  <div class="cf__foot"><span>{c.verdictLabel}</span><span class="cf__verdict">{c.verdict}</span></div>
+  <figcaption class="sr-only">{c.caption}</figcaption>
+</figure>
+
+<style>
+  .cf { margin: 0; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); overflow: hidden; min-inline-size: 0; }
+  .cf__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .cf__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); padding: var(--space-4) var(--space-5) 0; }
+  .cf__sev { font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 2px 10px; border-radius: var(--radius-pill); background: color-mix(in oklab, var(--red-300) 16%, transparent); color: var(--red-300); }
+  .cf__area { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .cf__code { margin: var(--space-4) var(--space-5); padding: var(--space-4); border-radius: var(--radius-md); background: var(--color-bg); overflow-x: auto; font-family: var(--ff-mono); font-size: var(--text-sm); line-height: 1.75; }
+  .cf__code:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+  .cf__line { display: block; white-space: pre; padding-inline-end: var(--space-4); }
+  .cf__mark { display: inline-block; inline-size: 1.5ch; }
+  .cf__line--del { color: var(--red-300); background: color-mix(in oklab, var(--red-300) 9%, transparent); }
+  .cf__line--add { color: var(--color-human-mark); background: color-mix(in oklab, var(--color-human-mark) 9%, transparent); }
+  .cf__line--ctx { color: var(--color-text-muted); }
+  .cf__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-2); padding: var(--space-4) var(--space-5); border-block-start: 1px solid var(--color-hairline); font-weight: var(--weight-medium); }
+  .cf__verdict { font-size: var(--text-sm); padding: 2px 12px; border-radius: var(--radius-pill); background: var(--color-human-mark); color: var(--blue-975); font-weight: var(--weight-semibold); }
+</style>

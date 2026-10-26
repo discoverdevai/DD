@@ -6,8 +6,9 @@ import InlineLink from '../ui/InlineLink.astro';
 import type { RouteKey } from '../../data/routes';
 // `id` on a column keeps old anchors working (JSON-LD Offer urls point at #pricing).
 interface Col { id?: string; title: string; body: string; link?: { label: string; to: RouteKey } }
-interface Props { id?: string; title: string; docTitle: string; docMeta: string; cols: readonly Col[] }
-const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
+// `rows` (Oct 26, 03 §16b.6): the same document as a statement of work, one row per term (label left, text right).
+interface Props { id?: string; title: string; docTitle: string; docMeta: string; cols: readonly Col[]; layout?: 'cols' | 'rows' }
+const { id = 'terms', title, docTitle, docMeta, cols, layout = 'cols' } = Astro.props;
 ---
 <section id={id} class="td" data-surface="ink" aria-labelledby={`${id}-title`}>
   <div class="container">
@@ -17,7 +18,7 @@ const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
         <p class="td__brand">DiscoverDev <span>· {docTitle}</span></p>
         <p class="td__meta">{docMeta}</p>
       </header>
-      <div class="td__cols">
+      <div class:list={['td__cols', { 'td__cols--rows': layout === 'rows' }]}>
         {cols.map((c) => (
           <div class="td__col" id={c.id}>
             <h3 class="td__h3">{c.title}</h3>
@@ -41,6 +42,11 @@ const { id = 'terms', title, docTitle, docMeta, cols } = Astro.props;
   .td__cols { display: grid; gap: var(--space-8); }
   @media (width >= 56rem) { .td__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); } .td__col + .td__col { padding-inline-start: var(--space-10); border-inline-start: 1px solid var(--color-hairline); } }
   .td__col { display: grid; gap: var(--space-3); align-content: start; }
+  .td__cols--rows { grid-template-columns: minmax(0, 1fr) !important; gap: 0; }
+  .td__cols--rows .td__col { padding-block: var(--space-5); padding-inline-start: 0 !important; border-inline-start: 0 !important; border-block-start: 1px solid var(--color-hairline); }
+  .td__cols--rows .td__col:first-child { border-block-start: 0; padding-block-start: 0; }
+  @media (width >= 56rem) { .td__cols--rows .td__col { grid-template-columns: 14rem minmax(0, 1fr); column-gap: var(--space-10); } .td__cols--rows .td__more { grid-column: 2; } }
+  .td__cols--rows .td__h3 { font-size: var(--text-lg); }
   .td__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.015em; color: var(--color-heading); }
   .td__body { color: var(--color-text-muted); line-height: 1.6; }
   .td__more { font-weight: var(--weight-medium); }
