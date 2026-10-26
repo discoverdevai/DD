@@ -55,7 +55,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
     {variant === 'default' ? (
       <div class="site-header__actions">
         <LangSwitch class="site-header__lang" />
-        <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" class="site-header__book"><span class="cta-long">{t('cta.clarity')}</span><span class="cta-short">{t('cta.clarity.short')}</span></CtaLink>
+        <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" variant="soft" class="site-header__book"><span class="cta-long">{t('cta.clarity')}</span><span class="cta-short">{t('cta.clarity.short')}</span></CtaLink>
         <button type="button" class="site-header__menu" aria-haspopup="dialog" aria-controls="menu-sheet" commandfor="menu-sheet" command="show-modal" data-menu-open>
           <Icon name="menu" size={20} /><span class="sr-only">{t('menu.open')}</span>
         </button>
@@ -96,12 +96,6 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
   .site-header__menu { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle); background: transparent; color: var(--color-text); cursor: pointer; }
   .site-header__back { margin-inline-start: auto; display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; color: var(--color-link); font-weight: var(--weight-medium); }
   @media (width < 22.5rem) { .site-header__actions :global(.site-header__book) { display: none; } }
-  /* Quiet header button: a soft blue pill, solid on hover. The solid blue button is the hero's job (one loud CTA per screen). */
-  .site-header :global(.site-header__book.cta--primary.cta--primary) {
-    background-color: color-mix(in oklab, var(--blue-500) 20%, transparent); background-image: none; box-shadow: none;
-    border-color: color-mix(in oklab, var(--blue-400) 45%, transparent); color: var(--neutral-0); border-radius: var(--radius-pill); padding-inline: var(--space-4);
-  }
-  @media (hover: hover) { .site-header :global(.site-header__book.cta--primary.cta--primary:hover) { background-color: var(--color-action-bg); border-color: var(--color-action-bg); } }
   /* Desktop shows the full label from 80rem (03 §2V1, CRO review); narrower widths keep the short one. */
   /* One booking button at a time on phones: the sticky bar replaces the header button while it shows (UX audit P1-2). */
   @media (width < 64rem) { :global(:root[data-sticky-on]) .site-header__book { display: none; } }

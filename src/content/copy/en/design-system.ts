@@ -27,7 +27,7 @@ export const designSystem = {
     lead: 'Each pattern is one component or one class in styles/patterns.css. Spec per pattern: context/06 §9.25 to §9.27.',
     items: {
       head: { name: 'SectionHead', use: 'Opens a section: an optional label and one H2. The H2 id is the section label.', rule: 'One H2 per section. Do not restyle the heading in the section.' },
-      button: { name: 'CtaLink', use: 'Every call to action. Primary is the only filled button in view; secondary and text links support it.', rule: 'Same action, same label everywhere. Every link carries a ctaId.' },
+      button: { name: 'CtaLink', use: 'Every call to action. Primary is the only filled button in view; secondary and text links support it. Soft is the header's quiet action.', rule: 'Same action, same label everywhere. Every link carries a ctaId.' },
       tag: { name: 'Tag and LayerChip', use: 'A tag states a short fact next to a title. A chip says which layer does a step: AI-accelerated or senior sign-off.', rule: 'Tags are facts, never buttons.' },
       card: { name: 'Card link', use: 'The whole card is one link. Put card-link on the card; the link in its heading stretches over it.', rule: 'One link per card. Focus shows once, as a ring on the card.' },
       device: { name: 'Device and WindowBar', use: 'Real product screens in a laptop or phone frame, and the title bar of a product window.', rule: 'The screen carries the alt text. The frame is decoration.' },
@@ -38,6 +38,7 @@ export const designSystem = {
       title: 'A section opens like this',
       primary: 'Primary action',
       secondary: 'Secondary action',
+      soft: 'Quiet action',
       text: 'Text link',
       tags: ['Time: 1 to 2 weeks', 'Build', 'Egypt'],
       ai: 'AI-accelerated',

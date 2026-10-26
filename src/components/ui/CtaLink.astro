@@ -6,7 +6,7 @@ type Position = 'hero' | 'mid' | 'band' | 'card' | 'inline' | 'end' | 'faq' | 'r
 type Target = 'review' | 'clarity' | 'partner' | 'launch_check' | 'validate' | 'build' | 'scale' | 'partners' | 'case' | 'article' | 'how_we_work';
 interface Props extends Omit<HTMLAttributes<'a'>, 'class'> {
   href: string; ctaId: string; tier: Tier; position: Position; target: Target;
-  variant?: 'primary' | 'secondary' | 'text'; size?: 'md' | 'sm'; wide?: boolean; class?: string;
+  variant?: 'primary' | 'secondary' | 'soft' | 'text'; size?: 'md' | 'sm'; wide?: boolean; class?: string;
 }
 const { href, ctaId, tier, position, target, variant = 'primary', size = 'md', wide = false, class: cls, ...rest } = Astro.props;
 if (!/^[a-z0-9]+(_[a-z0-9]+){2,}$/.test(ctaId)) throw new Error(`Bad ctaId "${ctaId}" (04 §6.3)`);
@@ -29,14 +29,18 @@ if (!/^[a-z0-9]+(_[a-z0-9]+){2,}$/.test(ctaId)) throw new Error(`Bad ctaId "${ct
     box-shadow: inset 0 1px 0 color-mix(in oklab, var(--neutral-0) 20%, transparent); } /* flat: no resting glow (design review) */
   @media (prefers-reduced-motion: no-preference) { .cta--primary { transition: background-color var(--dur-color), background-position 700ms var(--ease-standard); } }
   .cta--secondary { background: transparent; color: var(--color-action-2-text); border-color: var(--color-action-2-border); }
+  /* soft: the quiet action for the header (context/06 §9.5). Pill, blue tint, solid on hover; on ink surfaces only. */
+  .cta--soft { background: color-mix(in oklab, var(--blue-500) 20%, transparent); color: var(--neutral-0); border-color: color-mix(in oklab, var(--blue-400) 45%, transparent); border-radius: var(--radius-pill); }
+  .cta--soft.cta--sm { padding-inline: var(--space-4); }
   .cta--text { min-block-size: 2.75rem; padding-inline: 0; white-space: normal; font-family: var(--ff-body); font-weight: var(--weight-medium); color: var(--color-link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; justify-content: flex-start; text-align: start; }
   @media (hover: hover) {
     .cta--primary:hover { background-color: var(--color-action-bg-hover); background-position: -20% 0; color: var(--color-action-text); }
     .cta--secondary:hover { background: var(--color-action-2-bg-hover); color: var(--color-action-2-text-hover); }
+    .cta--soft:hover { background-color: var(--color-action-bg); border-color: var(--color-action-bg); color: var(--color-action-text); }
     .cta--text:hover { color: var(--color-link-hover); text-decoration-thickness: 2px; }
   }
   .cta--primary:active { background-color: var(--color-action-bg-active); }
   .cta--wide { inline-size: 100%; }
   @media (width >= 40rem) { .cta--wide { inline-size: auto; } }
-  @media (forced-colors: active) { .cta--primary, .cta--secondary { border-color: ButtonText; } }
+  @media (forced-colors: active) { .cta--primary, .cta--secondary, .cta--soft { border-color: ButtonText; } }
 </style>

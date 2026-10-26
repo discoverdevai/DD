@@ -796,12 +796,13 @@ Format: **Anatomy · Variants · States · A11y · RTL.** Tokens are referenced 
   - `<a>` for navigation (most CTAs); `<button>` for in-page actions (quiz Next, menu).
   - Optional leading icon, only for utility actions (WhatsApp, Email).
   - Label is required. No trailing arrow.
-- **Variants** (max 5):
+- **Variants** (max 5; four in use):
 
 | Variant | Use | Rest | Hover | Active |
 |---|---|---|---|---|
 | `primary` | The one filled action per viewport | bg `--color-action-bg`, text `--color-action-text` | bg `--color-action-bg-hover` | bg `--color-action-bg-active` |
 | `secondary` | Second action (e.g. clarity call next to a Review) | transparent, 1px border `--color-action-2-border`, text `--color-action-2-text` | bg `--color-action-2-bg-hover`, text `--color-action-2-text-hover` | border 2px |
+| `soft` | The header's quiet booking button (size `sm`, on ink surfaces only, Oct 26). The solid `primary` stays the hero's job: one loud action per screen | pill (`--radius-pill`), bg `--blue-500` at 20%, 1px border `--blue-400` at 45%, text white | bg `--color-action-bg`, border the same | — |
 | `text` | Tertiary ("Take the 3-minute launch check") | Link style, underlined, 44px min hit area | thicker underline | — |
 | on inverse | Same variants. Semantic remap gives a white fill with navy text, or a white outline | — | — | — |
 
