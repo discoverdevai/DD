@@ -1936,7 +1936,7 @@ Three pages absorb the others: Build takes Validate and the Launch-Ready Review,
 ### 16b.6 Build, home-style redesign (Oct 26; research `docs/research-sitemap/build-page-inspiration.md`)
 Mohamed rejected the minimal taste-skill mockup ("worse than ever"); this version keeps the home look. Seven sections, the full text is in `src/content/copy/en/build.ts` (EN) and `ar/build.ts` (AR), with these new lines:
 - Hero: two links under the button, "New idea? Validate first" (#process) and "Built it with AI? Review it first" (#review); path window "Your path": Validate 1–2 weeks · Build 8–12 weeks · Live, real users · "AI drafts the work" · "A senior engineer signs off every release" · Fixed price · Your repo, your cloud · Arabic and English.
-- The plan: "One plan, from idea to real users." Example 2 weeks of Validate and a 10-week Build; rows Validate, Plan, Build, Ship and stay; row "Signed off by a senior engineer"; under the chart "After Validate, you decide: Build · Change direction · Stop. The Validate fee credits toward the Build."
+- The plan: "One plan, from idea to real users." Example 2 weeks of Validate and a 10-week Build; rows Validate, Plan, Build, Ship and stay; row "Senior sign-off" (row "Weekly demo"); under the chart "After Validate, you decide: Build · Change direction · Stop. The Validate fee credits toward the Build."
 - Review: title "Built it with Lovable, Bolt or Cursor? Review it first."; facts "$1,490 · Reviews start from" and "5 days · About, in working days"; the example finding card (a key moved to the server, orders filtered by user; "Example finding, not a client"; verdict "Fix, don't rebuild"); the sample report.
 - What you get and terms (one document): You get · Timeline ("8–12 weeks from agreed scope to real users, fixed in your plan before we start. Validate, if you need it, takes 1–2 weeks first.") · Price · Team · Ownership.
 - Proof: EduLens "60–90% · lower AI cost at EduLens" as the headline number, chart and quote; the two projects and Nojoud's quote.
@@ -1949,6 +1949,10 @@ Mohamed rejected the minimal taste-skill mockup ("worse than ever"); this versio
 - Client voice at its stop: Roberto, Fantacalcio (first sentence of the §2A quote) under the plan; Nojoud Alarfaj, Athkado, under the deal; Youssef, EduLens, in the proof.
 
 - Audit (Oct 26): Review facts read "About 5 · Working days"; the entrepreneurs card leaves the Build proof (it is Validate research, not a launch).
+
+### 16b.8 What you get, redesigned (Oct 26)
+- Title "What you get, and what you can count on." · band "In every Build": Product design, UX and UI · Web, mobile and APIs · QA and testing · Deployment to your cloud · Weekly results you can use.
+- Four tiles, answer first: Timeline "8–12 weeks" (From agreed scope to real users, fixed in your plan. Validate, if you need it, adds 1–2 weeks first.) · Price "Fixed" (Set from a clear scope before we start. Validate and Review fees credit toward it.) · Team "A full squad" (A tech lead, developers, QA, a product manager and a designer. The team that scopes it builds it. + link) · Ownership "All yours" (Full IP, no lock-in. Your code lives in your repository and your cloud accounts.).
 
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.

@@ -68,16 +68,16 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
 
 <style>
   .wt { padding-block: var(--section-y); }
-  .wt__head { display: grid; gap: var(--space-3); margin-block-end: var(--space-10); }
+  .wt__head { display: grid; gap: var(--space-3); margin-block-end: var(--space-6); }
   .wt__example { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); max-inline-size: 60ch; }
 
   /* Chart: laptop and up only (at tablet width ten week columns are too narrow for their labels). Grid = row label + one
      column per week; rows are placed with CSS, so markup stays flat. */
   .wt__chart { display: none; }
   @media (width >= 64rem) {
-    .wt__chart { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--blue-300) 4%, transparent); border: 1px solid var(--color-hairline); margin-block-end: var(--space-10); }
+    .wt__chart { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--blue-300) 4%, transparent); border: 1px solid var(--color-hairline); margin-block-end: var(--space-6); }
   }
-  .wt__grid { display: grid; grid-template-columns: 9.5rem repeat(var(--wt-n, 10), minmax(0, 1fr)); grid-auto-rows: minmax(2.5rem, auto); align-items: center; column-gap: 4px; row-gap: var(--space-2); }
+  .wt__grid { display: grid; grid-template-columns: 12rem repeat(var(--wt-n, 10), minmax(0, 1fr)); grid-auto-rows: minmax(2.25rem, auto); align-items: center; column-gap: 4px; row-gap: var(--space-2); }
   .wt__week { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); text-align: center; padding-block-end: var(--space-1); border-block-end: 1px solid var(--color-hairline); }
   .wt__rowlabel { grid-column: 1; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-heading); }
   .wt__rowlabel--demo { font-family: var(--ff-body); font-weight: var(--weight-medium); color: var(--color-text-muted); }
@@ -91,7 +91,7 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
   .wt__demo { display: grid; place-items: center; }
   .wt__demo i { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--blue-300); box-shadow: 0 0 0 3px color-mix(in oklab, var(--blue-300) 22%, transparent); }
   .wt__demo--sign i { background: var(--color-human-mark); box-shadow: 0 0 0 3px color-mix(in oklab, var(--green-300) 22%, transparent); }
-  .wt__fork { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); margin-block: calc(var(--space-6) * -1) var(--space-10); padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  .wt__fork { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); margin-block: 0 var(--space-6); padding: var(--space-3) var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
   .wt__forklabel { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); }
   .wt__options { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .wt__option { font-size: var(--text-sm); padding: 4px 12px; border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); color: var(--color-text); }
@@ -104,7 +104,7 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
   /* Phase list: always present; the main phase carries the brand blue rule (brand guidelines: cards topped with blue). */
   .wt__phases { display: grid; gap: var(--space-4); }
   @media (width >= 40rem) { .wt__phases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (width >= 64rem) { .wt__phases { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); } }
+  @media (width >= 64rem) { .wt__phases { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); } .wt__phase { padding: var(--space-4) var(--space-5); } .wt__phase .wt__h3 { font-size: var(--text-lg); } .wt__phase .wt__body { font-size: var(--text-sm); line-height: 1.5; } }
   .wt__phase { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); border-block-start: 4px solid color-mix(in oklab, var(--blue-300) 35%, transparent); }
   .wt__phase--main { border-block-start-color: var(--blue-500); background: color-mix(in oklab, var(--blue-600) 16%, var(--color-surface)); }
   .wt__range { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }

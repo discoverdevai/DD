@@ -19,7 +19,7 @@ import ReviewSnapshot from '../scenes/ReviewSnapshot.astro';
 import CaseResult from '../scenes/CaseResult.astro';
 import Quote from '../blocks/Quote.astro';
 import WeekTrack from '../sections/WeekTrack.astro';
-import TermsDoc from '../sections/TermsDoc.astro';
+import WhatYouGet from '../sections/WhatYouGet.astro';
 import { copy } from '../../content/copy';
 import { t, getLocale } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
@@ -71,13 +71,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
     </section>
 
     <div class="stop" aria-hidden="true"><span>{c.stages.terms}</span></div>
-    <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} layout="rows" cols={[
-      { title: c.gets.title, body: c.gets.body },
-      { title: c.timeline.title, body: c.timeline.body },
-      { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
-      { title: c.team.title, body: c.team.body, link: c.team.link },
-      { title: c.ownership.title, body: c.ownership.body },
-    ]} />
+    <WhatYouGet c={c.get} />
     <div class="container voice"><Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} /></div>
 
     <div class="stop" aria-hidden="true"><span>{c.stages.proof}</span></div>
@@ -104,7 +98,8 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 
   /* Journey (03 §16b.7). One background for the whole run, deepening toward the close; sections inside are transparent,
      so there are no hard bands. --line-x puts the line just outside the content edge (inside the gutter on phones). */
-  .journey { --line-x: calc((100% - min(100% - 2 * var(--gutter), var(--container))) / 2 - var(--gutter) * 0.6); position: relative; isolation: isolate;
+  /* Even rhythm inside the journey: one section spacing for every stop (88px on a 1440px screen, 56px on a phone). */
+  .journey { --section-y: clamp(3.5rem, 2.2rem + 3.6vw, 5.5rem); --line-x: calc((100% - min(100% - 2 * var(--gutter), var(--container))) / 2 - var(--gutter) * 0.6); position: relative; isolation: isolate;
     background:
       radial-gradient(70% 40% at 50% 100%, color-mix(in oklab, var(--blue-600) 35%, transparent), transparent 70%),
       linear-gradient(180deg, var(--blue-975) 0%, var(--blue-950) 55%, var(--blue-900) 100%); }

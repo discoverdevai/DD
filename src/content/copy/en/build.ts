@@ -39,8 +39,8 @@ export const build = {
     example: 'Example: 2 weeks of Validate and a 10-week Build. Your exact plan is set before we start.',
     weeks: 12,
     weekLabel: 'Week',
-    demoLabel: 'Weekly demo with you',
-    signLabel: 'Signed off by a senior engineer',
+    demoLabel: 'Weekly demo',
+    signLabel: 'Senior sign-off',
     liveLabel: 'Live with real users',
     phases: [
       { title: 'Validate', body: 'A market read, a product scope, a clickable prototype and a fixed build estimate. Then you decide.' },
@@ -86,29 +86,28 @@ export const build = {
       verdict: 'Fix, don’t rebuild',
     },
   },
-  // One statement of work (research: Ramotion's deliverables beside the investment).
-  terms: { title: 'What you get, and what you can count on.', docTitle: 'Build', docMeta: 'Agreed before we start' },
-  gets: {
-    title: 'You get',
-    body: 'A live product with real users: product design (UX and UI), web, mobile and APIs, QA and testing, deployment to your cloud, and weekly results you can see and use.',
+  // What you get (03 §16b.8, Oct 26 redesign): deliverables as icons, then four terms led by their answer.
+  get: {
+    title: 'What you get, and what you can count on.',
+    includedLabel: 'In every Build',
+    items: [
+      { icon: 'pen-tool', label: 'Product design, UX and UI' },
+      { icon: 'code', label: 'Web, mobile and APIs' },
+      { icon: 'shield-check', label: 'QA and testing' },
+      { icon: 'globe', label: 'Deployment to your cloud' },
+      { icon: 'list-checks', label: 'Weekly results you can use' },
+    ],
+    tiles: [
+      { id: 'timeline', label: 'Timeline', value: '8–12 weeks', body: 'From agreed scope to real users, fixed in your plan. Validate, if you need it, adds 1–2 weeks first.' },
+      { id: 'pricing', label: 'Price', value: 'Fixed', body: 'Set from a clear scope before we start. Validate and Review fees credit toward it.' },
+      { id: 'team', label: 'Team', value: 'A full squad', body: 'A tech lead, developers, QA, a product manager and a designer. The team that scopes it builds it.', link: { label: shared.howLink, to: 'howWeWork' as const } },
+      { id: 'ownership', label: 'Ownership', value: 'All yours', body: 'Full IP, no lock-in. Your code lives in your repository and your cloud accounts.' },
+    ],
   },
-  timeline: {
-    title: 'Timeline',
-    body: '8–12 weeks from agreed scope to real users, fixed in your plan before we start. Validate, if you need it, takes 1–2 weeks first.',
-  },
+  // Offer text for the Service JSON-LD (05 §4.2).
   pricing: {
-    title: 'Price',
     answer:
       'Validate is a fixed fee, agreed before we start. Every Build has a fixed price, set from a clear scope that comes from Validate, a Launch-Ready Review or our own scoping. Validate and Review fees credit toward the Build.',
-  },
-  team: {
-    title: 'Team',
-    body: 'A full squad: a tech lead, developers, QA, a product manager and a designer. Senior engineers own the quality, and a person is responsible for every line that reaches your users. The team that scopes your product builds it.',
-    link: { label: shared.howLink, to: 'howWeWork' as const },
-  },
-  ownership: {
-    title: 'Ownership',
-    body: 'Full IP, no lock-in and a clear contract from day one. Your code lives in your repository and your cloud accounts. When we hand over, another developer can pick it up.',
   },
   proof: {
     title: 'Teams we’ve taken from idea to launch.',

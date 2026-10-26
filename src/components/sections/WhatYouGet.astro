@@ -1,0 +1,61 @@
+---
+// "What you get" for /build (03 §16b.8, Oct 26 redesign): the deliverables as one band of five icons, then the four
+// terms as tiles, each led by its answer in large type (Timeline 8–12 weeks · Price Fixed · Team A full squad ·
+// Ownership All yours). Replaces the statement-of-work rows, which read as a wall of text. Ink theme, home patterns.
+import Icon from '../ui/Icon.astro';
+import InlineLink from '../ui/InlineLink.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import type { RouteKey } from '../../data/routes';
+type IconName = Parameters<typeof Icon>[0]['name'];
+interface Tile { id: string; label: string; value: string; body: string; link?: { label: string; to: RouteKey } }
+interface Props { id?: string; c: { title: string; includedLabel: string; items: readonly { icon: string; label: string }[]; tiles: readonly Tile[] } }
+const { id = 'get', c } = Astro.props;
+---
+<section id={id} class="wyg" data-surface="ink" aria-labelledby={`${id}-title`}>
+  <div class="container wyg__inner">
+    <SectionHead id={`${id}-title`} title={c.title} measure={24} />
+
+    <div class="wyg__band reveal">
+      <p class="wyg__bandlabel">{c.includedLabel}</p>
+      <ul role="list" class="wyg__items">
+        {c.items.map((i) => (
+          <li class="wyg__item"><span class="wyg__icon" aria-hidden="true"><Icon name={i.icon as IconName} size={20} /></span>{i.label}</li>
+        ))}
+      </ul>
+    </div>
+
+    <ul role="list" class="wyg__tiles reveal-stagger">
+      {c.tiles.map((t) => (
+        <li class="wyg__tile" id={t.id}>
+          <h3 class="wyg__label">{t.label}</h3>
+          <p class="wyg__value">{t.value}</p>
+          <p class="wyg__body">{t.body}</p>
+          {t.link && <p class="wyg__more"><InlineLink text="" link={t.link} /></p>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .wyg { padding-block: var(--section-y); }
+  .wyg__inner { display: grid; gap: var(--space-8); }
+
+  /* Deliverables: one band, five items side by side on wide screens. */
+  .wyg__band { display: grid; gap: var(--space-4); padding: var(--space-5) var(--space-6); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--blue-600) 14%, var(--color-surface)); border: 1px solid color-mix(in oklab, var(--blue-300) 22%, transparent); }
+  .wyg__bandlabel { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); }
+  .wyg__items { display: grid; gap: var(--space-4) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+  .wyg__item { display: flex; align-items: center; gap: var(--space-3); font-weight: var(--weight-semibold); color: var(--color-heading); line-height: 1.3; }
+  .wyg__icon { display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; flex: none; border-radius: var(--radius-md); background: color-mix(in oklab, var(--blue-300) 12%, transparent); color: var(--blue-200); }
+
+  /* Terms: four tiles, the answer first in large type. */
+  .wyg__tiles { display: grid; gap: var(--space-4); }
+  @media (width >= 40rem) { .wyg__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (width >= 72rem) { .wyg__tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .wyg__tile { display: grid; grid-template-rows: auto auto 1fr auto; gap: var(--space-2); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); scroll-margin-block-start: calc(var(--header-h) + var(--space-6)); }
+  .wyg__label { font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); }
+  .wyg__value { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-2xl); line-height: 1.1; letter-spacing: -0.02em; color: var(--color-heading); }
+  .wyg__tile:last-child .wyg__value { color: var(--color-human-mark); }
+  .wyg__body { margin-block-start: var(--space-1); font-size: var(--text-sm); line-height: 1.55; color: var(--color-text-muted); }
+  .wyg__more { font-size: var(--text-sm); font-weight: var(--weight-medium); }
+</style>

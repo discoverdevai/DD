@@ -40,3 +40,10 @@ Looked at desktop, phone and Arabic, section by section.
 - Fixed: proof heading said "from idea to launch" but one card was market research, so that card moved off this page; "5 days / About, in working days" read oddly, now "About 5 / Working days"; sections followed by a quote end shorter, so the quote reads as part of its section (about 200px less empty space twice); the EduLens chart sits at the top of its box instead of floating in the middle.
 - Kept on purpose: the plan shows timing in the chart and the words in the four cards (on phones the cards are the only view); four identical "Book a free clarity call" buttons (same action, same label, 04 §6).
 - Open for Mohamed: quotes on service pages (consent scope, D-05); a Review booking type in Cal.com; native review of the Arabic.
+
+## Build page spacing and "What you get" (Oct 26)
+- What you get redesigned: a band of five deliverables with icons, then four tiles led by their answer (8–12 weeks · Fixed · A full squad · All yours). It now fits one screen on desktop (0.74 of a 1440×900 screen, was 1.2).
+- Even rhythm: one section spacing for every stop of the journey (88px at 1440, 56px on phones); tighter heading-to-content gaps in the plan.
+- Plan: compact phase cards and one-line chart labels ("Weekly demo", "Senior sign-off"); 1.15 screens at 1440×900 (was 1.29).
+- Proof: the quote sits under the chart, beside the big number; 1.09 screens (was 1.21).
+- Checked at 1920×1080, 1440×900, 1366×768, 1024×768, 768×1024 and 390×844, English and Arabic: no overflow, axe clean, QA 0 findings, functional 32/32.
