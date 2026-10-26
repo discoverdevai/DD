@@ -1924,6 +1924,15 @@ Three pages absorb the others: Build takes Validate and the Launch-Ready Review,
 - **Who we are and where we work (#team):** story (§12.2) + entity line · where we work and the time strip (§12.4) · track record (§12.5)
 - **Your code, data and IP (#ownership):** "Your code lives in your repository and your cloud accounts." · "Full IP, no lock-in and a clear contract from day one." · "If you want an NDA first, we sign it before we see your code." · "When we hand over, another developer can pick it up." · "A person is responsible for every line that reaches your users." (all from §6.9, §3.10, §12.6)
 
+### 16b.5 Review pass (Oct 26, `docs/review/lean-r1-review.md`)
+- Build pill: "I have an idea, or a prototype." · proof title "Work from idea to launch".
+- Build proof adds the EduLens case card (09 §Case studies; D-06): "60–90% lower AI cost"; body "Three AI agents in production: a support chatbot, video-to-lesson and quiz generation, and a student assistant. Cost used to grow with every user. Now each video is processed once."; chart "AI cost, before and after (before = 100)": Before 100, After 10 to 40, note "The range depends on how often the cache is hit and whether a video has captions."; "What changed": Free captions first, paid transcription only when missing · Summaries and quizzes cached and shared across users · Model routing: a lower-cost default, premium only when needed · Token trimming · Long audio split into chunks and transcribed in parallel; quote Youssef, CEO, EduLens (§2A reviews). Under the proof list: Nojoud Alarfaj, Athkado, Saudi Arabia (§2A reviews).
+- Build Review section shows the sample report (06 §9.6 ReviewSnapshot, "Example findings · Sample report, not a client").
+- Build FAQ adds "What is an MVP?": "An MVP (minimum viable product) is the smallest version of your product that real users can use. It does the one job your users need, does it well, and leaves the rest for later. We build it in 8–12 weeks, at a fixed price."
+- Scale H1: "Scale: a dedicated team that stays" · partner section adds the Amstadd team lead quote (§2A reviews).
+- How we work lead opens "Our software development process is the same for every project, whether you start from an idea or from code you already have." · the story paragraph is dropped (the entity line says it) · track record items without full stops.
+- Open: the 8 quotes were approved for the home page (D-05); confirm they may also appear on service pages.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

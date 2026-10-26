@@ -8,7 +8,7 @@ export const scale = {
   },
   hero: {
     eyebrow: 'It’s working. Grow it.',
-    h1: 'Scale: a team that stays',
+    h1: 'Scale: a dedicated team that stays', // keyword in the H1 (05 §0; Oct 26 review #4)
     body: 'A dedicated squad of developers, QA and a product manager joins your product on a monthly retainer. They own the roadmap and sprints with you. You keep control.',
     // Meta row labels come from 06 §9.11 (`service` hero: Timeline, Model, Team); values from 04 §4.3 and 03 §7.6, §7.7.
     meta: [
@@ -140,6 +140,7 @@ export const scale = {
       { label: 'IP and confidentiality', cells: ['NDA, IP to you', 'NDA, IP to you', 'NDA, IP to you'] },
       { label: 'Price', cells: ['Quoted per project', 'Monthly, per engineer', 'Monthly retainer'] },
     ],
+    quote: { text: 'They combine strong technical delivery with a very practical, low-friction approach, which isn’t always easy to find.', name: 'Team Lead', role: 'Amstadd, UK' },
   },
   band: {
     title: 'Add a team that stays with your product',

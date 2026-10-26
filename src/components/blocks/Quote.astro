@@ -1,0 +1,16 @@
+---
+// A client's own words (09, D-05 consented quotes), placed next to the proof it supports. Verbatim, attributed, no stars.
+interface Props { text: string; name: string; role: string }
+const { text, name, role } = Astro.props;
+---
+<figure class="quote">
+  <blockquote class="quote__text"><p>{text}</p></blockquote>
+  <figcaption class="quote__by"><span class="quote__name">{name}</span>{role}</figcaption>
+</figure>
+
+<style>
+  .quote { display: grid; gap: var(--space-3); padding-block: var(--space-2); padding-inline-start: var(--space-5); border-inline-start: 2px solid var(--color-human-mark); max-inline-size: 48rem; }
+  .quote__text { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: 1.45; color: var(--color-heading); }
+  .quote__by { display: flex; flex-wrap: wrap; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .quote__name { font-weight: var(--weight-semibold); color: var(--color-text); }
+</style>

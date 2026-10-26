@@ -18,6 +18,9 @@ import ServiceGlance from '../scenes/ServiceGlance.astro';
 import DecisionBoard from '../sections/DecisionBoard.astro';
 import WeekTrack from '../sections/WeekTrack.astro';
 import TermsDoc from '../sections/TermsDoc.astro';
+import ReviewSnapshot from '../scenes/ReviewSnapshot.astro';
+import CaseResult from '../scenes/CaseResult.astro';
+import Quote from '../blocks/Quote.astro';
 import { copy } from '../../content/copy';
 import { t, getLocale } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
@@ -53,6 +56,8 @@ const paths = c.start.items.map((p) => ({ ...p, href: `#${p.anchor}` }));
       <div class="review__copy">
         <SectionHead id="review-title" title={c.review.title} measure={22} />
         <p class="review__body">{c.review.body}</p>
+        <h3 class="review__h3">{c.review.checkTitle}</h3>
+        <CheckList items={c.review.areas} tone="human" class="review__areas" />
         <p class="review__price">{c.review.price}</p>
         <p class="review__guarantee">{c.review.guarantee}</p>
         <div class="review__cta">
@@ -60,10 +65,7 @@ const paths = c.start.items.map((p) => ({ ...p, href: `#${p.anchor}` }));
           <CtaTerms kind="clarity" />
         </div>
       </div>
-      <div class="review__check">
-        <h3 class="review__h3">{c.review.checkTitle}</h3>
-        <CheckList items={c.review.areas} tone="human" />
-      </div>
+      <div class="review__report" data-surface="paper"><ReviewSnapshot /></div>
     </div>
   </section>
 
@@ -82,7 +84,11 @@ const paths = c.start.items.map((p) => ({ ...p, href: `#${p.anchor}` }));
   ]} />
 
   <Section id="proof" surface="raised" title={c.proof.title}>
-    <ProofList items={c.proof.items} />
+    <div class="proof">
+      <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} />
+      <ProofList items={c.proof.items} />
+      <Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} />
+    </div>
   </Section>
 
   <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="build" />
@@ -99,8 +105,13 @@ const paths = c.start.items.map((p) => ({ ...p, href: `#${p.anchor}` }));
   .review__price { font-weight: var(--weight-medium); color: var(--color-text); max-inline-size: var(--measure-lead); }
   .review__guarantee { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-human-mark); }
   .review__cta { display: grid; gap: var(--space-3); justify-items: start; margin-block-start: var(--space-4); }
-  .review__check { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid color-mix(in oklab, var(--color-human-mark) 30%, transparent); background: var(--color-surface); }
-  .review__h3 { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .review__h3 { margin-block-start: var(--space-2); font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .review__copy :global(.review__areas) { display: grid; gap: var(--space-2) var(--space-6); }
+  @media (width >= 40rem) { .review__copy :global(.review__areas) { grid-template-columns: 1fr 1fr; } }
+  /* The sample report sits on paper, like a document handed over (06 §9.6). */
+  .review__report { border-radius: var(--radius-lg); }
+  @media (width >= 64rem) { .review__report { position: sticky; inset-block-start: calc(var(--header-h) + var(--space-6)); } }
+  .proof { display: grid; gap: var(--space-10); }
 
   .included { display: grid; gap: var(--space-4); margin-block-start: var(--space-10); padding-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
   @media (width >= 56rem) { .included { grid-template-columns: 1fr 2fr; align-items: start; } }

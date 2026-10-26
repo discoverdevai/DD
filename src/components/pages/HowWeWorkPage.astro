@@ -84,7 +84,6 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
     <div class="container team">
       <div class="team__copy">
         <SectionHead id="team-title" title={c.team.title} measure={18} />
-        <p class="hw__lead team__story">{c.team.story}</p>
         <p class="team__entity">{c.team.entity}</p>
         <p class="hw__body">{c.team.where}</p>
       </div>
@@ -133,7 +132,6 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
   .team { display: grid; gap: var(--space-10); align-items: start; }
   @media (width >= 64rem) { .team { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-16); } }
   .team__copy { display: grid; gap: var(--space-4); }
-  .team__story { margin-block: var(--space-2) 0; }
   .team__entity { padding-block: var(--space-4); padding-inline: var(--space-5); border-inline-start: 2px solid var(--color-border-accent); background: var(--color-surface-sunken); border-radius: var(--radius-sm); color: var(--color-text); max-inline-size: var(--measure-prose); }
   .team__side { display: grid; gap: var(--space-8); }
   /* The track record needs the full width: four short facts in a narrow column broke words mid-line. */

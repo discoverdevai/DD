@@ -11,7 +11,7 @@ export const howWeWork = {
   hero: {
     eyebrow: 'The DiscoverDev Way',
     h1: 'How we work',
-    lead: 'Every project runs the same way, whether you start from an idea or from code you already have. AI drafts the work, a senior engineer signs off every release, and you see progress every week.',
+    lead: 'Our software development process is the same for every project, whether you start from an idea or from code you already have. AI drafts the work, a senior engineer signs off every release, and you see progress every week.',
   },
   paths: {
     title: 'Two ways in',
@@ -52,7 +52,7 @@ export const howWeWork = {
       text: 'From west to east: US East, UK, Alexandria (our hub), Riyadh and Dubai.',
     },
     recordTitle: 'Track record',
-    record: ['Clients on 4 continents', 'AI in production across multiple clients', 'Four clients expanded scope with us.'],
+    record: ['Clients on 4 continents', 'AI in production across multiple clients', 'Four clients expanded scope with us'],
   },
   // §16b.3 Your code, data and IP (lines from §6.9, §3.10, §12.6).
   ownership: {

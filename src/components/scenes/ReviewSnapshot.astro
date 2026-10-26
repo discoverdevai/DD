@@ -1,6 +1,7 @@
 ---
 // ReviewSnapshot (06 §9.6, §0.5): what a Review produces, on paper. Example only, generic findings, no client data.
-import { snapshot as c } from '../../content/copy/en/snapshot';
+import { copy } from '../../content/copy';
+const c = copy().snapshot;
 const SEV = { critical: 'sev--crit', high: 'sev--high', medium: 'sev--med' } as const;
 const STATUS = { planned: 'st--plan', fixed: 'st--fix' } as const;
 ---

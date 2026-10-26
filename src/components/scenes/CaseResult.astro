@@ -1,0 +1,79 @@
+---
+// Case result card (03 §16b, Oct 26 review): one real result from 09 as a chart, the changes that produced it and the
+// client's own words. The chart is a range, drawn with SVG attributes (the CSP blocks inline styles): before = 100,
+// after = the low end (solid) to the high end (light). The numbers are also in the text, so the SVG is aria-hidden.
+import Blockquote from '../blocks/Quote.astro';
+interface Props {
+  c: {
+    label: string; name: string; where: string; result: string; body: string;
+    chartTitle: string; before: string; after: string; beforeValue: string; afterValue: string; note: string;
+    changesTitle: string; changes: readonly string[];
+  };
+  low: number; high: number;
+  quote?: { text: string; name: string; role: string };
+}
+const { c, low, high, quote } = Astro.props;
+---
+<article class="case">
+  <header class="case__head">
+    <p class="tag">{c.label} · {c.where}</p>
+    <h3 class="case__name">{c.name}</h3>
+    <p class="case__result">{c.result}</p>
+    <p class="case__body">{c.body}</p>
+  </header>
+
+  <figure class="case__chart">
+    <figcaption class="case__charttitle">{c.chartTitle}</figcaption>
+    <div class="case__row">
+      <span class="case__label">{c.before}</span>
+      <svg class="case__bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><rect class="case__fill--before" x="0" y="0" width="100" height="10" rx="1.5" /></svg>
+      <span class="case__value">{c.beforeValue}</span>
+    </div>
+    <div class="case__row">
+      <span class="case__label">{c.after}</span>
+      <svg class="case__bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+        <rect class="case__fill--range" x="0" y="0" width={high} height="10" rx="1.5" />
+        <rect class="case__fill--after" x="0" y="0" width={low} height="10" rx="1.5" />
+      </svg>
+      <span class="case__value">{c.afterValue}</span>
+    </div>
+    <p class="case__note">{c.note}</p>
+  </figure>
+
+  <div class="case__changes">
+    <h4 class="case__h4">{c.changesTitle}</h4>
+    <ul role="list" class="case__list">{c.changes.map((x) => <li>{x}</li>)}</ul>
+  </div>
+
+  {quote && <Blockquote text={quote.text} name={quote.name} role={quote.role} />}
+</article>
+
+<style>
+  .case { display: grid; gap: var(--space-6); padding: clamp(var(--space-6), 1rem + 2vw, var(--space-10)); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  @media (width >= 64rem) { .case { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-12); } .case__changes, .case :global(.quote) { grid-column: 1 / -1; } }
+  .case__head { display: grid; gap: var(--space-3); align-content: start; }
+  .case__name { font-family: var(--ff-heading); font-size: var(--text-2xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .case__result { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-human-mark); }
+  .case__body { color: var(--color-text-muted); line-height: 1.55; }
+
+  .case__chart { display: grid; gap: var(--space-4); align-content: center; padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-bg); }
+  .case__charttitle { font-weight: var(--weight-medium); color: var(--color-heading); }
+  .case__row { display: grid; grid-template-columns: minmax(3rem, auto) minmax(0, 1fr) minmax(4.5rem, auto); align-items: center; gap: var(--space-3); } /* the bar takes the free width, also on phones */
+  .case__label { font-size: var(--text-sm); color: var(--color-text-muted); }
+  /* Phones: label and value on one line, the bar full width under them. */
+  @media (width < 40rem) { .case__row { grid-template-columns: minmax(0, 1fr) auto; row-gap: var(--space-1); } .case__bar { grid-column: 1 / -1; grid-row: 2; } }
+  .case__bar { inline-size: 100%; block-size: 1.75rem; }
+  :dir(rtl) .case__bar { scale: -1 1; }
+  .case__fill--before { fill: color-mix(in oklab, var(--blue-300) 35%, transparent); }
+  .case__fill--range { fill: color-mix(in oklab, var(--green-300) 30%, transparent); }
+  .case__fill--after { fill: var(--color-human-mark); }
+  .case__value { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); font-variant-numeric: tabular-nums; }
+  .case__note { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+  .case__changes { display: grid; gap: var(--space-3); }
+  .case__h4 { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .case__list { display: grid; gap: var(--space-2) var(--space-8); color: var(--color-text); }
+  @media (width >= 48rem) { .case__list { grid-template-columns: 1fr 1fr; } }
+  .case__list li { padding-inline-start: var(--space-4); position: relative; }
+  .case__list li::before { content: ''; position: absolute; inset-inline-start: 0; inset-block-start: 0.6em; inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); }
+</style>

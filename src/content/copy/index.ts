@@ -11,6 +11,7 @@ import * as enLegal from './en/legal';
 import { build as enBuild } from './en/build';
 import { scale as enScale } from './en/scale';
 import { howWeWork as enHowWeWork } from './en/how-we-work';
+import { snapshot as enSnapshot } from './en/snapshot';
 import { home as arHome } from './ar/home';
 import { delivery as arDelivery } from './ar/delivery';
 import * as arProjects from './ar/projects';
@@ -20,8 +21,9 @@ import * as arLegal from './ar/legal';
 import { build as arBuild } from './ar/build';
 import { scale as arScale } from './ar/scale';
 import { howWeWork as arHowWeWork } from './ar/how-we-work';
+import { snapshot as arSnapshot } from './ar/snapshot';
 
-const en = { home: enHome, delivery: enDelivery, projects: enProjects, book: enBook, notFound: enNotFound, legal: enLegal, build: enBuild, scale: enScale, howWeWork: enHowWeWork };
+const en = { home: enHome, delivery: enDelivery, projects: enProjects, book: enBook, notFound: enNotFound, legal: enLegal, build: enBuild, scale: enScale, howWeWork: enHowWeWork, snapshot: enSnapshot };
 type Copy = typeof en;
 const ar: Copy = {
   home: arHome as unknown as typeof enHome,
@@ -33,6 +35,7 @@ const ar: Copy = {
   build: arBuild as unknown as typeof enBuild,
   scale: arScale as unknown as typeof enScale,
   howWeWork: arHowWeWork as unknown as typeof enHowWeWork,
+  snapshot: arSnapshot as unknown as typeof enSnapshot,
 };
 
 export const copy = (): Copy => (getLocale() === 'ar' ? ar : en);

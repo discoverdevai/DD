@@ -8,7 +8,7 @@ export const build = {
       'From idea to a live MVP in 8–12 weeks: 1–2 weeks of Validate, then a fixed-price Build by a senior team. Have an AI-built prototype? We review it first.',
   },
   hero: {
-    eyebrow: 'From idea to launch',
+    eyebrow: 'I have an idea, or a prototype.',
     h1: 'Build: from idea to a live MVP',
     body: 'Start with 1–2 weeks of Validate. Then a senior team designs, builds, tests and deploys your MVP in 8–12 weeks, at a fixed price. You launch with real users, and you own all of it.',
     meta: [
@@ -110,7 +110,31 @@ export const build = {
     body: 'Full IP, no lock-in and a clear contract from day one. Your code lives in your repository and your cloud accounts. When we hand over, another developer can pick it up.',
   },
   proof: {
-    title: 'Products we’ve taken from idea to launch',
+    title: 'Work from idea to launch',
+    // Oct 26 review (docs/review/lean-r1-review.md #2): one real result as a chart, from 09 (EduLens, D-06), with the CEO's quote (D-05).
+    case: {
+      label: 'Case',
+      name: 'EduLens',
+      where: 'EdTech platform, Egypt',
+      result: '60–90% lower AI cost',
+      body: 'Three AI agents in production: a support chatbot, video-to-lesson and quiz generation, and a student assistant. Cost used to grow with every user. Now each video is processed once.',
+      chartTitle: 'AI cost, before and after (before = 100)',
+      before: 'Before',
+      after: 'After',
+      beforeValue: '100',
+      afterValue: '10 to 40',
+      note: 'The range depends on how often the cache is hit and whether a video has captions.',
+      changesTitle: 'What changed',
+      changes: [
+        'Free captions first, paid transcription only when missing',
+        'Summaries and quizzes cached and shared across users',
+        'Model routing: a lower-cost default, premium only when needed',
+        'Token trimming',
+        'Long audio split into chunks and transcribed in parallel',
+      ],
+      quote: { text: 'They focused on building solutions that were practical, scalable, and aligned with our users’ needs.', name: 'Youssef', role: 'CEO, EduLens' },
+    },
+    quote: { text: 'Professional work and great communication.', name: 'Nojoud Alarfaj', role: 'Athkado, Saudi Arabia' },
     items: [
       { title: shared.projectArFurniture, where: 'Saudi Arabia', body: 'Feasibility sprints, then the build: discovery, UX and UI, development, an AI recommendation engine and AR to see furniture at home.' },
       { title: 'Entrepreneurs in Kuwait, Switzerland, the UK and Spain', body: shared.projectFoundersDid },
@@ -120,6 +144,7 @@ export const build = {
     title: 'Questions about Build',
     items: [
       { id: 'timeline', q: shared.mvpTimeQ, a: 'A Build takes 8–12 weeks from agreed scope to a live, production-ready product with real users. The exact timeline depends on the scope and is fixed in your plan before we start. You see working results every week, not only at the end.' },
+      { id: 'what-is-mvp', q: 'What is an MVP?', a: 'An MVP (minimum viable product) is the smallest version of your product that real users can use. It does the one job your users need, does it well, and leaves the rest for later. We build it in 8–12 weeks, at a fixed price.' },
       { id: 'deliverables', q: 'What do I get at the end of Validate?', a: 'Four things: a market and competitor read, a product scope, a clickable prototype and a fixed build estimate. Together they tell you what to build first, what to leave out and what it will cost. If you build with us, the Validate fee credits toward your Build.' },
       { id: 'fixed-price', q: 'How do you keep the price fixed?', a: 'We agree a clear scope before we start, then price that scope. Discover and Plan come first: we define the product, the roadmap, the tech and the team before any code, so the price rests on a scope we both understand. You see results every week, so progress against that scope is never a surprise.' },
       { id: 'dont-build', q: 'What if the answer is “don’t build it”?', a: 'Then Validate did its job. Sometimes the right decision is to change direction or stop. It’s much cheaper to learn that in 1–2 weeks than after months of building.' },

@@ -14,6 +14,7 @@ import ServiceGlance from '../scenes/ServiceGlance.astro';
 import SquadLoop from '../sections/SquadLoop.astro';
 import TermsDoc from '../sections/TermsDoc.astro';
 import ComparisonTable from '../partners/ComparisonTable.astro';
+import Quote from '../blocks/Quote.astro';
 import { copy } from '../../content/copy';
 import { t, getLocale } from '../../i18n/t';
 import { graph, orgStub, webPage, canonical, faqPage, service } from '../../lib/seo';
@@ -56,6 +57,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 
   <Section id="partners" surface="raised" title={c.partners.title} lead={c.partners.answer}>
     <ComparisonTable id="partners-table" caption={c.partners.caption} columns={c.partners.columns} rows={c.partners.rows} />
+    <div class="partners__quote"><Quote text={c.partners.quote.text} name={c.partners.quote.name} role={c.partners.quote.role} /></div>
   </Section>
 
   <Section id="proof" surface="ink" title={c.proof.title}>
@@ -74,5 +76,6 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   .included__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
   .included :global(.included__list) { display: grid; gap: var(--space-3) var(--space-8); }
   @media (width >= 40rem) { .included :global(.included__list) { grid-template-columns: 1fr 1fr; } }
+  .partners__quote { margin-block-start: var(--space-10); }
   .retention { margin-block: var(--space-8) var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-medium); color: var(--color-heading); }
 </style>
