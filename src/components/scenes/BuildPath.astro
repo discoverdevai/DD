@@ -43,14 +43,14 @@ const releases = Array.from({ length: 8 });
   .bp__row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); align-items: center; gap: var(--space-4); }
   @container (inline-size < 26rem) { .bp__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); } }
   .bp__label { display: grid; font-weight: var(--weight-semibold); color: var(--color-text); }
-  .bp__label small { font-family: var(--ff-mono); font-size: 0.6875rem; font-weight: 400; color: var(--color-text-muted); }
+  .bp__label small { font-family: var(--ff-mono); font-size: var(--text-xs); font-weight: 400; color: var(--color-text-muted); }
   .bp__track { position: relative; block-size: 1.75rem; border-radius: var(--radius-sm); background: color-mix(in oklab, var(--blue-300) 8%, transparent); }
   .bp__bar { position: absolute; inset-block: 0; border-radius: var(--radius-sm); transform-origin: 0 50%; }
   :dir(rtl) .bp__bar { transform-origin: 100% 50%; }
-  .bp__bar--v { inset-inline: 0 82%; background: color-mix(in oklab, var(--blue-300) 40%, transparent); }
-  .bp__bar--b { inset-inline: 0 0; background: var(--blue-600); }
-  .bp__bar--l { inset-inline: 0 0; background: color-mix(in oklab, var(--color-human-mark) 22%, transparent); border: 1px dashed var(--color-human-mark); }
-  .bp__signs { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(8, 1fr); place-items: center; }
+  .bp__bar--v { inset-inline: 0 84%; background: color-mix(in oklab, var(--blue-300) 40%, transparent); }
+  .bp__bar--b { inset-inline: 16% 12%; background: var(--blue-600); }
+  .bp__bar--l { inset-inline: 88% 0; background: color-mix(in oklab, var(--color-human-mark) 22%, transparent); border: 1px dashed var(--color-human-mark); }
+  .bp__signs { position: absolute; inset-block: 0; inset-inline: 16% 12%; display: grid; grid-template-columns: repeat(8, 1fr); place-items: center; }
   .bp__signs i { inline-size: 9px; block-size: 9px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-human-mark) 25%, transparent); }
   .bp__lanes { display: grid; gap: var(--space-2); padding: 0 var(--space-5) var(--space-5); font-size: var(--text-sm); color: var(--color-text-muted); }
   .bp__lanes li { display: flex; align-items: center; gap: var(--space-3); }

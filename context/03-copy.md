@@ -1945,7 +1945,7 @@ Mohamed rejected the minimal taste-skill mockup ("worse than ever"); this versio
 
 ### 16b.7 Build as one journey (Oct 26, Mohamed: "more humanized, sections like one flow")
 - One line runs down the page from the hero to the close; each section is a stop: Idea · Your app · The deal · Proof · Questions · Launch. The background deepens gradually instead of alternating bands.
-- Headings in the founder's words: "You have an idea. Here's how it becomes a product." · "Already built it with AI? We check it before your users do." · "What you get, and what you can count on." · "Teams we've taken from idea to launch." · "What founders ask us first" · "Your launch starts with one call."
+- Headings in the founder's words: "You have an idea. Here's how it becomes a product." · "Built it with AI? We check it first." · "What you get, and what you can count on." · "Teams we've taken from idea to launch." · "What founders ask us first" · "Your launch starts with one call."
 - Client voice at its stop: Roberto, Fantacalcio (first sentence of the §2A quote) under the plan; Nojoud Alarfaj, Athkado, under the deal; Youssef, EduLens, in the proof.
 
 ### 16b.4 Navigation (R1)

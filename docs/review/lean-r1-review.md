@@ -25,3 +25,11 @@ Branch `site-r1-lean`. Lenses: taste and design (taste-frontend inspector at 144
 | 13 | Taste | All | Inspector flags house-style items the approved design system uses on purpose: monospace labels, the hero glow, hairlines, small caps-free tags. | Not changed: these are the site's approved look (06, Oct 16 decisions). | Won't do |
 | 14 | CRO | Build | The Review CTA is the clarity call, not a Review booking: there is no Review event in Cal.com yet. | Keep one call type; the call agrees scope and a fixed fee. Add a Review event in Cal.com later. | Open (Mohamed) |
 | 15 | Consent | Build, Scale | The 8 quotes were approved for the home page (D-05, Oct 16). This pass shows three of them on service pages too. | Confirm with Mohamed that the same quotes may appear on service pages. | Open (Mohamed) |
+
+## Build page design QA (Oct 26, journey version)
+Measured every section at 1440, 1024, 768 and 390 px, in English and Arabic, then fixed:
+- "Your path" window: bars now sit in time order (Validate, then Build with the sign-off marks, then a short Live marker); labels 12px, not 11px.
+- Review heading ran to 3 lines on desktop: now "Built it with AI? We check it first." in a wider column; every heading is 2 lines or fewer at every width, both languages.
+- EduLens chart: fixed label and value columns, so bars and numbers line up.
+- Phones (under 640px): the journey line and its dots touched the headings, so they are hidden there; the deepening background carries the flow.
+- Checked: no horizontal overflow, axe clean at all widths, text 12px or larger, inline links are the only targets under 24px (allowed for links inside text).

@@ -53,7 +53,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
     <section id="review" class="review" data-surface="ink" aria-labelledby="review-title">
       <div class="container review__grid">
         <div class="review__copy">
-          <SectionHead id="review-title" title={c.review.title} measure={22} />
+          <SectionHead id="review-title" title={c.review.title} measure={24} />
           <p class="review__body">{c.review.body}</p>
           <dl class="review__facts">{c.review.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
           <p class="review__guarantee">{c.review.guarantee}</p>
@@ -122,6 +122,8 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   .stop::before { content: ''; position: absolute; inset-inline-start: calc(var(--line-x) - 6px); inset-block-start: calc(var(--section-y) + 0.6rem); inline-size: 14px; block-size: 14px; border-radius: 50%; background: var(--blue-975); border: 2px solid var(--blue-400); }
   .stop--end::before { background: var(--color-human-mark); border-color: var(--color-human-mark); box-shadow: 0 0 0 6px color-mix(in oklab, var(--color-human-mark) 22%, transparent); }
   .stop span { display: none; }
+  /* Phones: no room in the gutter for the line; the deepening background carries the flow. */
+  @media (width < 40rem) { .journey::before, .journey::after, .stop::before { display: none; } }
   /* Very wide screens only: the stop's name sits in the margin, beside its dot (below 100rem the margin is too narrow). */
   @media (width >= 100rem) {
     .stop span { display: block; position: absolute; inset-inline-end: calc(100% - var(--line-x) + 1.25rem); inset-block-start: calc(var(--section-y) + 0.35rem); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); white-space: nowrap; }
@@ -130,7 +132,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 
   .review { padding-block: var(--section-y); }
   .review__grid { display: grid; gap: var(--space-10); align-items: start; }
-  @media (width >= 64rem) { .review__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); } }
+  @media (width >= 64rem) { .review__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-12); } }
   .review__copy { display: grid; gap: var(--space-4); }
   .review__body { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
   .review__facts { display: flex; flex-wrap: wrap; gap: var(--space-8); margin: var(--space-2) 0 0; }

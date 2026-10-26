@@ -71,7 +71,7 @@ const { c, low, high, quote, big } = Astro.props;
 
   .case__chart { display: grid; gap: var(--space-4); align-content: center; padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-bg); }
   .case__charttitle { font-weight: var(--weight-medium); color: var(--color-heading); }
-  .case__row { display: grid; grid-template-columns: minmax(3rem, auto) minmax(0, 1fr) minmax(4.5rem, auto); align-items: center; gap: var(--space-3); } /* the bar takes the free width, also on phones */
+  .case__row { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) 5.5rem; align-items: center; gap: var(--space-3); } /* the bar takes the free width, also on phones */
   .case__label { font-size: var(--text-sm); color: var(--color-text-muted); }
   /* Phones: label and value on one line, the bar full width under them. */
   @media (width < 40rem) { .case__row { grid-template-columns: minmax(0, 1fr) auto; row-gap: var(--space-1); } .case__bar { grid-column: 1 / -1; grid-row: 2; } }

@@ -61,7 +61,7 @@ export const build = {
     },
   },
   review: {
-    title: 'Already built it with AI? We check it before your users do.',
+    title: 'Built it with AI? We check it first.',
     body: 'Before real users, real data and real payments touch it, a senior team checks what will break. In about 5 working days you get a ranked fix list, a plain verdict and a fixed quote.', // §3.1
     facts: [
       { value: '$1,490', label: 'Reviews start from' },
