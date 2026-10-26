@@ -163,6 +163,6 @@ export const build = {
   // Research: thoughtbot ends on a question.
   band: {
     title: 'Your launch starts with one call.',
-    body: 'Tell us on a free 30-minute call. You leave with a clear next step, and a fixed price if it is a fit.',
+    body: 'Tell us about your idea or your prototype. If it is a fit, you get a fixed price before you commit to anything.',
   },
 } as const;

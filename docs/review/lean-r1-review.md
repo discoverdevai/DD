@@ -64,3 +64,7 @@ Looked at desktop, phone and Arabic, section by section.
 - Fixed: the FAQ button had no terms; it now shows "30 minutes · No pitch · Leave with a next step" like every other clarity-call button (all pages that use this FAQ layout with a button).
 - On Build the first answer, "How much does an MVP cost?", is open on load, so the top buyer question is answered without a click.
 - Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Build page close (Oct 26)
+- Kept: the large centred headline, one button with its terms, the journey line ending at its "Launch" dot.
+- Fixed: the body line said "Tell us on a free 30-minute call", with no object, and repeated the terms under the button. Now: "Tell us about your idea or your prototype. If it is a fit, you get a fixed price before you commit to anything." (AR mirrored). Checked at six sizes in EN and AR.

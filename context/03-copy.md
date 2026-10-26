@@ -1960,6 +1960,9 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 ### 16b.10 Proof, one more project as a bar (Oct 26)
 - Under the EduLens case, one slim bar replaces the lone project card: label "Also from idea to launch" · tag "Saudi Arabia" · "AR furniture e-commerce with AI recommendations" · steps in order: Feasibility sprints → Discovery → UX and UI → Development → AI recommendations → AR to see furniture at home · then the rating line "Rated 5.0 on Clutch" with its Clutch link. Same facts as before (09 Portfolio), no client name.
 
+### 16b.11 Build close, body line (Oct 26)
+- Title stays "Your launch starts with one call." Body was "Tell us on a free 30-minute call. You leave with a clear next step, and a fixed price if it is a fit." It lost its object when the title stopped being a question, and it repeated the terms under the button. Now: "Tell us about your idea or your prototype. If it is a fit, you get a fixed price before you commit to anything." (fact: FAQ pricing answer). AR: "حدّثنا عن فكرتك أو نموذجك الأولي. وإن كان المشروع مناسبًا، تحصل على سعر ثابت قبل أن تلتزم بأي شيء."
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 
