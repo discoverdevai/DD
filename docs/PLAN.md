@@ -6,7 +6,7 @@ Updated after every step (Mohamed's instruction, Oct 15). Strategy and dates: `c
 **Design:** Signal, approved Oct 15 (`context/06-design-system.md` §0, `context/01-brand.md`, `context/03-copy.md` §2.2a), then home v3 (all-ink, Oct 16), then the v4 service-page pattern (brand guidelines: white ~60%, navy openers, blue to point).
 
 ## Where we are now (keep this block current)
-_Last updated: Wed Oct 21, 2026. Latest commit: see `git log` (main, pushed; tags v1.0.0, v1.0.1)._
+_Last updated: Mon Oct 26, 2026. Latest commit: see `git log` (main, pushed; tags v1.0.0, v1.0.1)._
 
 - **Live:** V1.0 one-page site (home, /book in the site's dark theme with the Cal.com `discoverycall` calendar, privacy, terms, 404) plus the V1.0.1 fixes and later changes, on Cloudflare Workers (Worker `dd`): https://dd.mohamed-ali-aec.workers.dev/ (noindex until the custom domain is attached). Hosting is final; the Vercel config is removed.
 - **Home now:** 9 sections; Selected work = three chapters (NJWAR, Yawmy Care, Rushr; D-07 lifted) plus a user-driven horizontal rail of 12 projects (no autoplay, no Pause control); reviews = featured card + still notes; client row = still cards; EduLens named with its 60-90% result; US spelling.
@@ -15,7 +15,10 @@ _Last updated: Wed Oct 21, 2026. Latest commit: see `git log` (main, pushed; tag
 - **Last gate (Oct 21):** `npm run qa` 0 findings, unit 23/23, functional 32/32, events 21/21, axe 0 blockers on every live page (the Cal iframe is excluded), Lighthouse mobile home perf 98 / LCP 1.96 s / CLS 0, /book perf 100.
 - **Final audit (Oct 21):** `docs/review/final-audit/` (copy-facts.md, technical.md with the Cloudflare launch-day checklist). Before deploy set the Cloudflare build variables `PUBLIC_POSTHOG_KEY` and `PUBLIC_CF_BEACON_TOKEN` (or the privacy page names analytics that are not running), and turn off Rocket Loader, Email Obfuscation, Bot Fight Mode and Web Analytics auto-setup in the dashboard.
 - **Waiting on Mohamed before go-live:** attach discoverdev.ai to the Worker and remove the preview noindex; the Cal.com event content (rename to "Clarity call", questions, hours, emails: `docs/setup/cal-com-clarity-call.md`); NJWAR-Athkado link; Continuum Therapy Collective consent; five technical claims in the C3 guide before V1.2.
-- **Arabic version (planned Oct 22):** `docs/plan/arabic-version.md`, waiting on Mohamed's decisions (section 11).
+- **Arabic version: LIVE in the code (Oct 23).** /ar, /ar/book, /ar/book/confirmed, /ar/privacy, /ar/terms, /ar/404; hreflang en/ar/x-default, sitemap alternates, language link, native review confirmed by Mohamed (`docs/plan/arabic-version.md`, `context/03-copy-ar.md`).
+- **Gulf-first (Oct 23):** target is Gulf companies, Saudi Arabia first (`docs/plan/gulf-first.md`); prices stay in USD; LinkedIn added; Upwork, Fiverr, GitHub and the review count removed.
+- **Tab titles (Oct 23, commit `921099f`):** home brand-first in both languages, inner pages `Page | DiscoverDev`. **On `main` and GitHub, but the live site still showed the older titles on Oct 26: run Deploy/rebuild of Worker `dd` in Cloudflare.**
+- **Where the project lives (Oct 26):** `C:\Users\Mohamed Ali\Desktop\New folder\Discoverdev Landing Page` (moved from the Desktop root); `main` equals `origin/main` (github.com/discoverdevai/DD), working tree clean; archive and baselines in `Discoverdev-archive` next to it.
 - **After launch:** real EduLens, Upscend and BioBank screens with client OK; rest of the art direction (`docs/review/design-review.html`); Dependabot branches on origin.
 
 ## Keeping this file in step with the chat
@@ -64,6 +67,9 @@ Status: ✅ done · 🔄 in progress · ⏳ next
 ## Progress log
 | When (Cairo) | Step | Result | Notes |
 |---|---|---|---|
+| Oct 26 | Folder and repo review | Done | Project moved to `Desktop/New folder/Discoverdev Landing Page`; no stale paths in the repo; `main` = `origin/main` (`921099f`), tree clean; dead worktree entries pruned; Claude project memory copied to the new path. Live site is behind `main` (old tab titles): redeploy needed. Dependabot branches still open on origin |
+| Oct 23 | Tab titles | Done, pushed (`921099f`) | Home brand-first (EN `DiscoverDev \| Product Development for Gulf Startups`, AR `DiscoverDev \| تطوير المنتجات للشركات الناشئة`); inner pages `Book a Call \| DiscoverDev`, `Privacy`, `Terms`, Arabic `احجز مكالمة \| DiscoverDev` etc. 03, 03-ar and 05 updated first. QA 0, functional 32/32 |
+| Oct 23 | Arabic live, Gulf-first, domain | Done | Arabic pages indexable with hreflang and sitemap alternates; Gulf-first English copy and schema; discoverdev.ai and www on Cloudflare (www to root 301, Always Use HTTPS); LinkedIn added; review count removed |
 | Oct 15 | Direction rounds 1–3 | Signal approved | Skills: design-critique, art-direction, design-systems |
 | Oct 16 01:30 | S1 merge | Done | 06 is now v1.1 with a §0 that supersedes conflicting sections |
 | Oct 16 01:35 | S2 install | Done | `@astrojs/check` 0.9.10 rejects TS 7, so pinned TS 6.0.3 |

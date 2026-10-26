@@ -5,7 +5,7 @@ Two sessions write here:
 - **Claude Code** (Mohamed's PC): builds the site.
 - **Claude, DiscoverDev project chat** (claude.ai): plans, researches, tests.
 
-Last updated: Fri Oct 16, 2026, 17:30 Cairo · by Claude Code · site commit: see `docs/PLAN.md`.
+Last updated: Mon Oct 26, 2026 · by Claude Code · site commit: see `docs/PLAN.md`.
 
 ## Where things live
 | What | File |
@@ -136,3 +136,5 @@ Last updated: Fri Oct 16, 2026, 17:30 Cairo · by Claude Code · site commit: se
 | Oct 23 | **Gulf-first (Mohamed):** target is Gulf companies fully. English home/SEO/schema/FAQ reworded Gulf-first (03 first); plan for landing page, SEO and blogs in `docs/plan/gulf-first.md`. Language switcher is a plain text link (hidden on live English until Arabic is reviewed). Reviews: no count ("Rated 5.0 on Clutch"), two Amstadd Clutch reviews added. Arabic home built on /ar (hidden, noindex) | Claude Code (Mohamed) |
 | Oct 23 | **Prices stay in USD (Mohamed)**, English and Arabic; no riyal prices. No price number is on the site yet (D-01) | Claude Code (Mohamed) |
 | Oct 23 | **Arabic is LIVE (Mohamed's decision):** /ar, /ar/book, /ar/book/confirmed, /ar/privacy, /ar/terms, /ar/404 are indexable, in the sitemap with hreflang en/ar/x-default, and the language link (العربية / English) shows on every page that has a twin. Native review done (Mohamed confirmed Oct 23; recorded in `locales.ts`); Arabic legal pages say the English text prevails | Claude Code (Mohamed) |
+| Oct 23 | **Tab titles (Mohamed):** home brand-first in both languages; inner pages page name first, then `\| DiscoverDev`. Rule: tab shows ~15-20 characters, Google ~60 (pixels decide), Arabic about 45-50 characters. Commit `921099f`; 03, 03-ar and 05 hold the text | Claude Code (Mohamed) |
+| Oct 26 | **Working folder moved** to `Desktop/New folder/Discoverdev Landing Page` (same repo, `main` = `origin/main`). The live site was behind `main` (old tab titles): redeploy Worker `dd` in Cloudflare after each push | Claude Code (Mohamed) |
