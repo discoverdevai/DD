@@ -68,3 +68,11 @@ Looked at desktop, phone and Arabic, section by section.
 ## Build page close (Oct 26)
 - Kept: the large centred headline, one button with its terms, the journey line ending at its "Launch" dot.
 - Fixed: the body line said "Tell us on a free 30-minute call", with no object, and repeated the terms under the button. Now: "Tell us about your idea or your prototype. If it is a fit, you get a fixed price before you commit to anything." (AR mirrored). Checked at six sizes in EN and AR.
+
+## Build page final review, top to bottom (Oct 26)
+- Checked at 1440, 1024 and 390 px in English, and at 1440 px in Arabic. No horizontal overflow, no text under 12px, axe clean on the whole page.
+- Lighthouse mobile: 99 / 100 / 100 / 100, LCP 1.8 s, CLS 0.002, TBT 0 ms.
+- SEO: one H1 ("Build: from idea to a live MVP"), title, meta description, canonical, and JSON-LD (Organization, Service, WebPage, FAQPage, WebSite).
+- Fixed: hero to first stop was about 190px (the hero padding plus the first stop padding). It is now the same 88px gap as every other stop.
+- Section heights at 1440×900: plan 1.15, Built with AI 1.19, What you get 0.74, proof 1.00, FAQ 0.81, close 0.62 screens.
+- Still open for Mohamed: quotes on service pages (D-05), a Review booking type in Cal.com, and a native review of the Arabic.

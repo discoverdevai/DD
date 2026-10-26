@@ -100,6 +100,8 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   @media (width >= 100rem) {
     .stop span { display: block; position: absolute; inset-inline-end: calc(100% - var(--line-x) + 1.25rem); inset-block-start: calc(var(--section-y) + 0.35rem); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); white-space: nowrap; }
   }
+  /* The hero hands over to the journey with the same one gap (was hero padding + first stop padding, about 190px at 1440). */
+  :global(main .phero:has(+ .journey)) { padding-block-end: 0; }
   /* One gap between stops: each section brings only its top spacing, so two sections never stack both (was 174px, now 88px at 1440). */
   .journey > :global(section:not(:last-child)) { padding-block-end: 0; }
   .voice { padding-block: 0; }
