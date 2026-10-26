@@ -6,12 +6,13 @@ import InlineLink from '../ui/InlineLink.astro';
 import { isLive, type RouteKey } from '../../data/routes';
 // Optional `link` renders after the answer, outside the JSON-LD answer text (03 §0.8).
 interface Item { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }
-interface Props { items: readonly Item[] }
-const { items } = Astro.props;
+// `openFirst` (Build, Oct 26): the first answer shows on load, so the top buyer question is answered without a click.
+interface Props { items: readonly Item[]; openFirst?: boolean }
+const { items, openFirst = false } = Astro.props;
 ---
 <div class="faq">
-  {items.map((it) => (
-    <details id={`faq-${it.id}`} class="faq__item">
+  {items.map((it, i) => (
+    <details id={`faq-${it.id}`} class="faq__item" open={openFirst && i === 0}>
       <summary class="faq__q"><span>{it.q}</span><Icon name="chevron-down" size={20} /></summary>
       <div class="faq__a"><p>{it.a}</p>{it.link && isLive(it.link.to) && <p class="faq__more"><InlineLink text="" link={it.link} /></p>}</div>
     </details>

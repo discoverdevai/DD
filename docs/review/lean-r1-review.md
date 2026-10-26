@@ -58,3 +58,9 @@ Looked at desktop, phone and Arabic, section by section.
 - The lone project card under the EduLens case left most of its row empty. It is now one slim bar: "Also from idea to launch", the AR furniture project (Saudi Arabia, no client name), its path as steps (Feasibility sprints → Discovery → UX and UI → Development → AI recommendations → AR to see furniture at home) and the Clutch rating with its link. Same facts as before (09).
 - EduLens chart: the value column is wider so the Arabic "من 10 إلى 40" stays on one line.
 - The section now fits one screen at 1440×900 (1.04 in Arabic); checks pass at six sizes in EN and AR.
+
+## Build page FAQ (Oct 26)
+- Kept: two columns, questions in buyer order (cost and time first), one call to action.
+- Fixed: the FAQ button had no terms; it now shows "30 minutes · No pitch · Leave with a next step" like every other clarity-call button (all pages that use this FAQ layout with a button).
+- On Build the first answer, "How much does an MVP cost?", is open on load, so the top buyer question is answered without a click.
+- Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

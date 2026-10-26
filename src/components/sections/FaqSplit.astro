@@ -2,22 +2,23 @@
 // FAQ (03 §2.12) in a two-column layout: sticky heading + help line at inline-start, accordion at inline-end.
 import Faq from '../blocks/Faq.astro';
 import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
 import { bookHref } from '../../data/routes';
 import { t } from '../../i18n/t';
 import type { RouteKey } from '../../data/routes';
 // `ctaPage`: adds a clarity-call button under the heading (fills the column beside the questions; Oct 16 review).
-interface Props { surface?: 'ink' | 'paper'; ctaPage?: string; title: string; items: readonly { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }[] }
-const { title, items, surface = 'ink', ctaPage } = Astro.props;
+interface Props { surface?: 'ink' | 'paper'; ctaPage?: string; openFirst?: boolean; title: string; items: readonly { id: string; q: string; a: string; link?: { label: string; to: RouteKey } }[] }
+const { title, items, surface = 'ink', ctaPage, openFirst } = Astro.props;
 import SectionHead from '../ui/SectionHead.astro';
 ---
 <section id="faq" class:list={['fs', { 'fs--paper': surface === 'paper' }]} data-surface={surface} aria-labelledby="fs-title">
   <div class="container fs__grid">
     <div class="fs__head">
       <SectionHead id="fs-title" title={title} />
-      {ctaPage && <p><CtaLink href={bookHref('clarity')} ctaId={`${ctaPage}_faq_clarity`} tier="primary" position="faq" target="clarity">{t('cta.clarity')}</CtaLink></p>}
+      {ctaPage && <div class="fs__cta"><CtaLink href={bookHref('clarity')} ctaId={`${ctaPage}_faq_clarity`} tier="primary" position="faq" target="clarity">{t('cta.clarity')}</CtaLink><CtaTerms kind="clarity" /></div>}
       <p class="fs__help">{t('contact.email.label')}: <a href={`mailto:${t('contact.email')}`} dir="ltr" data-link-context="contact">{t('contact.email')}</a></p>
     </div>
-    <Faq items={items} />
+    <Faq items={items} openFirst={openFirst} />
   </div>
 </section>
 
@@ -28,6 +29,8 @@ import SectionHead from '../ui/SectionHead.astro';
   .fs__head { display: grid; gap: var(--space-4); }
   .fs--paper { border-block-start: 1px solid var(--color-border-subtle); }
   .fs--paper :global(.section-heading) { color: var(--neutral-950); font-weight: var(--weight-bold); letter-spacing: -0.03em; }
+  /* The call with its terms, as under every clarity-call button (04 §6). */
+  .fs__cta { display: grid; gap: var(--space-2); justify-items: start; }
   .fs__help { color: var(--color-text-muted); }
   .fs__help :global(a) { display: inline-block; padding-block: 0.65rem; margin-block: -0.65rem; } /* 44px hit area, same look */
   .fs__grid :global(.faq) { max-inline-size: none; }
