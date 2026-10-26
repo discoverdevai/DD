@@ -73,7 +73,7 @@ const { c, low, high, quote, big } = Astro.props;
 
   .case__chart { display: grid; gap: var(--space-4); align-content: start; align-self: start; padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-bg); }
   .case__charttitle { font-weight: var(--weight-medium); color: var(--color-heading); }
-  .case__row { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) 5.5rem; align-items: center; gap: var(--space-3); } /* the bar takes the free width, also on phones */
+  .case__row { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) 7rem; align-items: center; gap: var(--space-3); } /* the bar takes the free width, also on phones */
   .case__label { font-size: var(--text-sm); color: var(--color-text-muted); }
   /* Phones: label and value on one line, the bar full width under them. */
   @media (width < 40rem) { .case__row { grid-template-columns: minmax(0, 1fr) auto; row-gap: var(--space-1); } .case__bar { grid-column: 1 / -1; grid-row: 2; } }
@@ -82,7 +82,7 @@ const { c, low, high, quote, big } = Astro.props;
   .case__fill--before { fill: color-mix(in oklab, var(--blue-300) 35%, transparent); }
   .case__fill--range { fill: color-mix(in oklab, var(--green-300) 30%, transparent); }
   .case__fill--after { fill: var(--color-human-mark); }
-  .case__value { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); font-variant-numeric: tabular-nums; }
+  .case__value { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .case__note { font-size: var(--text-sm); color: var(--color-text-muted); }
 
   .case__changes { display: grid; gap: var(--space-3); }

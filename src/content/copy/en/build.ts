@@ -144,9 +144,8 @@ export const build = {
       quote: { text: 'They focused on building solutions that were practical, scalable, and aligned with our users’ needs.', name: 'Youssef', role: 'CEO, EduLens' },
     },
     quote: { text: 'Professional work and great communication.', name: 'Nojoud Alarfaj', role: 'Athkado, Saudi Arabia' },
-    items: [
-      { title: shared.projectArFurniture, where: 'Saudi Arabia', body: 'Feasibility sprints, then the build: discovery, UX and UI, development, an AI recommendation engine and AR to see furniture at home.' },
-    ],
+    // One more project as a slim bar under the case (03 §16b.10): its path as steps, then the rating.
+    more: { label: 'Also from idea to launch', where: 'Saudi Arabia', title: shared.projectArFurniture, steps: ['Feasibility sprints', 'Discovery', 'UX and UI', 'Development', 'AI recommendations', 'AR to see furniture at home'] },
   },
   // Buyer order (research: Halo Lab, Stormotion, Wavect FAQs): cost and time first.
   faq: {

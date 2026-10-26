@@ -53,3 +53,8 @@ Looked at desktop, phone and Arabic, section by section.
 - Desktop: Day 0 and Days 1–4 stack beside Day 5, so no card is left half empty; the offer bar is one row from 1280px, the call drops to its own row below that.
 - Checked at 1920, 1440, 1366, 1024, 768 and 390 px, English and Arabic: no overflow, axe clean, QA 0 findings, functional 32/32. Height 1.26 screens at 1440×900.
 - Spacing pass: one gap between every stop of the journey (88px at 1440, 56px on phones). Before, two sections back to back stacked both paddings (174px) and a quote added 48px more before the next heading. Each client quote stays 48px under its section. Inside Built with AI, the example finding sits level with the copy, and the days sit a step further from the intro (48px) than from the offer (32px). The page is about 340px shorter at 1440; checks pass at six sizes in EN and AR.
+
+## Build page proof (Oct 26)
+- The lone project card under the EduLens case left most of its row empty. It is now one slim bar: "Also from idea to launch", the AR furniture project (Saudi Arabia, no client name), its path as steps (Feasibility sprints → Discovery → UX and UI → Development → AI recommendations → AR to see furniture at home) and the Clutch rating with its link. Same facts as before (09).
+- EduLens chart: the value column is wider so the Arabic "من 10 إلى 40" stays on one line.
+- The section now fits one screen at 1440×900 (1.04 in Arabic); checks pass at six sizes in EN and AR.

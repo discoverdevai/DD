@@ -1957,6 +1957,9 @@ Mohamed rejected the minimal taste-skill mockup ("worse than ever"); this versio
 ### 16b.9 Built with AI, redesigned (Oct 26)
 Three rows: (1) "Built it with AI? We check it first.", the body, "What we check" as six chips (§3.4), beside the example finding card; (2) the five days as three steps from §3.6: Day 0 Scoping call (Free, 30 minutes. We agree scope and a fixed fee. You share access. · chip Free) · Days 1–4 Review (We go through your code and your live or preview app. We ask questions as we go. · AI-accelerated) · Day 5 Findings (Written report, findings call and a fixed quote for the fixes. · Senior sign-off), with the sample findings shown in the dark theme inside the Day 5 card; (3) one offer bar: $1,490 Reviews start from · About 5 Working days · No useful findings, no charge. · The full fee is credited toward the fix or a Build with us. · Book a free clarity call. The white sample-report sheet is gone from this page.
 
+### 16b.10 Proof, one more project as a bar (Oct 26)
+- Under the EduLens case, one slim bar replaces the lone project card: label "Also from idea to launch" · tag "Saudi Arabia" · "AR furniture e-commerce with AI recommendations" · steps in order: Feasibility sprints → Discovery → UX and UI → Development → AI recommendations → AR to see furniture at home · then the rating line "Rated 5.0 on Clutch" with its Clutch link. Same facts as before (09 Portfolio), no client name.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 
