@@ -7,22 +7,17 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
 import Section from '../sections/Section.astro';
-import SectionHead from '../ui/SectionHead.astro';
 import ProofList from '../blocks/ProofList.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
-import CtaLink from '../ui/CtaLink.astro';
-import CtaTerms from '../ui/CtaTerms.astro';
 import BuildPath from '../scenes/BuildPath.astro';
-import CodeFinding from '../scenes/CodeFinding.astro';
-import ReviewSnapshot from '../scenes/ReviewSnapshot.astro';
 import CaseResult from '../scenes/CaseResult.astro';
 import Quote from '../blocks/Quote.astro';
 import WeekTrack from '../sections/WeekTrack.astro';
 import WhatYouGet from '../sections/WhatYouGet.astro';
+import ReviewSection from '../sections/ReviewSection.astro';
 import { copy } from '../../content/copy';
-import { t, getLocale } from '../../i18n/t';
-import { bookHref } from '../../data/routes';
+import { getLocale } from '../../i18n/t';
 import { graph, orgStub, webPage, canonical, faqPage, service } from '../../lib/seo';
 
 const c = copy().build;
@@ -50,25 +45,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
     <div class="container voice"><Quote text={c.plan.quote.text} name={c.plan.quote.name} role={c.plan.quote.role} /></div>
 
     <div class="stop" aria-hidden="true"><span>{c.stages.review}</span></div>
-    <section id="review" class="review" data-surface="ink" aria-labelledby="review-title">
-      <div class="container review__grid">
-        <div class="review__copy">
-          <SectionHead id="review-title" title={c.review.title} measure={24} />
-          <p class="review__body">{c.review.body}</p>
-          <dl class="review__facts">{c.review.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
-          <p class="review__guarantee">{c.review.guarantee}</p>
-          <p class="review__credit">{c.review.credit}</p>
-          <div class="review__cta">
-            <CtaLink href={bookHref('clarity')} ctaId="build_mid_clarity" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
-            <CtaTerms kind="clarity" />
-          </div>
-        </div>
-        <div class="review__visuals">
-          <CodeFinding c={c.review.finding} />
-          <div class="review__report" data-surface="paper"><ReviewSnapshot /></div>
-        </div>
-      </div>
-    </section>
+    <ReviewSection />
 
     <div class="stop" aria-hidden="true"><span>{c.stages.terms}</span></div>
     <WhatYouGet c={c.get} />
@@ -127,21 +104,6 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   /* A section followed by its client quote ends shorter, so the quote reads as part of it, not as a section of its own. */
   .journey > :global(section:has(+ .voice)) { padding-block-end: var(--space-12); }
 
-  .review { padding-block: var(--section-y); }
-  .review__grid { display: grid; gap: var(--space-10); align-items: start; }
-  @media (width >= 64rem) { .review__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-12); } }
-  .review__copy { display: grid; gap: var(--space-4); }
-  .review__body { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
-  .review__facts { display: flex; flex-wrap: wrap; gap: var(--space-8); margin: var(--space-2) 0 0; }
-  .review__facts div { display: grid; gap: var(--space-1); }
-  .review__facts dt { order: 2; font-size: var(--text-sm); color: var(--color-text-muted); }
-  .review__facts dd { order: 1; margin: 0; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-3xl); line-height: 1; letter-spacing: -0.03em; color: var(--color-heading); }
-  .review__guarantee { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-human-mark); }
-  .review__credit { font-size: var(--text-sm); color: var(--color-text-muted); }
-  .review__cta { display: grid; gap: var(--space-3); justify-items: start; margin-block-start: var(--space-2); }
-  .review__visuals { display: grid; gap: var(--space-6); min-inline-size: 0; }
-  .review__report { border-radius: var(--radius-lg); }
-  @media (width >= 64rem) { .review__report { inline-size: 88%; justify-self: end; } }
 
   .proof { display: grid; gap: var(--space-10); }
 </style>

@@ -1954,6 +1954,9 @@ Mohamed rejected the minimal taste-skill mockup ("worse than ever"); this versio
 - Title "What you get, and what you can count on." · band "In every Build": Product design, UX and UI · Web, mobile and APIs · QA and testing · Deployment to your cloud · Weekly results you can use.
 - Four tiles, answer first: Timeline "8–12 weeks" (From agreed scope to real users, fixed in your plan. Validate, if you need it, adds 1–2 weeks first.) · Price "Fixed" (Set from a clear scope before we start. Validate and Review fees credit toward it.) · Team "A full squad" (A tech lead, developers, QA, a product manager and a designer. The team that scopes it builds it. + link) · Ownership "All yours" (Full IP, no lock-in. Your code lives in your repository and your cloud accounts.).
 
+### 16b.9 Built with AI, redesigned (Oct 26)
+Three rows: (1) "Built it with AI? We check it first.", the body, "What we check" as six chips (§3.4), beside the example finding card; (2) the five days as three steps from §3.6: Day 0 Scoping call (Free, 30 minutes. We agree scope and a fixed fee. You share access. · chip Free) · Days 1–4 Review (We go through your code and your live or preview app. We ask questions as we go. · AI-accelerated) · Day 5 Findings (Written report, findings call and a fixed quote for the fixes. · Senior sign-off), with the sample findings shown in the dark theme inside the Day 5 card; (3) one offer bar: $1,490 Reviews start from · About 5 Working days · No useful findings, no charge. · The full fee is credited toward the fix or a Build with us. · Book a free clarity call. The white sample-report sheet is gone from this page.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

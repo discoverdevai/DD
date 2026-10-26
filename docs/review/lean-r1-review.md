@@ -47,3 +47,8 @@ Looked at desktop, phone and Arabic, section by section.
 - Plan: compact phase cards and one-line chart labels ("Weekly demo", "Senior sign-off"); 1.15 screens at 1440×900 (was 1.29).
 - Proof: the quote sits under the chart, beside the big number; 1.09 screens (was 1.21).
 - Checked at 1920×1080, 1440×900, 1366×768, 1024×768, 768×1024 and 390×844, English and Arabic: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Build page "Built it with AI?" redesign (Oct 26)
+- One section in three rows: the question, what we check (six chips) and one example finding being fixed; the five days as steps, Day 5 carrying the findings report you receive (dark theme, no white sheet); the offer as one bar (from $1,490, about 5 working days, no-charge guarantee, fee credited, clarity call).
+- Desktop: Day 0 and Days 1–4 stack beside Day 5, so no card is left half empty; the offer bar is one row from 1280px, the call drops to its own row below that.
+- Checked at 1920, 1440, 1366, 1024, 768 and 390 px, English and Arabic: no overflow, axe clean, QA 0 findings, functional 32/32. Height 1.26 screens at 1440×900.

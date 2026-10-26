@@ -69,6 +69,14 @@ export const build = {
     ],
     guarantee: 'No useful findings, no charge.', // §3.8
     credit: 'The full fee is credited toward the fix or a Build with us.', // §3.7
+    // Oct 26 redesign (03 §16b.9): what we check (§3.4) and the five days (§3.6), day 5 shows the sample findings.
+    checkTitle: 'What we check',
+    areas: ['Access and security', 'Data', 'Payments', 'Code quality', 'Scale and running costs', 'Ownership and handover'],
+    steps: [
+      { meta: 'Day 0', title: 'Scoping call', body: 'Free, 30 minutes. We agree scope and a fixed fee. You share access.', chip: { kind: 'human', label: 'Free' } },
+      { meta: 'Days 1–4', title: 'Review', body: 'We go through your code and your live or preview app. We ask questions as we go.', chip: { kind: 'ai', label: 'AI-accelerated' } },
+      { meta: 'Day 5', title: 'Findings', body: 'Written report, findings call and a fixed quote for the fixes.', chip: { kind: 'human', label: 'Senior sign-off' } },
+    ],
     // Research: Red Leg's code diff, MetaCTO's code card. An example, not a client.
     finding: {
       label: 'Example finding, not a client',
