@@ -3,6 +3,7 @@ export const shared = {
   pillarGuideLink: "Read the guide: How to take an AI-built app to production",
   projectArFurniture: "AR furniture e-commerce with AI recommendations",
   aboutLink: "About DiscoverDev and where we work",
+  howLink: "Who we are and how we work", // 03 §16b (lean R1)
   reviewStartLink: "Have a prototype? Start with a Launch-Ready Review",
   mvpTimeQ: "How long does it take to build an MVP?",
   personResponsible: "A person is responsible for every line that reaches your users.",

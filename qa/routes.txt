@@ -5,11 +5,18 @@
 /book/confirmed
 /privacy
 /terms
+# Lean R1 (Oct 26, 03 §16b)
+/build
+/scale
+/how-we-work
 # Arabic home: built but hidden (noindex) until native review.
 /ar
 /ar/book
 /ar/book/confirmed
 /ar/privacy
 /ar/terms
-# V1.1: /validate /build /scale /work /work/edtech-ai-agents /how-we-work /about
+/ar/build
+/ar/scale
+/ar/how-we-work
+# Lean R2: /pricing /work (Validate, About, Review and Partners now live inside Build, Scale and How we work)
 # V1.2: /launch-ready /partners /launch-check /insights /insights/ai-app-to-production /insights/ai-built-app-security-holes /insights/lovable-launch-checklist /insights/fix-or-rebuild-ai-app

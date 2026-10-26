@@ -33,7 +33,7 @@ const release = {
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
 const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\//;
 // Pages that exist in English and Arabic: /x <-> /ar/x, / <-> /ar (src/i18n/t.ts AR_PAGES).
-const PAIRED = ['/', '/book', '/privacy', '/terms'];
+const PAIRED = ['/', '/build', '/scale', '/how-we-work', '/book', '/privacy', '/terms'];
 
 // Article lastmod for the sitemap (05 §6, 07 §7.1): each insight's `updatedAt` from its frontmatter, keyed by URL path.
 // Only articles get lastmod; it must stay accurate (Google ignores lastmod it can't trust).

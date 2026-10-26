@@ -1,0 +1,78 @@
+---
+// /scale and /ar/scale (03 §7 + §16b.2, lean R1): a team that stays, with the Partners page folded in as one section
+// (white-label or staff augmentation, compared). All on the ink theme like home (Oct 26).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../sections/PageHero.astro';
+import Section from '../sections/Section.astro';
+import FitList from '../blocks/FitList.astro';
+import CardGrid from '../blocks/CardGrid.astro';
+import CheckList from '../blocks/CheckList.astro';
+import ProofList from '../blocks/ProofList.astro';
+import FaqSplit from '../sections/FaqSplit.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import ServiceGlance from '../scenes/ServiceGlance.astro';
+import SquadLoop from '../sections/SquadLoop.astro';
+import TermsDoc from '../sections/TermsDoc.astro';
+import ComparisonTable from '../partners/ComparisonTable.astro';
+import { copy } from '../../content/copy';
+import { t, getLocale } from '../../i18n/t';
+import { graph, orgStub, webPage, canonical, faqPage, service } from '../../lib/seo';
+
+const c = copy().scale;
+const path = getLocale() === 'ar' ? '/ar/scale' : '/scale';
+const url = canonical(path);
+const serviceLd = service(url, {
+  name: 'Scale', serviceType: 'Dedicated development team', description: c.seo.description,
+  audience: 'Startups with a live product',
+  offers: { url: `${url}#pricing`, description: c.pricing.answer },
+});
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
+const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
+  <PageHero page="scale" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
+    <ServiceGlance slot="aside" name={t('nav.scale')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
+  </PageHero>
+
+  <SquadLoop title={c.squad.title} rosterLabel={c.squad.rosterLabel} roles={c.squad.roles} ring={c.squad.ring} steps={c.process.steps} />
+
+  <Section id="outcomes" surface="raised" title={c.outcomes.title}>
+    <CardGrid items={c.outcomes.items} />
+    <div class="included">
+      <h3 class="included__title">{c.included.title}</h3>
+      <CheckList items={c.included.items} class="included__list" />
+    </div>
+  </Section>
+
+  <Section id="fit" surface="ink" title={c.fit.title}>
+    <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
+  </Section>
+
+  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
+    { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
+    { title: c.team.title, body: c.team.body, link: c.team.link },
+    { title: c.ownership.title, body: c.ownership.body },
+  ]} />
+
+  <Section id="partners" surface="raised" title={c.partners.title} lead={c.partners.answer}>
+    <ComparisonTable id="partners-table" caption={c.partners.caption} columns={c.partners.columns} rows={c.partners.rows} />
+  </Section>
+
+  <Section id="proof" surface="ink" title={c.proof.title}>
+    <ProofList items={c.proof.items} />
+    <p class="retention">{c.proof.retention}</p>
+  </Section>
+
+  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="scale" />
+
+  <CtaBand title={c.band.title} kind="clarity" page="scale" />
+</BaseLayout>
+
+<style>
+  .included { display: grid; gap: var(--space-4); margin-block-start: var(--space-10); padding-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
+  @media (width >= 56rem) { .included { grid-template-columns: 1fr 2fr; align-items: start; } }
+  .included__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .included :global(.included__list) { display: grid; gap: var(--space-3) var(--space-8); }
+  @media (width >= 40rem) { .included :global(.included__list) { grid-template-columns: 1fr 1fr; } }
+  .retention { margin-block: var(--space-8) var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-medium); color: var(--color-heading); }
+</style>

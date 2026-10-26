@@ -26,9 +26,11 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
   if (await toggle.count() === 0) {
     // V1.0 one-page site (03 §2V1): no Services menu; the nav jumps to home sections, and every target exists.
     const navLinks = await p.locator('.site-nav__list a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
-    ok('V1 nav: Services, How we work, Work, Reviews, FAQ anchors', navLinks.join('|') === '/#services|/#how-we-work|/#work|/#reviews|/#faq', navLinks.join('|'));
-    const missing = await p.evaluate((hs) => hs.filter((h) => !document.getElementById(h.split('#')[1])), navLinks);
-    ok('V1 nav: every anchor target exists on home', missing.length === 0, missing.join(', '));
+    // Lean R1 (03 §16b.4): Build, Scale and How we work are pages; Work and FAQ still jump to home sections.
+    ok('Lean nav: Build, Scale, How we work, Work, FAQ', navLinks.join('|') === '/build|/scale|/how-we-work|/#work|/#faq', navLinks.join('|'));
+    const anchors = navLinks.filter((h) => h.startsWith('/#'));
+    const missing = await p.evaluate((hs) => hs.filter((h) => !document.getElementById(h.split('#')[1])), anchors);
+    ok('Lean nav: every home anchor target exists', missing.length === 0, missing.join(', '));
   } else {
   await toggle.focus(); await p.keyboard.press('Enter');
   ok('Services: Enter opens', (await toggle.getAttribute('aria-expanded')) === 'true' && await p.locator('#services-panel').isVisible());

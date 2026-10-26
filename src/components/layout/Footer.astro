@@ -15,15 +15,17 @@ const columns = [
   { title: t('footer.services'), items: col([{ key: 'validate', label: t('nav.validate') }, { key: 'build', label: t('nav.build') }, { key: 'scale', label: t('nav.scale') }, { key: 'review', label: t('footer.review') }, { key: 'partners', label: t('nav.partners') }]) },
   { title: t('footer.work'), items: col([{ key: 'workEdulens', label: t('footer.case') }, { key: 'work', label: t('footer.allWork') }]) },
   { title: t('footer.insights'), items: col([{ key: 'insights', label: t('footer.guides') }, { key: 'launchCheck', label: t('footer.launchCheck') }]) },
-  { title: t('footer.company'), items: col([{ key: 'about', label: t('footer.about') }, ...(isLive('book') ? [{ href: bookHref('clarity'), label: t('footer.book') }] : []), { key: 'privacy', label: t('footer.privacy') }, { key: 'terms', label: t('footer.terms') }]) },
+  { title: t('footer.company'), items: col([{ key: 'howWeWork', label: t('nav.how') }, { key: 'about', label: t('footer.about') }, ...(isLive('book') ? [{ href: bookHref('clarity'), label: t('footer.book') }] : []), { key: 'privacy', label: t('footer.privacy') }, { key: 'terms', label: t('footer.terms') }]) },
 ].filter((c) => c.items.length > 0);
 // V1.0 (one-page site, 03 §2V1): while the service pages are off, the footer links to the home sections instead.
-if (!['validate', 'build', 'scale'].some((k) => isLive(k as RouteKey))) {
-  columns.unshift({ title: t('footer.explore'), items: [
-    { href: localPath('/#services'), label: t('nav.services') }, { href: localPath('/#how-we-work'), label: t('nav.how') },
-    { href: localPath('/#work'), label: t('nav.work') }, { href: localPath('/#reviews'), label: t('nav.reviews') }, { href: localPath('/#faq'), label: t('nav.faq') },
-  ] });
-}
+// Lean R1: sections with no page of their own yet keep their home anchors here.
+const explore = [
+  ...(!['validate', 'build', 'scale'].some((k) => isLive(k as RouteKey)) ? [{ href: localPath('/#services'), label: t('nav.services') }] : []),
+  ...(!isLive('howWeWork') ? [{ href: localPath('/#how-we-work'), label: t('nav.how') }] : []),
+  ...(!isLive('work') ? [{ href: localPath('/#work'), label: t('nav.work') }] : []),
+  { href: localPath('/#reviews'), label: t('nav.reviews') }, { href: localPath('/#faq'), label: t('nav.faq') },
+];
+columns.unshift({ title: t('footer.explore'), items: explore });
 // `proof`: the rating line; home shows it in the hero and above the reviews, so its footer hides it (Oct 18).
 // `core`: the large core-idea block; home hides it (the problem band already says it, Oct 18 CRO review).
 interface Props { proof?: boolean; core?: boolean }

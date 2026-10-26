@@ -1,0 +1,30 @@
+---
+// "Two ways in" (03 §7.13, §16b): a new idea or an existing app, each card one stretched link to where that path starts.
+// Used on /build (anchors on the same page) and /how-we-work (links to /build). The second card carries the human
+// (green) edge: existing code gets a senior review first.
+interface Item { tag: string; title: string; body: string; link: string; href: string }
+interface Props { items: readonly Item[] }
+const { items } = Astro.props;
+---
+<ul role="list" class="paths">
+  {items.map((p) => (
+    <li class="paths__card card-link">
+      <p class="tag">{p.tag}</p>
+      <h3 class="paths__h3"><a href={p.href}>{p.title}</a></h3>
+      <p class="paths__body">{p.body}</p>
+      <p class="paths__more" aria-hidden="true">{p.link}<span class="icon--dir">→</span></p>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .paths { display: grid; gap: var(--space-4); }
+  @media (width >= 48rem) { .paths { grid-template-columns: 1fr 1fr; } }
+  .paths__card { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); }
+  .paths__card:last-child { border-color: color-mix(in oklab, var(--color-human-mark) 30%, transparent); }
+  .paths__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .paths__h3 a { color: inherit; text-decoration: none; }
+  .paths__body { color: var(--color-text-muted); line-height: 1.55; }
+  .paths__more { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
+  @media (hover: hover) { .paths__card:hover { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); } }
+</style>

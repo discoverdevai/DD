@@ -10,7 +10,7 @@ interface Props { id?: string; title: string; rosterLabel: string; roles: readon
 const { id = 'process', title, rosterLabel, roles, ring, steps } = Astro.props;
 const [join, ship, review] = steps;
 ---
-<section id={id} class="squad bg-dots" data-surface="alt" aria-labelledby={`${id}-title`}>
+<section id={id} class="squad" data-surface="ink" aria-labelledby={`${id}-title`}>
   <div class="container">
     <h2 id={`${id}-title`} class="section-title squad__title reveal">{title}</h2>
     <div class="squad__grid">
@@ -60,7 +60,7 @@ const [join, ship, review] = steps;
   .squad__title { margin-block-end: var(--space-10); max-inline-size: 17ch; } /* breaks after the first sentence */
   .squad__grid { display: grid; gap: var(--space-6); align-items: start; }
   @media (width >= 56rem) { .squad__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-10); } }
-  .squad__roster { display: grid; gap: var(--space-5); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); color: var(--neutral-0); }
+  .squad__roster { display: grid; gap: var(--space-5); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); border: 1px solid var(--color-hairline); color: var(--neutral-0); }
   .squad__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); }
   .squad__roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
   /* Roles read as a roster, not buttons (Jakob): no boxed tiles; the lead sits on its own row with a filled icon. */
@@ -71,21 +71,21 @@ const [join, ship, review] = steps;
   .squad__icon { display: grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-sm); background: rgb(var(--neutral-0-rgb) / 0.1); color: var(--blue-100); flex: none; }
 
   .squad__flow { display: grid; gap: var(--space-3); }
-  .squad__step { display: grid; gap: var(--space-2); padding: var(--space-5); border-radius: var(--radius-md); background: var(--neutral-0); border: 1px solid var(--blue-100); border-block-start: 4px solid var(--blue-800); }
-  .squad__step--loop { border-block-start-color: var(--blue-700); grid-template-columns: minmax(0, 1fr); gap: var(--space-5); align-items: center; }
+  .squad__step { display: grid; gap: var(--space-2); padding: var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); border-block-start: 4px solid color-mix(in oklab, var(--blue-300) 35%, transparent); }
+  .squad__step--loop { border-block-start-color: var(--blue-500); grid-template-columns: minmax(0, 1fr); gap: var(--space-5); align-items: center; }
   @media (width >= 30rem) { .squad__step--loop { grid-template-columns: auto minmax(0, 1fr); } }
-  .squad__meta { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-700); }
-  .squad__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.015em; color: var(--neutral-950); }
+  .squad__meta { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .squad__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: -0.015em; color: var(--color-heading); }
   .squad__body { color: var(--color-text-muted); }
   .squad__loop-text { display: grid; gap: var(--space-2); justify-items: start; }
 
   /* Sprint ring: 120px circle with four labels at the compass points. */
   .squad__ring { position: relative; inline-size: 11rem; block-size: 11rem; display: grid; place-items: center; justify-self: center; }
   .squad__ring svg { inline-size: 7.5rem; block-size: 7.5rem; overflow: visible; }
-  .squad__track { fill: none; stroke: var(--blue-100); stroke-width: 6; }
-  .squad__arc { fill: none; stroke: var(--blue-700); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 0.86 1; transform: rotate(-80deg); transform-origin: 60px 60px; }
-  .squad__head { fill: none; stroke: var(--blue-700); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-  .squad__ring-label { position: absolute; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-800); background: var(--neutral-0); padding: 1px 6px; border-radius: var(--radius-pill); border: 1px solid var(--blue-100); }
+  .squad__track { fill: none; stroke: color-mix(in oklab, var(--blue-300) 18%, transparent); stroke-width: 6; }
+  .squad__arc { fill: none; stroke: var(--blue-400); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 0.86 1; transform: rotate(-80deg); transform-origin: 60px 60px; }
+  .squad__head { fill: none; stroke: var(--blue-400); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+  .squad__ring-label { position: absolute; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-100); background: var(--color-surface); padding: 1px 6px; border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); }
   .squad__ring-label--0 { inset-block-start: 0; inset-inline-start: 50%; translate: -50% 0; }
   .squad__ring-label--1 { inset-inline-end: 0; inset-block-start: 50%; translate: 0 -50%; }
   .squad__ring-label--2 { inset-block-end: 0; inset-inline-start: 50%; translate: -50% 0; }

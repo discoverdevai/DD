@@ -11,8 +11,8 @@ export const ROUTES = {
   home: { path: '/', live: live(true) },
   review: { path: '/launch-ready', live: live(false) },
   validate: { path: '/validate', live: live(false) },
-  build: { path: '/build', live: live(false) },
-  scale: { path: '/scale', live: live(false) },
+  build: { path: '/build', live: live(true) }, // lean R1 (03 §16b): Validate and the Review live inside /build
+  scale: { path: '/scale', live: live(true) }, // lean R1: Partners lives inside /scale
   partners: { path: '/partners', live: live(false) },
   work: { path: '/work', live: live(false) },
   workEdulens: { path: '/work/edtech-ai-agents', live: live(false) }, // anonymized EduLens case (D-06, 03 §0.7)
@@ -22,7 +22,7 @@ export const ROUTES = {
   guideSecurity: { path: '/insights/ai-built-app-security-holes', live: live(false) },
   guideLovable: { path: '/insights/lovable-launch-checklist', live: live(false) },
   guideFixRebuild: { path: '/insights/fix-or-rebuild-ai-app', live: live(false) },
-  howWeWork: { path: '/how-we-work', live: live(false) }, // 03 §7.13 (Oct 16)
+  howWeWork: { path: '/how-we-work', live: live(true) }, // 03 §7.13 (Oct 16); lean R1: About lives inside it
   about: { path: '/about', live: live(false) },
   launchCheck: { path: '/launch-check', live: live(false) },
   book: { path: '/book', live: live(true) },

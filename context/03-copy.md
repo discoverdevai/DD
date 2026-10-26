@@ -1889,6 +1889,44 @@ Not unless you ask us to. You own the client relationship. [VERIFY: V13]
 ## 16a. /design-system (internal, Oct 18)
 - Not marketing copy: a private, noindex reference page for the team. Its text lives in `src/content/copy/en/design-system.ts` and describes the real tokens and components (06). No claims, no proof, never linked from the site.
 
+## 16b. Lean site R1 (Oct 26, branch `site-r1-lean`; plan `docs/plan/website-plan-lean.md`)
+Three pages absorb the others: Build takes Validate and the Launch-Ready Review, Scale takes Partners, How we work takes About and a "your code, data and IP" section. All on the dark ink theme like home. Lines marked (§n) are verbatim from that section; everything else is new here. Arabic: `03-copy-ar.md`, same date.
+
+### 16b.1 Build (/build)
+- **SEO title (55):** MVP Development Company for Gulf Startups | DiscoverDev
+- **Meta:** From idea to a live MVP in 8–12 weeks: 1–2 weeks of Validate, then a fixed-price Build by a senior team. Have an AI-built prototype? We review it first.
+- **Pill:** From idea to launch
+- **H1:** Build: from idea to a live MVP
+- **Lead:** Start with 1–2 weeks of Validate. Then a senior team designs, builds, tests and deploys your MVP in 8–12 weeks, at a fixed price. You launch with real users, and you own all of it.
+- **Meta row:** Validate: 1–2 weeks · Build: 8–12 weeks · Model: Fixed price
+- **Start where you are:** "Two ways in. Both end with a fixed price and a date for your build."
+  - New idea · **Validate first** · 1–2 weeks: a market read, a product scope, a clickable prototype and a fixed build estimate. The fee credits toward your Build. · link "How Validate works" (#validate)
+  - Existing prototype · **Review it first** · Built with Lovable, Bolt, v0, Cursor or a freelancer? A senior team checks it in about 5 working days. From $1,490, credited toward the fix. · link "How the Review works" (#review)
+- **Validate (#validate):** title "Validate: 1–2 weeks to a clear decision." · lead (§5.3) · steps and deliverables (§5.4, §5.5) · "Your decision": Build · Change direction · Stop
+- **Build track (#process):** (§6.12) unchanged
+- **Review (#review):** title "Have an AI-built prototype? Review it first." · body (§3.1 lead) · "What we check": Access and security · Data · Payments · Code quality · Scale and running costs · Ownership and handover (§3.4) · price line "Reviews start from $1,490. The full fee is credited toward the fix or a Build with us." (§3.7) · "No useful findings, no charge." (§3.8)
+- **What you get:** (§6.3, §6.4) unchanged
+- **Price, team and ownership:** price "Validate is a fixed fee, agreed before we start. Every Build has a fixed price, set from a clear scope that comes from Validate, a Launch-Ready Review or our own scoping. Validate and Review fees credit toward the Build." · team (§6.7), link "Who we are and how we work" · ownership (§6.9)
+- **Proof:** AR furniture e-commerce with AI recommendations, Saudi Arabia: "Feasibility sprints, then the build: discovery, UX and UI, development, an AI recommendation engine and AR to see furniture at home." · Entrepreneurs in Kuwait, Switzerland, the UK and Spain (§5.8)
+- **FAQ (7):** MVP timeline (§6.10) · What do I get at the end of Validate? (§5.10) · How do you keep the price fixed? (§6.10) · What if the answer is "don't build it"? (§5.10) · Can you take over my AI-built or freelancer-built prototype? (§6.10, guide link dropped) · What happens after launch? (§6.10, link "See Scale") · Who owns the code? (§6.10)
+- **Band:** Get a fixed price and a date for your product
+
+### 16b.2 Scale (/scale)
+- **SEO title (58):** Dedicated Development Team for Gulf Startups | DiscoverDev · meta (§7) unchanged
+- Hero, squad, outcomes, fit, price/team/ownership, proof, FAQ: (§7) unchanged, except: the not-for line about software houses now reads "You run a software house and need engineers under your brand (see white-label below)."; the team link reads "Who we are and how we work"; the journey stepper and statement band are dropped.
+- **For software houses (#partners):** title "For software houses: white-label or staff augmentation" · answer and comparison table (§8.3) · proof adds the three partner lines (§8.6)
+- **FAQ adds** "Who owns the IP in a white-label project?" and "What is the minimum term for staff augmentation?" (§8.7, links dropped)
+
+### 16b.3 How we work (/how-we-work)
+- **SEO title (55):** Software Development Process: How We Work | DiscoverDev
+- **Meta:** How every DiscoverDev project runs: discover, plan, build, ship and stay. Who we are, where we work, and how your code, data and IP stay yours.
+- Hero, two ways in, who does what, the four steps, FAQ: (§7.13) unchanged (the step-time answer adds the link "Need a team after launch? See Scale"), except the two ways in now link to /build#validate ("How Validate works") and /build#review ("How the Review works").
+- **Who we are and where we work (#team):** story (§12.2) + entity line · where we work and the time strip (§12.4) · track record (§12.5)
+- **Your code, data and IP (#ownership):** "Your code lives in your repository and your cloud accounts." · "Full IP, no lock-in and a clear contract from day one." · "If you want an NDA first, we sign it before we see your code." · "When we hand over, another developer can pick it up." · "A person is responsible for every line that reaches your users." (all from §6.9, §3.10, §12.6)
+
+### 16b.4 Navigation (R1)
+Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
+
 ## 17. Proof-check log (run against the master source doc = `context/09-proof.md`, 2026-10-15)
 
 - Client quotes: all 6 used quotes match master verbatim. Every one carries a [CONSENT] tag. Michelle and Lea quotes left out (exclamation marks).

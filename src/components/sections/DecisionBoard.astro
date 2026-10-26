@@ -9,7 +9,7 @@ interface Option { key: string; title: string; link?: { label: string; to: Route
 interface Props { id?: string; title: string; lead: string; steps: readonly Step[]; deliverables: readonly string[]; label: string; options: readonly Option[] }
 const { id = 'process', title, lead, steps, deliverables, label, options } = Astro.props;
 ---
-<section id={id} class="decision bg-lines" data-surface="paper" aria-labelledby={`${id}-title`}>
+<section id={id} class="decision" data-surface="ink" aria-labelledby={`${id}-title`}>
   <div class="container">
     <header class="decision__head">
       <h2 id={`${id}-title`} class="section-title reveal">{title}</h2>
@@ -19,7 +19,6 @@ const { id = 'process', title, lead, steps, deliverables, label, options } = Ast
       <ol role="list" class="decision__steps reveal-stagger">
         {steps.map((s, i) => (
           <li class="decision__step">
-            <span class="decision__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <div class="decision__text">
               <h3 class="decision__h3">{s.title}</h3>
               <p class="decision__body">{s.body}</p>
@@ -52,24 +51,23 @@ const { id = 'process', title, lead, steps, deliverables, label, options } = Ast
   .decision__board { display: grid; gap: var(--space-6); align-items: center; }
   @media (width >= 56rem) { .decision__board { grid-template-columns: minmax(0, 1.6fr) 4rem minmax(0, 1fr); gap: 0; } }
   .decision__steps { display: grid; gap: var(--space-3); }
-  .decision__step { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-2) var(--space-4); align-items: start; padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--neutral-0); border: 1px solid var(--blue-100); }
-  @media (width >= 40rem) { .decision__step { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; } }
-  .decision__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-700); }
+  .decision__step { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2) var(--space-4); align-items: start; padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  @media (width >= 40rem) { .decision__step { grid-template-columns: minmax(0, 1fr) auto; align-items: center; } }
   .decision__text { display: grid; gap: 2px; min-inline-size: 0; }
-  .decision__h3 { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--neutral-950); }
+  .decision__h3 { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
   .decision__body { font-size: var(--text-sm); color: var(--color-text-muted); }
-  .decision__out { grid-column: 2; justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-800); background: var(--blue-50); border: 1px solid var(--blue-100); padding: 3px 10px; border-radius: var(--radius-pill); white-space: nowrap; }
-  @media (width >= 40rem) { .decision__out { grid-column: 3; } }
+  .decision__out { grid-column: 1; justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); background: color-mix(in oklab, var(--blue-300) 8%, transparent); border: 1px solid color-mix(in oklab, var(--blue-300) 25%, transparent); padding: 3px 10px; border-radius: var(--radius-pill); white-space: nowrap; }
+  @media (width >= 40rem) { .decision__out { grid-column: 2; } }
   /* Connector: the four inputs converge on the verdict (wide screens only). */
   .decision__join { display: none; }
   @media (width >= 56rem) {
     .decision__join { display: block; position: relative; align-self: stretch; }
-    .decision__join span { position: absolute; inset-block: 12% 12%; inset-inline: 0 50%; border-block: 1px solid var(--blue-200); border-inline-end: 1px solid var(--blue-200); border-start-end-radius: var(--radius-md); border-end-end-radius: var(--radius-md); }
-    .decision__join::after { content: ''; position: absolute; inset-block-start: 50%; inset-inline: 50% 6px; block-size: 1px; background: var(--blue-700); }
-    .decision__join::before { content: ''; position: absolute; inset-block-start: calc(50% - 4px); inset-inline-end: 4px; inline-size: 8px; block-size: 8px; border-block-start: 1.5px solid var(--blue-700); border-inline-end: 1.5px solid var(--blue-700); rotate: 45deg; }
+    .decision__join span { position: absolute; inset-block: 12% 12%; inset-inline: 0 50%; border-block: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); border-inline-end: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); border-start-end-radius: var(--radius-md); border-end-end-radius: var(--radius-md); }
+    .decision__join::after { content: ''; position: absolute; inset-block-start: 50%; inset-inline: 50% 6px; block-size: 1px; background: var(--blue-300); }
+    .decision__join::before { content: ''; position: absolute; inset-block-start: calc(50% - 4px); inset-inline-end: 4px; inline-size: 8px; block-size: 8px; border-block-start: 1.5px solid var(--blue-300); border-inline-end: 1.5px solid var(--blue-300); rotate: 45deg; }
     :dir(rtl) .decision__join::before { rotate: -45deg; }
   }
-  .decision__verdict { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); color: var(--neutral-0); }
+  .decision__verdict { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--blue-800); border: 1px solid var(--color-hairline); color: var(--neutral-0); }
   .decision__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--blue-200); }
   .decision__options { display: grid; }
   /* Outcomes read as a list, not buttons (Jakob): rows with hairlines; only the Build row carries a link. */

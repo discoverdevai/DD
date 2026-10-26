@@ -2,12 +2,12 @@
 // Text with one internal link inside it (03 §0.8): when `label` is part of `text`, those exact words become the link,
 // so no new words are added. Otherwise the link follows the text. Routes resolve through the registry, so a link to a
 // page that is not live renders as plain text (05 §3 rule 8: never link to unbuilt routes).
-import { ROUTES, isLive, type RouteKey } from '../../data/routes';
+import { href, isLive, type RouteKey } from '../../data/routes';
 interface Props { text: string; link?: { label: string; to: RouteKey } }
 const { text, link } = Astro.props;
 const live = link && isLive(link.to);
 const at = live ? text.indexOf(link!.label) : -1;
 ---
 {!live ? text : at >= 0
-  ? <>{text.slice(0, at)}<a href={ROUTES[link!.to].path}>{link!.label}</a>{text.slice(at + link!.label.length)}</>
-  : <>{text} <a href={ROUTES[link!.to].path}>{link!.label}</a></>}
+  ? <>{text.slice(0, at)}<a href={href(link!.to)}>{link!.label}</a>{text.slice(at + link!.label.length)}</>
+  : <>{text} <a href={href(link!.to)}>{link!.label}</a></>}

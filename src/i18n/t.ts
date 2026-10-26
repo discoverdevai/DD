@@ -11,7 +11,7 @@ let current: Locale = DEFAULT_LOCALE;
 export const setLocale = (locale: Locale) => { current = locale; };
 export const getLocale = (): Locale => current;
 /** Links to pages that exist in Arabic, in the current language: '/' -> '/ar', '/#faq' -> '/ar#faq', '/book?type=clarity' -> '/ar/book?type=clarity'. Other paths are unchanged. */
-export const AR_PAGES = ['/', '/book', '/book/confirmed', '/privacy', '/terms'] as const;
+export const AR_PAGES = ['/', '/build', '/scale', '/how-we-work', '/book', '/book/confirmed', '/privacy', '/terms'] as const;
 export const localPath = (href: string): string => {
   if (current !== 'ar') return href;
   const path = href.split(/[?#]/)[0] || '/';

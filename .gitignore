@@ -42,3 +42,6 @@ docs/review/v1/
 docs/review/home-v1/*.png
 dist-mock/
 dist-all/
+
+# taste-frontend inspector output (screenshots, report)
+.taste-skill/

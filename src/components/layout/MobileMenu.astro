@@ -7,7 +7,7 @@ import LangSwitch from './LangSwitch.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
 import { t, localPath } from '../../i18n/t';
-import { ROUTES, bookHref, type RouteKey } from '../../data/routes';
+import { href, bookHref, type RouteKey } from '../../data/routes';
 
 interface Props { services: { key: RouteKey; label: string; who: string }[]; links: { href: string; label: string }[] }
 const { services, links } = Astro.props;
@@ -26,7 +26,7 @@ const { services, links } = Astro.props;
         <li>
           <span class="menu-sheet__group">{t('nav.services')}</span>
           <ul role="list" class="menu-sheet__sub">
-            {services.map((s) => <li><a href={ROUTES[s.key].path}>{s.label}<span>{s.who}</span></a></li>)}
+            {services.map((s) => <li><a href={href(s.key)}>{s.label}<span>{s.who}</span></a></li>)}
           </ul>
         </li>
       )}

@@ -1,8 +1,8 @@
-// 03-copy.md §7 (/scale). Verbatim, with §0.7 launch resolutions applied (noted inline).
+// 03-copy.md §7 (/scale) + §16b.2 (lean R1, Oct 26: Partners §8 merged in). Verbatim, with §0.7 launch resolutions applied.
 import { shared } from './shared';
 export const scale = {
   seo: {
-    title: 'Dedicated Development Team on Retainer | DiscoverDev',
+    title: 'Dedicated Development Team for Gulf Startups | DiscoverDev',
     description:
       'A dedicated squad of developers, QA and a PM that stays with your product. Monthly retainer. Engineering hub in Egypt, working in Arabic and English.',
   },
@@ -30,7 +30,7 @@ export const scale = {
     not: [
       // 03 §0.8: existing words become links.
       { text: 'You need a single project with a fixed end (see Build).', link: { label: 'see Build', to: 'build' as const } },
-      { text: 'You run a software house and need engineers under your brand (see Partners).', link: { label: 'see Partners', to: 'partners' as const } },
+      { text: 'You run a software house and need engineers under your brand (see white-label below).' },
     ],
   },
   outcomes: {
@@ -86,7 +86,7 @@ export const scale = {
   team: {
     title: 'Who’s on the squad',
     body: 'From one specialist to a full squad: a lead, developers, QA, a PM and a designer. Skills cover full-stack, mobile, AI and ML, computer vision, data and QA. Senior engineers own the quality.',
-    link: { label: shared.aboutLink, to: 'about' as const }, // 03 §0.8
+    link: { label: shared.howLink, to: 'howWeWork' as const },
   },
   proof: {
     title: 'Teams that stayed',
@@ -96,6 +96,10 @@ export const scale = {
       { title: shared.projectLmsTeam, where: 'UK', body: 'A 12-month embedded partnership. A dedicated PM and engineering team owning roadmap, backlog and sprints, supporting growth with US and UK enterprise clients.' },
       { title: shared.projectEdtechData, where: 'Egypt' },
       { title: shared.projectRideMl, where: 'Saudi Arabia' },
+      // §8.6 partner lines (anonymized).
+      { title: shared.projectWhiteLabelLong, where: 'UK' },
+      { title: 'AI agents for call operations and staff augmentation', where: 'USA' },
+      { title: shared.projectProcurementMl, where: 'Saudi Arabia' },
     ],
     // [CONSENT: all four] → §0.7 replacement line.
     retention: 'Four clients expanded scope with us.',
@@ -116,7 +120,25 @@ export const scale = {
       // [VERIFY: V22 notice period] → §0.7 omit the notice clause (tag removed).
       { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month. A squad can start with one specialist and grow to developers, QA, a product manager and a designer as your roadmap needs it. The minimum commitment is six months, which gives the squad time to learn your product and deliver steadily.' },
       // "How quickly can a squad start?" omitted (§0.7 V22: answer is the tag only).
+      { id: 'ip', q: 'Who owns the IP in a white-label project?', a: 'You do. White-label work runs under an NDA, and the IP goes to you so you can pass it to your client. The details are in the contract from day one.' },
+      { id: 'minimum-term', q: 'What is the minimum term for staff augmentation?', a: 'Three months. That gives the engineer time to learn your codebase and deliver. White-label work is scoped per project.' },
       { id: 'hours', q: 'What hours and languages do you work in?', a: 'Our hub is in Alexandria, Egypt (GMT+2). Gulf time is 0–2 hours ahead, and our day overlaps the Gulf, Europe and US mornings. We work in Arabic and English.' },
+    ],
+  },
+  // §16b.2: For software houses (§8.3 answer and table).
+  partners: {
+    title: 'For software houses: white-label or staff augmentation',
+    answer:
+      'Choose white-label when you want us to deliver a whole project under your brand. Choose staff augmentation when you want engineers working inside your team, managed by you. Both start with an NDA, and the IP goes to you.',
+    caption: 'White-label delivery, staff augmentation and dedicated team compared',
+    columns: ['White-label delivery', 'Staff augmentation', 'Dedicated team'],
+    rows: [
+      { label: 'What you get', cells: ['A project delivered under your brand', 'Engineers who join your team', 'A dedicated squad of developers, QA and a PM'] },
+      { label: 'Who manages day to day', cells: ['We do, inside your process', 'You do', 'Our PM, together with you'] },
+      { label: 'Who your client sees', cells: ['Your brand only', 'Your team', 'Agreed on the partner call'] },
+      { label: 'Minimum term', cells: ['Per project', '3 months', '6 months'] },
+      { label: 'IP and confidentiality', cells: ['NDA, IP to you', 'NDA, IP to you', 'NDA, IP to you'] },
+      { label: 'Price', cells: ['Quoted per project', 'Monthly, per engineer', 'Monthly retainer'] },
     ],
   },
   band: {

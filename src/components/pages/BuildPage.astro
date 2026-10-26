@@ -1,0 +1,110 @@
+---
+// /build and /ar/build (03 §16b.1, lean R1): one page from idea to a live MVP. Two ways in (Validate or a Review), then
+// Validate's decision board, the Build week track, the Review, what you get, terms, proof, FAQ. All on the ink theme
+// like home (Oct 26); the signature sections (DecisionBoard, WeekTrack, TermsDoc) were moved to ink for this.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../sections/PageHero.astro';
+import Section from '../sections/Section.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import PathCards from '../blocks/PathCards.astro';
+import CardGrid from '../blocks/CardGrid.astro';
+import CheckList from '../blocks/CheckList.astro';
+import ProofList from '../blocks/ProofList.astro';
+import FaqSplit from '../sections/FaqSplit.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
+import ServiceGlance from '../scenes/ServiceGlance.astro';
+import DecisionBoard from '../sections/DecisionBoard.astro';
+import WeekTrack from '../sections/WeekTrack.astro';
+import TermsDoc from '../sections/TermsDoc.astro';
+import { copy } from '../../content/copy';
+import { t, getLocale } from '../../i18n/t';
+import { bookHref } from '../../data/routes';
+import { graph, orgStub, webPage, canonical, faqPage, service } from '../../lib/seo';
+
+const c = copy().build;
+const path = getLocale() === 'ar' ? '/ar/build' : '/build';
+const url = canonical(path);
+const serviceLd = service(url, {
+  name: 'Build', serviceType: 'MVP development', description: c.seo.description,
+  audience: 'Founders ready to build',
+  offers: { url: `${url}#pricing`, description: c.pricing.answer },
+});
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
+const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
+const paths = c.start.items.map((p) => ({ ...p, href: `#${p.anchor}` }));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
+  <PageHero page="build" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
+    <ServiceGlance slot="aside" name={t('nav.build')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
+  </PageHero>
+
+  <Section id="start" surface="ink" title={c.start.title} lead={c.start.lead}>
+    <PathCards items={paths} />
+  </Section>
+
+  <DecisionBoard id="validate" title={c.validate.title} lead={c.validate.lead} steps={c.validate.steps} deliverables={c.validate.deliverables} label={c.validate.label} options={c.validate.options} />
+
+  <WeekTrack title={c.track.title} example={c.track.example} weeks={c.track.weeks} weekLabel={c.track.weekLabel} demoLabel={c.track.demoLabel} liveLabel={c.track.liveLabel} phases={c.process.steps} spans={c.track.spans} />
+
+  <section id="review" class="review" data-surface="ink" data-raised aria-labelledby="review-title">
+    <div class="container review__grid">
+      <div class="review__copy">
+        <SectionHead id="review-title" title={c.review.title} measure={22} />
+        <p class="review__body">{c.review.body}</p>
+        <p class="review__price">{c.review.price}</p>
+        <p class="review__guarantee">{c.review.guarantee}</p>
+        <div class="review__cta">
+          <CtaLink href={bookHref('clarity')} ctaId="build_mid_clarity" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
+          <CtaTerms kind="clarity" />
+        </div>
+      </div>
+      <div class="review__check">
+        <h3 class="review__h3">{c.review.checkTitle}</h3>
+        <CheckList items={c.review.areas} tone="human" />
+      </div>
+    </div>
+  </section>
+
+  <Section id="outcomes" surface="ink" title={c.outcomes.title}>
+    <CardGrid items={c.outcomes.items} />
+    <div class="included">
+      <h3 class="included__title">{c.included.title}</h3>
+      <CheckList items={c.included.items} class="included__list" />
+    </div>
+  </Section>
+
+  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
+    { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
+    { title: c.team.title, body: c.team.body, link: c.team.link },
+    { title: c.ownership.title, body: c.ownership.body },
+  ]} />
+
+  <Section id="proof" surface="raised" title={c.proof.title}>
+    <ProofList items={c.proof.items} />
+  </Section>
+
+  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="build" />
+
+  <CtaBand title={c.band.title} kind="clarity" page="build" />
+</BaseLayout>
+
+<style>
+  .review { padding-block: var(--section-y); }
+  .review__grid { display: grid; gap: var(--space-10); align-items: start; }
+  @media (width >= 64rem) { .review__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-16); } }
+  .review__copy { display: grid; gap: var(--space-4); }
+  .review__body { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
+  .review__price { font-weight: var(--weight-medium); color: var(--color-text); max-inline-size: var(--measure-lead); }
+  .review__guarantee { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-human-mark); }
+  .review__cta { display: grid; gap: var(--space-3); justify-items: start; margin-block-start: var(--space-4); }
+  .review__check { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid color-mix(in oklab, var(--color-human-mark) 30%, transparent); background: var(--color-surface); }
+  .review__h3 { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
+
+  .included { display: grid; gap: var(--space-4); margin-block-start: var(--space-10); padding-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
+  @media (width >= 56rem) { .included { grid-template-columns: 1fr 2fr; align-items: start; } }
+  .included__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .included :global(.included__list) { display: grid; gap: var(--space-3) var(--space-8); }
+  @media (width >= 40rem) { .included :global(.included__list) { grid-template-columns: 1fr 1fr; } }
+</style>

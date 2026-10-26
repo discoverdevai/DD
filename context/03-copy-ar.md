@@ -49,3 +49,11 @@ Checked: all internal links on the six Arabic pages resolve; structure matches E
 2. Keep English service names in brackets, or drop them.
 3. Font check (IBM Plex Sans Arabic, D-12), quotation marks, optical size.
 4. Every line in `src/content/copy/ar/` and `ar.json`.
+
+## Lean R1 pages (Oct 26, branch `site-r1-lean`, NOT reviewed yet)
+New Arabic twins for the merged pages (`03-copy.md` §16b): `/ar/build` (`ar/build.ts`), `/ar/scale` (`ar/scale.ts`), `/ar/how-we-work` (`ar/how-we-work.ts`), plus `shared.howLink` "من نحن وكيف نعمل". Written natively from the English, with the voice rules above. **They need the native reviewer before the branch is merged**, because merging makes them live and indexable.
+- Titles (page name first): "تطوير MVP للشركات الناشئة | DiscoverDev" · "فريق تطوير مخصص | DiscoverDev" · "مراحل تطوير التطبيقات وكيف نعمل | DiscoverDev".
+- Build H1 "من الفكرة إلى منتج يستخدمه الناس" (same promise as the home H1), pill "البناء · من الفكرة إلى الإطلاق". Scale H1 "التوسع: فريق يبقى معك". How we work H1 "كيف نعمل".
+- Terms used: التحقق (Validate), البناء (Build), التوسع (Scale), العمل باسم علامتك (white-label), تعزيز الفريق (staff augmentation), اتفاقية سرية (NDA), "يسرّعه الذكاء الاصطناعي" (AI-accelerated chip), Launch-Ready Review kept in Latin.
+- Review price in USD: "تبدأ المراجعة من 1,490 دولارًا". Gulf hours: "فارق التوقيت مع السعودية والكويت ساعة واحدة أو أقل" (same as home).
+- Entity line in Arabic on /ar/how-we-work (same meaning as `ENTITY_LINE`; matches the Arabic `llms.txt` line).

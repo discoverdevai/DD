@@ -1,15 +1,17 @@
 ---
 import SectionHead from '../ui/SectionHead.astro';
 // Engagements (03 §2A.6): Validate · Build · Scale as three tall stage cards (stage nodes fill left to right), then "Other ways in" as two compact rows (Review, Partners). Each card is one stretched link.
-import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
+import { href, isLive, bookHref, type RouteKey } from '../../data/routes';
 // V1.0 (03 §2V1): while a service page is off, its card links to booking with "Book a call about …".
 interface Card { key: RouteKey; who: string; title: string; kind?: string; meta: readonly string[]; body: string; linkLabel: string; bookLabel?: string }
 interface Other { key: RouteKey; who: string; title: string; body: string; linkLabel: string }
 interface Props { title: string; lead: string; credit?: string; cards: readonly Card[]; scope?: { label: string; text: string }; otherTitle: string; other: readonly Other[] }
 const { title, lead, credit, cards, scope, otherTitle, other } = Astro.props;
 const live = cards;
-const cardHref = (c: Card) => (isLive(c.key) ? ROUTES[c.key].path : `${bookHref('clarity')}&interest=${c.key}`);
-const cardLabel = (c: Card) => (isLive(c.key) ? c.linkLabel : c.bookLabel ?? c.linkLabel);
+// Lean R1 (03 §16b.4): Validate has no page of its own; its card opens the Validate section of /build.
+const pageOf = (k: RouteKey) => (isLive(k) ? href(k) : k === 'validate' && isLive('build') ? `${href('build')}#validate` : null);
+const cardHref = (c: Card) => pageOf(c.key) ?? `${bookHref('clarity')}&interest=${c.key}`;
+const cardLabel = (c: Card) => (pageOf(c.key) ? c.linkLabel : c.bookLabel ?? c.linkLabel);
 const liveOther = other.filter((o) => isLive(o.key));
 // The first sentence of the lead is the quotable definition; it is set brighter than the rest (same words, Oct 21 redesign).
 const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
@@ -27,7 +29,7 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
             <span class="en__stage" aria-hidden="true"><span class="en__node"></span></span>
             {i === 0 && credit && live.length > 1 && <span class="en__credit">{credit}</span>}
             <p class="en__who">{c.who}</p>
-            <h3 class="en__h3"><a href={cardHref(c)} aria-label={cardLabel(c)} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={isLive(c.key) ? c.key : 'clarity'}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
+            <h3 class="en__h3"><a href={cardHref(c)} aria-label={cardLabel(c)} data-cta-id={`home_card_${c.key}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={pageOf(c.key) ? c.key : 'clarity'}>{c.title}</a>{c.kind && <span class="en__kind">{c.kind}</span>}</h3>
             <ul role="list" class="en__meta">{c.meta.map((m) => <li class="tag">{m}</li>)}</ul>
             <p class="en__body">{c.body}</p>
             <p class="en__more" aria-hidden="true">{cardLabel(c)}<span class="en__arrow icon--dir">→</span></p>
@@ -42,7 +44,7 @@ const [leadFirst, ...leadRest] = lead.split(/(?<=\.) (?=[A-Z])/);
             {liveOther.map((o) => (
               <li class="en__row card-link">
                 <p class="en__row-who">{o.who}</p>
-                <h4 class="en__row-h"><a href={ROUTES[o.key].path} data-cta-id={`home_card_${o.key === 'review' ? 'review' : 'partners'}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={o.key === 'review' ? 'review' : 'partners'}>{o.title}</a></h4>
+                <h4 class="en__row-h"><a href={href(o.key)} data-cta-id={`home_card_${o.key === 'review' ? 'review' : 'partners'}`} data-cta-tier="secondary" data-cta-position="card" data-cta-target={o.key === 'review' ? 'review' : 'partners'}>{o.title}</a></h4>
                 <p class="en__row-body">{o.body}</p>
                 <p class="en__row-more" aria-hidden="true">{o.linkLabel}<span class="en__arrow icon--dir">→</span></p>
               </li>

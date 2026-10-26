@@ -7,23 +7,26 @@ import CtaLink from '../ui/CtaLink.astro';
 import LangSwitch from './LangSwitch.astro';
 import MobileMenu from './MobileMenu.astro';
 import { t, localPath } from '../../i18n/t';
-import { ROUTES, isLive, bookHref, type RouteKey } from '../../data/routes';
+import { ROUTES, href, isLive, bookHref, type RouteKey } from '../../data/routes';
 
 interface Props { variant?: 'default' | 'minimal'; current?: string }
 const { variant = 'default', current = Astro.url.pathname } = Astro.props;
 
-const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 'build', 'scale', 'review', 'partners'] as const)
+// Lean R1 (03 §16b.4): Build and Scale are top-level links; the Services menu only holds pages beyond them.
+const SERVICE_LINKS = (['build', 'scale'] as const).filter(isLive).map((k) => ({ href: href(k), label: t(`nav.${k}`) }));
+const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 'review', 'partners'] as const)
   .filter(isLive)
   .map((key) => ({ key, label: t(`nav.${key}`), who: t(`nav.${key}.who`) }));
 // Nav links. A section that has no live page falls back to its anchor on home, so V1.0 (one-page site, 03 §2V1) reads:
 // Services · How we work · Work · Reviews · FAQ, all jumping to home sections. Pages switch back in per release.
 type NavLink = { href: string; label: string };
 const LINKS: NavLink[] = [
-  ...(SERVICES.length === 0 ? [{ href: localPath('/#services'), label: t('nav.services') }] : []),
-  { href: isLive('howWeWork') ? ROUTES.howWeWork.path : localPath('/#how-we-work'), label: t('nav.how') },
-  { href: isLive('work') ? ROUTES.work.path : localPath('/#work'), label: t('nav.work') },
-  ...(isLive('insights') ? [{ href: ROUTES.insights.path, label: t('nav.insights') }] : [{ href: localPath('/#reviews'), label: t('nav.reviews') }]),
-  ...(isLive('about') ? [{ href: ROUTES.about.path, label: t('nav.about') }] : [{ href: localPath('/#faq'), label: t('nav.faq') }]),
+  ...(SERVICE_LINKS.length > 0 ? SERVICE_LINKS : SERVICES.length === 0 ? [{ href: localPath('/#services'), label: t('nav.services') }] : []),
+  { href: isLive('howWeWork') ? href('howWeWork') : localPath('/#how-we-work'), label: t('nav.how') },
+  { href: isLive('work') ? href('work') : localPath('/#work'), label: t('nav.work') },
+  // Five items at most: the Reviews anchor gives its place to the service links once they are live.
+  ...(isLive('insights') ? [{ href: href('insights'), label: t('nav.insights') }] : SERVICE_LINKS.length > 0 ? [] : [{ href: localPath('/#reviews'), label: t('nav.reviews') }]),
+  ...(isLive('about') ? [{ href: href('about'), label: t('nav.about') }] : [{ href: localPath('/#faq'), label: t('nav.faq') }]),
 ];
 const isCurrent = (path: string) => current.replace(/\.html$/, '').replace(/\/$/, '') === path.replace(/\/$/, '');
 const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
@@ -42,7 +45,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
               </button>
               <ul role="list" id="services-panel" class="services-panel" data-surface="paper" hidden>
                 {SERVICES.map((s) => (
-                  <li><a href={ROUTES[s.key].path} aria-current={isCurrent(ROUTES[s.key].path) ? 'page' : undefined}><span class="services-panel__label">{s.label}</span><span class="services-panel__who">{s.who}</span></a></li>
+                  <li><a href={href(s.key)} aria-current={isCurrent(ROUTES[s.key].path) ? 'page' : undefined}><span class="services-panel__label">{s.label}</span><span class="services-panel__who">{s.who}</span></a></li>
                 ))}
               </ul>
             </li>

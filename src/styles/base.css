@@ -120,6 +120,7 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: 0.9em; }
 }
 
 /* Directional icons mirror in RTL (06 §8). */
+.icon--dir { display: inline-block; } /* transforms (scale) do not apply to plain inline boxes */
 :dir(rtl) .icon--dir { scale: -1 1; }
 
 /* Forced colours: keep edges and focus visible (06 §6). */

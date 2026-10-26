@@ -1,0 +1,146 @@
+---
+// /how-we-work and /ar/how-we-work (03 §7.13 + §16b.3, lean R1): the DiscoverDev Way in detail, plus who we are and
+// how your code, data and IP stay yours (the About page folded in). Hero → two ways in → who does what → the four
+// steps with frameworks → who we are → ownership → FAQ → closer. Home keeps the short version and links here.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../sections/PageHero.astro';
+import WayFlow from '../scenes/WayFlow.astro';
+import FaqSplit from '../sections/FaqSplit.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import SectionHead from '../ui/SectionHead.astro';
+import PathCards from '../blocks/PathCards.astro';
+import CheckList from '../blocks/CheckList.astro';
+import TimeOverlap from '../about/TimeOverlap.astro';
+import TrackRecord from '../about/TrackRecord.astro';
+import Artifact from '../how/Artifact.astro';
+import { copy } from '../../content/copy';
+import { getLocale } from '../../i18n/t';
+import { href } from '../../data/routes';
+import { graph, orgFull, website, webPage, canonical, faqPage, ORG_ID } from '../../lib/seo';
+
+const { howWeWork: c, home } = copy();
+const path = getLocale() === 'ar' ? '/ar/how-we-work' : '/how-we-work';
+const url = canonical(path);
+// HowTo is banned (scripts/jsonld-check.mjs; Google retired HowTo results), so the steps are an ItemList.
+const steps = {
+  '@type': 'ItemList', '@id': `${url}#steps`, name: c.steps.title,
+  itemListElement: c.steps.items.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.title, description: `${s.body} ${c.steps.getsLabel}: ${s.gets}` })),
+};
+const faqLd = faqPage(`${url}#faq`, c.faq.items);
+// The About page lives here now, so the full Organization rides on this page (05 §4.6).
+const jsonLd = graph(orgFull, website, webPage(path, c.seo.title, c.seo.description, 'AboutPage', { about: { '@id': ORG_ID }, mainEntity: { '@id': `${url}#steps` } }), steps, faqLd);
+const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anchor}` }));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="about" jsonLd={jsonLd}>
+  <PageHero page="how_we_work" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.lead} cta="clarity" />
+
+  <section class="hw" data-surface="ink" aria-labelledby="paths-title">
+    <div class="container">
+      <SectionHead id="paths-title" title={c.paths.title} measure={24} />
+      <p class="hw__lead">{c.paths.lead}</p>
+      <PathCards items={paths} />
+    </div>
+  </section>
+
+  <section class="hw" data-surface="ink" aria-labelledby="roles-title">
+    <div class="container">
+      <SectionHead id="roles-title" label={c.roles.label} title={c.roles.title} measure={24} />
+      <p class="hw__lead">{c.roles.body}</p>
+      <WayFlow {...home.agile.flow} />
+    </div>
+  </section>
+
+  <section class="hw" data-surface="ink" aria-labelledby="steps-title">
+    <div class="container">
+      <SectionHead id="steps-title" label={c.steps.label} title={c.steps.title} measure={24} />
+      <ol role="list" class="hw__steps">
+        {c.steps.items.map((s) => (
+          <li class="hw__step">
+            <div class="hw__stephead">
+              <h3 class="hw__h3">{s.title}</h3>
+              <p class="tag">{s.when}</p>
+              <p class="hw__body">{s.body}</p>
+              <p class="hw__gets"><span>{c.steps.getsLabel}</span>{s.gets}</p>
+            </div>
+            <div class="hw__tools">
+              <p class="hw__toolslabel">{c.steps.toolsLabel}</p>
+              <ul role="list" class="hw__toolgrid">
+                {s.tools.map((tool) => (
+                  <li class="hw__tool">
+                    <div class="hw__art"><Artifact name={tool.name} /></div>
+                    <p class="hw__toolname">{tool.name}</p>
+                    <p class="hw__toolwhat">{tool.what}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="team" class="hw" data-surface="ink" data-raised aria-labelledby="team-title">
+    <div class="container team">
+      <div class="team__copy">
+        <SectionHead id="team-title" title={c.team.title} measure={18} />
+        <p class="hw__lead team__story">{c.team.story}</p>
+        <p class="team__entity">{c.team.entity}</p>
+        <p class="hw__body">{c.team.where}</p>
+      </div>
+      <div class="team__side">
+        <TimeOverlap label={c.team.strip.label} places={c.team.strip.places} hubTag={c.team.strip.hubTag} text={c.team.strip.text} />
+      </div>
+      <div class="team__record">
+        <h3 class="hw__h3">{c.team.recordTitle}</h3>
+        <TrackRecord items={c.team.record} />
+      </div>
+    </div>
+  </section>
+
+  <section id="ownership" class="hw" data-surface="ink" aria-labelledby="ownership-title">
+    <div class="container own">
+      <SectionHead id="ownership-title" title={c.ownership.title} measure={18} />
+      <CheckList items={c.ownership.items} tone="human" class="own__list" />
+    </div>
+  </section>
+
+  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="how_we_work" />
+  <CtaBand size="large" tier="primary" kind="clarity" page="how_we_work" title={home.band.title} body={home.band.body} />
+</BaseLayout>
+
+<style>
+  .hw { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
+  .hw__lead { max-inline-size: 44rem; margin-block: var(--space-4) var(--stack-lg); font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); }
+  .hw__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .hw__body { color: var(--color-text-muted); line-height: 1.55; }
+
+  /* Steps in depth: step summary left, frameworks with drawings right. */
+  .hw__steps { display: grid; gap: var(--space-6); margin-block-start: var(--stack-lg); }
+  .hw__step { display: grid; gap: var(--space-6); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  @media (width >= 64rem) { .hw__step { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-10); padding: var(--space-8); } }
+  .hw__stephead { display: grid; gap: var(--space-3); align-content: start; }
+  .hw__gets { display: grid; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-human-mark) 8%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 25%, transparent); font-size: var(--text-sm); }
+  .hw__gets span { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-human-text); }
+  .hw__toolslabel { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); margin-block-end: var(--space-3); }
+  .hw__toolgrid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
+  .hw__tool { display: grid; gap: var(--space-2); align-content: start; }
+  .hw__art { padding: var(--space-2); border-radius: var(--radius-md); background: var(--color-bg); border: 1px solid var(--color-hairline); }
+  .hw__toolname { font-family: var(--ff-heading); font-weight: var(--weight-semibold); color: var(--color-heading); }
+  .hw__toolwhat { font-size: var(--text-sm); line-height: 1.45; color: var(--color-text-muted); }
+
+  /* Who we are: story and entity line left; time strip and track record right. */
+  .team { display: grid; gap: var(--space-10); align-items: start; }
+  @media (width >= 64rem) { .team { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-16); } }
+  .team__copy { display: grid; gap: var(--space-4); }
+  .team__story { margin-block: var(--space-2) 0; }
+  .team__entity { padding-block: var(--space-4); padding-inline: var(--space-5); border-inline-start: 2px solid var(--color-border-accent); background: var(--color-surface-sunken); border-radius: var(--radius-sm); color: var(--color-text); max-inline-size: var(--measure-prose); }
+  .team__side { display: grid; gap: var(--space-8); }
+  /* The track record needs the full width: four short facts in a narrow column broke words mid-line. */
+  .team__record { grid-column: 1 / -1; display: grid; gap: var(--space-4); }
+
+  /* Ownership: the promises as one checked list, two columns on wide screens. */
+  .own { display: grid; gap: var(--space-8); }
+  @media (width >= 64rem) { .own { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); align-items: start; } }
+  .own :global(.own__list) { display: grid; gap: var(--space-4); font-size: var(--text-lg); }
+</style>

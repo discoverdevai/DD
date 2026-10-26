@@ -5,6 +5,7 @@ export const shared: Widen<typeof en> = {
   pillarGuideLink: 'اقرأ الدليل: كيف تنقل تطبيقًا بنيته بالذكاء الاصطناعي إلى الإنتاج',
   projectArFurniture: 'متجر أثاث إلكتروني بالواقع المعزز وتوصيات بالذكاء الاصطناعي',
   aboutLink: 'عن DiscoverDev وأين نعمل',
+  howLink: 'من نحن وكيف نعمل',
   reviewStartLink: 'لديك نموذج أولي؟ ابدأ بـ Launch-Ready Review',
   mvpTimeQ: 'كم يستغرق بناء النسخة الأولى (MVP)؟',
   personResponsible: 'شخص مسؤول عن كل سطر يصل إلى مستخدميك.',
