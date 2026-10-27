@@ -2042,6 +2042,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Three facts per card: Managed by (We do / You do / Our PM, with you) · Minimum (Per project / 3 months / 4 months) · Price (Quoted per project / Monthly, per engineer / Monthly retainer). Call + terms and the Amstadd quote stay. /partners keeps the full table (16b.23 text there).
 - AR: "لشركات البرمجيات" · "كل خيار يبدأ باتفاقية سرية، والملكية الفكرية لك." · lines and facts in ar/scale.ts.
 
+### 16b.25 Scale proof, named and short (Oct 27)
+- "Teams that stayed": two numbers, "12 months · One embedded team for Upscend, UK · A dedicated PM and engineering team owning the roadmap, backlog and sprints." and "4 · Clients expanded scope with us".
+- Roster (one line each): Pyramakerz · Data and ML for 20,000+ students · Egypt / Arheb · A data and ML team for ride-sharing · Saudi Arabia / Jumlaty · An ML engineer for 3 months · Saudi Arabia / Nile Support · AI agents for call operations · USA / Amstadd · White-label web and mobile apps · UK. Facts: 09 Portfolio (Scale), Differentiators. Names cleared Oct 27 (D-05).
+- AR in ar/scale.ts.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

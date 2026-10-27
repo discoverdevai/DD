@@ -161,3 +161,7 @@ Looked at desktop, phone and Arabic, section by section.
 ## Scale page, step 10: software houses, short (Oct 27)
 - Mohamed: too long, too many words. Now: title "For software houses", one lead line ("Every option starts with an NDA, and the IP goes to you."), and three cards with a one-line summary and the three facts that differ (managed by, minimum, price). The call and the Amstadd quote stay. /partners keeps the full table.
 - 0.88 screens at 1440 (was 1.41), 0.94 on a phone (was 1.52). Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Scale page, step 11: proof, named and short (Oct 27)
+- Six anonymized cards with an orphan row became two numbers ("12 months · One embedded team for Upscend, UK" and "4 · Clients expanded scope with us") plus a one-line roster: Pyramakerz, Arheb, Jumlaty, Nile Support, Amstadd, each with a country. Facts from 09; names cleared Oct 27.
+- 0.72 screens at 1440 (was 1.01), 1.02 on a phone (was 1.55). Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

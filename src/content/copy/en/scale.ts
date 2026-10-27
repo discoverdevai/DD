@@ -174,6 +174,19 @@ export const scale = {
   },
   proof: {
     title: 'Teams that stayed',
+    // 03 §16b.25 (Oct 27): named and short (names cleared, D-05). Facts: 09 Portfolio (Scale), Differentiators.
+    stats: [
+      { value: '12 months', label: 'One embedded team for Upscend, UK', body: 'A dedicated PM and engineering team owning the roadmap, backlog and sprints.' },
+      { value: '4', label: 'Clients expanded scope with us' },
+    ],
+    listLabel: 'Other teams that stayed',
+    clients: [
+      { name: 'Pyramakerz', line: 'Data and ML for 20,000+ students', where: 'Egypt' },
+      { name: 'Arheb', line: 'A data and ML team for ride-sharing', where: 'Saudi Arabia' },
+      { name: 'Jumlaty', line: 'An ML engineer for 3 months', where: 'Saudi Arabia' },
+      { name: 'Nile Support', line: 'AI agents for call operations', where: 'USA' },
+      { name: 'Amstadd', line: 'White-label web and mobile apps', where: 'UK' },
+    ],
     // [CONSENT] → §0.7: titles are the §9.3 anonymized descriptions. Upscend keeps its §7.8 body (no name in it).
     // Pyramakerz body dropped (repeats the title). Arheb body dropped ("the first Saudi smart ride-sharing platform" identifies the client).
     items: [

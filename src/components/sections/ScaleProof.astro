@@ -1,0 +1,48 @@
+---
+// "Teams that stayed" for /scale (03 §16b.25, Oct 27; names cleared by Mohamed, D-05). Short: two numbers first (the
+// longest single engagement, and the clients who expanded scope), then the other named clients as a one-line roster.
+// Facts from 09 Portfolio (Scale) and Differentiators. Replaces six anonymized cards that left an orphan row.
+interface Stat { value: string; label: string; body?: string }
+interface Client { name: string; line: string; where: string }
+interface Props { id?: string; c: { title: string; stats: readonly Stat[]; clients: readonly Client[]; listLabel: string } }
+const { id = 'proof', c } = Astro.props;
+---
+<section id={id} class="spf" data-surface="ink" aria-labelledby={`${id}-title`}>
+  <div class="container spf__inner">
+    <h2 id={`${id}-title`} class="section-title reveal">{c.title}</h2>
+    <ul role="list" class="spf__stats reveal-stagger">
+      {c.stats.map((s, i) => (
+        <li class:list={['spf__stat', { 'spf__stat--lead': i === 0 }]}>
+          <p class="spf__value">{s.value}</p>
+          <p class="spf__label">{s.label}</p>
+          {s.body && <p class="spf__body">{s.body}</p>}
+        </li>
+      ))}
+    </ul>
+    <ul role="list" class="spf__list reveal" aria-label={c.listLabel}>
+      {c.clients.map((cl) => (
+        <li class="spf__client"><b class="spf__name">{cl.name}</b><span class="spf__line">{cl.line}</span><span class="spf__where">{cl.where}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .spf { padding-block: var(--section-y); }
+  .spf__inner { display: grid; gap: var(--space-6); }
+  .spf__stats { display: grid; gap: var(--space-4); }
+  @media (width >= 48rem) { .spf__stats { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
+  .spf__stat { display: grid; gap: var(--space-1); align-content: start; padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  .spf__stat--lead { background: color-mix(in oklab, var(--blue-600) 16%, var(--color-surface)); border-color: color-mix(in oklab, var(--blue-300) 30%, transparent); }
+  .spf__value { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(2.75rem, 2rem + 3vw, 4.5rem); line-height: 1; letter-spacing: -0.04em; color: var(--color-human-mark); font-variant-numeric: tabular-nums; }
+  .spf__label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); color: var(--color-heading); }
+  .spf__body { font-size: var(--text-sm); color: var(--color-text-muted); }
+  /* Roster: name, one line, country; one row each. */
+  .spf__list { display: grid; border-block-start: 1px solid var(--color-hairline); }
+  .spf__client { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px var(--space-4); align-items: baseline; padding-block: var(--space-3); border-block-end: 1px solid var(--color-hairline); }
+  @media (width >= 48rem) { .spf__client { grid-template-columns: 10rem minmax(0, 1fr) auto; } }
+  .spf__name { font-family: var(--ff-heading); color: var(--color-heading); }
+  .spf__line { color: var(--color-text); grid-column: 1 / -1; grid-row: 2; font-size: var(--text-sm); }
+  @media (width >= 48rem) { .spf__line { grid-column: auto; grid-row: auto; font-size: var(--text-base); } }
+  .spf__where { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+</style>
