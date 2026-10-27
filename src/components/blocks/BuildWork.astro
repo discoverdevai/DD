@@ -5,20 +5,23 @@
 import ProjectVisual from '../work/ProjectVisual.astro';
 import type { Project } from '../../content/copy/en/projects';
 interface Item { id: string; name: string; meta: string; line: string; screens?: readonly string[]; device?: string; alt?: string; art: string }
-interface Props { c: { title: string; items: readonly Item[] } }
+// Without `title` (Scale proof, Oct 27) the cards sit straight under the section's h2: names become h3 and the swipe
+// region is named by `label`.
+interface Props { c: { title?: string; label?: string; items: readonly Item[] } }
 const { c } = Astro.props;
+const Name = c.title ? 'h4' : 'h3';
 const asProject = (it: Item) => ({ id: it.id, stage: 'build', industry: it.meta, title: it.name, did: it.line, art: it.art, screens: it.screens, device: it.device, screenAlt: it.alt }) as Project;
 ---
 <div class="bw">
-  <h3 class="bw__title" id="bw-title">{c.title}</h3>
-  <div class="bw__scroll" role="region" aria-labelledby="bw-title" tabindex="0">
+  {c.title && <h3 class="bw__title" id="bw-title">{c.title}</h3>}
+  <div class="bw__scroll" role="region" aria-labelledby={c.title ? 'bw-title' : undefined} aria-label={c.title ? undefined : c.label} tabindex="0">
   <ul role="list" class="bw__grid reveal-stagger">
     {c.items.map((it) => (
       <li class="bw__card">
         <div class="bw__vis"><ProjectVisual project={asProject(it)} sizes="(min-width: 72rem) 22vw, (min-width: 40rem) 45vw, 90vw" /></div>
         <div class="bw__text">
           <p class="bw__meta">{it.meta}</p>
-          <h4 class="bw__name">{it.name}</h4>
+          <Name class="bw__name">{it.name}</Name>
           <p class="bw__line">{it.line}</p>
         </div>
       </li>

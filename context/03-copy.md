@@ -2047,6 +2047,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Roster (one line each): Pyramakerz · Data and ML for 20,000+ students · Egypt / Arheb · A data and ML team for ride-sharing · Saudi Arabia / Jumlaty · An ML engineer for 3 months · Saudi Arabia / Nile Support · AI agents for call operations · USA / Amstadd · White-label web and mobile apps · UK. Facts: 09 Portfolio (Scale), Differentiators. Names cleared Oct 27 (D-05).
 - AR in ar/scale.ts.
 
+### 16b.26 Scale proof: the four who came back (Oct 27, replaces 16b.25)
+- "Teams that stayed" · lead "Four clients expanded their work with us." (09 Differentiators: Athkado, Upscend, Arheb, Pyramakerz).
+- Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
+- One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

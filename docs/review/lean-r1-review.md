@@ -165,3 +165,8 @@ Looked at desktop, phone and Arabic, section by section.
 ## Scale page, step 11: proof, named and short (Oct 27)
 - Six anonymized cards with an orphan row became two numbers ("12 months · One embedded team for Upscend, UK" and "4 · Clients expanded scope with us") plus a one-line roster: Pyramakerz, Arheb, Jumlaty, Nile Support, Amstadd, each with a country. Facts from 09; names cleared Oct 27.
 - 0.72 screens at 1440 (was 1.01), 1.02 on a phone (was 1.55). Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Scale page, step 12: proof, the four who came back (Oct 27)
+- Mohamed liked "the four who came back" but wanted other components, so the section now reuses Build's named-product cards (real screen or product drawing, meta, name, line). The four clients who expanded scope (09 Differentiators): Athkado (feasibility sprints, then the NJWAR AR store, with its screens), Upscend (12 months, one embedded team), Arheb (embedded data and ML team), Pyramakerz (data, ML and automations, 20,000+ students). The others go on one line: Jumlaty, Nile Support, Amstadd.
+- The product-card block now works without its own sub-heading. Build is unchanged (1.33 screens at 1440 as before).
+- 0.71 screens at 1440 and 0.82 on a phone (swipe row). Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

@@ -174,29 +174,20 @@ export const scale = {
   },
   proof: {
     title: 'Teams that stayed',
-    // 03 §16b.25 (Oct 27): named and short (names cleared, D-05). Facts: 09 Portfolio (Scale), Differentiators.
-    stats: [
-      { value: '12 months', label: 'One embedded team for Upscend, UK', body: 'A dedicated PM and engineering team owning the roadmap, backlog and sprints.' },
-      { value: '4', label: 'Clients expanded scope with us' },
-    ],
-    listLabel: 'Other teams that stayed',
-    clients: [
-      { name: 'Pyramakerz', line: 'Data and ML for 20,000+ students', where: 'Egypt' },
-      { name: 'Arheb', line: 'A data and ML team for ride-sharing', where: 'Saudi Arabia' },
-      { name: 'Jumlaty', line: 'An ML engineer for 3 months', where: 'Saudi Arabia' },
-      { name: 'Nile Support', line: 'AI agents for call operations', where: 'USA' },
-      { name: 'Amstadd', line: 'White-label web and mobile apps', where: 'UK' },
-    ],
-    // [CONSENT] → §0.7: titles are the §9.3 anonymized descriptions. Upscend keeps its §7.8 body (no name in it).
-    // Pyramakerz body dropped (repeats the title). Arheb body dropped ("the first Saudi smart ride-sharing platform" identifies the client).
+    // 03 §16b.26 (Oct 27): the four who expanded scope (09 Differentiators), as Build's product cards; others on one line.
+    lead: 'Four clients expanded their work with us.',
+    label: 'Clients who expanded scope',
     items: [
-      { title: shared.projectLmsTeam, where: 'UK', body: 'A 12-month embedded partnership. A dedicated PM and engineering team owning roadmap, backlog and sprints, supporting growth with US and UK enterprise clients.' },
-      { title: shared.projectEdtechData, where: 'Egypt' },
-      { title: shared.projectRideMl, where: 'Saudi Arabia' },
-      // §8.6 partner lines (anonymized).
-      { title: shared.projectWhiteLabelLong, where: 'UK' },
-      { title: 'AI agents for call operations and staff augmentation', where: 'USA' },
-      { title: shared.projectProcurementMl, where: 'Saudi Arabia' },
+      { id: 'athkado', name: 'Athkado', meta: 'Expanded scope · Saudi Arabia', line: 'Feasibility sprints first, then the NJWAR AR store with AI recommendations.', screens: ['njwar-web.webp', 'njwar-ar.webp'], device: 'combo', alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room', art: 'ar' },
+      { id: 'upscend', name: 'Upscend', meta: 'Expanded scope · UK', line: '12 months, one embedded team owning the roadmap, backlog and sprints.', art: 'lms' },
+      { id: 'arheb', name: 'Arheb', meta: 'Expanded scope · Saudi Arabia', line: 'An embedded data and ML team for a smart ride-sharing platform.', art: 'ride' },
+      { id: 'pyramakerz', name: 'Pyramakerz', meta: 'Expanded scope · Egypt', line: 'Data, ML and automations for an EdTech platform with 20,000+ students.', art: 'data' },
+    ],
+    alsoLabel: 'Also with us',
+    also: [
+      { name: 'Jumlaty', line: 'ML engineer, Saudi Arabia' },
+      { name: 'Nile Support', line: 'AI call agents, USA' },
+      { name: 'Amstadd', line: 'white-label, UK' },
     ],
     // [CONSENT: all four] → §0.7 replacement line.
     retention: 'Four clients expanded scope with us.',
