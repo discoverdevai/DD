@@ -90,3 +90,8 @@ Looked at desktop, phone and Arabic, section by section.
 - Rushr's card and row show its two real phone screens (home rail and Work).
 - /work has no Arabic page yet (it already had none before this change).
 - Checked: QA 0 findings, functional 32/32, axe clean on home (EN, AR, phone) and Work.
+
+## NJWAR = Athkado (Oct 27)
+- Mohamed confirmed NJWAR is the store we built for Athkado. Recorded in 09, 11 and docs/MEMORY.md; A4 is lifted.
+- Work: "NJWAR, Athkado's AR furniture store with AI recommendations" (Saudi Arabia), with the NJWAR product screen and Nojoud Alarfaj's quote. Home NJWAR chapter: Saudi Arabia tag. Build card: "Athkado · Saudi Arabia". EN + AR.
+- Checked: QA 0 findings, functional 32/32, axe clean.

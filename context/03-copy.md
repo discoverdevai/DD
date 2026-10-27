@@ -1965,14 +1965,14 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 
 ### 16b.12 Proof, named products (Oct 27)
 - Replaces the 16b.10 bar. Under the EduLens case: h3 "More products we’ve built", then four cards (screen or drawing, meta, name, one line), all facts from 09 Portfolio. Mohamed OK'd client names on Oct 27 (D-05).
-  - NJWAR · E-commerce · AR: "An AR furniture store: place a piece in your room at real size, change its color, rotate it and add more." (A4: no country, no AI line)
+  - NJWAR · Athkado · Saudi Arabia (Oct 27: NJWAR confirmed as Athkado's store, A4 lifted): "An AR furniture store: place a piece in your room at real size, change its color, rotate it and add more." (A4: no country, no AI line)
   - Rushr · Marketplace · USA: "A home-services marketplace, built by a full product team in 16 weeks: post a job, get matched with the nearest verified pro, pay through escrow."
   - Yawmy Care · Childcare · our own product: "Our own nursery platform for management, teachers and parents, with billing and multiple locations. Launching in 2027."
   - Phones: the four cards are one swipe row.
   - BioBank · HealthTech: "A mobile app that turns lab reports into plain-language explanations, with recommendations, follow-up questions and medical safety guardrails."
 
 ### 9.3b Project titles name the client (Oct 27)
-- Mohamed OK'd client names (D-05). Titles in `projects.ts` (home rail, /work rows) now name the client from 09: Athkado (AR furniture store; feasibility sprints), Rushr, BioBank, Nile Support, Amstadd, Upscend, Pyramakerz, Arheb, Jumlaty, Fantacalcio, Zest; EduLens and Yawmy Care were already named. The support agent, individual founders and tourism research stay unnamed (09 names no client). Athkado's store card uses the drawing, not the NJWAR screen (A4: link unconfirmed).
+- Mohamed OK'd client names (D-05). Titles in `projects.ts` (home rail, /work rows) now name the client from 09: Athkado (AR furniture store; feasibility sprints), Rushr, BioBank, Nile Support, Amstadd, Upscend, Pyramakerz, Arheb, Jumlaty, Fantacalcio, Zest; EduLens and Yawmy Care were already named. The support agent, individual founders and tourism research stay unnamed (09 names no client). Oct 27 update: NJWAR is Athkado's store (Mohamed), so that card is titled "NJWAR, Athkado’s AR furniture store with AI recommendations" and shows the NJWAR screen.
 
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.

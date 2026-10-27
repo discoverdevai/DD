@@ -139,7 +139,7 @@ export const build: Widen<typeof en> = {
     work: {
       title: 'منتجات أخرى بنيناها',
       items: [
-        { id: 'njwar', name: 'NJWAR', meta: 'تجارة إلكترونية · واقع معزز', line: 'متجر أثاث بالواقع المعزز: ضع القطعة في غرفتك بحجمها الحقيقي، وغيّر لونها، وأدِرها، وأضف غيرها.', screens: ['njwar-web.webp'], device: 'browser', alt: 'الصفحة الرئيسية لمتجر NJWAR بالعربية، تدعو المتسوقين لتجربة الأثاث في منازلهم', art: 'ar' },
+        { id: 'njwar', name: 'NJWAR', meta: 'Athkado · السعودية', line: 'متجر أثاث بالواقع المعزز: ضع القطعة في غرفتك بحجمها الحقيقي، وغيّر لونها، وأدِرها، وأضف غيرها.', screens: ['njwar-web.webp'], device: 'browser', alt: 'الصفحة الرئيسية لمتجر NJWAR بالعربية، تدعو المتسوقين لتجربة الأثاث في منازلهم', art: 'ar' },
         { id: 'rushr', name: 'Rushr', meta: 'سوق خدمات · الولايات المتحدة', line: 'سوق للخدمات المنزلية بناه فريق منتج كامل في 16 أسبوعًا: انشر طلبك، ويصلك أقرب فني موثّق، وادفع عبر حساب ضمان.', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'phone', alt: 'تطبيق Rushr يعرض سباكًا مطابقًا مع خياري القبول والرفض', art: 'devices' },
         { id: 'yawmy', name: 'Yawmy Care', meta: 'رعاية الأطفال · منتجنا', line: 'منصتنا لإدارة الحضانات: للإدارة والمعلمين وأولياء الأمور، مع الفواتير وتعدد الفروع. الإطلاق في 2027.', screens: ['yawmy-dashboard.webp'], device: 'browser', alt: 'لوحة تحكم Yawmy Care مع الإجماليات ورسم بياني للحضور اليومي', art: 'lms' },
         { id: 'biobank', name: 'BioBank', meta: 'تقنيات صحية', line: 'تطبيق جوال يشرح نتائج التحاليل بلغة بسيطة، مع توصيات، ومتابعة بالمحادثة، وضوابط سلامة طبية.', art: 'health' },
