@@ -128,6 +128,7 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 
 | Oct 18 | **D-06 resolved:** EduLens is named on home with the 60–90% result (Mohamed, Oct 18). Yawmy Care stays as "our product". Privacy and terms trimmed to what is live. US spelling. | Mohamed |
 
+| Oct 27 | **Scale risk reversal (Mohamed):** "Start with a POC before you commit" and "free replacement of any squad member who isn't the right fit" are now promises on Scale (strip under the terms tiles + FAQ). Recorded in 09. A 2-week trial was not chosen. | Mohamed |
 | Oct 27 | **Dedicated team minimum is 4 months (Mohamed)**, was 6. Updated in 09, Scale (hero, quiz, pieces, terms, pricing answer, FAQ, partners table), Partners and the Pricing mock. Staff augmentation stays 3 months. | Mohamed |
 | Oct 27 | **NJWAR is Athkado's store (Mohamed):** the link is confirmed, so A4 is lifted. The Athkado card uses the NJWAR screens and is titled "NJWAR, Athkado’s AR furniture store with AI recommendations". The NJWAR chapter on home gets the Saudi Arabia tag, and the Build card says Athkado · Saudi Arabia. | Mohamed |
 | Oct 27 | **Clients may be named (Mohamed, D-05):** project cards can carry client and product names. Build's proof section names NJWAR, Rushr, Yawmy Care and BioBank, with real screens where we have them. Still held: Continuum Therapy Collective (therapist consent, A2) and Upscend screens. NJWAR keeps A4 (no country, no AI line), because the Athkado link is unconfirmed. | Mohamed |

@@ -2019,6 +2019,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 ### 16b.20 Dedicated team minimum: 4 months (Oct 27, Mohamed)
 - Every "6 months" / "six months" / "6-month" for the dedicated team now reads 4 (EN + AR): Scale hero meta, quiz squad result, pieces "From 4 months", terms tile, pricing answer, FAQ minimum and resize, partners table, /partners table, /pricing mock. Earlier notes in this file that say 6 are superseded. The squad growth chart keeps its 6-month example window (it is an example, not a term).
 
+### 16b.21 Scale low-risk start (Oct 27, Mohamed; 09 Offer)
+- Strip under the terms tiles, "A low-risk start": "POC first. Start with a proof of concept in 2–4 weeks, then decide on a squad." (→ #pieces, "How it works") · "Free replacement. If a squad member isn't the right fit, we replace them at no cost."
+- FAQ (after "Who manages the team?"): "What if a squad member isn't the right fit?" → "We replace them at no cost. Tell us at any time, and we bring in someone who fits your product and your team. If you want to test us first, start with a proof of concept in 2–4 weeks before you commit to a squad."
+- AR: "بداية منخفضة المخاطر" · "إثبات مفهوم أولًا." · "استبدال مجاني." · FAQ "ماذا لو لم يكن أحد أعضاء الفريق مناسبًا؟".
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

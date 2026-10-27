@@ -21,6 +21,7 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 ## Offer (website naming per Oct 2026 decision: Validate / Build / Scale; master doc older name for Build = "Launch")
 - Validate — "I have an idea." 1–2 weeks, fixed fee. Market & competitor read, product scope, clickable prototype, fixed build estimate. Fee credits toward Build.
 - Build — "I'm ready to build." 8–12 weeks (vs typical 12–16), fixed price. Production-ready product, real users, live deployment; design, build, QA, deploy. The DiscoverDev Way.
+- Scale risk reversal (Mohamed, Oct 27 2026): clients can start with a proof of concept (2–4 wks) before committing to a squad; if a squad member isn't the right fit, we replace them at no cost.
 - Squad support (Mohamed, Oct 27 2026): our squads also work alongside a client's own team, under the client's direction, on a proof of concept (POC package 2–4 wks), a new MVP (MVP package 6–12 wks) or a module inside the client's sprints; ongoing work is the dedicated team (min 4 months).
 - Scale — "It's working, grow it." Ongoing monthly retainer. Dedicated squad (devs + QA + PM), roadmap & sprint ownership. Client keeps control.
 - Front door (Oct 2026): Launch-Ready Review — ~5 working days, fixed fee quoted per client, credits toward fix or Build, guarantee "no useful findings, no charge", booked on Cal.com.

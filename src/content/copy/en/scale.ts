@@ -159,6 +159,13 @@ export const scale = {
       { id: 'team', label: 'Team', value: 'One to a full squad', body: 'A lead, developers, QA, a PM and a designer, as your roadmap needs. Senior engineers own the quality.', link: { label: shared.howLink, to: 'howWeWork' as const } },
       { id: 'ownership', label: 'Ownership', value: 'All yours', body: 'You keep control of the roadmap, the code and the accounts. Full IP, no lock-in, a clear contract from day one.' },
     ],
+    promise: {
+      title: 'A low-risk start',
+      items: [
+        { value: 'POC first.', body: 'Start with a proof of concept in 2–4 weeks, then decide on a squad.', anchor: 'pieces', label: 'How it works' },
+        { value: 'Free replacement.', body: 'If a squad member isn’t the right fit, we replace them at no cost.' },
+      ],
+    },
   },
   terms: { title: 'Price, team and ownership', docTitle: 'Scale', docMeta: 'Monthly retainer' },
   pricing: {
@@ -202,6 +209,7 @@ export const scale = {
       { id: 'minimum', q: 'What is the minimum commitment for a dedicated team?', a: 'Four months. That gives the squad time to learn your product and deliver steadily.' },
       { id: 'management', q: 'Who manages the team?', a: 'The squad’s product manager runs the backlog and sprints together with you. You set priorities. You keep control of the roadmap.' },
       // [VERIFY: V22 notice period] → §0.7 omit the notice clause (tag removed).
+      { id: 'replacement', q: 'What if a squad member isn’t the right fit?', a: 'We replace them at no cost. Tell us at any time, and we bring in someone who fits your product and your team. If you want to test us first, start with a proof of concept in 2–4 weeks before you commit to a squad.' },
       { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month. A squad can start with one specialist and grow to developers, QA, a product manager and a designer as your roadmap needs it. The minimum commitment is four months, which gives the squad time to learn your product and deliver steadily.' },
       // "How quickly can a squad start?" omitted (§0.7 V22: answer is the tag only).
       { id: 'ip', q: 'Who owns the IP in a white-label project?', a: 'You do. White-label work runs under an NDA, and the IP goes to you so you can pass it to your client. The details are in the contract from day one.' },

@@ -141,3 +141,8 @@ Looked at desktop, phone and Arabic, section by section.
 - The three-column text document became Build's answer-first pattern: a band "Skills in every squad" (Full-stack · Mobile · AI and ML · Computer vision · Data · QA, with icons) and four tiles: Price "Monthly retainer" · Minimum term "6 months" · Team "One to a full squad" · Ownership "All yours". The #pricing anchor the Service JSON-LD points to is kept.
 - Added three Lucide icons (smartphone, eye, database). A six-item band shows 3 + 3 on tablets and one row on desktop; Build's five-item band is unchanged.
 - Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Scale page, step 7: low-risk start (Oct 27)
+- Mohamed approved two promises, now recorded in 09: "Start with a proof of concept (2–4 weeks) before you commit to a squad" and "If a squad member isn't the right fit, we replace them at no cost". Market context: Toptal, Turing, Unicsoft, Academy Smart and Brilworks all lower start-up risk with trials or replacement guarantees.
+- Shown as a green "A low-risk start" strip under the price, team and ownership tiles (POC first links to #pieces), plus a new FAQ, "What if a squad member isn't the right fit?". EN + AR.
+- Checked: no overflow, axe clean, QA 0 findings, functional 32/32. Build's "What you get" is unchanged.
