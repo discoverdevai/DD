@@ -157,3 +157,7 @@ Looked at desktop, phone and Arabic, section by section.
 - The comparison table scrolled sideways on phones and the section had no next step. It is now three option cards, each with a "Best when" line (white-label: you sell the project, we deliver under your brand · staff augmentation: you run it and need more engineers · dedicated team: a team that owns a product for months). Rows line up across the cards on desktop (CSS subgrid), with labels beside values; phones and tablets get a swipe row.
 - New call under the cards, carrying interest=scale-house to /book and the Cal.com notes. The heading keeps "white-label" on one line. /partners keeps its table.
 - Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32. Phone 1.5 screens (was 2.7 when the cards were stacked), tablet 1.1.
+
+## Scale page, step 10: software houses, short (Oct 27)
+- Mohamed: too long, too many words. Now: title "For software houses", one lead line ("Every option starts with an NDA, and the IP goes to you."), and three cards with a one-line summary and the three facts that differ (managed by, minimum, price). The call and the Amstadd quote stay. /partners keeps the full table.
+- 0.88 screens at 1440 (was 1.41), 0.94 on a phone (was 1.52). Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

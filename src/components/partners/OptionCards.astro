@@ -1,9 +1,10 @@
 ---
 // Three ways to work with a software house as cards (Scale, 03 §16b.23, Oct 27): the comparison table's columns become
-// cards, each with a "best when" line and the same rows as a description list. On wide screens the rows line up across
+// cards, each with a one-line summary (optional "best when" label) and its facts as a description list. Scale shows the
+// short version (3 facts, Oct 27). On wide screens the rows line up across
 // cards (CSS subgrid); on phones the cards stack, so nothing scrolls sideways. /partners keeps the table.
 interface Row { label: string; cells: readonly string[] }
-interface Props { columns: readonly string[]; bestFor: readonly string[]; bestLabel: string; rows: readonly Row[]; caption: string }
+interface Props { columns: readonly string[]; bestFor: readonly string[]; bestLabel?: string; rows: readonly Row[]; caption: string }
 const { columns, bestFor, bestLabel, rows, caption } = Astro.props;
 ---
 <div class="oc__scroll" role="region" aria-label={caption} tabindex="0">
@@ -11,7 +12,7 @@ const { columns, bestFor, bestLabel, rows, caption } = Astro.props;
   {columns.map((col, i) => (
     <li class:list={['oc__card', `oc__card--${i}`]}>
       <h3 class="oc__name">{col}</h3>
-      <p class="oc__best"><span class="oc__bestlabel">{bestLabel}</span> {bestFor[i]}</p>
+      <p class="oc__best">{bestLabel && <span class="oc__bestlabel">{bestLabel}</span>} {bestFor[i]}</p>
       <dl class="oc__rows">
         {rows.map((r) => (
           <div class="oc__row"><dt>{r.label}</dt><dd>{r.cells[i]}</dd></div>
@@ -37,18 +38,20 @@ const { columns, bestFor, bestLabel, rows, caption } = Astro.props;
   .oc__card--2 { border-block-start-color: var(--blue-500); }
   /* Rows: label beside its value (half the height of stacked rows). Declared before the subgrid override below. */
   .oc__rows { display: grid; gap: var(--space-3); margin: 0; }
-  .oc__row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--space-3); align-items: baseline; padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); }
+  .oc__row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--space-3); align-items: baseline; padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); }
   .oc__row:first-child { padding-block-start: 0; border-block-start: 0; }
   /* Wide screens: every card spans the same rows, so "Minimum term" sits level across all three. */
   @supports (grid-template-rows: subgrid) {
     @media (width >= 64rem) {
-      /* 2 header rows + one per comparison row (CSP: no inline style, so the count is a class, 6 rows today). */
-      .oc[data-rows='6'] .oc__card { grid-row: span 8; grid-template-rows: subgrid; gap: 0; row-gap: var(--space-3); }
+      /* 2 header rows + one per comparison row (CSP: no inline style, so the count is a class: 3 on Scale, 6 in full). */
+      .oc[data-rows='6'] .oc__card { grid-row: span 8; }
+      .oc[data-rows='3'] .oc__card { grid-row: span 5; }
+      .oc__card { grid-template-rows: subgrid; gap: 0; row-gap: var(--space-3); }
       .oc__rows { display: contents; }
     }
   }
   .oc__name { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
-  .oc__best { font-size: var(--text-sm); color: var(--color-text); padding-block-end: var(--space-4); border-block-end: 1px solid var(--color-hairline); }
+  .oc__best { font-size: var(--text-base); color: var(--color-text); padding-block-end: var(--space-4); border-block-end: 1px solid var(--color-hairline); }
   .oc__bestlabel { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-human-mark); }
   .oc dt { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .oc dd { margin: 0; font-size: var(--text-sm); color: var(--color-text); }

@@ -212,6 +212,19 @@ export const scale = {
   },
   // §16b.2: For software houses (§8.3 answer and table).
   partners: {
+    // 03 §16b.24 (Oct 27, Mohamed: "too long, too many words"): the Scale version, short. One line per option and the
+    // three facts that differ; NDA and IP (the same for all three) become one line under the title.
+    short: {
+      title: 'For software houses',
+      lead: 'Every option starts with an NDA, and the IP goes to you.',
+      columns: ['White-label delivery', 'Staff augmentation', 'Dedicated team'],
+      lines: ['We deliver under your brand.', 'Our engineers join your team.', 'A squad that owns a product.'],
+      rows: [
+        { label: 'Managed by', cells: ['We do', 'You do', 'Our PM, with you'] },
+        { label: 'Minimum', cells: ['Per project', '3 months', '4 months'] },
+        { label: 'Price', cells: ['Quoted per project', 'Monthly, per engineer', 'Monthly retainer'] },
+      ],
+    },
     title: 'For software houses: white‑label or staff augmentation', // U+2011: no line break inside the word
     answer:
       'Choose white-label when you want us to deliver a whole project under your brand. Choose staff augmentation when you want engineers working inside your team, managed by you. Both start with an NDA, and the IP goes to you.',

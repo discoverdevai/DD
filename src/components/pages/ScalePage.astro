@@ -57,8 +57,8 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   <WhatYouGet id="terms" page="scale" c={c.get} />
 
   <JourneyStop label={c.stages.partners} />
-  <Section id="partners" surface="raised" title={c.partners.title} lead={c.partners.answer}>
-    <OptionCards caption={c.partners.caption} columns={c.partners.columns} bestLabel={c.partners.bestLabel} bestFor={c.partners.bestFor} rows={c.partners.rows} />
+  <Section id="partners" surface="raised" title={c.partners.short.title} lead={c.partners.short.lead}>
+    <OptionCards caption={c.partners.caption} columns={c.partners.short.columns} bestFor={c.partners.short.lines} rows={c.partners.short.rows} />
     <div class="partners__cta">
       <CtaLink href={partnerHref} ctaId="scale_mid_clarity_partners" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
       <CtaTerms kind="clarity" />

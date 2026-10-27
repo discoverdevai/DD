@@ -2036,6 +2036,12 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Call under the cards: "Book a free clarity call" + terms, carrying interest=scale-house (booking shows "White-label or staff augmentation").
 - Heading keeps "white-label" on one line (non-breaking hyphen). AR: "الأنسب حين" + three lines in ar/scale.ts.
 
+### 16b.24 Scale software houses, short (Oct 27, Mohamed: too long, too many words)
+- Title "For software houses" · lead "Every option starts with an NDA, and the IP goes to you."
+- Cards: White-label delivery "We deliver under your brand." · Staff augmentation "Our engineers join your team." · Dedicated team "A squad that owns a product."
+- Three facts per card: Managed by (We do / You do / Our PM, with you) · Minimum (Per project / 3 months / 4 months) · Price (Quoted per project / Monthly, per engineer / Monthly retainer). Call + terms and the Amstadd quote stay. /partners keeps the full table (16b.23 text there).
+- AR: "لشركات البرمجيات" · "كل خيار يبدأ باتفاقية سرية، والملكية الفكرية لك." · lines and facts in ar/scale.ts.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 
