@@ -1,0 +1,123 @@
+---
+// "Which way of working fits you?" for /scale (03 §16b.17, Oct 27; replaces the fit check). Two questions, one best-fit
+// recommendation, with no JavaScript: native radio groups, and CSS :has() shows the result that matches the answers.
+// Nothing is stored or sent. Every result is a fact from 09 (Offer, engagement models, squad support) and links to the
+// place that explains it. The second question applies to live products only; "idea" and "software house" answer at once.
+//   idea → Build · house → white-label / staff augmentation · live + piece → hand us a piece
+//   live with team + hands → staff augmentation · live + squad, or live without a team + hands → a dedicated squad
+import CtaLink from '../ui/CtaLink.astro';
+import { t } from '../../i18n/t';
+import { bookHref, href, isLive, type RouteKey } from '../../data/routes';
+type Opt = { id: string; label: string };
+interface Result { id: string; kicker: string; title: string; body: string; link: { label: string; to?: RouteKey; anchor?: string } }
+interface Props {
+  id?: string;
+  c: {
+    title: string; body: string; q1: string; q2: string; q2hint: string; stages: readonly Opt[]; needs: readonly Opt[];
+    placeholder: string; noTeamNote: string; results: readonly Result[];
+  };
+}
+const { id = 'fit', c } = Astro.props;
+const link = (r: Result) => (r.link.anchor ? `#${r.link.anchor}` : r.link.to && isLive(r.link.to) ? href(r.link.to) : undefined);
+---
+<section id={id} class="fq" data-surface="ink" aria-labelledby={`${id}-title`}>
+  <div class="container fq__inner">
+    <header class="fq__head">
+      <h2 id={`${id}-title`} class="section-title reveal">{c.title}</h2>
+      <p class="fq__lead">{c.body}</p>
+    </header>
+
+    <div class="fq__box">
+      <div class="fq__form" role="group" aria-label={c.title}>
+        <fieldset class="fq__q">
+          <legend class="fq__legend"><span class="fq__num">1</span>{c.q1}</legend>
+          <div class="fq__opts">
+            {c.stages.map((o) => (
+              <label class="fq__opt" for={`${id}-s-${o.id}`}><input type="radio" id={`${id}-s-${o.id}`} name="stage" value={o.id} class:list={['fq__in', `s-${o.id}`]} /><span>{o.label}</span></label>
+            ))}
+          </div>
+        </fieldset>
+        <fieldset class="fq__q fq__q--two">
+          <legend class="fq__legend"><span class="fq__num">2</span>{c.q2}</legend>
+          <p class="fq__hint">{c.q2hint}</p>
+          <div class="fq__opts">
+            {c.needs.map((o) => (
+              <label class="fq__opt" for={`${id}-n-${o.id}`}><input type="radio" id={`${id}-n-${o.id}`} name="need" value={o.id} class:list={['fq__in', `n-${o.id}`]} /><span>{o.label}</span></label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="fq__out" aria-live="polite">
+        <p class="fq__placeholder">{c.placeholder}</p>
+        {c.results.map((r) => (
+          <div class:list={['fq__result', `r-${r.id}`]}>
+            <p class="fq__kicker">{r.kicker}</p>
+            <h3 class="fq__title">{r.title}</h3>
+            <p class="fq__body">{r.body}</p>
+            {r.id === 'squad' && <p class="fq__note">{c.noTeamNote}</p>}
+            {link(r) && <a class="fq__more" href={link(r)}>{r.link.label}<span class="icon--dir" aria-hidden="true">→</span></a>}
+          </div>
+        ))}
+        <div class="fq__cta">
+          <CtaLink href={bookHref('clarity')} ctaId="scale_result_clarity" tier="secondary" position="result" target="clarity">{t('cta.clarity')}</CtaLink>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fq { padding-block: var(--section-y); }
+  .fq__inner { display: grid; gap: var(--space-8); }
+  .fq__head { display: grid; gap: var(--space-3); }
+  .fq__lead { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
+
+  .fq__box { display: grid; gap: var(--space-4); }
+  @media (width >= 64rem) { .fq__box { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: stretch; } }
+  .fq__form { display: grid; gap: var(--space-6); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  .fq__q { display: grid; gap: var(--space-3); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+  .fq__legend { display: flex; align-items: center; gap: var(--space-3); padding: 0; margin-block-end: var(--space-3); font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .fq__num { display: grid; place-items: center; inline-size: 1.75rem; block-size: 1.75rem; flex: none; border-radius: 50%; font-size: var(--text-sm); background: color-mix(in oklab, var(--blue-300) 14%, transparent); color: var(--blue-100); }
+  .fq__hint { display: none; font-size: var(--text-sm); color: var(--color-text-muted); }
+  .fq__opts { display: grid; gap: var(--space-2); }
+  @media (width >= 40rem) { .fq__opts { grid-template-columns: 1fr 1fr; } }
+  /* Options: whole row is the target (44px+), the native radio stays visible for clarity and keyboard use. */
+  .fq__opt { display: flex; align-items: center; gap: var(--space-3); min-block-size: 3rem; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); color: var(--color-text); cursor: pointer; }
+  .fq__opt:hover { border-color: color-mix(in oklab, var(--blue-300) 50%, transparent); }
+  .fq__in { flex: none; inline-size: 1.125rem; block-size: 1.125rem; margin: 0; accent-color: var(--color-human-mark); }
+  .fq__opt:has(.fq__in:checked) { border-color: var(--color-human-mark); background: color-mix(in oklab, var(--green-300) 10%, var(--color-surface)); color: var(--color-heading); }
+  .fq__opt:has(.fq__in:focus-visible) { outline: 2px solid var(--color-focus, var(--blue-300)); outline-offset: 2px; }
+
+  /* Question 2 only matters for a live product: dimmed until then, and skipped for idea / software house. */
+  .fq__q--two :is(.fq__legend, .fq__opts) { opacity: 0.6; transition: opacity var(--dur-base) var(--ease-standard); }
+  .fq:has(.s-team:checked, .s-noteam:checked) .fq__q--two :is(.fq__legend, .fq__opts) { opacity: 1; }
+  .fq:has(.s-idea:checked, .s-house:checked) .fq__q--two .fq__hint { display: block; }
+
+  /* Result panel: placeholder until the answers point to one result. */
+  .fq__out { display: grid; gap: var(--space-4); align-content: start; padding: var(--space-6); border-radius: var(--radius-lg); border: 1px dashed color-mix(in oklab, var(--blue-300) 35%, transparent); background: color-mix(in oklab, var(--blue-300) 3%, transparent); }
+  .fq__placeholder { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); color: var(--color-text-muted); }
+  .fq__result, .fq__note, .fq__cta { display: none; }
+  .fq__result { gap: var(--space-2); justify-items: start; }
+  .fq__kicker { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-human-mark); }
+  .fq__title { font-family: var(--ff-heading); font-size: var(--text-2xl); font-weight: var(--weight-bold); line-height: 1.15; letter-spacing: -0.02em; color: var(--color-heading); }
+  .fq__body { color: var(--color-text); }
+  .fq__note { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .fq__more { display: inline-flex; align-items: baseline; gap: var(--space-1); padding-block: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
+  .fq__more:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
+  /* Mapping (see the header comment). A shown result turns the panel solid and reveals the call. */
+  .fq:has(.s-idea:checked) .r-build,
+  .fq:has(.s-house:checked) .r-house,
+  .fq:has(.s-team:checked, .s-noteam:checked):has(.n-piece:checked) .r-piece,
+  .fq:has(.s-team:checked):has(.n-hands:checked) .r-hands,
+  .fq:has(.s-team:checked, .s-noteam:checked):has(.n-squad:checked) .r-squad,
+  .fq:has(.s-noteam:checked):has(.n-hands:checked) .r-squad { display: grid; }
+  .fq:has(.s-noteam:checked):has(.n-hands:checked) .fq__note { display: block; }
+  .fq:has(.s-idea:checked, .s-house:checked) .fq__out,
+  .fq:has(.s-team:checked, .s-noteam:checked):has(.n-piece:checked, .n-hands:checked, .n-squad:checked) .fq__out { border-style: solid; border-color: color-mix(in oklab, var(--green-300) 45%, transparent); background: color-mix(in oklab, var(--green-300) 7%, var(--color-surface)); }
+  .fq:has(.s-idea:checked, .s-house:checked) :is(.fq__placeholder),
+  .fq:has(.s-team:checked, .s-noteam:checked):has(.n-piece:checked, .n-hands:checked, .n-squad:checked) .fq__placeholder { display: none; }
+  .fq:has(.s-idea:checked, .s-house:checked) .fq__cta,
+  .fq:has(.s-team:checked, .s-noteam:checked):has(.n-piece:checked, .n-hands:checked, .n-squad:checked) .fq__cta { display: block; }
+</style>

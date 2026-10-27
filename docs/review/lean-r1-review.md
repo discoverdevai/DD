@@ -125,3 +125,9 @@ Looked at desktop, phone and Arabic, section by section.
 - Fixed a contradiction: "Not for: a single project with a fixed end" clashed with the new POC / MVP / module section above it.
 - Now two cards. "Scale fits if" (green top) adds "Your team needs a proof of concept, a new MVP or a module built under its direction." "Something else fits better if" routes each case to its better fit: Build for an idea with no product or team yet, and the software-house section (#partners) for white-label.
 - New FitCheck block; FitList stays because the Validate page still uses it. Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Scale page, step 5: fit questionnaire (Oct 27)
+- Mohamed asked for a questionnaire with a best-fit recommendation in place of the fit lists. "Which way of working fits you?": two questions (where is your product today; what do you need most), one result, and the clarity call.
+- The results map to facts in 09: Build · white-label or staff augmentation · hand us a piece (POC 2–4 weeks, MVP 6–12 weeks, module) · staff augmentation (from 3 months) · a dedicated squad (from 6 months). A live product with no tech team that asks for "more engineers" gets the squad, with a one-line reason.
+- No JavaScript: native radio buttons, and CSS :has() shows the matching result. Nothing is stored or sent. Explicit labels, keyboard arrows work, and a polite live region announces the result.
+- Tested all 10 answer paths in EN and AR (each shows exactly one correct result, or the placeholder), keyboard-only on a phone, axe clean with a result showing, no overflow, QA 0 findings, functional 32/32. FitCheck removed (replaced the same day).

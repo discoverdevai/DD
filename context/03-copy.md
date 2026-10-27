@@ -1999,6 +1999,13 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Dropped "You need a single project with a fixed end (see Build)": it contradicts 16b.15 (POC, MVP and module work for teams).
 - AR mirrored: "التوسع يناسبك إذا" / "يناسبك خيار آخر إذا" / "الأنسب:".
 
+### 16b.17 Scale fit questionnaire (Oct 27, replaces 16b.16 on the page)
+- Title "Which way of working fits you?" · body "Answer two questions and see your best fit. The free call confirms it."
+- Q1 "Where is your product today?": Still an idea, no product yet · Live, with our own tech team · Live, but no tech team · We're a software house.
+- Q2 "What do you need most right now?": A piece built: a POC, a new MVP or a module · More engineers, managed by us · A team that runs the roadmap with us. Hint when not needed: "No need to answer this one. Your best fit is already showing."
+- Results (facts: 09 Offer, engagement models, squad support): Build ("A senior team takes your idea to real users in 8–12 weeks, at a fixed price.") · White-label or staff augmentation ("We deliver a project under your brand, or engineers join your team. Both start with an NDA, and the IP goes to you.") · Hand us a piece ("A proof of concept in 2–4 weeks, a new MVP in 6–12 weeks, or a module inside your sprints. You set the direction.") · Staff augmentation ("They work inside your team and your process, managed by you. The minimum term is 3 months.") · A dedicated squad ("Developers, QA and a PM on a monthly retainer, from 6 months. The squad's PM runs the sprints with you."; with no tech team: "With no tech team to manage engineers yet, a squad with its own PM fits better than adding people.").
+- Then "Book a free clarity call". No JavaScript; answers are not stored or sent. AR mirrored in ar/scale.ts.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

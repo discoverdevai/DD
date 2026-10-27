@@ -21,6 +21,34 @@ export const scale = {
   },
   // Journey stops (Oct 27, shared with Build): names shown in the margin on very wide screens.
   stages: { squad: 'The team', outcomes: 'Ways to work', fit: 'Fit', terms: 'The deal', partners: 'Software houses', proof: 'Proof', faq: 'Questions', close: 'Start' },
+  // 03 §16b.17 (Oct 27): fit questionnaire, two questions → one best fit (facts: 09 Offer, engagement models, squad support).
+  quiz: {
+    title: 'Which way of working fits you?',
+    body: 'Answer two questions and see your best fit. The free call confirms it.',
+    q1: 'Where is your product today?',
+    q2: 'What do you need most right now?',
+    q2hint: 'No need to answer this one. Your best fit is already showing.',
+    stages: [
+      { id: 'idea', label: 'Still an idea, no product yet' },
+      { id: 'team', label: 'Live, with our own tech team' },
+      { id: 'noteam', label: 'Live, but no tech team' },
+      { id: 'house', label: 'We’re a software house' },
+    ],
+    needs: [
+      { id: 'piece', label: 'A piece built: a POC, a new MVP or a module' },
+      { id: 'hands', label: 'More engineers, managed by us' },
+      { id: 'squad', label: 'A team that runs the roadmap with us' },
+    ],
+    placeholder: 'Your best fit shows here.',
+    noTeamNote: 'With no tech team to manage engineers yet, a squad with its own PM fits better than adding people.',
+    results: [
+      { id: 'build', kicker: 'Best fit: Build', title: 'From idea to a live MVP', body: 'A senior team takes your idea to real users in 8–12 weeks, at a fixed price.', link: { label: 'See Build', to: 'build' as const } },
+      { id: 'house', kicker: 'Best fit: White-label or staff augmentation', title: 'Engineers under your brand', body: 'We deliver a project under your brand, or engineers join your team. Both start with an NDA, and the IP goes to you.', link: { label: 'Compare the options', anchor: 'partners' } },
+      { id: 'piece', kicker: 'Best fit: Hand us a piece', title: 'Our squad takes the piece', body: 'A proof of concept in 2–4 weeks, a new MVP in 6–12 weeks, or a module inside your sprints. You set the direction.', link: { label: 'See how it works', anchor: 'pieces' } },
+      { id: 'hands', kicker: 'Best fit: Staff augmentation', title: 'Engineers who join your team', body: 'They work inside your team and your process, managed by you. The minimum term is 3 months.', link: { label: 'Compare the options', anchor: 'partners' } },
+      { id: 'squad', kicker: 'Best fit: A dedicated squad', title: 'A team that stays', body: 'Developers, QA and a PM on a monthly retainer, from 6 months. The squad’s PM runs the sprints with you.', link: { label: 'See how a squad grows', anchor: 'process' } },
+    ],
+  },
   // 03 §16b.16 (Oct 27): fit check. "A single project with a fixed end" is no longer "not for" (the squad now takes POCs,
   // MVPs and modules for teams); each not-for line routes to its better fit.
   fit: {
