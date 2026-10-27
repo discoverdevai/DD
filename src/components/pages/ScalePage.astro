@@ -5,13 +5,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
 import Section from '../sections/Section.astro';
 import FitList from '../blocks/FitList.astro';
-import CardGrid from '../blocks/CardGrid.astro';
-import CheckList from '../blocks/CheckList.astro';
 import ProofList from '../blocks/ProofList.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import ServiceGlance from '../scenes/ServiceGlance.astro';
 import SquadGrowth from '../sections/SquadGrowth.astro';
+import SquadPieces from '../sections/SquadPieces.astro';
 import TermsDoc from '../sections/TermsDoc.astro';
 import ComparisonTable from '../partners/ComparisonTable.astro';
 import Quote from '../blocks/Quote.astro';
@@ -44,13 +43,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   <SquadGrowth c={c.growth} chip={c.process.steps[1].chip} />
 
   <JourneyStop label={c.stages.outcomes} />
-  <Section id="outcomes" surface="raised" title={c.outcomes.title}>
-    <CardGrid items={c.outcomes.items} />
-    <div class="included">
-      <h3 class="included__title">{c.included.title}</h3>
-      <CheckList items={c.included.items} class="included__list" />
-    </div>
-  </Section>
+  <SquadPieces c={c.pieces} />
 
   <JourneyStop label={c.stages.fit} />
   <Section id="fit" surface="ink" title={c.fit.title}>
@@ -85,11 +78,6 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 </BaseLayout>
 
 <style>
-  .included { display: grid; gap: var(--space-4); margin-block-start: var(--space-10); padding-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
-  @media (width >= 56rem) { .included { grid-template-columns: 1fr 2fr; align-items: start; } }
-  .included__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
-  .included :global(.included__list) { display: grid; gap: var(--space-3) var(--space-8); }
-  @media (width >= 40rem) { .included :global(.included__list) { grid-template-columns: 1fr 1fr; } }
   .partners__quote { margin-block-start: var(--space-10); }
   .retention { margin-block: var(--space-8) var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-medium); color: var(--color-heading); }
 </style>

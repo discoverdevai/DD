@@ -1,0 +1,104 @@
+---
+// "Your team leads. Our squad takes a piece." for /scale (03 §16b.15, Oct 27; 09 Offer, squad support). A drawing of
+// the client's product with each piece pinned where it belongs: a module inside it, a new MVP as a phone beside it, a
+// proof of concept as a dashed box, the ongoing roadmap as a ring around it. The drawing is decorative (aria-hidden);
+// the list beside it carries the same four jobs as text. Tokens only; logical properties, so it mirrors in Arabic.
+interface Item { id: string; name: string; when: string; body: string }
+interface Props {
+  id?: string;
+  c: { title: string; body: string; product: string; items: readonly Item[]; pins: { poc: string; mvp: string; module: string; roadmap: string } };
+}
+const { id = 'pieces', c } = Astro.props;
+const when = Object.fromEntries(c.items.map((i) => [i.id, i.when])) as Record<string, string>;
+---
+<section id={id} class="sp" data-surface="ink" aria-labelledby={`${id}-title`}>
+  <div class="container sp__inner">
+    <header class="sp__head">
+      <h2 id={`${id}-title`} class="section-title reveal">{c.title}</h2>
+      <p class="sp__body">{c.body}</p>
+    </header>
+
+    <div class="sp__grid">
+      <div class="sp__stage reveal" aria-hidden="true">
+        <div class="sp__app">
+          <span class="sp__ring"><span class="sp__pin sp__pin--road">{c.pins.roadmap}<small>{when.roadmap}</small></span></span>
+          <div class="sp__bar"><i></i><i></i><i></i><span>{c.product}</span></div>
+          <div class="sp__body-grid">
+            <div class="sp__nav"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="sp__tiles">
+              <div class="sp__tile sp__tile--mod"><span class="sp__pin sp__pin--mod">{c.pins.module}<small>{when.module}</small></span></div>
+              <div class="sp__tile"></div><div class="sp__tile"></div><div class="sp__tile"></div><div class="sp__tile"></div>
+              <div class="sp__tile sp__tile--wide"></div>
+            </div>
+          </div>
+          <div class="sp__phone"><span class="sp__pin sp__pin--mvp">{c.pins.mvp}<small>{when.mvp}</small></span><i></i><i></i><i></i><i></i></div>
+          <div class="sp__poc"><span class="sp__pin sp__pin--poc">{c.pins.poc}<small>{when.poc}</small></span>?</div>
+        </div>
+      </div>
+
+      <ol role="list" class="sp__list reveal-stagger">
+        {c.items.map((it) => (
+          <li class:list={['sp__item', `sp__item--${it.id}`]}>
+            <h3 class="sp__name">{it.name}<span class="sp__when">{it.when}</span></h3>
+            <p class="sp__text">{it.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sp { padding-block: var(--section-y); }
+  .sp__inner { display: grid; gap: var(--space-8); }
+  .sp__head { display: grid; gap: var(--space-3); }
+  .sp__head :global(.section-title) { max-inline-size: 20ch; }
+  .sp__body { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
+  .sp__grid { display: grid; gap: var(--space-8); align-items: center; }
+  @media (width >= 64rem) { .sp__grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: var(--space-12); } }
+
+  /* Stage: room around the product for the pieces that sit outside it (phone at inline-end, POC box at inline-start). */
+  .sp__stage { padding-block: 2.75rem 3.5rem; padding-inline: 2rem 3.75rem; }
+  @media (width >= 48rem) { .sp__stage { padding-block: 3.25rem 4rem; padding-inline: 2.75rem 5rem; } }
+  .sp__app { position: relative; border-radius: var(--radius-lg); background: var(--blue-950); border: 1px solid var(--color-hairline); padding-block-end: var(--space-4); box-shadow: 0 30px 60px -30px rgb(var(--black-rgb) / 0.8); }
+  .sp__bar { display: flex; align-items: center; gap: 6px; padding: var(--space-3) var(--space-4); border-block-end: 1px solid var(--color-hairline); }
+  .sp__bar i { inline-size: 8px; block-size: 8px; border-radius: 50%; background: rgb(var(--neutral-0-rgb) / 0.25); }
+  .sp__bar span { margin-inline-start: var(--space-2); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .sp__body-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); padding: var(--space-4); }
+  @media (width >= 48rem) { .sp__body-grid { grid-template-columns: 5.5rem 1fr; } }
+  .sp__nav { display: none; gap: 9px; align-content: start; }
+  @media (width >= 48rem) { .sp__nav { display: grid; } }
+  .sp__nav i { block-size: 9px; border-radius: 4px; background: rgb(var(--neutral-0-rgb) / 0.12); }
+  .sp__tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
+  .sp__tile { position: relative; block-size: clamp(3.25rem, 2rem + 3vw, 4.75rem); border-radius: var(--radius-md); background: rgb(var(--neutral-0-rgb) / 0.06); border: 1px solid var(--color-hairline); }
+  /* The module our squad builds: blue, inside the product. */
+  .sp__tile--mod { grid-column: span 2; background: color-mix(in oklab, var(--blue-600) 55%, transparent); border: 2px solid var(--blue-400); }
+  .sp__tile--wide { grid-column: span 3; block-size: clamp(2.5rem, 1.6rem + 2vw, 3.5rem); }
+  /* The ongoing roadmap: a green ring around the whole product. */
+  .sp__ring { position: absolute; inset: -14px; border-radius: calc(var(--radius-lg) + 10px); border: 2px solid color-mix(in oklab, var(--green-300) 50%, transparent); pointer-events: none; display: flex; justify-content: center; }
+  /* A new MVP: a phone beside the product. */
+  .sp__phone { position: absolute; z-index: 2; inset-inline-end: -3rem; inset-block-end: -2.75rem; inline-size: clamp(5.5rem, 3rem + 7vw, 8.25rem); aspect-ratio: 2 / 3; display: grid; align-content: start; gap: 7px; padding: var(--space-3) var(--space-2); border-radius: 18px; background: var(--blue-900); border: 5px solid var(--device-body); box-shadow: 0 20px 40px -10px rgb(var(--black-rgb) / 0.8); }
+  .sp__phone i { block-size: 8px; border-radius: 4px; background: rgb(var(--neutral-0-rgb) / 0.18); }
+  .sp__phone i:first-of-type { block-size: clamp(1.5rem, 0.8rem + 2vw, 2.5rem); background: var(--blue-600); }
+  /* A proof of concept: a dashed box, outside the product until it proves itself. */
+  .sp__poc { position: absolute; z-index: 2; inset-inline-start: -1.5rem; inset-block-end: -2.25rem; inline-size: clamp(5rem, 3rem + 5vw, 7.5rem); aspect-ratio: 3 / 2; display: grid; place-items: center; border-radius: var(--radius-md); border: 2px dashed var(--blue-400); background: color-mix(in oklab, var(--blue-975) 85%, transparent); font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xl); color: var(--blue-400); }
+
+  /* Pins: one label per piece, pinned to its top edge. */
+  .sp__pin { position: absolute; z-index: 3; display: inline-flex; align-items: baseline; gap: var(--space-2); padding: 5px 11px; border-radius: var(--radius-pill); font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xs); color: var(--blue-975); background: var(--blue-200); box-shadow: 0 8px 20px -8px rgb(var(--black-rgb) / 0.8); white-space: nowrap; }
+  .sp__pin small { font-family: var(--ff-mono); font-weight: var(--weight-regular); font-size: var(--text-xs); opacity: 0.8; }
+  @media (width < 48rem) { .sp__pin small { display: none; } }
+  @media (width >= 48rem) { .sp__pin { font-size: var(--text-sm); } }
+  .sp__pin--road { inset-block-start: -15px; background: var(--color-human-mark); }
+  .sp__pin--mod { inset-block-start: -14px; inset-inline-start: 10px; }
+  .sp__pin--mvp { inset-block-start: -2.1rem; inset-inline-end: -0.5rem; background: var(--blue-100); }
+  .sp__pin--poc { inset-block-start: -1.9rem; inset-inline-start: -0.5rem; background: var(--blue-100); }
+
+  /* The four jobs as text. */
+  .sp__list { display: grid; gap: var(--space-5); }
+  .sp__item { display: grid; gap: var(--space-1); padding-inline-start: var(--space-5); border-inline-start: 3px solid color-mix(in oklab, var(--blue-300) 40%, transparent); }
+  .sp__item--module { border-inline-start-color: var(--blue-400); }
+  .sp__item--roadmap { border-inline-start-color: var(--color-human-mark); }
+  .sp__name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-3); font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .sp__when { font-family: var(--ff-mono); font-size: var(--text-xs); font-weight: var(--weight-regular); color: var(--color-machine-text); }
+  .sp__text { font-size: var(--text-sm); line-height: 1.55; color: var(--color-text-muted); }
+</style>

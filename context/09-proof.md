@@ -21,6 +21,7 @@ Extract of the DiscoverDev Master Source Document (Project doc, last updated 2 J
 ## Offer (website naming per Oct 2026 decision: Validate / Build / Scale; master doc older name for Build = "Launch")
 - Validate — "I have an idea." 1–2 weeks, fixed fee. Market & competitor read, product scope, clickable prototype, fixed build estimate. Fee credits toward Build.
 - Build — "I'm ready to build." 8–12 weeks (vs typical 12–16), fixed price. Production-ready product, real users, live deployment; design, build, QA, deploy. The DiscoverDev Way.
+- Squad support (Mohamed, Oct 27 2026): our squads also work alongside a client's own team, under the client's direction, on a proof of concept (POC package 2–4 wks), a new MVP (MVP package 6–12 wks) or a module inside the client's sprints; ongoing work is the dedicated team (min 6 months).
 - Scale — "It's working, grow it." Ongoing monthly retainer. Dedicated squad (devs + QA + PM), roadmap & sprint ownership. Client keeps control.
 - Front door (Oct 2026): Launch-Ready Review — ~5 working days, fixed fee quoted per client, credits toward fix or Build, guarantee "no useful findings, no charge", booked on Cal.com.
 - Review price (decided by Mohamed, Oct 16 2026, D-01): **from $1,490 USD**; the exact fee depends on app size and is quoted on the free 30-minute scoping call. Market context (vendor asking prices, Oct 2026): entry audits $149–199, fixed-fee audits ~$800–1,500 (median ~$1,000), boutique reviews $1,500–10,000.

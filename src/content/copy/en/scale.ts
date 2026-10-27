@@ -20,7 +20,7 @@ export const scale = {
     ],
   },
   // Journey stops (Oct 27, shared with Build): names shown in the margin on very wide screens.
-  stages: { squad: 'The team', outcomes: 'What you get', fit: 'Fit', terms: 'The deal', partners: 'Software houses', proof: 'Proof', faq: 'Questions', close: 'Start' },
+  stages: { squad: 'The team', outcomes: 'Ways to work', fit: 'Fit', terms: 'The deal', partners: 'Software houses', proof: 'Proof', faq: 'Questions', close: 'Start' },
   fit: {
     title: 'Is Scale right for you?',
     // Column headings derived from the 03 section name "Who it's for, and not for".
@@ -36,6 +36,20 @@ export const scale = {
       { text: 'You need a single project with a fixed end (see Build).', link: { label: 'see Build', to: 'build' as const } },
       { text: 'You run a software house and need engineers under your brand (see white-label below).' },
     ],
+  },
+  // 03 §16b.15 (Oct 27): our squad working with your team on a piece you hand over (09 Offer, squad support).
+  // Replaces "What a dedicated squad gives you" and "What's included" (generic cards; the roles are in the terms section).
+  pieces: {
+    title: 'Your team leads. Our squad takes a piece.',
+    body: 'Hand us a proof of concept, a new MVP or a module in your product. You set the direction. Our squad works in your backlog and your sprints while your team keeps shipping.',
+    product: 'your-product',
+    items: [
+      { id: 'poc', name: 'Proof of concept', when: '2–4 weeks', body: 'Test a risky idea or a new technology before your team commits to it.' },
+      { id: 'mvp', name: 'A new MVP', when: '6–12 weeks', body: 'A new product next to your main one, built while your team stays on the roadmap.' },
+      { id: 'module', name: 'A module in your product', when: 'Inside your sprints', body: 'A feature area your team has no time or skills for, built to your architecture.' },
+      { id: 'roadmap', name: 'Ongoing roadmap', when: 'From 6 months', body: 'A dedicated squad that stays and grows with your product.' },
+    ],
+    pins: { poc: 'Proof of concept', mvp: 'A new MVP', module: 'A module', roadmap: 'Ongoing roadmap' },
   },
   outcomes: {
     title: 'What a dedicated squad gives you',

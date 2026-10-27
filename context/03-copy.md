@@ -1986,6 +1986,13 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Strip: "Every sprint" · Plan → Build → Test → Release · "Results every week" · AI-accelerated.
 - AR: "ابدأ بمختص واحد، وكبّر فريقك حين تحتاج." · "ينمو فريقك مع خارطة الطريق. نراجع حجم الفريق معك كل شهر، ويبقى من تعلّموا منتجك يعملون عليه." · "مثال: فريق ينمو خلال أول 6 أشهر".
 
+### 16b.15 Scale: your product, our pieces (Oct 27)
+- Replaces "What a dedicated squad gives you" + "What's included". Fact: 09 Offer, squad support (Mohamed, Oct 27).
+- Title "Your team leads. Our squad takes a piece." · body "Hand us a proof of concept, a new MVP or a module in your product. You set the direction. Our squad works in your backlog and your sprints while your team keeps shipping."
+- Items: Proof of concept · 2–4 weeks · "Test a risky idea or a new technology before your team commits to it." / A new MVP · 6–12 weeks · "A new product next to your main one, built while your team stays on the roadmap." / A module in your product · Inside your sprints · "A feature area your team has no time or skills for, built to your architecture." / Ongoing roadmap · From 6 months · "A dedicated squad that stays and grows with your product."
+- Art: a drawing of the client's product with each piece pinned where it belongs (module inside, MVP as a phone beside it, POC as a dashed box, the roadmap as a ring around it). Stop label "Ways to work".
+- AR: "فريقك يقود، وفريقنا يتولى جزءًا." · items إثبات مفهوم / منتج أولي جديد (MVP) / وحدة في منتجك / خارطة طريق مستمرة.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

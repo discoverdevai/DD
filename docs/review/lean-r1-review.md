@@ -115,3 +115,8 @@ Looked at desktop, phone and Arabic, section by section.
 - New: "Start with one specialist. Grow into a full squad." An example chart shows a squad growing over its first 6 months (a row per role, starting in the month that person joins) plus a monthly review row. Under it, one strip: Every sprint · Plan → Build → Test → Release · Results every week · AI-accelerated. Same chart language as Build's plan. EN + AR (03 §16b.14).
 - The section is 0.85 screens at 1440 and 0.97 on a phone (was 1.39). SquadLoop removed (no longer used).
 - Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Scale page, step 3: your product, our pieces (Oct 27)
+- Mohamed's idea, now in 09 (Offer, squad support): our squads work alongside a client's own team, under the client's direction, on a POC (2–4 weeks), a new MVP (6–12 weeks) or a module inside their sprints. Ongoing work is the dedicated team (from 6 months).
+- New section "Your team leads. Our squad takes a piece." replaces "What a dedicated squad gives you" and "What's included". A drawing of the client's product pins each piece where it belongs (module inside, MVP as a phone beside it, POC as a dashed box, roadmap as a ring around it), with the four jobs listed beside it. Chosen from three art directions (time map, product drawing, block sizes) after research on Netguru, Halo Lab, thoughtbot, Lullabot, VentureDive, &above and the agile-pod vendors.
+- 0.87 screens at 1440, 1.25 on a phone. Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
