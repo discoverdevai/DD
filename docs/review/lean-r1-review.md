@@ -83,3 +83,10 @@ Looked at desktop, phone and Arabic, section by section.
 - These replace the anonymous AR furniture bar, which would have shown NJWAR twice. Phones get one swipe row (1.78 screens, was 3.26 stacked).
 - New phone frame in ProjectVisual. Two check fixes: the QA alt check now accepts Astro's bare `alt` (a valid empty alt), and the consent gate no longer matches everything once every name is cleared.
 - Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Client names on home and Work (Oct 27)
+- Project titles in `projects.ts` (home rail, /work rows, EN + AR) now name the client from 09: Athkado (AR furniture store; feasibility sprints), Rushr, BioBank, Nile Support, Amstadd, Upscend, Pyramakerz, Arheb, Jumlaty, Fantacalcio and Zest. EduLens and Yawmy Care were already named. The support agent, individual founders and the Kuwait tourism research stay unnamed, because 09 names no client for them.
+- Athkado's store card now uses the drawing instead of the NJWAR screen, so it doesn't claim NJWAR is Athkado's store (A4: unconfirmed).
+- Rushr's card and row show its two real phone screens (home rail and Work).
+- /work has no Arabic page yet (it already had none before this change).
+- Checked: QA 0 findings, functional 32/32, axe clean on home (EN, AR, phone) and Work.

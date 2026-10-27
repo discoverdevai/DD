@@ -1971,6 +1971,9 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
   - Phones: the four cards are one swipe row.
   - BioBank · HealthTech: "A mobile app that turns lab reports into plain-language explanations, with recommendations, follow-up questions and medical safety guardrails."
 
+### 9.3b Project titles name the client (Oct 27)
+- Mohamed OK'd client names (D-05). Titles in `projects.ts` (home rail, /work rows) now name the client from 09: Athkado (AR furniture store; feasibility sprints), Rushr, BioBank, Nile Support, Amstadd, Upscend, Pyramakerz, Arheb, Jumlaty, Fantacalcio, Zest; EduLens and Yawmy Care were already named. The support agent, individual founders and tourism research stay unnamed (09 names no client). Athkado's store card uses the drawing, not the NJWAR screen (A4: link unconfirmed).
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 
