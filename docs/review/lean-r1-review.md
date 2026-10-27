@@ -109,3 +109,9 @@ Looked at desktop, phone and Arabic, section by section.
 - Build's journey is now a shared component (Journey + JourneyStop), and Scale uses it: one deepening background, the line with a stop per section, and the same 88px gap between sections. The page is about 1,900px shorter at 1440. Build looks the same as before.
 - Hero: "Minimum · 6 months" replaces "Timeline · Monthly", which repeated "Model · Monthly retainer". New link under the button for the second audience: "Software house? White-label or staff augmentation" → #partners. The hero card's small labels go from 11px to 12px.
 - Checked at 1440, 1024 and 390 in EN and at 1440 in AR: no overflow, axe clean, no text under 12px, QA 0 findings, functional 32/32.
+
+## Scale page, step 2: squad section (Oct 27)
+- The old section ("Steady delivery. A team that stays.") repeated the hero card's Join / Ship / Review and borrowed two titles from the next section.
+- New: "Start with one specialist. Grow into a full squad." An example chart shows a squad growing over its first 6 months (a row per role, starting in the month that person joins) plus a monthly review row. Under it, one strip: Every sprint · Plan → Build → Test → Release · Results every week · AI-accelerated. Same chart language as Build's plan. EN + AR (03 §16b.14).
+- The section is 0.85 screens at 1440 and 0.97 on a phone (was 1.39). SquadLoop removed (no longer used).
+- Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

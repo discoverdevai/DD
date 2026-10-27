@@ -63,6 +63,24 @@ export const scale = {
       { meta: 'Every month', title: 'Review', body: 'What shipped, what’s next, and whether the team size is right.' },
     ],
   },
+  // 03 §16b.14 (Oct 27): the squad growing month by month (an example), replacing the roster + loop that repeated the hero.
+  growth: {
+    title: 'Start with one specialist. Grow into a full squad.',
+    body: 'Your squad grows with your roadmap. We check the team size with you every month, and the people who learn your product keep working on it.',
+    example: 'Example: a squad growing over its first 6 months',
+    monthLabel: 'Month',
+    fromLabel: 'Joins in month',
+    reviewLabel: 'Monthly review',
+    months: 6,
+    roles: [
+      { icon: 'code', title: 'Developers', from: 1 },
+      { icon: 'shield-check', title: 'QA', from: 2 },
+      { icon: 'compass', title: 'Lead', from: 3 },
+      { icon: 'list-checks', title: 'PM', from: 3 },
+      { icon: 'pen-tool', title: 'Designer', from: 4 },
+    ],
+    loop: { meta: 'Every sprint', steps: ['Plan', 'Build', 'Test', 'Release'], note: 'Results every week' },
+  },
   // 03 §7.12 (v4): signature squad and loop, statement band and the merged terms document.
   squad: {
     title: 'Steady delivery. A team that stays.',

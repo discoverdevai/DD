@@ -1979,6 +1979,13 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Ways in under the button: "Software house? White-label or staff augmentation" → #partners. AR: "شركة برمجيات؟ العمل باسم علامتك أو تعزيز فريقك".
 - Journey stops (margin labels, very wide screens): The team · What you get · Fit · The deal · Software houses · Proof · Questions · Start. AR: الفريق · ما تحصل عليه · هل يناسبك · الاتفاق · شركات البرمجيات · الدليل · الأسئلة · البداية.
 
+### 16b.14 Scale squad section, redesigned (Oct 27)
+- Replaces "Steady delivery. A team that stays." (roster + Join/Ship/Review, which repeated the hero card).
+- Title "Start with one specialist. Grow into a full squad." · body "Your squad grows with your roadmap. We check the team size with you every month, and the people who learn your product keep working on it." (facts: §7 team size reviewed monthly, one specialist to a full squad).
+- Chart, labelled "Example: a squad growing over its first 6 months": Developers from month 1, QA 2, Lead 3, PM 3, Designer 4; "Monthly review" dot every month.
+- Strip: "Every sprint" · Plan → Build → Test → Release · "Results every week" · AI-accelerated.
+- AR: "ابدأ بمختص واحد، وكبّر فريقك حين تحتاج." · "ينمو فريقك مع خارطة الطريق. نراجع حجم الفريق معك كل شهر، ويبقى من تعلّموا منتجك يعملون عليه." · "مثال: فريق ينمو خلال أول 6 أشهر".
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

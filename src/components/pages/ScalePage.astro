@@ -11,7 +11,7 @@ import ProofList from '../blocks/ProofList.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import ServiceGlance from '../scenes/ServiceGlance.astro';
-import SquadLoop from '../sections/SquadLoop.astro';
+import SquadGrowth from '../sections/SquadGrowth.astro';
 import TermsDoc from '../sections/TermsDoc.astro';
 import ComparisonTable from '../partners/ComparisonTable.astro';
 import Quote from '../blocks/Quote.astro';
@@ -41,7 +41,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   <!-- Journey (shared with Build, Oct 27): one line from joining to a team that stays; even gaps between stops. -->
   <Journey>
   <JourneyStop label={c.stages.squad} />
-  <SquadLoop title={c.squad.title} rosterLabel={c.squad.rosterLabel} roles={c.squad.roles} ring={c.squad.ring} steps={c.process.steps} />
+  <SquadGrowth c={c.growth} chip={c.process.steps[1].chip} />
 
   <JourneyStop label={c.stages.outcomes} />
   <Section id="outcomes" surface="raised" title={c.outcomes.title}>

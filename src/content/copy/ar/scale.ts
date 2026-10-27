@@ -58,6 +58,23 @@ export const scale: Widen<typeof en> = {
       { meta: 'كل شهر', title: 'المراجعة', body: 'ما الذي أُطلق، وما التالي، وهل حجم الفريق مناسب.' },
     ],
   },
+  growth: {
+    title: 'ابدأ بمختص واحد، وكبّر فريقك حين تحتاج.',
+    body: 'ينمو فريقك مع خارطة الطريق. نراجع حجم الفريق معك كل شهر، ويبقى من تعلّموا منتجك يعملون عليه.',
+    example: 'مثال: فريق ينمو خلال أول 6 أشهر',
+    monthLabel: 'الشهر',
+    fromLabel: 'ينضم في الشهر',
+    reviewLabel: 'المراجعة الشهرية',
+    months: 6,
+    roles: [
+      { icon: 'code', title: 'المطورون', from: 1 },
+      { icon: 'shield-check', title: 'ضمان الجودة', from: 2 },
+      { icon: 'compass', title: 'القائد', from: 3 },
+      { icon: 'list-checks', title: 'مدير المنتج', from: 3 },
+      { icon: 'pen-tool', title: 'المصمم', from: 4 },
+    ],
+    loop: { meta: 'كل سبرنت', steps: ['التخطيط', 'البناء', 'الاختبار', 'الإطلاق'], note: 'نتائج كل أسبوع' },
+  },
   squad: {
     title: 'تسليم منتظم. فريق يبقى معك.',
     rosterLabel: 'من مختص واحد إلى فريق كامل',
