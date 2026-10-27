@@ -24,7 +24,7 @@ const device = project.device ?? 'browser';
   <div class:list={['pv', `pv--${device}`, { 'pv--pair': screens.length > 1 }]}>
     {screens.slice(0, 2).map((src, i) => (
       <div class:list={['pv__frame', { 'pv__frame--back': i === 1 }]}>
-        {device === 'browser' && <span class="pv__bar" aria-hidden="true"><i></i><i></i><i></i></span>}
+        {(device === 'browser' || (device === 'combo' && i === 0)) && <span class="pv__bar" aria-hidden="true"><i></i><i></i><i></i></span>}
         {typeof src === 'string'
           ? <img src={src} alt={alt(i)} width="640" height="853" class="pv__img" loading="lazy" decoding="async" />
           : <Image src={src!} alt={alt(i)} widths={[480, 800, 1200]} sizes={sizes} class="pv__img" loading="lazy" decoding="async" />}
@@ -49,6 +49,11 @@ const device = project.device ?? 'browser';
   .pv--tablet.pv--pair .pv__frame:not(.pv__frame--back) { translate: 22% 4%; z-index: 1; }
   .pv--tablet.pv--pair .pv__frame--back { translate: -22% 0; opacity: 0.9; }
   /* Phone: narrow dark bezel, two phones side by side (front one lower), cropped by the stage. */
+  /* Combo (Oct 27): the web app in a browser window with the mobile app in front, so one picture shows both halves of the product. */
+  .pv--combo { padding: 6% 6% 0; }
+  .pv--combo .pv__frame { grid-area: 1 / 1; }
+  .pv--combo .pv__frame:not(.pv__frame--back) { inline-size: 82%; justify-self: start; border-radius: 10px 10px 0 0; }
+  .pv--combo .pv__frame--back { inline-size: 27%; justify-self: end; z-index: 1; translate: 0 10%; border: 5px solid var(--device-body); border-block-end: 0; border-radius: 18px 18px 0 0; box-shadow: 0 16px 40px -10px rgb(var(--black-rgb) / 0.7); }
   .pv--phone { padding: 7% 0 0; }
   .pv--phone .pv__frame { align-self: start; inline-size: 34%; border: 5px solid var(--device-body); border-block-end: 0; border-radius: 20px 20px 0 0; }
   .pv--phone.pv--pair .pv__frame { grid-area: 1 / 1; }

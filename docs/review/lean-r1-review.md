@@ -95,3 +95,12 @@ Looked at desktop, phone and Arabic, section by section.
 - Mohamed confirmed NJWAR is the store we built for Athkado. Recorded in 09, 11 and docs/MEMORY.md; A4 is lifted.
 - Work: "NJWAR, Athkado's AR furniture store with AI recommendations" (Saudi Arabia), with the NJWAR product screen and Nojoud Alarfaj's quote. Home NJWAR chapter: Saudi Arabia tag. Build card: "Athkado · Saudi Arabia". EN + AR.
 - Checked: QA 0 findings, functional 32/32, axe clean.
+
+## Project pictures that show the idea (Oct 27)
+- Mohamed asked for better pictures. Each card now shows what makes its product different:
+  - NJWAR: the web store with the AR phone view in front (an armchair placed in a real room).
+  - Yawmy Care: the nursery dashboard with the parent app's daily log in front (mood, meals, nap).
+  - Rushr: kept "A pro has been found near you" over the map search.
+- New "combo" frame in ProjectVisual (browser window plus a phone in front, mirrored in Arabic). Used on Build cards, the home rail and Work rows.
+- BioBank and EduLens keep their drawings until we get real screens from them.
+- Checked: QA 0 findings, functional 32/32, axe clean.
