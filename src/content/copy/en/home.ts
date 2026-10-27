@@ -34,6 +34,7 @@ export const home = {
       'arheb': 'Ride-sharing ML · Saudi Arabia',
       'nile-support': 'AI call operations · USA',
       'biobank': 'HealthTech app',
+      'pyramakerz': 'EdTech data and ML · Egypt',
       'jumlaty': 'Restaurant procurement · Saudi Arabia',
       'zest': 'Market study',
       'ctc': 'Speech therapy practice · USA',

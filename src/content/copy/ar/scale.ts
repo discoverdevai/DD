@@ -165,9 +165,9 @@ export const scale: Widen<typeof en> = {
     label: 'عملاء وسّعوا نطاق العمل',
     items: [
       { id: 'athkado', name: 'Athkado', meta: 'وسّع نطاق العمل · السعودية', line: 'سبرنتات جدوى أولًا، ثم متجر NJWAR بالواقع المعزز وتوصيات بالذكاء الاصطناعي.', screens: ['njwar-web.webp', 'njwar-ar.webp'], device: 'combo', alt: 'متجر NJWAR على الويب بالعربية، ومعه عرض الواقع المعزز على الجوال يضع كرسيًا في غرفة حقيقية', art: 'ar' },
-      { id: 'upscend', name: 'Upscend', meta: 'وسّع نطاق العمل · المملكة المتحدة', line: '12 شهرًا مع فريق مدمج واحد يدير خارطة الطريق وقائمة المهام والسبرنتات.', art: 'lms' },
-      { id: 'arheb', name: 'Arheb', meta: 'وسّع نطاق العمل · السعودية', line: 'فريق بيانات وتعلم آلي مدمج لمنصة تنقل تشاركي ذكية.', art: 'ride' },
-      { id: 'pyramakerz', name: 'Pyramakerz', meta: 'وسّع نطاق العمل · مصر', line: 'بيانات وتعلم آلي وأتمتة لمنصة تعليمية تضم أكثر من 20,000 طالب.', art: 'data' },
+      { id: 'upscend', name: 'Upscend', meta: 'وسّع نطاق العمل · المملكة المتحدة', line: '12 شهرًا مع فريق مدمج واحد يدير خارطة الطريق وقائمة المهام والسبرنتات.', screens: ['upscend-learner.webp'], device: 'browser', alt: 'لوحة المتعلم في Upscend: الدورات الحالية مع التقدم وزر المتابعة', art: 'lms', logo: 'upscend.png' },
+      { id: 'arheb', name: 'Arheb', meta: 'وسّع نطاق العمل · السعودية', line: 'فريق بيانات وتعلم آلي مدمج لمنصة تنقل تشاركي ذكية.', art: 'ride', logo: 'arheb.png' },
+      { id: 'pyramakerz', name: 'Pyramakerz', meta: 'وسّع نطاق العمل · مصر', line: 'بيانات وتعلم آلي وأتمتة لمنصة تعليمية تضم أكثر من 20,000 طالب.', art: 'data', logo: 'pyramakerz.png' },
     ],
     alsoLabel: 'ومعنا أيضًا',
     also: [

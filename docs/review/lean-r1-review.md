@@ -170,3 +170,8 @@ Looked at desktop, phone and Arabic, section by section.
 - Mohamed liked "the four who came back" but wanted other components, so the section now reuses Build's named-product cards (real screen or product drawing, meta, name, line). The four clients who expanded scope (09 Differentiators): Athkado (feasibility sprints, then the NJWAR AR store, with its screens), Upscend (12 months, one embedded team), Arheb (embedded data and ML team), Pyramakerz (data, ML and automations, 20,000+ students). The others go on one line: Jumlaty, Nile Support, Amstadd.
 - The product-card block now works without its own sub-heading. Build is unchanged (1.33 screens at 1440 as before).
 - 0.71 screens at 1440 and 0.82 on a phone (swipe row). Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Scale page, step 13: logos and a real screen on the proof cards (Oct 27)
+- Mohamed asked for logos and screens from the clients' sites, for validation. Upscend's card now shows its public learner dashboard (upscend.com) and its logo; Arheb shows its approved logo; Pyramakerz shows its logo, downloaded from pyramakerz.com and added to clients.ts (it now also appears in the home client row, with the role line "EdTech data and ML · Egypt"). Athkado's own logo file is broken on athkado.com, so its card keeps the NJWAR screens. We did not use Pyramakerz's or Athkado's site images, because we did not build those products.
+- Logos sit on the picture's top corner (round badges as circles, wide wordmarks on a white pill), so the text lines up across all cards. Build's cards are unchanged.
+- Checked: no overflow, axe clean, QA 0 findings, functional 32/32. Decision logged in 11 and docs/MEMORY.md.

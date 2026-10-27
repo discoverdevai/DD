@@ -18,6 +18,7 @@ export const clientLogos: readonly ClientLogo[] = [
   { id: 'nile-support', name: 'Nile Support', file: 'nile-support.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'AI call operations · USA' },
   { id: 'biobank', name: 'BioBank', file: 'biobank.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Health app for lab reports' },
   { id: 'jumlaty', name: 'Jumlaty', file: 'jumlaty.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Restaurant procurement ML · Saudi Arabia' },
+  { id: 'pyramakerz', name: 'Pyramakerz', file: 'pyramakerz.png', consent: 'D-05 · clients may be named (Mohamed, 2026-10-27); logo from pyramakerz.com' },
   { id: 'rushr', name: 'Rushr', file: 'rushr.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16' }, // D-07 lifted Oct 21 (Mohamed): the case is shown too
   { id: 'zest', name: 'Zest', file: 'zest.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16' },
   { id: 'ctc', name: 'Continuum Therapy Collective', file: 'ctc.webp', consent: null /* hidden until the therapist consents (decision A2, Oct 18) */, fit: 'contain' }, // + clinician consent

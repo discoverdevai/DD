@@ -179,9 +179,9 @@ export const scale = {
     label: 'Clients who expanded scope',
     items: [
       { id: 'athkado', name: 'Athkado', meta: 'Expanded scope · Saudi Arabia', line: 'Feasibility sprints first, then the NJWAR AR store with AI recommendations.', screens: ['njwar-web.webp', 'njwar-ar.webp'], device: 'combo', alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room', art: 'ar' },
-      { id: 'upscend', name: 'Upscend', meta: 'Expanded scope · UK', line: '12 months, one embedded team owning the roadmap, backlog and sprints.', art: 'lms' },
-      { id: 'arheb', name: 'Arheb', meta: 'Expanded scope · Saudi Arabia', line: 'An embedded data and ML team for a smart ride-sharing platform.', art: 'ride' },
-      { id: 'pyramakerz', name: 'Pyramakerz', meta: 'Expanded scope · Egypt', line: 'Data, ML and automations for an EdTech platform with 20,000+ students.', art: 'data' },
+      { id: 'upscend', name: 'Upscend', meta: 'Expanded scope · UK', line: '12 months, one embedded team owning the roadmap, backlog and sprints.', screens: ['upscend-learner.webp'], device: 'browser', alt: 'Upscend learner dashboard: current courses with progress and a continue button', art: 'lms', logo: 'upscend.png' },
+      { id: 'arheb', name: 'Arheb', meta: 'Expanded scope · Saudi Arabia', line: 'An embedded data and ML team for a smart ride-sharing platform.', art: 'ride', logo: 'arheb.png' },
+      { id: 'pyramakerz', name: 'Pyramakerz', meta: 'Expanded scope · Egypt', line: 'Data, ML and automations for an EdTech platform with 20,000+ students.', art: 'data', logo: 'pyramakerz.png' },
     ],
     alsoLabel: 'Also with us',
     also: [

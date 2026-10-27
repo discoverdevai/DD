@@ -2,23 +2,30 @@
 // Named products under the Build case (03 §16b.12, Oct 27): one card per product, its real screen in a device frame
 // (our Figma exports, assets/projects) or the product-type drawing when we have no screen, then meta, name and one line.
 // Reuses ProjectVisual so the frames match home and /work. Facts from 09; names OK'd by Mohamed on Oct 27 (D-05).
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import ProjectVisual from '../work/ProjectVisual.astro';
 import type { Project } from '../../content/copy/en/projects';
-interface Item { id: string; name: string; meta: string; line: string; screens?: readonly string[]; device?: string; alt?: string; art: string }
+// `logo` (Scale proof, Oct 27): a file in /assets/clients, pinned to the picture's top corner: square logos (the round
+// client badges) as a circle, wide wordmarks on a white pill. Text below stays aligned across cards with or without one.
+interface Item { id: string; name: string; meta: string; line: string; screens?: readonly string[]; device?: string; alt?: string; art: string; logo?: string }
 // Without `title` (Scale proof, Oct 27) the cards sit straight under the section's h2: names become h3 and the swipe
 // region is named by `label`.
 interface Props { c: { title?: string; label?: string; items: readonly Item[] } }
 const { c } = Astro.props;
 const Name = c.title ? 'h4' : 'h3';
+const logos = import.meta.glob<{ default: ImageMetadata }>('/assets/clients/*.{png,webp}');
+const logoOf = async (f?: string) => (f ? (await logos[`/assets/clients/${f}`]?.())?.default : undefined);
+const withLogos = await Promise.all(c.items.map(async (it) => ({ it, logo: await logoOf(it.logo) })));
 const asProject = (it: Item) => ({ id: it.id, stage: 'build', industry: it.meta, title: it.name, did: it.line, art: it.art, screens: it.screens, device: it.device, screenAlt: it.alt }) as Project;
 ---
 <div class="bw">
   {c.title && <h3 class="bw__title" id="bw-title">{c.title}</h3>}
   <div class="bw__scroll" role="region" aria-labelledby={c.title ? 'bw-title' : undefined} aria-label={c.title ? undefined : c.label} tabindex="0">
   <ul role="list" class="bw__grid reveal-stagger">
-    {c.items.map((it) => (
+    {withLogos.map(({ it, logo }) => (
       <li class="bw__card">
-        <div class="bw__vis"><ProjectVisual project={asProject(it)} sizes="(min-width: 72rem) 22vw, (min-width: 40rem) 45vw, 90vw" /></div>
+        <div class="bw__vis">{logo && <span class:list={['bw__logo', { 'bw__logo--round': logo.width === logo.height }]}><Image src={logo} alt="" height={96} class="bw__logoimg" /></span>}<ProjectVisual project={asProject(it)} sizes="(min-width: 72rem) 22vw, (min-width: 40rem) 45vw, 90vw" /></div>
         <div class="bw__text">
           <p class="bw__meta">{it.meta}</p>
           <Name class="bw__name">{it.name}</Name>
@@ -47,6 +54,11 @@ const asProject = (it: Item) => ({ id: it.id, stage: 'build', industry: it.meta,
   /* The visual sits flush in the card; its own rounding and border give way to the card's. */
   .bw__vis :global(.pv), .bw__vis :global(svg) { border-radius: 0; border: 0; border-block-end: 1px solid var(--color-hairline); }
   .bw__text { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); }
+  .bw__vis { position: relative; }
+  .bw__logo { position: absolute; z-index: 3; inset-block-start: var(--space-3); inset-inline-start: var(--space-3); display: inline-flex; align-items: center; block-size: 2.5rem; padding: 6px 12px; border-radius: var(--radius-pill); background: var(--neutral-0); box-shadow: 0 6px 18px -6px rgb(var(--black-rgb) / 0.6); }
+  .bw__logo--round { inline-size: 3rem; block-size: 3rem; padding: 0; overflow: hidden; }
+  .bw__logo :global(.bw__logoimg) { block-size: 100%; inline-size: auto; max-inline-size: 8rem; object-fit: contain; }
+  .bw__logo--round :global(.bw__logoimg) { inline-size: 100%; }
   .bw__meta { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .bw__name { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
   .bw__line { font-size: var(--text-sm); line-height: 1.55; color: var(--color-text-muted); }
