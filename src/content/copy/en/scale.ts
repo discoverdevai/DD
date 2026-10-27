@@ -21,20 +21,22 @@ export const scale = {
   },
   // Journey stops (Oct 27, shared with Build): names shown in the margin on very wide screens.
   stages: { squad: 'The team', outcomes: 'Ways to work', fit: 'Fit', terms: 'The deal', partners: 'Software houses', proof: 'Proof', faq: 'Questions', close: 'Start' },
+  // 03 §16b.16 (Oct 27): fit check. "A single project with a fixed end" is no longer "not for" (the squad now takes POCs,
+  // MVPs and modules for teams); each not-for line routes to its better fit.
   fit: {
     title: 'Is Scale right for you?',
-    // Column headings derived from the 03 section name "Who it's for, and not for".
-    forTitle: 'Who it’s for',
-    notTitle: 'Who it’s not for',
+    forTitle: 'Scale fits if',
     for: [
       'Your product is live and growing.',
       'You need more capacity than your team has, without hiring one person at a time.',
+      'Your team needs a proof of concept, a new MVP or a module built under its direction.',
       'You want a team that learns your product and stays.',
     ],
+    notTitle: 'Something else fits better if',
+    betterLabel: 'Better fit:',
     not: [
-      // 03 §0.8: existing words become links.
-      { text: 'You need a single project with a fixed end (see Build).', link: { label: 'see Build', to: 'build' as const } },
-      { text: 'You run a software house and need engineers under your brand (see white-label below).' },
+      { text: 'You have an idea, but no product or team yet.', route: 'Build, from idea to a live MVP', to: 'build' as const },
+      { text: 'You run a software house and need engineers under your brand.', route: 'White-label or staff augmentation', anchor: 'partners' },
     ],
   },
   // 03 §16b.15 (Oct 27): our squad working with your team on a piece you hand over (09 Offer, squad support).

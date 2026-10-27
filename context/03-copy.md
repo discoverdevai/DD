@@ -1993,6 +1993,12 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Art: a drawing of the client's product with each piece pinned where it belongs (module inside, MVP as a phone beside it, POC as a dashed box, the roadmap as a ring around it). Stop label "Ways to work".
 - AR: "فريقك يقود، وفريقنا يتولى جزءًا." · items إثبات مفهوم / منتج أولي جديد (MVP) / وحدة في منتجك / خارطة طريق مستمرة.
 
+### 16b.16 Scale fit check (Oct 27)
+- "Scale fits if": Your product is live and growing. · You need more capacity than your team has, without hiring one person at a time. · Your team needs a proof of concept, a new MVP or a module built under its direction. (new, 16b.15) · You want a team that learns your product and stays.
+- "Something else fits better if": You have an idea, but no product or team yet. → Better fit: Build, from idea to a live MVP · You run a software house and need engineers under your brand. → Better fit: White-label or staff augmentation (#partners).
+- Dropped "You need a single project with a fixed end (see Build)": it contradicts 16b.15 (POC, MVP and module work for teams).
+- AR mirrored: "التوسع يناسبك إذا" / "يناسبك خيار آخر إذا" / "الأنسب:".
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

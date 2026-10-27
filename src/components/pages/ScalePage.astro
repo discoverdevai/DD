@@ -4,7 +4,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
 import Section from '../sections/Section.astro';
-import FitList from '../blocks/FitList.astro';
+import FitCheck from '../blocks/FitCheck.astro';
 import ProofList from '../blocks/ProofList.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
@@ -47,7 +47,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 
   <JourneyStop label={c.stages.fit} />
   <Section id="fit" surface="ink" title={c.fit.title}>
-    <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
+    <FitCheck c={c.fit} />
   </Section>
 
   <JourneyStop label={c.stages.terms} />

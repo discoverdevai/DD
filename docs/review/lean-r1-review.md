@@ -120,3 +120,8 @@ Looked at desktop, phone and Arabic, section by section.
 - Mohamed's idea, now in 09 (Offer, squad support): our squads work alongside a client's own team, under the client's direction, on a POC (2–4 weeks), a new MVP (6–12 weeks) or a module inside their sprints. Ongoing work is the dedicated team (from 6 months).
 - New section "Your team leads. Our squad takes a piece." replaces "What a dedicated squad gives you" and "What's included". A drawing of the client's product pins each piece where it belongs (module inside, MVP as a phone beside it, POC as a dashed box, roadmap as a ring around it), with the four jobs listed beside it. Chosen from three art directions (time map, product drawing, block sizes) after research on Netguru, Halo Lab, thoughtbot, Lullabot, VentureDive, &above and the agile-pod vendors.
 - 0.87 screens at 1440, 1.25 on a phone. Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.
+
+## Scale page, step 4: fit check (Oct 27)
+- Fixed a contradiction: "Not for: a single project with a fixed end" clashed with the new POC / MVP / module section above it.
+- Now two cards. "Scale fits if" (green top) adds "Your team needs a proof of concept, a new MVP or a module built under its direction." "Something else fits better if" routes each case to its better fit: Build for an idea with no product or team yet, and the software-house section (#partners) for white-label.
+- New FitCheck block; FitList stays because the Validate page still uses it. Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

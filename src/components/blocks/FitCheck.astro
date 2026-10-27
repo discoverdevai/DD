@@ -1,0 +1,47 @@
+---
+// "Is Scale right for you?" (03 §16b.16, Oct 27; replaces FitList). Two cards: who it fits, and who something else fits
+// better, where every "not for" line ends with a route to that better fit (a live page or a section on this page).
+import Icon from '../ui/Icon.astro';
+import { href, isLive, type RouteKey } from '../../data/routes';
+interface Other { text: string; route: string; to?: RouteKey; anchor?: string }
+interface Props { c: { forTitle: string; for: readonly string[]; notTitle: string; betterLabel: string; not: readonly Other[] } }
+const { c } = Astro.props;
+const target = (o: Other) => (o.anchor ? `#${o.anchor}` : o.to && isLive(o.to) ? href(o.to) : undefined);
+---
+<div class="fc">
+  <div class="fc__card fc__card--yes reveal">
+    <h3 class="fc__h">{c.forTitle}</h3>
+    <ul role="list" class="fc__list">{c.for.map((i) => <li><Icon name="check" size={20} class="fc__yes" /><span>{i}</span></li>)}</ul>
+  </div>
+  <div class="fc__card fc__card--no reveal">
+    <h3 class="fc__h">{c.notTitle}</h3>
+    <ul role="list" class="fc__list fc__list--no">
+      {c.not.map((o) => (
+        <li>
+          <span class="fc__text">{o.text}</span>
+          {target(o) && <a class="fc__route" href={target(o)}><span class="fc__better">{c.betterLabel}</span> {o.route}<span class="icon--dir" aria-hidden="true">→</span></a>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .fc { display: grid; gap: var(--space-4); }
+  @media (width >= 56rem) { .fc { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); } }
+  .fc__card { display: grid; gap: var(--space-5); align-content: start; padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); border-block-start: 4px solid color-mix(in oklab, var(--blue-300) 35%, transparent); }
+  .fc__card--yes { border-block-start-color: var(--color-human-mark); background: color-mix(in oklab, var(--green-300) 5%, var(--color-surface)); }
+  .fc__h { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .fc__list { display: grid; gap: var(--space-3); }
+  .fc__list li { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: var(--space-3); color: var(--color-text); }
+  .fc :global(.fc__yes) { margin-block-start: 0.2em; color: var(--color-human-mark); }
+  /* Not-for lines: the situation, then its better fit as a link. */
+  .fc__list--no { gap: var(--space-4); }
+  .fc__list--no li { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); padding-block-end: var(--space-4); border-block-end: 1px solid var(--color-hairline); }
+  .fc__list--no li:last-child { padding-block-end: 0; border-block-end: 0; }
+  .fc__text { color: var(--color-text); }
+  .fc__route { justify-self: start; display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-1); padding-block: var(--space-1); font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
+  .fc__route:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .fc__better { font-family: var(--ff-body); font-weight: var(--weight-regular); color: var(--color-text-muted); }
+  .fc__route .icon--dir { margin-inline-start: var(--space-1); }
+</style>
