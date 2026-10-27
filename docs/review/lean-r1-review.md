@@ -131,3 +131,8 @@ Looked at desktop, phone and Arabic, section by section.
 - The results map to facts in 09: Build · white-label or staff augmentation · hand us a piece (POC 2–4 weeks, MVP 6–12 weeks, module) · staff augmentation (from 3 months) · a dedicated squad (from 6 months). A live product with no tech team that asks for "more engineers" gets the squad, with a one-line reason.
 - No JavaScript: native radio buttons, and CSS :has() shows the matching result. Nothing is stored or sent. Explicit labels, keyboard arrows work, and a polite live region announces the result.
 - Tested all 10 answer paths in EN and AR (each shows exactly one correct result, or the placeholder), keyboard-only on a phone, axe clean with a result showing, no overflow, QA 0 findings, functional 32/32. FitCheck removed (replaced the same day).
+
+## Scale questionnaire: one question at a time, best fit carried to booking (Oct 27)
+- Question 2 appears only after a live answer to question 1. "Idea" and "software house" go straight to a result.
+- Each result has its own call button with the need: /book?type=clarity&interest=scale-<result>. /book shows "Your best fit from the Scale questions: …" and pre-fills the Cal.com notes, so the team sees the need before the call. Only answer categories go in the link; nothing personal, nothing stored. An unknown interest value shows nothing.
+- Tested all 10 paths in EN and AR (the right result, and question 2 only when needed), keyboard on a phone, axe clean, the /book banner in EN and AR, and the Cal.com iframe receiving the notes. QA 0 findings, functional 32/32.

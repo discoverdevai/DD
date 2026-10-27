@@ -39,7 +39,7 @@ function loadCal(): CalFn {
 }
 
 export interface RenderOpts {
-  type: BookType; el: HTMLElement; metadata: Record<string, string>; prefill?: { name?: string; email?: string };
+  type: BookType; el: HTMLElement; metadata: Record<string, string>; prefill?: { name?: string; email?: string; notes?: string };
   onReady: () => void; onFailed: () => void; onViewed: (slotsLoaded: boolean) => void; onBooked: (detail: Record<string, unknown>) => void;
 }
 
@@ -70,6 +70,7 @@ export function renderCal(o: RenderOpts): boolean {
   const config: Record<string, string> = { layout: matchMedia('(width >= 48rem)').matches ? 'month_view' : 'column_view', theme: 'dark' };
   if (o.prefill?.name) config.name = o.prefill.name;
   if (o.prefill?.email) config.email = o.prefill.email;
+  if (o.prefill?.notes) config.notes = o.prefill.notes; // Cal.com pre-fills the booking's "Additional notes"
   for (const [k, v] of Object.entries(o.metadata)) config[`metadata[${k}]`] = v;
   api('inline', { elementOrSelector: o.el, calLink: `${calUsername}/${SLUG[o.type]}`, config });
   quietPlaceholder(o.el);

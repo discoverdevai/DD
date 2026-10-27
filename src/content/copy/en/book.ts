@@ -22,6 +22,20 @@ export const book = {
     cookies: 'Booking runs on Cal.com. We use your answers to prepare for your call and to see which pages lead to bookings. Cal.com may set its own cookies when you book.',
     privacyLink: 'Read our privacy policy',
   },
+  // Oct 27: the best fit a visitor brings from the Scale questions (?interest=scale-<result>). Shown above the calendar and
+  // pre-filled into the booking notes, so the team sees the need before the call.
+  fit: {
+    label: 'Your best fit from the Scale questions:',
+    after: 'We start the call there.',
+    notesPrefix: 'From the Scale questions, best fit:',
+    names: {
+      'scale-build': 'Build, from idea to a live MVP',
+      'scale-house': 'White-label or staff augmentation',
+      'scale-piece': 'Hand us a piece: a POC, a new MVP or a module',
+      'scale-hands': 'Staff augmentation, engineers who join your team',
+      'scale-squad': 'A dedicated squad that stays',
+    },
+  },
   call: {
     title: 'What happens on the call',
     items: [

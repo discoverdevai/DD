@@ -2006,6 +2006,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Results (facts: 09 Offer, engagement models, squad support): Build ("A senior team takes your idea to real users in 8–12 weeks, at a fixed price.") · White-label or staff augmentation ("We deliver a project under your brand, or engineers join your team. Both start with an NDA, and the IP goes to you.") · Hand us a piece ("A proof of concept in 2–4 weeks, a new MVP in 6–12 weeks, or a module inside your sprints. You set the direction.") · Staff augmentation ("They work inside your team and your process, managed by you. The minimum term is 3 months.") · A dedicated squad ("Developers, QA and a PM on a monthly retainer, from 6 months. The squad's PM runs the sprints with you."; with no tech team: "With no tech team to manage engineers yet, a squad with its own PM fits better than adding people.").
 - Then "Book a free clarity call". No JavaScript; answers are not stored or sent. AR mirrored in ar/scale.ts.
 
+### 16b.18 Scale questionnaire, step by step + best fit to booking (Oct 27)
+- Question 2 appears only after a live answer to question 1 (idea / software house go straight to a result).
+- Each result has its own "Book a free clarity call" carrying the need: /book?type=clarity&interest=scale-<build|house|piece|hands|squad>.
+- /book shows "Your best fit from the Scale questions: <name>. We start the call there." and pre-fills the Cal.com notes "From the Scale questions, best fit: <name>". Names: Build, from idea to a live MVP · White-label or staff augmentation · Hand us a piece: a POC, a new MVP or a module · Staff augmentation, engineers who join your team · A dedicated squad that stays. AR in ar/book.ts.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

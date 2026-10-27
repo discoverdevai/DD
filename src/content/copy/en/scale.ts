@@ -27,7 +27,6 @@ export const scale = {
     body: 'Answer two questions and see your best fit. The free call confirms it.',
     q1: 'Where is your product today?',
     q2: 'What do you need most right now?',
-    q2hint: 'No need to answer this one. Your best fit is already showing.',
     stages: [
       { id: 'idea', label: 'Still an idea, no product yet' },
       { id: 'team', label: 'Live, with our own tech team' },

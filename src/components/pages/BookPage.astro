@@ -29,6 +29,7 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
             <a href={localPath('/book?type=partner')} class="opt" data-opt="partner" hidden>{c.options.partner.tab}</a>
           </nav>
         )}
+        <p class="book__fit" data-book-fit data-notes-prefix={c.fit.notesPrefix} hidden><span>{c.fit.label}</span> {Object.entries(c.fit.names).map(([k, v]) => <b data-fit={k} hidden>{v}</b>)}<span class="book__fit-after">{c.fit.after}</span></p>
         <div class="opt-panel" data-panel="clarity"><p>{c.options.clarity.text}</p><CtaTerms kind="clarity" /></div>
         {reviewOn && <div class="opt-panel" data-panel="review" hidden><p>{c.options.review.text}</p><CtaTerms kind="review" /></div>}
         {reviewOn && <div class="opt-panel" data-panel="partner" hidden><p>{c.options.partner.text}</p><CtaTerms kind="partner" /></div>}
@@ -72,6 +73,10 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
   /* Selected option: filled, not just a thicker border, so the choice reads at a glance (CRO review). */
   .opt[aria-current='true'] { border-color: var(--blue-700); background: var(--blue-700); color: var(--neutral-0); }
   .opt[hidden] { display: none; }
+  /* The need a visitor brought from the Scale questions (Oct 27). */
+  .book__fit { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid color-mix(in oklab, var(--green-300) 45%, transparent); background: color-mix(in oklab, var(--green-300) 8%, transparent); max-inline-size: var(--measure-prose); }
+  .book__fit b { color: var(--color-heading); }
+  .book__fit-after { display: block; font-size: var(--text-sm); color: var(--color-text-muted); }
   .opt-panel { display: grid; gap: var(--space-3); max-inline-size: var(--measure-prose); }
   .book__side { display: grid; gap: var(--space-8); align-content: start; }
   .side-block { display: grid; gap: var(--space-3); }
@@ -108,6 +113,15 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
   const quizSegment = params.get('quiz_segment') ?? '';
   let quizTarget = '';
   try { quizTarget = JSON.parse(read('dd_quiz_v1') ?? '{}').answers?.launch_when ?? ''; } catch { /* ignore */ }
+  // Best fit brought from the Scale questions: show it, and pre-fill the booking notes with it (categories only, Oct 27).
+  const interest = params.get('interest') ?? '';
+  const fitName = interest ? document.querySelector<HTMLElement>(`[data-fit="${CSS.escape(interest)}"]`) : null;
+  let fitNotes = '';
+  if (fitName) {
+    fitName.hidden = false;
+    document.querySelector<HTMLElement>('[data-book-fit]')!.hidden = false;
+    fitNotes = `${document.querySelector<HTMLElement>('[data-book-fit]')!.dataset.notesPrefix ?? ''} ${fitName.textContent ?? ''}`.trim();
+  }
   let prefillEmail = '';
   try { prefillEmail = read('dd_prefill') ?? ''; } catch { /* ignore */ }
 
@@ -118,7 +132,7 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
   const ok = renderCal({
     type, el,
     metadata: { ...touch.utm, entry_cta: entryCta, quiz_segment: quizSegment, target_launch: quizTarget, interest: params.get('interest') ?? '', page: 'book' },
-    prefill: prefillEmail ? { email: prefillEmail } : undefined,
+    prefill: prefillEmail || fitNotes ? { ...(prefillEmail ? { email: prefillEmail } : {}), ...(fitNotes ? { notes: fitNotes } : {}) } : undefined,
     onReady: () => {
       root.setAttribute('data-ready', '');
       const iframe = el.querySelector('iframe');
