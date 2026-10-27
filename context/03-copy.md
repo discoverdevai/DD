@@ -2030,6 +2030,12 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - /book with interest=scale-poc: "You want to start with: a proof of concept in 2–4 weeks, before committing to a squad. We start the call there."; Cal.com notes: "From the Scale page, wants to start with: a proof of concept in 2–4 weeks, before committing to a squad". After booking: the usual confirmation page.
 - AR: "لست متأكدًا بعد؟" · "احجز مكالمة عن إثبات المفهوم" · "كيف يعمل إثبات المفهوم" · "استبدال مجاني." · "كيف يعمل الاستبدال" · /book "تريد أن تبدأ بـ: …".
 
+### 16b.23 Scale software-house section (Oct 27)
+- The comparison table becomes three cards (rows aligned on desktop, stacked on phones, no sideways scroll); /partners keeps the table.
+- "Best when": White-label "you sell the project to your client, and we deliver it under your brand." · Staff augmentation "you run the project and need more engineers in your team." · Dedicated team "you need a team that owns a product for months."
+- Call under the cards: "Book a free clarity call" + terms, carrying interest=scale-house (booking shows "White-label or staff augmentation").
+- Heading keeps "white-label" on one line (non-breaking hyphen). AR: "الأنسب حين" + three lines in ar/scale.ts.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

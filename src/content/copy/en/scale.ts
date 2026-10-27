@@ -212,11 +212,14 @@ export const scale = {
   },
   // §16b.2: For software houses (§8.3 answer and table).
   partners: {
-    title: 'For software houses: white-label or staff augmentation',
+    title: 'For software houses: white‑label or staff augmentation', // U+2011: no line break inside the word
     answer:
       'Choose white-label when you want us to deliver a whole project under your brand. Choose staff augmentation when you want engineers working inside your team, managed by you. Both start with an NDA, and the IP goes to you.',
     caption: 'White-label delivery, staff augmentation and dedicated team compared',
     columns: ['White-label delivery', 'Staff augmentation', 'Dedicated team'],
+    // 03 §16b.23 (Oct 27): cards instead of the table on Scale, each with when it fits best.
+    bestLabel: 'Best when',
+    bestFor: ['you sell the project to your client, and we deliver it under your brand.', 'you run the project and need more engineers in your team.', 'you need a team that owns a product for months.'],
     rows: [
       { label: 'What you get', cells: ['A project delivered under your brand', 'Engineers who join your team', 'A dedicated squad of developers, QA and a PM'] },
       { label: 'Who manages day to day', cells: ['We do, inside your process', 'You do', 'Our PM, together with you'] },

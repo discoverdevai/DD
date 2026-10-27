@@ -152,3 +152,8 @@ Looked at desktop, phone and Arabic, section by section.
 - Minimum term tile (4 months): "Not sure yet? Start with a proof of concept in 2–4 weeks, then decide on a squad." → [Book a call about a POC] goes to /book?interest=scale-poc, which shows "You want to start with: a proof of concept…" and pre-fills the Cal.com notes. After booking, the usual confirmation page. [How a POC works →] scrolls to #pieces.
 - Team tile: "Free replacement. If anyone isn't the right fit, we replace them at no cost." → [How replacement works →] opens the FAQ answer in place (#faq-replacement).
 - Tested every path in EN and AR (FAQ opens and is in view; #pieces in view; booking banner and Cal.com notes correct; the quiz banner is unchanged). ctaId scale_card_clarity_minimum. QA 0 findings, functional 32/32, axe clean, no overflow.
+
+## Scale page, step 9: software houses (Oct 27)
+- The comparison table scrolled sideways on phones and the section had no next step. It is now three option cards, each with a "Best when" line (white-label: you sell the project, we deliver under your brand · staff augmentation: you run it and need more engineers · dedicated team: a team that owns a product for months). Rows line up across the cards on desktop (CSS subgrid), with labels beside values; phones and tablets get a swipe row.
+- New call under the cards, carrying interest=scale-house to /book and the Cal.com notes. The heading keeps "white-label" on one line. /partners keeps its table.
+- Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32. Phone 1.5 screens (was 2.7 when the cards were stacked), tablet 1.1.
