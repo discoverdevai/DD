@@ -141,6 +141,25 @@ export const scale = {
     bright: 'A team that stays.',
     dim: 'The people who learn your product keep working on it.',
   },
+  // 03 §16b.19 (Oct 27): answer-first terms, the same pattern as Build's "What you get" (was a three-column text document).
+  get: {
+    title: 'Price, team and ownership',
+    includedLabel: 'Skills in every squad',
+    items: [
+      { icon: 'code', label: 'Full-stack' },
+      { icon: 'smartphone', label: 'Mobile' },
+      { icon: 'cpu', label: 'AI and ML' },
+      { icon: 'eye', label: 'Computer vision' },
+      { icon: 'database', label: 'Data' },
+      { icon: 'shield-check', label: 'QA' },
+    ],
+    tiles: [
+      { id: 'pricing', label: 'Price', value: 'Monthly retainer', body: 'Based on the size of your squad. We review the team size with you every month.' },
+      { id: 'minimum', label: 'Minimum term', value: '6 months', body: 'Time for the squad to learn your product and deliver. Staff augmentation starts from 3 months.' },
+      { id: 'team', label: 'Team', value: 'One to a full squad', body: 'A lead, developers, QA, a PM and a designer, as your roadmap needs. Senior engineers own the quality.', link: { label: shared.howLink, to: 'howWeWork' as const } },
+      { id: 'ownership', label: 'Ownership', value: 'All yours', body: 'You keep control of the roadmap, the code and the accounts. Full IP, no lock-in, a clear contract from day one.' },
+    ],
+  },
   terms: { title: 'Price, team and ownership', docTitle: 'Scale', docMeta: 'Monthly retainer' },
   pricing: {
     title: 'How is Scale priced?',

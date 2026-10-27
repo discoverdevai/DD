@@ -136,3 +136,8 @@ Looked at desktop, phone and Arabic, section by section.
 - Question 2 appears only after a live answer to question 1. "Idea" and "software house" go straight to a result.
 - Each result has its own call button with the need: /book?type=clarity&interest=scale-<result>. /book shows "Your best fit from the Scale questions: …" and pre-fills the Cal.com notes, so the team sees the need before the call. Only answer categories go in the link; nothing personal, nothing stored. An unknown interest value shows nothing.
 - Tested all 10 paths in EN and AR (the right result, and question 2 only when needed), keyboard on a phone, axe clean, the /book banner in EN and AR, and the Cal.com iframe receiving the notes. QA 0 findings, functional 32/32.
+
+## Scale page, step 6: price, team and ownership (Oct 27)
+- The three-column text document became Build's answer-first pattern: a band "Skills in every squad" (Full-stack · Mobile · AI and ML · Computer vision · Data · QA, with icons) and four tiles: Price "Monthly retainer" · Minimum term "6 months" · Team "One to a full squad" · Ownership "All yours". The #pricing anchor the Service JSON-LD points to is kept.
+- Added three Lucide icons (smartphone, eye, database). A six-item band shows 3 + 3 on tablets and one row on desktop; Build's five-item band is unchanged.
+- Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

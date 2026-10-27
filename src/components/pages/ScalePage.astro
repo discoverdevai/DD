@@ -11,7 +11,7 @@ import CtaBand from '../sections/CtaBand.astro';
 import ServiceGlance from '../scenes/ServiceGlance.astro';
 import SquadGrowth from '../sections/SquadGrowth.astro';
 import SquadPieces from '../sections/SquadPieces.astro';
-import TermsDoc from '../sections/TermsDoc.astro';
+import WhatYouGet from '../sections/WhatYouGet.astro';
 import ComparisonTable from '../partners/ComparisonTable.astro';
 import Quote from '../blocks/Quote.astro';
 import Journey from '../sections/Journey.astro';
@@ -49,11 +49,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   <FitQuiz c={c.quiz} />
 
   <JourneyStop label={c.stages.terms} />
-  <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
-    { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
-    { title: c.team.title, body: c.team.body, link: c.team.link },
-    { title: c.ownership.title, body: c.ownership.body },
-  ]} />
+  <WhatYouGet id="terms" c={c.get} />
 
   <JourneyStop label={c.stages.partners} />
   <Section id="partners" surface="raised" title={c.partners.title} lead={c.partners.answer}>
