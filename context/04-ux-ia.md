@@ -191,7 +191,7 @@ v1 blueprint (superseded on home, kept for reference):
 ### 4.4 Partners `/partners`
 1. Hero → "Your extra senior team, under your brand"; 2 models; CTA "Book a partner call" → `/book?type=partner`.
 2. Why partners use us → capacity, seniority, GMT+2 overlap, Arabic + English.
-3. Models compared (`ComparisonTable`) → white-label vs staff augmentation: who manages, billing, minimum term (staff aug min 3 months; dedicated team min 6 months per master doc).
+3. Models compared (`ComparisonTable`) → white-label vs staff augmentation: who manages, billing, minimum term (staff aug min 3 months; dedicated team min 4 months, Mohamed Oct 27; master doc said 6).
 4. How we work inside your process → your tools, your PM, NDA, no client contact unless allowed, non-solicit.
 5. Vetting + quality → seniority, QA, code review standards.
 6. Proof → Amstadd (consent), partner quote, rate cue (D-18).

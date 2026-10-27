@@ -43,7 +43,7 @@ When my AI-built or freelancer-built MVP works in the demo but real users and re
 | Validate | "I have an idea." | 1–2 weeks: market + competitor read, scope, clickable prototype, fixed build estimate. Fee credits to Build | Model only (D-19) |
 | Build | "I'm ready to build." | 8–12 weeks to production, fixed price; design, build, QA, deploy | Model only (D-19) |
 | Scale | "It's working, grow it." | Monthly retainer; dedicated squad (devs + QA + PM); client keeps control | Quoted after call (D-18) |
-| Partners | Software houses | White-label delivery (NDA + IP), staff augmentation (min 3 mo), dedicated teams (min 6 mo) | Quoted after call |
+| Partners | Software houses | White-label delivery (NDA + IP), staff augmentation (min 3 mo), dedicated teams (min 4 mo, Oct 27) | Quoted after call |
 | Clarity call (secondary CTA) | Anyone unsure | Free, 30 min, no pitch | Free |
 
 ## Positioning gaps we own (ranked)

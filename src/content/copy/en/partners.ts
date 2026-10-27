@@ -36,13 +36,13 @@ export const partners = {
       'Choose white-label when you want us to deliver a whole project under your brand. Choose staff augmentation when you want engineers working inside your team, managed by you. Both start with an NDA, and the IP goes to you.',
     caption: 'White-label delivery, staff augmentation and dedicated team compared',
     columns: ['White-label delivery', 'Staff augmentation', 'Dedicated team'],
-    // Dedicated team column: gap G-04 default "Add column, no price" (11 §6). Facts: 09 "dedicated team (min 6 months)";
+    // Dedicated team column: gap G-04 default "Add column, no price" (11 §6). Facts: 09 "dedicated team (min 4 months, Oct 27)";
     // cells reuse 03 §7 (Scale) wording. Not yet in 03 §8.3: add there to make it the source.
     rows: [
       { label: 'What you get', cells: ['A project delivered under your brand', 'Engineers who join your team', 'A dedicated squad of developers, QA and a PM'] },
       { label: 'Who manages day to day', cells: ['We do, inside your process', 'You do', 'Our PM, together with you'] },
       { label: 'Who your client sees', cells: ['Your brand only', 'Your team', 'Agreed on the partner call'] },
-      { label: 'Minimum term', cells: ['Per project', '3 months', '6 months'] },
+      { label: 'Minimum term', cells: ['Per project', '3 months', '4 months'] },
       { label: 'IP and confidentiality', cells: ['NDA, IP to you', 'NDA, IP to you', 'NDA, IP to you'] },
       // P5 → §0.7 "Model only, no numbers" (D-18 default b).
       { label: 'Price', cells: ['Quoted per project', 'Monthly, per engineer', 'Monthly retainer'] },

@@ -14,7 +14,7 @@ export const scale = {
     ways: [{ label: 'Software house? White-label or staff augmentation', anchor: 'partners' }],
     // Meta row labels come from 06 §9.11 (`service` hero: Timeline, Model, Team); values from 04 §4.3 and 03 §7.6, §7.7.
     meta: [
-      { label: 'Minimum', value: '6 months' }, // Oct 27: was Timeline · Monthly, which repeated the Model value
+      { label: 'Minimum', value: '4 months' }, // Oct 27: was Timeline · Monthly, which repeated the Model value
       { label: 'Model', value: 'Monthly retainer' },
       { label: 'Team', value: 'From one specialist to a full squad' },
     ],
@@ -45,7 +45,7 @@ export const scale = {
       { id: 'house', kicker: 'Best fit: White-label or staff augmentation', title: 'Engineers under your brand', body: 'We deliver a project under your brand, or engineers join your team. Both start with an NDA, and the IP goes to you.', link: { label: 'Compare the options', anchor: 'partners' } },
       { id: 'piece', kicker: 'Best fit: Hand us a piece', title: 'Our squad takes the piece', body: 'A proof of concept in 2–4 weeks, a new MVP in 6–12 weeks, or a module inside your sprints. You set the direction.', link: { label: 'See how it works', anchor: 'pieces' } },
       { id: 'hands', kicker: 'Best fit: Staff augmentation', title: 'Engineers who join your team', body: 'They work inside your team and your process, managed by you. The minimum term is 3 months.', link: { label: 'Compare the options', anchor: 'partners' } },
-      { id: 'squad', kicker: 'Best fit: A dedicated squad', title: 'A team that stays', body: 'Developers, QA and a PM on a monthly retainer, from 6 months. The squad’s PM runs the sprints with you.', link: { label: 'See how a squad grows', anchor: 'process' } },
+      { id: 'squad', kicker: 'Best fit: A dedicated squad', title: 'A team that stays', body: 'Developers, QA and a PM on a monthly retainer, from 4 months. The squad’s PM runs the sprints with you.', link: { label: 'See how a squad grows', anchor: 'process' } },
     ],
   },
   // 03 §16b.16 (Oct 27): fit check. "A single project with a fixed end" is no longer "not for" (the squad now takes POCs,
@@ -76,7 +76,7 @@ export const scale = {
       { id: 'poc', name: 'Proof of concept', when: '2–4 weeks', body: 'Test a risky idea or a new technology before your team commits to it.' },
       { id: 'mvp', name: 'A new MVP', when: '6–12 weeks', body: 'A new product next to your main one, built while your team stays on the roadmap.' },
       { id: 'module', name: 'A module in your product', when: 'Inside your sprints', body: 'A feature area your team has no time or skills for, built to your architecture.' },
-      { id: 'roadmap', name: 'Ongoing roadmap', when: 'From 6 months', body: 'A dedicated squad that stays and grows with your product.' },
+      { id: 'roadmap', name: 'Ongoing roadmap', when: 'From 4 months', body: 'A dedicated squad that stays and grows with your product.' },
     ],
     pins: { poc: 'Proof of concept', mvp: 'A new MVP', module: 'A module', roadmap: 'Ongoing roadmap' },
   },
@@ -155,7 +155,7 @@ export const scale = {
     ],
     tiles: [
       { id: 'pricing', label: 'Price', value: 'Monthly retainer', body: 'Based on the size of your squad. We review the team size with you every month.' },
-      { id: 'minimum', label: 'Minimum term', value: '6 months', body: 'Time for the squad to learn your product and deliver. Staff augmentation starts from 3 months.' },
+      { id: 'minimum', label: 'Minimum term', value: '4 months', body: 'Time for the squad to learn your product and deliver. Staff augmentation starts from 3 months.' },
       { id: 'team', label: 'Team', value: 'One to a full squad', body: 'A lead, developers, QA, a PM and a designer, as your roadmap needs. Senior engineers own the quality.', link: { label: shared.howLink, to: 'howWeWork' as const } },
       { id: 'ownership', label: 'Ownership', value: 'All yours', body: 'You keep control of the roadmap, the code and the accounts. Full IP, no lock-in, a clear contract from day one.' },
     ],
@@ -165,7 +165,7 @@ export const scale = {
     title: 'How is Scale priced?',
     // [PRICE: P4] → §0.7 model only, no number (tag removed).
     answer:
-      'Scale is a monthly retainer, based on the size of your squad. Dedicated teams start with a 6-month minimum, so the team has time to learn your product and deliver.',
+      'Scale is a monthly retainer, based on the size of your squad. Dedicated teams start with a 4-month minimum, so the team has time to learn your product and deliver.',
   },
   team: {
     title: 'Who’s on the squad',
@@ -199,10 +199,10 @@ export const scale = {
     title: 'Questions about Scale',
     items: [
       // V22 → §0.7 omit the "continues month to month" clause.
-      { id: 'minimum', q: 'What is the minimum commitment for a dedicated team?', a: 'Six months. That gives the squad time to learn your product and deliver steadily.' },
+      { id: 'minimum', q: 'What is the minimum commitment for a dedicated team?', a: 'Four months. That gives the squad time to learn your product and deliver steadily.' },
       { id: 'management', q: 'Who manages the team?', a: 'The squad’s product manager runs the backlog and sprints together with you. You set priorities. You keep control of the roadmap.' },
       // [VERIFY: V22 notice period] → §0.7 omit the notice clause (tag removed).
-      { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month. A squad can start with one specialist and grow to developers, QA, a product manager and a designer as your roadmap needs it. The minimum commitment is six months, which gives the squad time to learn your product and deliver steadily.' },
+      { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month. A squad can start with one specialist and grow to developers, QA, a product manager and a designer as your roadmap needs it. The minimum commitment is four months, which gives the squad time to learn your product and deliver steadily.' },
       // "How quickly can a squad start?" omitted (§0.7 V22: answer is the tag only).
       { id: 'ip', q: 'Who owns the IP in a white-label project?', a: 'You do. White-label work runs under an NDA, and the IP goes to you so you can pass it to your client. The details are in the contract from day one.' },
       { id: 'minimum-term', q: 'What is the minimum term for staff augmentation?', a: 'Three months. That gives the engineer time to learn your codebase and deliver. White-label work is scoped per project.' },
@@ -220,7 +220,7 @@ export const scale = {
       { label: 'What you get', cells: ['A project delivered under your brand', 'Engineers who join your team', 'A dedicated squad of developers, QA and a PM'] },
       { label: 'Who manages day to day', cells: ['We do, inside your process', 'You do', 'Our PM, together with you'] },
       { label: 'Who your client sees', cells: ['Your brand only', 'Your team', 'Agreed on the partner call'] },
-      { label: 'Minimum term', cells: ['Per project', '3 months', '6 months'] },
+      { label: 'Minimum term', cells: ['Per project', '3 months', '4 months'] },
       { label: 'IP and confidentiality', cells: ['NDA, IP to you', 'NDA, IP to you', 'NDA, IP to you'] },
       { label: 'Price', cells: ['Quoted per project', 'Monthly, per engineer', 'Monthly retainer'] },
     ],

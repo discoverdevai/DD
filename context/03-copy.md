@@ -2016,6 +2016,9 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Tiles: Price "Monthly retainer" (Based on the size of your squad. We review the team size with you every month.) · Minimum term "6 months" (Time for the squad to learn your product and deliver. Staff augmentation starts from 3 months.) · Team "One to a full squad" (A lead, developers, QA, a PM and a designer, as your roadmap needs. Senior engineers own the quality. + how we work link) · Ownership "All yours" (You keep control of the roadmap, the code and the accounts. Full IP, no lock-in, a clear contract from day one.). #pricing anchor kept for the Service JSON-LD.
 - AR mirrored in ar/scale.ts.
 
+### 16b.20 Dedicated team minimum: 4 months (Oct 27, Mohamed)
+- Every "6 months" / "six months" / "6-month" for the dedicated team now reads 4 (EN + AR): Scale hero meta, quiz squad result, pieces "From 4 months", terms tile, pricing answer, FAQ minimum and resize, partners table, /partners table, /pricing mock. Earlier notes in this file that say 6 are superseded. The squad growth chart keeps its 6-month example window (it is an example, not a term).
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

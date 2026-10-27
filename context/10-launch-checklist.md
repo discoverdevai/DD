@@ -67,7 +67,7 @@ Read with: `04-ux-ia.md`, `05-seo-aeo.md`, `07-tech-spec.md` (§ refs = 07 unles
 | `/` | Hero H1 + sub + CTA + microcopy fit first 375 px viewport; 5-second test with 2 founders passes (they can say what we do + what to click) |
 | `/launch-ready` | Price cue (D-01), terms (D-02), guarantee definition (D-03) visible; FAQ #1 answers "free scanners"; `#book` embed or link works; anchor links `#pricing`, `#guarantee`, `#book` work |
 | `/validate`, `/build`, `/scale` | Timeline + pricing model stated with no invented numbers; ownership section present; `/build` links to `/launch-ready` |
-| `/partners` | Models table correct (staff aug min 3 months, dedicated min 6 months); partner CTA → `/book?type=partner` preselects partner tab |
+| `/partners` | Models table correct (staff aug min 3 months, dedicated min 4 months); partner CTA → `/book?type=partner` preselects partner tab |
 | `/work` | Lists only `published` cases; hides from nav if 0 |
 | `/work/[slug]` | ≥ 1 verified metric with baseline + timeframe; consent or anonymized; matched CTA; `case_study_viewed` fires |
 | `/insights` | Pillar featured; cards show Updated date; quiz banner after first row |
