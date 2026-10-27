@@ -1963,6 +1963,14 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 ### 16b.11 Build close, body line (Oct 26)
 - Title stays "Your launch starts with one call." Body was "Tell us on a free 30-minute call. You leave with a clear next step, and a fixed price if it is a fit." It lost its object when the title stopped being a question, and it repeated the terms under the button. Now: "Tell us about your idea or your prototype. If it is a fit, you get a fixed price before you commit to anything." (fact: FAQ pricing answer). AR: "حدّثنا عن فكرتك أو نموذجك الأولي. وإن كان المشروع مناسبًا، تحصل على سعر ثابت قبل أن تلتزم بأي شيء."
 
+### 16b.12 Proof, named products (Oct 27)
+- Replaces the 16b.10 bar. Under the EduLens case: h3 "More products we’ve built", then four cards (screen or drawing, meta, name, one line), all facts from 09 Portfolio. Mohamed OK'd client names on Oct 27 (D-05).
+  - NJWAR · E-commerce · AR: "An AR furniture store: place a piece in your room at real size, change its color, rotate it and add more." (A4: no country, no AI line)
+  - Rushr · Marketplace · USA: "A home-services marketplace, built by a full product team in 16 weeks: post a job, get matched with the nearest verified pro, pay through escrow."
+  - Yawmy Care · Childcare · our own product: "Our own nursery platform for management, teachers and parents, with billing and multiple locations. Launching in 2027."
+  - Phones: the four cards are one swipe row.
+  - BioBank · HealthTech: "A mobile app that turns lab reports into plain-language explanations, with recommendations, follow-up questions and medical safety guardrails."
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

@@ -48,4 +48,10 @@ const device = project.device ?? 'browser';
   .pv--tablet.pv--pair .pv__frame { grid-area: 1 / 1; }
   .pv--tablet.pv--pair .pv__frame:not(.pv__frame--back) { translate: 22% 4%; z-index: 1; }
   .pv--tablet.pv--pair .pv__frame--back { translate: -22% 0; opacity: 0.9; }
+  /* Phone: narrow dark bezel, two phones side by side (front one lower), cropped by the stage. */
+  .pv--phone { padding: 7% 0 0; }
+  .pv--phone .pv__frame { align-self: start; inline-size: 34%; border: 5px solid var(--device-body); border-block-end: 0; border-radius: 20px 20px 0 0; }
+  .pv--phone.pv--pair .pv__frame { grid-area: 1 / 1; }
+  .pv--phone.pv--pair .pv__frame:not(.pv__frame--back) { translate: 24% 8%; z-index: 1; }
+  .pv--phone.pv--pair .pv__frame--back { translate: -24% 0; opacity: 0.9; }
 </style>

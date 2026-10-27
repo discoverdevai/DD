@@ -144,8 +144,17 @@ export const build = {
       quote: { text: 'They focused on building solutions that were practical, scalable, and aligned with our users’ needs.', name: 'Youssef', role: 'CEO, EduLens' },
     },
     quote: { text: 'Professional work and great communication.', name: 'Nojoud Alarfaj', role: 'Athkado, Saudi Arabia' },
-    // One more project as a slim bar under the case (03 §16b.10): its path as steps, then the rating.
-    more: { label: 'Also from idea to launch', where: 'Saudi Arabia', title: shared.projectArFurniture, steps: ['Feasibility sprints', 'Discovery', 'UX and UI', 'Development', 'AI recommendations', 'AR to see furniture at home'] },
+    // Named products from idea to launch (03 §16b.12, Oct 27: Mohamed OK'd client names, D-05). Facts from 09 Portfolio;
+    // NJWAR without country or AI line (A4). Screens from assets/projects (our Figma exports); BioBank has none, so its drawing.
+    work: {
+      title: 'More products we’ve built',
+      items: [
+        { id: 'njwar', name: 'NJWAR', meta: 'E-commerce · AR', line: 'An AR furniture store: place a piece in your room at real size, change its color, rotate it and add more.', screens: ['njwar-web.webp'], device: 'browser', alt: 'NJWAR web store home page in Arabic, inviting shoppers to try furniture in their home', art: 'ar' },
+        { id: 'rushr', name: 'Rushr', meta: 'Marketplace · USA', line: 'A home-services marketplace, built by a full product team in 16 weeks: post a job, get matched with the nearest verified pro, pay through escrow.', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'phone', alt: 'Rushr app showing a matched plumber with accept and decline', art: 'devices' },
+        { id: 'yawmy', name: 'Yawmy Care', meta: 'Childcare · our own product', line: 'Our own nursery platform for management, teachers and parents, with billing and multiple locations. Launching in 2027.', screens: ['yawmy-dashboard.webp'], device: 'browser', alt: 'Yawmy Care admin dashboard with totals and a daily attendance chart', art: 'lms' },
+        { id: 'biobank', name: 'BioBank', meta: 'HealthTech', line: 'A mobile app that turns lab reports into plain-language explanations, with recommendations, follow-up questions and medical safety guardrails.', art: 'health' },
+      ],
+    },
   },
   // Buyer order (research: Halo Lab, Stormotion, Wavect FAQs): cost and time first.
   faq: {

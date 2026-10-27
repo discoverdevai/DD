@@ -7,7 +7,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
 import Section from '../sections/Section.astro';
-import ProjectStrip from '../blocks/ProjectStrip.astro';
+import BuildWork from '../blocks/BuildWork.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import BuildPath from '../scenes/BuildPath.astro';
@@ -55,7 +55,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
     <Section id="proof" surface="ink" title={c.proof.title}>
       <div class="proof">
         <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} big={c.proof.case.big} />
-        <ProjectStrip c={c.proof.more} />
+        <BuildWork c={c.proof.work} />
       </div>
     </Section>
 
@@ -109,5 +109,5 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   .journey > :global(section:has(+ .voice)) { padding-block-end: var(--space-12); }
 
 
-  .proof { display: grid; gap: var(--space-4); }
+  .proof { display: grid; gap: var(--space-12); }
 </style>

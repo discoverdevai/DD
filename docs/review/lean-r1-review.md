@@ -76,3 +76,10 @@ Looked at desktop, phone and Arabic, section by section.
 - Fixed: hero to first stop was about 190px (the hero padding plus the first stop padding). It is now the same 88px gap as every other stop.
 - Section heights at 1440×900: plan 1.15, Built with AI 1.19, What you get 0.74, proof 1.00, FAQ 0.81, close 0.62 screens.
 - Still open for Mohamed: quotes on service pages (D-05), a Review booking type in Cal.com, and a native review of the Arabic.
+
+## Build page proof: named products (Oct 27)
+- Mohamed OK'd client names on project cards (D-05, logged in 11 and docs/MEMORY.md).
+- Under the EduLens case: "More products we've built", four named cards, each with its real screen or the product drawing: NJWAR (web store), Rushr (two phone screens, 16-week build), Yawmy Care (dashboard, our own product) and BioBank (drawing). Facts from 09. NJWAR keeps A4 (no country, no AI line); CTC stays hidden.
+- These replace the anonymous AR furniture bar, which would have shown NJWAR twice. Phones get one swipe row (1.78 screens, was 3.26 stacked).
+- New phone frame in ProjectVisual. Two check fixes: the QA alt check now accepts Astro's bare `alt` (a valid empty alt), and the consent gate no longer matches everything once every name is cleared.
+- Checked at six sizes in EN and AR: no overflow, axe clean, QA 0 findings, functional 32/32.

@@ -17,12 +17,15 @@ const NAMES = [
 const CONSENTED = new Set(['EduLens', 'Upscend', 'Arheb', 'Nile Support', 'BioBank', 'Jumlaty', 'Zest', 'Continuum Therapy Collective', 'Rushr',
   // Amstadd: Mohamed asked in chat on 2026-10-23 to add its two public, verified Clutch reviews (09).
   'Amstadd',
+  // Oct 27 (Mohamed, chat): clients may now be named on project cards (D-05). CTC stays hidden by its own rule (A2).
+  'Pyramakerz', 'NOMU',
   'Fantacalcio', 'Athkado', 'Roberto', 'Youssef', 'Nojoud', 'Alarfaj', 'Michelle Boehm', 'Boehm', 'Andrei', 'Chejneanu', 'Lea Nechitailo', 'Nechitailo', 'Farah Alkhaldi', 'Alkhaldi']);
 const blocked = NAMES.filter((n) => !CONSENTED.has(n));
-const re = new RegExp(`\\b(${blocked.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`, 'g');
+// Every name cleared (Oct 27): an empty list must not build a pattern that matches everywhere.
+const re = blocked.length ? new RegExp(`\\b(${blocked.map((n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\b`, 'g') : null;
 const problems = [];
 
-const scan = (label, text) => { for (const m of new Set(text.match(re) ?? [])) problems.push(`${label}: "${m}"`); };
+const scan = (label, text) => { if (!re) return; for (const m of new Set(text.match(re) ?? [])) problems.push(`${label}: "${m}"`); };
 for (const { route, html } of pages()) {
   scan(route, visibleText(html));
   // Names can also leak through attributes and structured data.

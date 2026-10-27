@@ -10,8 +10,8 @@ export interface Project {
   brief?: string; did: string; result?: string; metric?: { value: string; label: string };
   art: Art; quotes?: readonly string[]; link?: 'workEdulens' | 'partners';
   // Real product screens (exported from our Figma files, Oct 16) replace the drawing. Files under assets/projects/.
-  // `device` picks the frame: browser window for web apps, tablet for the iPad apps. Two screens = a layered pair.
-  screens?: readonly string[]; device?: 'browser' | 'tablet'; screenAlt?: string;
+  // `device` picks the frame: browser window for web apps, tablet for the iPad apps, phone for mobile apps (Build cards, Oct 27). Two screens = a layered pair.
+  screens?: readonly string[]; device?: 'browser' | 'tablet' | 'phone'; screenAlt?: string;
   // `hold`: the decision that keeps a project off the live site (e.g. D-07). Shown only in a local preview build.
   hold?: string;
 }

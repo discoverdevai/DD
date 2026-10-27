@@ -128,4 +128,5 @@ Still needed from Mohamed tonight: D-14 DNS/registrar access, D-15 old routes, D
 
 | Oct 18 | **D-06 resolved:** EduLens is named on home with the 60–90% result (Mohamed, Oct 18). Yawmy Care stays as "our product". Privacy and terms trimmed to what is live. US spelling. | Mohamed |
 
+| Oct 27 | **Clients may be named (Mohamed, D-05):** project cards can carry client and product names. Build's proof section names NJWAR, Rushr, Yawmy Care and BioBank, with real screens where we have them. Still held: Continuum Therapy Collective (therapist consent, A2) and Upscend screens. NJWAR keeps A4 (no country, no AI line), because the Athkado link is unconfirmed. | Mohamed |
 | Oct 21 | **D-07 lifted for Rushr (Mohamed):** the Rushr chapter (3 phone screens), the client-row role line and the rail card are live on home. Upscend screens stay held (needs Upscend's OK, D-05). | Mohamed |

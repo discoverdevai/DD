@@ -149,7 +149,8 @@ for (const { route: page, html } of allPages) {
 
   // images
   for (const img of tags(strip(html), 'img')) {
-    if (attr(img, 'alt') == null) add('MAJOR', page, 'img-alt', `img without alt: ${attr(img, 'src')}`);
+    // A bare `alt` (how Astro renders alt="") is a valid empty alt for a decorative image.
+    if (attr(img, 'alt') == null && !/\salt(?=[\s>/])/i.test(img)) add('MAJOR', page, 'img-alt', `img without alt: ${attr(img, 'src')}`);
     if (!attr(img, 'width') || !attr(img, 'height')) add('MINOR', page, 'img-size', `img without width/height (CLS): ${attr(img, 'src')}`);
     const src = attr(img, 'src') || '';
     if (src.startsWith('/') && !resolves(src)) add('BLOCKER', page, 'img-missing', `image not in build: ${src}`);
