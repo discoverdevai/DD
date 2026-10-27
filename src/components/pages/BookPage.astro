@@ -29,7 +29,7 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
             <a href={localPath('/book?type=partner')} class="opt" data-opt="partner" hidden>{c.options.partner.tab}</a>
           </nav>
         )}
-        <p class="book__fit" data-book-fit data-notes-prefix={c.fit.notesPrefix} hidden><span>{c.fit.label}</span> {Object.entries(c.fit.names).map(([k, v]) => <b data-fit={k} hidden>{v}</b>)}<span class="book__fit-after">{c.fit.after}</span></p>
+        <p class="book__fit" data-book-fit data-notes-prefix={c.fit.notesPrefix} data-labels={JSON.stringify(c.fit.labels)} data-prefixes={JSON.stringify(c.fit.prefixes)} hidden><span data-fit-label>{c.fit.label}</span> {Object.entries(c.fit.names).map(([k, v]) => <b data-fit={k} hidden>{v}</b>)}<span class="book__fit-after">{c.fit.after}</span></p>
         <div class="opt-panel" data-panel="clarity"><p>{c.options.clarity.text}</p><CtaTerms kind="clarity" /></div>
         {reviewOn && <div class="opt-panel" data-panel="review" hidden><p>{c.options.review.text}</p><CtaTerms kind="review" /></div>}
         {reviewOn && <div class="opt-panel" data-panel="partner" hidden><p>{c.options.partner.text}</p><CtaTerms kind="partner" /></div>}
@@ -118,9 +118,13 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
   const fitName = interest ? document.querySelector<HTMLElement>(`[data-fit="${CSS.escape(interest)}"]`) : null;
   let fitNotes = '';
   if (fitName) {
+    const box = document.querySelector<HTMLElement>('[data-book-fit]')!;
+    let labels: Record<string, string> = {}; let prefixes: Record<string, string> = {};
+    try { labels = JSON.parse(box.dataset.labels ?? '{}'); prefixes = JSON.parse(box.dataset.prefixes ?? '{}'); } catch { /* defaults */ }
+    if (labels[interest]) box.querySelector<HTMLElement>('[data-fit-label]')!.textContent = `${labels[interest]}:`;
     fitName.hidden = false;
-    document.querySelector<HTMLElement>('[data-book-fit]')!.hidden = false;
-    fitNotes = `${document.querySelector<HTMLElement>('[data-book-fit]')!.dataset.notesPrefix ?? ''} ${fitName.textContent ?? ''}`.trim();
+    box.hidden = false;
+    fitNotes = `${prefixes[interest] ? `${prefixes[interest]}:` : box.dataset.notesPrefix ?? ''} ${fitName.textContent ?? ''}`.trim();
   }
   let prefillEmail = '';
   try { prefillEmail = read('dd_prefill') ?? ''; } catch { /* ignore */ }

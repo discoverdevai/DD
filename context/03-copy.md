@@ -2024,6 +2024,12 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - FAQ (after "Who manages the team?"): "What if a squad member isn't the right fit?" → "We replace them at no cost. Tell us at any time, and we bring in someone who fits your product and your team. If you want to test us first, start with a proof of concept in 2–4 weeks before you commit to a squad."
 - AR: "بداية منخفضة المخاطر" · "إثبات مفهوم أولًا." · "استبدال مجاني." · FAQ "ماذا لو لم يكن أحد أعضاء الفريق مناسبًا؟".
 
+### 16b.22 Scale promises on their tiles + the flow after the click (Oct 27, replaces the 16b.21 strip)
+- Minimum term tile (4 months): "Not sure yet? Start with a proof of concept in 2–4 weeks, then decide on a squad." → [Book a call about a POC] (/book?type=clarity&interest=scale-poc) · [How a POC works →] (#pieces).
+- Team tile: "Free replacement. If anyone isn't the right fit, we replace them at no cost." → [How replacement works →] (#faq-replacement, opens the FAQ answer).
+- /book with interest=scale-poc: "You want to start with: a proof of concept in 2–4 weeks, before committing to a squad. We start the call there."; Cal.com notes: "From the Scale page, wants to start with: a proof of concept in 2–4 weeks, before committing to a squad". After booking: the usual confirmation page.
+- AR: "لست متأكدًا بعد؟" · "احجز مكالمة عن إثبات المفهوم" · "كيف يعمل إثبات المفهوم" · "استبدال مجاني." · "كيف يعمل الاستبدال" · /book "تريد أن تبدأ بـ: …".
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

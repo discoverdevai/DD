@@ -5,14 +5,19 @@
 import Icon from '../ui/Icon.astro';
 import InlineLink from '../ui/InlineLink.astro';
 import SectionHead from '../ui/SectionHead.astro';
-import type { RouteKey } from '../../data/routes';
+import CtaLink from '../ui/CtaLink.astro';
+import { bookHref, type RouteKey } from '../../data/routes';
 type IconName = Parameters<typeof Icon>[0]['name'];
-interface Tile { id: string; label: string; value: string; body: string; link?: { label: string; to: RouteKey } }
-// Optional `promise` (Scale, Oct 27, 09 Offer): a green strip of risk-reversal promises under the tiles, like the Review's
-// guarantee on Build. Each item can link to the section that explains it.
-interface Assurance { title: string; items: readonly { value: string; body: string; anchor?: string; label?: string }[] }
-interface Props { id?: string; c: { title: string; includedLabel: string; items: readonly { icon: string; label: string }[]; tiles: readonly Tile[]; promise?: Assurance } }
-const { id = 'get', c } = Astro.props;
+// Optional `assure` (Scale, Oct 27, 09 Offer): a risk-reversal promise on the tile it answers, with its next step: a
+// booking that carries the interest (&interest=…, shown on /book and pre-filled into the Cal.com notes) and/or a link to
+// the section or FAQ answer that explains it.
+interface Assure { lead: string; text: string; cta?: { label: string; interest: string }; link?: { label: string; anchor: string } }
+interface Tile { id: string; label: string; value: string; body: string; link?: { label: string; to: RouteKey }; assure?: Assure }
+// `page` names the analytics ctaId ({page}_card_clarity_{tile}, 07 §15).
+interface Props { id?: string; page?: string; c: { title: string; includedLabel: string; items: readonly { icon: string; label: string }[]; tiles: readonly Tile[] } }
+const { id = 'get', page = 'build', c } = Astro.props;
+const book = bookHref('clarity');
+const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${book}&interest=${interest}`);
 ---
 <section id={id} class="wyg" data-surface="ink" aria-labelledby={`${id}-title`}>
   <div class="container wyg__inner">
@@ -29,28 +34,23 @@ const { id = 'get', c } = Astro.props;
 
     <ul role="list" class="wyg__tiles reveal-stagger">
       {c.tiles.map((t) => (
-        <li class="wyg__tile" id={t.id}>
+        <li class:list={['wyg__tile', { 'wyg__tile--assure': t.assure }]} id={t.id}>
           <h3 class="wyg__label">{t.label}</h3>
           <p class="wyg__value">{t.value}</p>
           <p class="wyg__body">{t.body}</p>
           {t.link && <p class="wyg__more"><InlineLink text="" link={t.link} /></p>}
+          {t.assure && (
+            <div class="wyg__assure">
+              <p><b>{t.assure.lead}</b> {t.assure.text}</p>
+              <div class="wyg__assure-actions">
+                {t.assure.cta && <CtaLink href={bookFor(t.assure.cta.interest)} ctaId={`${page}_card_clarity_${t.id}`} tier="low_commitment" position="card" target="clarity" variant="secondary" size="sm">{t.assure.cta.label}</CtaLink>}
+                {t.assure.link && <a class="wyg__assure-link" href={`#${t.assure.link.anchor}`}>{t.assure.link.label}<span class="icon--dir" aria-hidden="true">→</span></a>}
+              </div>
+            </div>
+          )}
         </li>
       ))}
     </ul>
-
-    {c.promise && (
-      <div class="wyg__promise reveal">
-        <h3 class="wyg__promise-title">{c.promise.title}</h3>
-        <ul role="list" class="wyg__promises">
-          {c.promise.items.map((p) => (
-            <li class="wyg__pitem">
-              <span class="wyg__check" aria-hidden="true"><Icon name="check" size={20} /></span>
-              <span><b class="wyg__pvalue">{p.value}</b> {p.body} {p.anchor && p.label && <a class="wyg__plink" href={`#${p.anchor}`}>{p.label}<span class="icon--dir" aria-hidden="true">→</span></a>}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
   </div>
 </section>
 
@@ -79,15 +79,11 @@ const { id = 'get', c } = Astro.props;
   .wyg__body { margin-block-start: var(--space-1); font-size: var(--text-sm); line-height: 1.55; color: var(--color-text-muted); }
   .wyg__more { font-size: var(--text-sm); font-weight: var(--weight-medium); }
 
-  /* Risk-reversal strip (Scale): green, like the Review's guarantee bar on Build. */
-  .wyg__promise { display: grid; gap: var(--space-4); padding: var(--space-5) var(--space-6); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--color-human-mark) 7%, var(--color-surface)); border: 1px solid color-mix(in oklab, var(--color-human-mark) 30%, transparent); }
-  @media (width >= 64rem) { .wyg__promise { grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--space-4) var(--space-10); } }
-  .wyg__promise-title { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-human-mark); }
-  .wyg__promises { display: grid; gap: var(--space-3) var(--space-8); }
-  @media (width >= 48rem) { .wyg__promises { grid-template-columns: 1fr 1fr; } }
-  .wyg__pitem { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: var(--space-3); color: var(--color-text); }
-  .wyg__check { color: var(--color-human-mark); margin-block-start: 0.15em; }
-  .wyg__pvalue { color: var(--color-heading); }
-  .wyg__plink { white-space: nowrap; font-weight: var(--weight-medium); }
-  .wyg__plink .icon--dir { margin-inline-start: var(--space-1); }
+  /* Promise on its tile (Scale): green edge, a dashed rule, then the promise and its next step. */
+  .wyg__tile--assure { grid-template-rows: auto auto auto 1fr; border-color: color-mix(in oklab, var(--color-human-mark) 40%, transparent); }
+  .wyg__assure { display: grid; gap: var(--space-3); align-content: start; margin-block-start: var(--space-3); padding-block-start: var(--space-4); border-block-start: 1px dashed color-mix(in oklab, var(--color-human-mark) 45%, transparent); font-size: var(--text-sm); color: var(--color-text); }
+  .wyg__assure b { color: var(--color-human-mark); font-family: var(--ff-heading); }
+  .wyg__assure-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); }
+  .wyg__assure-link { display: inline-flex; align-items: baseline; gap: var(--space-1); padding-block: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
+  .wyg__assure-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 </style>

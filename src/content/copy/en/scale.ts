@@ -155,17 +155,10 @@ export const scale = {
     ],
     tiles: [
       { id: 'pricing', label: 'Price', value: 'Monthly retainer', body: 'Based on the size of your squad. We review the team size with you every month.' },
-      { id: 'minimum', label: 'Minimum term', value: '4 months', body: 'Time for the squad to learn your product and deliver. Staff augmentation starts from 3 months.' },
-      { id: 'team', label: 'Team', value: 'One to a full squad', body: 'A lead, developers, QA, a PM and a designer, as your roadmap needs. Senior engineers own the quality.', link: { label: shared.howLink, to: 'howWeWork' as const } },
+      { id: 'minimum', label: 'Minimum term', value: '4 months', body: 'Time for the squad to learn your product and deliver. Staff augmentation starts from 3 months.', assure: { lead: 'Not sure yet?', text: 'Start with a proof of concept in 2–4 weeks, then decide on a squad.', cta: { label: 'Book a call about a POC', interest: 'scale-poc' }, link: { label: 'How a POC works', anchor: 'pieces' } } },
+      { id: 'team', label: 'Team', value: 'One to a full squad', body: 'A lead, developers, QA, a PM and a designer, as your roadmap needs. Senior engineers own the quality.', link: { label: shared.howLink, to: 'howWeWork' as const }, assure: { lead: 'Free replacement.', text: 'If anyone isn’t the right fit, we replace them at no cost.', link: { label: 'How replacement works', anchor: 'faq-replacement' } } },
       { id: 'ownership', label: 'Ownership', value: 'All yours', body: 'You keep control of the roadmap, the code and the accounts. Full IP, no lock-in, a clear contract from day one.' },
     ],
-    promise: {
-      title: 'A low-risk start',
-      items: [
-        { value: 'POC first.', body: 'Start with a proof of concept in 2–4 weeks, then decide on a squad.', anchor: 'pieces', label: 'How it works' },
-        { value: 'Free replacement.', body: 'If a squad member isn’t the right fit, we replace them at no cost.' },
-      ],
-    },
   },
   terms: { title: 'Price, team and ownership', docTitle: 'Scale', docMeta: 'Monthly retainer' },
   pricing: {

@@ -34,7 +34,11 @@ export const book = {
       'scale-piece': 'Hand us a piece: a POC, a new MVP or a module',
       'scale-hands': 'Staff augmentation, engineers who join your team',
       'scale-squad': 'A dedicated squad that stays',
+      'scale-poc': 'a proof of concept in 2–4 weeks, before committing to a squad',
     },
+    // Interests that don't come from the questions use their own lead-in (Scale tiles, Oct 27).
+    labels: { 'scale-poc': 'You want to start with' },
+    prefixes: { 'scale-poc': 'From the Scale page, wants to start with' },
   },
   call: {
     title: 'What happens on the call',

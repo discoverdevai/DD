@@ -146,3 +146,9 @@ Looked at desktop, phone and Arabic, section by section.
 - Mohamed approved two promises, now recorded in 09: "Start with a proof of concept (2–4 weeks) before you commit to a squad" and "If a squad member isn't the right fit, we replace them at no cost". Market context: Toptal, Turing, Unicsoft, Academy Smart and Brilworks all lower start-up risk with trials or replacement guarantees.
 - Shown as a green "A low-risk start" strip under the price, team and ownership tiles (POC first links to #pieces), plus a new FAQ, "What if a squad member isn't the right fit?". EN + AR.
 - Checked: no overflow, axe clean, QA 0 findings, functional 32/32. Build's "What you get" is unchanged.
+
+## Scale page, step 8: promises on their tiles, with the flow after the click (Oct 27)
+- Mohamed chose Idea C (promise where the doubt is) and asked for the whole flow. The green strip is gone.
+- Minimum term tile (4 months): "Not sure yet? Start with a proof of concept in 2–4 weeks, then decide on a squad." → [Book a call about a POC] goes to /book?interest=scale-poc, which shows "You want to start with: a proof of concept…" and pre-fills the Cal.com notes. After booking, the usual confirmation page. [How a POC works →] scrolls to #pieces.
+- Team tile: "Free replacement. If anyone isn't the right fit, we replace them at no cost." → [How replacement works →] opens the FAQ answer in place (#faq-replacement).
+- Tested every path in EN and AR (FAQ opens and is in view; #pieces in view; booking banner and Cal.com notes correct; the quiz banner is unchanged). ctaId scale_card_clarity_minimum. QA 0 findings, functional 32/32, axe clean, no overflow.
