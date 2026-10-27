@@ -104,3 +104,8 @@ Looked at desktop, phone and Arabic, section by section.
 - New "combo" frame in ProjectVisual (browser window plus a phone in front, mirrored in Arabic). Used on Build cards, the home rail and Work rows.
 - BioBank and EduLens keep their drawings until we get real screens from them.
 - Checked: QA 0 findings, functional 32/32, axe clean.
+
+## Scale page, step 1: journey and hero (Oct 27)
+- Build's journey is now a shared component (Journey + JourneyStop), and Scale uses it: one deepening background, the line with a stop per section, and the same 88px gap between sections. The page is about 1,900px shorter at 1440. Build looks the same as before.
+- Hero: "Minimum · 6 months" replaces "Timeline · Monthly", which repeated "Model · Monthly retainer". New link under the button for the second audience: "Software house? White-label or staff augmentation" → #partners. The hero card's small labels go from 11px to 12px.
+- Checked at 1440, 1024 and 390 in EN and at 1440 in AR: no overflow, axe clean, no text under 12px, QA 0 findings, functional 32/32.

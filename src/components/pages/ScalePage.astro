@@ -15,6 +15,8 @@ import SquadLoop from '../sections/SquadLoop.astro';
 import TermsDoc from '../sections/TermsDoc.astro';
 import ComparisonTable from '../partners/ComparisonTable.astro';
 import Quote from '../blocks/Quote.astro';
+import Journey from '../sections/Journey.astro';
+import JourneyStop from '../sections/JourneyStop.astro';
 import { copy } from '../../content/copy';
 import { t, getLocale } from '../../i18n/t';
 import { graph, orgStub, webPage, canonical, faqPage, service } from '../../lib/seo';
@@ -32,11 +34,16 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
   <PageHero page="scale" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
+    <p slot="link" class="ways">{c.hero.ways.map((w) => <a href={`#${w.anchor}`}>{w.label}<span class="icon--dir" aria-hidden="true">→</span></a>)}</p>
     <ServiceGlance slot="aside" name={t('nav.scale')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
   </PageHero>
 
+  <!-- Journey (shared with Build, Oct 27): one line from joining to a team that stays; even gaps between stops. -->
+  <Journey>
+  <JourneyStop label={c.stages.squad} />
   <SquadLoop title={c.squad.title} rosterLabel={c.squad.rosterLabel} roles={c.squad.roles} ring={c.squad.ring} steps={c.process.steps} />
 
+  <JourneyStop label={c.stages.outcomes} />
   <Section id="outcomes" surface="raised" title={c.outcomes.title}>
     <CardGrid items={c.outcomes.items} />
     <div class="included">
@@ -45,29 +52,36 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
     </div>
   </Section>
 
+  <JourneyStop label={c.stages.fit} />
   <Section id="fit" surface="ink" title={c.fit.title}>
     <FitList forTitle={c.fit.forTitle} forItems={c.fit.for} notTitle={c.fit.notTitle} notItems={c.fit.not} />
   </Section>
 
+  <JourneyStop label={c.stages.terms} />
   <TermsDoc title={c.terms.title} docTitle={c.terms.docTitle} docMeta={c.terms.docMeta} cols={[
     { id: 'pricing', title: c.pricing.title, body: c.pricing.answer },
     { title: c.team.title, body: c.team.body, link: c.team.link },
     { title: c.ownership.title, body: c.ownership.body },
   ]} />
 
+  <JourneyStop label={c.stages.partners} />
   <Section id="partners" surface="raised" title={c.partners.title} lead={c.partners.answer}>
     <ComparisonTable id="partners-table" caption={c.partners.caption} columns={c.partners.columns} rows={c.partners.rows} />
     <div class="partners__quote"><Quote text={c.partners.quote.text} name={c.partners.quote.name} role={c.partners.quote.role} /></div>
   </Section>
 
+  <JourneyStop label={c.stages.proof} />
   <Section id="proof" surface="ink" title={c.proof.title}>
     <ProofList items={c.proof.items} />
     <p class="retention">{c.proof.retention}</p>
   </Section>
 
+  <JourneyStop label={c.stages.faq} />
   <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="scale" />
 
+  <JourneyStop label={c.stages.close} end />
   <CtaBand title={c.band.title} kind="clarity" page="scale" />
+  </Journey>
 </BaseLayout>
 
 <style>

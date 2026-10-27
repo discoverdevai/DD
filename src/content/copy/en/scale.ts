@@ -10,13 +10,17 @@ export const scale = {
     eyebrow: 'It’s working. Grow it.',
     h1: 'Scale: a dedicated team that stays', // keyword in the H1 (05 §0; Oct 26 review #4)
     body: 'A dedicated squad of developers, QA and a product manager joins your product on a monthly retainer. They own the roadmap and sprints with you. You keep control.',
+    // Second audience straight to its section (Oct 27, like Build's ways in).
+    ways: [{ label: 'Software house? White-label or staff augmentation', anchor: 'partners' }],
     // Meta row labels come from 06 §9.11 (`service` hero: Timeline, Model, Team); values from 04 §4.3 and 03 §7.6, §7.7.
     meta: [
-      { label: 'Timeline', value: 'Monthly' },
+      { label: 'Minimum', value: '6 months' }, // Oct 27: was Timeline · Monthly, which repeated the Model value
       { label: 'Model', value: 'Monthly retainer' },
       { label: 'Team', value: 'From one specialist to a full squad' },
     ],
   },
+  // Journey stops (Oct 27, shared with Build): names shown in the margin on very wide screens.
+  stages: { squad: 'The team', outcomes: 'What you get', fit: 'Fit', terms: 'The deal', partners: 'Software houses', proof: 'Proof', faq: 'Questions', close: 'Start' },
   fit: {
     title: 'Is Scale right for you?',
     // Column headings derived from the 03 section name "Who it's for, and not for".

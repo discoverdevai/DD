@@ -1974,6 +1974,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 ### 9.3b Project titles name the client (Oct 27)
 - Mohamed OK'd client names (D-05). Titles in `projects.ts` (home rail, /work rows) now name the client from 09: Athkado (AR furniture store; feasibility sprints), Rushr, BioBank, Nile Support, Amstadd, Upscend, Pyramakerz, Arheb, Jumlaty, Fantacalcio, Zest; EduLens and Yawmy Care were already named. The support agent, individual founders and tourism research stay unnamed (09 names no client). Oct 27 update: NJWAR is Athkado's store (Mohamed), so that card is titled "NJWAR, Athkado’s AR furniture store with AI recommendations" and shows the NJWAR screen.
 
+### 16b.13 Scale hero and journey (Oct 27)
+- Hero meta: "Minimum · 6 months" replaces "Timeline · Monthly" (it repeated "Model · Monthly retainer"). Fact: 6-month minimum (§7 pricing).
+- Ways in under the button: "Software house? White-label or staff augmentation" → #partners. AR: "شركة برمجيات؟ العمل باسم علامتك أو تعزيز فريقك".
+- Journey stops (margin labels, very wide screens): The team · What you get · Fit · The deal · Software houses · Proof · Questions · Start. AR: الفريق · ما تحصل عليه · هل يناسبك · الاتفاق · شركات البرمجيات · الدليل · الأسئلة · البداية.
+
 ### 16b.4 Navigation (R1)
 Header: Build · Scale · How we work · Work · FAQ (Work and FAQ jump to home until their pages are live) · العربية · Book a call. Home cards: Validate → /build#validate, Build → /build, Scale → /scale.
 

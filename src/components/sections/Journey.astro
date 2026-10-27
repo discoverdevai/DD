@@ -1,0 +1,35 @@
+---
+// Journey (03 §16b.7; shared by Build and Scale from Oct 27). One line down the page with a stop per section and one
+// background that deepens toward the close, instead of alternating bands. Sections inside are transparent and bring
+// only their top spacing, so every gap between stops is the same (88px at 1440, 56px on phones). The line, dots and
+// stop names are decorative (aria-hidden); headings carry the meaning. Children: <JourneyStop /> before each section,
+// optional `.voice` quote blocks after a section.
+---
+<div class="journey" data-surface="ink"><slot /></div>
+
+<style>
+  /* --line-x puts the line just outside the content edge (inside the gutter on phones). */
+  .journey { --section-y: clamp(3.5rem, 2.2rem + 3.6vw, 5.5rem); --line-x: calc((100% - min(100% - 2 * var(--gutter), var(--container))) / 2 - var(--gutter) * 0.6); position: relative; isolation: isolate;
+    background:
+      radial-gradient(70% 40% at 50% 100%, color-mix(in oklab, var(--blue-600) 35%, transparent), transparent 70%),
+      linear-gradient(180deg, var(--blue-975) 0%, var(--blue-950) 55%, var(--blue-900) 100%); }
+  .journey > :global(section) { background: transparent; border: 0; }
+  .journey::before, .journey::after { content: ''; position: absolute; inset-block: 0 12rem; inset-inline-start: var(--line-x); inline-size: 2px; border-radius: 2px; z-index: 1; pointer-events: none; }
+  .journey::before { background: color-mix(in oklab, var(--blue-300) 18%, transparent); }
+  .journey::after { background: linear-gradient(180deg, var(--blue-400), var(--color-human-mark)); transform-origin: 50% 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .journey::after { animation: journey-fill linear both; animation-timeline: view(); animation-range: entry 20% exit 60%; }
+      @keyframes journey-fill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    }
+  }
+  /* Phones: no room in the gutter for the line; the deepening background carries the flow. */
+  @media (width < 40rem) { .journey::before, .journey::after { display: none; } }
+  /* The hero hands over to the journey with the same one gap (was hero padding + first stop padding, about 190px at 1440). */
+  :global(main .phero:has(+ .journey)) { padding-block-end: 0; }
+  /* One gap between stops: each section brings only its top spacing, so two sections never stack both. */
+  .journey > :global(section:not(:last-child)) { padding-block-end: 0; }
+  .journey > :global(.voice) { padding-block: 0; }
+  /* A section followed by its client quote ends shorter, so the quote reads as part of it, not as a section of its own. */
+  .journey > :global(section:has(+ .voice)) { padding-block-end: var(--space-12); }
+</style>

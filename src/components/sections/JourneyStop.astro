@@ -1,0 +1,19 @@
+---
+// One stop on the Journey line (see Journey.astro): a dot level with the next section's heading, and on very wide
+// screens its name in the margin. `end` marks the last stop (the close) in the human-mark green. Decorative.
+interface Props { label: string; end?: boolean }
+const { label, end = false } = Astro.props;
+---
+<div class:list={['stop', { 'stop--end': end }]} aria-hidden="true"><span>{label}</span></div>
+
+<style>
+  .stop { position: relative; block-size: 0; z-index: 2; }
+  .stop::before { content: ''; position: absolute; inset-inline-start: calc(var(--line-x) - 6px); inset-block-start: calc(var(--section-y) + 0.6rem); inline-size: 14px; block-size: 14px; border-radius: 50%; background: var(--blue-975); border: 2px solid var(--blue-400); }
+  .stop--end::before { background: var(--color-human-mark); border-color: var(--color-human-mark); box-shadow: 0 0 0 6px color-mix(in oklab, var(--color-human-mark) 22%, transparent); }
+  .stop span { display: none; }
+  @media (width < 40rem) { .stop::before { display: none; } }
+  /* Very wide screens only: the stop's name sits in the margin, beside its dot (below 100rem the margin is too narrow). */
+  @media (width >= 100rem) {
+    .stop span { display: block; position: absolute; inset-inline-end: calc(100% - var(--line-x) + 1.25rem); inset-block-start: calc(var(--section-y) + 0.35rem); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); white-space: nowrap; }
+  }
+</style>

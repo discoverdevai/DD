@@ -10,6 +10,8 @@ import Section from '../sections/Section.astro';
 import BuildWork from '../blocks/BuildWork.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
+import Journey from '../sections/Journey.astro';
+import JourneyStop from '../sections/JourneyStop.astro';
 import BuildPath from '../scenes/BuildPath.astro';
 import CaseResult from '../scenes/CaseResult.astro';
 import Quote from '../blocks/Quote.astro';
@@ -39,19 +41,19 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 
   <!-- Journey (03 §16b.7): one line from idea to launch. Each stop marks the section after it; the background deepens
        slowly down the page instead of alternating bands. The line and stops are decorative; headings carry the meaning. -->
-  <div class="journey" data-surface="ink">
-    <div class="stop" aria-hidden="true"><span>{c.stages.plan}</span></div>
+  <Journey>
+    <JourneyStop label={c.stages.plan} />
     <WeekTrack title={c.plan.title} example={c.plan.example} weeks={c.plan.weeks} weekLabel={c.plan.weekLabel} demoLabel={c.plan.demoLabel} liveLabel={c.plan.liveLabel} phases={c.plan.phases} spans={c.plan.spans} fork={c.plan.fork} signLabel={c.plan.signLabel} />
     <div class="container voice"><Quote text={c.plan.quote.text} name={c.plan.quote.name} role={c.plan.quote.role} /></div>
 
-    <div class="stop" aria-hidden="true"><span>{c.stages.review}</span></div>
+    <JourneyStop label={c.stages.review} />
     <ReviewSection />
 
-    <div class="stop" aria-hidden="true"><span>{c.stages.terms}</span></div>
+    <JourneyStop label={c.stages.terms} />
     <WhatYouGet c={c.get} />
     <div class="container voice"><Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} /></div>
 
-    <div class="stop" aria-hidden="true"><span>{c.stages.proof}</span></div>
+    <JourneyStop label={c.stages.proof} />
     <Section id="proof" surface="ink" title={c.proof.title}>
       <div class="proof">
         <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} big={c.proof.case.big} />
@@ -59,55 +61,14 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
       </div>
     </Section>
 
-    <div class="stop" aria-hidden="true"><span>{c.stages.faq}</span></div>
+    <JourneyStop label={c.stages.faq} />
     <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="build" openFirst />
 
-    <div class="stop stop--end" aria-hidden="true"><span>{c.stages.close}</span></div>
+    <JourneyStop label={c.stages.close} end />
     <CtaBand title={c.band.title} body={c.band.body} kind="clarity" page="build" />
-  </div>
+  </Journey>
 </BaseLayout>
 
 <style>
-  .ways { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin-block-start: var(--space-2); }
-  .ways a { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
-  .ways a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
-  .ways .icon--dir { margin-inline-start: var(--space-1); }
-
-  /* Journey (03 §16b.7). One background for the whole run, deepening toward the close; sections inside are transparent,
-     so there are no hard bands. --line-x puts the line just outside the content edge (inside the gutter on phones). */
-  /* Even rhythm inside the journey: one section spacing for every stop (88px on a 1440px screen, 56px on a phone). */
-  .journey { --section-y: clamp(3.5rem, 2.2rem + 3.6vw, 5.5rem); --line-x: calc((100% - min(100% - 2 * var(--gutter), var(--container))) / 2 - var(--gutter) * 0.6); position: relative; isolation: isolate;
-    background:
-      radial-gradient(70% 40% at 50% 100%, color-mix(in oklab, var(--blue-600) 35%, transparent), transparent 70%),
-      linear-gradient(180deg, var(--blue-975) 0%, var(--blue-950) 55%, var(--blue-900) 100%); }
-  .journey > :global(section) { background: transparent; border: 0; }
-  .journey::before, .journey::after { content: ''; position: absolute; inset-block: 0 12rem; inset-inline-start: var(--line-x); inline-size: 2px; border-radius: 2px; z-index: 1; pointer-events: none; }
-  .journey::before { background: color-mix(in oklab, var(--blue-300) 18%, transparent); }
-  .journey::after { background: linear-gradient(180deg, var(--blue-400), var(--color-human-mark)); transform-origin: 50% 0; }
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      .journey::after { animation: journey-fill linear both; animation-timeline: view(); animation-range: entry 20% exit 60%; }
-      @keyframes journey-fill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-    }
-  }
-  .stop { position: relative; block-size: 0; z-index: 2; }
-  .stop::before { content: ''; position: absolute; inset-inline-start: calc(var(--line-x) - 6px); inset-block-start: calc(var(--section-y) + 0.6rem); inline-size: 14px; block-size: 14px; border-radius: 50%; background: var(--blue-975); border: 2px solid var(--blue-400); }
-  .stop--end::before { background: var(--color-human-mark); border-color: var(--color-human-mark); box-shadow: 0 0 0 6px color-mix(in oklab, var(--color-human-mark) 22%, transparent); }
-  .stop span { display: none; }
-  /* Phones: no room in the gutter for the line; the deepening background carries the flow. */
-  @media (width < 40rem) { .journey::before, .journey::after, .stop::before { display: none; } }
-  /* Very wide screens only: the stop's name sits in the margin, beside its dot (below 100rem the margin is too narrow). */
-  @media (width >= 100rem) {
-    .stop span { display: block; position: absolute; inset-inline-end: calc(100% - var(--line-x) + 1.25rem); inset-block-start: calc(var(--section-y) + 0.35rem); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); white-space: nowrap; }
-  }
-  /* The hero hands over to the journey with the same one gap (was hero padding + first stop padding, about 190px at 1440). */
-  :global(main .phero:has(+ .journey)) { padding-block-end: 0; }
-  /* One gap between stops: each section brings only its top spacing, so two sections never stack both (was 174px, now 88px at 1440). */
-  .journey > :global(section:not(:last-child)) { padding-block-end: 0; }
-  .voice { padding-block: 0; }
-  /* A section followed by its client quote ends shorter, so the quote reads as part of it, not as a section of its own. */
-  .journey > :global(section:has(+ .voice)) { padding-block-end: var(--space-12); }
-
-
   .proof { display: grid; gap: var(--space-12); }
 </style>

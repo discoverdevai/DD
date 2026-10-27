@@ -39,13 +39,13 @@ const { name, label, steps, meta } = Astro.props;
   .sg__step.is-last .sg__node { border-color: var(--color-human-mark); background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
   .sg__n { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .sg__title { font-weight: var(--weight-semibold); color: var(--color-text); }
-  .sg__meta { grid-column: 2; font-family: var(--ff-mono); font-size: 0.6875rem; color: var(--color-text-muted); }
+  .sg__meta { grid-column: 2; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
   .sg__chip { grid-column: 3; grid-row: 1; justify-self: end; }
   @container (inline-size < 26rem) { .sg__chip { grid-column: 2; grid-row: auto; justify-self: start; } }
   .sg__facts { display: grid; gap: var(--space-3); padding: var(--space-4) var(--space-5); border-block-start: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-975) 45%, transparent); }
   @container (inline-size >= 30rem) { .sg__facts { grid-template-columns: auto auto 1fr; gap: var(--space-6); } }
   .sg__facts div { display: grid; gap: 2px; }
-  .sg__facts dt { font-family: var(--ff-mono); font-size: 0.6875rem; color: var(--color-machine-text); }
+  .sg__facts dt { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
   .sg__facts dd { margin: 0; color: var(--color-text); font-weight: var(--weight-medium); }
   .sg[data-playing] .sg__node { background: var(--color-bg); }
   .sg[data-playing] .sg__step.is-last .sg__node { background: var(--color-bg); box-shadow: none; }
