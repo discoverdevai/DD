@@ -27,7 +27,7 @@ export const about = {
   where: {
     title: 'Where we work',
     // Tags "[VERIFY: V8 call hours]" (keep) and "[VERIFY: V9 Texas entity wording]" (D-08: "Texas, USA" only) dropped.
-    body: 'Our engineering hub is in Alexandria, Egypt, and we have a presence in Texas, USA. Alexandria is on GMT+2. Gulf time is 0–2 hours ahead, and our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English.',
+    body: 'Our engineering hub is in Alexandria, Egypt, and we have a presence in Texas, USA. Gulf time is 0–2 hours ahead, and our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English.',
     // §12.4 visual: time-overlap strip. No hour ranges or seasonal claims (11 §5).
     strip: {
       label: 'West to east',

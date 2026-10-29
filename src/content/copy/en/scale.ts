@@ -140,7 +140,7 @@ export const scale = {
       { id: 'replacement', q: 'What if someone isn’t the right fit?', a: 'We replace them at no cost, at any time. To test us first, start with a 2–4 week proof of concept.' },
       { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month, from one specialist to a full squad.' },
       { id: 'ip', q: 'Who owns the IP?', a: 'You do. Every option starts with an NDA, and the IP goes to you, white-label work included.' },
-      { id: 'hours', q: 'What hours and languages do you work in?', a: 'We are in Alexandria, Egypt (GMT+2), 0–2 hours behind the Gulf, with overlap for Europe and US mornings. We work in Arabic and English.' },
+      { id: 'hours', q: 'What hours and languages do you work in?', a: 'We are in Alexandria, Egypt, 0–2 hours behind the Gulf, with overlap for Europe and US mornings. We work in Arabic and English.' },
     ],
   },
   // §16b.2: For software houses (§8.3 answer and table).

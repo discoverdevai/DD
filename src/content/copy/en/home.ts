@@ -113,8 +113,8 @@ export const home = {
     results: [
       { id: 'validate', name: 'Validate', meta: ['1–2 weeks', 'Fixed fee'], body: 'Market and competitor read, product scope, a clickable prototype and a fixed build estimate. The fee credits toward Build.', show: 'Show me Validate', book: 'Book a call about Validate' },
       { id: 'build', name: 'Build', meta: ['8–12 weeks', 'Fixed price'], body: 'A live product with real users: design, build, QA and deployment, with a demo for you every week.', show: 'Show me Build', book: 'Book a call about Build' },
-      { id: 'review', name: 'Launch-Ready Review', meta: ['About 5 working days'], body: 'A senior team reviews your AI-built or freelancer-built app and gives you a ranked fix list and a plain verdict.', show: 'Show me the Review', book: 'Book a call about the Review' },
-      { id: 'scale', name: 'Scale', meta: ['From 4 months', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a product manager who run the roadmap with you. You keep control.', show: 'Show me Scale', book: 'Book a call about Scale' },
+      { id: 'review', name: 'Launch-Ready Review', meta: ['About 5 working days', 'From $1,490'], body: 'A senior team reviews your AI-built or freelancer-built app and gives you a ranked fix list and a plain verdict. No useful findings, no charge.', show: 'Show me the Review', book: 'Book a call about the Review' },
+      { id: 'scale', name: 'Scale', meta: ['From 4 months', 'Monthly retainer'], body: 'A dedicated squad of developers, QA and a product manager who run the roadmap with you. Start with a 2–4 week proof of concept, and we replace anyone who isn’t the right fit at no cost.', show: 'Show me Scale', book: 'Book a call about Scale' },
       { id: 'partners', name: 'Partners', meta: ['NDA first', 'IP goes to you'], body: 'White-label delivery and staff augmentation under your brand.', show: 'Show me Partners', book: 'Book a call about Partners' },
     ],
     mail: {
@@ -193,7 +193,7 @@ export const home = {
       { id: 'ownership', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one. Your code stays in your own repository and accounts. If you stop working with us, you keep everything, and your own team or another developer can carry on.' },
       { id: 'take-over', q: 'We already built something with AI or a freelancer. Can you take it over?', a: 'Yes. A senior team can review what you have in about 5 working days and tell you what to keep, fix or replace, and why. Then we fix it or build it properly. Start with a free clarity call.', link: { label: 'Read the guide to taking an AI-built app to production', to: 'pillar' as const } }, // 03 §0.8
       { id: 'stacks', q: 'Which tools and stacks do you work with?', a: 'React, Next.js, Node.js, Python, Spring Boot, React Native, Flutter, PostgreSQL, AWS, GCP and Azure. For AI: OpenAI, LangChain, RAG, computer vision and NLP.' },
-      { id: 'time-zones', q: 'Your team is in Egypt. Will time zones be a problem?', a: 'Our engineering hub is in Alexandria, Egypt (GMT+2), 0–1 hours behind Saudi Arabia and Kuwait. Our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English, and we have a presence in Texas, USA. Calls run in Gulf and US hours.' },
+      { id: 'time-zones', q: 'Your team is in Egypt. Will time zones be a problem?', a: 'Our engineering hub is in Alexandria, Egypt, 0–1 hours behind Saudi Arabia and Kuwait. Our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English, and we have a presence in Texas, USA. Calls run in Gulf and US hours.' },
     ],
   },
   band: {

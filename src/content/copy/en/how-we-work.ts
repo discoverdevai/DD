@@ -17,7 +17,7 @@ export const howWeWork = {
     title: 'Two ways in',
     lead: 'Greenfield or brownfield, you join the same four steps. Only the start is different.',
     items: [
-      { anchor: 'validate', tag: 'Greenfield', title: 'New product', body: 'Start with Validate: 1–2 weeks of discovery that ends with a tested prototype and a fixed build estimate.', link: 'How Validate works' },
+      { anchor: 'process', tag: 'Greenfield', title: 'New product', body: 'Start with Validate: 1–2 weeks of discovery that ends with a tested prototype and a fixed build estimate.', link: 'How Validate works' },
       { anchor: 'review', tag: 'Brownfield', title: 'Existing code', body: 'Start with a Launch-Ready Review: a senior team reviews your app in about 5 working days and gives you a ranked fix list and a plain verdict.', link: 'How the Review works' },
     ],
   },

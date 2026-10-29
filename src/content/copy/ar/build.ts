@@ -140,7 +140,7 @@ export const build: Widen<typeof en> = {
       title: 'منتجات أخرى بنيناها',
       items: [
         { id: 'njwar', name: 'NJWAR', meta: 'Athkado · السعودية', line: 'متجر أثاث بالواقع المعزز: ضع القطعة في غرفتك بحجمها الحقيقي، وغيّر لونها، وأدِرها، وأضف غيرها.', screens: ['njwar-web.webp', 'njwar-ar.webp'], device: 'combo', alt: 'متجر NJWAR على الويب بالعربية، ومعه عرض الواقع المعزز على الجوال يضع كرسيًا في غرفة حقيقية', art: 'ar' },
-        { id: 'rushr', name: 'Rushr', meta: 'سوق خدمات · الولايات المتحدة', line: 'سوق للخدمات المنزلية بناه فريق منتج كامل في 16 أسبوعًا: انشر طلبك، ويصلك أقرب فني موثّق، وادفع عبر حساب ضمان.', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'phone', alt: 'تطبيق Rushr يعرض سباكًا مطابقًا مع خياري القبول والرفض', art: 'devices' },
+        { id: 'rushr', name: 'Rushr', meta: 'سوق خدمات · الولايات المتحدة', line: 'سوق للخدمات المنزلية بناه فريق منتج كامل: انشر طلبك، ويصلك أقرب فني موثّق، وادفع عبر حساب ضمان.', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'phone', alt: 'تطبيق Rushr يعرض سباكًا مطابقًا مع خياري القبول والرفض', art: 'devices' },
         { id: 'yawmy', name: 'Yawmy Care', meta: 'رعاية الأطفال · منتجنا', line: 'منصتنا لإدارة الحضانات: للإدارة والمعلمين وأولياء الأمور، مع الفواتير وتعدد الفروع. الإطلاق في 2027.', screens: ['yawmy-dashboard.webp', 'yawmy-parent-logs.webp'], device: 'combo', alt: 'لوحة Yawmy Care للحضانة مع الحضور اليومي، وتطبيق أولياء الأمور يعرض يوم الطفل: المزاج والوجبات والقيلولة', art: 'lms' },
         { id: 'biobank', name: 'BioBank', meta: 'تقنيات صحية', line: 'تطبيق جوال يشرح نتائج التحاليل بلغة بسيطة، مع توصيات، ومتابعة بالمحادثة، وضوابط سلامة طبية.', art: 'health' },
       ],

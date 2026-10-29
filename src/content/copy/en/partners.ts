@@ -24,7 +24,7 @@ export const partners = {
     cards: [
       { title: 'Capacity', body: 'Say yes to more projects without hiring first.' },
       { title: 'Seniority', body: 'Senior engineers own the quality. AI speeds up the work.' },
-      { title: 'Time overlap', body: 'GMT+2. Gulf time is 0–2 hours ahead, and our day overlaps the Gulf, Europe and US mornings.' },
+      { title: 'Time overlap', body: 'Gulf time is 0–2 hours ahead, and our day overlaps the Gulf, Europe and US mornings.' },
       { title: 'Arabic and English', body: 'Useful for Gulf clients and bilingual products.' },
       { title: 'Range', body: 'Web, mobile, APIs, AI and ML, data, e-commerce, QA, DevOps and cloud.' },
     ],

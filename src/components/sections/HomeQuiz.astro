@@ -29,7 +29,7 @@ const privacyHref = href('privacy');
 const book = bookHref('clarity');
 const bookFor = (id: string) => (book.startsWith('mailto:') ? book : `${book}&interest=home-${id}`);
 // Lean R1: Validate and the Review live inside /build, Partners inside /scale.
-const where: Record<string, [RouteKey, string?]> = { validate: ['build', 'validate'], build: ['build'], review: ['build', 'review'], scale: ['scale'], partners: ['scale', 'partners'] };
+const where: Record<string, [RouteKey, string?]> = { validate: ['build', 'process'], build: ['build'], review: ['build', 'review'], scale: ['scale'], partners: ['scale', 'partners'] };
 const showFor = (id: string) => { const [k, a] = where[id] ?? []; return k && isLive(k) ? `${href(k)}${a ? `#${a}` : ''}` : undefined; };
 const target = (id: string) => id as 'validate' | 'build' | 'scale' | 'partners' | 'review';
 const opt = (o: Opt, name: string, p: string) => ({ id: `hq-${p}-${o.id}`, name, value: o.id, cls: `${p}-${o.id}` });
@@ -115,7 +115,12 @@ const opt = (o: Opt, name: string, p: string) => ({ id: `hq-${p}-${o.id}`, name,
     quiz.addEventListener('change', (e) => {
       const el = e.target as HTMLInputElement;
       if (!started) { started = true; track('quiz_started', { quiz: 'home' }); }
-      if (el.name === 'see') track('quiz_completed', { quiz: 'home', result: shown()?.dataset.result });
+      if (el.name === 'see') {
+        track('quiz_completed', { quiz: 'home', result: shown()?.dataset.result });
+        // Audit Oct 29: on phones the result and its book button could open below the screen.
+        const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        requestAnimationFrame(() => shown()?.scrollIntoView({ block: 'nearest', behavior: calm ? 'auto' : 'smooth' }));
+      }
       else track('quiz_question_answered', { quiz: 'home', question: el.name, answer: el.value });
       sync();
     });
