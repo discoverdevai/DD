@@ -41,22 +41,22 @@ const glyph = { in: '✓', next: '→', later: '·' } as const;
   .why__grid { display: grid; gap: var(--space-10); align-items: center; }
   @media (width >= 64rem) { .why__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-16); } }
   .why__label { margin-block-end: var(--space-4); }
-  .why__text { font-size: clamp(1.875rem, 1.2rem + 2.4vw, 3rem); font-weight: var(--weight-semibold); line-height: 1.1; letter-spacing: -0.035em; max-inline-size: 22ch; text-wrap: balance; color: var(--color-heading); }
-  .why__steps-label { font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-machine-text); margin-block: var(--space-8) var(--space-2); }
+  .why__text { font-size: var(--title-section); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: -0.035em; max-inline-size: 22ch; text-wrap: balance; color: var(--color-heading); }
+  .why__steps-label { font-family: var(--ff-body); font-size: var(--text-sm); color: var(--color-machine-text); margin-block: var(--space-8) var(--space-2); }
   .why__list { margin: 0; padding: 0; list-style: none; max-inline-size: 36rem; }
   .why__step { display: flex; align-items: flex-start; gap: var(--space-4); padding-block: var(--space-4); border-block-start: 1px solid var(--color-hairline); }
-  .why__n { flex: none; display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--blue-300) 55%, transparent); font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--blue-200); }
+  .why__n { flex: none; display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--blue-300) 55%, transparent); font-family: var(--ff-body); font-size: var(--text-sm); color: var(--blue-200); }
   .why__t { display: grid; gap: var(--space-1); }
   .why__t b { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; color: var(--color-heading); }
   .why__t span { color: var(--color-text-muted); font-size: var(--text-sm); }
   .why__card { padding: var(--space-6); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 22%, var(--color-surface)), var(--color-surface) 70%); display: grid; gap: var(--space-4); }
   @media (width >= 64rem) { .why__card { padding: var(--space-8); } }
-  .why__cap { display: flex; justify-content: space-between; gap: var(--space-4); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .why__cap { display: flex; justify-content: space-between; gap: var(--space-4); font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .why__tag { color: var(--color-text-muted); }
-  .why__grp-l { font-family: var(--ff-mono); font-size: var(--text-xs); letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text-muted); margin-block-end: var(--space-2); }
+  .why__grp-l { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); margin-block-end: var(--space-2); }
   .why__grp ul { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
   .why__row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); color: var(--color-heading); font-size: var(--text-sm); }
-  .why__row em { margin-inline-start: auto; font-style: normal; font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .why__row em { margin-inline-start: auto; font-style: normal; font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); }
   .why__ck { flex: none; inline-size: 1.25rem; text-align: center; font-weight: var(--weight-bold); }
   .why__grp--in .why__row { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); background: color-mix(in oklab, var(--blue-300) 8%, transparent); }
   .why__grp--in .why__ck { color: var(--color-human-mark); }

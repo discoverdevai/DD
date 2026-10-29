@@ -106,7 +106,8 @@ const active = (p) => p.evaluate(() => { const a = document.activeElement; retur
   await p.evaluate(() => scrollTo(0, 1600)); await p.waitForTimeout(500);
   ok('Sticky bar shows after the hero leaves the viewport', !(await bar.evaluate((b) => b.hidden)));
   ok('Sticky bar is the clarity call', (await bar.locator('a').getAttribute('data-cta-id')) === 'sticky_book_clarity');
-  await p.evaluate(() => scrollTo(0, document.body.scrollHeight)); await p.waitForTimeout(600);
+  // Sections size themselves lazily (content-visibility), so the first jump can stop short of the end: jump twice.
+  for (let i = 0; i < 2; i++) { await p.evaluate(() => scrollTo(0, document.body.scrollHeight)); await p.waitForTimeout(600); }
   ok('Sticky bar stays hidden from the closing CTA band to the footer', await bar.evaluate((b) => b.hidden));
 
   // Pages switched off for a release return 404; their checks run again when they are live.

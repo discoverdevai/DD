@@ -19,6 +19,6 @@ const items = Astro.props.headings.filter((h) => h.depth === 2);
   .toc__title { font-size: var(--text-base); line-height: var(--leading-snug); }
   .toc ol { display: grid; gap: var(--space-1); counter-reset: toc; }
   .toc li { counter-increment: toc; display: grid; grid-template-columns: 2ch minmax(0, 1fr); gap: var(--space-3); align-items: baseline; }
-  .toc li::before { content: counter(toc); font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+  .toc li::before { content: counter(toc); font-family: var(--ff-body); font-size: var(--text-sm); color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
   .toc a { display: inline-flex; align-items: center; min-block-size: 2.75rem; padding-block: var(--space-1); }
 </style>

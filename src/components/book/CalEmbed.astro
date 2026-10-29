@@ -31,7 +31,7 @@ const types: BookType[] = isLive('review') ? ['review', 'clarity', 'partner'] : 
 
 <style>
   .cal { display: grid; gap: var(--space-3); }
-  .cal__tz { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .cal__tz { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .cal__frame { position: relative; min-block-size: 62rem; background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-2); overflow: hidden; }
   @media (width >= 48rem) { .cal__frame { min-block-size: 46rem; } } /* the real booker is 980-1230px tall on phones: reserve it so the page below does not jump (final audit) */
   /* No calendar (not configured, or the embed failed): drop the reserved height so the direct links and the

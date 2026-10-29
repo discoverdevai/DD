@@ -92,6 +92,11 @@
   --text-2xl:  clamp(1.728rem, 1.398rem + 1.407vw, 2.664rem);     /* 27.6 -> 42.6 */
   --text-3xl:  clamp(2.074rem, 1.553rem + 2.221vw, 3.552rem);     /* 33.2 -> 56.8 */
   --text-4xl:  clamp(2.488rem, 1.697rem + 3.376vw, 4.735rem);     /* 39.8 -> 75.8, home hero only */
+  /* Phase 2 (Oct 29, design review): every title uses one of four steps, in weight 700. */
+  --title-page:    clamp(2.5rem, 1.55rem + 3.6vw, 4.25rem);   /* 40 -> 68: the H1 on every page */
+  --title-section: clamp(2rem, 1.45rem + 2.2vw, 3rem);        /* 32 -> 48: section titles, closing band */
+  --title-feature: clamp(1.625rem, 1.35rem + 1.1vw, 2rem);    /* 26 -> 32: product names under a section, quiz results */
+  --title-card:    clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);   /* 20 -> 24: card titles */
 
   --leading-display: 1.08;
   --leading-tight:   1.15;
@@ -136,7 +141,7 @@
   /* ---------- Radii (grow with container size) ---------- */
   --radius-xs: 4px;    /* inline code, kbd */
   --radius-sm: 6px;    /* buttons, inputs, quiz options */
-  --radius-md: 10px;   /* cards */
+  --radius-md: 12px;   /* cards (Phase 2: one card corner) */
   --radius-lg: 16px;   /* panels, ReviewSnapshot, embed, media frames */
   --radius-pill: 999px;/* badges */
 

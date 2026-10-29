@@ -25,7 +25,7 @@ const { id, bright, dim, label, surface = 'ink', ctaPage, display = false, split
   .stmt__label { margin-block-end: var(--space-4); }
   .stmt__label span { color: var(--color-machine-text); }
   .stmt__text { font-size: clamp(1.5rem, 1.05rem + 1.6vw, 2.25rem); font-weight: var(--weight-semibold); line-height: 1.12; letter-spacing: -0.035em; max-inline-size: 30ch; text-wrap: balance; } /* statement size (<= 36px): reads as a statement, not a headline (design review) */
-  .stmt__text--display { font-size: clamp(1.75rem, 1.1rem + 2.7vw, 3.5rem); max-inline-size: 24ch; }
+  .stmt__text--display { font-size: var(--title-section); max-inline-size: 24ch; }
   .stmt__bright { color: var(--color-heading); }
   .stmt__dim { color: color-mix(in oklab, var(--neutral-0) 50%, var(--color-bg)); }
   /* Navy band (brand guidelines: navy for openers and statements) for pages that alternate white and navy. */

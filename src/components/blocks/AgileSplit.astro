@@ -17,6 +17,6 @@ const { body, line, more } = Astro.props;
   .ag { display: grid; gap: var(--stack-lg); margin-block-start: var(--space-8); }
   .ag__body { max-inline-size: 44rem; font-size: var(--text-lg); line-height: 1.6; color: var(--color-text-muted); text-wrap: pretty; }
   .ag__more a { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); }
-  .ag__line { display: flex; align-items: baseline; gap: var(--space-3); font-family: var(--ff-mono); font-size: var(--text-sm); color: var(--color-human-text); }
+  .ag__line { display: flex; align-items: baseline; gap: var(--space-3); font-family: var(--ff-body); font-size: var(--text-sm); color: var(--color-human-text); }
   .ag__line::before { content: ''; inline-size: 8px; block-size: 8px; border-radius: 50%; translate: 0 -1px; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); flex: none; }
 </style>

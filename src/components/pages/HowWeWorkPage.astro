@@ -111,7 +111,7 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
 <style>
   .hw { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
   .hw__lead { max-inline-size: 44rem; margin-block: var(--space-4) var(--stack-lg); font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); }
-  .hw__h3 { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .hw__h3 { font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); color: var(--color-heading); }
   .hw__body { color: var(--color-text-muted); line-height: 1.55; }
 
   /* Steps in depth: step summary left, frameworks with drawings right. */
@@ -120,7 +120,7 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
   @media (width >= 64rem) { .hw__step { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-10); padding: var(--space-8); } }
   .hw__stephead { display: grid; gap: var(--space-3); align-content: start; }
   .hw__gets { display: grid; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-human-mark) 8%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 25%, transparent); font-size: var(--text-sm); }
-  .hw__gets span { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-human-text); }
+  .hw__gets span { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-human-text); }
   .hw__toolgrid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
   .hw__tool { display: grid; gap: var(--space-2); align-content: start; }
   .hw__art { padding: var(--space-2); border-radius: var(--radius-md); background: var(--color-bg); border: 1px solid var(--color-hairline); }

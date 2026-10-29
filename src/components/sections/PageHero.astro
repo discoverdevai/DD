@@ -57,11 +57,11 @@ const hasAside = Astro.slots.has('aside');
   @media (width >= 64rem) { .phero--split .phero__inner { grid-template-columns: 6fr 5fr; align-items: center; gap: var(--space-16); } }
   .phero__pill { display: inline-flex; align-items: center; gap: var(--space-2); padding: 6px 14px 6px 10px; border-radius: var(--radius-pill); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); background: color-mix(in oklab, var(--blue-300) 7%, transparent); font-size: var(--text-sm); color: var(--color-text-muted); }
   .phero__dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-human-mark) 20%, transparent); }
-  .phero__h1 { font-size: clamp(2.25rem, 1.3rem + 3.6vw, 4.25rem); font-weight: var(--weight-bold); line-height: 1.04; letter-spacing: -0.045em; color: var(--color-heading); max-inline-size: 18ch; text-wrap: balance; }
+  .phero__h1 { font-size: var(--title-page); font-weight: var(--weight-bold); line-height: 1.04; letter-spacing: -0.045em; color: var(--color-heading); max-inline-size: 18ch; text-wrap: balance; }
   .phero__lead { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 40rem; text-wrap: pretty; }
   .phero__meta { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-10); padding-block: var(--space-4); border-block: 1px solid var(--color-hairline); inline-size: 100%; }
   .phero__meta div { display: grid; gap: 2px; }
-  .phero__meta dt { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .phero__meta dt { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .phero__meta dd { margin: 0; font-weight: var(--weight-medium); color: var(--color-text); }
   .phero__cta { display: grid; gap: var(--space-3); justify-items: start; }
   .phero__aside { min-inline-size: 0; }

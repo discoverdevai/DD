@@ -3,7 +3,7 @@
 
 /* Section head: label above a title. Markup via components/ui/SectionHead.astro. */
 .section-label { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-machine-text); margin-block-end: var(--space-3); }
-.section-heading { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem); font-weight: var(--weight-semibold); letter-spacing: -0.035em; line-height: 1.1; }
+.section-heading { font-size: var(--title-section); font-weight: var(--weight-bold); letter-spacing: -0.035em; line-height: 1.1; }
 .section-heading--18 { max-inline-size: 18ch; }
 .section-heading--22 { max-inline-size: 22ch; }
 .section-heading--sub { font-size: clamp(1.375rem, 1.1rem + 1.1vw, 2rem); }
@@ -17,6 +17,6 @@
 .card-link:has(a:focus-visible) { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
 
 /* Tag (06 §9.21): small mono outlined chip (4px corners) for a fact next to a title (time, place, kind). Dark surfaces. */
-.tag { justify-self: start; font-family: var(--ff-mono); font-size: var(--text-xs); padding: 2px 8px; border-radius: var(--radius-xs); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); color: var(--color-machine-text); }
+.tag { justify-self: start; font-family: var(--ff-body); font-size: var(--text-xs); padding: 2px 8px; border-radius: var(--radius-xs); border: 1px solid color-mix(in oklab, var(--blue-300) 30%, transparent); color: var(--color-machine-text); }
 /* Stage tag (06 §9.21): the same chip with a brighter outline and text, for the engagement stage (Validate, Build, Scale) and the review service line. One look everywhere the stage appears. */
 .tag--stage { border-color: color-mix(in oklab, var(--blue-300) 70%, transparent); color: var(--blue-200); }

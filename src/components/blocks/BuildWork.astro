@@ -39,7 +39,7 @@ const asProject = (it: Item) => ({ id: it.id, stage: 'build', industry: it.meta,
 
 <style>
   .bw { display: grid; gap: var(--space-6); }
-  .bw__title { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .bw__title { font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); color: var(--color-heading); }
   .bw__grid { display: grid; gap: var(--space-4); }
   /* Phones: one swipe row (most of a card in view, the next peeking) instead of four stacked cards. */
   @media (width < 40rem) {
@@ -59,7 +59,7 @@ const asProject = (it: Item) => ({ id: it.id, stage: 'build', industry: it.meta,
   .bw__logo--round { inline-size: 3rem; block-size: 3rem; padding: 0; overflow: hidden; }
   .bw__logo :global(.bw__logoimg) { block-size: 100%; inline-size: auto; max-inline-size: 8rem; object-fit: contain; }
   .bw__logo--round :global(.bw__logoimg) { inline-size: 100%; }
-  .bw__meta { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .bw__meta { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .bw__name { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
   .bw__line { font-size: var(--text-sm); line-height: 1.55; color: var(--color-text-muted); }
 </style>

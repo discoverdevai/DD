@@ -105,14 +105,14 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
   @media (width >= 64rem) { .wk__big { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-12); } }
   .wk__cap { display: grid; gap: var(--space-2); }
   .wk__meta { font-size: var(--text-sm); color: var(--color-machine-text); }
-  .wk__h3 { font-family: var(--ff-heading); font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.25rem); font-weight: var(--weight-extrabold, 800); line-height: 1.1; letter-spacing: -0.03em; color: var(--color-heading); }
+  .wk__h3 { font-family: var(--ff-heading); font-size: var(--title-feature); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: -0.03em; color: var(--color-heading); }
   .wk__line { font-size: var(--text-lg); color: var(--color-text); max-inline-size: 44ch; }
 
   /* Every client: logo, one line, stage and tags. */
   .wk__idx { margin-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
   .wk__row { display: grid; gap: var(--space-2) var(--space-8); padding-block: var(--space-6); border-block-end: 1px solid var(--color-hairline); }
   @media (width >= 56rem) { .wk__row { grid-template-columns: 13rem minmax(0, 1fr) 13rem; align-items: start; } }
-  .wk__client { display: flex; align-items: center; gap: var(--space-3); min-block-size: 2rem; font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-extrabold, 800); letter-spacing: -0.02em; color: var(--color-heading); }
+  .wk__client { display: flex; align-items: center; gap: var(--space-3); min-block-size: 2rem; font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); letter-spacing: -0.02em; color: var(--color-heading); }
   .wk :global(.wk__logo) { block-size: 1.75rem; inline-size: auto; max-inline-size: 9rem; object-fit: contain; }
   .wk__client--icon :global(.wk__logo) { max-inline-size: 2rem; }
   .wk__what { color: var(--color-text); max-inline-size: 58ch; }

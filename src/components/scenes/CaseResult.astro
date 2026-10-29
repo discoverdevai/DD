@@ -65,7 +65,7 @@ const { c, low, high, quote, big } = Astro.props;
   /* Big-number variant: quote sits under the chart in the right column, so the card is one screen tall. */
   @media (width >= 64rem) { .case--big { align-items: start; row-gap: var(--space-6); } .case--big .case__head { grid-row: span 2; } .case--big :global(.quote) { grid-column: 2; } }
   .case__head { display: grid; gap: var(--space-3); align-content: start; }
-  .case__name { font-family: var(--ff-heading); font-size: var(--text-2xl); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .case__name { font-family: var(--ff-heading); font-size: var(--title-feature); font-weight: var(--weight-bold); color: var(--color-heading); }
   .case__big { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(3.5rem, 2rem + 6vw, 6.5rem); line-height: 1; letter-spacing: -0.04em; color: var(--color-human-mark); font-variant-numeric: tabular-nums; }
   .case__name--big { font-size: var(--text-xl); }
   .case__result { font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--color-human-mark); }

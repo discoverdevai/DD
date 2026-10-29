@@ -16,12 +16,14 @@ const { kind = 'clarity' } = Astro.props;
 </div>
 
 <style>
-  .bottom-bar { position: fixed; inset-inline: 0; inset-block-end: 0; z-index: var(--z-sticky); padding: var(--space-2) var(--gutter) calc(var(--space-2) + env(safe-area-inset-bottom, 0px)); box-shadow: var(--shadow-up); border-block-start: 1px solid var(--color-border-subtle); display: grid; align-items: center; gap: var(--space-3); text-align: center; }
+  /* Phase 2 (Oct 29): a floating capsule like the top bar, inset from the screen edges. */
+  .bottom-bar { position: fixed; inset-inline: var(--space-3); inset-block-end: calc(var(--space-3) + env(safe-area-inset-bottom, 0px)); z-index: var(--z-sticky); padding: var(--space-1); border-radius: 999px; border: 1px solid color-mix(in oklab, var(--blue-300) 20%, transparent); background: color-mix(in oklab, var(--blue-950) 88%, transparent); box-shadow: 0 20px 40px -20px rgb(var(--black-rgb) / 0.8); display: grid; align-items: center; gap: var(--space-3); text-align: center; }
+  @supports (backdrop-filter: blur(1px)) { .bottom-bar { background: color-mix(in oklab, var(--blue-950) 70%, transparent); backdrop-filter: blur(14px) saturate(140%); } }
   /* Slim bar (V1.0.1): button only on phones, about 64px; the reassurance line sits beside the button from 36rem and stays available to screen readers below. */
   .bottom-bar[hidden] { display: none; }
   .bottom-bar__line { position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; font-size: var(--text-sm); color: var(--color-text-muted); }
   @media (width >= 36rem) {
-    .bottom-bar { grid-template-columns: minmax(0, 18rem) auto; justify-content: center; }
+    .bottom-bar { grid-template-columns: minmax(0, 18rem) auto; justify-content: center; padding-inline-end: var(--space-5); }
     .bottom-bar__line { position: static; inline-size: auto; block-size: auto; margin: 0; overflow: visible; clip-path: none; white-space: normal; }
   }
   .bottom-bar :global(.cta--wide) { inline-size: 100%; }

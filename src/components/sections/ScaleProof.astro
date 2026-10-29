@@ -88,7 +88,7 @@ const [room, web, phone, up, ar, pz, arLogo] = await Promise.all([
   .tp :global(.tp__mark) { position: absolute; z-index: 2; inset-block-start: var(--space-8); inset-inline-start: var(--space-6); inline-size: auto; block-size: 2.75rem; max-inline-size: 70%; object-fit: contain; }
   .tp__cap { position: relative; z-index: 2; display: grid; gap: var(--space-1); }
   .tp__value { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(2.6rem, 1.6rem + 3vw, 4.4rem); line-height: 0.92; letter-spacing: -0.045em; color: var(--color-human-mark); margin-block-end: var(--space-2); font-variant-numeric: tabular-nums; }
-  .tp__name { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(1.6rem, 1.3rem + 0.8vw, 1.9rem); line-height: 1; letter-spacing: -0.03em; color: var(--color-heading); }
+  .tp__name { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--title-card); line-height: 1; letter-spacing: -0.03em; color: var(--color-heading); }
   .tp__line { color: var(--color-text); max-inline-size: 36ch; }
 
   /* Device frames (light browser bar; dark phone body). */

@@ -101,8 +101,8 @@ const link = (r: Result) => (r.link.anchor ? `#${r.link.anchor}` : r.link.to && 
   .fq__result, .fq__note { display: none; }
   .fq__result { gap: var(--space-2); justify-items: start; }
   .fq__result > :global(:last-child) { margin-block-start: var(--space-3); }
-  .fq__kicker { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-human-mark); }
-  .fq__title { font-family: var(--ff-heading); font-size: var(--text-2xl); font-weight: var(--weight-bold); line-height: 1.15; letter-spacing: -0.02em; color: var(--color-heading); }
+  .fq__kicker { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-human-mark); }
+  .fq__title { font-family: var(--ff-heading); font-size: var(--title-feature); font-weight: var(--weight-bold); line-height: 1.15; letter-spacing: -0.02em; color: var(--color-heading); }
   .fq__body { color: var(--color-text); }
   .fq__note { font-size: var(--text-sm); color: var(--color-text-muted); }
   .fq__more { display: inline-flex; align-items: baseline; gap: var(--space-1); padding-block: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }

@@ -64,14 +64,14 @@ const M = Array.from({ length: c.months }, (_, i) => i + 1);
   /* Chart: label column + one column per month; every row uses the same template so bars line up with the months. */
   .sq__chart { display: grid; gap: var(--space-2); padding: var(--space-5); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--blue-300) 4%, transparent); border: 1px solid var(--color-hairline); }
   @media (width >= 64rem) { .sq__chart { padding: var(--space-6); } }
-  .sq__example { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); margin-block-end: var(--space-2); }
+  .sq__example { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); margin-block-end: var(--space-2); }
   .sq__rows { display: grid; gap: var(--space-2); }
   .sq__row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); align-items: center; gap: var(--space-3); min-block-size: 2.25rem; }
   @media (width >= 48rem) { .sq__row { grid-template-columns: 11rem minmax(0, 1fr); } }
   .sq__row--head { min-block-size: 0; padding-block-end: var(--space-1); border-block-end: 1px solid var(--color-hairline); }
-  .sq__corner { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .sq__corner { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); }
   .sq__track { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; align-items: center; }
-  .sq__month { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); text-align: center; }
+  .sq__month { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); text-align: center; }
   .sq__role { display: inline-flex; align-items: center; gap: var(--space-2); min-inline-size: 0; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-heading); }
   .sq__icon { display: grid; place-items: center; inline-size: 1.75rem; block-size: 1.75rem; flex: none; border-radius: var(--radius-sm); background: color-mix(in oklab, var(--blue-300) 12%, transparent); color: var(--blue-200); }
   @media (width < 30rem) { .sq__icon { display: none; } }
@@ -86,7 +86,7 @@ const M = Array.from({ length: c.months }, (_, i) => i + 1);
 
   /* The sprint loop as one strip: the steps in order, joined by arrows that point the reading way. */
   .sq__loop { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); border-inline-start: 4px solid var(--blue-500); }
-  .sq__meta { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
+  .sq__meta { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .sq__steps { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-heading); }
   .sq__steps li { display: inline-flex; align-items: center; gap: var(--space-2); }
   .sq__steps li:not(:last-child)::after { content: '→'; font-weight: var(--weight-regular); color: var(--color-text-muted); }
