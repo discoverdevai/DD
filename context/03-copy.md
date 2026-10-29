@@ -2052,6 +2052,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.30 Scale final call (Oct 29)
+- H2: Add a team that stays with your product
+- Body: Tell us about your product and your team. You leave with the option that fits, and you can start with a proof of concept to test us first.
+- CTA: Book a free clarity call (as before). AR in src/content/copy/ar/scale.ts.
+
 ### 16b.29 Scale FAQ, short (Oct 29; replaces §7.10 on /scale)
 - H2: Questions about Scale. Six questions:
 - What is the minimum commitment? / Four months for a dedicated team and three for staff augmentation. White-label work is scoped per project.

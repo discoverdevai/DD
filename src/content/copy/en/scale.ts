@@ -245,6 +245,8 @@ export const scale = {
   },
   band: {
     title: 'Add a team that stays with your product',
+    // 03 §16b.30 (Oct 29): one line on what the call gives, as on Build.
+    body: 'Tell us about your product and your team. You leave with the option that fits, and you can start with a proof of concept to test us first.',
     // "Related reading" omitted: those pages are not live.
   },
 } as const;
