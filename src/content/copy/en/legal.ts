@@ -4,7 +4,8 @@
 /** Inline run: plain text, a link, or a code-formatted name (e.g. a sessionStorage key). Strings carry their own spacing. */
 export type Inline = string | { text: string; href: string } | { code: string };
 type Rich = readonly Inline[];
-type LegalBlock = { p: Rich } | { h3: string } | { ul: readonly Rich[] };
+// `form: true` (Oct 29): describes the optional email step under the home questions; shown only while PUBLIC_WEB3FORMS_KEY is set.
+type LegalBlock = ({ p: Rich } | { h3: string } | { ul: readonly Rich[] }) & { form?: boolean };
 interface LegalSection { id: string; heading: string; blocks: readonly LegalBlock[] }
 export interface LegalDoc {
   seo: { title: string; description: string };
@@ -74,6 +75,8 @@ export const privacy: LegalDoc = {
         { h3: 'When you book a call' },
         { p: ['Bookings run on Cal.com. When you book, you give us your name, your email address and your answers to the booking questions, such as what you are building and how you heard about us. The booking also records a few details about how you reached it: the campaign tags in your link (for example utm_source), the button you clicked, and the page you booked from.'] },
         { p: ['We use this to schedule and prepare for the call, to stay in touch about it, and to understand which pages lead to bookings.'] },
+        { h3: 'When you leave your email after the home page questions', form: true },
+        { p: ['On the home page you can answer two questions and, if you want, leave your name and email. We receive them with your answers and the service we suggested, and use them only to reply to you.'], form: true },
         { h3: 'When you email us' },
         { p: ['If you email us, we receive your email address, your name if you include it, and whatever you write. We use it to reply and to keep a record of the conversation.'] },
       ],
@@ -103,6 +106,7 @@ export const privacy: LegalDoc = {
             ['Cal.com runs our booking calendar. It stores your booking details and sends confirmations and reminders. Cal.com may set its own cookies inside the booking calendar when you book. Read the ', { text: 'Cal.com privacy policy', href: PRIVACY_LINKS.cal }, '.'],
           ],
         },
+        { p: ['Web3Forms delivers the name, email and answers you leave after the home page questions to our inbox. Read the ', { text: 'Web3Forms privacy policy', href: PRIVACY_LINKS.web3forms }, '.'], form: true },
         { p: ['Emails you send us are stored with the provider that hosts our email inbox.'] },
       ],
     },

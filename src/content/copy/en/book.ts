@@ -35,10 +35,15 @@ export const book = {
       'scale-hands': 'Staff augmentation, engineers who join your team',
       'scale-squad': 'A dedicated squad that stays',
       'scale-poc': 'a proof of concept in 2–4 weeks, before committing to a squad',
+      'home-validate': 'Validate, 1–2 weeks of discovery',
+      'home-build': 'Build, from idea to a live MVP',
+      'home-review': 'A senior review of the app you built',
+      'home-scale': 'Scale, a dedicated squad that stays',
+      'home-partners': 'Partners: white-label or staff augmentation',
     },
     // Interests that don't come from the questions use their own lead-in (Scale tiles, Oct 27).
-    labels: { 'scale-poc': 'You want to start with' },
-    prefixes: { 'scale-poc': 'From the Scale page, wants to start with' },
+    labels: { 'scale-poc': 'You want to start with', 'home-validate': 'Your best fit from the home questions', 'home-build': 'Your best fit from the home questions', 'home-review': 'Your best fit from the home questions', 'home-scale': 'Your best fit from the home questions', 'home-partners': 'Your best fit from the home questions' },
+    prefixes: { 'scale-poc': 'From the Scale page, wants to start with', 'home-validate': 'From the home questions, best fit', 'home-build': 'From the home questions, best fit', 'home-review': 'From the home questions, best fit', 'home-scale': 'From the home questions, best fit', 'home-partners': 'From the home questions, best fit' },
   },
   call: {
     title: 'What happens on the call',

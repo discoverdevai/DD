@@ -14,7 +14,7 @@ import Statement from '../../components/sections/Statement.astro';
 import WhyBand from '../../components/sections/WhyBand.astro';
 import AgileSplit from '../../components/blocks/AgileSplit.astro';
 import WayFlow from '../../components/scenes/WayFlow.astro';
-import Engagements from '../../components/sections/Engagements.astro';
+import HomeQuiz from '../../components/sections/HomeQuiz.astro';
 import FaqSplit from '../../components/sections/FaqSplit.astro';
 
 import Showcase from '../../components/sections/Showcase.astro';
@@ -37,7 +37,7 @@ const jsonLd = graph(orgFull, website, webPage(base, c.seo.title, c.seo.descript
   <HomeHero />
   <ProofBand title={c.proofStrip.title} logosTitle={c.proofStrip.logosTitle} clientRoles={c.proofStrip.clientRoles} map={c.proofStrip.map} items={c.proofStrip.items} projects={c.proofStrip.projects} />
   <WhyBand id="why" label={c.problem.label} headline={c.problem.headline} stepsLabel={c.problem.stepsLabel} steps={c.problem.steps} card={c.problem.card} />
-  <Engagements title={c.engagements.title} lead={c.engagements.lead} credit={c.engagements.credit} cards={c.engagements.cards} scope={c.engagements.scope} otherTitle={c.engagements.otherTitle} other={c.engagements.other} />
+  <HomeQuiz c={c.quiz} scope={c.engagements.scope} />
   <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} display split>
     <AgileSplit body={c.agile.body} more={isLive('howWeWork') ? { label: howWeWork.more, href: href('howWeWork') } : undefined}>
       <WayFlow {...c.agile.flow} />

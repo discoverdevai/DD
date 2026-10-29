@@ -2052,6 +2052,18 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.32 Home: "Where are you starting from?" (Oct 29; replaces 2A.6 cards)
+- H2: Where are you starting from? Lead: One or two quick questions. You see your best start right away, and the free call confirms it. Line: Or go straight to Validate · Build · Launch-Ready Review · Scale · Partners.
+- Q1 Where are you today? I have an idea · I already built something · My product is live and working · We are a software house.
+- Last question (idea): How sure are you about what to build? I still need to test it → Validate · I know what to build → Build.
+- Last question (live): What do you need next? To know what to fix first → Launch-Ready Review · A team to grow it → Scale.
+- I already built something → Launch-Ready Review. We are a software house → Partners. Button: See my fit (after pressing: Your fit is below). Link: Start again.
+- Under the links, the 2A.6 scope line stays on home: What we build: Web and mobile apps, AI agents and chatbots in Arabic and English, APIs and enterprise systems, data and cloud.
+- Audit fixes (Oct 29): focus never drops, the result is announced, answered questions keep their other answers as small chips, analytics quiz_started / quiz_question_answered / quiz_completed / quiz_lead_submitted with quiz=home (no personal data).
+- Result: "Your fit", name, time and price type, one line (from 2A.6 cards), "Book a call about <service>" then "Show me <service> →". Terms: 30 minutes · No pitch · Your answer goes with your booking.
+- Optional (only with the Web3Forms key): Not ready for a call? / Leave your name and email, and we reply with a short plan for your case. / Your name · Work email · Send me the plan / We use your email only to reply to you. Privacy notice. States: Sending… · Sent. We will reply to your email. · Couldn't send. Email us at hello@discoverdev.ai. · Check your email. It needs an @ and a domain, like name@company.com.
+- AR in src/content/copy/ar/home.ts.
+
 ### 16b.31 How we work: repeats removed (Oct 29, Mohamed: "only fix repeats")
 - Small labels "Who does what" and "The four steps" removed; "Frameworks we use" kept for screen readers only (shown 4 times before).
 - Who we are, body: "We also have a presence in Texas, USA. Gulf time is 0–2 hours ahead of Alexandria, our day overlaps Europe and US mornings, and we work in Arabic and English." (the hub line is already in the entity line). The time strip's caption is for screen readers only.

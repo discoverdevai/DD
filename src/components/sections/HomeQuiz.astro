@@ -1,0 +1,247 @@
+---
+// "Where are you starting from?" for home (03 §16b.32, Oct 29; mockup .taste-skill/home-quiz.html v2; replaces the
+// Engagements cards). One question at a time, then "See my fit", then the result: book first (the answer travels to
+// /book as &interest=home-<result>), "Show me" second. Questions and result need no JavaScript (radios + :has()).
+//   idea + testing → Validate · idea + clear → Build · built → Review · live + fix → Review · live + team → Scale ·
+//   house → Partners
+// Audit fixes (Oct 29): "See my fit" is a radio that stays in place as "Your fit is below" (focus never drops), Start
+// again is always there, the result box is always in the page so screen readers announce what fills it, an answered
+// question keeps its other options as small chips (change in place), and "What we build" is back under the links.
+// Under the result, an optional name + email form (D-11: result never gated); it renders only when PUBLIC_WEB3FORMS_KEY
+// is set. The script only reports answers to analytics (quiz_* events, quiz=home, no personal data) and sends that form.
+import CtaLink from '../ui/CtaLink.astro';
+import { PUBLIC_WEB3FORMS_KEY } from 'astro:env/client';
+import { bookHref, href, isLive, type RouteKey } from '../../data/routes';
+type Opt = { id: string; label: string };
+interface Result { id: string; name: string; meta: readonly string[]; body: string; show: string; book: string }
+interface Props {
+  scope?: { label: string; text: string };
+  c: {
+    title: string; lead: string; straight: string; q1Step: string; q1: string; starts: readonly Opt[]; q2Step: string;
+    ideaQ: string; idea: readonly Opt[]; liveQ: string; live: readonly Opt[]; see: string; seeDone: string; again: string;
+    kicker: string; terms: string; results: readonly Result[];
+    mail: { title: string; body: string; name: string; email: string; button: string; consent: string; privacy: string; sending: string; success: string; failed: string; errEmail: string; subject: string };
+  };
+}
+const { c, scope } = Astro.props;
+const mailOn = Boolean(PUBLIC_WEB3FORMS_KEY);
+const privacyHref = href('privacy');
+const book = bookHref('clarity');
+const bookFor = (id: string) => (book.startsWith('mailto:') ? book : `${book}&interest=home-${id}`);
+// Lean R1: Validate and the Review live inside /build, Partners inside /scale.
+const where: Record<string, [RouteKey, string?]> = { validate: ['build', 'validate'], build: ['build'], review: ['build', 'review'], scale: ['scale'], partners: ['scale', 'partners'] };
+const showFor = (id: string) => { const [k, a] = where[id] ?? []; return k && isLive(k) ? `${href(k)}${a ? `#${a}` : ''}` : undefined; };
+const target = (id: string) => id as 'validate' | 'build' | 'scale' | 'partners' | 'review';
+const opt = (o: Opt, name: string, p: string) => ({ id: `hq-${p}-${o.id}`, name, value: o.id, cls: `${p}-${o.id}` });
+---
+<section id="services" class="hq" data-surface="ink" data-raised aria-labelledby="hq-title">
+  <div class="container hq__inner">
+    <header class="hq__head">
+      <h2 id="hq-title" class="section-title reveal">{c.title}</h2>
+      <p class="hq__lead">{c.lead}</p>
+      <p class="hq__straight">{c.straight}{' '}
+        {c.results.map((r, i) => showFor(r.id) && <><a href={showFor(r.id)}>{r.name}</a>{i < c.results.length - 1 ? ' · ' : ''}</>)}
+      </p>
+      {scope && <p class="hq__scope"><b>{scope.label}:</b> {scope.text}</p>}
+    </header>
+
+    <div class="hq__box">
+      <form class="hq__quiz" aria-labelledby="hq-title" data-hq>
+        {[
+          { cls: 'hq__q--1', step: c.q1Step, q: c.q1, opts: c.starts.map((o) => ({ o, ...opt(o, 'start', 's') })) },
+          { cls: 'hq__q--2 hq__q--idea', step: c.q2Step, q: c.ideaQ, opts: c.idea.map((o) => ({ o, ...opt(o, 'idea', 'i') })) },
+          { cls: 'hq__q--2 hq__q--live', step: c.q2Step, q: c.liveQ, opts: c.live.map((o) => ({ o, ...opt(o, 'live', 'l') })) },
+        ].map((f) => (
+          <fieldset class:list={['hq__q', f.cls]}>
+            <p class="hq__step">{f.step}</p>
+            <legend class="hq__legend">{f.q}</legend>
+            <div class="hq__opts">
+              {f.opts.map((x) => <label class="hq__opt" for={x.id}><input type="radio" id={x.id} name={x.name} value={x.value} class:list={['hq__in', x.cls]} /><span>{x.o.label}</span></label>)}
+            </div>
+          </fieldset>
+        ))}
+
+        <label class="hq__see" for="hq-see"><input type="radio" id="hq-see" name="see" value="yes" class="hq__seein" /><span class="hq__see-go">{c.see}</span><span class="hq__see-done">{c.seeDone}</span></label>
+
+        <div class="hq__out" aria-live="polite">
+          {c.results.map((r) => (
+            <article class:list={['hq__result', `r-${r.id}`]} data-result={r.id} aria-labelledby={`hq-r-${r.id}`}>
+              <p class="hq__kicker">{c.kicker}</p>
+              <h3 id={`hq-r-${r.id}`} class="hq__name">{r.name}</h3>
+              <ul role="list" class="hq__meta">{r.meta.map((m) => <li class="tag">{m}</li>)}</ul>
+              <p class="hq__body">{r.body}</p>
+              <div class="hq__acts">
+                <CtaLink href={bookFor(r.id)} ctaId={`home_result_clarity_${r.id}`} tier="primary" position="result" target="clarity">{r.book}</CtaLink>
+                {showFor(r.id) && <a class="hq__show" href={showFor(r.id)} data-cta-id={`home_result_${r.id}_show`} data-cta-tier="secondary" data-cta-position="result" data-cta-target={target(r.id)}>{r.show}<span class="icon--dir" aria-hidden="true">→</span></a>}
+              </div>
+              <p class="hq__terms">{c.terms}</p>
+            </article>
+          ))}
+        </div>
+
+        <button type="reset" class="hq__again">{c.again}</button>
+      </form>
+
+      {mailOn && (
+        <form class="hq__mail" data-hq-mail hidden novalidate aria-labelledby="hq-mail-title">
+          <h3 id="hq-mail-title" class="hq__mailtitle">{c.mail.title}</h3>
+          <p class="hq__mailbody">{c.mail.body}</p>
+          <div class="hq__fields">
+            <label class="hq__field"><span>{c.mail.name}</span><input type="text" name="name" autocomplete="name" /></label>
+            <label class="hq__field"><span>{c.mail.email}</span><input type="email" name="email" autocomplete="email" required aria-describedby="hq-mail-err" /></label>
+            <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" aria-hidden="true" />
+            <button type="submit" class="hq__send" data-hq-send>{c.mail.button}</button>
+          </div>
+          <p id="hq-mail-err" class="hq__err" data-hq-err hidden>{c.mail.errEmail}</p>
+          <p class="hq__status" data-hq-status role="status"></p>
+          <p class="hq__consent">{c.mail.consent}<a href={privacyHref}>{c.mail.privacy}</a>.</p>
+          <span hidden data-hq-copy data-key={PUBLIC_WEB3FORMS_KEY} data-subject={c.mail.subject} data-sending={c.mail.sending} data-success={c.mail.success} data-failed={c.mail.failed}></span>
+        </form>
+      )}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { track } from '../../lib/analytics';
+  const quiz = document.querySelector<HTMLFormElement>('[data-hq]');
+  if (quiz) {
+    // The shown result is the one CSS displays (the mapping lives in the styles below).
+    const shown = () => [...quiz.querySelectorAll<HTMLElement>('[data-result]')].find((r) => getComputedStyle(r).display !== 'none');
+    const label = (name: string) => quiz.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.closest('label')?.textContent?.trim() ?? '';
+    let started = false;
+    const mail = document.querySelector<HTMLFormElement>('[data-hq-mail]');
+    const sync = () => { if (mail) mail.hidden = !shown(); };
+    quiz.addEventListener('change', (e) => {
+      const el = e.target as HTMLInputElement;
+      if (!started) { started = true; track('quiz_started', { quiz: 'home' }); }
+      if (el.name === 'see') track('quiz_completed', { quiz: 'home', result: shown()?.dataset.result });
+      else track('quiz_question_answered', { quiz: 'home', question: el.name, answer: el.value });
+      sync();
+    });
+    quiz.addEventListener('reset', () => setTimeout(() => { sync(); started = false; }, 0));
+
+    // Optional email step (D-11): only when the form is rendered. The result never waits on it.
+    const data = document.querySelector<HTMLElement>('[data-hq-copy]');
+    if (mail && data) {
+      const d = data.dataset;
+      const status = mail.querySelector<HTMLElement>('[data-hq-status]')!;
+      const err = mail.querySelector<HTMLElement>('[data-hq-err]')!;
+      const btn = mail.querySelector<HTMLButtonElement>('[data-hq-send]')!;
+      const email = mail.querySelector<HTMLInputElement>('input[name="email"]')!;
+      quiz.addEventListener('reset', () => { status.textContent = ''; });
+      const valid = () => {
+        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+        err.hidden = ok;
+        if (ok) email.removeAttribute('aria-invalid'); else email.setAttribute('aria-invalid', 'true');
+        return ok;
+      };
+      email.addEventListener('blur', () => { if (email.value) valid(); });
+      mail.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!valid()) { email.focus(); return; }
+        if (mail.querySelector<HTMLInputElement>('input[name="botcheck"]')?.checked) return;
+        const fit = shown()?.querySelector('h3')?.textContent?.trim() ?? '';
+        btn.disabled = true; status.textContent = d.sending ?? '';
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              access_key: d.key, subject: `${d.subject}: ${fit}`, from_name: 'discoverdev.ai',
+              name: mail.querySelector<HTMLInputElement>('input[name="name"]')?.value.trim() ?? '', email: email.value.trim(),
+              where_today: label('start'), next: label('start') && (label('idea') || label('live')), best_fit: fit, page: location.pathname, botcheck: '',
+            }),
+          });
+          if (!res.ok) throw new Error(String(res.status));
+          status.textContent = d.success ?? ''; mail.reset();
+          track('quiz_lead_submitted', { quiz: 'home', result: shown()?.dataset.result });
+        } catch {
+          status.textContent = d.failed ?? '';
+        } finally { btn.disabled = false; }
+      });
+    }
+  }
+</script>
+
+<style>
+  .hq { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
+  .hq__inner { display: grid; gap: var(--space-10); align-items: start; }
+  @media (width >= 64rem) { .hq__inner { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-16); } }
+  .hq__head { display: grid; gap: var(--space-4); }
+  /* The question stays in view beside a long result on wide screens. */
+  @media (width >= 64rem) { .hq__head { position: sticky; inset-block-start: calc(var(--header-h) + var(--space-8)); } }
+  .hq__lead { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
+  .hq__straight, .hq__scope { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .hq__straight a { color: var(--color-link); }
+  .hq__scope b { color: var(--color-heading); font-weight: var(--weight-semibold); }
+
+  .hq__box { display: grid; gap: var(--space-4); }
+  .hq__quiz { display: grid; gap: var(--space-6); padding: clamp(var(--space-5), 3vw, var(--space-8)); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  .hq__q { display: grid; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+  .hq__step { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-machine-text); }
+  .hq__legend { float: inline-start; inline-size: 100%; padding: 0; margin-block-end: var(--space-3); font-family: var(--ff-heading); font-size: var(--text-xl); font-weight: var(--weight-bold); line-height: 1.25; color: var(--color-heading); }
+  .hq__opts { clear: both; display: grid; gap: var(--space-2); }
+  .hq__opt { display: flex; align-items: center; gap: var(--space-3); min-block-size: 3rem; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 4%, transparent); font-weight: var(--weight-semibold); color: var(--color-text); cursor: pointer; }
+  .hq__opt:hover { border-color: color-mix(in oklab, var(--blue-300) 50%, transparent); }
+  .hq__in { flex: none; inline-size: 1.125rem; block-size: 1.125rem; margin: 0; accent-color: var(--color-human-mark); }
+  .hq__opt:has(.hq__in:checked) { border-color: var(--color-human-mark); background: color-mix(in oklab, var(--green-300) 10%, var(--color-surface)); color: var(--color-heading); }
+  .hq__opt:has(.hq__in:focus-visible), .hq__see:has(.hq__seein:focus-visible) { outline: 2px solid var(--color-focus, var(--blue-300)); outline-offset: 2px; }
+
+  /* One question at a time: an answered question shrinks; its other answers stay as small chips, so it can change in place. */
+  .hq__q:has(:checked) .hq__step { display: none; }
+  .hq__q:has(:checked) .hq__legend { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); margin-block-end: var(--space-2); }
+  .hq__q:has(:checked) .hq__opts { display: flex; flex-wrap: wrap; }
+  .hq__q:has(:checked) .hq__opt { flex: 1 1 auto; }
+  .hq__q:has(:checked) .hq__opt:not(:has(:checked)) { flex: 0 1 auto; min-block-size: 2.75rem; padding-block: var(--space-2); font-size: var(--text-sm); font-weight: var(--weight-medium); background: none; }
+  .hq__q--2 { display: none; }
+  .hq:has(.s-idea:checked) .hq__q--idea, .hq:has(.s-live:checked) .hq__q--live { display: grid; animation: hq-in var(--dur-base) var(--ease-standard); }
+  @media (prefers-reduced-motion: reduce) { .hq:has(.s-idea:checked) .hq__q--idea, .hq:has(.s-live:checked) .hq__q--live { animation: none; } }
+  @keyframes hq-in { from { opacity: 0; translate: 0 6px; } to { opacity: 1; translate: 0 0; } }
+
+  /* "See my fit" appears when the answers for the chosen path are complete. Once pressed it stays where it is as a quiet
+     "Your fit is below" (a radio cannot be unpressed), so keyboard focus never falls off the page. */
+  .hq__see { display: none; justify-self: start; align-items: center; min-block-size: 3rem; padding-inline: var(--space-6); border-radius: var(--radius-md); background: var(--color-action-bg); color: var(--color-action-text); font-family: var(--ff-heading); font-weight: var(--weight-bold); cursor: pointer; }
+  .hq__seein { position: absolute; opacity: 0; inline-size: 1px; block-size: 1px; }
+  .hq__see-done { display: none; }
+  .hq:has(.s-built:checked) .hq__see, .hq:has(.s-house:checked) .hq__see,
+  .hq:has(.s-idea:checked):has(.hq__q--idea :checked) .hq__see, .hq:has(.s-live:checked):has(.hq__q--live :checked) .hq__see { display: inline-flex; }
+  .hq__see:has(.hq__seein:checked) { padding-inline: 0; background: none; color: var(--color-human-mark); cursor: default; }
+  .hq__see:has(.hq__seein:checked) .hq__see-go { display: none; }
+  .hq__see:has(.hq__seein:checked) .hq__see-done { display: inline; }
+
+  /* Result: the box is always in the page (an announced live region); one result fills it after "See my fit". */
+  .hq__out { display: grid; gap: var(--space-3); }
+  .hq__result { display: none; }
+  .hq:has(.hq__seein:checked):has(.s-idea:checked):has(.i-testing:checked) .r-validate,
+  .hq:has(.hq__seein:checked):has(.s-idea:checked):has(.i-clear:checked) .r-build,
+  .hq:has(.hq__seein:checked):has(.s-built:checked) .r-review,
+  .hq:has(.hq__seein:checked):has(.s-live:checked):has(.l-fix:checked) .r-review,
+  .hq:has(.hq__seein:checked):has(.s-live:checked):has(.l-team:checked) .r-scale,
+  .hq:has(.hq__seein:checked):has(.s-house:checked) .r-partners { display: grid; gap: var(--space-2); justify-items: start; padding-block-start: var(--space-6); border-block-start: 1px solid var(--color-hairline); }
+  .hq__kicker { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-human-mark); }
+  .hq__name { font-family: var(--ff-heading); font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem); font-weight: var(--weight-extrabold, 800); line-height: 1; letter-spacing: -0.03em; color: var(--color-heading); }
+  .hq__meta { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block: var(--space-1); }
+  .hq__body { color: var(--color-text); max-inline-size: 52ch; }
+  .hq__acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-block-start: var(--space-3); }
+  .hq__show { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: 2.75rem; font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
+  .hq__show:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .hq__terms { font-size: var(--text-sm); color: var(--color-text-muted); }
+  /* Always there, so pressing it never strands keyboard focus. */
+  .hq__again { justify-self: start; min-block-size: 2.75rem; padding: 0; border: 0; background: none; color: var(--color-text-muted); font: inherit; font-size: var(--text-sm); text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; }
+  .hq__again:focus-visible { outline: 2px solid var(--color-focus, var(--blue-300)); outline-offset: 2px; }
+
+  /* Optional email form (rendered only with a Web3Forms key; its script unhides it with the result). */
+  .hq__mail { display: grid; gap: var(--space-3); padding: clamp(var(--space-5), 3vw, var(--space-6)); border-radius: var(--radius-lg); background: var(--blue-900); }
+  .hq__mail[hidden] { display: none; }
+  .hq__mailtitle { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .hq__mailbody, .hq__consent, .hq__status { font-size: var(--text-sm); color: var(--color-text-muted); }
+  .hq__consent a { color: var(--color-link); }
+  .hq__fields { display: grid; gap: var(--space-3); align-items: end; }
+  @media (width >= 40rem) { .hq__fields { grid-template-columns: 1fr 1fr; } }
+  .hq__field { display: grid; gap: var(--space-1); font-size: var(--text-sm); color: var(--color-text); }
+  .hq__field input { min-block-size: 3rem; padding-inline: var(--space-3); border-radius: var(--radius-md); border: 1px solid color-mix(in oklab, var(--blue-300) 35%, transparent); background: var(--color-bg); color: var(--color-heading); font: inherit; font-size: var(--text-base); }
+  .hq__field input:focus-visible { outline: 2px solid var(--color-focus, var(--blue-300)); outline-offset: 2px; }
+  .hq__send { justify-self: start; min-block-size: 3rem; padding-inline: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--blue-300); background: none; color: var(--color-heading); font-family: var(--ff-heading); font-weight: var(--weight-bold); white-space: nowrap; cursor: pointer; }
+  @media (width >= 40rem) { .hq__send { grid-column: 1 / -1; } }
+  .hq__err { font-size: var(--text-sm); color: var(--color-error-text); }
+</style>
