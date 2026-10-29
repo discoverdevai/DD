@@ -174,21 +174,20 @@ export const scale = {
   },
   proof: {
     title: 'Teams that stayed',
-    // 03 §16b.26 (Oct 27): the four who expanded scope (09 Differentiators), as Build's product cards; others on one line.
+    // 03 §16b.28 (Oct 29): Mockup 2 v2. NJWAR full width in a real room; Upscend, Arheb, Pyramakerz below (09 Differentiators).
     lead: 'Four clients expanded their work with us.',
-    label: 'Clients who expanded scope',
-    items: [
-      { id: 'athkado', name: 'Athkado', meta: 'Expanded scope · Saudi Arabia', line: 'Feasibility sprints first, then the NJWAR AR store with AI recommendations.', screens: ['njwar-web.webp', 'njwar-ar.webp'], device: 'combo', alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room', art: 'ar' },
-      { id: 'upscend', name: 'Upscend', meta: 'Expanded scope · UK', line: '12 months, one embedded team owning the roadmap, backlog and sprints.', screens: ['upscend-learner.webp'], device: 'browser', alt: 'Upscend learner dashboard: current courses with progress and a continue button', art: 'lms', logo: 'upscend.png' },
-      { id: 'arheb', name: 'Arheb', meta: 'Expanded scope · Saudi Arabia', line: 'An embedded data and ML team for a smart ride-sharing platform.', art: 'ride', logo: 'arheb.png' },
-      { id: 'pyramakerz', name: 'Pyramakerz', meta: 'Expanded scope · Egypt', line: 'Data, ML and automations for an EdTech platform with 20,000+ students.', art: 'data', logo: 'pyramakerz.png' },
-    ],
+    main: { name: 'NJWAR', value: '2 phases', line: 'Feasibility sprints, then the AR furniture store. Saudi Arabia.', photo: { file: 'proof-lounge.webp', alt: '' }, web: { file: 'njwar-web.webp', alt: '' }, phone: { file: 'njwar-ar.webp', alt: 'NJWAR AR view placing an armchair in a room' } },
+    upscend: { name: 'Upscend', value: '12 months', line: 'One embedded team. UK.', screen: { file: 'upscend-learner.webp', alt: 'Upscend learner dashboard: current courses with progress' } },
+    arheb: { name: 'Arheb', value: 'Data + ML', line: 'Ride-sharing. Saudi Arabia.', logo: 'arheb.png', screen: { file: 'arheb-app.webp', alt: 'Arheb app: a map and the ride types to choose from' } },
+    pyramakerz: { name: 'Pyramakerz', value: '20,000+', line: 'Students. Egypt.', photo: { file: 'pyramakerz-class.webp', alt: 'Students at a Pyramakerz session, building on a laptop' } },
     alsoLabel: 'Also with us',
+    alsoAnd: 'and',
     also: [
       { name: 'Jumlaty', line: 'ML engineer, Saudi Arabia' },
       { name: 'Nile Support', line: 'AI call agents, USA' },
       { name: 'Amstadd', line: 'white-label, UK' },
     ],
+    credit: 'Room photo: "Reception lounge at Amantaka" by Basile Morin, CC BY-SA 4.0, via Wikimedia Commons. Client screens and photos from their own sites and app listing.',
     // [CONSENT: all four] → §0.7 replacement line.
     retention: 'Four clients expanded scope with us.',
     // V12 → anonymized (§0.7 "EdTech AI platform, Egypt"). Rendered only when the case study route is live.

@@ -1,30 +1,116 @@
 ---
-// "Teams that stayed" for /scale (03 §16b.26, Oct 27; Mohamed chose "the four who came back", built from the site's
-// product cards). The four clients who expanded scope (09 Differentiators: Athkado, Upscend, Arheb, Pyramakerz) as the
-// same cards as Build's named products (real screen or product drawing), then the other Scale clients on one line.
-import BuildWork from '../blocks/BuildWork.astro';
-interface Item { id: string; name: string; meta: string; line: string; screens?: readonly string[]; device?: string; alt?: string; art: string }
-interface Props { id?: string; c: { title: string; lead: string; label: string; items: readonly Item[]; alsoLabel: string; also: readonly { name: string; line: string }[] } }
+// "Teams that stayed" for /scale (03 §16b.28, Oct 29; mockup .taste-skill/proof-worlds.html, Mockup 2 v2). The four
+// clients who expanded scope (09 Differentiators). NJWAR takes the width: its store and AR phone staged in a real
+// interior photo (CC BY-SA, credited under the section). Below, three tiles: Upscend's learner screen in a browser and
+// Arheb's app screen in a phone, both on our blues (never the clients' colours); Pyramakerz's own class photo. One big
+// fact per tile on a dark scrim. Screens and photos come from the clients' own sites and app listing (11, Oct 29).
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Shot { file: string; alt: string }
+interface Tile { name: string; value: string; line: string }
+interface Props {
+  id?: string;
+  c: {
+    title: string; lead: string;
+    main: Tile & { photo: Shot; web: Shot; phone: Shot };
+    upscend: Tile & { screen: Shot };
+    arheb: Tile & { logo: string; screen: Shot };
+    pyramakerz: Tile & { photo: Shot };
+    alsoLabel: string; alsoAnd: string; also: readonly { name: string; line: string }[];
+    credit: string;
+  };
+}
 const { id = 'proof', c } = Astro.props;
+const files = import.meta.glob<{ default: ImageMetadata }>('/assets/projects/*.webp');
+const logos = import.meta.glob<{ default: ImageMetadata }>('/assets/clients/*.{png,webp}');
+const img = async (f: string) => (await files[`/assets/projects/${f}`]!()).default;
+const [room, web, phone, up, ar, pz, arLogo] = await Promise.all([
+  img(c.main.photo.file), img(c.main.web.file), img(c.main.phone.file), img(c.upscend.screen.file),
+  img(c.arheb.screen.file), img(c.pyramakerz.photo.file), logos[`/assets/clients/${c.arheb.logo}`]!().then((m) => m.default),
+]);
 ---
-<section id={id} class="spf" data-surface="ink" aria-labelledby={`${id}-title`}>
-  <div class="container spf__inner">
-    <header class="spf__head">
+<section id={id} class="tp" data-surface="ink" aria-labelledby={`${id}-title`}>
+  <div class="container tp__inner">
+    <header class="tp__head">
       <h2 id={`${id}-title`} class="section-title reveal">{c.title}</h2>
-      <p class="spf__lead">{c.lead}</p>
+      <p class="tp__lead">{c.lead}</p>
     </header>
-    <BuildWork c={{ label: c.label, items: c.items }} />
-    <p class="spf__also"><span class="spf__alsolabel">{c.alsoLabel}</span> {c.also.map((a, i) => <span class="spf__item"><b>{a.name}</b> {a.line}{i < c.also.length - 1 && <span class="spf__sep" aria-hidden="true">·</span>}</span>)}</p>
+
+    <div class="tp__grid">
+      <article class="tp__scene tp__scene--main reveal">
+        <Image src={room} alt={c.main.photo.alt} widths={[640, 1024, 1440, 1920]} sizes="(min-width: 80rem) 76rem, 100vw" class="tp__bg" loading="lazy" />
+        <div class="tp__browser tp__browser--main" aria-hidden="true"><span class="tp__bar"><i></i><i></i><i></i></span><Image src={web} alt="" widths={[480, 800, 1100]} sizes="(min-width: 54rem) 40vw, 1px" class="tp__img" loading="lazy" /></div>
+        <div class="tp__phone tp__phone--main"><Image src={phone} alt={c.main.phone.alt} widths={[180, 300, 375]} sizes="(min-width: 54rem) 11vw, 34vw" class="tp__img" loading="lazy" /></div>
+        <div class="tp__cap"><p class="tp__value">{c.main.value}</p><h3 class="tp__name">{c.main.name}</h3><p class="tp__line">{c.main.line}</p></div>
+      </article>
+
+      <article class="tp__scene tp__scene--up reveal">
+        <div class="tp__browser tp__browser--up"><span class="tp__bar" aria-hidden="true"><i></i><i></i><i></i></span><Image src={up} alt={c.upscend.screen.alt} widths={[480, 800]} sizes="(min-width: 54rem) 30vw, 100vw" class="tp__img" loading="lazy" /></div>
+        <div class="tp__cap"><p class="tp__value">{c.upscend.value}</p><h3 class="tp__name">{c.upscend.name}</h3><p class="tp__line">{c.upscend.line}</p></div>
+      </article>
+
+      <article class="tp__scene tp__scene--ar reveal">
+        <Image src={arLogo} alt="" height={72} class="tp__logo" loading="lazy" />
+        <div class="tp__phone tp__phone--ar"><Image src={ar} alt={c.arheb.screen.alt} widths={[240, 400]} sizes="(min-width: 54rem) 10vw, 34vw" class="tp__img" loading="lazy" /></div>
+        <div class="tp__cap"><p class="tp__value">{c.arheb.value}</p><h3 class="tp__name">{c.arheb.name}</h3><p class="tp__line">{c.arheb.line}</p></div>
+      </article>
+
+      <article class="tp__scene tp__scene--pz reveal">
+        <Image src={pz} alt={c.pyramakerz.photo.alt} widths={[480, 945]} sizes="(min-width: 54rem) 30vw, 100vw" class="tp__bg tp__bg--pz" loading="lazy" />
+        <div class="tp__cap"><p class="tp__value">{c.pyramakerz.value}</p><h3 class="tp__name">{c.pyramakerz.name}</h3><p class="tp__line">{c.pyramakerz.line}</p></div>
+      </article>
+    </div>
+
+    <p class="tp__also">{c.alsoLabel}: {c.also.map((a, i) => <><b>{a.name}</b>{i < c.also.length - 2 ? ', ' : i === c.also.length - 2 ? ` ${c.alsoAnd} ` : '.'}</>)}</p>
+    <p class="tp__credit">{c.credit}</p>
   </div>
 </section>
 
 <style>
-  .spf { padding-block: var(--section-y); }
-  .spf__inner { display: grid; gap: var(--space-6); }
-  .spf__head { display: grid; gap: var(--space-3); }
-  .spf__lead { font-size: var(--text-lg); color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
-  .spf__also { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-5); padding-block-start: var(--space-4); border-block-start: 1px solid var(--color-hairline); color: var(--color-text-muted); }
-  .spf__alsolabel { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .spf__item b { font-family: var(--ff-heading); color: var(--color-heading); }
-  .spf__sep { margin-inline-start: var(--space-5); color: var(--color-text-muted); }
+  .tp { padding-block: var(--section-y); }
+  .tp__inner { display: grid; gap: var(--space-8); }
+  .tp__head { display: grid; gap: var(--space-3); }
+  .tp__lead { font-size: var(--text-lg); color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
+
+  /* NJWAR full width; three tiles below from 54rem. */
+  .tp__grid { display: grid; gap: var(--space-2); }
+  @media (width >= 54rem) { .tp__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .tp__scene--main { grid-column: 1 / -1; } }
+
+  /* A scene: picture behind, words on a dark scrim at the foot. */
+  .tp__scene { position: relative; isolation: isolate; overflow: hidden; display: grid; align-content: end; min-block-size: 22.5rem; padding: var(--space-6); background: var(--blue-900); }
+  .tp__scene::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--blue-975) 92%, transparent) 86%); }
+  .tp__scene--main { min-block-size: clamp(32rem, 22rem + 18vw, 37.5rem); }
+  .tp__scene--ar { background: var(--blue-800); }
+  .tp__scene--up::after, .tp__scene--ar::after { background: linear-gradient(180deg, transparent 32%, color-mix(in oklab, var(--blue-975) 92%, transparent) 74%); }
+  .tp :global(.tp__bg) { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .tp :global(.tp__bg--pz) { object-position: 50% 20%; }
+  .tp__cap { position: relative; z-index: 2; display: grid; gap: var(--space-1); }
+  .tp__value { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(2.6rem, 1.6rem + 3vw, 4.4rem); line-height: 0.92; letter-spacing: -0.045em; color: var(--color-human-mark); margin-block-end: var(--space-2); font-variant-numeric: tabular-nums; }
+  .tp__name { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(1.6rem, 1.3rem + 0.8vw, 1.9rem); line-height: 1; letter-spacing: -0.03em; color: var(--color-heading); }
+  .tp__line { color: var(--color-text); max-inline-size: 36ch; }
+
+  /* Device frames (light browser bar; dark phone body). */
+  .tp__browser { position: absolute; overflow: hidden; border-radius: 10px; background: var(--neutral-0); box-shadow: 0 30px 60px -20px rgb(var(--black-rgb) / 0.85); }
+  .tp__bar { display: flex; gap: 5px; padding: 7px 11px; background: var(--neutral-100); }
+  .tp__bar i { inline-size: 8px; block-size: 8px; border-radius: 50%; background: color-mix(in oklab, var(--blue-975) 25%, transparent); }
+  .tp :global(.tp__img) { display: block; inline-size: 100%; block-size: auto; }
+  .tp__phone { position: absolute; overflow: hidden; border: 7px solid var(--device-body); border-radius: 26px; aspect-ratio: 375 / 812; box-shadow: 0 30px 60px -18px rgb(var(--black-rgb) / 0.9); }
+  .tp__phone :global(.tp__img) { block-size: 100%; object-fit: cover; object-position: top; }
+
+  .tp__browser--main { display: none; }
+  .tp__phone--main { inset-inline-end: 8%; inset-block-start: 7%; inline-size: 34%; }
+  @media (width >= 54rem) {
+    .tp__browser--main { display: block; inset-inline-end: 6%; inset-block-start: 9%; inline-size: 46%; }
+    .tp__phone--main { inset-inline-end: 3%; inset-block-start: 26%; inline-size: 13%; }
+  }
+  /* Upscend: learner screen cropped at the top, running off the inline end. */
+  .tp__browser--up { inset-inline-start: 10%; inset-block-start: 8%; inline-size: 110%; block-size: 46%; }
+  .tp__browser--up :global(.tp__img) { block-size: calc(100% - 22px); object-fit: cover; object-position: top left; }
+  /* Arheb: the top half of the phone (map and ride types), clear of the words. */
+  .tp__phone--ar { inset-inline-end: 9%; inset-block-start: 8%; inline-size: 34%; aspect-ratio: auto; block-size: 47%; border-block-end: 0; border-end-start-radius: 0; border-end-end-radius: 0; }
+  .tp :global(.tp__logo) { position: absolute; z-index: 2; inset-block-start: var(--space-5); inset-inline-start: var(--space-5); inline-size: 4.5rem; block-size: 4.5rem; }
+
+  .tp__also { font-size: var(--text-lg); color: var(--color-text-muted); }
+  .tp__also b { font-family: var(--ff-heading); color: var(--color-heading); }
+  .tp__credit { font-size: var(--text-sm); color: var(--color-text-muted); margin-block-start: calc(var(--space-6) * -1); }
 </style>

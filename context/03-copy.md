@@ -2052,6 +2052,12 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.28 Scale proof: client worlds (Oct 29)
+- Title "Teams that stayed"; lead "Four clients expanded their work with us."
+- NJWAR · "2 phases" · "Feasibility sprints, then the AR furniture store. Saudi Arabia." (named NJWAR, not Athkado, for now)
+- Upscend · "12 months" · "One embedded team. UK." | Arheb · "Data + ML" · "Ride-sharing. Saudi Arabia." | Pyramakerz · "20,000+" · "Students. Egypt."
+- "Also with us: Jumlaty, Nile Support and Amstadd." Credit line for the room photo under the section. AR in src/content/copy/ar/scale.ts.
+
 ### 16b.27 Scale proof: logos and a real Upscend screen (Oct 27)
 - Upscend card: Upscend's public learner dashboard (upscend.com) + logo. Arheb and Pyramakerz cards: their logos on a light chip above the meta line. Athkado: NJWAR screens, name in text (its own logo file is broken). See 11 decision log.
 
