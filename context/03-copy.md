@@ -2052,6 +2052,10 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.34 Audit fixes (Oct 29, Mohamed approved the 5 must-fix items)
+- 09 records no launch, so "live/launch" goes: /work H1 "Products we built, and teams that stayed" (AR "منتجات بنيناها، وفرق بقيت مع عملائها"); NJWAR line ends "from market study to the finished store."; /build proof title "Teams we've taken from idea to product." (AR "فرق أخذناها من الفكرة إلى المنتج."); /work meta "Products we built from idea or prototype: ...".
+- Scale "Teams that stayed": Pyramakerz shows its logo, not the class photo; credit line "Client screens from their own sites and app listing."
+
 ### 16b.33 Work, Direction A (Oct 29; Mohamed chose A from .taste-skill/work-dirs.html)
 - H1: Products we took live, and teams that stayed. Lead: For founders and teams on 4 continents, from a first market study to an embedded ML team.
 - Numbers: 60–90% lower AI cost (EduLens, Egypt) · 20,000+ students on the platform (Pyramakerz, Egypt) · 12 months one embedded team (Upscend, UK) · 5.0 rating (Clutch).

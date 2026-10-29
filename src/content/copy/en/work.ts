@@ -3,7 +3,7 @@ import { shared } from './shared';
 export const work = {
   seo: {
     title: 'Case Studies: MVPs, Marketplaces & AI Apps | DiscoverDev',
-    description: 'Products we took from idea or prototype to production: EdTech AI agents with 60–90% lower AI costs, AR e-commerce, embedded data and ML teams.',
+    description: 'Products we built from idea or prototype: EdTech AI agents with 60–90% lower AI costs, AR e-commerce, embedded data and ML teams.',
   },
   h1: 'Products we helped ship',
   intro: 'From AI agents to marketplaces, for founders and teams on 4 continents. Each case shows the problem, what we did and what changed.',

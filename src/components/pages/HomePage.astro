@@ -20,14 +20,13 @@ import FaqSplit from '../../components/sections/FaqSplit.astro';
 import Showcase from '../../components/sections/Showcase.astro';
 import Chapters from '../../components/work/Chapters.astro';
 import Reviews from '../../components/sections/Reviews.astro';
-import { howWeWork } from '../../content/copy/en/how-we-work';
 import { href, isLive } from '../../data/routes';
 import { copy } from '../../content/copy';
 import { getLocale } from '../../i18n/t';
 import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../../lib/seo';
 import { HOME_CHAPTERS } from '../../lib/preview';
 
-const { home: c } = copy();
+const { home: c, howWeWork } = copy(); // audit Oct 29: was the English module, so /ar showed an English link
 // One home page, rendered at / and at /ar (Arabic, hidden until reviewed): same sections, same behaviour.
 const base = getLocale() === 'ar' ? '/ar' : '/';
 const faqLd = faqPage(`https://discoverdev.ai${base === '/' ? '/' : base}#faq`, c.faq.items);

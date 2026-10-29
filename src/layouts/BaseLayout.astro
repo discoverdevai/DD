@@ -62,9 +62,11 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <link rel="sitemap" href="/sitemap-index.xml" />
     {/* Preload only the face the H1 uses: Manrope on English pages, Plex Arabic 700 on Arabic pages. */}
     <Font cssVariable="--font-heading" preload={locale !== 'ar'} />
-    <Font cssVariable="--font-body" />
+    {/* Audit Oct 29: /book's first text is body copy, so Rubik loads early there (CLS 0.154 before). */}
+    <Font cssVariable="--font-body" preload={locale !== 'ar' && pageType === 'book'} />
     <Font cssVariable="--font-mono" />
-    {locale === 'ar' && <Font cssVariable="--font-arabic" preload={[{ weight: '700' }]} />}
+    {/* Arabic: 700 for the H1 and 400 for body text (audit Oct 29: /ar/terms jumped, CLS 0.277). */}
+    {locale === 'ar' && <Font cssVariable="--font-arabic" preload={[{ weight: '700' }, { weight: '400' }]} />}
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="DiscoverDev" />
     <meta property="og:locale" content={L.ogLocale} />

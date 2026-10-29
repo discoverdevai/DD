@@ -121,7 +121,7 @@ export const scale = {
     main: { name: 'NJWAR', value: '2 phases', line: 'Feasibility sprints, then the AR furniture store. Saudi Arabia.', photo: { file: 'proof-lounge.webp', alt: '' }, web: { file: 'njwar-web.webp', alt: '' }, phone: { file: 'njwar-ar.webp', alt: 'NJWAR AR view placing an armchair in a room' } },
     upscend: { name: 'Upscend', value: '12 months', line: 'One embedded team. UK.', screen: { file: 'upscend-learner.webp', alt: 'Upscend learner dashboard: current courses with progress' } },
     arheb: { name: 'Arheb', value: 'Data + ML', line: 'Ride-sharing. Saudi Arabia.', logo: 'arheb.png', screen: { file: 'arheb-app.webp', alt: 'Arheb app: a map and the ride types to choose from' } },
-    pyramakerz: { name: 'Pyramakerz', value: '20,000+', line: 'Students. Egypt.', photo: { file: 'pyramakerz-class.webp', alt: 'Students at a Pyramakerz session, building on a laptop' } },
+    pyramakerz: { name: 'Pyramakerz', value: '20,000+', line: 'Students. Egypt.', logo: 'pyramakerz.png' },
     alsoLabel: 'Also with us',
     alsoAnd: 'and',
     also: [
@@ -129,7 +129,7 @@ export const scale = {
       { name: 'Nile Support', line: 'AI call agents, USA' },
       { name: 'Amstadd', line: 'white-label, UK' },
     ],
-    credit: 'Room photo: "Reception lounge at Amantaka" by Basile Morin, CC BY-SA 4.0, via Wikimedia Commons. Client screens and photos from their own sites and app listing.',
+    credit: 'Room photo: "Reception lounge at Amantaka" by Basile Morin, CC BY-SA 4.0, via Wikimedia Commons. Client screens from their own sites and app listing.',
   },
   faq: {
     title: 'Questions about Scale',

@@ -118,7 +118,7 @@ export const build = {
       'Validate is a fixed fee, agreed before we start. Every Build has a fixed price, set from a clear scope that comes from Validate, a Launch-Ready Review or our own scoping. Validate and Review fees credit toward the Build.',
   },
   proof: {
-    title: 'Teams we’ve taken from idea to launch.',
+    title: 'Teams we’ve taken from idea to product.',
     // EduLens (09, D-06): one sourced number as the headline (research: Netguru's case card).
     case: {
       label: 'Case',

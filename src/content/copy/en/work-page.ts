@@ -4,7 +4,7 @@ import { work } from './work';
 export type Mark = 'word' | 'icon';
 export const workPage = {
   seo: work.seo,
-  h1: 'Products we took live, and teams that stayed',
+  h1: 'Products we built, and teams that stayed',
   intro: 'For founders and teams on 4 continents, from a first market study to an embedded ML team.',
   numbersTitle: 'Results',
   numbers: [
@@ -17,7 +17,7 @@ export const workPage = {
   featured: [
     {
       id: 'njwar', meta: 'NJWAR · E-commerce · Saudi Arabia', title: 'Try the furniture in your room before you buy it',
-      line: 'Athkado’s Arabic store with an AR view and AI recommendations, from market study to launch.',
+      line: 'Athkado’s Arabic store with an AR view and AI recommendations, from market study to the finished store.',
       screens: ['njwar-web.webp', 'njwar-ar.webp'], device: 'combo' as const,
       alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room',
     },

@@ -111,7 +111,7 @@ export const scale: Widen<typeof en> = {
     main: { name: 'NJWAR', value: 'مرحلتان', line: 'سبرنتات جدوى، ثم متجر الأثاث بالواقع المعزز. السعودية.', photo: { file: 'proof-lounge.webp', alt: '' }, web: { file: 'njwar-web.webp', alt: '' }, phone: { file: 'njwar-ar.webp', alt: 'عرض الواقع المعزز في NJWAR يضع كرسيًا في غرفة' } },
     upscend: { name: 'Upscend', value: '12 شهرًا', line: 'فريق مدمج واحد. المملكة المتحدة.', screen: { file: 'upscend-learner.webp', alt: 'لوحة المتعلم في Upscend: الدورات الحالية مع التقدم' } },
     arheb: { name: 'Arheb', value: 'تعلم آلي', line: 'فريق بيانات لتنقل تشاركي. السعودية.', logo: 'arheb.png', screen: { file: 'arheb-app.webp', alt: 'تطبيق أرحب: خريطة وأنواع الرحلات للاختيار' } },
-    pyramakerz: { name: 'Pyramakerz', value: '+20,000', line: 'طالب. مصر.', photo: { file: 'pyramakerz-class.webp', alt: 'طلاب في جلسة لـ Pyramakerz يبنون على حاسوب محمول' } },
+    pyramakerz: { name: 'Pyramakerz', value: '+20,000', line: 'طالب. مصر.', logo: 'pyramakerz.png' },
     alsoLabel: 'ومعنا أيضًا',
     alsoAnd: 'و',
     also: [
@@ -119,7 +119,7 @@ export const scale: Widen<typeof en> = {
       { name: 'Nile Support', line: 'وكلاء اتصال بالذكاء الاصطناعي، الولايات المتحدة' },
       { name: 'Amstadd', line: 'العمل باسم علامة الشريك، المملكة المتحدة' },
     ],
-    credit: 'صورة الغرفة من Wikimedia Commons، تصوير Basile Morin، بترخيص CC BY-SA 4.0. شاشات العملاء وصورهم من مواقعهم وصفحات تطبيقاتهم.',
+    credit: 'صورة الغرفة من Wikimedia Commons، تصوير Basile Morin، بترخيص CC BY-SA 4.0. شاشات العملاء من مواقعهم وصفحات تطبيقاتهم.',
   },
   faq: {
     title: 'أسئلة عن التوسع',
