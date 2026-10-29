@@ -1,6 +1,9 @@
 ---
 // Site header (06 §9.1, 04 §3.1). Always on the ink surface (06 §0.4). Two variants:
 // default = logo, nav, Book a call, menu button; minimal (/book, /launch-check) = logo + Back.
+// Oct 29 (Mohamed chose the floating capsule, .taste-skill/topbar-capsule.html): the bar is a glass capsule centred in the
+// header strip; once the page scrolls, the strip turns clear and the capsule floats over the content. Links in the order a
+// buyer asks: Build, Scale (what), Work (proof), How we work (how), Pricing (cost, once live). FAQ lives in the footer.
 import Logo from '../ui/Logo.astro';
 import Icon from '../ui/Icon.astro';
 import CtaLink from '../ui/CtaLink.astro';
@@ -20,19 +23,28 @@ const SERVICES: { key: RouteKey; label: string; who: string }[] = (['validate', 
 // Nav links. A section that has no live page falls back to its anchor on home, so V1.0 (one-page site, 03 §2V1) reads:
 // Services · How we work · Work · Reviews · FAQ, all jumping to home sections. Pages switch back in per release.
 type NavLink = { href: string; label: string };
-const LINKS: NavLink[] = [
-  ...(SERVICE_LINKS.length > 0 ? SERVICE_LINKS : SERVICES.length === 0 ? [{ href: localPath('/#services'), label: t('nav.services') }] : []),
+const lean = SERVICE_LINKS.length > 0;
+const LEAN_LINKS: NavLink[] = [
+  ...(['build', 'scale'] as const).filter(isLive).map((k) => ({ href: href(k), label: t(`nav.${k}`) })),
+  { href: isLive('work') ? href('work') : localPath('/#work'), label: t('nav.work') }, // home's work section until /work ships
+  { href: href('howWeWork'), label: t('nav.how') },
+  ...(isLive('pricing') ? [{ href: href('pricing'), label: t('nav.pricing') }] : []),
+  ...(isLive('insights') ? [{ href: href('insights'), label: t('nav.insights') }] : []),
+];
+const V1_LINKS: NavLink[] = [
+  ...(SERVICES.length === 0 ? [{ href: localPath('/#services'), label: t('nav.services') }] : []),
   { href: isLive('howWeWork') ? href('howWeWork') : localPath('/#how-we-work'), label: t('nav.how') },
   { href: isLive('work') ? href('work') : localPath('/#work'), label: t('nav.work') },
   // Five items at most: the Reviews anchor gives its place to the service links once they are live.
   ...(isLive('insights') ? [{ href: href('insights'), label: t('nav.insights') }] : SERVICE_LINKS.length > 0 ? [] : [{ href: localPath('/#reviews'), label: t('nav.reviews') }]),
   ...(isLive('about') ? [{ href: href('about'), label: t('nav.about') }] : [{ href: localPath('/#faq'), label: t('nav.faq') }]),
 ];
+const LINKS = lean ? LEAN_LINKS : V1_LINKS;
 const isCurrent = (path: string) => current.replace(/\.html$/, '').replace(/\/$/, '') === path.replace(/\/$/, '');
 const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
 ---
 <header class="site-header" data-surface="ink" data-header>
-  <div class="container site-header__bar">
+  <div class="site-header__bar">
     <a href={localPath('/')} class="site-header__home" aria-label={t('logo.home')}><Logo /></a>
 
     {variant === 'default' && (
@@ -58,7 +70,7 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
     {variant === 'default' ? (
       <div class="site-header__actions">
         <LangSwitch class="site-header__lang" />
-        <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" variant="soft" class="site-header__book"><span class="cta-long">{t('cta.clarity')}</span><span class="cta-short">{t('cta.clarity.short')}</span></CtaLink>
+        <CtaLink href={bookHref('clarity')} ctaId="nav_book_clarity" tier="primary" position="nav" target="clarity" size="sm" variant="soft" class="site-header__book">{t('cta.clarity.short')}</CtaLink>
         <button type="button" class="site-header__menu" aria-haspopup="dialog" aria-controls="menu-sheet" commandfor="menu-sheet" command="show-modal" data-menu-open>
           <Icon name="menu" size={20} /><span class="sr-only">{t('menu.open')}</span>
         </button>
@@ -71,18 +83,21 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
 </header>
 
 <style>
-  .site-header { position: sticky; inset-block-start: 0; z-index: var(--z-header); background: var(--color-bg); transition: translate var(--dur-slow) var(--ease-exit), border-color var(--dur-color); border-block-end: 1px solid transparent; }
-  .site-header[data-scrolled] { border-block-end-color: var(--color-border-subtle); }
-  @supports (backdrop-filter: blur(1px)) { .site-header[data-scrolled] { background: color-mix(in oklab, var(--color-bg) 78%, transparent); backdrop-filter: blur(14px) saturate(140%); } }
+  /* The strip is ink at the top of the page and clear once scrolled; the capsule carries its own glass. */
+  .site-header { position: sticky; inset-block-start: 0; z-index: var(--z-header); display: flex; align-items: center; min-block-size: var(--header-h); padding-inline: var(--gutter); background: var(--color-bg); transition: translate var(--dur-slow) var(--ease-exit), background-color var(--dur-color); }
+  .site-header[data-scrolled] { background: transparent; pointer-events: none; } /* the clear strip never blocks the page */
+  .site-header__bar, .site-header :global(dialog) { pointer-events: auto; }
   .site-header[data-hidden] { translate: 0 -100%; }
-  .site-header__bar { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--header-h); }
-  @media (width >= 64rem) { .site-header__bar { gap: var(--space-6); } }
+  .site-header__bar { display: flex; align-items: center; gap: var(--space-2); inline-size: 100%; margin-inline: auto; min-block-size: calc(var(--header-h) - var(--space-4)); padding: var(--space-1); padding-inline-start: var(--space-4); border-radius: 999px; border: 1px solid color-mix(in oklab, var(--blue-300) 20%, transparent); background: color-mix(in oklab, var(--blue-950) 88%, transparent); box-shadow: 0 20px 40px -20px rgb(var(--black-rgb) / 0.8); }
+  @supports (backdrop-filter: blur(1px)) { .site-header__bar { background: color-mix(in oklab, var(--blue-950) 70%, transparent); backdrop-filter: blur(14px) saturate(140%); } }
+  @media (width >= 64rem) { .site-header__bar { inline-size: fit-content; gap: var(--space-3); padding-inline-start: var(--space-5); } }
   .site-header__home { display: inline-flex; padding-block: var(--space-2); border-radius: var(--radius-xs); }
   .site-nav { display: none; margin-inline-start: var(--space-4); }
-  .site-nav__list { display: flex; align-items: center; gap: var(--space-6); }
+  .site-nav__list { display: flex; align-items: center; gap: var(--space-1); }
+  /* Capsule links: pills; the current page gets a soft fill instead of an underline. */
+  .site-nav__list > li > a { padding-inline: var(--space-3); border-radius: 999px; }
   .site-nav a, .site-nav__toggle { display: inline-flex; align-items: center; gap: var(--space-1); min-block-size: 2.75rem; color: var(--color-text-muted); text-decoration: none; font-size: var(--text-sm); font-weight: var(--weight-medium); background: none; border: 0; cursor: pointer; padding: 0; position: relative; }
-  .site-nav [aria-current]::after { content: ''; position: absolute; inset-inline: 0; inset-block-end: 0.25rem; block-size: 2px; background: var(--color-border-interactive); }
-  .site-nav [aria-current] { color: var(--color-text); }
+  .site-nav__list > li > a[aria-current] { background: color-mix(in oklab, var(--blue-300) 14%, transparent); color: var(--color-heading); }
   @media (hover: hover) { .site-nav a:hover, .site-nav__toggle:hover { color: var(--color-text); } }
   .site-nav__toggle :global(.icon) { transition: rotate var(--dur-base) var(--ease-standard); }
   .site-nav__toggle[aria-expanded='true'] :global(.icon) { rotate: 180deg; }
@@ -96,14 +111,13 @@ const servicesCurrent = SERVICES.some((s) => isCurrent(ROUTES[s.key].path));
   .site-header__actions { margin-inline-start: auto; display: flex; align-items: center; gap: var(--space-2); }
   /* Phones: the language link lives in the menu sheet; the bar keeps the button and the menu. */
   @media (width < 36rem) { .site-header__actions :global(.site-header__lang) { display: none; } }
-  .site-header__menu { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: var(--radius-sm); border: 1px solid var(--color-border-subtle); background: transparent; color: var(--color-text); cursor: pointer; }
-  .site-header__back { margin-inline-start: auto; display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; color: var(--color-link); font-weight: var(--weight-medium); }
+  .site-header__menu { inline-size: 2.75rem; block-size: 2.75rem; display: grid; place-items: center; border-radius: 999px; border: 0; background: color-mix(in oklab, var(--blue-300) 12%, transparent); color: var(--color-text); cursor: pointer; }
+  .site-header__actions :global(.site-header__book) { border-radius: 999px; }
+  .site-header__back { margin-inline-start: auto; padding-inline-end: var(--space-3); display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: 2.75rem; color: var(--color-link); font-weight: var(--weight-medium); }
   @media (width < 22.5rem) { .site-header__actions :global(.site-header__book) { display: none; } }
   /* Desktop shows the full label from 80rem (03 §2V1, CRO review); narrower widths keep the short one. */
   /* One booking button at a time on phones: the sticky bar replaces the header button while it shows (UX audit P1-2). */
   @media (width < 64rem) { :global(:root[data-sticky-on]) .site-header__book { display: none; } }
-  .cta-long { display: none; }
-  @media (width >= 80rem) { .cta-long { display: inline; } .cta-short { display: none; } }
   @media (width >= 64rem) { .site-nav { display: block; } .site-header__menu { display: none; } }
   @media (prefers-reduced-motion: reduce) { .site-header[data-hidden] { translate: none; } }
 </style>

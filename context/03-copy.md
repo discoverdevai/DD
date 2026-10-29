@@ -2052,6 +2052,9 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.37 Top bar, floating capsule (Oct 29, Mohamed chose it from .taste-skill/topbar-capsule.html)
+- Links: Build · Scale · Work · How we work · Pricing (once live). FAQ leaves the bar (it stays in the footer and on every page). Button: "Book a call" at every width (the full "Book a free clarity call" stays on page buttons and in the phone menu).
+
 ### 16b.36 Audit should-fix, batch 2 (Oct 29)
 - /work: after Selected work, "Want a product like these? Tell us where you are, and we tell you where to start." + Book a free clarity call (AR in ar/work-page.ts). Stage labels in the client list link to Build, Scale or Build's Validate section.
 - Arabic titles now name the Gulf like the English ones: home "DiscoverDev | تطوير المنتجات للشركات الناشئة في الخليج", Build "تطوير MVP للشركات الناشئة في الخليج | DiscoverDev", Scale "فريق تطوير مخصص للشركات في الخليج | DiscoverDev" (native review to confirm).
