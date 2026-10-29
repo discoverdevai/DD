@@ -24,7 +24,7 @@ export const workPage = {
     {
       id: 'rushr', meta: 'Rushr · Marketplace · USA', title: 'A plumber at your door, booked from your phone',
       line: '16 weeks, one product team: post a job, match the nearest verified pro, escrow payments and live chat.',
-      screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'phone' as const,
+      screens: ['rushr-m-searching.webp', 'rushr-m-dispatch.webp', 'rushr-m-progress.webp'], device: 'phone' as const,
       alt: 'Rushr app showing a matched plumber with accept and decline',
     },
     {
@@ -36,16 +36,19 @@ export const workPage = {
   ],
   ask: 'Want a product like these? Tell us where you are, and we tell you where to start.',
   stages: { validate: 'Validate', build: 'Build', scale: 'Scale' },
+  // Phase 3 (03 §16b.42): show only one stage's clients (CSS only).
+  filter: { label: 'Show', all: 'All' },
   indexTitle: 'Every client',
   // `logo` is a file in /assets/clients/mono. `mark: 'word'` logos carry the name; `icon` logos show the name beside them.
   index: [
+    { name: 'Athkado', line: 'Rapid market studies and feasibility sprints that ended in a build, pivot or shelve decision for each idea.', stage: 'Validate', tags: ['Feasibility', 'Saudi Arabia'] },
+    { name: 'Arheb', logo: 'arheb.png', mark: 'icon' as Mark, line: 'An embedded data and ML team for a smart ride-sharing platform.', stage: 'Scale', tags: ['Data and ML', 'Saudi Arabia'] },
+    { name: 'Jumlaty', logo: 'jumlaty.png', mark: 'icon' as Mark, line: 'An ML engineer for restaurant procurement.', stage: 'Scale', tags: ['ML', 'Saudi Arabia'] },
     { name: 'EduLens', logo: 'edulens.png', mark: 'icon' as Mark, line: 'Three AI agents for an EdTech platform, then 60–90% lower AI cost.', stage: 'Build', tags: ['AI agents', 'Egypt'] },
     { name: 'Upscend', logo: 'upscend.png', mark: 'word' as Mark, line: 'An embedded product team for 12 months on a B2B learning platform, owning roadmap, backlog and sprints.', stage: 'Scale', tags: ['Dedicated team', 'UK'] },
     { name: 'BioBank', logo: 'biobank.png', mark: 'icon' as Mark, line: 'A health app that explains lab reports in plain language, with medical safety guardrails.', stage: 'Build', tags: ['AI', 'HealthTech'] },
     { name: 'Nile Support', logo: 'nile-support.png', mark: 'icon' as Mark, line: 'AI agents for call operations, a landing page and staff augmentation.', stage: 'Build', tags: ['AI agents', 'USA'] },
     { name: 'Pyramakerz', line: 'Data, ML and automations for an EdTech platform with 20,000+ students.', stage: 'Scale', tags: ['Data and ML', 'Egypt'] },
-    { name: 'Arheb', logo: 'arheb.png', mark: 'icon' as Mark, line: 'An embedded data and ML team for a smart ride-sharing platform.', stage: 'Scale', tags: ['Data and ML', 'Saudi Arabia'] },
-    { name: 'Jumlaty', logo: 'jumlaty.png', mark: 'icon' as Mark, line: 'An ML engineer for restaurant procurement.', stage: 'Scale', tags: ['ML', 'Saudi Arabia'] },
     { name: 'Amstadd', line: 'White-label websites and mobile apps, delivered under their brand.', stage: 'Build', tags: ['White-label', 'UK'] },
     { name: 'Zest', logo: 'zest.png', mark: 'word' as Mark, line: 'A market study and sentiment analysis to test demand before building.', stage: 'Validate', tags: ['Market study'] },
     { name: 'Fantacalcio', line: 'A plan to enter the Egyptian market.', stage: 'Validate', tags: ['Go-to-market', 'Italy to Egypt'] },

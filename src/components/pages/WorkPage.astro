@@ -2,6 +2,8 @@
 // /work and /ar/work (03 §16b.33, Oct 29, Direction A from .taste-skill/work-dirs.html; research: Metalab's client
 // index, thoughtbot's numbers row). Hero → four numbers → two products with their real screens → every client in one
 // index (logo, one line, stage) → three reviews → closing band. No drawings and no project shown twice.
+// Phase 3 (03 §16b.42, Oct 29): NJWAR full width with the other two side by side; the index puts Saudi clients first,
+// every logo in the same square, tags on one line, and a stage filter (radios + :has, no script); reviews Gulf first.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -25,6 +27,9 @@ const logos = import.meta.glob<{ default: ImageMetadata }>('/assets/clients/mono
 const rows = await Promise.all(c.index.map(async (r) => ({ ...r, img: r.logo ? (await logos[`/assets/clients/mono/${r.logo}`]?.())?.default : undefined })));
 // Stage label → the page that explains it (Validate lives in Build's #process section, lean R1).
 const stageHref = (s: string) => (s === c.stages.scale ? href('scale') : s === c.stages.validate ? `${href('build')}#process` : href('build'));
+// Reviews Gulf first: Nojoud (Saudi Arabia) featured, then Kuwait and the Saudi market study; all ten stay here.
+const REVIEW_ORDER = [1, 2, 8, 0, 4, 6, 5, 7, 3, 9];
+const stageKey = (s: string) => (s === c.stages.scale ? 'scale' : s === c.stages.validate ? 'validate' : 'build');
 const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.screens, device: f.device, screenAlt: f.alt, art: 'devices' }) as unknown as Project;
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="work_index" jsonLd={jsonLd}>
@@ -43,8 +48,8 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
     <div class="container">
       <h2 id="wk-feat" class="section-title reveal">{c.featuredTitle}</h2>
       <div class="wk__feat">
-        {c.featured.map((f) => (
-          <article class="wk__big">
+        {c.featured.map((f, i) => (
+          <article class:list={['wk__big', { 'wk__big--lead': i === 0 }]}>
             <div class="wk__shot"><ProjectVisual project={asProject(f)} sizes="(min-width: 64rem) 55vw, 100vw" /></div>
             <div class="wk__cap">
               <p class="wk__meta">{f.meta}</p>
@@ -61,12 +66,17 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
   <section class="wk" data-surface="ink" aria-labelledby="wk-idx">
     <div class="container">
       <h2 id="wk-idx" class="section-title reveal">{c.indexTitle}</h2>
+      <fieldset class="wk__filter">
+        <legend class="sr-only">{c.filter.label}</legend>
+        <label><input type="radio" name="wk-stage" value="all" checked /> {c.filter.all}</label>
+        {(['validate', 'build', 'scale'] as const).map((k) => <label><input type="radio" name="wk-stage" value={k} class={`f-${k}`} /> {c.stages[k]}</label>)}
+      </fieldset>
       <ul role="list" class="wk__idx">
         {rows.map((r) => (
-          <li class="wk__row">
-            <h3 class:list={['wk__client', { 'wk__client--icon': r.img && r.mark === 'icon' }]}>
-              {r.img && <Image src={r.img} alt={r.mark === 'word' ? r.name : ''} height={64} class="wk__logo" />}
-              {(!r.img || r.mark === 'icon') && <span>{r.name}</span>}
+          <li class:list={['wk__row', `s-${stageKey(r.stage)}`]}>
+            <h3 class="wk__client">
+              <span class="wk__mark" aria-hidden="true">{r.img ? <Image src={r.img} alt="" height={64} class="wk__logo" /> : r.name.slice(0, 1)}</span>
+              <span>{r.name}</span>
             </h3>
             <p class="wk__what">{r.line}</p>
             <p class="wk__svc"><a class="wk__stage" href={stageHref(r.stage)}>{r.stage}</a>{r.tags.map((t) => <span>{t}</span>)}</p>
@@ -76,7 +86,7 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
     </div>
   </section>
 
-  <Reviews {...home.reviews} />
+  <Reviews title={home.reviews.title} cta={home.reviews.cta} items={REVIEW_ORDER.map((i) => home.reviews.items[i])} />
 
   <CtaBand title={c.band.title} kind="clarity" page="work" link={{ label: c.band.link, to: 'review' }} />
 </BaseLayout>
@@ -100,25 +110,37 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
   .wk__who { font-size: var(--text-sm); color: var(--color-text-muted); }
 
   /* Selected work: the product's own screens, the title says what its user can do. */
-  .wk__feat { display: grid; margin-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
-  .wk__big { display: grid; gap: var(--space-6); align-items: center; padding-block: var(--space-8); border-block-end: 1px solid var(--color-hairline); }
-  @media (width >= 64rem) { .wk__big { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-12); } }
-  .wk__cap { display: grid; gap: var(--space-2); }
+  /* Phase 3: the first (the Gulf client) full width, the other two side by side; one card recipe each. */
+  .wk__feat { display: grid; gap: var(--space-4); margin-block-start: var(--space-8); }
+  @media (width >= 64rem) { .wk__feat { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wk__big--lead { grid-column: 1 / -1; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); align-items: center; } }
+  .wk__big { display: grid; align-content: start; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .wk__big :global(.pv) { border-radius: 0; }
+  .wk__cap { display: grid; gap: var(--space-2); padding: var(--space-6); }
+  @media (width >= 64rem) { .wk__big--lead .wk__cap { padding: var(--space-8); } }
   .wk__meta { font-size: var(--text-sm); color: var(--color-machine-text); }
   .wk__h3 { font-family: var(--ff-heading); font-size: var(--title-feature); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: -0.03em; color: var(--color-heading); }
   .wk__line { font-size: var(--text-lg); color: var(--color-text); max-inline-size: 44ch; }
 
   /* Every client: logo, one line, stage and tags. */
   .wk__idx { margin-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
-  .wk__row { display: grid; gap: var(--space-2) var(--space-8); padding-block: var(--space-6); border-block-end: 1px solid var(--color-hairline); }
-  @media (width >= 56rem) { .wk__row { grid-template-columns: 13rem minmax(0, 1fr) 13rem; align-items: start; } }
-  .wk__client { display: flex; align-items: center; gap: var(--space-3); min-block-size: 2rem; font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); letter-spacing: -0.02em; color: var(--color-heading); }
-  .wk :global(.wk__logo) { block-size: 1.75rem; inline-size: auto; max-inline-size: 9rem; object-fit: contain; }
-  .wk__client--icon :global(.wk__logo) { max-inline-size: 2rem; }
+  .wk__row { display: grid; gap: var(--space-2) var(--space-8); padding-block: var(--space-5); border-block-end: 1px solid var(--color-hairline); }
+  @media (width >= 56rem) { .wk__row { grid-template-columns: 13rem minmax(0, 1fr) auto; align-items: center; } }
+  .wk__client { display: flex; align-items: center; gap: var(--space-3); font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); letter-spacing: -0.02em; color: var(--color-heading); }
+  /* Every logo in the same square (Phase 3); a client without a logo shows its initial. */
+  .wk__mark { flex: none; display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: var(--radius-sm); background: color-mix(in oklab, var(--blue-300) 10%, var(--color-surface)); border: 1px solid var(--color-hairline); font-size: var(--text-base); color: var(--blue-200); overflow: hidden; }
+  .wk :global(.wk__logo) { inline-size: 75%; block-size: 75%; object-fit: contain; }
   .wk__what { color: var(--color-text); max-inline-size: 58ch; }
-  .wk__svc { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
-  @media (width >= 56rem) { .wk__svc { flex-direction: column; gap: 2px; } }
-  .wk__stage { font-weight: var(--weight-semibold); color: var(--color-human-mark); text-decoration: none; }
+  .wk__svc { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+  @media (width >= 56rem) { .wk__svc { flex-wrap: nowrap; white-space: nowrap; justify-content: end; } }
+  .wk__svc span { padding: 2px var(--space-3); border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); }
+  .wk__stage { padding: 2px var(--space-3); border-radius: var(--radius-pill); background: color-mix(in oklab, var(--blue-600) 45%, transparent); font-weight: var(--weight-semibold); color: var(--color-heading); text-decoration: none; }
+  /* Stage filter: pill radios; picking a stage hides the other rows (no script). */
+  .wk__filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-6) 0 0; padding: 0; border: 0; }
+  .wk__filter label { position: relative; display: inline-flex; align-items: center; min-block-size: 2.5rem; padding: 0 var(--space-4); border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); font-size: var(--text-sm); color: var(--color-text); cursor: pointer; }
+  .wk__filter input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+  .wk__filter label:has(input:checked) { background: var(--blue-700); border-color: var(--blue-700); color: var(--neutral-0); }
+  .wk__filter label:has(input:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+  .wk:has(.f-validate:checked) .wk__row:not(.s-validate), .wk:has(.f-build:checked) .wk__row:not(.s-build), .wk:has(.f-scale:checked) .wk__row:not(.s-scale) { display: none; }
   .wk__stage:hover { text-decoration: underline; text-underline-offset: 0.2em; }
   .wk__ask { display: grid; gap: var(--space-3); justify-items: start; margin-block-start: var(--space-8); }
   .wk__asktext { font-size: var(--text-lg); color: var(--color-text); }

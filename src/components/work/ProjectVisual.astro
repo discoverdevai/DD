@@ -19,11 +19,13 @@ const screens = held
   : (await Promise.all((project.screens ?? []).map(async (f) => (await files[`/assets/projects/${f}`]?.())?.default))).filter(Boolean);
 const alt = (i: number) => (i === 0 ? project.screenAlt ?? '' : '');
 const device = project.device ?? 'browser';
+// Three phone screens (Phase 3, /work Rushr): side by side, the middle one raised.
+const trio = device === 'phone' && screens.length > 2;
 ---
 {screens.length > 0 ? (
-  <div class:list={['pv', `pv--${device}`, { 'pv--pair': screens.length > 1 }]}>
-    {screens.slice(0, 2).map((src, i) => (
-      <div class:list={['pv__frame', { 'pv__frame--back': i === 1 }]}>
+  <div class:list={['pv', `pv--${device}`, { 'pv--pair': screens.length > 1 && !trio, 'pv--trio': trio }]}>
+    {screens.slice(0, trio ? 3 : 2).map((src, i) => (
+      <div class:list={['pv__frame', { 'pv__frame--back': i === 1 && !trio }]}>
         {(device === 'browser' || (device === 'combo' && i === 0)) && <span class="pv__bar" aria-hidden="true"><i></i><i></i><i></i></span>}
         {typeof src === 'string'
           ? <img src={src} alt={alt(i)} width="640" height="853" class="pv__img" loading="lazy" decoding="async" />
@@ -59,4 +61,7 @@ const device = project.device ?? 'browser';
   .pv--phone.pv--pair .pv__frame { grid-area: 1 / 1; }
   .pv--phone.pv--pair .pv__frame:not(.pv__frame--back) { translate: 24% 8%; z-index: 1; }
   .pv--phone.pv--pair .pv__frame--back { translate: -24% 0; opacity: 0.9; }
+  .pv--trio { display: flex; justify-content: center; align-items: end; gap: 4%; }
+  .pv--trio .pv__frame { inline-size: 28%; align-self: auto; }
+  .pv--trio .pv__frame:nth-child(2) { inline-size: 31%; translate: 0 -4%; }
 </style>
