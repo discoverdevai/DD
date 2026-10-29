@@ -2052,6 +2052,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.31 How we work: repeats removed (Oct 29, Mohamed: "only fix repeats")
+- Small labels "Who does what" and "The four steps" removed; "Frameworks we use" kept for screen readers only (shown 4 times before).
+- Who we are, body: "We also have a presence in Texas, USA. Gulf time is 0–2 hours ahead of Alexandria, our day overlaps Europe and US mornings, and we work in Arabic and English." (the hub line is already in the entity line). The time strip's caption is for screen readers only.
+- FAQ: "Which frameworks do you use?" and "Who owns the code?" removed (the steps and "Your code, data and IP" answer them). Layout unchanged.
+
 ### 16b.30 Scale final call (Oct 29)
 - H2: Add a team that stays with your product
 - Body: Tell us about your product and your team. You leave with the option that fits, and you can start with a proof of concept to test us first.

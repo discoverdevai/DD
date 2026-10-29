@@ -22,12 +22,10 @@ export const howWeWork = {
     ],
   },
   roles: {
-    label: 'Who does what',
     title: 'AI drafts it. A senior engineer signs it.',
     body: 'In every step, AI does the routine work so it moves fast. Senior engineers make the decisions and sign off every release, so speed never costs you quality.',
   },
   steps: {
-    label: 'The four steps',
     title: 'One team from idea to after launch',
     getsLabel: home.lifecycle.getsLabel,
     toolsLabel: 'Frameworks we use',
@@ -38,7 +36,8 @@ export const howWeWork = {
     title: 'Who we are and where we work',
     story: 'DiscoverDev is a product and engineering company. The “Discover” in our name is how we work: before we write code, we make sure it’s the right thing to build. Then a senior team builds it, ships it and stays. We have clients on 4 continents.',
     entity: ENTITY_LINE,
-    where: 'Our engineering hub is in Alexandria, Egypt, and we have a presence in Texas, USA. Alexandria is on GMT+2. Gulf time is 0–2 hours ahead, and our working day overlaps the Gulf, Europe and US mornings. We work in Arabic and English.',
+    // 03 §16b.31 (Oct 29): the hub is already in the entity line above; say only what it does not.
+    where: 'We also have a presence in Texas, USA. Gulf time is 0–2 hours ahead of Alexandria, our day overlaps Europe and US mornings, and we work in Arabic and English.',
     strip: {
       label: 'West to east',
       places: [
@@ -70,9 +69,7 @@ export const howWeWork = {
     items: [
       { id: 'step-time', q: 'How long does each step take?', a: 'Discover takes 1–2 weeks. Build takes 8–12 weeks to a production-ready product. Plan happens before any code, and Ship & Stay continues after launch with the same team.', link: { label: 'Need a team after launch? See Scale', to: 'scale' as const } },
       { id: 'existing', q: 'Can you work on an existing codebase?', a: 'Yes. Brownfield work starts with a Launch-Ready Review of what you have, then we fix it or build it properly. We also do legacy modernization and cloud migration.' },
-      { id: 'frameworks', q: 'Which frameworks do you use?', a: 'Jobs to be Done and Design Sprints in Discover. User Story Mapping, Shape Up, RICE and Architecture Decision Records in Plan. Weekly sprints and a Definition of Done in Build. DORA metrics, continuous discovery and HEART metrics after launch.' },
       { id: 'progress', q: 'How do I see progress?', a: 'You get a demo every week, and every release is signed off by a senior engineer before it reaches your users.' },
-      { id: 'owns', q: 'Who owns the code?', a: 'You do. You own everything we build: full IP, no lock-in, and a clear contract from day one.' },
     ],
   },
   more: 'See how we work in detail',
