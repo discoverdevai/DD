@@ -2,6 +2,8 @@
 // "Why DiscoverDev" band (03 §2V1 section 3, Oct 21 pick "Why 2b"): one headline in a single color, three numbered steps under it,
 // and an example scope card on the right that shows the first release, what comes after launch and what is not needed yet.
 // Phones: headline, steps, then the card.
+// Phase 3 (03 §16b.40, Oct 29): no longer words-left, card-right like the two sections after it. The headline runs across
+// the page, the three steps sit side by side as cards, and the example scope sits inside step 3, the step it shows.
 interface Step { title: string; body: string }
 interface Group { label: string; mark: 'in' | 'next' | 'later'; items: readonly { name: string; note: string }[] }
 interface Props { id: string; label: string; headline: string; stepsLabel: string; steps: readonly Step[]; card: { name: string; tag: string; groups: readonly Group[] } }
@@ -9,48 +11,49 @@ const { id, label, headline, stepsLabel, steps, card } = Astro.props;
 const glyph = { in: '✓', next: '→', later: '·' } as const;
 ---
 <section id={id} class="why" data-surface="ink" aria-labelledby={`${id}-title`}>
-  <div class="container why__grid">
-    <div class="why__main">
-      <p class="section-label why__label">{label}</p>
-      <h2 id={`${id}-title`} class="why__text reveal">{headline}</h2>
-      <p class="why__steps-label">{stepsLabel}</p>
-      <ol role="list" class="why__list">
-        {steps.map((s, i) => (
-          <li class="why__step"><span class="why__n" aria-hidden="true">{i + 1}</span><p class="why__t"><b>{s.title}</b><span>{s.body}</span></p></li>
-        ))}
-      </ol>
-    </div>
-    <div class="why__card" role="group" aria-label={`${card.tag}: ${card.name}`}>
-      <p class="why__cap"><span>{card.name}</span><span class="why__tag">{card.tag}</span></p>
-      {card.groups.map((g) => (
-        <div class={`why__grp why__grp--${g.mark}`}>
-          <p class="why__grp-l">{g.label}</p>
-          <ul role="list">
-            {g.items.map((it) => (
-              <li class="why__row"><span class="why__ck" aria-hidden="true">{glyph[g.mark]}</span><span class="why__name">{it.name}</span><em>{it.note}</em></li>
-            ))}
-          </ul>
-        </div>
+  <div class="container">
+    <p class="section-label why__label">{label}</p>
+    <h2 id={`${id}-title`} class="why__text reveal">{headline}</h2>
+    <p class="why__steps-label">{stepsLabel}</p>
+    <ol role="list" class="why__list reveal-stagger">
+      {steps.map((s, i) => (
+        <li class:list={['why__step', { 'why__step--card': i === steps.length - 1 }]}>
+          <span class="why__n" aria-hidden="true">{i + 1}</span>
+          <p class="why__t"><b>{s.title}</b><span>{s.body}</span></p>
+          {i === steps.length - 1 && (
+            <div class="why__card" role="group" aria-label={`${card.tag}: ${card.name}`}>
+              <p class="why__cap"><span>{card.name}</span><span class="why__tag">{card.tag}</span></p>
+              {card.groups.map((g) => (
+                <div class={`why__grp why__grp--${g.mark}`}>
+                  <p class="why__grp-l">{g.label}</p>
+                  <ul role="list">
+                    {g.items.map((it) => (
+                      <li class="why__row"><span class="why__ck" aria-hidden="true">{glyph[g.mark]}</span><span class="why__name">{it.name}</span><em>{it.note}</em></li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </li>
       ))}
-    </div>
+    </ol>
   </div>
 </section>
 
 <style>
   .why { padding-block: var(--section-y); border-block-start: 1px solid var(--color-hairline); }
-  .why__grid { display: grid; gap: var(--space-10); align-items: center; }
-  @media (width >= 64rem) { .why__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-16); } }
   .why__label { margin-block-end: var(--space-4); }
-  .why__text { font-size: var(--title-section); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: -0.035em; max-inline-size: 22ch; text-wrap: balance; color: var(--color-heading); }
+  .why__text { font-size: var(--title-section); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: -0.035em; max-inline-size: 26ch; text-wrap: balance; color: var(--color-heading); }
   .why__steps-label { font-family: var(--ff-body); font-size: var(--text-sm); color: var(--color-machine-text); margin-block: var(--space-8) var(--space-2); }
-  .why__list { margin: 0; padding: 0; list-style: none; max-inline-size: 36rem; }
-  .why__step { display: flex; align-items: flex-start; gap: var(--space-4); padding-block: var(--space-4); border-block-start: 1px solid var(--color-hairline); }
+  .why__list { display: grid; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+  @media (width >= 64rem) { .why__list { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr); align-items: start; } }
+  .why__step { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
   .why__n { flex: none; display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--blue-300) 55%, transparent); font-family: var(--ff-body); font-size: var(--text-sm); color: var(--blue-200); }
   .why__t { display: grid; gap: var(--space-1); }
   .why__t b { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: -0.015em; color: var(--color-heading); }
   .why__t span { color: var(--color-text-muted); font-size: var(--text-sm); }
-  .why__card { padding: var(--space-6); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: linear-gradient(160deg, color-mix(in oklab, var(--blue-700) 22%, var(--color-surface)), var(--color-surface) 70%); display: grid; gap: var(--space-4); }
-  @media (width >= 64rem) { .why__card { padding: var(--space-8); } }
+  .why__card { margin-block-start: var(--space-2); padding: var(--space-4); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); background: var(--color-bg); display: grid; gap: var(--space-4); }
   .why__cap { display: flex; justify-content: space-between; gap: var(--space-4); font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .why__tag { color: var(--color-text-muted); }
   .why__grp-l { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); margin-block-end: var(--space-2); }

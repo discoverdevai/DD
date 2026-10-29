@@ -2052,6 +2052,12 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.40 Home, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/home-p3.html)
+- Clients row: Arheb and Jumlaty (Saudi Arabia) open the moving row; it still moves (Oct 21 decision). Words unchanged.
+- Why DiscoverDev: the headline runs across the page; the three steps sit side by side; the example scope sits inside step 3. Words unchanged.
+- More products: Upscend's card shows its learner screen, Arheb's card its app screen (alts as on /scale). The others keep their drawings until we have screens.
+- Reviews on home: six quotes in this order: Nojoud Alarfaj and Youssef featured side by side, then Farah Alkhaldi, Andrei Chejneanu, Nile Support's CEO and Amstadd's Team Lead. Michelle Boehm, Roberto, Lea Nechitailo and Amstadd's Founder leave home; /work keeps all ten.
+
 ### 16b.39 Scale page, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/scale-p3.html)
 - Hero: Upscend's learner screen in the product frame, caption "Upscend, UK · 12 months with one embedded team" (09: 12-month embedded partnership). The "How it works month to month" card leaves the hero. Number row: Minimum 4 months · Retainer Monthly · Team size, reviewed monthly 1 to a squad.
 - "Teams that stayed" moves from seventh to second, right after the hero. Upscend's tile shows its logo (its screen is in the hero).

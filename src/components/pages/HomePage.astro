@@ -31,6 +31,8 @@ const { home: c, howWeWork } = copy(); // audit Oct 29: was the English module, 
 const base = getLocale() === 'ar' ? '/ar' : '/';
 const faqLd = faqPage(`https://discoverdev.ai${base === '/' ? '/' : base}#faq`, c.faq.items);
 const jsonLd = graph(orgFull, website, webPage(base, c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
+// Phase 3 (03 §16b.40): six quotes on home, Gulf first (Nojoud, Saudi Arabia, featured beside Youssef); /work keeps all ten.
+const HOME_REVIEWS = [1, 0, 2, 8, 4, 6];
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd} footerProof={false} footerCore={false}>
   <HomeHero />
@@ -46,7 +48,7 @@ const jsonLd = graph(orgFull, website, webPage(base, c.seo.title, c.seo.descript
     <Chapters only={HOME_CHAPTERS} />
     <Showcase />
   </div>
-  <Reviews {...c.reviews} />
+  <Reviews title={c.reviews.title} cta={c.reviews.cta} items={HOME_REVIEWS.map((i) => c.reviews.items[i])} pair />
   <FaqSplit title={c.faq.title} items={c.faq.items} />
   <CtaBand size="large" tier="primary" kind="clarity" page="home" title={c.band.title} body={c.band.body} />
 </BaseLayout>

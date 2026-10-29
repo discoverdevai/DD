@@ -12,12 +12,13 @@ export interface ClientLogo {
 }
 
 export const clientLogos: readonly ClientLogo[] = [
+  // Phase 3 (03 §16b.40, Oct 29): Gulf clients open the moving row (the Gulf is the target market).
+  { id: 'arheb', name: 'Arheb', file: 'arheb.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Smart ride-sharing data and ML · Saudi Arabia' },
+  { id: 'jumlaty', name: 'Jumlaty', file: 'jumlaty.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Restaurant procurement ML · Saudi Arabia' },
   { id: 'edulens', name: 'EduLens', file: 'edulens.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'EdTech AI platform · Egypt' },
   { id: 'upscend', name: 'Upscend', file: 'upscend.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'B2B learning platform · UK' },
-  { id: 'arheb', name: 'Arheb', file: 'arheb.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Smart ride-sharing data and ML · Saudi Arabia' },
   { id: 'nile-support', name: 'Nile Support', file: 'nile-support.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'AI call operations · USA' },
   { id: 'biobank', name: 'BioBank', file: 'biobank.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Health app for lab reports' },
-  { id: 'jumlaty', name: 'Jumlaty', file: 'jumlaty.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16', replaces: 'Restaurant procurement ML · Saudi Arabia' },
   { id: 'pyramakerz', name: 'Pyramakerz', file: 'pyramakerz.png', consent: 'D-05 · clients may be named (Mohamed, 2026-10-27); logo from pyramakerz.com' },
   { id: 'rushr', name: 'Rushr', file: 'rushr.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16' }, // D-07 lifted Oct 21 (Mohamed): the case is shown too
   { id: 'zest', name: 'Zest', file: 'zest.png', consent: 'D-05 · logo approved by Mohamed in chat, 2026-10-16' },

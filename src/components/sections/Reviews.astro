@@ -2,26 +2,30 @@
 // Client reviews (03 §2A.8c, option C "margin notes", Oct 18): the 10 verified quotes from 09 (two Amstadd Clutch reviews added Oct 23), approved by Mohamed with names and roles (D-05).
 // Quotes are verbatim. No star graphics, no AggregateRating (CLAUDE.md, 05). One featured card (the first quote) beside the other 7 quotes
 // as plain notes. Oct 18 (Mohamed): no moving content and no pause control, so the notes are a still two-column list.
+// `pair` (home, Phase 3, 03 §16b.40): two featured cards side by side (the first two quotes), the rest in one row under them.
 import ProofChip from '../ui/ProofChip.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import SectionHead from '../ui/SectionHead.astro';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
 interface Review { quote: string; name: string; role: string; service: string; result?: string }
-interface Props { label?: string; title: string; items: readonly Review[]; cta?: boolean }
-const { label, title, items, cta = false } = Astro.props;
-const [featured, ...notes] = items;
+interface Props { label?: string; title: string; items: readonly Review[]; cta?: boolean; pair?: boolean }
+const { label, title, items, cta = false, pair = false } = Astro.props;
+const lead = items.slice(0, pair ? 2 : 1);
+const notes = items.slice(lead.length);
 ---
 <section id="reviews" class="rv" data-surface="ink" data-raised aria-labelledby="rv-title">
   <div class="container">
     <SectionHead id="rv-title" label={label} title={title} measure={22} />
-    <div class="rv__grid">
-      <figure class="rv__featured">
-        <p class="rv__label">{t('reviews.featured')} · {featured.service}</p>
-        <blockquote class="rv__big"><p>{featured.quote}</p></blockquote>
-        <figcaption class="rv__by"><strong>{featured.name}</strong><span>{featured.role}</span></figcaption>
-        {featured.result && <p class="rv__result">{featured.result}</p>}
-      </figure>
+    <div class:list={['rv__grid', { 'rv__grid--pair': pair }]}>
+      {lead.map((featured) => (
+        <figure class="rv__featured">
+          <p class="rv__label">{t('reviews.featured')} · {featured.service}</p>
+          <blockquote class="rv__big"><p>{featured.quote}</p></blockquote>
+          <figcaption class="rv__by"><strong>{featured.name}</strong><span>{featured.role}</span></figcaption>
+          {featured.result && <p class="rv__result">{featured.result}</p>}
+        </figure>
+      ))}
 
       <div class="rv__side">
         <ul role="list" class="rv__notes">
@@ -72,4 +76,12 @@ const [featured, ...notes] = items;
   .rv__svc { font-size: var(--text-xs); }
   .rv :global(.rv__proof) { color: var(--color-text-muted); }
   .rv__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-block-start: var(--space-8); }
+
+  /* Pair (home): two featured cards, then the other quotes in one row of four on wide screens. */
+  @media (width >= 64rem) {
+    .rv__grid--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .rv__grid--pair .rv__featured { position: static; align-self: stretch; }
+    .rv__grid--pair .rv__side { grid-column: 1 / -1; }
+    .rv__grid--pair .rv__notes { columns: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8); }
+  }
 </style>
