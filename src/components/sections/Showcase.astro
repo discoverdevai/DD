@@ -29,7 +29,7 @@ const stageName = (s: keyof typeof c.stages) => c.stages[s];
             <div class="sc__vis"><ProjectVisual project={p} sizes="(min-width: 64rem) 30vw, (min-width: 40rem) 46vw, 85vw" /></div>
             <p class="sc__meta"><span class="sc__stage">{stageName(p.stage)}</span>{p.industry}{p.where && ` · ${p.where}`}</p>
             <h4 class="sc__h">{target(p) ? <a href={target(p)}>{p.title}</a> : p.title}</h4>
-            {p.metric && <p class="sc__metric"><b>{p.metric.value}</b><span>{p.metric.label}</span></p>}
+            {p.metric && <p class="sc__metric"><b dir="auto">{p.metric.value}</b><span>{p.metric.label}</span></p>}
             <p class="sc__txt">{p.result ?? p.did}</p>
             {p.link && target(p) && <p class="sc__more" aria-hidden="true">{c.caseLink}<span class="icon--dir"> →</span></p>}
           </li>

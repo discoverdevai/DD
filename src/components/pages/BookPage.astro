@@ -66,8 +66,9 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
   @media (width >= 64rem) { .book__grid { grid-template-columns: 8fr 4fr; gap: var(--space-16); align-items: start; } }
   .book__main { display: grid; gap: var(--space-6); min-inline-size: 0; }
   /* Phones: what happens on the call comes before the calendar; the sidebar copy of it is hidden there so nothing repeats (UX audit P1-1c). */
-  @media (width >= 64rem) { .book__brief { display: none; } }
-  @media (width < 64rem) { .book__call { display: none; } }
+  /* Design review Oct 29: `.side-block` comes later with the same weight, so these name both classes to win. */
+  @media (width >= 64rem) { .book__brief.side-block { display: none; } }
+  @media (width < 64rem) { .book__call.side-block { display: none; } }
   .opts { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .opt { display: inline-flex; align-items: center; min-block-size: 2.75rem; padding-inline: var(--space-4); border: 1px solid var(--color-border-control); border-radius: var(--radius-sm); color: var(--color-text); text-decoration: none; font-weight: var(--weight-medium); }
   /* Selected option: filled, not just a thicker border, so the choice reads at a glance (CRO review). */

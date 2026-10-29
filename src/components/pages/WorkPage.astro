@@ -34,7 +34,7 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
     <div class="container">
       <h2 id="wk-nums" class="sr-only">{c.numbersTitle}</h2>
       <ul role="list" class="wk__nums">
-        {c.numbers.map((n) => <li class="wk__num"><b class="wk__val">{n.value}</b><span class="wk__lab">{n.label}</span><span class="wk__who">{n.who}</span></li>)}
+        {c.numbers.map((n) => <li class="wk__num"><b class="wk__val" dir="auto">{n.value}</b><span class="wk__lab">{n.label}</span><span class="wk__who">{n.who}</span></li>)}
       </ul>
     </div>
   </section>

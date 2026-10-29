@@ -21,7 +21,7 @@ const { c, low, high, quote, big } = Astro.props;
     <p class="tag">{c.label} · {c.where}</p>
     {big ? (
       <>
-        <p class="case__big">{big.value}</p>
+        <p class="case__big" dir="auto">{big.value}</p>
         <h3 class="case__name case__name--big">{big.label}</h3>
       </>
     ) : (

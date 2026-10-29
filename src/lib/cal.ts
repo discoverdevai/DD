@@ -74,7 +74,8 @@ export function renderCal(o: RenderOpts): boolean {
   for (const [k, v] of Object.entries(o.metadata)) config[`metadata[${k}]`] = v;
   api('inline', { elementOrSelector: o.el, calLink: `${calUsername}/${SLUG[o.type]}`, config });
   quietPlaceholder(o.el);
-  api('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#1240BE' }, light: { 'cal-brand': '#1240BE' } }, hideEventTypeDetails: false });
+  // Design review Oct 29: Cal's own surfaces take the site's ink (blue-975 / blue-950) so the embed reads as one page.
+  api('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#1240BE', 'cal-bg': '#01082D', 'cal-bg-muted': '#001155', 'cal-bg-subtle': '#001155', 'cal-bg-emphasis': '#032177', 'cal-border': '#1e2c66', 'cal-border-subtle': '#162258' }, light: { 'cal-brand': '#1240BE' } }, hideEventTypeDetails: true });
   api('on', { action: 'linkReady', callback: o.onReady });
   api('on', { action: 'linkFailed', callback: o.onFailed });
   api('on', { action: 'bookerViewed', callback: (e: CustomEvent<{ data?: { slotsLoaded?: boolean } }>) => o.onViewed(Boolean(e.detail?.data?.slotsLoaded)) });

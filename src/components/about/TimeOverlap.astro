@@ -31,6 +31,8 @@ const { label, places, hubTag, text } = Astro.props;
   .tz__place { position: relative; display: flex; align-items: center; gap: var(--space-3); min-inline-size: 0; }
   .tz__dot { flex: none; inline-size: 0.875rem; block-size: 0.875rem; border-radius: var(--radius-pill); background: var(--color-surface); border: 2px solid var(--color-machine-mark); }
   .tz__name { font-size: var(--text-sm); color: var(--color-text); overflow-wrap: normal; white-space: nowrap; } /* city names never split ("Alexandri a") */
+  /* Arabic names are longer ("شرق الولايات المتحدة"): they wrap between words so neighbours never overlap (design review Oct 29). */
+  :global(:root:lang(ar)) .tz__name { white-space: normal; text-wrap: balance; text-align: center; }
   .tz__tag { font-size: var(--text-xs); color: var(--color-human-text); white-space: nowrap; }
   .tz__place--hub .tz__dot { background: var(--color-action-bg); border-color: var(--color-action-bg); }
   .tz__place--hub .tz__name { font-weight: var(--weight-medium); color: var(--color-heading); }
