@@ -2052,6 +2052,16 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.29 Scale FAQ, short (Oct 29; replaces §7.10 on /scale)
+- H2: Questions about Scale. Six questions:
+- What is the minimum commitment? / Four months for a dedicated team and three for staff augmentation. White-label work is scoped per project.
+- Who manages the team? / Our product manager runs the backlog and sprints with you. You set the priorities and keep the roadmap.
+- What if someone isn't the right fit? / We replace them at no cost, at any time. To test us first, start with a 2–4 week proof of concept.
+- Can the squad grow or shrink? / Yes. We review the team size with you every month, from one specialist to a full squad.
+- Who owns the IP? / You do. Every option starts with an NDA, and the IP goes to you, white-label work included.
+- What hours and languages do you work in? / We are in Alexandria, Egypt (GMT+2), 0–2 hours behind the Gulf, with overlap for Europe and US mornings. We work in Arabic and English.
+- "How quickly can a squad start?" stays out until V22 is answered. AR in src/content/copy/ar/scale.ts.
+
 ### 16b.28 Scale proof: client worlds (Oct 29)
 - Title "Teams that stayed"; lead "Four clients expanded their work with us."
 - NJWAR · "2 phases" · "Feasibility sprints, then the AR furniture store. Saudi Arabia." (named NJWAR, not Athkado, for now)

@@ -70,7 +70,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   <ScaleProof c={c.proof} />
 
   <JourneyStop label={c.stages.faq} />
-  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="scale" />
+  <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="scale" openFirst />
 
   <JourneyStop label={c.stages.close} end />
   <CtaBand title={c.band.title} kind="clarity" page="scale" />

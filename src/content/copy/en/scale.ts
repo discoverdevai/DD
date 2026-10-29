@@ -201,16 +201,13 @@ export const scale = {
   faq: {
     title: 'Questions about Scale',
     items: [
-      // V22 → §0.7 omit the "continues month to month" clause.
-      { id: 'minimum', q: 'What is the minimum commitment for a dedicated team?', a: 'Four months. That gives the squad time to learn your product and deliver steadily.' },
-      { id: 'management', q: 'Who manages the team?', a: 'The squad’s product manager runs the backlog and sprints together with you. You set priorities. You keep control of the roadmap.' },
-      // [VERIFY: V22 notice period] → §0.7 omit the notice clause (tag removed).
-      { id: 'replacement', q: 'What if a squad member isn’t the right fit?', a: 'We replace them at no cost. Tell us at any time, and we bring in someone who fits your product and your team. If you want to test us first, start with a proof of concept in 2–4 weeks before you commit to a squad.' },
-      { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month. A squad can start with one specialist and grow to developers, QA, a product manager and a designer as your roadmap needs it. The minimum commitment is four months, which gives the squad time to learn your product and deliver steadily.' },
-      // "How quickly can a squad start?" omitted (§0.7 V22: answer is the tag only).
-      { id: 'ip', q: 'Who owns the IP in a white-label project?', a: 'You do. White-label work runs under an NDA, and the IP goes to you so you can pass it to your client. The details are in the contract from day one.' },
-      { id: 'minimum-term', q: 'What is the minimum term for staff augmentation?', a: 'Three months. That gives the engineer time to learn your codebase and deliver. White-label work is scoped per project.' },
-      { id: 'hours', q: 'What hours and languages do you work in?', a: 'Our hub is in Alexandria, Egypt (GMT+2). Gulf time is 0–2 hours ahead, and our day overlaps the Gulf, Europe and US mornings. We work in Arabic and English.' },
+      // 03 §16b.29 (Oct 29): six short answers; the two minimum questions merged; no repeats.
+      { id: 'minimum', q: 'What is the minimum commitment?', a: 'Four months for a dedicated team and three for staff augmentation. White-label work is scoped per project.' },
+      { id: 'management', q: 'Who manages the team?', a: 'Our product manager runs the backlog and sprints with you. You set the priorities and keep the roadmap.' },
+      { id: 'replacement', q: 'What if someone isn’t the right fit?', a: 'We replace them at no cost, at any time. To test us first, start with a 2–4 week proof of concept.' },
+      { id: 'resize', q: 'Can the squad grow or shrink?', a: 'Yes. We review the team size with you every month, from one specialist to a full squad.' },
+      { id: 'ip', q: 'Who owns the IP?', a: 'You do. Every option starts with an NDA, and the IP goes to you, white-label work included.' },
+      { id: 'hours', q: 'What hours and languages do you work in?', a: 'We are in Alexandria, Egypt (GMT+2), 0–2 hours behind the Gulf, with overlap for Europe and US mornings. We work in Arabic and English.' },
     ],
   },
   // §16b.2: For software houses (§8.3 answer and table).
