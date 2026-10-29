@@ -3,11 +3,13 @@
 // (dashed blue, mono tag) → A senior signs (the same screen made solid, a dark review panel with checks, signature and a
 // green stamp) → Live (the finished screen in colour, Live chip, a rising usage line). Redesigned Oct 16: one screen, four
 // states, all on the dark theme (the white sheet and the empty phone read as off-brand).
-// Illustration, not a client product. Plays once at 35% visible: cards rise in order, then the signature, stamp and
+// Oct 29 (03 §16b.44, Mohamed): step 3 is now a page of the review log (the senior's note, the fix as a diff, Signed off)
+// instead of the solid screen with a checklist. Illustration, not a client product. Plays once at 35% visible: cards rise in order, then the signature, stamp and
 // live dot land. Transform and opacity only. No JS or reduced motion: the finished state.
 interface Step { title: string; line: string }
-interface Props { caption: string; steps: readonly Step[]; tag: string; checks: readonly string[]; stamp: string; live: string }
-const { caption, steps, tag, checks, stamp, live } = Astro.props;
+interface Review { badge: string; who: string; note: string; code: readonly string[] }
+interface Props { caption: string; steps: readonly Step[]; tag: string; review: Review; stamp: string; live: string }
+const { caption, steps, tag, review, stamp, live } = Astro.props;
 
 // The shared screen layout (viewBox 0 0 160 120): bar, picture, three text lines, button, three cards.
 const pic = { x: 12, y: 22, w: 62, h: 48 };
@@ -58,24 +60,12 @@ const check = 'M20 6 9 17l-5-5';
             </>
           )}
           {i === 2 && (
-            <>
-              <svg viewBox="0 0 160 120" aria-hidden="true" focusable="false" class="wf__svg wf__solid">
-                <rect x="4" y="4" width="152" height="112" rx="4" />
-                <path d="M4 14H156" />
-                <rect x={pic.x} y={pic.y} width={pic.w} height={pic.h} rx="2" />
-                {lines.map((l) => <path d={`M${l.x} ${l.y}H${l.x + l.w}`} />)}
-                <rect x={btn.x} y={btn.y} width={btn.w} height={btn.h} rx="3" />
-              </svg>
-              <div class="wf__review">
-                <ul role="list" class="wf__checks">
-                  {checks.map((c) => <li><svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg>{c}</li>)}
-                </ul>
-                <div class="wf__signrow">
-                  <svg viewBox="0 0 120 32" aria-hidden="true" focusable="false" class="wf__sig"><path d="M4 22c6-10 10-16 13-14s-4 16 0 15 9-14 13-13-2 11 2 11 7-8 11-8 2 6 6 6 8-6 13-6 5 4 10 3 12-5 18-6 10 1 22-2" /></svg>
-                  <span class="wf__stamp"><svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg>{stamp}</span>
-                </div>
-              </div>
-            </>
+            <div class="wf__log" aria-hidden="true">
+              <p class="wf__who"><span class="wf__av">{review.badge}</span>{review.who}</p>
+              <p class="wf__note">{review.note}</p>
+              <p class="wf__code" dir="ltr">{review.code.map((l) => <span class:list={[l.startsWith('+') ? 'wf__add' : 'wf__del']}>{l}</span>)}</p>
+              <p class="wf__ok"><span class="wf__stamp">{stamp}</span><svg viewBox="0 0 24 24" width="12" height="12"><path d={check} fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" /></svg></p>
+            </div>
           )}
           {i === 3 && (
             <>
@@ -129,19 +119,19 @@ const check = 'M20 6 9 17l-5-5';
   .wf__chalk .wf__chalk-2 { stroke-width: 0.7; opacity: 0.35; translate: 0.6px 0.5px; }
   .wf__draft :is(rect, path) { fill: none; stroke: var(--color-machine-mark); stroke-width: 1.2; stroke-dasharray: 4 3; }
   .wf__tag { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); padding: 1px 6px; border-radius: var(--radius-xs); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-machine-text); background: color-mix(in oklab, var(--color-machine-mark) 16%, var(--color-bg)); }
-  /* 3 · reviewed: the draft made solid, with a dark review panel docked at the bottom. */
-  .wf__solid :is(rect, path) { fill: none; stroke: var(--blue-200); stroke-width: 1.2; opacity: 0.55; }
-  .wf__review { position: absolute; inset-inline: var(--space-2); inset-block-end: var(--space-2); display: grid; gap: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-bg) 88%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 40%, transparent); box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--color-human-mark) 45%, transparent); }
-  /* Phones: same small picture as the other cards; only the stamp shows over the solid screen (the checklist is in the
-     step text and on wider screens). */
-  @media (width < 36rem) { .wf__review { inset: auto var(--space-2) var(--space-2) auto; padding: 0; background: none; border: 0; box-shadow: none; } .wf__review .wf__checks, .wf__review .wf__sig { display: none; } .wf__signrow { border: 0; padding: 0; } }
-  .wf__checks { display: grid; gap: 4px; font-size: var(--text-xs); line-height: 1.3; color: var(--color-text); }
-  .wf__checks li { display: flex; align-items: center; gap: 6px; }
-  .wf__checks svg { flex: none; color: var(--color-human-mark); }
-  .wf__signrow { display: flex; align-items: end; justify-content: space-between; gap: var(--space-2); border-block-start: 1px solid var(--color-hairline); padding-block-start: var(--space-2); }
-  .wf__sig { inline-size: 50%; max-inline-size: 6rem; }
-  .wf__sig path { fill: none; stroke: var(--blue-300); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .wf__stamp { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xs); white-space: nowrap; color: var(--color-human-text); background: color-mix(in oklab, var(--color-human-mark) 14%, transparent); border: 1px solid var(--color-human-mark); }
+  /* 3 · reviewed: a page of the review log, the senior's badge, note, the fix as a diff, then Signed off. */
+  .wf__log { position: absolute; inset: 0; display: grid; align-content: center; gap: 6px; padding: var(--space-3); font-size: var(--text-xs); line-height: 1.35; }
+  .wf__who { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text-muted); }
+  .wf__av { flex: none; display: grid; place-items: center; min-inline-size: 1.5rem; block-size: 1.5rem; padding-inline: 4px; border-radius: 999px; background: var(--color-human-mark); color: var(--blue-975); font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: 0.6875rem; }
+  .wf__note { padding: 5px var(--space-2); border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) 2px; border: 1px solid color-mix(in oklab, var(--color-human-mark) 40%, transparent); background: color-mix(in oklab, var(--color-human-mark) 12%, transparent); color: var(--color-heading); }
+  :dir(rtl) .wf__note { border-radius: var(--radius-sm) var(--radius-sm) 2px var(--radius-sm); }
+  .wf__code { display: grid; padding: 6px var(--space-2); border-radius: var(--radius-sm); background: var(--color-surface); font-family: var(--font-mono, "JetBrains Mono", ui-monospace, monospace); font-size: 0.6875rem; line-height: 1.5; white-space: pre; overflow: hidden; }
+  .wf__del { color: var(--red-300); }
+  .wf__add { color: var(--color-human-mark); }
+  .wf__ok { display: flex; justify-content: space-between; align-items: center; padding: 5px var(--space-2); border-radius: var(--radius-sm); background: color-mix(in oklab, var(--color-human-mark) 14%, transparent); color: var(--color-human-mark); }
+  .wf__stamp { font-family: var(--ff-heading); font-weight: var(--weight-bold); white-space: nowrap; }
+  /* Phones: the small picture keeps the badge, the note and Signed off. */
+  @media (width < 36rem) { .wf__log { gap: 4px; padding: var(--space-2); } .wf__code { display: none; } }
   /* 4 · live: the same screen finished, in brand colour, with a rising usage line. */
   .wf__live { position: absolute; z-index: 1; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 999px; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xs); color: var(--color-human-text); background: color-mix(in oklab, var(--color-bg) 80%, transparent); }
   .wf__dot { inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-human-mark) 25%, transparent); }
@@ -158,21 +148,19 @@ const check = 'M20 6 9 17l-5-5';
 
   /* Once on view: steps rise in order (300ms apart), then the signature, the stamp and the live dot land. ≈2.3s. */
   @media (prefers-reduced-motion: no-preference) {
-    .wf[data-armed]:not([data-play]) :is(.wf__step, .wf__sig, .wf__stamp, .wf__dot, .wf__ph-screen) { opacity: 0; }
+    .wf[data-armed]:not([data-play]) :is(.wf__step, .wf__ok, .wf__dot, .wf__ph-screen) { opacity: 0; }
     .wf[data-play] .wf__step { animation: wf-rise 600ms var(--ease-enter) both; }
     .wf[data-play] .wf__step--2 { animation-delay: 300ms; }
     .wf[data-play] .wf__step--3 { animation-delay: 600ms; }
     .wf[data-play] .wf__step--4 { animation-delay: 900ms; }
-    .wf[data-play] .wf__sig { animation: wf-sign 500ms var(--ease-enter) 1300ms both; }
-    .wf[data-play] .wf__stamp { animation: wf-stamp 420ms var(--ease-enter) 1650ms both; }
+    .wf[data-play] .wf__ok { animation: wf-stamp 420ms var(--ease-enter) 1650ms both; }
     .wf[data-play] .wf__ph-screen { animation: wf-fade 500ms var(--ease-enter) 1500ms both; }
     .wf[data-play] .wf__dot { animation: wf-stamp 380ms var(--ease-enter) 1950ms both; }
     @keyframes wf-rise { from { opacity: 0; translate: 0 1rem; } to { opacity: 1; translate: 0 0; } }
-    @keyframes wf-sign { from { opacity: 0; translate: -6px 0; } to { opacity: 1; translate: 0 0; } }
     @keyframes wf-stamp { from { opacity: 0; scale: 0.6; } to { opacity: 1; scale: 1; } }
     @keyframes wf-fade { from { opacity: 0; } to { opacity: 1; } }
   }
   @media (forced-colors: active) {
-    .wf__chalk path, .wf__draft :is(rect, path), .wf__solid :is(rect, path), .wf__sig path, .wf__f-trend { stroke: CanvasText; }
+    .wf__chalk path, .wf__draft :is(rect, path), .wf__f-trend { stroke: CanvasText; }
   }
 </style>

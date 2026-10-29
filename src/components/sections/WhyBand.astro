@@ -4,10 +4,13 @@
 // Phones: headline, steps, then the card.
 // Phase 3 (03 §16b.40, Oct 29): no longer words-left, card-right like the two sections after it. The headline runs across
 // the page, the three steps sit side by side as cards, and the example scope sits inside step 3, the step it shows.
+// Oct 29 (03 §16b.45, option A): a proof card under steps 1 and 2 (Athkado's feasibility sprints, Validate's terms); on
+// wide screens steps 1 and 2 share one height and the left column ends level with step 3, so every box lines up.
 interface Step { title: string; body: string }
 interface Group { label: string; mark: 'in' | 'next' | 'later'; items: readonly { name: string; note: string }[] }
-interface Props { id: string; label: string; headline: string; stepsLabel: string; steps: readonly Step[]; card: { name: string; tag: string; groups: readonly Group[] } }
-const { id, label, headline, stepsLabel, steps, card } = Astro.props;
+interface Proof { who: string; text: string; facts: readonly { value: string; label: string }[] }
+interface Props { id: string; label: string; headline: string; stepsLabel: string; steps: readonly Step[]; card: { name: string; tag: string; groups: readonly Group[] }; proof: Proof }
+const { id, label, headline, stepsLabel, steps, card, proof } = Astro.props;
 const glyph = { in: '✓', next: '→', later: '·' } as const;
 ---
 <section id={id} class="why" data-surface="ink" aria-labelledby={`${id}-title`}>
@@ -15,6 +18,7 @@ const glyph = { in: '✓', next: '→', later: '·' } as const;
     <p class="section-label why__label">{label}</p>
     <h2 id={`${id}-title`} class="why__text reveal">{headline}</h2>
     <p class="why__steps-label">{stepsLabel}</p>
+    <div class="why__body">
     <ol role="list" class="why__list reveal-stagger">
       {steps.map((s, i) => (
         <li class:list={['why__step', { 'why__step--card': i === steps.length - 1 }]}>
@@ -38,6 +42,12 @@ const glyph = { in: '✓', next: '→', later: '·' } as const;
         </li>
       ))}
     </ol>
+    <figure class="why__proof reveal">
+      <p class="why__proof-who">{proof.who}</p>
+      <blockquote class="why__proof-text"><p>{proof.text}</p></blockquote>
+      <dl class="why__facts">{proof.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
+    </figure>
+    </div>
   </div>
 </section>
 
@@ -47,7 +57,16 @@ const glyph = { in: '✓', next: '→', later: '·' } as const;
   .why__text { font-size: var(--title-section); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: -0.035em; max-inline-size: 26ch; text-wrap: balance; color: var(--color-heading); }
   .why__steps-label { font-family: var(--ff-body); font-size: var(--text-sm); color: var(--color-machine-text); margin-block: var(--space-8) var(--space-2); }
   .why__list { display: grid; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
-  @media (width >= 64rem) { .why__list { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr); align-items: start; } }
+  .why__body { display: grid; gap: var(--space-4); }
+  /* Wide screens: one grid for steps and proof. Steps 1 and 2 share row 1, the proof spans them in row 2, step 3 spans
+     both rows; rows stretch, so all boxes line up top and bottom. */
+  @media (width >= 64rem) {
+    .why__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr); grid-template-rows: auto 1fr; }
+    .why__list { display: contents; }
+    .why__step { grid-row: 1; }
+    .why__step--card { grid-column: 3; grid-row: 1 / span 2; }
+    .why__proof { grid-column: 1 / span 2; grid-row: 2; }
+  }
   .why__step { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-6); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
   .why__n { flex: none; display: grid; place-items: center; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--blue-300) 55%, transparent); font-family: var(--ff-body); font-size: var(--text-sm); color: var(--blue-200); }
   .why__t { display: grid; gap: var(--space-1); }
@@ -65,4 +84,12 @@ const glyph = { in: '✓', next: '→', later: '·' } as const;
   .why__grp--in .why__ck { color: var(--color-human-mark); }
   .why__grp--next .why__ck { color: var(--blue-200); }
   .why__grp--later .why__row { color: var(--color-text-muted); border-style: dashed; }
+  .why__proof { margin: 0; display: grid; gap: var(--space-4); align-content: center; padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid color-mix(in oklab, var(--color-human-mark) 35%, transparent); background: linear-gradient(160deg, color-mix(in oklab, var(--color-human-mark) 8%, var(--color-surface)), var(--color-surface) 60%); }
+  .why__proof-who { font-size: var(--text-sm); color: var(--color-human-mark); }
+  .why__proof-text { margin: 0; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xl); line-height: 1.35; color: var(--color-heading); }
+  .why__facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding-block-start: var(--space-4); border-block-start: 1px solid var(--color-hairline); }
+  .why__facts div { display: grid; gap: 2px; align-content: start; padding-inline: var(--space-4); border-inline-start: 1px solid var(--color-hairline); }
+  .why__facts div:first-child { padding-inline-start: 0; border-inline-start: 0; }
+  .why__facts dt { order: 2; font-size: var(--text-sm); color: var(--color-text-muted); }
+  .why__facts dd { order: 1; margin: 0; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-lg); color: var(--color-heading); }
 </style>

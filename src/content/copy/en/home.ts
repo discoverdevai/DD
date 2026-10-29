@@ -69,7 +69,8 @@ export const home = {
         { title: 'Live', line: 'Your users get it, and we keep improving it.' },
       ],
       tag: 'AI draft',
-      checks: ['Decisions made by senior engineers', 'Sign-off on every release'],
+      // Oct 29 (03 §16b.44): step 3 shows a page of the review log: the senior's note, the fix, the sign-off.
+      review: { badge: 'SE', who: 'Senior · review', note: 'Keys move to the server. Then it ships.', code: ['- key in browser code', '+ key on the server'] },
       stamp: 'Signed off',
       live: 'Live',
     },
@@ -166,6 +167,16 @@ export const home = {
   problem: {
     label: 'Why DiscoverDev',
     headline: 'Most teams just build what you ask for. We start with what proves the idea.',
+    // Oct 29 (03 §16b.45): a real Gulf result for "Test the idea" (09: Athkado feasibility sprints) and Validate's terms.
+    proof: {
+      who: 'Athkado · Saudi Arabia',
+      text: 'Feasibility sprints across several startup ideas, each ending in a build, pivot or shelve decision.',
+      facts: [
+        { value: '1–2 weeks', label: 'Validate' },
+        { value: 'Fixed fee', label: 'Agreed before we start' },
+        { value: 'Credited', label: 'Toward your Build' },
+      ],
+    },
     stepsLabel: 'Before any code',
     steps: [
       { title: 'Test the idea', body: 'Check the market and the competitors before you spend on code.' },

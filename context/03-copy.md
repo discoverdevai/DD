@@ -2052,6 +2052,16 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.45 Home Why: proof card under steps 1 and 2 (Oct 29; Mohamed chose option A in .taste-skill/why-fill.html, "make all the boxes the same sizes")
+- Under "Test the idea" and "Sketch the product", one card: "Athkado · Saudi Arabia" / "Feasibility sprints across several startup ideas, each ending in a build, pivot or shelve decision." (09) / three facts: "1–2 weeks · Validate", "Fixed fee · Agreed before we start", "Credited · Toward your Build".
+- Wide screens: steps 1 and 2 share one height and the left column ends level with step 3.
+- Arabic: the same in ar/home.ts (draft until the native review).
+
+### 16b.44 The DiscoverDev Way, step 3 picture (home, Oct 29; Mohamed: "we want option b in the 3rd step only", .taste-skill/way-visuals.html)
+- Steps 1, 2 and 4 keep their drawings. Step 3 becomes a page of the review log: badge "SE", "Senior · review", the note "Keys move to the server. Then it ships.", the fix as a diff ("- key in browser code" / "+ key on the server", code stays in English), then "Signed off".
+- The two review checks ("Decisions made by senior engineers", "Sign-off on every release") leave the picture.
+- Arabic: the same in ar/home.ts (draft until the native review).
+
 ### 16b.43 Book, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/book-p3.html)
 - Above the calendar: "Gulf and US hours. Times show in your time zone." (the hours promise is already in this page's meta description).
 - The side becomes three cards: what happens on the call (with "No pitch." and "NDA on request." as chips; "What you can count on" stays as a screen-reader heading), Nojoud Alarfaj's quote with the Clutch rating, and "Prefer to write?". The side stays in view on wide screens.

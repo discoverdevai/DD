@@ -37,7 +37,7 @@ const HOME_REVIEWS = [1, 0, 2, 8, 4, 6];
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="home" jsonLd={jsonLd} footerProof={false} footerCore={false}>
   <HomeHero />
   <ProofBand title={c.proofStrip.title} logosTitle={c.proofStrip.logosTitle} clientRoles={c.proofStrip.clientRoles} map={c.proofStrip.map} items={c.proofStrip.items} projects={c.proofStrip.projects} />
-  <WhyBand id="why" label={c.problem.label} headline={c.problem.headline} stepsLabel={c.problem.stepsLabel} steps={c.problem.steps} card={c.problem.card} />
+  <WhyBand id="why" label={c.problem.label} headline={c.problem.headline} stepsLabel={c.problem.stepsLabel} steps={c.problem.steps} card={c.problem.card} proof={c.problem.proof} />
   <HomeQuiz c={c.quiz} scope={c.engagements.scope} />
   <Statement id="how-we-work" label={c.agile.label} bright={c.agile.bright} dim={c.agile.dim} display split>
     <AgileSplit body={c.agile.body} more={isLive('howWeWork') ? { label: howWeWork.more, href: href('howWeWork') } : undefined}>
