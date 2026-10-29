@@ -1,6 +1,8 @@
 ---
 // /scale and /ar/scale (03 §7 + §16b.2, lean R1): a team that stays, with the Partners page folded in as one section
 // (white-label or staff augmentation, compared). All on the ink theme like home (Oct 26).
+// Phase 3 (03 §16b.39, Oct 29): Upscend's real screen in the hero; "Teams that stayed" comes right after it; the deal is one
+// card with one promise band; software houses read as one table with the Amstadd quote beside the button.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
 import Section from '../sections/Section.astro';
@@ -8,7 +10,7 @@ import FitQuiz from '../sections/FitQuiz.astro';
 import ScaleProof from '../sections/ScaleProof.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
-import ServiceGlance from '../scenes/ServiceGlance.astro';
+import HeroShot from '../scenes/HeroShot.astro';
 import SquadGrowth from '../sections/SquadGrowth.astro';
 import SquadPieces from '../sections/SquadPieces.astro';
 import WhatYouGet from '../sections/WhatYouGet.astro';
@@ -37,13 +39,16 @@ const faqLd = faqPage(`${url}#faq`, c.faq.items);
 const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
-  <PageHero page="scale" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
+  <PageHero page="scale" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} meta={c.hero.meta} cta="clarity">
     <p slot="link" class="ways">{c.hero.ways.map((w) => <a href={`#${w.anchor}`}>{w.label}<span class="icon--dir" aria-hidden="true">→</span></a>)}</p>
-    <ServiceGlance slot="aside" name={t('nav.scale')} label={c.process.title} steps={c.process.steps} meta={c.hero.meta} />
+    <HeroShot slot="aside" c={c.hero.shot} />
   </PageHero>
 
   <!-- Journey (shared with Build, Oct 27): one line from joining to a team that stays; even gaps between stops. -->
   <Journey>
+  <JourneyStop label={c.stages.proof} />
+  <ScaleProof c={c.proof} />
+
   <JourneyStop label={c.stages.squad} />
   <SquadGrowth c={c.growth} chip={c.process.steps[1].chip} />
 
@@ -59,15 +64,14 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   <JourneyStop label={c.stages.partners} />
   <Section id="partners" surface="raised" title={c.partners.short.title} lead={c.partners.short.lead}>
     <OptionCards caption={c.partners.caption} columns={c.partners.short.columns} bestFor={c.partners.short.lines} rows={c.partners.short.rows} />
-    <div class="partners__cta">
-      <CtaLink href={partnerHref} ctaId="scale_mid_clarity_partners" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
-      <CtaTerms kind="clarity" />
+    <div class="partners__say">
+      <div class="partners__quote"><Quote text={c.partners.quote.text} name={c.partners.quote.name} role={c.partners.quote.role} /></div>
+      <div class="partners__cta">
+        <CtaLink href={partnerHref} ctaId="scale_mid_clarity_partners" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink>
+        <CtaTerms kind="clarity" />
+      </div>
     </div>
-    <div class="partners__quote"><Quote text={c.partners.quote.text} name={c.partners.quote.name} role={c.partners.quote.role} /></div>
   </Section>
-
-  <JourneyStop label={c.stages.proof} />
-  <ScaleProof c={c.proof} />
 
   <JourneyStop label={c.stages.faq} />
   <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="scale" openFirst />
@@ -78,6 +82,8 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 </BaseLayout>
 
 <style>
-  .partners__cta { display: grid; gap: var(--space-2); justify-items: start; margin-block-start: var(--space-6); }
-  .partners__quote { margin-block-start: var(--space-10); }
+  /* The Amstadd quote (a UK software house) beside the button, so the proof sits where the decision is. */
+  .partners__say { display: grid; gap: var(--space-6); align-items: center; margin-block-start: var(--space-8); }
+  @media (width >= 64rem) { .partners__say { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-12); } }
+  .partners__cta { display: grid; gap: var(--space-2); justify-items: start; }
 </style>

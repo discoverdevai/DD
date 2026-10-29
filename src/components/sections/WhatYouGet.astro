@@ -42,7 +42,7 @@ const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${bo
           <p class="wyg__value">{t.value}</p>
           <p class="wyg__body">{t.body}</p>
           {t.link && <p class="wyg__more"><InlineLink text="" link={t.link} /></p>}
-          {t.assure && (
+          {t.assure && !c.sow && (
             <div class="wyg__assure">
               <p><b>{t.assure.lead}</b> {t.assure.text}</p>
               <div class="wyg__assure-actions">
@@ -55,6 +55,12 @@ const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${bo
       ))}
     </ul>
     </div>
+    {c.sow && c.tiles.some((t) => t.assure) && (
+      <div class="wyg__promises reveal">
+        {c.tiles.filter((t) => t.assure).map((t) => <p><b>{t.assure!.lead}</b> {t.assure!.text}{t.assure!.link && <> <a class="wyg__assure-link" href={`#${t.assure!.link.anchor}`}>{t.assure!.link.label}<span class="icon--dir" aria-hidden="true">→</span></a></>}</p>)}
+        {c.tiles.filter((t) => t.assure?.cta).map((t) => <CtaLink href={bookFor(t.assure!.cta!.interest)} ctaId={`${page}_card_clarity_${t.id}`} tier="low_commitment" position="card" target="clarity" variant="secondary" size="sm">{t.assure!.cta!.label}</CtaLink>)}
+      </div>
+    )}
   </div>
 </section>
 
@@ -106,4 +112,8 @@ const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${bo
     .wyg__sow .wyg__tile:nth-child(even) { border-inline-start: 1px solid var(--color-hairline); }
   }
   @media (width >= 72rem) { .wyg__sow .wyg__tile { border-block-start: 0; } .wyg__sow .wyg__tile + .wyg__tile { border-inline-start: 1px solid var(--color-hairline); } }
+  .wyg__promises { display: grid; gap: var(--space-4) var(--space-8); align-items: center; padding: var(--space-5) var(--space-6); border-radius: var(--radius-md); border: 1px solid color-mix(in oklab, var(--color-human-mark) 35%, transparent); background: color-mix(in oklab, var(--color-human-mark) 6%, transparent); font-size: var(--text-sm); color: var(--color-text); margin-block-start: calc(var(--space-4) * -1); }
+  @media (width >= 64rem) { .wyg__promises { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; } }
+  .wyg__promises b { font-family: var(--ff-heading); color: var(--color-human-mark); }
+  .wyg__promises .wyg__assure-link { padding-block: 0; }
 </style>

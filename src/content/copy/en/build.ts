@@ -18,7 +18,7 @@ export const build = {
       { anchor: 'review', label: 'Built it with AI? Review it first' },
     ],
     // Phase 3 (03 §16b.38): a real client screen beside the copy; the path becomes the number row under the lead.
-    shot: { caption: 'NJWAR, an AR furniture store we built for Athkado, Saudi Arabia', alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room' },
+    shot: { bar: 'njwar store', web: 'njwar-web.webp', phone: 'njwar-ar.webp', caption: 'NJWAR, an AR furniture store we built for Athkado, Saudi Arabia', alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room' },
     nums: [
       { label: 'Validate', value: '1–2 weeks' },
       { label: 'Build', value: '8–12 weeks' },

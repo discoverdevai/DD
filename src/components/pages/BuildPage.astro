@@ -10,7 +10,7 @@ import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import Journey from '../sections/Journey.astro';
 import JourneyStop from '../sections/JourneyStop.astro';
-import BuildShot from '../scenes/BuildShot.astro';
+import HeroShot from '../scenes/HeroShot.astro';
 import BuildProof from '../sections/BuildProof.astro';
 import Quote from '../blocks/Quote.astro';
 import WeekTrack from '../sections/WeekTrack.astro';
@@ -34,7 +34,7 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
   <PageHero page="build" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} meta={c.hero.nums} cta="clarity">
     <p slot="link" class="ways">{c.hero.ways.map((w) => <a href={`#${w.anchor}`}>{w.label}<span class="icon--dir" aria-hidden="true">→</span></a>)}</p>
-    <BuildShot slot="aside" c={c.hero.shot} />
+    <HeroShot slot="aside" c={c.hero.shot} />
   </PageHero>
 
   <!-- Journey (03 §16b.7): one line from idea to launch. Each stop marks the section after it; the background deepens

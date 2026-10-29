@@ -19,7 +19,7 @@ export const build: Widen<typeof en> = {
       { anchor: 'process', label: 'فكرة جديدة؟ ابدأ بالتحقق' },
       { anchor: 'review', label: 'بنيته بالذكاء الاصطناعي؟ راجعه أولًا' },
     ],
-    shot: { caption: 'NJWAR، متجر أثاث بالواقع المعزز بنيناه لـ Athkado في السعودية', alt: 'متجر NJWAR على الويب بالعربية، ومعه عرض الواقع المعزز على الجوال يضع كرسيًا في غرفة حقيقية' },
+    shot: { bar: 'njwar store', web: 'njwar-web.webp', phone: 'njwar-ar.webp', caption: 'NJWAR، متجر أثاث بالواقع المعزز بنيناه لـ Athkado في السعودية', alt: 'متجر NJWAR على الويب بالعربية، ومعه عرض الواقع المعزز على الجوال يضع كرسيًا في غرفة حقيقية' },
     nums: [
       { label: 'التحقق', value: 'من أسبوع إلى أسبوعين' },
       { label: 'البناء', value: 'من 8 إلى 12 أسبوعًا' },

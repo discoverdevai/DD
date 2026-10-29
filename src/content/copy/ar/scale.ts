@@ -15,9 +15,10 @@ export const scale: Widen<typeof en> = {
     ways: [{ label: 'شركة برمجيات؟ العمل باسم علامتك أو تعزيز فريقك', anchor: 'partners' }],
     meta: [
       { label: 'الحد الأدنى', value: '4 أشهر' },
-      { label: 'التسعير', value: 'عقد شهري' },
-      { label: 'الفريق', value: 'من مختص واحد إلى فريق كامل' },
+      { label: 'العقد', value: 'شهري' },
+      { label: 'حجم الفريق، نراجعه كل شهر', value: 'من مختص إلى فريق' },
     ],
+    shot: { bar: 'upscend / learner', web: 'upscend-learner.webp', caption: 'Upscend، المملكة المتحدة · 12 شهرًا مع فريق مدمج واحد', alt: 'لوحة المتعلم في Upscend: الدورات الحالية مع التقدم' },
   },
   stages: { squad: 'الفريق', outcomes: 'طرق العمل', fit: 'هل يناسبك', terms: 'الاتفاق', partners: 'شركات البرمجيات', proof: 'الدليل', faq: 'الأسئلة', close: 'البداية' },
   quiz: {
@@ -85,6 +86,7 @@ export const scale: Widen<typeof en> = {
   },
   get: {
     title: 'السعر والفريق والملكية',
+    sow: { title: 'فريقك في صفحة واحدة', note: 'نراجعه معك كل شهر' },
     includedLabel: 'مهارات في كل فريق',
     items: [
       { icon: 'code', label: 'تطوير متكامل' },
@@ -109,7 +111,7 @@ export const scale: Widen<typeof en> = {
     title: 'فرق بقيت مع عملائها',
     lead: 'أربعة عملاء وسّعوا عملهم معنا.',
     main: { name: 'NJWAR', value: 'مرحلتان', line: 'سبرنتات جدوى، ثم متجر الأثاث بالواقع المعزز. السعودية.', photo: { file: 'proof-lounge.webp', alt: '' }, web: { file: 'njwar-web.webp', alt: '' }, phone: { file: 'njwar-ar.webp', alt: 'عرض الواقع المعزز في NJWAR يضع كرسيًا في غرفة' } },
-    upscend: { name: 'Upscend', value: '12 شهرًا', line: 'فريق مدمج واحد. المملكة المتحدة.', screen: { file: 'upscend-learner.webp', alt: 'لوحة المتعلم في Upscend: الدورات الحالية مع التقدم' } },
+    upscend: { name: 'Upscend', value: '12 شهرًا', line: 'فريق مدمج واحد. المملكة المتحدة.', logo: 'upscend.png' },
     arheb: { name: 'Arheb', value: 'تعلم آلي', line: 'فريق بيانات لتنقل تشاركي. السعودية.', logo: 'arheb.png', screen: { file: 'arheb-app.webp', alt: 'تطبيق أرحب: خريطة وأنواع الرحلات للاختيار' } },
     pyramakerz: { name: 'Pyramakerz', value: '+20,000', line: 'طالب. مصر.', logo: 'pyramakerz.png' },
     alsoLabel: 'ومعنا أيضًا',

@@ -3,12 +3,15 @@
 // cards, each with a one-line summary (optional "best when" label) and its facts as a description list. Scale shows the
 // short version (3 facts, Oct 27). On wide screens the rows line up across
 // cards (CSS subgrid); on phones the cards stack, so nothing scrolls sideways. /partners keeps the table.
+// Phase 3 (03 §16b.39, Oct 29): on wide screens the cards join into one table you read across, with the row labels once
+// on the start side (a decorative column; each card keeps its own labels for screen readers).
 interface Row { label: string; cells: readonly string[] }
 interface Props { columns: readonly string[]; bestFor: readonly string[]; bestLabel?: string; rows: readonly Row[]; caption: string }
 const { columns, bestFor, bestLabel, rows, caption } = Astro.props;
 ---
 <div class="oc__scroll" role="region" aria-label={caption} tabindex="0">
-<ul role="list" class="oc reveal-stagger" data-rows={rows.length}>
+<ul role="list" class="oc reveal" data-rows={rows.length}>
+  <li class="oc__card oc__labels" aria-hidden="true"><span></span><span></span>{rows.map((r) => <span class="oc__label">{r.label}</span>)}</li>
   {columns.map((col, i) => (
     <li class:list={['oc__card', `oc__card--${i}`]}>
       <h3 class="oc__name">{col}</h3>
@@ -55,4 +58,19 @@ const { columns, bestFor, bestLabel, rows, caption } = Astro.props;
   .oc__bestlabel { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-human-mark); }
   .oc dt { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .oc dd { margin: 0; font-size: var(--text-sm); color: var(--color-text); }
+
+  /* One table (wide screens): the cards share one frame and hairlines; labels show once, in the first column. */
+  .oc__labels { display: none; }
+  @media (width >= 64rem) {
+    .oc { grid-template-columns: minmax(0, 0.7fr) repeat(3, minmax(0, 1fr)); gap: 0; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+    .oc__labels { display: grid; }
+    .oc__card { border: 0; border-radius: 0; background: transparent; border-inline-start: 1px solid var(--color-hairline); }
+    .oc__labels { border-inline-start: 0; }
+    .oc__card--2 { background: color-mix(in oklab, var(--blue-600) 12%, transparent); }
+    .oc__card:not(.oc__labels) dt { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .oc__row { grid-template-columns: minmax(0, 1fr); }
+    .oc__label { font-size: var(--text-sm); color: var(--color-text-muted); padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); }
+    .oc__label:nth-child(3) { padding-block-start: 0; border-block-start: 0; }
+    .oc__labels { row-gap: var(--space-3); }
+  }
 </style>

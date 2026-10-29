@@ -13,11 +13,14 @@ export const scale = {
     // Second audience straight to its section (Oct 27, like Build's ways in).
     ways: [{ label: 'Software house? White-label or staff augmentation', anchor: 'partners' }],
     // Meta row labels come from 06 §9.11 (`service` hero: Timeline, Model, Team); values from 04 §4.3 and 03 §7.6, §7.7.
+    // Phase 3 (03 §16b.39): the number row under the button, short values in large type.
     meta: [
-      { label: 'Minimum', value: '4 months' }, // Oct 27: was Timeline · Monthly, which repeated the Model value
-      { label: 'Model', value: 'Monthly retainer' },
-      { label: 'Team', value: 'From one specialist to a full squad' },
+      { label: 'Minimum', value: '4 months' },
+      { label: 'Retainer', value: 'Monthly' },
+      { label: 'Team size, reviewed monthly', value: '1 to a squad' },
     ],
+    // A real client screen in the hero (Upscend, 09: 12-month embedded partnership).
+    shot: { bar: 'upscend / learner', web: 'upscend-learner.webp', caption: 'Upscend, UK · 12 months with one embedded team', alt: 'Upscend learner dashboard: current courses with progress' },
   },
   // Journey stops (Oct 27, shared with Build): names shown in the margin on very wide screens.
   stages: { squad: 'The team', outcomes: 'Ways to work', fit: 'Fit', terms: 'The deal', partners: 'Software houses', proof: 'Proof', faq: 'Questions', close: 'Start' },
@@ -92,6 +95,7 @@ export const scale = {
   // 03 §16b.19 (Oct 27): answer-first terms, the same pattern as Build's "What you get" (was a three-column text document).
   get: {
     title: 'Price, team and ownership',
+    sow: { title: 'Your squad, in one page', note: 'Reviewed with you every month' },
     includedLabel: 'Skills in every squad',
     items: [
       { icon: 'code', label: 'Full-stack' },
@@ -119,7 +123,7 @@ export const scale = {
     // 03 §16b.28 (Oct 29): Mockup 2 v2. NJWAR full width in a real room; Upscend, Arheb, Pyramakerz below (09 Differentiators).
     lead: 'Four clients expanded their work with us.',
     main: { name: 'NJWAR', value: '2 phases', line: 'Feasibility sprints, then the AR furniture store. Saudi Arabia.', photo: { file: 'proof-lounge.webp', alt: '' }, web: { file: 'njwar-web.webp', alt: '' }, phone: { file: 'njwar-ar.webp', alt: 'NJWAR AR view placing an armchair in a room' } },
-    upscend: { name: 'Upscend', value: '12 months', line: 'One embedded team. UK.', screen: { file: 'upscend-learner.webp', alt: 'Upscend learner dashboard: current courses with progress' } },
+    upscend: { name: 'Upscend', value: '12 months', line: 'One embedded team. UK.', logo: 'upscend.png' }, // its screen is in the hero (Phase 3)
     arheb: { name: 'Arheb', value: 'Data + ML', line: 'Ride-sharing. Saudi Arabia.', logo: 'arheb.png', screen: { file: 'arheb-app.webp', alt: 'Arheb app: a map and the ride types to choose from' } },
     pyramakerz: { name: 'Pyramakerz', value: '20,000+', line: 'Students. Egypt.', logo: 'pyramakerz.png' },
     alsoLabel: 'Also with us',
