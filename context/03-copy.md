@@ -2052,6 +2052,13 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.41 How we work, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/hww-p3.html)
+- Hero: Yawmy Care's dashboard and parent app in the product frame. Caption: "Yawmy Care, our own nursery platform, run the same way. Launching in 2027."
+- One 4-step model: the "AI drafts it. A senior engineer signs it." section (and its separate 4-step flow) leaves; its body now leads the steps. Inside Build, a small box: "AI: drafts the code, tests and docs" · "Senior: reviews and signs off every release".
+- The four steps sit on the journey line; each shows its deliverable as a small drawn picture (bars: prototype, release plan, release, live; the release rows: "Tests pass", "Reviewed by a senior engineer", "Signed off, ready to ship"; the plan rows reuse the home example labels). Frameworks become name chips (the one-line "what" stays as a tooltip).
+- Who we are: four numbers first (5.0 Rated on Clutch · 4 Continents with clients · 4 Clients expanded scope with us · 0–2 h Behind the Gulf), the Clutch link, then Nojoud Alarfaj's quote, the entity line, where we work and the time strip. "AI in production across multiple clients" leaves this section.
+- Arabic: the same in ar/how-we-work.ts (draft until the native review).
+
 ### 16b.40 Home, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/home-p3.html)
 - Clients row: Arheb and Jumlaty (Saudi Arabia) open the moving row; it still moves (Oct 21 decision). Words unchanged.
 - Why DiscoverDev: the headline runs across the page; the three steps sit side by side; the example scope sits inside step 3. Words unchanged.

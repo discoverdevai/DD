@@ -13,6 +13,7 @@ export const howWeWork: Widen<typeof en> = {
     eyebrow: 'طريقة DiscoverDev',
     h1: 'كيف نعمل',
     lead: 'مراحل تطوير التطبيقات عندنا واحدة في كل مشروع، سواء بدأت من فكرة أو من كود لديك بالفعل. الذكاء الاصطناعي يصوغ العمل، ومهندس أول يعتمد كل إصدار، وترى التقدم كل أسبوع.',
+    shot: { bar: 'yawmy care', web: 'yawmy-dashboard.webp', phone: 'yawmy-parent-logs.webp', caption: 'Yawmy Care، منصتنا لإدارة الحضانات، تُبنى بالطريقة نفسها. الإطلاق في 2027.', alt: 'لوحة Yawmy Care للحضانة مع الحضور اليومي، وتطبيق أولياء الأمور يعرض يوم الطفل: المزاج والوجبات والقيلولة' },
   },
   paths: {
     title: 'طريقان للبدء',
@@ -23,7 +24,6 @@ export const howWeWork: Widen<typeof en> = {
     ],
   },
   roles: {
-    title: 'الذكاء الاصطناعي يصوغ. ومهندس أول يعتمد.',
     body: 'في كل خطوة، يتولى الذكاء الاصطناعي العمل الروتيني فيتقدم بسرعة. ويتخذ كبار المهندسين القرارات ويعتمدون كل إصدار، فلا تأتي السرعة على حساب الجودة.',
   },
   steps: {
@@ -31,6 +31,13 @@ export const howWeWork: Widen<typeof en> = {
     getsLabel: home.lifecycle.getsLabel,
     toolsLabel: 'أطر العمل التي نستخدمها',
     items: home.lifecycle.steps,
+    who: { ai: 'الذكاء الاصطناعي', aiText: 'يصوغ الكود والاختبارات والتوثيق', senior: 'مهندس أول', seniorText: 'يراجع كل إصدار ويعتمده' },
+    pics: [
+      { bar: 'prototype', rows: [] },
+      { bar: 'release plan', rows: home.problem.card.groups.map((g) => g.label) },
+      { bar: 'release', rows: ['الاختبارات ناجحة', 'راجعه مهندس أول', 'معتمد وجاهز للإطلاق'] },
+      { bar: 'live', rows: [] },
+    ],
   },
   team: {
     title: 'من نحن وأين نعمل',
@@ -49,8 +56,12 @@ export const howWeWork: Widen<typeof en> = {
       hubTag: 'مركزنا',
       text: 'من الغرب إلى الشرق: شرق الولايات المتحدة، والمملكة المتحدة، والإسكندرية (مركزنا)، والرياض، ودبي.',
     },
-    recordTitle: 'سجلّنا',
-    record: ['عملاء في 4 قارات', 'ذكاء اصطناعي يعمل في الإنتاج لدى عدد من العملاء', 'أربعة عملاء وسّعوا نطاق العمل معنا'],
+    nums: [
+      { value: '5.0', label: 'تقييمنا على Clutch' },
+      { value: '4', label: 'قارات فيها عملاؤنا' },
+      { value: '4', label: 'عملاء وسّعوا نطاق العمل معنا' },
+      { value: '0–2', label: 'ساعة فرق عن الخليج' },
+    ],
   },
   ownership: {
     title: 'الكود والبيانات والملكية الفكرية لك',

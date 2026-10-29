@@ -2,21 +2,22 @@
 // /how-we-work and /ar/how-we-work (03 §7.13 + §16b.3, lean R1): the DiscoverDev Way in detail, plus who we are and
 // how your code, data and IP stay yours (the About page folded in). Hero → two ways in → who does what → the four
 // steps with frameworks → who we are → ownership → FAQ → closer. Home keeps the short version and links here.
+// Phase 3 (03 §16b.41, Oct 29): Yawmy Care in the hero; "who does what" folds into the steps (one 4-step model), which sit
+// on the journey line with their deliverable as a picture and the frameworks as name chips; who we are opens with numbers.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
-import WayFlow from '../scenes/WayFlow.astro';
+import HeroShot from '../scenes/HeroShot.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import SectionHead from '../ui/SectionHead.astro';
 import PathCards from '../blocks/PathCards.astro';
 import CheckList from '../blocks/CheckList.astro';
 import TimeOverlap from '../about/TimeOverlap.astro';
-import TrackRecord from '../about/TrackRecord.astro';
-import Artifact from '../how/Artifact.astro';
+import Quote from '../blocks/Quote.astro';
 import { copy } from '../../content/copy';
-import { getLocale } from '../../i18n/t';
+import { getLocale, t } from '../../i18n/t';
 import { href } from '../../data/routes';
-import { graph, orgFull, website, webPage, canonical, faqPage, ORG_ID } from '../../lib/seo';
+import { graph, orgFull, website, webPage, canonical, faqPage, ORG_ID, CLUTCH_URL } from '../../lib/seo';
 
 const { howWeWork: c, home } = copy();
 const path = getLocale() === 'ar' ? '/ar/how-we-work' : '/how-we-work';
@@ -29,10 +30,14 @@ const steps = {
 const faqLd = faqPage(`${url}#faq`, c.faq.items);
 // The About page lives here now, so the full Organization rides on this page (05 §4.6).
 const jsonLd = graph(orgFull, website, webPage(path, c.seo.title, c.seo.description, 'AboutPage', { about: { '@id': ORG_ID }, mainEntity: { '@id': `${url}#steps` } }), steps, faqLd);
+// A Gulf client's words open "Who we are" (Nojoud Alarfaj, Athkado, Saudi Arabia; 09, D-05).
+const nojoud = home.reviews.items[1];
 const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anchor}` }));
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="about" jsonLd={jsonLd}>
-  <PageHero page="how_we_work" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.lead} cta="clarity" />
+  <PageHero page="how_we_work" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.lead} cta="clarity">
+    <HeroShot slot="aside" c={c.hero.shot} />
+  </PageHero>
 
   <section class="hw" data-surface="ink" aria-labelledby="paths-title">
     <div class="container">
@@ -42,57 +47,60 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
     </div>
   </section>
 
-  <section class="hw" data-surface="ink" aria-labelledby="roles-title">
-    <div class="container">
-      <SectionHead id="roles-title" title={c.roles.title} measure={24} />
-      <p class="hw__lead">{c.roles.body}</p>
-      <WayFlow {...home.agile.flow} />
-    </div>
-  </section>
-
-  <section class="hw" data-surface="ink" aria-labelledby="steps-title">
+  <section id="steps" class="hw" data-surface="ink" aria-labelledby="steps-title">
     <div class="container">
       <SectionHead id="steps-title" title={c.steps.title} measure={24} />
+      <p class="hw__lead">{c.roles.body}</p>
       <ol role="list" class="hw__steps">
-        {c.steps.items.map((s) => (
-          <li class="hw__step">
-            <div class="hw__stephead">
-              <h3 class="hw__h3">{s.title}</h3>
-              <p class="tag">{s.when}</p>
-              <p class="hw__body">{s.body}</p>
-              <p class="hw__gets"><span>{c.steps.getsLabel}</span>{s.gets}</p>
-            </div>
-            <div class="hw__tools">
-              <p class="sr-only">{c.steps.toolsLabel}</p>
-              <ul role="list" class="hw__toolgrid">
-                {s.tools.map((tool) => (
-                  <li class="hw__tool">
-                    <div class="hw__art"><Artifact name={tool.name} /></div>
-                    <p class="hw__toolname">{tool.name}</p>
-                    <p class="hw__toolwhat">{tool.what}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        ))}
+        {c.steps.items.map((s, i) => {
+          const pic = c.steps.pics[i];
+          return (
+            <li class="hw__step">
+              <div class="hw__stephead">
+                <p class="hw__when">{s.when}</p>
+                <h3 class="hw__h3">{s.title}</h3>
+                <p class="hw__body">{s.body}</p>
+                {i === 2 && (
+                  <dl class="hw__who">
+                    <dt>{c.steps.who.ai}</dt><dd>{c.steps.who.aiText}</dd>
+                    <dt class="hw__who-s">{c.steps.who.senior}</dt><dd>{c.steps.who.seniorText}</dd>
+                  </dl>
+                )}
+                <p class="hw__gets"><b>{c.steps.getsLabel}</b> {s.gets}</p>
+                <p class="sr-only">{c.steps.toolsLabel}</p>
+                <ul role="list" class="hw__tools">{s.tools.map((tool) => <li title={tool.what}>{tool.name}</li>)}</ul>
+              </div>
+              <div class:list={['hw__pic', `hw__pic--${i}`]} aria-hidden="true">
+                <span class="hw__bar"><i></i><i></i><i></i><span dir="ltr">{pic.bar}</span></span>
+                <div class="hw__draw">
+                  {pic.rows.length > 0
+                    ? pic.rows.map((r) => <span class="hw__row">{r}</span>)
+                    : i === 0
+                      ? <><span class="hw__ln hw__ln--b"></span><span class="hw__ln"></span><span class="hw__ln hw__ln--s"></span><span class="hw__btns"><i></i><i></i></span></>
+                      : <span class="hw__bars"><i></i><i></i><i></i><i></i><i></i><i></i></span>}
+                </div>
+              </div>
+            </li>
+          );
+        })}
       </ol>
     </div>
   </section>
 
   <section id="team" class="hw" data-surface="ink" data-raised aria-labelledby="team-title">
     <div class="container team">
-      <div class="team__copy">
-        <SectionHead id="team-title" title={c.team.title} measure={18} />
-        <p class="team__entity">{c.team.entity}</p>
-        <p class="hw__body">{c.team.where}</p>
-      </div>
-      <div class="team__side">
-        <TimeOverlap label={c.team.strip.label} places={c.team.strip.places} hubTag={c.team.strip.hubTag} text={c.team.strip.text} />
-      </div>
-      <div class="team__record">
-        <h3 class="hw__h3">{c.team.recordTitle}</h3>
-        <TrackRecord items={c.team.record} />
+      <SectionHead id="team-title" title={c.team.title} measure={18} />
+      <dl class="team__nums">{c.team.nums.map((n) => <div><dt>{n.label}</dt><dd dir="auto">{n.value}</dd></div>)}</dl>
+      <p class="team__clutch"><a href={CLUTCH_URL} data-link-context="proof">{t('proof.clutch')}</a></p>
+      <div class="team__grid">
+        <div class="team__copy">
+          <Quote text={nojoud.quote} name={nojoud.name} role={nojoud.role} />
+          <p class="team__entity">{c.team.entity}</p>
+          <p class="hw__body">{c.team.where}</p>
+        </div>
+        <div class="team__side">
+          <TimeOverlap label={c.team.strip.label} places={c.team.strip.places} hubTag={c.team.strip.hubTag} text={c.team.strip.text} />
+        </div>
       </div>
     </div>
   </section>
@@ -114,29 +122,61 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
   .hw__h3 { font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); color: var(--color-heading); }
   .hw__body { color: var(--color-text-muted); line-height: 1.55; }
 
-  /* Steps in depth: step summary left, frameworks with drawings right. */
-  .hw__steps { display: grid; gap: var(--space-6); margin-block-start: var(--stack-lg); }
-  .hw__step { display: grid; gap: var(--space-6); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); background: var(--color-surface); }
-  @media (width >= 64rem) { .hw__step { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-10); padding: var(--space-8); } }
-  .hw__stephead { display: grid; gap: var(--space-3); align-content: start; }
-  .hw__gets { display: grid; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); background: color-mix(in oklab, var(--color-human-mark) 8%, transparent); border: 1px solid color-mix(in oklab, var(--color-human-mark) 25%, transparent); font-size: var(--text-sm); }
-  .hw__gets span { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-human-text); }
-  .hw__toolgrid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
-  .hw__tool { display: grid; gap: var(--space-2); align-content: start; }
-  .hw__art { padding: var(--space-2); border-radius: var(--radius-md); background: var(--color-bg); border: 1px solid var(--color-hairline); }
-  .hw__toolname { font-family: var(--ff-heading); font-weight: var(--weight-semibold); color: var(--color-heading); }
-  .hw__toolwhat { font-size: var(--text-sm); line-height: 1.45; color: var(--color-text-muted); }
+  /* Steps (Phase 3): one journey line down the start side, a stop per step; words first, the deliverable as a picture. */
+  .hw__steps { position: relative; display: grid; gap: var(--space-5); margin-block-start: var(--stack-lg); padding-inline-start: var(--space-10); }
+  .hw__steps::before { content: ""; position: absolute; inset-inline-start: 0.9rem; inset-block: var(--space-4); inline-size: 2px; background: linear-gradient(var(--blue-400), var(--color-human-mark)); }
+  .hw__step { position: relative; display: grid; gap: var(--space-6); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .hw__step::before { content: ""; position: absolute; inset-inline-start: calc(var(--space-10) * -1 + 0.45rem); inset-block-start: var(--space-8); inline-size: 1rem; block-size: 1rem; border-radius: 50%; background: var(--color-bg); border: 3px solid var(--blue-400); }
+  .hw__step:last-child::before { border-color: var(--color-human-mark); }
+  @media (width >= 64rem) { .hw__step { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-10); padding: var(--space-8); } }
+  .hw__stephead { display: grid; gap: var(--space-2); align-content: start; justify-items: start; }
+  .hw__when { font-size: var(--text-sm); color: var(--color-machine-text); }
+  .hw__step .hw__h3 { font-size: var(--title-feature); line-height: 1.1; letter-spacing: -0.03em; }
+  .hw__who { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-1) var(--space-3); margin: var(--space-2) 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--color-bg); font-size: var(--text-sm); justify-self: stretch; }
+  .hw__who dt { font-weight: var(--weight-medium); color: var(--blue-200); }
+  .hw__who .hw__who-s { color: var(--color-human-mark); }
+  .hw__who dd { margin: 0; color: var(--color-text); }
+  .hw__gets { justify-self: stretch; margin-block-start: var(--space-2); padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); color: var(--color-heading); }
+  .hw__gets b { font-weight: var(--weight-medium); color: var(--color-human-mark); }
+  .hw__tools { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-2); }
+  .hw__tools li { padding: 3px var(--space-3); border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); font-size: var(--text-sm); color: var(--blue-200); }
+  /* The deliverable, drawn in a small product frame (decorative; the words carry the meaning). Hidden on phones. */
+  .hw__pic { align-self: center; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-bg); }
+  @media (width < 48rem) { .hw__pic { display: none; } }
+  .hw__bar { display: flex; align-items: center; gap: 6px; padding: var(--space-2) var(--space-3); border-block-end: 1px solid var(--color-hairline); font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .hw__bar i { inline-size: 8px; block-size: 8px; border-radius: 50%; background: color-mix(in oklab, var(--blue-300) 28%, transparent); }
+  .hw__bar span { margin-inline-start: var(--space-2); }
+  .hw__draw { display: grid; gap: var(--space-3); align-content: center; min-block-size: 11rem; padding: var(--space-5); }
+  .hw__ln { block-size: 10px; inline-size: 80%; border-radius: var(--radius-pill); background: color-mix(in oklab, var(--blue-300) 25%, transparent); }
+  .hw__ln--b { inline-size: 40%; background: var(--blue-600); }
+  .hw__ln--s { inline-size: 62%; }
+  .hw__btns { display: flex; gap: var(--space-2); }
+  .hw__btns i { inline-size: 30%; block-size: 1.75rem; border-radius: var(--radius-sm); background: var(--blue-600); }
+  .hw__btns i + i { background: color-mix(in oklab, var(--blue-300) 25%, transparent); }
+  .hw__row { padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); border: 1px solid var(--color-hairline); font-size: var(--text-sm); color: var(--color-text); }
+  .hw__pic--2 .hw__row::before { content: "✓ "; color: var(--color-human-mark); }
+  .hw__bars { display: flex; align-items: end; gap: var(--space-2); block-size: 7rem; }
+  .hw__bars i { flex: 1; border-radius: 4px 4px 0 0; background: var(--blue-600); }
+  .hw__bars i:nth-child(1) { block-size: 30%; } .hw__bars i:nth-child(2) { block-size: 45%; } .hw__bars i:nth-child(3) { block-size: 40%; }
+  .hw__bars i:nth-child(4) { block-size: 60%; } .hw__bars i:nth-child(5) { block-size: 72%; } .hw__bars i:nth-child(6) { block-size: 88%; background: var(--color-human-mark); }
 
-  /* Who we are: story and entity line left; time strip and track record right. */
-  .team { display: grid; gap: var(--space-10); align-items: start; }
-  @media (width >= 64rem) { .team { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-16); } }
-  .team__copy { display: grid; gap: var(--space-4); }
+  /* Who we are (Phase 3): big numbers first, then a Gulf client's words and the entity line beside the time strip. */
+  .team { display: grid; gap: var(--space-6); }
+  .team__nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) 0; margin: var(--space-4) 0 0; }
+  @media (width >= 64rem) { .team__nums { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .team__nums div { display: grid; gap: var(--space-2); align-content: start; padding-inline: var(--space-6); border-inline-start: 1px solid var(--color-hairline); }
+  .team__nums div:first-child, .team__nums div:nth-child(3) { padding-inline-start: 0; border-inline-start: 0; }
+  @media (width >= 64rem) { .team__nums div:nth-child(3) { padding-inline-start: var(--space-6); border-inline-start: 1px solid var(--color-hairline); } }
+  .team__nums dt { order: 2; font-size: var(--text-sm); color: var(--color-text-muted); }
+  .team__nums dd { order: 1; margin: 0; font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); line-height: 1; letter-spacing: -0.04em; color: var(--color-human-mark); }
+  .team__clutch { font-size: var(--text-sm); font-weight: var(--weight-medium); }
+  .team__grid { display: grid; gap: var(--space-10); align-items: start; margin-block-start: var(--space-6); }
+  @media (width >= 64rem) { .team__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-12); } }
+  .team__copy { display: grid; gap: var(--space-5); }
   .team__entity { padding-block: var(--space-4); padding-inline: var(--space-5); border-inline-start: 2px solid var(--color-border-accent); background: var(--color-surface-sunken); border-radius: var(--radius-sm); color: var(--color-text); max-inline-size: var(--measure-prose); }
   .team__side { display: grid; gap: var(--space-8); }
   /* Oct 29: the strip already shows the cities; its caption stays for screen readers only. */
   .team__side :global(.tz__text) { position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  /* The track record needs the full width: four short facts in a narrow column broke words mid-line. */
-  .team__record { grid-column: 1 / -1; display: grid; gap: var(--space-4); }
 
   /* Ownership: the promises as one checked list, two columns on wide screens. */
   .own { display: grid; gap: var(--space-8); }

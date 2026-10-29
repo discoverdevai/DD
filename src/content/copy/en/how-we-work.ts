@@ -12,6 +12,8 @@ export const howWeWork = {
     eyebrow: 'The DiscoverDev Way',
     h1: 'How we work',
     lead: 'Our software development process is the same for every project, whether you start from an idea or from code you already have. AI drafts the work, a senior engineer signs off every release, and you see progress every week.',
+    // Phase 3 (03 §16b.41): our own product in the hero, like the client screens on Build and Scale.
+    shot: { bar: 'yawmy care', web: 'yawmy-dashboard.webp', phone: 'yawmy-parent-logs.webp', caption: 'Yawmy Care, our own nursery platform, run the same way. Launching in 2027.', alt: 'Yawmy Care nursery dashboard with daily attendance, and the parent app showing a child’s day: mood, meals and nap' },
   },
   paths: {
     title: 'Two ways in',
@@ -22,7 +24,6 @@ export const howWeWork = {
     ],
   },
   roles: {
-    title: 'AI drafts it. A senior engineer signs it.',
     body: 'In every step, AI does the routine work so it moves fast. Senior engineers make the decisions and sign off every release, so speed never costs you quality.',
   },
   steps: {
@@ -30,6 +31,14 @@ export const howWeWork = {
     getsLabel: home.lifecycle.getsLabel,
     toolsLabel: 'Frameworks we use',
     items: home.lifecycle.steps,
+    // Phase 3 (03 §16b.41): who does what inside Build, and the bar and rows of each step's picture (decorative).
+    who: { ai: 'AI', aiText: 'drafts the code, tests and docs', senior: 'Senior', seniorText: 'reviews and signs off every release' },
+    pics: [
+      { bar: 'prototype', rows: [] },
+      { bar: 'release plan', rows: home.problem.card.groups.map((g) => g.label) },
+      { bar: 'release', rows: ['Tests pass', 'Reviewed by a senior engineer', 'Signed off, ready to ship'] },
+      { bar: 'live', rows: [] },
+    ],
   },
   // §16b.3 Who we are (§12.2, §12.4, §12.5).
   team: {
@@ -50,8 +59,13 @@ export const howWeWork = {
       hubTag: 'Our hub',
       text: 'From west to east: US East, UK, Alexandria (our hub), Riyadh and Dubai.',
     },
-    recordTitle: 'Track record',
-    record: ['Clients on 4 continents', 'AI in production across multiple clients', 'Four clients expanded scope with us'],
+    // Phase 3 (03 §16b.41): the track record as big numbers (09), the gap to the Gulf from `where`.
+    nums: [
+      { value: '5.0', label: 'Rated on Clutch' },
+      { value: '4', label: 'Continents with clients' },
+      { value: '4', label: 'Clients expanded scope with us' },
+      { value: '0–2 h', label: 'Behind the Gulf' },
+    ],
   },
   // §16b.3 Your code, data and IP (lines from §6.9, §3.10, §12.6).
   ownership: {
