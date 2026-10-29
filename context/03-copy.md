@@ -2052,6 +2052,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.43 Book, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/book-p3.html)
+- Above the calendar: "Gulf and US hours. Times show in your time zone." (the hours promise is already in this page's meta description).
+- The side becomes three cards: what happens on the call (with "No pitch." and "NDA on request." as chips; "What you can count on" stays as a screen-reader heading), Nojoud Alarfaj's quote with the Clutch rating, and "Prefer to write?". The side stays in view on wide screens.
+- Arabic: "مواعيد بتوقيت الخليج والولايات المتحدة." (draft until the native review). The Arabic Cal.com event is Mohamed's item.
+
 ### 16b.42 Work, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/work-p3.html)
 - Selected work: NJWAR full width, Rushr and Yawmy Care side by side under it. Rushr shows three screens (searching, matched, in progress). Words unchanged.
 - Every client: Saudi clients first. New row: "Athkado: Rapid market studies and feasibility sprints that ended in a build, pivot or shelve decision for each idea." (Validate · Feasibility · Saudi Arabia; 09, a different project from NJWAR). Every logo in the same square (initial when there is no logo); tags on one line, stage first. A filter above the list: "All", "Validate", "Build", "Scale" (legend "Show", screen readers only).

@@ -6,12 +6,15 @@ import CtaTerms from '../../components/ui/CtaTerms.astro';
 import CheckList from '../../components/blocks/CheckList.astro';
 import ProofChip from '../../components/ui/ProofChip.astro';
 import CalEmbed from '../../components/book/CalEmbed.astro';
+import Quote from '../../components/blocks/Quote.astro';
 import { copy } from '../../content/copy';
 import { t } from '../../i18n/t';
 import { isLive } from '../../data/routes';
 import { getLocale, localPath } from '../../i18n/t';
 // V1.0 (03 §2V1): the Launch-Ready Review is not offered until V1.2, so /book offers the clarity call only.
 const c = copy().book;
+// Phase 3 (03 §16b.43): a Gulf client's words beside the calendar (Nojoud Alarfaj, Athkado, Saudi Arabia; 09, D-05).
+const nojoud = copy().home.reviews.items[1];
 const reviewOn = isLive('review');
 import { graph, orgStub, webPage } from '../../lib/seo';
 const seo = c.seo; // V1.0 clarity-call title; the Review title returns in V1.2 (03 §13)
@@ -37,21 +40,24 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
           <h2 class="h3">{c.call.title}</h2>
           <CheckList items={c.call.items} />
           <p class="muted">{c.call.who}</p>
+          <h3 class="sr-only">{c.terms.title}</h3>
+          <ul role="list" class="book__chips">{c.terms.items.map((i) => <li>{i}</li>)}</ul>
         </div>
         <CalEmbed />
       </div>
       <aside class="book__side" aria-label={c.call.title}>
-        <div class="side-block book__call">
+        <div class="side-block side-card book__call">
           <h2 class="h3">{c.call.title}</h2>
           <CheckList items={c.call.items} />
           <p class="muted">{c.call.who}</p>
+          <h3 class="sr-only">{c.terms.title}</h3>
+          <ul role="list" class="book__chips">{c.terms.items.map((i) => <li>{i}</li>)}</ul>
         </div>
-        <div class="side-block">
-          <h2 class="h3">{c.terms.title}</h2>
-          <CheckList items={c.terms.items} />
+        <div class="side-block side-card">
+          <Quote text={nojoud.quote} name={nojoud.name} role={nojoud.role} />
+          <ProofChip quiet />
         </div>
-        <ProofChip quiet />
-        <div class="side-block" id="contact">
+        <div class="side-block side-card" id="contact">
           <h2 class="h3">{c.write.title}</h2>
           <p><a href={`mailto:${t('contact.email')}`} data-link-context="contact" dir="ltr">{t('contact.email')}</a></p>
           <p class="muted">{c.write.languages}</p>
@@ -79,8 +85,13 @@ const jsonLd = graph(orgStub, webPage(getLocale() === 'ar' ? '/ar/book' : '/book
   .book__fit b { color: var(--color-heading); }
   .book__fit-after { display: block; font-size: var(--text-sm); color: var(--color-text-muted); }
   .opt-panel { display: grid; gap: var(--space-3); max-inline-size: var(--measure-prose); }
-  .book__side { display: grid; gap: var(--space-8); align-content: start; }
+  /* Phase 3: the side is three cards (the call, a Gulf client's words, the email) and stays in view on wide screens. */
+  .book__side { display: grid; gap: var(--space-4); align-content: start; }
+  @media (width >= 64rem) { .book__side { position: sticky; inset-block-start: calc(var(--header-h) + var(--space-4)); } }
   .side-block { display: grid; gap: var(--space-3); }
+  .side-card { padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .book__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-1); }
+  .book__chips li { padding: 3px var(--space-3); border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); font-size: var(--text-sm); color: var(--color-text); }
 </style>
 
 <script>

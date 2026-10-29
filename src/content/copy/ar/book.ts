@@ -19,6 +19,7 @@ export const book: Widen<typeof en> = {
   optionsLabel: 'اختر نوع المكالمة',
   calendar: {
     title: 'تقويم الحجز',
+    hours: 'مواعيد بتوقيت الخليج والولايات المتحدة.',
     timezone: 'تظهر الأوقات بتوقيتك المحلي.',
     loading: 'جارٍ تحميل الأوقات المتاحة…',
     failed: 'لم يُحمَّل التقويم. حدّث الصفحة، أو راسل hello@discoverdev.ai وسنرسل لك الأوقات.',

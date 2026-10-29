@@ -15,6 +15,7 @@ export const book = {
   optionsLabel: 'Choose a call',
   calendar: {
     title: 'Booking calendar',
+    hours: 'Gulf and US hours.', // Phase 3 (03 §16b.43): the promise in this page's description, said by the calendar
     timezone: 'Times show in your time zone.',
     loading: 'Loading available times…',
     failed: 'The calendar didn’t load. Refresh the page, or email hello@discoverdev.ai and we’ll send you times.',
