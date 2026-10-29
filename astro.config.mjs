@@ -49,7 +49,7 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   // Oct 18: inline stylesheets so the home page paints without extra render-blocking requests (LCP budget).
-  build: { format: 'file', inlineStylesheets: 'always' },
+  build: { format: 'file', inlineStylesheets: 'auto' },
   // Scope component CSS with a class instead of a data attribute: same specificity, ~7 KB less HTML on the home page.
   scopedStyleStrategy: 'class',
   // Shiki writes inline styles, which the meta CSP blocks (docs/PLAN.md A6). Code blocks are decided in M5.

@@ -8,7 +8,7 @@ const pricingFaq = home.faq.items.find((i) => i.id === 'pricing');
 
 export const build: Widen<typeof en> = {
   seo: {
-    title: 'تطوير MVP للشركات الناشئة | DiscoverDev',
+    title: 'تطوير MVP للشركات الناشئة في الخليج | DiscoverDev',
     description: 'من الفكرة إلى نسخة أولى (MVP) يستخدمها الناس: تحقق من أسبوع إلى أسبوعين، ثم بناء بسعر ثابت خلال 8 إلى 12 أسبوعًا مع كبار المهندسين.',
   },
   hero: {

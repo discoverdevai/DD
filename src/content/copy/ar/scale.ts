@@ -5,7 +5,7 @@ import { shared } from './shared';
 
 export const scale: Widen<typeof en> = {
   seo: {
-    title: 'فريق تطوير مخصص | DiscoverDev',
+    title: 'فريق تطوير مخصص للشركات في الخليج | DiscoverDev',
     description: 'فريق مخصص من المطورين ومختصي ضمان الجودة ومدير منتج يبقى مع منتجك، بعقد شهري. مركزنا الهندسي في مصر، ونعمل بالعربية والإنجليزية.',
   },
   hero: {

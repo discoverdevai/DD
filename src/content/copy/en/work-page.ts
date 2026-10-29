@@ -34,6 +34,8 @@ export const workPage = {
       alt: 'Yawmy Care nursery dashboard with daily attendance, and the parent app showing a child’s day: mood, meals and nap',
     },
   ],
+  ask: 'Want a product like these? Tell us where you are, and we tell you where to start.',
+  stages: { validate: 'Validate', build: 'Build', scale: 'Scale' },
   indexTitle: 'Every client',
   // `logo` is a file in /assets/clients/mono. `mark: 'word'` logos carry the name; `icon` logos show the name beside them.
   index: [

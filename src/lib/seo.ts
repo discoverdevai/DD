@@ -59,7 +59,7 @@ export const orgFull = {
   },
 };
 
-export const website = { '@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: 'DiscoverDev', inLanguage: 'en', publisher: { '@id': ORG_ID } };
+export const website = { '@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: 'DiscoverDev', inLanguage: ['en', 'ar'], publisher: { '@id': ORG_ID } };
 
 export function webPage(path: string, name: string, description: string, type = 'WebPage', extra: Record<string, unknown> = {}) {
   const inLanguage = path === '/ar' || path.startsWith('/ar/') ? 'ar' : 'en';

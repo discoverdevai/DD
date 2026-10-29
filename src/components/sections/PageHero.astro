@@ -11,12 +11,14 @@ import { bookHref } from '../../data/routes';
 interface Props {
   page: string; eyebrow?: string; h1: string; lead: string; meta?: readonly { label: string; value: string }[];
   cta?: 'review' | 'clarity' | 'partner' | 'none'; ctaHref?: string; proof?: boolean;
+  /** With no hero button, the sticky booking bar shows once this hero scrolls away (audit Oct 29, /work). */
+  stickyAfter?: boolean;
 }
-const { page, eyebrow, h1, lead, meta, cta = 'clarity', ctaHref, proof = true } = Astro.props;
+const { page, eyebrow, h1, lead, meta, cta = 'clarity', ctaHref, proof = true, stickyAfter = false } = Astro.props;
 const label = cta === 'review' ? t('cta.review') : cta === 'partner' ? t('cta.partner') : t('cta.clarity');
 const hasAside = Astro.slots.has('aside');
 ---
-<section class:list={['phero', { 'phero--split': hasAside }]} data-surface="ink" aria-labelledby="page-title">
+<section class:list={['phero', { 'phero--split': hasAside }]} data-surface="ink" aria-labelledby="page-title" data-sticky-after={stickyAfter ? '' : undefined}>
   <div class="phero__grid-bg" aria-hidden="true"></div>
   <div class="phero__light" aria-hidden="true"></div>
   <div class="container phero__inner">

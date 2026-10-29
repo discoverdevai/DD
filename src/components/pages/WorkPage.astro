@@ -9,6 +9,10 @@ import PageHero from '../sections/PageHero.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import ProjectVisual from '../work/ProjectVisual.astro';
 import Reviews from '../sections/Reviews.astro';
+import CtaLink from '../ui/CtaLink.astro';
+import CtaTerms from '../ui/CtaTerms.astro';
+import { bookHref, href } from '../../data/routes';
+import { t } from '../../i18n/t';
 import type { Project } from '../../content/copy/en/projects';
 import { copy } from '../../content/copy';
 import { getLocale } from '../../i18n/t';
@@ -19,10 +23,12 @@ const path = getLocale() === 'ar' ? '/ar/work' : '/work';
 const jsonLd = graph(orgStub, webPage(path, c.seo.title, c.seo.description, 'CollectionPage', { publisher: { '@id': ORG_ID } }));
 const logos = import.meta.glob<{ default: ImageMetadata }>('/assets/clients/mono/*.png');
 const rows = await Promise.all(c.index.map(async (r) => ({ ...r, img: r.logo ? (await logos[`/assets/clients/mono/${r.logo}`]?.())?.default : undefined })));
+// Stage label → the page that explains it (Validate lives in Build's #process section, lean R1).
+const stageHref = (s: string) => (s === c.stages.scale ? href('scale') : s === c.stages.validate ? `${href('build')}#process` : href('build'));
 const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.screens, device: f.device, screenAlt: f.alt, art: 'devices' }) as unknown as Project;
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="work_index" jsonLd={jsonLd}>
-  <PageHero page="work" h1={c.h1} lead={c.intro} cta="none" proof={false} />
+  <PageHero page="work" h1={c.h1} lead={c.intro} cta="none" proof={false} stickyAfter />
 
   <section class="wk" data-surface="ink" aria-labelledby="wk-nums">
     <div class="container">
@@ -48,6 +54,7 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
           </article>
         ))}
       </div>
+      <div class="wk__ask"><p class="wk__asktext">{c.ask}</p><CtaLink href={bookHref('clarity')} ctaId="work_mid_clarity" tier="secondary" position="mid" target="clarity">{t('cta.clarity')}</CtaLink><CtaTerms kind="clarity" /></div>
     </div>
   </section>
 
@@ -62,7 +69,7 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
               {(!r.img || r.mark === 'icon') && <span>{r.name}</span>}
             </h3>
             <p class="wk__what">{r.line}</p>
-            <p class="wk__svc"><span class="wk__stage">{r.stage}</span>{r.tags.map((t) => <span>{t}</span>)}</p>
+            <p class="wk__svc"><a class="wk__stage" href={stageHref(r.stage)}>{r.stage}</a>{r.tags.map((t) => <span>{t}</span>)}</p>
           </li>
         ))}
       </ul>
@@ -111,5 +118,8 @@ const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.sc
   .wk__what { color: var(--color-text); max-inline-size: 58ch; }
   .wk__svc { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
   @media (width >= 56rem) { .wk__svc { flex-direction: column; gap: 2px; } }
-  .wk__stage { font-weight: var(--weight-semibold); color: var(--color-human-mark); }
+  .wk__stage { font-weight: var(--weight-semibold); color: var(--color-human-mark); text-decoration: none; }
+  .wk__stage:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+  .wk__ask { display: grid; gap: var(--space-3); justify-items: start; margin-block-start: var(--space-8); }
+  .wk__asktext { font-size: var(--text-lg); color: var(--color-text); }
 </style>

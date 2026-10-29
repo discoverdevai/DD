@@ -70,6 +70,7 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="DiscoverDev" />
     <meta property="og:locale" content={L.ogLocale} />
+    {hasPair && <meta property="og:locale:alternate" content={LOCALES[locale === 'ar' ? 'en' : 'ar'].ogLocale} />}
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={url} />

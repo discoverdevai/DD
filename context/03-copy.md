@@ -2052,6 +2052,10 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.36 Audit should-fix, batch 2 (Oct 29)
+- /work: after Selected work, "Want a product like these? Tell us where you are, and we tell you where to start." + Book a free clarity call (AR in ar/work-page.ts). Stage labels in the client list link to Build, Scale or Build's Validate section.
+- Arabic titles now name the Gulf like the English ones: home "DiscoverDev | تطوير المنتجات للشركات الناشئة في الخليج", Build "تطوير MVP للشركات الناشئة في الخليج | DiscoverDev", Scale "فريق تطوير مخصص للشركات في الخليج | DiscoverDev" (native review to confirm).
+
 ### 16b.35 Audit should-fix, batch 1 (Oct 29, Mohamed: "Yes, should-fix")
 - Home quiz results: Launch-Ready Review meta adds "From $1,490"; body ends "No useful findings, no charge." Scale body ends "Start with a 2–4 week proof of concept, and we replace anyone who isn't the right fit at no cost." (09 Offer, risk reversal Oct 27). AR in ar/home.ts.
 - Rushr on /build and the home rail: "16 weeks" removed (kept on /work with the scope that explains it).
