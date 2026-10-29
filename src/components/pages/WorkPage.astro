@@ -1,0 +1,39 @@
+---
+// /work and /ar/work (03 §9, lean R2 mockup Oct 26; shared page Oct 29, plan step 7). The EduLens case result, the
+// project chapters, one list of project story rows, three reviews and the closing band. Every section reads the copy of
+// the page's language.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../sections/PageHero.astro';
+import Section from '../sections/Section.astro';
+import CtaBand from '../sections/CtaBand.astro';
+import ProjectRows from '../work/ProjectRows.astro';
+import Chapters from '../work/Chapters.astro';
+import CaseResult from '../scenes/CaseResult.astro';
+import Reviews from '../sections/Reviews.astro';
+import { copy } from '../../content/copy';
+import { getLocale } from '../../i18n/t';
+import { graph, orgStub, webPage, ORG_ID } from '../../lib/seo';
+
+const { workPage: c, build, home } = copy();
+const path = getLocale() === 'ar' ? '/ar/work' : '/work';
+// The case page is switched off in the lean release, so the page no longer lists it as its main entity.
+const jsonLd = graph(orgStub, webPage(path, c.seo.title, c.seo.description, 'CollectionPage', { publisher: { '@id': ORG_ID } }));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="work_index" jsonLd={jsonLd}>
+  <PageHero page="work" h1={c.h1} lead={c.intro} cta="none" proof={false} />
+
+  <!-- Lean R2 (Oct 26): the EduLens case lives on /work instead of its own page. -->
+  <Section id="case" surface="raised" title={build.proof.case.result} titleHidden>
+    <CaseResult c={build.proof.case} low={10} high={40} quote={build.proof.case.quote} />
+  </Section>
+
+  <Chapters />
+
+  <Section id="projects" surface="ink" title={c.moreTitle} titleHidden>
+    <ProjectRows />
+  </Section>
+
+  <Reviews {...home.reviews} />
+
+  <CtaBand title={c.band.title} kind="clarity" page="work" link={{ label: c.band.link, to: 'review' }} />
+</BaseLayout>

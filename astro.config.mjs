@@ -20,7 +20,7 @@ const release = {
     'astro:build:done': ({ dir, logger }) => {
       const root = fileURLToPath(dir);
       const gone = [];
-      for (const p of OFF) for (const f of [`${p}.html`, `og${p}.png`]) { const full = `${root}${f.slice(f.startsWith('/') ? 1 : 0)}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
+      for (const p of OFF) for (const f of [`${p}.html`, `ar${p}.html`, `og${p}.png`]) { const full = `${root}${f.slice(f.startsWith('/') ? 1 : 0)}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
       for (const p of OFF_PREFIX) for (const d of [p.slice(1), `og${p}`]) { const full = `${root}${d}`; if (existsSync(full)) { rmSync(full, { recursive: true }); gone.push(`${d}/`); } }
       // The private /design-system reference never ships to the live site (V1.0.1); KEEP_DESIGN_SYSTEM=1 keeps it for a local review build. Empty folders left by removed pages go too.
       if (process.env.KEEP_DESIGN_SYSTEM !== '1') for (const f of ['design-system.html', 'og/design-system.png']) { const full = `${root}${f}`; if (existsSync(full)) { rmSync(full); gone.push(f); } }
@@ -33,7 +33,7 @@ const release = {
 // Pages that must never appear in the sitemap (07 §7.1, 05 §6).
 const NOT_IN_SITEMAP = /\/(404|book\/confirmed|design-system)$|\/og\//;
 // Pages that exist in English and Arabic: /x <-> /ar/x, / <-> /ar (src/i18n/t.ts AR_PAGES).
-const PAIRED = ['/', '/build', '/scale', '/how-we-work', '/book', '/privacy', '/terms'];
+const PAIRED = ['/', '/build', '/scale', '/how-we-work', '/work', '/book', '/privacy', '/terms'];
 
 // Article lastmod for the sitemap (05 §6, 07 §7.1): each insight's `updatedAt` from its frontmatter, keyed by URL path.
 // Only articles get lastmod; it must stay accurate (Google ignores lastmod it can't trust).
@@ -60,7 +60,7 @@ export default defineConfig({
     mdx(),
     release,
     sitemap({
-      filter: (page) => { const p = new URL(page).pathname.replace(/\/$/, '') || '/'; return !NOT_IN_SITEMAP.test(p) && !isOff(p); },
+      filter: (page) => { const p = new URL(page).pathname.replace(/\/$/, '') || '/'; return !NOT_IN_SITEMAP.test(p) && !isOff(p.replace(/^\/ar(?=\/|$)/, '') || '/'); }, // an Arabic twin follows its English page
       serialize: (item) => {
         const d = LASTMOD[new URL(item.url).pathname.replace(/\/$/, '')];
         const path = new URL(item.url).pathname.replace(/\/$/, '') || '/';
