@@ -1,39 +1,115 @@
 ---
-// /work and /ar/work (03 §9, lean R2 mockup Oct 26; shared page Oct 29, plan step 7). The EduLens case result, the
-// project chapters, one list of project story rows, three reviews and the closing band. Every section reads the copy of
-// the page's language.
+// /work and /ar/work (03 §16b.33, Oct 29, Direction A from .taste-skill/work-dirs.html; research: Metalab's client
+// index, thoughtbot's numbers row). Hero → four numbers → two products with their real screens → every client in one
+// index (logo, one line, stage) → three reviews → closing band. No drawings and no project shown twice.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
-import Section from '../sections/Section.astro';
 import CtaBand from '../sections/CtaBand.astro';
-import ProjectRows from '../work/ProjectRows.astro';
-import Chapters from '../work/Chapters.astro';
-import CaseResult from '../scenes/CaseResult.astro';
+import ProjectVisual from '../work/ProjectVisual.astro';
 import Reviews from '../sections/Reviews.astro';
+import type { Project } from '../../content/copy/en/projects';
 import { copy } from '../../content/copy';
 import { getLocale } from '../../i18n/t';
 import { graph, orgStub, webPage, ORG_ID } from '../../lib/seo';
 
-const { workPage: c, build, home } = copy();
+const { workPage: c, home } = copy();
 const path = getLocale() === 'ar' ? '/ar/work' : '/work';
-// The case page is switched off in the lean release, so the page no longer lists it as its main entity.
 const jsonLd = graph(orgStub, webPage(path, c.seo.title, c.seo.description, 'CollectionPage', { publisher: { '@id': ORG_ID } }));
+const logos = import.meta.glob<{ default: ImageMetadata }>('/assets/clients/mono/*.png');
+const rows = await Promise.all(c.index.map(async (r) => ({ ...r, img: r.logo ? (await logos[`/assets/clients/mono/${r.logo}`]?.())?.default : undefined })));
+const asProject = (f: (typeof c.featured)[number]) => ({ id: f.id, screens: f.screens, device: f.device, screenAlt: f.alt, art: 'devices' }) as unknown as Project;
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="work_index" jsonLd={jsonLd}>
   <PageHero page="work" h1={c.h1} lead={c.intro} cta="none" proof={false} />
 
-  <!-- Lean R2 (Oct 26): the EduLens case lives on /work instead of its own page. -->
-  <Section id="case" surface="raised" title={build.proof.case.result} titleHidden>
-    <CaseResult c={build.proof.case} low={10} high={40} quote={build.proof.case.quote} />
-  </Section>
+  <section class="wk" data-surface="ink" aria-labelledby="wk-nums">
+    <div class="container">
+      <h2 id="wk-nums" class="sr-only">{c.numbersTitle}</h2>
+      <ul role="list" class="wk__nums">
+        {c.numbers.map((n) => <li class="wk__num"><b class="wk__val">{n.value}</b><span class="wk__lab">{n.label}</span><span class="wk__who">{n.who}</span></li>)}
+      </ul>
+    </div>
+  </section>
 
-  <Chapters />
+  <section class="wk" data-surface="ink" aria-labelledby="wk-feat">
+    <div class="container">
+      <h2 id="wk-feat" class="section-title reveal">{c.featuredTitle}</h2>
+      <div class="wk__feat">
+        {c.featured.map((f) => (
+          <article class="wk__big">
+            <div class="wk__shot"><ProjectVisual project={asProject(f)} sizes="(min-width: 64rem) 55vw, 100vw" /></div>
+            <div class="wk__cap">
+              <p class="wk__meta">{f.meta}</p>
+              <h3 class="wk__h3">{f.title}</h3>
+              <p class="wk__line">{f.line}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <Section id="projects" surface="ink" title={c.moreTitle} titleHidden>
-    <ProjectRows />
-  </Section>
+  <section class="wk" data-surface="ink" aria-labelledby="wk-idx">
+    <div class="container">
+      <h2 id="wk-idx" class="section-title reveal">{c.indexTitle}</h2>
+      <ul role="list" class="wk__idx">
+        {rows.map((r) => (
+          <li class="wk__row">
+            <h3 class:list={['wk__client', { 'wk__client--icon': r.img && r.mark === 'icon' }]}>
+              {r.img && <Image src={r.img} alt={r.mark === 'word' ? r.name : ''} height={64} class="wk__logo" />}
+              {(!r.img || r.mark === 'icon') && <span>{r.name}</span>}
+            </h3>
+            <p class="wk__what">{r.line}</p>
+            <p class="wk__svc"><span class="wk__stage">{r.stage}</span>{r.tags.map((t) => <span>{t}</span>)}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
   <Reviews {...home.reviews} />
 
   <CtaBand title={c.band.title} kind="clarity" page="work" link={{ label: c.band.link, to: 'review' }} />
 </BaseLayout>
+
+<style>
+  .wk { padding-block: var(--section-y); }
+  .wk + .wk { padding-block-start: 0; }
+
+  /* Numbers: four facts, each with its client. */
+  .wk__nums { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-block: 1px solid var(--color-hairline); }
+  @media (width >= 56rem) { .wk__nums { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .wk__num { display: grid; gap: var(--space-1); align-content: start; padding: var(--space-6) var(--space-5); }
+  .wk__num:nth-child(even) { border-inline-start: 1px solid var(--color-hairline); }
+  .wk__num:nth-child(n + 3) { border-block-start: 1px solid var(--color-hairline); }
+  @media (width >= 56rem) {
+    .wk__num:nth-child(n + 3) { border-block-start: 0; }
+    .wk__num + .wk__num { border-inline-start: 1px solid var(--color-hairline); }
+  }
+  .wk__val { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3.5rem); line-height: 1; letter-spacing: -0.045em; color: var(--color-human-mark); font-variant-numeric: tabular-nums; }
+  .wk__lab { margin-block-start: var(--space-2); color: var(--color-text); }
+  .wk__who { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+  /* Selected work: the product's own screens, the title says what its user can do. */
+  .wk__feat { display: grid; margin-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
+  .wk__big { display: grid; gap: var(--space-6); align-items: center; padding-block: var(--space-8); border-block-end: 1px solid var(--color-hairline); }
+  @media (width >= 64rem) { .wk__big { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-12); } }
+  .wk__cap { display: grid; gap: var(--space-2); }
+  .wk__meta { font-size: var(--text-sm); color: var(--color-machine-text); }
+  .wk__h3 { font-family: var(--ff-heading); font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.25rem); font-weight: var(--weight-extrabold, 800); line-height: 1.1; letter-spacing: -0.03em; color: var(--color-heading); }
+  .wk__line { font-size: var(--text-lg); color: var(--color-text); max-inline-size: 44ch; }
+
+  /* Every client: logo, one line, stage and tags. */
+  .wk__idx { margin-block-start: var(--space-8); border-block-start: 1px solid var(--color-hairline); }
+  .wk__row { display: grid; gap: var(--space-2) var(--space-8); padding-block: var(--space-6); border-block-end: 1px solid var(--color-hairline); }
+  @media (width >= 56rem) { .wk__row { grid-template-columns: 13rem minmax(0, 1fr) 13rem; align-items: start; } }
+  .wk__client { display: flex; align-items: center; gap: var(--space-3); min-block-size: 2rem; font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-extrabold, 800); letter-spacing: -0.02em; color: var(--color-heading); }
+  .wk :global(.wk__logo) { block-size: 1.75rem; inline-size: auto; max-inline-size: 9rem; object-fit: contain; }
+  .wk__client--icon :global(.wk__logo) { max-inline-size: 2rem; }
+  .wk__what { color: var(--color-text); max-inline-size: 58ch; }
+  .wk__svc { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
+  @media (width >= 56rem) { .wk__svc { flex-direction: column; gap: 2px; } }
+  .wk__stage { font-weight: var(--weight-semibold); color: var(--color-human-mark); }
+</style>

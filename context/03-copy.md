@@ -2052,6 +2052,13 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.33 Work, Direction A (Oct 29; Mohamed chose A from .taste-skill/work-dirs.html)
+- H1: Products we took live, and teams that stayed. Lead: For founders and teams on 4 continents, from a first market study to an embedded ML team.
+- Numbers: 60–90% lower AI cost (EduLens, Egypt) · 20,000+ students on the platform (Pyramakerz, Egypt) · 12 months one embedded team (Upscend, UK) · 5.0 rating (Clutch).
+- Selected work: NJWAR · E-commerce · Saudi Arabia / Try the furniture in your room before you buy it / Athkado's Arabic store with an AR view and AI recommendations, from market study to launch. Rushr · Marketplace · USA / A plumber at your door, booked from your phone / 16 weeks, one product team: post a job, match the nearest verified pro, escrow payments and live chat.
+- Yawmy Care · Childcare · Our own product / A nursery's whole day, in one app for parents and staff / One platform for parents, teachers and management, with billing and multiple locations. Launching in 2027. (added to Selected work Oct 29, Mohamed)
+- Every client: EduLens, Upscend, BioBank, Nile Support, Pyramakerz, Arheb, Jumlaty, Amstadd, Zest, Fantacalcio, each with one line from en/projects.ts, stage and tags (full text in src/content/copy/en/work-page.ts; AR in ar/work-page.ts). The EduLens case section, chapters and drawing rows leave /work.
+
 ### 16b.32 Home: "Where are you starting from?" (Oct 29; replaces 2A.6 cards)
 - H2: Where are you starting from? Lead: One or two quick questions. You see your best start right away, and the free call confirms it. Line: Or go straight to Validate · Build · Launch-Ready Review · Scale · Partners.
 - Q1 Where are you today? I have an idea · I already built something · My product is live and working · We are a software house.
