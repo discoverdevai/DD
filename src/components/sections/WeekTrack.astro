@@ -5,13 +5,14 @@
 // The chart is decorative (aria-hidden); the ordered phase list below carries the same content for everyone, and on
 // phones it is the only view, each phase with a small span bar.
 import LayerChip, { type Chip } from '../ui/LayerChip.astro';
-interface Phase { title: string; body: string; chip?: Chip }
+// Phase 3 (03 §16b.38): `get` says what the founder has at the end of the phase, under `getLabel`.
+interface Phase { title: string; body: string; chip?: Chip; get?: string }
 interface Span { from: number; to: number; label: string; open?: boolean }
 // Oct 26 (03 §16b.6): `fork` draws the Validate decision under the chart; `signLabel` adds a row with a green mark on
 // every week of the main phase (a senior engineer signs off each release).
 interface Fork { label: string; options: readonly string[]; note: string }
-interface Props { id?: string; title: string; example: string; weeks: number; weekLabel: string; demoLabel: string; liveLabel: string; phases: readonly Phase[]; spans: readonly Span[]; fork?: Fork; signLabel?: string }
-const { id = 'process', title, example, weeks, weekLabel, demoLabel, liveLabel, phases, spans, fork, signLabel } = Astro.props;
+interface Props { id?: string; title: string; example: string; weeks: number; weekLabel: string; demoLabel: string; liveLabel: string; phases: readonly Phase[]; spans: readonly Span[]; fork?: Fork; signLabel?: string; getLabel?: string }
+const { id = 'process', title, example, weeks, weekLabel, demoLabel, liveLabel, phases, spans, fork, signLabel, getLabel } = Astro.props;
 const W = Array.from({ length: weeks }, (_, i) => i + 1);
 const main = spans.reduce((m, s, i) => (s.to - s.from > spans[m].to - spans[m].from ? i : m), 0);
 // Placement by class (the CSP blocks inline style): s = start column, n = span length (1–12 supported).
@@ -44,15 +45,7 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
       <p class="wt__live"><span class="wt__flag"></span>{liveLabel}</p>
     </div>
 
-    {fork && (
-      <div class="wt__fork reveal">
-        <span class="wt__forklabel">{fork.label}</span>
-        <ul role="list" class="wt__options">{fork.options.map((o, i) => <li class:list={['wt__option', { 'wt__option--go': i === 0 }]}>{o}</li>)}</ul>
-        <span class="wt__forknote">{fork.note}</span>
-      </div>
-    )}
-
-    <ol role="list" class="wt__phases reveal-stagger">
+    <ol role="list" class:list={['wt__phases', 'reveal-stagger', { 'wt__phases--under': phases.length === 4 }]}>
       {phases.map((p, i) => (
         <li class:list={['wt__phase', { 'wt__phase--main': i === main }]}>
           <span class="wt__range">{spans[i].label}</span>
@@ -60,9 +53,18 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
           <h3 class="wt__h3">{p.title}</h3>
           <p class="wt__body">{p.body}</p>
           {p.chip && <LayerChip kind={p.chip.kind}>{p.chip.label}</LayerChip>}
+          {p.get && <p class="wt__get">{getLabel && <b>{getLabel}</b>} {p.get}</p>}
         </li>
       ))}
     </ol>
+
+    {fork && (
+      <div class="wt__fork reveal">
+        <span class="wt__forklabel">{fork.label}</span>
+        <ul role="list" class="wt__options">{fork.options.map((o, i) => <li class:list={['wt__option', { 'wt__option--go': i === 0 }]}>{o}</li>)}</ul>
+        <span class="wt__forknote">{fork.note}</span>
+      </div>
+    )}
   </div>
 </section>
 
@@ -97,7 +99,8 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
   .wt__option { font-size: var(--text-sm); padding: 4px 12px; border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); color: var(--color-text); }
   .wt__option--go { background: var(--color-human-mark); border-color: var(--color-human-mark); color: var(--blue-975); font-weight: var(--weight-semibold); }
   .wt__forknote { font-size: var(--text-sm); color: var(--color-text-muted); }
-  @media (width < 64rem) { .wt__fork { margin-block: 0 var(--space-8); } }
+  @media (width < 64rem) { .wt__fork { margin-block: var(--space-6) 0; } }
+  @media (width >= 64rem) { .wt__fork { margin-block: var(--space-6) 0; } }
   .wt__live { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-sm); color: var(--color-human-mark); }
   .wt__flag { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--color-human-mark); box-shadow: 0 0 0 4px color-mix(in oklab, var(--green-300) 18%, transparent); }
 
@@ -106,6 +109,10 @@ const place = (sp: Span, offset: number) => `s${sp.from + offset} n${sp.to - sp.
   @media (width >= 40rem) { .wt__phases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (width >= 64rem) { .wt__phases { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); } .wt__phase { padding: var(--space-4) var(--space-5); } .wt__phase .wt__h3 { font-size: var(--text-lg); } .wt__phase .wt__body { font-size: var(--text-sm); line-height: 1.5; } }
   .wt__phase { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); border-block-start: 4px solid color-mix(in oklab, var(--blue-300) 35%, transparent); }
+  /* Under the chart (Build, Phase 3): cards in timeline order, Build widest, so each reads as the phase above it. */
+  @media (width >= 64rem) { .wt__phases--under { grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr) minmax(0, 4fr) minmax(0, 2.5fr); } }
+  .wt__get { margin-block-start: auto; padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); font-size: var(--text-sm); line-height: 1.5; color: var(--color-heading); }
+  .wt__get b { font-weight: var(--weight-medium); color: var(--color-human-mark); }
   .wt__phase--main { border-block-start-color: var(--blue-500); background: color-mix(in oklab, var(--blue-600) 16%, var(--color-surface)); }
   .wt__range { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
   .wt__mini { display: grid; grid-template-columns: repeat(var(--wt-n, 10), minmax(0, 1fr)); block-size: 6px; border-radius: 3px; background: var(--color-hairline); margin-block: var(--space-1) var(--space-2); overflow: hidden; }

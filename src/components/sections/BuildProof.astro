@@ -1,0 +1,79 @@
+---
+// Proof on /build (03 §16b.38, Phase 3, Oct 29). The Gulf client leads: NJWAR (Athkado, Saudi Arabia) with its product
+// screen and its founder's words. EduLens follows as one number and its CEO's quote. Then the other products we built.
+// Facts from 09 (Portfolio, Reviews); names and quotes OK'd by Mohamed (D-05, Oct 16 and Oct 27).
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BuildWork from '../blocks/BuildWork.astro';
+import SectionHead from '../ui/SectionHead.astro';
+interface Quote { text: string; name: string; role: string }
+interface Props {
+  id?: string;
+  c: {
+    title: string;
+    quote: Quote;
+    lead: { meta: string; name: string; line: string; screen: string; alt: string };
+    case: { name: string; where: string; big: { value: string; label: string }; body: string; quote: Quote };
+    work: Parameters<typeof BuildWork>[0]['c'];
+  };
+}
+const { id = 'proof', c } = Astro.props;
+const files = import.meta.glob<{ default: ImageMetadata }>('/assets/projects/*.webp');
+const screen = (await files[`/assets/projects/${c.lead.screen}`]!()).default;
+---
+<section id={id} class="bpf" data-surface="ink" aria-labelledby={`${id}-title`}>
+  <div class="container bpf__inner">
+    <SectionHead id={`${id}-title`} title={c.title} measure={24} />
+
+    <article class="bpf__lead reveal">
+      <div class="bpf__pic"><Image src={screen} alt={c.lead.alt} widths={[640, 960, 1280]} sizes="(min-width: 64rem) 56vw, 100vw" class="bpf__img" loading="lazy" /></div>
+      <div class="bpf__text">
+        <p class="bpf__meta">{c.lead.meta}</p>
+        <h3 class="bpf__name">{c.lead.name}</h3>
+        <p class="bpf__line">{c.lead.line}</p>
+        <blockquote class="bpf__quote"><p>{c.quote.text}</p><footer>{c.quote.name}, {c.quote.role}</footer></blockquote>
+      </div>
+    </article>
+
+    <article class="bpf__case reveal">
+      <div class="bpf__num">
+        <p class="bpf__meta">{c.case.name} · {c.case.where}</p>
+        <p class="bpf__big" dir="auto">{c.case.big.value}</p>
+        <h3 class="bpf__biglabel">{c.case.big.label}</h3>
+        <p class="bpf__line">{c.case.body}</p>
+      </div>
+      <blockquote class="bpf__say"><p>{c.case.quote.text}</p><footer>{c.case.quote.name}, {c.case.quote.role}</footer></blockquote>
+    </article>
+
+    <BuildWork c={c.work} />
+  </div>
+</section>
+
+<style>
+  .bpf { padding-block: var(--section-y); }
+  .bpf__inner { display: grid; gap: var(--space-4); }
+  .bpf__inner > :global(:first-child) { margin-block-end: var(--space-4); }
+  .bpf__inner > :global(.bw) { margin-block-start: var(--space-8); }
+
+  /* NJWAR: the product screen beside the client's words. One card recipe: surface, hairline, 12px corners. */
+  .bpf__lead, .bpf__case { display: grid; overflow: hidden; border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  @media (width >= 64rem) { .bpf__lead { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
+  .bpf__pic { background: var(--neutral-0); }
+  .bpf :global(.bpf__img) { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: top center; }
+  .bpf__text { display: grid; gap: var(--space-3); align-content: center; padding: var(--space-8); }
+  .bpf__meta { font-size: var(--text-sm); color: var(--color-machine-text); }
+  .bpf__name { font-family: var(--ff-heading); font-size: var(--title-feature); font-weight: var(--weight-bold); line-height: 1.1; letter-spacing: -0.03em; color: var(--color-heading); }
+  .bpf__line { color: var(--color-text-muted); max-inline-size: 48ch; }
+  .bpf__quote { margin: var(--space-2) 0 0; padding-inline-start: var(--space-4); border-inline-start: 3px solid var(--color-human-mark); }
+  .bpf__quote p { font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xl); line-height: 1.3; color: var(--color-heading); }
+  .bpf__quote footer, .bpf__say footer { margin-block-start: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+
+  /* EduLens: one number, then its CEO's words. */
+  @media (width >= 56rem) { .bpf__case { grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); } .bpf__num { border-inline-end: 1px solid var(--color-hairline); } }
+  .bpf__num { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-8); }
+  @media (width < 56rem) { .bpf__num { border-block-end: 1px solid var(--color-hairline); } }
+  .bpf__big { font-family: var(--ff-heading); font-weight: var(--weight-extrabold, 800); font-size: clamp(3.5rem, 2.4rem + 4vw, 5.5rem); line-height: 0.95; letter-spacing: -0.045em; color: var(--color-human-mark); font-variant-numeric: tabular-nums; }
+  .bpf__biglabel { font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .bpf__say { margin: 0; display: grid; align-content: center; padding: var(--space-8); }
+  .bpf__say p { font-size: var(--text-lg); line-height: 1.5; color: var(--color-heading); }
+</style>

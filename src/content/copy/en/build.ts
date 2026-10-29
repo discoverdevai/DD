@@ -17,17 +17,14 @@ export const build = {
       { anchor: 'process', label: 'New idea? Validate first' },
       { anchor: 'review', label: 'Built it with AI? Review it first' },
     ],
-    // Hero window (research: Halo Lab's week ranges). Every string is already on the page.
-    path: {
-      name: 'your-product / plan',
-      title: 'Your path',
-      validate: { title: 'Validate', meta: '1–2 weeks' },
-      build: { title: 'Build', meta: '8–12 weeks' },
-      live: { title: 'Live', meta: 'Real users' },
-      ai: 'AI drafts the work',
-      senior: 'A senior engineer signs off every release',
-      facts: ['Fixed price', 'Your repo, your cloud', 'Arabic and English'],
-    },
+    // Phase 3 (03 §16b.38): a real client screen beside the copy; the path becomes the number row under the lead.
+    shot: { caption: 'NJWAR, an AR furniture store we built for Athkado, Saudi Arabia', alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room' },
+    nums: [
+      { label: 'Validate', value: '1–2 weeks' },
+      { label: 'Build', value: '8–12 weeks' },
+      { label: 'Price', value: 'Fixed' },
+      { label: 'Code and IP', value: 'All yours' },
+    ],
   },
   // Journey direction (Oct 26): the page is one line from idea to launch; each section is a stop on it, titled with the
   // founder's own question, with the client voice that belongs to that stop.
@@ -39,14 +36,15 @@ export const build = {
     example: 'Example: 2 weeks of Validate and a 10-week Build. Your exact plan is set before we start.',
     weeks: 12,
     weekLabel: 'Week',
+    getLabel: 'You get',
     demoLabel: 'Weekly demo',
     signLabel: 'Senior sign-off',
     liveLabel: 'Live with real users',
     phases: [
-      { title: 'Validate', body: 'A market read, a product scope, a clickable prototype and a fixed build estimate. Then you decide.' },
-      { title: 'Plan', body: 'Roadmap, tech choices and team agreed before any code.' },
-      { title: 'Build', body: 'Sprints with results every week. AI does the heavy lifting. Senior engineers own the quality.', chip: { kind: 'ai', label: 'AI-accelerated' } },
-      { title: 'Ship and stay', body: 'Deploy, monitor and keep improving. The same team stays after launch if you want it to.' },
+      { title: 'Validate', body: 'A market read and a product scope. Then you decide.', get: 'A clickable prototype and a fixed build estimate' },
+      { title: 'Plan', body: 'Roadmap, tech choices and team agreed before any code.', get: 'An agreed roadmap, tech and team' },
+      { title: 'Build', body: 'Sprints with results every week. AI does the heavy lifting. Senior engineers own the quality.', chip: { kind: 'ai', label: 'AI-accelerated' }, get: 'A working result every week, signed off by a senior engineer' },
+      { title: 'Ship and stay', body: 'Deploy, monitor and keep improving. The same team stays after launch if you want it to.', get: 'A live product, monitored' },
     ],
     spans: [
       { from: 1, to: 2, label: 'Weeks 1–2' },
@@ -97,6 +95,8 @@ export const build = {
   // What you get (03 §16b.8, Oct 26 redesign): deliverables as icons, then four terms led by their answer.
   get: {
     title: 'What you get, and what you can count on.',
+    // Phase 3 (03 §16b.38): the deal as one statement-of-work card.
+    sow: { title: 'Your Build, in one page', note: 'Set before we start' },
     includedLabel: 'In every Build',
     items: [
       { icon: 'pen-tool', label: 'Product design, UX and UI' },
@@ -127,29 +127,16 @@ export const build = {
       result: '60–90% lower AI cost',
       big: { value: '60–90%', label: 'lower AI cost at EduLens' },
       body: 'Three AI agents in production: a support chatbot, video-to-lesson and quiz generation, and a student assistant. Cost used to grow with every user. Now each video is processed once.',
-      chartTitle: 'AI cost, before and after (before = 100)',
-      before: 'Before',
-      after: 'After',
-      beforeValue: '100',
-      afterValue: '10 to 40',
-      note: 'The range depends on how often the cache is hit and whether a video has captions.',
-      changesTitle: 'What changed',
-      changes: [
-        'Free captions first, paid transcription only when missing',
-        'Summaries and quizzes cached and shared across users',
-        'Model routing: a lower-cost default, premium only when needed',
-        'Token trimming',
-        'Long audio split into chunks and transcribed in parallel',
-      ],
       quote: { text: 'They focused on building solutions that were practical, scalable, and aligned with our users’ needs.', name: 'Youssef', role: 'CEO, EduLens' },
     },
     quote: { text: 'Professional work and great communication.', name: 'Nojoud Alarfaj', role: 'Athkado, Saudi Arabia' },
+    // Phase 3 (03 §16b.38): the Gulf client leads the proof with its product screen and its founder's words (the quote above).
+    lead: { meta: 'Athkado · Saudi Arabia', name: 'NJWAR', line: 'An AR furniture store: place a piece in your room at real size, change its color, rotate it and add more.', screen: 'njwar-product.webp', alt: 'NJWAR product page in Arabic: an armchair with its sizes, colors and price' },
     // Named products from idea to launch (03 §16b.12, Oct 27: Mohamed OK'd client names, D-05). Facts from 09 Portfolio;
     // NJWAR is Athkado's store (Mohamed, Oct 27). Screens from assets/projects (our Figma exports); BioBank has none, so its drawing.
     work: {
       title: 'More products we’ve built',
       items: [
-        { id: 'njwar', name: 'NJWAR', meta: 'Athkado · Saudi Arabia', line: 'An AR furniture store: place a piece in your room at real size, change its color, rotate it and add more.', screens: ['njwar-web.webp', 'njwar-ar.webp'], device: 'combo', alt: 'NJWAR web store in Arabic, with the AR view on a phone placing an armchair in a real room', art: 'ar' },
         { id: 'rushr', name: 'Rushr', meta: 'Marketplace · USA', line: 'A home-services marketplace, built by a full product team: post a job, get matched with the nearest verified pro, pay through escrow.', screens: ['rushr-m-dispatch.webp', 'rushr-m-searching.webp'], device: 'phone', alt: 'Rushr app showing a matched plumber with accept and decline', art: 'devices' },
         { id: 'yawmy', name: 'Yawmy Care', meta: 'Childcare · our own product', line: 'Our own nursery platform for management, teachers and parents, with billing and multiple locations. Launching in 2027.', screens: ['yawmy-dashboard.webp', 'yawmy-parent-logs.webp'], device: 'combo', alt: 'Yawmy Care nursery dashboard with daily attendance, and the parent app showing a child’s day: mood, meals and nap', art: 'lms' },
         { id: 'biobank', name: 'BioBank', meta: 'HealthTech', line: 'A mobile app that turns lab reports into plain-language explanations, with recommendations, follow-up questions and medical safety guardrails.', art: 'health' },

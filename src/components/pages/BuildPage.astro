@@ -1,19 +1,17 @@
 ---
 // /build and /ar/build (03 §16b.1 + §16b.6, lean R1; home-style redesign Oct 26 from
 // docs/research-sitemap/build-page-inspiration.md). Seven sections, all on the ink theme like home:
-// hero (the path window and the two ways in) → the plan (Validate and Build on one timeline, the decision and every
-// senior sign-off on it) → AI-built prototype (a finding being fixed, the sample report) → what you get and terms (one
-// statement of work) → proof (one big number, client words) → FAQ (buyer order) → close (a question).
+// hero (NJWAR's real screens, the number row and the two ways in; Phase 3, 03 §16b.38) → the plan (Validate and Build on one timeline, the decision and every
+// senior sign-off on it, "You get" under each phase) → AI-built prototype (one findings report) → what you get (one
+// statement-of-work card) → proof (NJWAR leads, EduLens as one number) → FAQ (buyer order) → close (a question).
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../sections/PageHero.astro';
-import Section from '../sections/Section.astro';
-import BuildWork from '../blocks/BuildWork.astro';
 import FaqSplit from '../sections/FaqSplit.astro';
 import CtaBand from '../sections/CtaBand.astro';
 import Journey from '../sections/Journey.astro';
 import JourneyStop from '../sections/JourneyStop.astro';
-import BuildPath from '../scenes/BuildPath.astro';
-import CaseResult from '../scenes/CaseResult.astro';
+import BuildShot from '../scenes/BuildShot.astro';
+import BuildProof from '../sections/BuildProof.astro';
 import Quote from '../blocks/Quote.astro';
 import WeekTrack from '../sections/WeekTrack.astro';
 import WhatYouGet from '../sections/WhatYouGet.astro';
@@ -34,16 +32,16 @@ const faqLd = faqPage(`${url}#faq`, c.faq.items);
 const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.description, 'WebPage', { mainEntity: { '@id': `${url}#service` } }), faqLd);
 ---
 <BaseLayout title={c.seo.title} description={c.seo.description} pageType="service" jsonLd={jsonLd}>
-  <PageHero page="build" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} cta="clarity">
+  <PageHero page="build" eyebrow={c.hero.eyebrow} h1={c.hero.h1} lead={c.hero.body} meta={c.hero.nums} cta="clarity">
     <p slot="link" class="ways">{c.hero.ways.map((w) => <a href={`#${w.anchor}`}>{w.label}<span class="icon--dir" aria-hidden="true">→</span></a>)}</p>
-    <BuildPath slot="aside" c={c.hero.path} />
+    <BuildShot slot="aside" c={c.hero.shot} />
   </PageHero>
 
   <!-- Journey (03 §16b.7): one line from idea to launch. Each stop marks the section after it; the background deepens
        slowly down the page instead of alternating bands. The line and stops are decorative; headings carry the meaning. -->
   <Journey>
     <JourneyStop label={c.stages.plan} />
-    <WeekTrack title={c.plan.title} example={c.plan.example} weeks={c.plan.weeks} weekLabel={c.plan.weekLabel} demoLabel={c.plan.demoLabel} liveLabel={c.plan.liveLabel} phases={c.plan.phases} spans={c.plan.spans} fork={c.plan.fork} signLabel={c.plan.signLabel} />
+    <WeekTrack title={c.plan.title} example={c.plan.example} weeks={c.plan.weeks} weekLabel={c.plan.weekLabel} demoLabel={c.plan.demoLabel} liveLabel={c.plan.liveLabel} phases={c.plan.phases} spans={c.plan.spans} fork={c.plan.fork} signLabel={c.plan.signLabel} getLabel={c.plan.getLabel} />
     <div class="container voice"><Quote text={c.plan.quote.text} name={c.plan.quote.name} role={c.plan.quote.role} /></div>
 
     <JourneyStop label={c.stages.review} />
@@ -51,15 +49,9 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
 
     <JourneyStop label={c.stages.terms} />
     <WhatYouGet c={c.get} />
-    <div class="container voice"><Quote text={c.proof.quote.text} name={c.proof.quote.name} role={c.proof.quote.role} /></div>
 
     <JourneyStop label={c.stages.proof} />
-    <Section id="proof" surface="ink" title={c.proof.title}>
-      <div class="proof">
-        <CaseResult c={c.proof.case} low={10} high={40} quote={c.proof.case.quote} big={c.proof.case.big} />
-        <BuildWork c={c.proof.work} />
-      </div>
-    </Section>
+    <BuildProof c={c.proof} />
 
     <JourneyStop label={c.stages.faq} />
     <FaqSplit title={c.faq.title} items={c.faq.items} ctaPage="build" openFirst />
@@ -69,6 +61,4 @@ const jsonLd = graph(orgStub, serviceLd, webPage(path, c.seo.title, c.seo.descri
   </Journey>
 </BaseLayout>
 
-<style>
-  .proof { display: grid; gap: var(--space-12); }
-</style>
+

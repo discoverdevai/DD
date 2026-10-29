@@ -26,15 +26,15 @@ const hasAside = Astro.slots.has('aside');
       {eyebrow && <p class="phero__pill"><span class="phero__dot" aria-hidden="true"></span>{eyebrow}</p>}
       <h1 id="page-title" class="phero__h1">{h1}</h1>
       <p class="phero__lead">{lead}</p>
-      {meta && meta.length > 0 && (
-        <dl class="phero__meta">{meta.map((m) => <div><dt>{m.label}</dt><dd>{m.value}</dd></div>)}</dl>
-      )}
       {cta !== 'none' && (
         <div class="phero__cta">
           <CtaLink href={ctaHref ?? bookHref(cta)} ctaId={`${page}_hero_${cta}`} tier={cta === 'review' ? 'primary' : cta === 'partner' ? 'partner' : 'secondary'} position="hero" target={cta} wide data-hero-cta>{label}</CtaLink>
           <CtaTerms kind={cta} />
           <slot name="link" />
         </div>
+      )}
+      {meta && meta.length > 0 && (
+        <dl class="phero__meta">{meta.map((m) => <div><dt>{m.label}</dt><dd>{m.value}</dd></div>)}</dl>
       )}
       {proof && <ProofChip />}
     </div>
@@ -60,9 +60,11 @@ const hasAside = Astro.slots.has('aside');
   .phero__h1 { font-size: var(--title-page); font-weight: var(--weight-bold); line-height: 1.04; letter-spacing: -0.045em; color: var(--color-heading); max-inline-size: 18ch; text-wrap: balance; }
   .phero__lead { font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem); line-height: 1.55; color: var(--color-text-muted); max-inline-size: 40rem; text-wrap: pretty; }
   .phero__meta { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-10); padding-block: var(--space-4); border-block: 1px solid var(--color-hairline); inline-size: 100%; }
+  /* Number row (Build, Phase 3): the value in large type, its label under it. */
+  @media (width < 40rem) { .phero__meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); } } /* 2 + 2, never 3 + 1 */
   .phero__meta div { display: grid; gap: 2px; }
-  .phero__meta dt { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .phero__meta dd { margin: 0; font-weight: var(--weight-medium); color: var(--color-text); }
+  .phero__meta dt { order: 2; font-family: var(--ff-body); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .phero__meta dd { order: 1; margin: 0; font-family: var(--ff-heading); font-weight: var(--weight-bold); font-size: var(--text-xl); letter-spacing: -0.02em; color: var(--color-heading); }
   .phero__cta { display: grid; gap: var(--space-3); justify-items: start; }
   .phero__aside { min-inline-size: 0; }
   @media (prefers-reduced-motion: no-preference) {

@@ -2052,6 +2052,14 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.38 Build page, Phase 3 (Oct 29; Mohamed: "Yes, build it" on .taste-skill/build-p3.html)
+- Hero: the path window is replaced by NJWAR's real screens (web store + AR phone). Caption: "NJWAR, an AR furniture store we built for Athkado, Saudi Arabia". Under the lead, a number row: Validate 1–2 weeks · Build 8–12 weeks · Price Fixed · Code and IP All yours.
+- The plan: the four phase cards sit under their weeks and each says what you get ("You get"): Validate "A clickable prototype and a fixed build estimate" (its body shortens to "A market read and a product scope. Then you decide."); Plan "An agreed roadmap, tech and team"; Build "A working result every week, signed off by a senior engineer"; Ship and stay "A live product, monitored".
+- Review: one findings report, in day order (Day 0 → Days 1–4 → Day 5), then the example finding and the verdict. Copy unchanged.
+- What you get: one statement-of-work card titled "Your Build, in one page", note "Set before we start". Items and the four terms unchanged.
+- Proof: NJWAR leads (Athkado · Saudi Arabia, its product screen, the existing line, Nojoud Alarfaj's "Professional work and great communication."). EduLens follows as one number (60–90% lower AI cost) with its existing body and Youssef's quote; the before/after chart and the change list leave the page. "More products we've built": Rushr, Yawmy Care, BioBank.
+- Arabic: the same strings in ar/build.ts (draft until the native review).
+
 ### 16b.37 Top bar, floating capsule (Oct 29, Mohamed chose it from .taste-skill/topbar-capsule.html)
 - Links: Build · Scale · Work · How we work · Pricing (once live). FAQ leaves the bar (it stays in the footer and on every page). Button: "Book a call" at every width (the full "Book a free clarity call" stays on page buttons and in the phone menu).
 

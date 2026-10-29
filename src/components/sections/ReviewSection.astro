@@ -1,20 +1,20 @@
 ---
-// "Built it with AI? We check it first." on /build (03 §16b.9, Oct 26 redesign). Three rows in the home style:
-// 1) the question, what we check, and one finding being fixed; 2) the five days as three steps, day 5 showing the
-// findings you receive (the sample report, now in the dark theme instead of a white sheet); 3) the offer as one bar:
-// price, days, guarantee and the call. Every string comes from the page copy (§3 Launch-Ready Review lines).
+// "Built it with AI? We check it first." on /build (03 §16b.9; Phase 3, §16b.38, Oct 29). Two rows:
+// 1) the question and what we check, beside one findings report read in day order (Day 0 → Days 1–4 → Day 5), then the
+// example finding being fixed and the verdict; 2) the offer as one bar: price, days, guarantee and the call.
+// Every string comes from the page copy (§3 Launch-Ready Review lines).
 import SectionHead from '../ui/SectionHead.astro';
 import LayerChip, { type Chip } from '../ui/LayerChip.astro';
 import CtaLink from '../ui/CtaLink.astro';
 import CtaTerms from '../ui/CtaTerms.astro';
-import CodeFinding from '../scenes/CodeFinding.astro';
+import WindowBar from '../ui/WindowBar.astro';
 import { copy } from '../../content/copy';
 import { t } from '../../i18n/t';
 import { bookHref } from '../../data/routes';
 
 const c = copy().build.review;
-const snap = copy().snapshot;
-const SEV = { critical: 'rv__sev--crit', high: 'rv__sev--high', medium: 'rv__sev--med' } as const;
+const f = c.finding;
+const mark = { del: '-', add: '+', ctx: ' ' } as const;
 ---
 <section id="review" class="rv" data-surface="ink" aria-labelledby="review-title">
   <div class="container rv__inner">
@@ -25,27 +25,26 @@ const SEV = { critical: 'rv__sev--crit', high: 'rv__sev--high', medium: 'rv__sev
         <h3 class="rv__h3">{c.checkTitle}</h3>
         <ul role="list" class="rv__areas">{c.areas.map((a) => <li>{a}</li>)}</ul>
       </div>
-      <CodeFinding c={c.finding} />
+      <figure class="rv__report reveal">
+        <WindowBar><span class="rv__label">{f.label}</span></WindowBar>
+        <ol role="list" class="rv__days">
+          {c.steps.map((st) => (
+            <li class="rv__day">
+              <span class="rv__when">{st.meta}</span>
+              <h3 class="rv__steptitle">{st.title}</h3>
+              <p class="rv__stepbody">{st.body}</p>
+              <LayerChip kind={(st.chip as Chip).kind}>{st.chip.label}</LayerChip>
+            </li>
+          ))}
+        </ol>
+        <div class="rv__find">
+          <p class="rv__head"><span class="rv__sev">{f.severity}</span><span>{f.area}</span></p>
+          <pre class="rv__code" dir="ltr" tabindex="0" aria-label={f.caption}><code>{f.lines.map((l) => <span class:list={['rv__line', `rv__line--${l.kind}`]}><span class="rv__mark" aria-hidden="true">{mark[l.kind]}</span>{l.text}</span>)}</code></pre>
+        </div>
+        <p class="rv__verdict"><span>{f.verdictLabel}</span><b>{f.verdict}</b></p>
+        <figcaption class="sr-only">{f.caption}</figcaption>
+      </figure>
     </div>
-
-    <ol role="list" class="rv__steps reveal-stagger">
-      {c.steps.map((s, i) => (
-        <li class:list={['rv__step', { 'rv__step--last': i === c.steps.length - 1 }]}>
-          <span class="rv__when">{s.meta}</span>
-          <h3 class="rv__steptitle">{s.title}</h3>
-          <p class="rv__stepbody">{s.body}</p>
-          <LayerChip kind={(s.chip as Chip).kind}>{s.chip.label}</LayerChip>
-          {i === c.steps.length - 1 && (
-            <ul role="list" class="rv__report" aria-label={snap.caption}>
-              {snap.findings.map((f) => (
-                <li class="rv__finding"><span class:list={['rv__sev', SEV[f.severity]]}>{snap.severity[f.severity]}</span><span>{f.title}</span></li>
-              ))}
-              <li class="rv__verdict">{snap.verdict}</li>
-            </ul>
-          )}
-        </li>
-      ))}
-    </ol>
 
     <div class="rv__offer reveal">
       <dl class="rv__facts">{c.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}</dl>
@@ -68,32 +67,37 @@ const SEV = { critical: 'rv__sev--crit', high: 'rv__sev--high', medium: 'rv__sev
   /* Row 1: the question and what we check, beside one finding being fixed. */
   .rv__top { display: grid; gap: var(--space-8); align-items: start; }
   /* Wide: the finding sits level with the copy's middle, and the intro stands a step further from the days than the days from the offer. */
-  @media (width >= 64rem) { .rv__top { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-12); align-items: center; } .rv__steps { margin-block-start: var(--space-4); } }
+  @media (width >= 64rem) { .rv__top { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-12); align-items: center; } }
   .rv__copy { display: grid; gap: var(--space-4); }
   .rv__body { font-size: var(--text-lg); line-height: 1.55; color: var(--color-text-muted); max-inline-size: var(--measure-lead); }
   .rv__h3 { margin-block-start: var(--space-2); font-family: var(--ff-body); font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); }
   .rv__areas { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .rv__areas li { padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); background: color-mix(in oklab, var(--blue-300) 6%, transparent); font-size: var(--text-sm); color: var(--color-text); }
 
-  /* Row 2: the five days as three steps; day 5 carries the findings you receive. */
-  .rv__steps { display: grid; gap: var(--space-4); }
-  /* Wide screens: days 0 and 1–4 stacked on the left, day 5 and its report on the right, so no card is left half empty. */
-  @media (width >= 56rem) {
-    .rv__steps { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
-    .rv__step--last { grid-column: 2; grid-row: 1 / span 2; }
-  }
-  .rv__step { display: grid; gap: var(--space-2); align-content: start; justify-items: start; padding: var(--space-5); border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); border-block-start: 3px solid color-mix(in oklab, var(--blue-300) 35%, transparent); }
-  .rv__step--last { border-block-start-color: var(--color-human-mark); }
-  .rv__when { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-machine-text); }
-  .rv__steptitle { font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); color: var(--color-heading); }
-  .rv__stepbody { font-size: var(--text-sm); line-height: 1.55; color: var(--color-text-muted); }
-  .rv__report { justify-self: stretch; display: grid; margin-block-start: var(--space-2); border-radius: var(--radius-md); background: var(--color-bg); border: 1px solid var(--color-hairline); }
-  .rv__finding { display: flex; align-items: baseline; gap: var(--space-3); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); color: var(--color-text); border-block-end: 1px solid var(--color-hairline); }
-  .rv__sev { flex: none; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 1px 8px; border-radius: var(--radius-pill); }
-  .rv__sev--crit { background: color-mix(in oklab, var(--red-300) 16%, transparent); color: var(--red-300); }
-  .rv__sev--high { background: color-mix(in oklab, var(--amber-300) 16%, transparent); color: var(--amber-300); }
-  .rv__sev--med { background: color-mix(in oklab, var(--blue-300) 16%, transparent); color: var(--blue-200); }
-  .rv__verdict { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-human-mark); }
+  /* The report: one flat product frame (Phase 2), the days in order, then the finding and the verdict. */
+  .rv__report { margin: 0; overflow: hidden; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-hairline); min-inline-size: 0; }
+  .rv__label { font-family: var(--ff-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .rv__days { display: grid; border-block-end: 1px solid var(--color-hairline); }
+  @media (width >= 40rem) { .rv__days { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr); } }
+  .rv__day { display: grid; gap: var(--space-1); align-content: start; justify-items: start; padding: var(--space-4) var(--space-5); }
+  .rv__day + .rv__day { border-block-start: 1px solid var(--color-hairline); }
+  @media (width >= 40rem) { .rv__day + .rv__day { border-block-start: 0; border-inline-start: 1px solid var(--color-hairline); } }
+  .rv__day:last-child { background: color-mix(in oklab, var(--blue-600) 14%, transparent); }
+  .rv__when { font-size: var(--text-xs); color: var(--color-machine-text); }
+  .rv__steptitle { font-family: var(--ff-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); color: var(--color-heading); }
+  .rv__stepbody { font-size: var(--text-sm); line-height: 1.5; color: var(--color-text-muted); margin-block-end: var(--space-2); }
+  .rv__find { display: grid; gap: var(--space-3); padding: var(--space-4) var(--space-5); }
+  .rv__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .rv__sev { font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 2px 10px; border-radius: var(--radius-pill); background: color-mix(in oklab, var(--red-300) 16%, transparent); color: var(--red-300); }
+  .rv__code { margin: 0; padding: var(--space-4); border-radius: var(--radius-md); background: var(--color-bg); overflow-x: auto; font-family: var(--font-mono, "JetBrains Mono", ui-monospace, monospace); font-size: var(--text-sm); line-height: 1.75; } /* Latin code font in every language */
+  .rv__code:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+  .rv__line { display: block; white-space: pre; padding-inline-end: var(--space-4); }
+  .rv__mark { display: inline-block; inline-size: 1.5ch; }
+  .rv__line--del { color: var(--red-300); background: color-mix(in oklab, var(--red-300) 9%, transparent); }
+  .rv__line--add { color: var(--color-human-mark); background: color-mix(in oklab, var(--color-human-mark) 9%, transparent); }
+  .rv__line--ctx { color: var(--color-text-muted); }
+  .rv__verdict { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-5); border-block-start: 1px solid var(--color-hairline); color: var(--color-text-muted); }
+  .rv__verdict b { font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-human-mark); }
 
   /* Row 3: the offer as one bar. */
   .rv__offer { display: grid; gap: var(--space-5) var(--space-8); align-items: center; padding: var(--space-6); border-radius: var(--radius-lg); background: color-mix(in oklab, var(--color-human-mark) 7%, var(--color-surface)); border: 1px solid color-mix(in oklab, var(--color-human-mark) 30%, transparent); }

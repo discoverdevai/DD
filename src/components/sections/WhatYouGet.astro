@@ -2,6 +2,7 @@
 // "What you get" for /build (03 §16b.8, Oct 26 redesign): the deliverables as one band of five icons, then the four
 // terms as tiles, each led by its answer in large type (Timeline 8–12 weeks · Price Fixed · Team A full squad ·
 // Ownership All yours). Replaces the statement-of-work rows, which read as a wall of text. Ink theme, home patterns.
+// Optional `sow` (Build, Phase 3, 03 §16b.38): band and tiles join into one statement-of-work card with a title row.
 import Icon from '../ui/Icon.astro';
 import InlineLink from '../ui/InlineLink.astro';
 import SectionHead from '../ui/SectionHead.astro';
@@ -14,7 +15,7 @@ type IconName = Parameters<typeof Icon>[0]['name'];
 interface Assure { lead: string; text: string; cta?: { label: string; interest: string }; link?: { label: string; anchor: string } }
 interface Tile { id: string; label: string; value: string; body: string; link?: { label: string; to: RouteKey }; assure?: Assure }
 // `page` names the analytics ctaId ({page}_card_clarity_{tile}, 07 §15).
-interface Props { id?: string; page?: string; c: { title: string; includedLabel: string; items: readonly { icon: string; label: string }[]; tiles: readonly Tile[] } }
+interface Props { id?: string; page?: string; c: { title: string; sow?: { title: string; note: string }; includedLabel: string; items: readonly { icon: string; label: string }[]; tiles: readonly Tile[] } }
 const { id = 'get', page = 'build', c } = Astro.props;
 const book = bookHref('clarity');
 const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${book}&interest=${interest}`);
@@ -23,7 +24,9 @@ const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${bo
   <div class="container wyg__inner">
     <SectionHead id={`${id}-title`} title={c.title} measure={24} />
 
-    <div class="wyg__band reveal">
+    <div class:list={[{ 'wyg__sow reveal': c.sow }]}>
+    {c.sow && <p class="wyg__sowhead"><b>{c.sow.title}</b><span>{c.sow.note}</span></p>}
+    <div class:list={['wyg__band', { reveal: !c.sow }]}>
       <p class="wyg__bandlabel">{c.includedLabel}</p>
       <ul role="list" class="wyg__items" data-n={c.items.length}>
         {c.items.map((i) => (
@@ -32,7 +35,7 @@ const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${bo
       </ul>
     </div>
 
-    <ul role="list" class="wyg__tiles reveal-stagger">
+    <ul role="list" class:list={['wyg__tiles', { 'reveal-stagger': !c.sow }]}>
       {c.tiles.map((t) => (
         <li class:list={['wyg__tile', { 'wyg__tile--assure': t.assure }]} id={t.id}>
           <h3 class="wyg__label">{t.label}</h3>
@@ -51,6 +54,7 @@ const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${bo
         </li>
       ))}
     </ul>
+    </div>
   </div>
 </section>
 
@@ -87,4 +91,19 @@ const bookFor = (interest: string) => (book.startsWith('mailto:') ? book : `${bo
   .wyg__assure-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); }
   .wyg__assure-link { display: inline-flex; align-items: baseline; gap: var(--space-1); padding-block: var(--space-2); font-family: var(--ff-heading); font-weight: var(--weight-bold); color: var(--color-link); text-decoration: none; }
   .wyg__assure-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+
+  /* One statement of work (Build): a single card; the band and the tiles become its rows, split by hairlines. */
+  .wyg__sow { overflow: hidden; border-radius: var(--radius-md); background: var(--color-surface); border: 1px solid var(--color-hairline); }
+  .wyg__sowhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-4); padding: var(--space-4) var(--space-6); border-block-end: 1px solid var(--color-hairline); }
+  .wyg__sowhead b { font-family: var(--ff-heading); font-size: var(--text-lg); color: var(--color-heading); }
+  .wyg__sowhead span { font-size: var(--text-sm); color: var(--color-machine-text); }
+  .wyg__sow .wyg__band { border: 0; border-radius: 0; border-block-end: 1px solid var(--color-hairline); }
+  .wyg__sow .wyg__tiles { gap: 0; }
+  .wyg__sow .wyg__tile { border: 0; border-radius: 0; background: transparent; border-block-start: 1px solid var(--color-hairline); }
+  .wyg__sow .wyg__tile:first-child { border-block-start: 0; }
+  @media (width >= 40rem) {
+    .wyg__sow .wyg__tile:nth-child(2) { border-block-start: 0; }
+    .wyg__sow .wyg__tile:nth-child(even) { border-inline-start: 1px solid var(--color-hairline); }
+  }
+  @media (width >= 72rem) { .wyg__sow .wyg__tile { border-block-start: 0; } .wyg__sow .wyg__tile + .wyg__tile { border-inline-start: 1px solid var(--color-hairline); } }
 </style>
