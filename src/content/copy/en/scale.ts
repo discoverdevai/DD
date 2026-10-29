@@ -48,24 +48,6 @@ export const scale = {
       { id: 'squad', kicker: 'Best fit: A dedicated squad', title: 'A team that stays', body: 'Developers, QA and a PM on a monthly retainer, from 4 months. The squad’s PM runs the sprints with you.', link: { label: 'See how a squad grows', anchor: 'process' } },
     ],
   },
-  // 03 §16b.16 (Oct 27): fit check. "A single project with a fixed end" is no longer "not for" (the squad now takes POCs,
-  // MVPs and modules for teams); each not-for line routes to its better fit.
-  fit: {
-    title: 'Is Scale right for you?',
-    forTitle: 'Scale fits if',
-    for: [
-      'Your product is live and growing.',
-      'You need more capacity than your team has, without hiring one person at a time.',
-      'Your team needs a proof of concept, a new MVP or a module built under its direction.',
-      'You want a team that learns your product and stays.',
-    ],
-    notTitle: 'Something else fits better if',
-    betterLabel: 'Better fit:',
-    not: [
-      { text: 'You have an idea, but no product or team yet.', route: 'Build, from idea to a live MVP', to: 'build' as const },
-      { text: 'You run a software house and need engineers under your brand.', route: 'White-label or staff augmentation', anchor: 'partners' },
-    ],
-  },
   // 03 §16b.15 (Oct 27): our squad working with your team on a piece you hand over (09 Offer, squad support).
   // Replaces "What a dedicated squad gives you" and "What's included" (generic cards; the roles are in the terms section).
   pieces: {
@@ -79,23 +61,6 @@ export const scale = {
       { id: 'roadmap', name: 'Ongoing roadmap', when: 'From 4 months', body: 'A dedicated squad that stays and grows with your product.' },
     ],
     pins: { poc: 'Proof of concept', mvp: 'A new MVP', module: 'A module', roadmap: 'Ongoing roadmap' },
-  },
-  outcomes: {
-    title: 'What a dedicated squad gives you',
-    items: [
-      { title: 'Steady delivery', body: 'A team that plans, builds and ships, with results every week.' },
-      { title: 'Less management for you', body: 'The squad’s PM runs the backlog and sprints with you.' },
-      { title: 'A team that stays', body: 'The people who learn your product keep working on it.' },
-    ],
-  },
-  included: {
-    title: 'What’s included',
-    // "Monthly reporting on what shipped [VERIFY: V22 reporting cadence]" omitted (§0.7 V22: omit).
-    items: [
-      'Developers, QA and a product manager, sized to your roadmap',
-      'Roadmap and sprint ownership, shared with you',
-      'Data, ML and AI work when you need it',
-    ],
   },
   process: {
     title: 'How it works month to month',
@@ -124,23 +89,6 @@ export const scale = {
     ],
     loop: { meta: 'Every sprint', steps: ['Plan', 'Build', 'Test', 'Release'], note: 'Results every week' },
   },
-  // 03 §7.12 (v4): signature squad and loop, statement band and the merged terms document.
-  squad: {
-    title: 'Steady delivery. A team that stays.',
-    rosterLabel: 'From one specialist to a full squad',
-    roles: [
-      { icon: 'compass', title: 'Lead' },
-      { icon: 'code', title: 'Developers' },
-      { icon: 'shield-check', title: 'QA' },
-      { icon: 'list-checks', title: 'PM' },
-      { icon: 'pen-tool', title: 'Designer' },
-    ],
-    ring: ['Plan', 'Build', 'Test', 'Release'],
-  },
-  statement: {
-    bright: 'A team that stays.',
-    dim: 'The people who learn your product keep working on it.',
-  },
   // 03 §16b.19 (Oct 27): answer-first terms, the same pattern as Build's "What you get" (was a three-column text document).
   get: {
     title: 'Price, team and ownership',
@@ -160,17 +108,11 @@ export const scale = {
       { id: 'ownership', label: 'Ownership', value: 'All yours', body: 'You keep control of the roadmap, the code and the accounts. Full IP, no lock-in, a clear contract from day one.' },
     ],
   },
-  terms: { title: 'Price, team and ownership', docTitle: 'Scale', docMeta: 'Monthly retainer' },
   pricing: {
     title: 'How is Scale priced?',
     // [PRICE: P4] → §0.7 model only, no number (tag removed).
     answer:
       'Scale is a monthly retainer, based on the size of your squad. Dedicated teams start with a 4-month minimum, so the team has time to learn your product and deliver.',
-  },
-  team: {
-    title: 'Who’s on the squad',
-    body: 'From one specialist to a full squad: a lead, developers, QA, a PM and a designer. Skills cover full-stack, mobile, AI and ML, computer vision, data and QA. Senior engineers own the quality.',
-    link: { label: shared.howLink, to: 'howWeWork' as const },
   },
   proof: {
     title: 'Teams that stayed',
@@ -188,15 +130,6 @@ export const scale = {
       { name: 'Amstadd', line: 'white-label, UK' },
     ],
     credit: 'Room photo: "Reception lounge at Amantaka" by Basile Morin, CC BY-SA 4.0, via Wikimedia Commons. Client screens and photos from their own sites and app listing.',
-    // [CONSENT: all four] → §0.7 replacement line.
-    retention: 'Four clients expanded scope with us.',
-    // V12 → anonymized (§0.7 "EdTech AI platform, Egypt"). Rendered only when the case study route is live.
-    caseLink: 'Read how an EdTech AI platform cut AI costs by 60–90%',
-  },
-  ownership: {
-    title: 'Your product, your control',
-    // [VERIFY: V6] → §0.7 keep (tag removed).
-    body: 'You keep control of the roadmap, the code and the accounts. Full IP, no lock-in, clear contract from day one.',
   },
   faq: {
     title: 'Questions about Scale',
@@ -225,22 +158,7 @@ export const scale = {
         { label: 'Price', cells: ['Quoted per project', 'Monthly, per engineer', 'Monthly retainer'] },
       ],
     },
-    title: 'For software houses: white‑label or staff augmentation', // U+2011: no line break inside the word
-    answer:
-      'Choose white-label when you want us to deliver a whole project under your brand. Choose staff augmentation when you want engineers working inside your team, managed by you. Both start with an NDA, and the IP goes to you.',
     caption: 'White-label delivery, staff augmentation and dedicated team compared',
-    columns: ['White-label delivery', 'Staff augmentation', 'Dedicated team'],
-    // 03 §16b.23 (Oct 27): cards instead of the table on Scale, each with when it fits best.
-    bestLabel: 'Best when',
-    bestFor: ['you sell the project to your client, and we deliver it under your brand.', 'you run the project and need more engineers in your team.', 'you need a team that owns a product for months.'],
-    rows: [
-      { label: 'What you get', cells: ['A project delivered under your brand', 'Engineers who join your team', 'A dedicated squad of developers, QA and a PM'] },
-      { label: 'Who manages day to day', cells: ['We do, inside your process', 'You do', 'Our PM, together with you'] },
-      { label: 'Who your client sees', cells: ['Your brand only', 'Your team', 'Agreed on the partner call'] },
-      { label: 'Minimum term', cells: ['Per project', '3 months', '4 months'] },
-      { label: 'IP and confidentiality', cells: ['NDA, IP to you', 'NDA, IP to you', 'NDA, IP to you'] },
-      { label: 'Price', cells: ['Quoted per project', 'Monthly, per engineer', 'Monthly retainer'] },
-    ],
     quote: { text: 'They combine strong technical delivery with a very practical, low-friction approach, which isn’t always easy to find.', name: 'Team Lead', role: 'Amstadd, UK' },
   },
   band: {
