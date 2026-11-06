@@ -196,6 +196,22 @@ for (const [self, byLang] of alternates) {
     else if (!Object.values(back).includes(self)) add('MAJOR', self, 'hreflang', `${href} does not link back to ${self}`);
   }
 }
+// Sitemap: every <loc> is a built page that is indexable and canonicalises to itself (SEO-AEO spec audit Nov 6, §9).
+{
+  const sm = [...fileSet].filter((f) => /^\/sitemap-\d+\.xml$/.test(f)).map((f) => fs.readFileSync(path.join(dist, f), 'utf8')).join('\n');
+  const canonOf = new Map(allPages.map(({ route, html }) => {
+    const c = tags(html, 'link').find((t) => (attr(t, 'rel') || '').toLowerCase() === 'canonical');
+    const r = (attr(meta(html, 'name', 'robots') || '', 'content') || '').toLowerCase();
+    return [route, { canon: c ? attr(c, 'href') : null, noindex: r.includes('noindex') }];
+  }));
+  for (const [, loc] of sm.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    const route = new URL(loc).pathname.replace(/\/$/, '') || '/';
+    const pg = canonOf.get(route);
+    if (!pg) add('MAJOR', route, 'sitemap', `sitemap lists a URL that is not built: ${loc}`);
+    else if (pg.noindex) add('MAJOR', route, 'sitemap', `sitemap lists a noindex page: ${loc}`);
+    else if (pg.canon !== loc) add('MAJOR', route, 'sitemap', `sitemap URL ${loc} is not the page's canonical (${pg.canon})`);
+  }
+}
 for (const [t, ps] of titles) if (ps.length > 1) add('MINOR', ps.join(', '), 'duplicate-title', `"${t}"`);
 for (const [d, ps] of metas) if (ps.length > 1) add('MINOR', ps.join(', '), 'duplicate-meta', d.slice(0, 60) + '…');
 

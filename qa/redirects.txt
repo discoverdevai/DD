@@ -6,6 +6,6 @@
 /contact /book
 /about-us /how-we-work
 /team /how-we-work
-/portfolio /
-/case-studies /
+/portfolio /#work
+/case-studies /#work
 /blog /

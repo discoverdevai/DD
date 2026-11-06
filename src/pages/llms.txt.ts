@@ -41,7 +41,7 @@ export const GET: APIRoute = async () => {
     'Book: a free 30-minute clarity call, no pitch, at ' + SITE_URL + '/book',
     '',
     '## Facts',
-    '- Engineering hub in Alexandria, Egypt (GMT+2); presence in Texas, USA',
+    '- Engineering hub in Alexandria, Egypt; presence in Texas, USA', // no fixed offset: Egypt observes summer time (GMT+2 removed site-wide, Oct 29)
     '- Working day overlaps the Gulf, Europe and US mornings; calls run in Gulf and US hours',
     '- Clients on 4 continents; four clients expanded scope with us',
     '- Full IP, in your own repository, no lock-in',

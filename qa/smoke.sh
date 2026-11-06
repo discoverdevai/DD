@@ -27,7 +27,14 @@ done < "$DIR/redirects.txt"
 echo "System"
 c=$(code "$BASE/this-page-does-not-exist-qa"); [[ $c == 404 ]] && ok "unknown URL -> 404" || bad "unknown URL returned $c (must be 404, not the homepage)"
 for f in /robots.txt /llms.txt /sitemap-index.xml /.well-known/security.txt /favicon.svg; do c=$(code "$BASE$f"); [[ $c == 200 ]] && ok "$c $f" || bad "$c $f"; done
-c=$(code "$BASE/about/"); [[ $c =~ ^30[178]$ ]] && ok "trailing slash redirects ($c)" || bad "/about/ returned $c (expected redirect)"
+c=$(code "$BASE/build/"); [[ $c =~ ^30[178]$ ]] && ok "trailing slash redirects ($c)" || bad "/build/ returned $c (expected redirect)"
+
+echo "Search and AI bots (SEO-AEO spec audit Nov 6, §1.1 / §30): robots.txt allows them all, so each should get 200"
+# A 403 here is often the WAF checking the bot's IP (spoofed UA), not a real block: confirm in Search Console / Bing / CF logs.
+for ua in "Googlebot/2.1" "bingbot/2.0" "Applebot/0.1" "OAI-SearchBot/1.0" "GPTBot/1.1" "ChatGPT-User/1.0" "ClaudeBot/1.0" "Claude-SearchBot/1.0" "PerplexityBot/1.0"; do
+  c=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -A "Mozilla/5.0 (compatible; $ua)" "$BASE/")
+  if [[ $c == 200 ]]; then ok "$c $ua"; elif [[ $c == 403 ]]; then echo "  warn 403 $ua (check WAF / AI Crawl Control)"; else bad "$c $ua"; fi
+done
 
 echo "Headers"
 H=$(curl -sI --max-time 20 "$BASE/" | tr -d '\r')

@@ -7,6 +7,7 @@ import StickyBookBar from '../components/layout/StickyBookBar.astro';
 import { LOCALES, localeOf } from '../i18n/locales';
 import { t, AR_PAGES } from '../i18n/t';
 import { canonical } from '../lib/seo';
+import { copy } from '../content/copy';
 import { OG_PAGES, ogPath } from '../data/og';
 import { PUBLIC_CF_BEACON_TOKEN } from 'astro:env/client';
 import '../styles/tokens.css';
@@ -30,6 +31,8 @@ interface Props {
 }
 const { title, description, pageType, jsonLd, noindex = false, ogImage: ogImageProp, ogType = 'website', header = 'default', stickyBar = header === 'default', stickyKind = 'clarity', footerProof = true, footerCore = true } = Astro.props;
 const locale = localeOf(Astro.currentLocale);
+// Home share-image alt in the page's language (SEO-AEO spec audit Nov 6, §20.2): the logo and the hero line it shows.
+const ogAlt = pageType === 'home' ? (locale === 'ar' ? `شعار DiscoverDev مع السطر: ${copy().home.hero.h1}` : 'DiscoverDev logo with the line: Turn your idea into a live product in weeks.') : title;
 const L = LOCALES[locale];
 // A locale that is not live yet (Arabic until reviewed) is never indexed.
 const hidden = L.status !== 'live';
@@ -77,9 +80,13 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <meta property="og:image" content={ogAbs} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={pageType === 'home' ? 'DiscoverDev logo with the line: Turn your idea into a live product in weeks.' : title} />
+    <meta property="og:image:alt" content={ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    {/* X reads OG as a fallback, but some clients only read twitter:* (SEO-AEO spec audit Nov 6, §8). */}
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
     <meta name="twitter:image" content={ogAbs} />
+    <meta name="twitter:image:alt" content={ogAlt} />
     <slot name="head" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
