@@ -1,20 +1,22 @@
 # Old SPA -> new site. Always write the status code (default is 302). 05 §7; verify against real routes (D-15).
 # Exact paths first, splats last: Workers matches top to bottom, and wrangler flags exact rules below splats as slower.
-# V1.0 (Oct 18, 03 §2V1): targets point to home sections while their pages are off; restore per release (V1.1/V1.2).
+# Lean R1 (Nov 6, SEO-AEO spec audit §25.1): old routes go to the live page that replaces them, not to home sections.
+# About lives in /how-we-work (05 §7 lean). Work is off this release, so portfolio stays on home #work; the blog has no
+# replacement until Insights (owner decision pending: keep on home, or let it 404).
 /sitemap.xml      /sitemap-index.xml  301
-/home             /            301
-/staff            /#services       301
-/services         /#services       301
-/launch           /#services       301
-/contact          /book        301
-/consultation     /book        301
-/about-us         /       301
-/team             /       301
+/home             /             301
+/staff            /scale        301
+/services         /build        301
+/launch           /build        301
+/contact          /book         301
+/consultation     /book         301
+/about-us         /how-we-work  301
+/team             /how-we-work  301
 /portfolio        /#work        301
 /case-studies     /#work        301
-/blog             /    301
-/staff/*          /#services       301
-/services/*       /#services       301
+/blog             /             301
+/staff/*          /scale        301
+/services/*       /build        301
 /portfolio/*      /#work        301
 /case-studies/*   /#work        301
-/blog/*           /    301
+/blog/*           /             301

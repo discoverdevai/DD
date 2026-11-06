@@ -8,6 +8,8 @@ export const build = {
     description:
       'From idea to a live MVP in 8–12 weeks: 1–2 weeks of Validate, then a fixed-price Build by a senior team. Have an AI-built prototype? We review it first.',
   },
+  // Service JSON-LD in this language (SEO-AEO spec audit Nov 6, §20.2; 03 §16b.46).
+  schema: { name: 'Build', serviceType: 'MVP development', audience: 'Founders ready to build' },
   hero: {
     eyebrow: 'I have an idea, or a prototype.',
     h1: 'Build: from idea to a live MVP',

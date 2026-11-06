@@ -598,8 +598,8 @@ Status: old route list **not verified** (research could not fetch the live SPA o
 | `/launch` | `/build` | 301 | master doc's old name for Build |
 | `/contact` | `/book` | 301 | |
 | `/consultation` | `/book` | 301 | candidate |
-| `/about-us` | `/about` | 301 | candidate |
-| `/team` | `/about` | 301 | candidate |
+| `/about-us` | `/how-we-work` | 301 | candidate; lean R1: About lives in /how-we-work (Nov 6) |
+| `/team` | `/how-we-work` | 301 | candidate; lean R1: About lives in /how-we-work (Nov 6) |
 | `/portfolio` | `/work` | 301 | candidate |
 | `/portfolio/*` | `/work` | 301 | candidate |
 | `/case-studies` | `/work` | 301 | candidate |

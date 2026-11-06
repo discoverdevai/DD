@@ -29,8 +29,8 @@ const c = copy().scale;
 const path = getLocale() === 'ar' ? '/ar/scale' : '/scale';
 const url = canonical(path);
 const serviceLd = service(url, {
-  name: 'Scale', serviceType: 'Dedicated development team', description: c.seo.description,
-  audience: 'Startups with a live product',
+  name: c.schema.name, serviceType: c.schema.serviceType, description: c.seo.description,
+  audience: c.schema.audience,
   offers: { url: `${url}#pricing`, description: c.pricing.answer },
 });
 // Software houses book the same call; the interest shows on /book and in the Cal.com notes (03 §16b.23).

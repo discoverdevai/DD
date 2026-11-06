@@ -17,29 +17,40 @@ export const canonical = (path: string) => {
   return `${SITE_URL}${out}`;
 };
 
-export const orgStub = { '@type': 'Organization', '@id': ORG_ID, name: 'DiscoverDev', url: SITE_URL };
+// Organization and WebSite `url` = the home canonical, with its slash (SEO-AEO spec audit Nov 6, §12.1).
+export const orgStub = { '@type': 'Organization', '@id': ORG_ID, name: 'DiscoverDev', url: `${SITE_URL}/` };
 
-/** V1.0 offers (09 Offer; same words as the home cards, 03 §2A.6). Used inline while the service pages are off. */
-const OFFERS = [
-  { key: 'validate', name: 'Validate', serviceType: 'Product discovery', description: 'Product discovery in 1–2 weeks at a fixed fee: market and competitor read, product scope, a clickable prototype and a fixed build estimate. The fee credits toward Build.' },
-  { key: 'build', name: 'Build', serviceType: 'MVP development', description: 'MVP development in 8–12 weeks at a fixed price: a live product with real users, covering design, build, QA and deployment, with a demo every week.' },
-  { key: 'scale', name: 'Scale', serviceType: 'Dedicated development team', description: 'A dedicated development team of developers, QA and a PM on a monthly retainer. The PM runs the roadmap with you and you keep control.' },
-] as const;
+type OfferKey = 'validate' | 'build' | 'scale';
+interface OfferText { name: string; serviceType: string; description: string }
+/** The Organization's words in one language: the page's own entity line, topics and the inline offers. */
+export interface OrgText { description: string; knowsAbout: readonly string[]; offers: Record<OfferKey, OfferText> }
 
-/** Full Organization, home and /about only. foundingDate omitted (D-21); address = Alexandria only (D-08); sameAs = Clutch + LinkedIn (Mohamed, Oct 21). */
-export const orgFull = {
+/** English defaults (09 Offer; same words as the home cards, 03 §2A.6). Offers are inline only while their page is off. */
+const ORG_EN: OrgText = {
+  description: ENTITY_LINE,
+  // Only topics the live pages show (05 §0); the Review topics return with the Review page (V1.2).
+  knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots', ...(ROUTES.review.live ? ['AI app security review', 'Production readiness', 'LLM cost optimization'] : [])],
+  offers: {
+    validate: { name: 'Validate', serviceType: 'Product discovery', description: 'Product discovery in 1–2 weeks at a fixed fee: market and competitor read, product scope, a clickable prototype and a fixed build estimate. The fee credits toward Build.' },
+    build: { name: 'Build', serviceType: 'MVP development', description: 'MVP development in 8–12 weeks at a fixed price: a live product with real users, covering design, build, QA and deployment, with a demo every week.' },
+    scale: { name: 'Scale', serviceType: 'Dedicated development team', description: 'A dedicated development team of developers, QA and a PM on a monthly retainer. The PM runs the roadmap with you and you keep control.' },
+  },
+};
+
+/** Full Organization, home and the About page only. Pass the page language's words (`howWeWork.schema` + entity line);
+ *  foundingDate omitted (D-21); address = Alexandria only (D-08); sameAs = Clutch + LinkedIn (Mohamed, Oct 21). */
+export const org = (t: OrgText = ORG_EN) => ({
   '@type': 'Organization',
   '@id': ORG_ID,
   name: 'DiscoverDev',
-  url: SITE_URL,
+  url: `${SITE_URL}/`,
   logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo-512.png`, width: 512, height: 512 },
-  description: ENTITY_LINE,
+  description: t.description,
   email: 'hello@discoverdev.ai',
   contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: 'hello@discoverdev.ai', availableLanguage: ['en', 'ar'] }],
   address: [{ '@type': 'PostalAddress', addressLocality: 'Alexandria', addressCountry: 'EG' }],
   areaServed: ['Saudi Arabia', 'Kuwait', 'United Arab Emirates', 'Egypt', 'United States', 'United Kingdom'].map((name) => ({ '@type': 'Country', name })),
-  // Only topics the live pages show (05 §0); the Review topics return with the Review page (V1.2).
-  knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots', ...(ROUTES.review.live ? ['AI app security review', 'Production readiness', 'LLM cost optimization'] : [])],
+  knowsAbout: t.knowsAbout,
   knowsLanguage: ['en', 'ar'],
   sameAs: [CLUTCH_URL, LINKEDIN_URL],
   // Ties each live service page's Service node (`<page>#service`) to the company for knowledge graphs.
@@ -51,15 +62,17 @@ export const orgFull = {
       ...(['validate', 'build', 'scale', 'review', 'partners'] as RouteKey[])
         .filter((k) => ROUTES[k].live)
         .map((k) => ({ '@type': 'Offer', itemOffered: { '@id': `${SITE_URL}${ROUTES[k].path}#service` } })),
-      ...OFFERS.filter((o) => !ROUTES[o.key].live).map((o) => ({
+      ...(Object.keys(t.offers) as OfferKey[]).filter((k) => !ROUTES[k].live).map((k) => ({
         '@type': 'Offer',
-        itemOffered: { '@type': 'Service', '@id': `${SITE_URL}/#service-${o.key}`, name: o.name, serviceType: o.serviceType, description: o.description, url: `${SITE_URL}/#services`, provider: { '@id': ORG_ID } },
+        itemOffered: { '@type': 'Service', '@id': `${SITE_URL}/#service-${k}`, ...t.offers[k], url: `${SITE_URL}/#services`, provider: { '@id': ORG_ID } },
       })),
     ],
   },
-};
+});
+/** English Organization, for pages that only exist in English. */
+export const orgFull = org();
 
-export const website = { '@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: 'DiscoverDev', inLanguage: ['en', 'ar'], publisher: { '@id': ORG_ID } };
+export const website = { '@type': 'WebSite', '@id': WEBSITE_ID, url: `${SITE_URL}/`, name: 'DiscoverDev', inLanguage: ['en', 'ar'], publisher: { '@id': ORG_ID } };
 
 export function webPage(path: string, name: string, description: string, type = 'WebPage', extra: Record<string, unknown> = {}) {
   const inLanguage = path === '/ar' || path.startsWith('/ar/') ? 'ar' : 'en';

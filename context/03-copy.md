@@ -2052,6 +2052,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.46 Structured data in Arabic (Nov 6; SEO-AEO spec audit, batch 1, Mohamed: "Yes, start")
+- Not visible on the page; search engines read it. On /ar pages the Organization description is the Arabic entity line (how-we-work `team.entity`), and its topics (`knowsAbout`) and inline offers are in Arabic: "تطوير النسخة الأولى من المنتج (MVP)", "اكتشاف المنتج", "فرق تطوير مخصصة", "وكلاء الذكاء الاصطناعي وروبوتات المحادثة"; Validate = "التحقق" (اكتشاف المنتج), Build = "البناء" (تطوير MVP), Scale = "التوسع" (فريق تطوير مخصص), each with the Arabic description in `ar/how-we-work.ts`.
+- Service pages: /ar/build = "البناء", "تطوير MVP", audience "مؤسسون جاهزون للبناء"; /ar/scale = "التوسع", "فريق تطوير مخصص", audience "شركات ناشئة لديها منتج يعمل". English stays as before.
+- Draft until the native review.
+
 ### 16b.45 Home Why: proof card under steps 1 and 2 (Oct 29; Mohamed chose option A in .taste-skill/why-fill.html, "make all the boxes the same sizes")
 - Under "Test the idea" and "Sketch the product", one card: "Athkado · Saudi Arabia" / "Feasibility sprints across several startup ideas, each ending in a build, pivot or shelve decision." (09) / three facts: "1–2 weeks · Validate", "Fixed fee · Agreed before we start", "Credited · Toward your Build".
 - Wide screens: steps 1 and 2 share one height and the left column ends level with step 3.

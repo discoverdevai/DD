@@ -1,11 +1,11 @@
-# old path -> expected final path (context/05 §7). Checked by smoke.sh on the live/preview domain.
+# old path -> expected final path (context/05 §7, lean R1: matches public/_redirects). Checked by smoke.sh on the live/preview domain.
 /staff /scale
 /home /
 /services /build
 /launch /build
 /contact /book
-/about-us /about
-/team /about
-/portfolio /work
-/case-studies /work
-/blog /insights
+/about-us /how-we-work
+/team /how-we-work
+/portfolio /
+/case-studies /
+/blog /

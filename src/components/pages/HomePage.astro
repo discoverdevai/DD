@@ -23,14 +23,14 @@ import Reviews from '../../components/sections/Reviews.astro';
 import { href, isLive } from '../../data/routes';
 import { copy } from '../../content/copy';
 import { getLocale } from '../../i18n/t';
-import { graph, orgFull, website, webPage, ORG_ID, faqPage } from '../../lib/seo';
+import { graph, org, website, webPage, ORG_ID, faqPage } from '../../lib/seo';
 import { HOME_CHAPTERS } from '../../lib/preview';
 
 const { home: c, howWeWork } = copy(); // audit Oct 29: was the English module, so /ar showed an English link
 // One home page, rendered at / and at /ar (Arabic, hidden until reviewed): same sections, same behaviour.
 const base = getLocale() === 'ar' ? '/ar' : '/';
 const faqLd = faqPage(`https://discoverdev.ai${base === '/' ? '/' : base}#faq`, c.faq.items);
-const jsonLd = graph(orgFull, website, webPage(base, c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
+const jsonLd = graph(org({ description: howWeWork.team.entity, ...howWeWork.team.schema }), website, webPage(base, c.seo.title, c.seo.description, 'WebPage', { about: { '@id': ORG_ID } }), faqLd);
 // Phase 3 (03 §16b.40): six quotes on home, Gulf first (Nojoud, Saudi Arabia, featured beside Youssef); /work keeps all ten.
 const HOME_REVIEWS = [1, 0, 2, 8, 4, 6];
 ---

@@ -45,6 +45,15 @@ export const howWeWork = {
     title: 'Who we are and where we work',
     story: 'DiscoverDev is a product and engineering company. The “Discover” in our name is how we work: before we write code, we make sure it’s the right thing to build. Then a senior team builds it, ships it and stays. We have clients on 4 continents.',
     entity: ENTITY_LINE,
+    // Organization JSON-LD in this language (SEO-AEO spec audit Nov 6, §20.2; 03 §16b.46): topics and the inline offers.
+    schema: {
+      knowsAbout: ['MVP development', 'Product discovery', 'Dedicated development teams', 'AI agents and chatbots'],
+      offers: {
+        validate: { name: 'Validate', serviceType: 'Product discovery', description: 'Product discovery in 1–2 weeks at a fixed fee: market and competitor read, product scope, a clickable prototype and a fixed build estimate. The fee credits toward Build.' },
+        build: { name: 'Build', serviceType: 'MVP development', description: 'MVP development in 8–12 weeks at a fixed price: a live product with real users, covering design, build, QA and deployment, with a demo every week.' },
+        scale: { name: 'Scale', serviceType: 'Dedicated development team', description: 'A dedicated development team of developers, QA and a PM on a monthly retainer. The PM runs the roadmap with you and you keep control.' },
+      },
+    },
     // 03 §16b.31 (Oct 29): the hub is already in the entity line above; say only what it does not.
     where: 'We also have a presence in Texas, USA. Gulf time is 0–2 hours ahead of Alexandria, our day overlaps Europe and US mornings, and we work in Arabic and English.',
     strip: {

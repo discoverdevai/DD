@@ -54,7 +54,7 @@ export default defineConfig({
   scopedStyleStrategy: 'class',
   // Shiki writes inline styles, which the meta CSP blocks (docs/PLAN.md A6). Code blocks are decided in M5.
   markdown: { syntaxHighlight: false },
-  // 'ar' is built but hidden (noindex, out of the sitemap, no switcher) until the native reviewer signs off (locales.ts).
+  // 'ar' is live since Oct 23 (indexable, in the sitemap with hreflang, language switcher on; src/i18n/locales.ts).
   i18n: { locales: ['en', 'ar'], defaultLocale: 'en', routing: { prefixDefaultLocale: false } },
   integrations: [
     mdx(),
@@ -68,7 +68,9 @@ export default defineConfig({
         const links = PAIRED.includes(en)
           ? [{ url: `https://discoverdev.ai${en === '/' ? '/' : en}`, lang: 'en' }, { url: `https://discoverdev.ai${en === '/' ? '/ar' : `/ar${en}`}`, lang: 'ar' }, { url: `https://discoverdev.ai${en === '/' ? '/' : en}`, lang: 'x-default' }]
           : undefined;
-        return { ...item, ...(links ? { links } : {}), lastmod: new Date(d ?? Date.now()).toISOString() }; // pages without their own date carry the build date
+        // SEO-AEO spec audit (Nov 6, §9): lastmod only where a real change date exists (articles); a build date on every
+        // page reads as untrustworthy, so pages without their own date carry none.
+        return { ...item, ...(links ? { links } : {}), ...(d ? { lastmod: new Date(d).toISOString() } : {}) };
       },
     }),
   ],

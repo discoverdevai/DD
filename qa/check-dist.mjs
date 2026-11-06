@@ -62,6 +62,8 @@ for (const r of routes) {
 
 // ---------- per-page checks ----------
 const titles = new Map(), metas = new Map();
+// hreflang per indexable page: its canonical and the alternates it declares (checked for reciprocity after the loop).
+const alternates = new Map();
 const placeholder = /\[(VERIFY|PRICE|CONSENT|METRIC|TEAM|WHATSAPP|ASSET|TODO|TBD)[^\]]*\]|\bTODO\b|lorem ipsum/i;
 for (const { route: page, html } of allPages) {
   const is404 = /\/404$/.test(page);
@@ -109,6 +111,22 @@ for (const { route: page, html } of allPages) {
   const hiddenLocale = /^\/ar(\/|$)/.test(page) && !arLive;
   if (hiddenLocale && !/noindex/.test(robots)) add('BLOCKER', page, 'robots', 'Arabic page is indexable while the locale is hidden');
   if (/noindex/.test(robots) && !is404 && !hiddenLocale && !/\/(book\/confirmed|design-system)$/.test(page)) add('BLOCKER', page, 'robots', 'page is noindex (preview leak?)');
+
+  // Locale (SEO-AEO spec audit Nov 6, §10/§20): /ar pages are lang="ar" dir="rtl", the rest lang="en"; every indexable
+  // page that declares hreflang lists itself and one x-default.
+  const isAr = /^\/ar(\/|$)/.test(page);
+  const lang = (attr(htmlTag, 'lang') || '').toLowerCase();
+  const dir = (attr(htmlTag, 'dir') || '').toLowerCase();
+  if (isAr && (lang !== 'ar' || dir !== 'rtl')) add('MAJOR', page, 'locale', `Arabic page has lang="${lang}" dir="${dir}" (need ar / rtl)`);
+  if (!isAr && !lang.startsWith('en')) add('MAJOR', page, 'locale', `English page has lang="${lang}"`);
+  const alts = tags(html, 'link').filter((t) => (attr(t, 'rel') || '').toLowerCase() === 'alternate' && attr(t, 'hreflang'));
+  if (alts.length && canon && !noindex && !is404) {
+    const self = attr(canon, 'href');
+    const byLang = Object.fromEntries(alts.map((t) => [attr(t, 'hreflang').toLowerCase(), attr(t, 'href')]));
+    if (!Object.values(byLang).includes(self)) add('MAJOR', page, 'hreflang', `hreflang set does not include the page itself (${self})`);
+    if (alts.filter((t) => attr(t, 'hreflang').toLowerCase() === 'x-default').length !== 1) add('MAJOR', page, 'hreflang', 'need exactly one x-default');
+    alternates.set(self, byLang);
+  }
 
   // JSON-LD
   for (const m of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
@@ -167,6 +185,15 @@ for (const { route: page, html } of allPages) {
     const id = attr(inp, 'id');
     const labelled = attr(inp, 'aria-label') || attr(inp, 'aria-labelledby') || (id && new RegExp(`<label[^>]+for=["']${id}["']`, 'i').test(html));
     if (!labelled) add('MAJOR', page, 'form-label', `input without label: ${attr(inp, 'name') || id || '(unnamed)'}`);
+  }
+}
+// hreflang reciprocity: every alternate a page names must name that page back.
+for (const [self, byLang] of alternates) {
+  for (const [code, href] of Object.entries(byLang)) {
+    if (code === 'x-default' || href === self) continue;
+    const back = alternates.get(href);
+    if (!back) add('MAJOR', self, 'hreflang', `${code} alternate ${href} is not an indexable built page`);
+    else if (!Object.values(back).includes(self)) add('MAJOR', self, 'hreflang', `${href} does not link back to ${self}`);
   }
 }
 for (const [t, ps] of titles) if (ps.length > 1) add('MINOR', ps.join(', '), 'duplicate-title', `"${t}"`);

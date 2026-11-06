@@ -52,7 +52,7 @@ const ogAbs = new URL(ogImage, 'https://discoverdev.ai').href;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    {noindex || hidden ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={url} />}
+    {noindex || hidden ? <meta name="robots" content="noindex, follow" /> : <><link rel="canonical" href={url} /><meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" /></>} {/* snippet controls: SEO-AEO spec audit Nov 6, §22.6 */}
     {hasPair && <><link rel="alternate" hreflang="en" href={altEn} /><link rel="alternate" hreflang="ar" href={altAr} /><link rel="alternate" hreflang="x-default" href={altEn} /></>}
     <meta name="theme-color" content="#01082D" /> {/* token-lint-ignore: a meta attribute cannot use CSS variables; equals --blue-975 */}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />

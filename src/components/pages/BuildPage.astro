@@ -24,8 +24,8 @@ const c = copy().build;
 const path = getLocale() === 'ar' ? '/ar/build' : '/build';
 const url = canonical(path);
 const serviceLd = service(url, {
-  name: 'Build', serviceType: 'MVP development', description: c.seo.description,
-  audience: 'Founders ready to build',
+  name: c.schema.name, serviceType: c.schema.serviceType, description: c.seo.description,
+  audience: c.schema.audience,
   offers: { url: `${url}#pricing`, description: c.pricing.answer },
 });
 const faqLd = faqPage(`${url}#faq`, c.faq.items);

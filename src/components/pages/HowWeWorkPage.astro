@@ -17,7 +17,7 @@ import Quote from '../blocks/Quote.astro';
 import { copy } from '../../content/copy';
 import { getLocale, t } from '../../i18n/t';
 import { href } from '../../data/routes';
-import { graph, orgFull, website, webPage, canonical, faqPage, ORG_ID, CLUTCH_URL } from '../../lib/seo';
+import { graph, org, website, webPage, canonical, faqPage, ORG_ID, CLUTCH_URL } from '../../lib/seo';
 
 const { howWeWork: c, home } = copy();
 const path = getLocale() === 'ar' ? '/ar/how-we-work' : '/how-we-work';
@@ -29,7 +29,7 @@ const steps = {
 };
 const faqLd = faqPage(`${url}#faq`, c.faq.items);
 // The About page lives here now, so the full Organization rides on this page (05 §4.6).
-const jsonLd = graph(orgFull, website, webPage(path, c.seo.title, c.seo.description, 'AboutPage', { about: { '@id': ORG_ID }, mainEntity: { '@id': `${url}#steps` } }), steps, faqLd);
+const jsonLd = graph(org({ description: c.team.entity, ...c.team.schema }), website, webPage(path, c.seo.title, c.seo.description, 'AboutPage', { about: { '@id': ORG_ID }, mainEntity: { '@id': `${url}#steps` } }), steps, faqLd);
 // A Gulf client's words open "Who we are" (Nojoud Alarfaj, Athkado, Saudi Arabia; 09, D-05).
 const nojoud = home.reviews.items[1];
 const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anchor}` }));

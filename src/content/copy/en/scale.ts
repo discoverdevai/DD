@@ -6,6 +6,8 @@ export const scale = {
     description:
       'A dedicated squad of developers, QA and a PM that stays with your product. Monthly retainer. Engineering hub in Egypt, working in Arabic and English.',
   },
+  // Service JSON-LD in this language (SEO-AEO spec audit Nov 6, §20.2; 03 §16b.46).
+  schema: { name: 'Scale', serviceType: 'Dedicated development team', audience: 'Startups with a live product' },
   hero: {
     eyebrow: 'It’s working. Grow it.',
     h1: 'Scale: a dedicated team that stays', // keyword in the H1 (05 §0; Oct 26 review #4)

@@ -39,7 +39,7 @@ const [room, web, phone, upLogo, ar, pz, arLogo] = await Promise.all([
 
     <div class="tp__grid">
       <article class="tp__scene tp__scene--main reveal">
-        <Image src={room} alt={c.main.photo.alt} widths={[640, 1024, 1440, 1920]} sizes="(min-width: 80rem) 76rem, 100vw" class="tp__bg" loading="lazy" />
+        <Image src={room} alt={c.main.photo.alt} width={1440} height={960} widths={[640, 1024, 1440]} quality={68} sizes="(min-width: 80rem) 76rem, 100vw" class="tp__bg" loading="lazy" />
         <div class="tp__browser tp__browser--main" aria-hidden="true"><span class="tp__bar"><i></i><i></i><i></i></span><Image src={web} alt="" widths={[480, 800, 1100]} sizes="(min-width: 54rem) 40vw, 1px" class="tp__img" loading="lazy" /></div>
         <div class="tp__phone tp__phone--main"><Image src={phone} alt={c.main.phone.alt} widths={[180, 300, 375]} sizes="(min-width: 54rem) 11vw, 34vw" class="tp__img" loading="lazy" /></div>
         <div class="tp__cap"><p class="tp__value">{c.main.value}</p><h3 class="tp__name">{c.main.name}</h3><p class="tp__line">{c.main.line}</p></div>
