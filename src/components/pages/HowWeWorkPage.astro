@@ -99,6 +99,10 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
           <p class="hw__body">{c.team.where}</p>
         </div>
         <div class="team__side">
+          <section class="facts" aria-labelledby="facts-title">
+            <h3 id="facts-title" class="facts__title">{c.team.facts.title}</h3>
+            <dl class="facts__list">{c.team.facts.items.map((f) => <div><dt>{f.label}</dt><dd dir={f.value.includes('@') ? 'ltr' : undefined}>{f.value}</dd></div>)}</dl>
+          </section>
           <TimeOverlap label={c.team.strip.label} places={c.team.strip.places} hubTag={c.team.strip.hubTag} text={c.team.strip.text} />
         </div>
       </div>
@@ -174,7 +178,17 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
   @media (width >= 64rem) { .team__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-12); } }
   .team__copy { display: grid; gap: var(--space-5); }
   .team__entity { padding-block: var(--space-4); padding-inline: var(--space-5); border-inline-start: 2px solid var(--color-border-accent); background: var(--color-surface-sunken); border-radius: var(--radius-sm); color: var(--color-text); max-inline-size: var(--measure-prose); }
-  .team__side { display: grid; gap: var(--space-8); }
+  .team__side { display: grid; gap: var(--space-6); align-content: start; }
+  /* Facts about DiscoverDev (03 §16b.47): one card, label beside value, quotable as plain text. */
+  .facts { padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-surface); }
+  .facts__title { font-family: var(--ff-heading); font-size: var(--title-card); font-weight: var(--weight-bold); color: var(--color-heading); margin-block-end: var(--space-4); }
+  .facts__list { display: grid; gap: var(--space-3); margin: 0; }
+  .facts__list div { display: grid; gap: 2px var(--space-4); padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); }
+  .facts__list div:first-child { padding-block-start: 0; border-block-start: 0; }
+  @media (width >= 30rem) { .facts__list div { grid-template-columns: 8.5rem minmax(0, 1fr); } }
+  .facts__list dt { font-size: var(--text-sm); color: var(--color-machine-text); }
+  .facts__list dd { margin: 0; font-size: var(--text-sm); color: var(--color-text); }
+  :global(:root:lang(ar)) .facts__list dd[dir='ltr'] { text-align: end; }
   /* Oct 29: the strip already shows the cities; its caption stays for screen readers only. */
   .team__side :global(.tz__text) { position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 

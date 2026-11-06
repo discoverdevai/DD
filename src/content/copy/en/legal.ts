@@ -12,6 +12,8 @@ export interface LegalDoc {
   h1: string;
   intro: Rich;
   sections: readonly LegalSection[];
+  /** Its own "Last updated" date; privacy and terms share `legalUi.updated`. */
+  updated?: { text: string; iso: string };
 }
 
 const EMAIL = 'hello@discoverdev.ai';
@@ -296,5 +298,21 @@ export const terms: LegalDoc = {
         { p: ['Questions about these terms: ', mail, '.'] },
       ],
     },
+  ],
+};
+
+// Accessibility statement (03 §16b.47, Nov 6; SEO-AEO spec §35.1). Honest and short; linked from the footer.
+export const accessibility: LegalDoc = {
+  seo: {
+    title: 'Accessibility | DiscoverDev',
+    description: 'How we make discoverdev.ai usable for everyone, in English and Arabic: the standard we aim for, what we test, what is not perfect and how to tell us.',
+  },
+  h1: 'Accessibility',
+  intro: ['We want everyone to be able to use this site, in English and Arabic. We aim for WCAG 2.2 level AA.'],
+  updated: { text: 'November 6, 2026', iso: '2026-11-06' },
+  sections: [
+    { id: 'what-we-do', heading: 'What we do', blocks: [{ p: ['Every release is checked with automated accessibility tests. Pages work with a keyboard, show a clear focus outline, respect "reduce motion", and read right to left in Arabic.'] }] },
+    { id: 'known-gaps', heading: 'What we know is not perfect', blocks: [{ p: ['The booking calendar comes from Cal.com, and we can’t fully control how it works. If it doesn’t work for you, email us and we’ll send you times.'] }] },
+    { id: 'tell-us', heading: 'Tell us', blocks: [{ p: ['If something on the site is hard to use, email ', mail, '. We reply within 2 working days.'] }] },
   ],
 };

@@ -17,7 +17,7 @@ const linkContext = (href: string) => (href.startsWith('mailto:') ? 'contact' : 
   <div class="container--prose legal__inner">
     <header class="legal__head">
       <h1 id="legal-title" class="h1">{doc.h1}</h1>
-      <p class="small muted">{legalUi.updatedLabel}: <time datetime={legalUi.updated.iso}>{legalUi.updated.text}</time></p>
+      <p class="small muted">{legalUi.updatedLabel}: <time datetime={(doc.updated ?? legalUi.updated).iso}>{(doc.updated ?? legalUi.updated).text}</time></p>
     </header>
 
     <p class="legal__intro">

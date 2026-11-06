@@ -31,6 +31,7 @@ export const ROUTES = {
   book: { path: '/book', live: live(true) },
   privacy: { path: '/privacy', live: live(true) },
   terms: { path: '/terms', live: live(true) },
+  accessibility: { path: '/accessibility', live: live(true) }, // 03 §16b.47 (Nov 6)
 } as const satisfies Record<string, { path: string; live: boolean }>;
 
 export type RouteKey = keyof typeof ROUTES;

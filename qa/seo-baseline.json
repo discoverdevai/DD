@@ -25,6 +25,22 @@
       "WebSite"
     ]
   },
+  "https://discoverdev.ai/accessibility": {
+    "title": "Accessibility | DiscoverDev",
+    "description": "How we make discoverdev.ai usable for everyone, in English and Arabic: the standard we aim for, what we test, what is not perfect and how to tell us.",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "h1": 1,
+    "hreflang": [
+      "ar https://discoverdev.ai/ar/accessibility",
+      "en https://discoverdev.ai/accessibility",
+      "x-default https://discoverdev.ai/accessibility"
+    ],
+    "jsonld": [
+      "Organization",
+      "WebPage",
+      "WebSite"
+    ]
+  },
   "https://discoverdev.ai/ar": {
     "title": "DiscoverDev | تطوير المنتجات للشركات الناشئة في الخليج",
     "description": "DiscoverDev لتطوير المنتجات الرقمية للشركات الناشئة: نختبر الفكرة، ونبني النسخة الأولى (MVP) بسعر ثابت خلال 8 إلى 12 أسبوعًا، وفرق مخصصة. وكل شيء ملكك.",
@@ -47,6 +63,22 @@
       "PostalAddress",
       "Question",
       "Service",
+      "WebPage",
+      "WebSite"
+    ]
+  },
+  "https://discoverdev.ai/ar/accessibility": {
+    "title": "إمكانية الوصول | DiscoverDev",
+    "description": "كيف نجعل موقع discoverdev.ai سهل الاستخدام للجميع بالعربية والإنجليزية: المعيار الذي نهدف إليه، وما نختبره، وما لم يكتمل بعد، وكيف تخبرنا.",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "h1": 1,
+    "hreflang": [
+      "ar https://discoverdev.ai/ar/accessibility",
+      "en https://discoverdev.ai/accessibility",
+      "x-default https://discoverdev.ai/accessibility"
+    ],
+    "jsonld": [
+      "Organization",
       "WebPage",
       "WebSite"
     ]

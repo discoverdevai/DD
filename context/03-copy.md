@@ -2052,6 +2052,16 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.47 SEO-AEO content (Nov 6; Mohamed: "Approve, apply" on .taste-skill/content-drafts.html)
+- **Facts about DiscoverDev** (How we work, "Who we are", beside the time strip), EN + AR, facts from 09 only, founding year left out until confirmed:
+  What we are · Where · Who we work with ("Founders and teams in Saudi Arabia, Kuwait and the Gulf, with clients on 4 continents.") · Services · How we price · How we work · Ownership · Rating ("Rated 5.0 on Clutch.") · Languages · Contact. Full text in `howWeWork.team.facts`.
+- **Arabic H1s:** /ar/build «تطوير MVP بسعر ثابت خلال 8 إلى 12 أسبوعًا»; /ar/scale «التوسع: فريق تطوير مخصص يبقى مع منتجك». English H1s unchanged.
+- **New FAQ answers** (EN + AR): /build "Do I need a full requirements document before I ask for a quote?" and "What makes an app cost more?"; /how-we-work "What is a clickable prototype?"; home "Do you build Arabic apps, right to left?" (NJWAR as the example). Not added, no proof yet: mada/KNET payments, Saudi NCA/PDPL compliance, MVP and fundraising.
+- **Accessibility statement** (/accessibility, /ar/accessibility, footer link "Accessibility"): aim WCAG 2.2 AA; what we test; the Cal.com calendar as the known gap; "We reply within 2 working days."
+- **Arabic share images** for /ar, /ar/build, /ar/scale, /ar/how-we-work, /ar/book: the page's Arabic eyebrow and H1, the rating line, the logo unchanged.
+- **Time gap:** checked, no change. Home says 0–1 hour behind Saudi Arabia and Kuwait, Scale and How we work say 2 hours or less behind the Gulf (UAE included); both are right.
+- **Monthly AI prompt set:** 20 EN + 20 AR prompts, now in 05 §8.
+
 ### 16b.46 Structured data in Arabic (Nov 6; SEO-AEO spec audit, batch 1, Mohamed: "Yes, start")
 - Not visible on the page; search engines read it. On /ar pages the Organization description is the Arabic entity line (how-we-work `team.entity`), and its topics (`knowsAbout`) and inline offers are in Arabic: "تطوير النسخة الأولى من المنتج (MVP)", "اكتشاف المنتج", "فرق تطوير مخصصة", "وكلاء الذكاء الاصطناعي وروبوتات المحادثة"; Validate = "التحقق" (اكتشاف المنتج), Build = "البناء" (تطوير MVP), Scale = "التوسع" (فريق تطوير مخصص), each with the Arabic description in `ar/how-we-work.ts`.
 - Service pages: /ar/build = "البناء", "تطوير MVP", audience "مؤسسون جاهزون للبناء"; /ar/scale = "التوسع", "فريق تطوير مخصص", audience "شركات ناشئة لديها منتج يعمل". English stays as before.

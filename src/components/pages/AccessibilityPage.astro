@@ -1,0 +1,16 @@
+---
+// Accessibility statement (03 §16b.47, Nov 6; SEO-AEO spec §35.1). Text in content/copy/en|ar/legal.ts; same template as
+// privacy and terms, with its own "Last updated" date.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalPage from '../../components/legal/LegalPage.astro';
+import { copy } from '../../content/copy';
+import { getLocale } from '../../i18n/t';
+import { graph, orgStub, webPage } from '../../lib/seo';
+
+const c = copy().legal.accessibility;
+const base = getLocale() === 'ar' ? '/ar' : '';
+const jsonLd = graph(orgStub, webPage(base + '/accessibility', c.seo.title, c.seo.description));
+---
+<BaseLayout title={c.seo.title} description={c.seo.description} pageType="legal" stickyBar={false} jsonLd={jsonLd}>
+  <LegalPage doc={c} />
+</BaseLayout>

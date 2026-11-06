@@ -69,6 +69,23 @@ export const howWeWork = {
       text: 'From west to east: US East, UK, Alexandria (our hub), Riyadh and Dubai.',
     },
     // Phase 3 (03 §16b.41): the track record as big numbers (09), the gap to the Gulf from `where`.
+    // 03 §16b.47 (Nov 6, SEO-AEO spec §22.3): a fixed list AI answer engines and search can quote. Facts from 09 only;
+    // founding year left out until confirmed (09: verify).
+    facts: {
+      title: 'Facts about DiscoverDev',
+      items: [
+        { label: 'What we are', value: 'A product and engineering company. We help founders and teams build the right product, then ship it fast.' },
+        { label: 'Where', value: 'Engineering hub in Alexandria, Egypt. Presence in Texas, USA.' },
+        { label: 'Who we work with', value: 'Founders and teams in Saudi Arabia, Kuwait and the Gulf, with clients on 4 continents.' },
+        { label: 'Services', value: 'Validate: 1–2 weeks, fixed fee. Build: an MVP in 8–12 weeks, fixed price. Scale: a dedicated team on a monthly retainer, from 4 months.' },
+        { label: 'How we price', value: 'A fixed price for an agreed scope. You get your number after a free 30-minute call, before you commit.' },
+        { label: 'How we work', value: 'AI drafts the work. A senior engineer signs off every release.' },
+        { label: 'Ownership', value: 'Full IP, in your own repository and cloud. No lock-in.' },
+        { label: 'Rating', value: 'Rated 5.0 on Clutch.' },
+        { label: 'Languages', value: 'Arabic and English.' },
+        { label: 'Contact', value: 'hello@discoverdev.ai' },
+      ],
+    },
     nums: [
       { value: '5.0', label: 'Rated on Clutch' },
       { value: '4', label: 'Continents with clients' },
@@ -92,6 +109,7 @@ export const howWeWork = {
     items: [
       { id: 'step-time', q: 'How long does each step take?', a: 'Discover takes 1–2 weeks. Build takes 8–12 weeks to a production-ready product. Plan happens before any code, and Ship & Stay continues after launch with the same team.', link: { label: 'Need a team after launch? See Scale', to: 'scale' as const } },
       { id: 'existing', q: 'Can you work on an existing codebase?', a: 'Yes. Brownfield work starts with a Launch-Ready Review of what you have, then we fix it or build it properly. We also do legacy modernization and cloud migration.' },
+      { id: 'prototype', q: 'What is a clickable prototype?', a: 'Screens you can tap through like a real app, before any code. You test the idea with users and fix the flow before anything is built.' }, // 03 §16b.47
       { id: 'progress', q: 'How do I see progress?', a: 'You get a demo every week, and every release is signed off by a senior engineer before it reaches your users.' },
     ],
   },

@@ -9,6 +9,7 @@ import { t, AR_PAGES } from '../i18n/t';
 import { canonical } from '../lib/seo';
 import { copy } from '../content/copy';
 import { OG_PAGES, ogPath } from '../data/og';
+import { AR_OG } from '../data/og-ar.mjs';
 import { PUBLIC_CF_BEACON_TOKEN } from 'astro:env/client';
 import '../styles/tokens.css';
 import '../styles/base.css';
@@ -40,7 +41,9 @@ const url = canonical(Astro.url.pathname);
 // Each page's own build-time card (src/data/og.ts); articles pass theirs; anything else uses the default card.
 const route = Astro.url.pathname.replace(/\.html$/, '').replace(/\/(index)?$/, '') || '/';
 const enRoute = route === '/ar' ? '/' : route.replace(/^\/ar(?=\/)/, '');
-const ogImage = ogImageProp ?? (enRoute in OG_PAGES ? ogPath(enRoute) : '/og/default.png');
+// Arabic pages with their own card use /og/ar/<page>.png (scripts/og-ar.mjs, 03 §16b.47); the rest share the English card.
+const arCard = locale === 'ar' && AR_OG.includes(enRoute) ? `/og/ar/${enRoute === '/' ? 'home' : enRoute.slice(1)}.png` : null;
+const ogImage = ogImageProp ?? arCard ?? (enRoute in OG_PAGES ? ogPath(enRoute) : '/og/default.png');
 // hreflang (05): only for pages that exist in both languages, self-referencing and reciprocal; x-default is the English page.
 const hasPair = (LOCALES.ar.status as string) === 'live' && (AR_PAGES as readonly string[]).includes(enRoute) && !noindex;
 const alt = (r: string) => canonical(r === '/' ? '/' : r);

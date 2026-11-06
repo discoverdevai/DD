@@ -5,6 +5,7 @@
 /book/confirmed
 /privacy
 /terms
+/accessibility
 # Lean R1 (Oct 26, 03 §16b)
 /build
 /scale
@@ -15,6 +16,7 @@
 /ar/book/confirmed
 /ar/privacy
 /ar/terms
+/ar/accessibility
 /ar/build
 /ar/scale
 /ar/how-we-work

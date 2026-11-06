@@ -102,6 +102,8 @@ for (const { route: page, html } of allPages) {
       if (/\/$/.test(href) && page !== '/') add('MINOR', page, 'canonical', `canonical has trailing slash: ${href}`);
     }
     for (const k of ['og:title', 'og:description', 'og:image', 'og:url']) if (!meta(html, 'property', k)) add('MINOR', page, 'open-graph', `${k} missing`);
+    const ogImg = attr(meta(html, 'property', 'og:image') || '', 'content') || '';
+    if (ogImg.startsWith('https://discoverdev.ai/') && !resolves(new URL(ogImg).pathname)) add('MAJOR', page, 'open-graph', `og:image not in build: ${ogImg} (Arabic cards: node scripts/og-ar.mjs)`);
   }
   if (page === '/book/confirmed' && !noindex) add('MAJOR', page, 'robots', '/book/confirmed must be noindex');
   if (page === '/design-system' && !noindex) add('BLOCKER', page, 'robots', '/design-system must be noindex (private reference)');
