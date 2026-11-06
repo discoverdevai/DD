@@ -58,6 +58,12 @@ const glyph = { in: '✓', next: '→', later: '·' } as const;
   .why__steps-label { font-family: var(--ff-body); font-size: var(--text-sm); color: var(--color-machine-text); margin-block: var(--space-8) var(--space-2); }
   .why__list { display: grid; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
   .why__body { display: grid; gap: var(--space-4); }
+  /* Tablets: steps 1 and 2 side by side, step 3 and the proof full width. */
+  @media (40rem <= width < 64rem) {
+    .why__body { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .why__list { display: contents; }
+    .why__step--card, .why__proof { grid-column: 1 / -1; }
+  }
   /* Wide screens: one grid for steps and proof. Steps 1 and 2 share row 1, the proof spans them in row 2, step 3 spans
      both rows; rows stretch, so all boxes line up top and bottom. */
   @media (width >= 64rem) {
@@ -78,7 +84,7 @@ const glyph = { in: '✓', next: '→', later: '·' } as const;
   .why__grp-l { font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); margin-block-end: var(--space-2); }
   .why__grp ul { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
   .why__row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); color: var(--color-heading); font-size: var(--text-sm); }
-  .why__row em { margin-inline-start: auto; font-style: normal; font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); }
+  .why__row em { white-space: nowrap; margin-inline-start: auto; font-style: normal; font-family: var(--ff-body); font-size: var(--text-xs); color: var(--color-text-muted); }
   .why__ck { flex: none; inline-size: 1.25rem; text-align: center; font-weight: var(--weight-bold); }
   .why__grp--in .why__row { border-color: color-mix(in oklab, var(--blue-300) 40%, transparent); background: color-mix(in oklab, var(--blue-300) 8%, transparent); }
   .why__grp--in .why__ck { color: var(--color-human-mark); }

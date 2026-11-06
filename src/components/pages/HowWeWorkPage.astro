@@ -97,13 +97,13 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
           <Quote text={nojoud.quote} name={nojoud.name} role={nojoud.role} />
           <p class="team__entity">{c.team.entity}</p>
           <p class="hw__body">{c.team.where}</p>
+          <TimeOverlap label={c.team.strip.label} places={c.team.strip.places} hubTag={c.team.strip.hubTag} text={c.team.strip.text} />
         </div>
         <div class="team__side">
           <section class="facts" aria-labelledby="facts-title">
             <h3 id="facts-title" class="facts__title">{c.team.facts.title}</h3>
             <dl class="facts__list">{c.team.facts.items.map((f) => <div><dt>{f.label}</dt><dd dir={f.value.includes('@') ? 'ltr' : undefined}>{f.value}</dd></div>)}</dl>
           </section>
-          <TimeOverlap label={c.team.strip.label} places={c.team.strip.places} hubTag={c.team.strip.hubTag} text={c.team.strip.text} />
         </div>
       </div>
     </div>
@@ -142,6 +142,7 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
   .hw__who dd { margin: 0; color: var(--color-text); }
   .hw__gets { justify-self: stretch; margin-block-start: var(--space-2); padding-block-start: var(--space-3); border-block-start: 1px solid var(--color-hairline); color: var(--color-heading); }
   .hw__gets b { font-weight: var(--weight-medium); color: var(--color-human-mark); }
+  .hw__gets b::after { content: ':'; }
   .hw__tools { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-2); }
   .hw__tools li { padding: 3px var(--space-3); border-radius: var(--radius-pill); border: 1px solid var(--color-hairline); font-size: var(--text-sm); color: var(--blue-200); }
   /* The deliverable, drawn in a small product frame (decorative; the words carry the meaning). Hidden on phones. */
@@ -190,7 +191,7 @@ const paths = c.paths.items.map((p) => ({ ...p, href: `${href('build')}#${p.anch
   .facts__list dd { margin: 0; font-size: var(--text-sm); color: var(--color-text); }
   :global(:root:lang(ar)) .facts__list dd[dir='ltr'] { text-align: end; }
   /* Oct 29: the strip already shows the cities; its caption stays for screen readers only. */
-  .team__side :global(.tz__text) { position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .team__copy :global(.tz__text) { position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
   /* Ownership: the promises as one checked list, two columns on wide screens. */
   .own { display: grid; gap: var(--space-8); }
