@@ -2,6 +2,8 @@
 // Client reviews (03 §2A.8c, option C "margin notes", Oct 18): the 10 verified quotes from 09 (two Amstadd Clutch reviews added Oct 23), approved by Mohamed with names and roles (D-05).
 // Quotes are verbatim. No star graphics, no AggregateRating (CLAUDE.md, 05). One featured card (the first quote) beside the other 7 quotes
 // as plain notes. Oct 18 (Mohamed): no moving content and no pause control, so the notes are a still two-column list.
+// Nov 6 (03 §16b.48, Mohamed: "Bolder colours"): the first featured card is filled green (ink text), the other quotes sit on
+// filled brand-blue cards.
 // `pair` (home, Phase 3, 03 §16b.40): two featured cards side by side (the first two quotes), the rest in one row under them.
 import ProofChip from '../ui/ProofChip.astro';
 import CtaLink from '../ui/CtaLink.astro';
@@ -18,8 +20,8 @@ const notes = items.slice(lead.length);
   <div class="container">
     <SectionHead id="rv-title" label={label} title={title} measure={22} />
     <div class:list={['rv__grid', { 'rv__grid--pair': pair }]}>
-      {lead.map((featured) => (
-        <figure class="rv__featured">
+      {lead.map((featured, i) => (
+        <figure class:list={['rv__featured', { 'rv__featured--hl': i === 0 }]}>
           <p class="rv__label">{t('reviews.featured')} · {featured.service}</p>
           <blockquote class="rv__big"><p>{featured.quote}</p></blockquote>
           <figcaption class="rv__by"><strong>{featured.name}</strong><span>{featured.role}</span></figcaption>
@@ -69,11 +71,17 @@ const notes = items.slice(lead.length);
   .rv__side { display: grid; gap: var(--space-4); align-content: start; min-inline-size: 0; }
   .rv__notes { margin: 0; padding: 0; list-style: none; }
   @media (width >= 40rem) { .rv__notes { columns: 2; column-gap: var(--space-8); } }
-  .rv__note { break-inside: avoid; padding-block: var(--space-4); border-block-start: 1px solid var(--color-hairline); }
-  .rv__note blockquote { font-size: var(--text-base); line-height: 1.6; color: var(--color-text); }
-  .rv__note figcaption { display: grid; margin-block-start: var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .rv__note { break-inside: avoid; margin-block-end: var(--space-4); padding: var(--space-5); border-radius: var(--radius-md); background: linear-gradient(160deg, var(--blue-700), var(--blue-900) 75%); }
+  .rv__note blockquote { font-size: var(--text-base); line-height: 1.6; color: var(--neutral-0); }
+  .rv__note figcaption { display: grid; margin-block-start: var(--space-3); font-size: var(--text-sm); color: var(--blue-100); }
   .rv__note figcaption strong { font-family: var(--ff-heading); color: var(--color-heading); }
-  .rv__svc { font-size: var(--text-xs); }
+  .rv__svc { font-size: var(--text-xs); color: var(--color-human-mark); }
+  /* The first featured card: green, ink text (contrast 11:1). */
+  .rv__featured--hl { background: var(--color-human-mark); border-color: var(--color-human-mark); }
+  .rv__featured--hl :is(.rv__label, .rv__big, .rv__by strong, .rv__result) { color: var(--blue-975); }
+  .rv__featured--hl .rv__by span { color: color-mix(in oklab, var(--blue-975) 80%, transparent); }
+  .rv__featured--hl .rv__big::before { color: color-mix(in oklab, var(--blue-975) 35%, transparent); }
+  .rv__featured--hl .rv__by { border-block-start-color: color-mix(in oklab, var(--blue-975) 25%, transparent); }
   .rv :global(.rv__proof) { color: var(--color-text-muted); }
   .rv__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-block-start: var(--space-8); }
 
@@ -82,6 +90,7 @@ const notes = items.slice(lead.length);
     .rv__grid--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .rv__grid--pair .rv__featured { position: static; align-self: stretch; }
     .rv__grid--pair .rv__side { grid-column: 1 / -1; }
-    .rv__grid--pair .rv__notes { columns: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8); }
+    .rv__grid--pair .rv__notes { columns: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); }
+    .rv__grid--pair .rv__note { margin-block-end: 0; }
   }
 </style>

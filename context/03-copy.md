@@ -2052,6 +2052,11 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.48 Bolder colours (Nov 6; Mohamed chose direction 2 in .taste-skill/colour-dirs.html; no words change)
+- Home "Why DiscoverDev": the three step cards are filled brand blue (blue-700 to blue-900) with a green number badge and ink digit.
+- Reviews (home and /work): the first featured card is filled green with ink text; the other quotes sit on filled blue cards with the service line in green. Same components on both pages. Brand tokens only; axe clean.
+- Not yet applied elsewhere (Build, Scale, How we work, FAQ): to be extended section by section on request.
+
 ### 16b.47 SEO-AEO content (Nov 6; Mohamed: "Approve, apply" on .taste-skill/content-drafts.html)
 - **Facts about DiscoverDev** (How we work, "Who we are", beside the time strip), EN + AR, facts from 09 only, founding year left out until confirmed:
   What we are · Where · Who we work with ("Founders and teams in Saudi Arabia, Kuwait and the Gulf, with clients on 4 continents.") · Services · How we price · How we work · Ownership · Rating ("Rated 5.0 on Clutch.") · Languages · Contact. Full text in `howWeWork.team.facts`.
