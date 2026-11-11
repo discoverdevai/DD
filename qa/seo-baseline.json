@@ -84,7 +84,7 @@
     ]
   },
   "https://discoverdev.ai/ar/book": {
-    "title": "احجز مكالمة | DiscoverDev",
+    "title": "احجز مكالمة توضيحية مجانية | DiscoverDev",
     "description": "احجز مكالمة توضيحية مجانية مع DiscoverDev مدتها 30 دقيقة، دون محاولة بيع. اختر وقتًا في أوقات الخليج أو الولايات المتحدة، وتخرج بخطوة واضحة.",
     "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
     "h1": 1,
@@ -204,7 +204,7 @@
     ]
   },
   "https://discoverdev.ai/book": {
-    "title": "Book a Call | DiscoverDev",
+    "title": "Book a Free Clarity Call | DiscoverDev",
     "description": "Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time in Gulf or US hours, and leave with a next step.",
     "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
     "h1": 1,

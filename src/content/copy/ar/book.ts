@@ -6,7 +6,7 @@ import { shared } from './shared';
 
 export const book: Widen<typeof en> = {
   seo: {
-    title: 'احجز مكالمة | DiscoverDev',
+    title: 'احجز مكالمة توضيحية مجانية | DiscoverDev',
     description: 'احجز مكالمة توضيحية مجانية مع DiscoverDev مدتها 30 دقيقة، دون محاولة بيع. اختر وقتًا في أوقات الخليج أو الولايات المتحدة، وتخرج بخطوة واضحة.',
   },
   h1: 'احجز مراجعة أو مكالمة توضيحية مجانية',

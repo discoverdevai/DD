@@ -2052,6 +2052,9 @@ Three rows: (1) "Built it with AI? We check it first.", the body, "What we check
 - Build's product cards (screen or drawing, meta, name, line): Athkado · Expanded scope · Saudi Arabia · "Feasibility sprints first, then the NJWAR AR store with AI recommendations." (NJWAR combo screen) / Upscend · UK · "12 months, one embedded team owning the roadmap, backlog and sprints." / Arheb · Saudi Arabia · "An embedded data and ML team for a smart ride-sharing platform." / Pyramakerz · Egypt · "Data, ML and automations for an EdTech platform with 20,000+ students."
 - One line: "Also with us: Jumlaty ML engineer, Saudi Arabia · Nile Support AI call agents, USA · Amstadd white-label, UK". AR in ar/scale.ts.
 
+### 16b.49 Book page title (Nov 11; SEO audit, Mohamed: "Fix them")
+- /book tab title: "Book a Free Clarity Call | DiscoverDev" (was "Book a Call | DiscoverDev"); /ar/book: «احجز مكالمة توضيحية مجانية | DiscoverDev». Privacy and Terms titles stay short on purpose.
+
 ### 16b.48 Bolder colours (Nov 6; Mohamed chose direction 2 in .taste-skill/colour-dirs.html; no words change)
 - Home "Why DiscoverDev": the three step cards are filled brand blue (blue-700 to blue-900) with a green number badge and ink digit.
 - Reviews (home and /work): the first featured card is filled green with ink text; the other quotes sit on filled blue cards with the service line in green. Same components on both pages. Brand tokens only; axe clean.

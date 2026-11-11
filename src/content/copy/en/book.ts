@@ -2,7 +2,7 @@
 import { shared } from './shared';
 export const book = {
   seo: {
-    title: 'Book a Call | DiscoverDev', // V1.0; the Review title returns in V1.2 (03 §13),
+    title: 'Book a Free Clarity Call | DiscoverDev', // 05 §2 (Nov 11, SEO audit: names the call, was 25 chars); the Review title returns in V1.2 (03 §13)
     description: 'Book a free 30-minute clarity call with DiscoverDev. No pitch. Pick a time in Gulf or US hours, and leave with a next step.',
   },
   h1: 'Book a review or a free clarity call',
